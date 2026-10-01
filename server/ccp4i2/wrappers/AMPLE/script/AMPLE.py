@@ -16,6 +16,7 @@ LOGFILE_NAME = 'log.txt'
 
 
 class AMPLE(CPluginScript):
+    ERROR_CODES = {201: {'description': 'AMPLE produced no molecular-replacement solution'}}
     TASKNAME = 'AMPLE'
     WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1']
     TASKCOMMAND = "ample"
@@ -141,7 +142,10 @@ class AMPLE(CPluginScript):
                 for b in a.split() if b
             ])
         # General flags
-        self.appendCommandLine(['-nproc', str(params.AMPLE_NPROC)])
+        # Unset, AMPLE uses every processor (the Qt default, 9993, asked for
+        # that many parallel MrBUMP jobs).
+        if params.AMPLE_NPROC.isSet():
+            self.appendCommandLine(['-nproc', str(params.AMPLE_NPROC)])
         self.appendCommandLine(
             ['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
         return self.SUCCEEDED
@@ -201,5 +205,12 @@ class AMPLE(CPluginScript):
                     indx + 1, file_info['name'], file_info['info'])
                 fphi.contentFlag = 1
                 fphi.subType = 1
+            return self.SUCCEEDED
 
-        return self.SUCCEEDED
+        # No solution at all: say so. (It returned SUCCEEDED, so a run whose
+        # every MrBUMP search had failed -- AMPLE's helical ensembles in CCP4
+        # 9 -- finished as if it had worked, with nothing to show.)
+        self.appendErrorReport(201, 'AMPLE produced no molecular-replacement '
+                               'solution. Each search model has a MrBUMP log in '
+                               + os.path.join(I2DIR, 'MRBUMP') + '.')
+        return self.UNSATISFACTORY

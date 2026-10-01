@@ -1,0 +1,125 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "mrbump_input.png",
+      "job": 115,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Target Sequence",
+      "callouts": [
+        {
+          "field": "AU contents",
+          "badge": "1"
+        },
+        {
+          "text": "The number of monomers to search for",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "mrbump_data.png",
+      "job": 115,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Experimental Data",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "3"
+        },
+        {
+          "field": "Free R set",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "mrbump_models.png",
+      "job": 115,
+      "tabs": [
+        "Task interface",
+        "Search models"
+      ],
+      "section": "Model databases",
+      "callouts": [
+        {
+          "field": "Include local files",
+          "badge": "5"
+        },
+        {
+          "field": "Only use locally provided search models (no sequence search)",
+          "badge": "6"
+        },
+        {
+          "field": "Search PDB for possible MR search models",
+          "badge": "7"
+        },
+        {
+          "field": "Search EBI-AFDB for possible MR search models",
+          "badge": "8"
+        }
+      ]
+    },
+    {
+      "out": "mrbump_local.png",
+      "job": 115,
+      "tabs": [
+        "Task interface",
+        "Search models"
+      ],
+      "section": "Local coordinate files to be used as search models",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "9"
+        },
+        {
+          "text": "Atom Selection",
+          "badge": "10"
+        }
+      ]
+    },
+    {
+      "out": "mrbump_report.png",
+      "job": 113,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Final solution",
+        "scroll": true
+      },
+      "until": "search model preparation",
+      "callouts": [
+        {
+          "text": "Final solution",
+          "badge": "11"
+        },
+        {
+          "text": "Space group",
+          "badge": "12"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic.def.xml": "854812e6ae5c92352b68a051d38f5fc964de8407",
+    "server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic.py": "37c5a56c2c7bede967c71e3141efb1da29032ee2",
+    "server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic_report.py": "6424b23540205b433c02e709cadedfe0532a13a1",
+    "client/renderer/components/task/task-interfaces/mrbump_basic.tsx": "3c25d93f070de5fbc71d5102a3e23937d9bf78d6",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}

@@ -22,7 +22,7 @@ import logging
 from xml.etree import ElementTree as ET
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_ERROR, SEVERITY_WARNING
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +61,17 @@ class molrep_map(CPluginScript):
         self._confidence = None     # 'confident' | 'ambiguous' | 'weak' | 'single' | 'none'
 
     # ---- pipeline hooks -------------------------------------------------
+
+    def validity(self):
+        error = super().validity()
+        # The phaser engine is declared (engines.PHASER) but raises when used;
+        # say so before the job is run, not after.
+        if str(self.container.controlParameters.ENGINE) == 'phaser':
+            error.append(klass=self.TASKNAME, code=207,
+                         details='The phaser engine is not available yet: use molrep',
+                         name=f'{self.TASKNAME}.container.controlParameters.ENGINE',
+                         severity=SEVERITY_ERROR)
+        return error
 
     def processInputFiles(self):
         from . import preprocess_map as pp

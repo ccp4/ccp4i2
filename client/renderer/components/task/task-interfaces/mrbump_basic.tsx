@@ -14,7 +14,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   const searchPdb = useBoolToggle(useTaskItem, "SEARCH_PDB");
   const searchAfdb = useBoolToggle(useTaskItem, "SEARCH_AFDB");
-  const includeLocal = useBoolToggle(useTaskItem, "INCLUDE");
+  const includeLocal = useBoolToggle(useTaskItem, "LOCAL");
+  // The wrapper searches every model in XYZIN_LIST whatever the checkbox says,
+  // so a list that holds models is always shown.
+  const { value: localModels } = useTaskItem("XYZIN_LIST");
+  const hasLocalModels = Array.isArray(localModels) && localModels.length > 0;
 
   return (
     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
@@ -81,6 +85,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="LOCAL"
               {...props}
               qualifiers={{ guiLabel: "Include local files" }}
+              onChange={includeLocal.onChange}
             />
             <CCP4i2TaskElement
               itemName="LOCALONLY"
@@ -172,14 +177,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             }}
             containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement
-              itemName="INCLUDE"
-              {...props}
-              qualifiers={{ guiLabel: "Include local files" }}
-              onChange={includeLocal.onChange}
-            />
-            {includeLocal.value && (
+            {includeLocal.value || hasLocalModels ? (
               <CCP4i2TaskElement itemName="XYZIN_LIST" {...props} />
+            ) : (
+              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                Tick "Include local files" above to give search models of your own.
+              </Typography>
             )}
           </CCP4i2ContainerElement>
         </CCP4i2Tab>

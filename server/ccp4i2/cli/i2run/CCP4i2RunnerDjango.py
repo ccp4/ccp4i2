@@ -210,6 +210,12 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         save_params_for_job(thePlugin, the_job=job, mode="JOB_INPUT", exclude_unset=True)
         logger.info(f"Saved input parameters to input_params.xml for async runner to load")
 
+        # --delay: the job is set up, as if from the interface, and left to be
+        # run later (a task that cannot run here can still be shown set up).
+        if getattr(self.parsed_args, "delay", False):
+            print("Job set up and not run (--delay)")
+            return self.jobId, 0
+
         # Execute job using async runner
         from asgiref.sync import async_to_sync
         from ccp4i2.lib.async_run_job import run_job_async
