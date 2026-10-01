@@ -30,9 +30,19 @@ Estimation of resolution
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: aimless_pipe_report_8.png
-   :alt: Figure 8: Resolution statistics
+   :alt: Figure 8a: CC(1/2) against resolution
 
-   Figure 8: Resolution statistics
+   Figure 8a: CC(1/2) against resolution
+
+.. figure:: aimless_pipe_report_8b.png
+   :alt: Figure 8b: information content against resolution
+
+   Figure 8b: information content against resolution
+
+.. figure:: aimless_pipe_report_8c.png
+   :alt: Figure 8c: signal to noise against resolution
+
+   Figure 8c: signal to noise against resolution
 
 What is the real resolution? Good guides are **(8a)** the correlation
 coefficient between random half-datasets CC(|frac12|), **(8b)** the
@@ -47,6 +57,10 @@ see `below <#anisotropy>`_.
 The optional automatic cutoff in the pipeline is based on the information
 content measure.
 
+The estimates in the report differ for the different measures (here 1.44 Å
+from CC(|frac12|) and 1.53 Å from Mn(I/sd) overall, and 1.57 Å where
+Mn(I/sd) is 2.0), so look at the graphs, not only the numbers.
+
 The final Summary table includes a rough estimate of the
 resolution in each direction, as well as overall estimates. It is often
 best to integrate the data to a higher resolution and then cut it back
@@ -57,10 +71,16 @@ large values as the intensities get weaker.
 Figure 8 shows three graphs against resolution which help you to decide
 whether the estimated resolution limits are sensible, 
 from CC(|frac12|), information content and Mn(I)/sd(Mn(I)).
-8(a) shows CC(|frac12|) (green line) with a
-curve fit (pale blue): it also shows CCanom (purple line) which shows in this
-case there is no significant anomalous signal (see 
-`Detection of an anomalous signal`_ below for more).
+Each is a choice in the report's graph menus (under Overall summary, and
+under "Details of merging" for the information content). 8a shows CC(|frac12|)
+(green line) with a curve fit (blue): it also shows CCanom (purple line), which
+scatters about zero, so in this case (the MDM2 data, to 1.35 Å) there is
+no significant anomalous signal (see 
+`Detection of an anomalous signal`_ below for more). The fit falls below the
+default threshold of 0.2 at 1.44 Å. In 8b the information content falls to
+0.1 bits per reflection at 1.35 Å, which is where the automatic cutoff
+cut these data (the input went to 1.25 Å); in 8c the average
+signal/noise Mn(I/sd) reaches 1.5 at 1.53 Å.
 AIMLESS calculates CC(|frac12|) in two ways: by
 explicitly dividing observations for each reflection into two random averages
 (labelled CC1/2); and the method of ref 6, based on variances and
@@ -68,20 +88,31 @@ covariances (labelled CC1/2v). The two methods usually give very
 similar numbers.
 
 .. figure:: aimless_pipe_report_9.png
-   :alt: Figure 9: Various statistics vs. Resolution
+   :alt: Figure 9a: Wilson plot
 
-   Figure 9: Various statistics vs. Resolution
+   Figure 9a: Wilson plot
+
+.. figure:: aimless_pipe_report_9b.png
+   :alt: Figure 9b: second moments against resolution
+
+   Figure 9b: second moments against resolution
 
 A number of other statistics may be useful in assessing the meaningful resolution.
-Completeness (fig 9a): note that
+Completeness (see `Completeness and multiplicity`_ below): note that
 by default XDS and DIALS integrate into the corners of a square detector, 
 so the highest resolution data are very incomplete (and the completeness of the
-anomalous data is worse). Fig 9b shows a bad Wilson plot: flattening out or
+anomalous data is worse). Fig 9a shows the Wilson plot (here with a Wilson B of
+17.14): flattening out or
 going up is another indication of very weak or bad data, as are very large values
-of the 2nd moment of intensity (fig 9c). The 2nd moment plot (fig 9c) from
-Phaser shows the "theoretical" value, rising with resolution as <I/ |sgr| (I)> gets
-smaller, as well as the observed value. Large values of this moment indicate
-very weak and probably useless data.
+of the 2nd moment of intensity (fig 9b). The 2nd moment plot from
+Phaser shows the "theoretical" value (rising with resolution as <I/ |sgr| (I)> gets
+smaller) and the "twinned" value, as well as the observed value. In these data the
+observed value follows the theoretical one to about 1.5 Å, then rises above it
+at the highest resolution: large values of this moment indicate
+very weak and probably useless data. This report also warns of a "severe deviation
+from the Wilson plot" in 3.4% of bins and of possible ice rings (at 4.85, 3.86,
+3.71 and 3.47 Å): these bins, and not only the overall
+curve, should be looked at.
 
 It is a mistake to cut back the resolution too severely at the data
 reduction stage. It makes sense to restrict the resolution in locating
@@ -95,9 +126,19 @@ Anisotropy
 ^^^^^^^^^^
 
 .. figure:: aimless_pipe_report_aniso.png
-   :alt: Figure 10: Anisotropy
+   :alt: Figure 10a: anisotropy of CC(1/2)
 
-   Figure 10: Anisotropy
+   Figure 10a: anisotropy of CC(1/2)
+
+.. figure:: aimless_pipe_report_aniso_b.png
+   :alt: Figure 10b: Phaser anisotropy
+
+   Figure 10b: Phaser's eigenvalues and eigenvectors
+
+.. figure:: aimless_pipe_report_aniso_c.png
+   :alt: Figure 10c: directional intensities
+
+   Figure 10c: Ctruncate's directional plots of mean intensity
 
 Most crystals diffract anisotropically to some extent, so decisions on
 resolution cutoffs should take this into account, if the anisotropy is
@@ -106,14 +147,22 @@ ways here, along 2 or 3 orthogonal principal directions. Note
 that trigonal, hexagonal and tetragonal space groups only have two principal
 directions, the unique axis and the perpendicular plane, and cubic space groups
 show no anisotropy. In triclinic space groups there are 3 arbitrary axes, and in
-monoclinic space groups (as in fig10) the directions in the a*c* plane are
-arbitrary (see fig 10d).
+monoclinic space groups the directions in the a*c* plane are
+arbitrary. The example here (MDM2, P6\ :sub:`5`\ 22) therefore has two
+directions: c* (d3) and the plane perpendicular to it (d12).
 AIMLESS analyses anisotropy from CC(1/2) and <I/ |sgr| (I)> in cones of data
 around the principal axes (fig 10a), so a rough resolution estimate can be made
-for each direction (fig 10d). Phaser (fig 10b) and Ctruncate (fig 10c) fit
-orthogonal ellipsoids to the merged data, with different definitions - the important
-thing is to note is that, for example, in this case, the data are quite severely
-anisotropic, and this may influence your decisions of whether or where to cut
+for each direction: from CC(1/2), 1.44 Å in the a*b* plane and 1.52 Å
+along c*; from Mn(I/sd) (threshold 1.5), 1.51 and 1.58 Å
+(see "Details of merging", "Resolution estimates"). Phaser (fig 10b) and Ctruncate
+(fig 10c) fit
+orthogonal ellipsoids to the merged data, with different definitions. Phaser gives
+an anisotropic delta B of 5.47, with the principal direction along c (the
+eigenvector 0, 0, 1); Ctruncate describes "little or no
+anisotropy". The report's key summary still shows a mild warning ("some
+anisotropy detected"): the thing to note is that the data are only slightly
+anisotropic, so the choice of cutoff will hardly depend on direction. When anisotropy is severe,
+it may influence your decisions of whether or where to cut
 the data. 
 Other resources such as the Staraniso server might be useful in deciding what to
 do with severely anisotropic data, though the value of anisotropic
@@ -125,9 +174,29 @@ Analysis against Batch, radiation damage etc
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: aimless_pipe_report_11.png
-   :alt: Figure 11: Analysis against batch
+   :alt: Figure 11a: scale against rotation
 
-   Figure 11: Analysis against batch
+   Figure 11a: scale against rotation
+
+.. figure:: aimless_pipe_report_11b.png
+   :alt: Figure 11b: relative B-factor against batch
+
+   Figure 11b: relative B-factor against batch
+
+.. figure:: aimless_pipe_report_11c.png
+   :alt: Figure 11c: Rmerge against batch
+
+   Figure 11c: R\ :sub:`merge` against batch
+
+.. figure:: aimless_pipe_report_11d.png
+   :alt: Figure 11d: maximum resolution against batch
+
+   Figure 11d: estimated maximum resolution against batch
+
+.. figure:: aimless_pipe_report_11e.png
+   :alt: Figure 11e: cumulative completeness
+
+   Figure 11e: cumulative completeness against batch
 
 The Batch Number is the image number for the central part of a spot, if
 necessary incremented by a multiple of 1000 if you are merging multiple
@@ -139,18 +208,21 @@ investigation, examining the images and the integration process (c) if
 you are merging data from multiple crystals or sweeps (all called Runs
 in AIMLESS), some may be better than others (see below)
 
-Figure 11 shows a straightforward example of radiation damage. With
+The graphs are chosen from the "Analysis against all Batches" group under
+Overall summary: "Scales v rotation range" (11a, 11b) and the batch analyses
+(11c to 11e). Figure 11 shows a mild example of radiation damage in the 60
+batches of the MDM2 data. With
 increasing radiation dose, the relative B-factor becomes more negative
 (figure 11b), so that the average scale (red in 11a) increases above the
 scale at infinite resolution (blue in 11a). R\ :sub:`merge` tends to
-increase (figure 11c), and the estimated maximum resolution gets worse
+increase (figure 11c), more steeply in the last 10 or so batches, and the estimated
+maximum resolution gets worse
 (figure 11d, roughly estimated as the point at which I/σI falls below
-1.0). The cumulative completeness plot (figure 11e) shows that the
-second half of the data could be omitted without compomising
-completeness, and it would be worth trying structure solution and
-refinement with the truncated data as well as the full set.
-
-| 
+1.5 here: it is near 1.5 Å for most of the data, and 1.77 Å in the last batch). The cumulative completeness plot (figure 11e) shows that
+the first half of the data (30 batches) already give about 80% completeness, and
+that the data reach 90.2% overall. The decay here is not severe enough to justify omitting
+the end of the sweep, but it would be worth trying structure solution and
+refinement with and without the last batches.
 
 .. figure:: aimless_pipe_report_badimage_runCC.png
    :alt: Figure 12: one bad image
@@ -181,9 +253,14 @@ Completeness and multiplicity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: aimless_pipe_report_completeness.png
-   :alt: Figure 13: Completeness
+   :alt: Figure 13a: Completeness
 
-   Figure 13: Completeness and multiplicity
+   Figure 13a: Completeness against resolution
+
+.. figure:: aimless_pipe_report_completeness_b.png
+   :alt: Figure 13b: Multiplicity
+
+   Figure 13b: Multiplicity against resolution
 
 Datasets should be complete, as near to 100% as you can manage. Some
 loss of completeness can be tolerated in the outermost resolution bins.
@@ -191,7 +268,8 @@ Dangers: watch out for bad anomalous completeness.
 Note that in P1 you need a rotation of at least 180°+2θmax (or better 360°)
 to get complete anomalous data. Also that XDS and DIALS integrate into the
 corners of square detectors, leading to very incomplete data at the
-maximum resolution (figure 13). You should perhaps apply a high
+maximum resolution (figure 13a: here overall completeness is 90.2%, falling to 45.4% in
+the outermost shell, and the anomalous completeness to about 20%; multiplicity, figure 13b, is 3.0 overall and 1.6 in the outermost shell). You should perhaps apply a high
 resolution limit, maybe to 
 the resolution of the inscribed circle. Detectors with many tiles may
 lose significant numbers of spots in the gaps between tiles, leading to
@@ -224,7 +302,7 @@ anisotropy, twinning, nor for tNCS (unlike Phaser), so this test is
 likely to be unreliable in the presence of serious pathologies. 
 
 The number of rejections is listed in the main report header (figure
-14c). The most useful view of the outliers is shown by clicking on the
+14c; here 25 unique observations were rejected, and 2 for the Emax test). The most useful view of the outliers is shown by clicking on the
 "Outlier positions" button under "Merging" (Other merging graphs) **(14a.1)**,
 which displays the positions of outliers on the detector (figure 14a).
 This shows whether the outliers are syatematic, indicating possible problems.
@@ -279,7 +357,7 @@ Analysis of Standard Deviations
 .. figure:: aimless_pipe_report_SDplot.png
    :alt: Figure 15: SD correction plot
 
-   Figure 15: SD correction plot
+   Figure 15: SD correction plot (the table of parameters is above the plot)
 
 AIMLESS compares the observed scatter of symmetry-related observations
 around the mean with the estimated σ(I), and "corrects" the σ(I) by a
@@ -296,7 +374,7 @@ figure 15 represents the distribution of normalised errors δ =
 standard deviation of 1.0, so the plot should be horizontal with a value
 = 1.0 everywhere. If it slopes upwards, then σ(I) is too small for large
 I, so SdAdd should be increased, or reduced if it slopes downwards. The
-example in figure 14 is OK but not particularly good, but if these plots
+example in figure 15 (SdFac 0.93, SdB 2.56, SdAdd 0.0426, ISa 25.2) is OK: the curves lie just below 1.0 and are nearly flat, but not particularly good, but if these plots
 vary too much from 1.0 then some parameters can be changed in the input,
 in Additional Options->override default parameters for each run. Useful
 options are (a) making the the parameters the same (default) or similar (ie

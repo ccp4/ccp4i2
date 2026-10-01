@@ -178,6 +178,278 @@
           "badge": "5.3"
         }
       ]
+    },
+    {
+      "out": "aimless_pipe_report_8.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "CC(1/2) v resolution, max resolution 1.44"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_8b.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Info (bits) per reflection vs resolution"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_8c.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Correlations CC(1/2) within dataset",
+          "choose": "Analysis against resolution"
+        }
+      ],
+      "section": {
+        "graph": "I/sigma, Mean Mn(I)/sd"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_9.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Wilson B estimate, 17.14"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_9b.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Weighted second moments vs resolution"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_aniso.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Correlations CC(1/2) within dataset",
+          "choose": "Anisotropy analysis"
+        }
+      ],
+      "section": {
+        "graph": "Anisotropic CC(1/2) v resolution"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_aniso_b.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": "Analyses of twinning, tNCS and anisotropy from Phaser",
+      "from": "Anisotropic deltaB",
+      "until": "Analysis of twinning from ctruncate"
+    },
+    {
+      "out": "aimless_pipe_report_aniso_c.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Directional plots for mean(I)"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_completeness.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Completeness v Resolution"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_completeness_b.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Completeness v Resolution",
+          "choose": "Multiplicity v Resolution"
+        }
+      ],
+      "section": {
+        "graph": "Multiplicity v Resolution"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_SDplot.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "expand": [
+        "Other merging graphs"
+      ],
+      "section": "SD analysis",
+      "until": "Analysis against resolution"
+    },
+    {
+      "out": "aimless_pipe_report_11.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Analysis against all Batches",
+          "choose": "=== Scales"
+        }
+      ],
+      "section": {
+        "graph": "Mn(k) & 0k"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_11b.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Analysis against all Batches",
+          "choose": "=== Scales"
+        },
+        {
+          "menu": "Mn(k) & 0k",
+          "choose": "Relative Bfactor"
+        }
+      ],
+      "section": {
+        "graph": "Relative Bfactor"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_11c.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "graph": "Rmerge v Batch for all runs"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_11d.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Rmerge v Batch for all runs",
+          "choose": "Maximum resolution limit"
+        }
+      ],
+      "section": {
+        "graph": "Maximum resolution limit"
+      }
+    },
+    {
+      "out": "aimless_pipe_report_11e.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "plots": [
+        {
+          "menu": "Rmerge v Batch for all runs",
+          "choose": "Cumulative %completeness"
+        }
+      ],
+      "section": {
+        "graph": "Cumulative %completeness"
+      }
     }
   ],
   "sources": {
@@ -189,5 +461,16 @@
     "client/renderer/components/task/task-interfaces/aimless-pipe/InputDataTab.tsx": "259b7ca54ac13047d541b3d0928cb5ebb7c02199",
     "client/renderer/components/task/task-interfaces/aimless-pipe/index.tsx": "e3d5924bc7c4f756aa279424cd2a465e46d0c54e",
     "docs/user/tools/scenario_refine.py": "cb5135ccb2aa061d17ad9faa2fc3bbe4b583b10c"
+  },
+  "kept": {
+    "aimless_pipe_report_badimage_runCC.png": "MDM2's data have no bad image, so there is no such image to show; the picture teaches what one looks like.",
+    "aimless_pipe_report_anom.png": "It contrasts a strong anomalous signal with none; MDM2 is one native dataset and shows only the weak case.",
+    "aimless_pipe_report_outliers.png": "The detector plot of outlier positions opens from a button in a separate window the capture cannot reach; MDM2 also has few outliers (25 plus 2 Emax).",
+    "aimless_pipe_report_tNCS.png": "MDM2 has no tNCS (Phaser and ctruncate both say none detected), so the report has nothing to show; the picture shows what a positive result looks like.",
+    "aimless_pipe_report_3.png": "Pointless ran here in its reference-matching mode (the coordinates 4hg7.pdb were given and fixed the space group), so the report has no search tables: its program XML has no element, Laue group, zone or space group scores, and its Details fold holds only an empty test-data fold.",
+    "aimless_pipe_report_4.png": "Pointless ran here in its reference-matching mode (the coordinates 4hg7.pdb were given and fixed the space group), so the report has no search tables: its program XML has no element, Laue group, zone or space group scores, and its Details fold holds only an empty test-data fold.",
+    "aimless_pipe_report_5.png": "Pointless ran here in its reference-matching mode (the coordinates 4hg7.pdb were given and fixed the space group), so the report has no search tables: its program XML has no element, Laue group, zone or space group scores, and its Details fold holds only an empty test-data fold.",
+    "aimless_pipe_report_6.png": "Pointless ran here in its reference-matching mode (the coordinates 4hg7.pdb were given and fixed the space group), so the report has no search tables: its program XML has no element, Laue group, zone or space group scores, and its Details fold holds only an empty test-data fold.",
+    "aimless_pipe_report_7.png": "P6522 (622) allows no alternative indexing; the report shows only a match to the reference file (sole alternative [h,k,l]), not a table of scores."
   }
 }
