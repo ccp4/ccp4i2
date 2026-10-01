@@ -16,6 +16,14 @@ def test_gamma_abcd_column_group_list():
     args += mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
     with i2run(args) as job:
         checkMtz(job / "ds1_HLA_HLB_HLC_HLD.mtz", ["HLA", "HLB", "HLC", "HLD"])
+        # As the import tasks write it; it read "HL Phs from initial_phases
+        # columns ds1/[HLA,HLB,HLC,HLD]".
+        from ccp4i2.db import models
+        record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
+        found = [f.annotation for f in models.File.objects.filter(job=record)
+                 if "MINIMTZOUTLIST" in (f.job_param_name or "")]
+        assert found == ["Hendrickson-Lattman phases columns HLA,HLB,HLC,HLD"
+                         " from initial_phases.mtz (ds1)"], found
 
 
 def test_gamma_abcd_user_column_group():

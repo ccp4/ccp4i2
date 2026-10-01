@@ -1,0 +1,36 @@
+{
+  "scenario": "../../../tools/scenario_utils.py",
+  "project": "Gamma",
+  "viewport": [1400, 1800],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "mergeMtz_input.png",
+      "job": 27,
+      "tabs": ["Task interface"],
+      "section": "Input data",
+      "callouts": [
+        {"field": "File", "badge": "1"},
+        {"field": "Tag", "badge": "2"},
+        {"field": "Columns", "badge": "3"}
+      ]
+    },
+    {
+      "out": "mergeMtz_output.png",
+      "job": 24,
+      "tabs": ["Task interface"],
+      "section": "Output",
+      "callouts": [
+        {"field": "Experimental data", "badge": "4"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/mergeMtz/script/mergeMtz.def.xml": "2fa18c37f8d9bd78f2f0cf510523ad05eb707271",
+    "server/ccp4i2/wrappers/mergeMtz/script/mergeMtz.py": "e71f0e49221d826c6c8f82de24d89be554fba4d3",
+    "server/ccp4i2/wrappers/mergeMtz/script/mergeMtz_report.py": "3f5ca0e2e9e89cfbb2ba2067e2adbe1726c9e89f",
+    "client/renderer/components/task/task-interfaces/mergeMtz.tsx": "76f15e53ccee09321dd2026658bc73a956a97c83",
+    "docs/user/tools/scenario_utils.py": "d702e9d4b82a69aad4c39d1b72cead46bbad0db6"
+  }
+}

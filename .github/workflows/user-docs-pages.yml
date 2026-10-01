@@ -1,0 +1,56 @@
+# Publish the user help (docs/user/) to GitHub Pages, so the app's Help button
+# and alpha testers see a page minutes after it merges, without a release.
+#
+# It builds what CI's user-docs job builds (the same script, the same warnings
+# ratchet) and deploys it. The status page and the per-task redirects are
+# generated from the task chooser and the task registry, so a change to either
+# republishes too.
+name: User help pages
+
+on:
+  push:
+    branches: [django]
+    paths:
+      - "docs/user/**"
+      - "client/renderer/components/task/task-chooser.tsx"
+      - "server/ccp4i2/core/tasks.py"
+      - ".github/workflows/user-docs-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push supersedes a queued one, never one
+# that is already deploying.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r docs/user/requirements.txt
+      - run: docs/user/tools/build.sh "$RUNNER_TEMP/site"
+      # Sphinx keeps its build cache (.doctrees) in the output directory: not
+      # for readers, and most of the artifact's files.
+      - run: rm -rf "$RUNNER_TEMP/site/.doctrees"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

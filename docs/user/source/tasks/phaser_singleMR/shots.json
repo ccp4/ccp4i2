@@ -1,0 +1,82 @@
+{
+ "scenario": "../../../tools/scenario_atomic.py",
+ "project": "LassoPeptide",
+ "viewport": [
+  1400,
+  1800
+ ],
+ "settle": 25000,
+ "draft": true,
+ "shots": [
+  {
+   "out": "singlemr_data.png",
+   "job": 5,
+   "tabs": [
+    "Task interface"
+   ],
+   "section": "Select input data",
+   "callouts": [
+    {
+     "field": "Observed data",
+     "badge": "1"
+    },
+    {
+     "field": "Free R set",
+     "badge": "2"
+    }
+   ]
+  },
+  {
+   "out": "singlemr_search.png",
+   "job": 5,
+   "tabs": [
+    "Task interface"
+   ],
+   "section": "Define Search",
+   "callouts": [
+    {
+     "text": "Search for",
+     "badge": "3"
+    },
+    {
+     "text": "Turn on Log-likelihood Completion",
+     "badge": "4"
+    },
+    {
+     "text": "Log-likelihood Gain Map (LLG) Completion with",
+     "badge": "5"
+    }
+   ]
+  },
+  {
+   "out": "singlemr_report.png",
+   "job": 3,
+   "tabs": [
+    "Report"
+   ],
+   "section": {
+    "text": "Phaser completed",
+    "scroll": true
+   },
+   "until": "Results for Phaser Single Atom MR Run",
+   "callouts": [
+    {
+     "text": "Phaser completed",
+     "badge": "6"
+    },
+    {
+     "text": "Placement completed",
+     "closest": "table",
+     "badge": "7"
+    }
+   ]
+  }
+ ],
+  "sources": {
+    "server/ccp4i2/wrappers/phaser_singleMR/phaser_singleMR.def.xml": "4052957d92d69def197dbde0e2a69dab1b66a350",
+    "server/ccp4i2/wrappers/phaser_singleMR/phaser_singleMR.py": "b1be23c30d66c0e0be2cc3a1954601f59c1ea81b",
+    "server/ccp4i2/wrappers/phaser_singleMR/phaser_singleMR_report.py": "0cc44d2e4379c074ad031335ace60d4468fdeacc",
+    "client/renderer/components/task/task-interfaces/phaser_singleMR.tsx": "370cd1a0a47733b4dd5c584e11b139a40f886d23",
+    "docs/user/tools/scenario_atomic.py": "baf0c36d3a31942320faf76b6a99b86e375d11ff"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "scenario": "../../../tools/scenario_utils.py",
+  "project": "Gamma",
+  "draft": true,
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "shots": [
+    {
+      "out": "splitMtz_input.png",
+      "job": 26,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "MTZ File Input",
+      "callouts": [
+        {
+          "field": "Input MTZ file",
+          "badge": "1"
+        },
+        {
+          "text": "Column Groups",
+          "badge": "2"
+        },
+        {
+          "text": "Available",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "splitMtz_report.png",
+      "job": 23,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "refined_gamma.mtz",
+          "badge": "4"
+        },
+        {
+          "text": "Mean structure factors",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/splitMtz/script/splitMtz.def.xml": "3319c3f59ac81db983120ab87c72ce75e897cbe0",
+    "server/ccp4i2/wrappers/splitMtz/script/splitMtz.py": "8b0542ce611122fcec98f26f1bb2893eb8bc2d97",
+    "server/ccp4i2/wrappers/splitMtz/script/splitMtz_report.py": "6708aa61a87d2cddc62829185a601ff656c2caea",
+    "client/renderer/components/task/task-interfaces/splitMtz.tsx": "3d8a265dfe8fd8f9e40d09650c1f8f576aecde5e",
+    "docs/user/tools/scenario_utils.py": "d702e9d4b82a69aad4c39d1b72cead46bbad0db6"
+  }
+}

@@ -47,6 +47,27 @@ const jobId = (number) => {
   return job.id;
 };
 
+// ---- One capture at a time ---------------------------------------------------
+// Several captures at once (subagents drafting pages in parallel) slowed every
+// shot five-fold, against one dev server. Queue on a lock directory instead;
+// one left by a capture that died is taken over after 20 minutes.
+const LOCK = path.join(os.tmpdir(), "ccp4i2-capture.lock");
+for (let waited = 0; ; waited += 2000) {
+  try {
+    fs.mkdirSync(LOCK);
+    break;
+  } catch {
+    let age = 0;
+    try { age = Date.now() - fs.statSync(LOCK).mtimeMs; } catch { continue; }
+    if (age > 20 * 60 * 1000) { fs.rmSync(LOCK, { recursive: true, force: true }); continue; }
+    if (waited % 60000 === 0) console.log("Waiting for another capture to finish...");
+    await sleep(2000);
+  }
+}
+const releaseLock = () => fs.rmSync(LOCK, { recursive: true, force: true });
+process.on("exit", releaseLock);
+for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(1));
+
 // ---- Chrome over the DevTools protocol ---------------------------------------
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "capture-chrome-"));
 const chrome = spawn(CHROME, [
@@ -235,6 +256,69 @@ async function shoot(shot) {
       els.forEach((el) => el.click());
     }, selector);
     await sleep(1500);
+  }
+  // "outline": the page as text instead of a picture, for finding out what a
+  // new page's sections and labels are called (a full-page screenshot read
+  // for that costs many times more). Written to <out>.outline.txt and printed.
+  if (shot.outline) {
+    const lines = await page.evaluate((sec) => {
+      // No section: the job's panel (its fixed id, project/[id]/layout.tsx),
+      // not the whole page with the job list beside it.
+      const root = sec == null
+        ? (document.querySelector('[data-panel-id="project-content"]') || __cap.section(null))
+        : __cap.section(sec);
+      const text = (el) => (el ? el.innerText || el.textContent || "" : "").replace(/\s+/g, " ").trim();
+      const out = [];
+      root.querySelectorAll('[role="tab"]').forEach((t) => {
+        if (t.offsetParent) out.push(`tab${t.getAttribute("aria-selected") === "true" ? "*" : " "} ${text(t)}`);
+      });
+      const seen = new Set();
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      for (let el = walker.currentNode; el; el = walker.nextNode()) {
+        if ([...seen].some((s) => s.contains(el)) || !el.getClientRects().length) continue;
+        const cls = el.className && el.className.baseVal === undefined ? String(el.className) : "";
+        if (cls.includes("MuiAccordionSummary-root")) {
+          out.push(`section  ${text(el)}`); seen.add(el);
+        } else if (el.tagName === "TABLE") {
+          const head = [...el.querySelectorAll("thead th, tr:first-child th")].map(text);
+          const rows = [...el.querySelectorAll("tbody tr")];
+          out.push(`table    ${head.join(" | ")}  (${rows.length} rows)`);
+          rows.slice(0, 4).forEach((r) => out.push(`  row    ${[...r.children].map(text).join(" | ")}`));
+          seen.add(el);
+        } else if (cls.includes("MuiFormControlLabel-root")) {
+          // A label with no input is a group's title (a radio group's caption),
+          // not an option: printed as a checkbox it read as a blank choice.
+          const box = el.querySelector("input");
+          if (!box) {
+            if (text(el).trim()) out.push(`text     ${text(el)}`);
+          } else {
+            const kind = box.type === "radio" ? "radio" : "check";
+            out.push(`${kind.padEnd(8)} [${box.checked ? "x" : " "}] ${text(el)}`);
+          }
+          seen.add(el);
+        } else if (cls.includes("MuiFormControl-root") || cls.includes("MuiTextField-root")) {
+          const label = text(el.querySelector("label"));
+          const input = el.querySelector("input, textarea");
+          const shown = text(el.querySelector('[role="combobox"], .MuiSelect-select'));
+          const value = shown || (input ? input.value : "");
+          out.push(`field    ${label || "(no label)"} = ${value.slice(0, 90)}`); seen.add(el);
+        } else if (el.tagName === "BUTTON" && text(el) && el.getAttribute("role") !== "tab") {
+          out.push(`button   ${text(el)}`); seen.add(el);
+        } else if ((el.tagName === "LI" || cls.includes("MuiListItemText-root")) && text(el)) {
+          out.push(`item     ${text(el).slice(0, 140)}`); seen.add(el);
+        } else if (/^(P|PRE|H[1-6])$/.test(el.tagName) && text(el)) {
+          out.push(`text     ${text(el).slice(0, 140)}`); seen.add(el);
+        }
+      }
+      return out;
+    }, shot.section ?? null);
+    const out = path.join(outDir, `${shot.out}.outline.txt`);
+    fs.writeFileSync(out, lines.join("\n") + "\n");
+    console.log(`--- ${shot.out} (job ${shot.job}, ${(shot.tabs || []).join(" > ")})`);
+    console.log(lines.join("\n"));
+    page.ws.close();
+    await browser.send("Target.closeTarget", { targetId });
+    return;
   }
   // Bring the section into view, then measure it and its fields.
   // (Two steps: an error thrown in a timer callback would never reach us.)

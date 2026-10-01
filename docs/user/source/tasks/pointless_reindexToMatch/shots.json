@@ -1,0 +1,100 @@
+{
+  "scenario": "../../../tools/scenario_utils.py",
+  "project": "BetaBlip",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "reindex_input.png",
+      "job": 15,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Reflection objects to manipulate",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Free R set",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "reindex_reference.png",
+      "job": 15,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Spacegroup and indexing",
+      "callouts": [
+        {
+          "field": "Define new indexing and spacegroup using",
+          "badge": "3"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "reindex_specify.png",
+      "job": 13,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Spacegroup and indexing",
+      "callouts": [
+        {
+          "field": "Space groups",
+          "badge": "5"
+        },
+        {
+          "field": "h",
+          "badge": "6"
+        },
+        {
+          "text": "use reindex operator",
+          "badge": "7"
+        }
+      ]
+    },
+    {
+      "out": "reindex_report.png",
+      "job": 14,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Reindex operator to match reference data",
+        "scroll": true
+      },
+      "until": "Details of test data",
+      "callouts": [
+        {
+          "text": "Reindex operator to match reference data",
+          "badge": "8"
+        },
+        {
+          "text": "File number",
+          "closest": "table",
+          "badge": "9"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch.def.xml": "f89f7a409f8ea87a555a66f2a20b4ff8c9c65fb0",
+    "server/ccp4i2/wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch.py": "57f90998c6cdd81eea5797f760df1523d7e70c97",
+    "server/ccp4i2/wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch_report.py": "8cb0305e39fb57494ca60334d14b07fa228111cf",
+    "client/renderer/components/task/task-interfaces/pointless_reindexToMatch.tsx": "90967ada4a67dda5f0a34113d3b66ae791d7ac7b",
+    "docs/user/tools/scenario_utils.py": "d702e9d4b82a69aad4c39d1b72cead46bbad0db6"
+  }
+}

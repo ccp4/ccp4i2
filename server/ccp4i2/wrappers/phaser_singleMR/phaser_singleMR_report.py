@@ -22,6 +22,7 @@ class phaser_singleMR_report(Report):
         if parent is None:
             parent = self
         self.addResults()
+        self._summary(parent)
         parent.append("<p>Results for Phaser Single Atom MR Run</p>")
         bda = self.xmlnode.findall('.//SubJob_000/RunDate')[0].text
         parent.append("<p>" + bda + "</p>")
@@ -33,6 +34,29 @@ class phaser_singleMR_report(Report):
         parent.addPre(text=bestCC)
         parent.append("<p>Note : the best available solution was selected for I2</p>")
         self._add_graphs(parent)
+
+    def _summary(self, parent):
+        """The result first: the kept solution's atoms, LLG and R-factor, and
+        every placement Phaser completed. (The report began with Phaser's own
+        text.)"""
+        summary = self.xmlnode.find(".//Summary")
+        if summary is None:
+            return
+        atoms, best = summary.find("Atoms"), summary.find("Best")
+        completions = summary.findall("Completion")
+        if atoms is not None and best is not None:
+            elements = ", ".join("%s %s" % (e.get("count"), e.get("name"))
+                                 for e in atoms.findall("Element"))
+            parent.addText(text="Phaser completed %d placement%s of the atoms searched for. "
+                           "The best, solution 1 (kept here), has %s atoms (%s): LLG %s, "
+                           "R %s%%." % (len(completions), "" if len(completions) == 1 else "s",
+                                         atoms.get("total"), elements,
+                                         best.get("llg"), best.get("r")))
+        if completions:
+            table = parent.addTable()
+            table.addData(title="Placement completed", data=[c.get("number") for c in completions])
+            table.addData(title="Final LLG", data=[c.get("llg") for c in completions])
+            table.addData(title="Final R-factor (%)", data=[c.get("r") for c in completions])
 
     def _add_graphs(self, parent):
         """Build graphs from GraphTable elements embedded in program.xml.

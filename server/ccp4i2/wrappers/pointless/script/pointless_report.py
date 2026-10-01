@@ -525,8 +525,12 @@ class pointless_report(Report):
     # add warning message if the output data has an alternative indexing and there if no reference
     if len(self.xmlnode.findall('NumberPossibleReindexing'))>0:
       nreindex = self.xmlnode.findall('NumberPossibleReindexing')[0].text
-      if not (len(self.xmlnode.findall("ReflectionFile[@stream='HKLREF']"))>0) or \
-             (len(self.xmlnode.findall("ReflectionFile[@stream='XYZIN']"))>0):
+      # Only when there was no reference of either kind. (It read "not HKLREF
+      # or XYZIN", so a coordinate reference -- the very thing it advises --
+      # raised the note.) A BestReindex is a match against a reference.
+      has_reference = any(len(self.xmlnode.findall(path)) > 0 for path in (
+        "ReflectionFile[@stream='HKLREF']", "ReflectionFile[@stream='XYZIN']", "BestReindex"))
+      if not has_reference:
 
         alternativelist = self.xmlnode.findall('PossibleReindexing')
         allcellssame = True

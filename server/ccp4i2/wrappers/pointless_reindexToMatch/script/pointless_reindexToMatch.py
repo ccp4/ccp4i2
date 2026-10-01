@@ -1,3 +1,4 @@
+import re
 import os
 
 from lxml import etree
@@ -17,6 +18,24 @@ class pointless_reindexToMatch(CPluginScript):
 
     def formatCellAngle(self, p):
         return "%7.1f" % (float(p) if float(p) > 3.141592653589793 else float(p) * 57.29577951308233)
+
+    def reindexOperatorUsed(self):
+        """The operator applied, as "h,k,l"-style text: the one given, or
+        the one Pointless chose to match the reference (its BestReindex)."""
+        par = self.container.controlParameters
+        if str(par.REFERENCE) == 'SPECIFY':
+            if par.USE_REINDEX and par.REINDEX_OPERATOR.isSet():
+                return ",".join(str(x).strip() for x in (par.REINDEX_OPERATOR.h,
+                                                         par.REINDEX_OPERATOR.k,
+                                                         par.REINDEX_OPERATOR.l))
+            return None
+        try:
+            with open(self.makeFileName('PROGRAMXML')) as f:
+                text = f.read()
+        except OSError:
+            return None
+        m = re.search(r"<BestReindex>.*?<ReindexOperator>\s*\[([^\]]*)\]", text, re.S)
+        return m.group(1).replace(" ", "") if m else None
 
     def shortformatCell(self, cell):
         s = ""
@@ -190,19 +209,20 @@ class pointless_reindexToMatch(CPluginScript):
             try: sgname = self.container.outputData.F_SIGF_OUT.fileContent.spaceGroupName
             except: sgname = str(self.container.outputData.F_SIGF_OUT.fileContent.spaceGroup)
             
-            highres = "%7.2f" % self.container.outputData.F_SIGF_OUT.fileContent.resolutionRange.high
-            title ='SG:'+str(sgname).strip()+';Resolution:'+highres.strip()+\
-                    ";Cell:"+self.shortformatCell(self.container.outputData.F_SIGF_OUT.fileContent.cell)
-            if self.container.controlParameters.REINDEX_OPERATOR.isSet():
-                par = self.container.controlParameters
-                reindexop = "Reindexed:"+("[%s, %s, %s]" % (par.REINDEX_OPERATOR.h,par.REINDEX_OPERATOR.k,par.REINDEX_OPERATOR.l)).strip()
-                title = reindexop + ";" + title
-            else:
-                title = "New" + title
-                
+            highres = "%.2f" % self.container.outputData.F_SIGF_OUT.fileContent.resolutionRange.high
+            # Say what was done, once: the operator (given, or the one Pointless
+            # found to match the reference) and the result. It appended
+            # "Reindexed:[...];SG:...;Resolution:...;Cell:..." to the input's
+            # annotation, so each run lengthened the last one's, and a matched
+            # run said only "NewSG:..." -- not the operator it had found.
+            op = self.reindexOperatorUsed()
+            done = ("reindexed by %s" % op) if op and op != "h,k,l" else "not reindexed"
+            title = "%s (%s, %s A)" % (done, str(sgname).strip(), highres)
+            base = re.split(r" (?:Reindexed:|NewSG:|SG:)|, (?:reindexed by|not reindexed) ",
+                            str(self.container.inputData.F_SIGF.annotation))[0].strip()
             self.container.outputData.F_SIGF_OUT.annotation = \
-              str(self.container.inputData.F_SIGF.annotation) + " " + title
+              (base + ", " if base else "") + title
 
             self.container.outputData.F_SIGF_OUT.subType = self.container.inputData.F_SIGF.subType
             if self.container.inputData.FREERFLAG.isSet():
-                self.container.outputData.FREERFLAG_OUT.annotation = title
+                self.container.outputData.FREERFLAG_OUT.annotation = "Free R set, " + title

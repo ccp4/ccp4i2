@@ -26,23 +26,45 @@ env CCP4I2_HOME=/tmp/docs-home DJANGO_SETTINGS_MODULE=ccp4i2.config.settings \
     ccp4-python manage.py migrate
 env CCP4I2_HOME=/tmp/docs-home ccp4-python ../docs/user/tools/scenario_parrot.py
 
-# 2. The app against that home, on ports of its own.
-env CCP4I2_HOME=/tmp/docs-home DJANGO_SETTINGS_MODULE=ccp4i2.config.settings \
-    ccp4-python manage.py runserver 127.0.0.1:3421
-cd ../client/renderer && env BUILD_TARGET=web \
-    NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:3421 npx next dev -p 3420
+# 2. The app against that home, on ports of its own (Django 3421, Next 3420).
+CCP4I2_HOME=/tmp/docs-home docs/user/tools/devserver.sh start
+#    ... restart django   after a server change (it runs --noreload)
+#    ... clear-reports <project> <job>...   after a report class changes
+#    ... stop
 
-# 3. The pictures (Node 22+, Google Chrome; CHROME=path if not the macOS default).
+# 3. The pictures (Node 22+, Google Chrome; CHROME=path if not the macOS default),
+#    from a shell that has not sourced CCP4 (its setup puts Node 20 first).
 cd docs/user/source/tasks/parrot && node ../../../tools/capture.mjs shots.json
 ```
 
 `capture.mjs` opens each job page, turns developer mode off, crops to one
 section and numbers the fields the text refers to. It finds fields by the label
 the user sees, so when a label changes the capture fails and names it: that is
-the moment to reread the page's text too.
+the moment to reread the page's text too. A shot with `"outline": true` prints
+the page as text instead (tabs, sections, fields and their values, report
+tables): the cheap way to learn what a new page's sections and labels are.
+Captures run one at a time: each waits on a lock (`ccp4i2-capture.lock` in
+the temporary directory) while another runs, since several at once against
+one dev server slowed every shot five-fold.
+
+To learn about a task before writing its page:
+
+```bash
+python3 docs/user/tools/taskcard.py <task>      # registry, def.xml, interface, tests, page state
+cd server && env CCP4I2_HOME=... DJANGO_SETTINGS_MODULE=ccp4i2.config.settings \
+    ccp4-python manage.py list_jobs <project>          # the scenario's jobs
+    ccp4-python manage.py list_files --project <project> --job <n> --format json
+```
 
 Which pages are converted, and which still show the Qt interface, is on the
-generated status page (`tools/status.py`).
+generated status page (`tools/status.py`); `tools/status.py todo` lists what
+is left, by the chooser's categories.
+
+Every merge to `django` that touches the help publishes it to
+https://ccp4.github.io/ccp4i2/ (`.github/workflows/user-docs-pages.yml`), which
+the app's Help button opens at `tasks/<task name>/index.html`. `conf.py` writes
+a redirect there for each task whose page lives elsewhere, or that has none
+yet, and puts a "Draft" banner on pages whose `shots.json` says `"draft": true`.
 
 ## Keeping a page true: stamps
 
