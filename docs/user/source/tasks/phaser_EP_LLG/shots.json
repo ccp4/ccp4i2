@@ -1,0 +1,77 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "GammaXe",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "phaser_EP_LLG_input.png",
+      "job": 11,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "field": "Partial model as",
+          "badge": "2"
+        },
+        {
+          "field": "Partial model coordinates",
+          "badge": "3"
+        },
+        {
+          "field": "How to specify scattering content",
+          "badge": "4"
+        },
+        {
+          "field": "Protein (Da)",
+          "badge": "5"
+        },
+        {
+          "field": "Wavelength",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "phaser_EP_LLG_report.png",
+      "job": 10,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Plots from PHASER output",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "Input Data",
+          "badge": "7"
+        },
+        {
+          "text": "Output Data",
+          "badge": "8"
+        }
+      ],
+      "expand": [
+        "Plots from PHASER output"
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG.def.xml": "32973b43577792d3584b06c21cf1f4047ea2a01e",
+    "server/ccp4i2/pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG.py": "53936af4db1893b5e86340654515df65fecf5c2a",
+    "server/ccp4i2/pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG_report.py": "c66c716d110141668e2426bf37ae0f278994bccb",
+    "client/renderer/components/task/task-interfaces/phaser_EP_LLG.tsx": "db1d9d8e6ba27b0a8248228e9d52a3cc2e9d6931",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "auspex_input.png",
+      "job": 31,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Select input data"
+      },
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "field": "Range along y axis",
+          "badge": "2"
+        },
+        {
+          "field": "High resolution cut-off",
+          "badge": "3"
+        },
+        {
+          "field": "Put all plots in one figure",
+          "badge": "4"
+        },
+        {
+          "field": "Flag suspected ice rings red",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "auspex_report.png",
+      "job": 30,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Plot of intensities against resolution",
+        "scroll": true
+      },
+      "until": "Plot of amplitudes against resolution"
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/AUSPEX/script/AUSPEX.def.xml": "8f425a402905221e67577cce03c4851d45eec98c",
+    "server/ccp4i2/wrappers/AUSPEX/script/auspex_wrapper.py": "b86d30b26452a1b7c90b8f90b526b06f55183441",
+    "server/ccp4i2/wrappers/AUSPEX/script/AUSPEX_report.py": "6b8f46cab36e1d6a924ef5533cf1ca8ae5fabd41",
+    "client/renderer/components/task/task-interfaces/auspex.tsx": "63ac894b66a553d58c8b33e5c494c0e2a6bc3e9c",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

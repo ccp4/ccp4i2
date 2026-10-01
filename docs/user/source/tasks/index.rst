@@ -118,6 +118,7 @@ Density Modification
 
    acorn/index
    parrot/index
+   dm_multidomain/index
 
 ===========================
 Model building and graphics
@@ -150,6 +151,7 @@ Refinement
    lorestr_i2/index
    pairef/index
    shift_field/index
+   phaser_rnp_pipeline_phil/index
 
 =======
 Ligands
