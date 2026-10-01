@@ -43,6 +43,15 @@
           <toolTip>Model providing the NCS copies (one chain per copy)</toolTip>
         </qualifiers>
       </content>
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>What the asymmetric unit contains: sets the solvent content when it is not given</toolTip>
+        </qualifiers>
+      </content>
     </container>
     <container id="outputData">
       <content id="ABCDOUT">

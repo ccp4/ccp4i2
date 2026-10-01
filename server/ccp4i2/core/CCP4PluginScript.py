@@ -5206,6 +5206,16 @@ class CPluginScript(CData):
                         input_cols = [c.strip() for c in col_string.split(',')]
                         if len(canonical) == len(input_cols):
                             out_col_string = ','.join(canonical)
+                elif (not outputContentFlags
+                        and hasattr(item_obj.__class__, 'CONTENT_SIGNATURE_LIST')):
+                    # No flag given, but a type with a single layout (map
+                    # coefficients: F,PHI) has only one thing it can be. Left
+                    # under the program's names (FLLG_AX,PHLLG_AX) the file
+                    # fails the output check and with it the job.
+                    sig_list = item_obj.__class__.CONTENT_SIGNATURE_LIST
+                    input_cols = [c.strip() for c in col_string.split(',')]
+                    if len(sig_list) == 1 and len(sig_list[0]) == len(input_cols):
+                        out_col_string = ','.join(sig_list[0])
 
                 outfiles.append([output_path, col_string, out_col_string])
 

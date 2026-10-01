@@ -256,6 +256,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 assembly detected.
               </Typography>
             )}
+            <CCP4i2TaskElement
+              itemName="ASUIN"
+              {...props}
+              qualifiers={{
+                guiLabel: "AU contents (sets the solvent content; a partial model would understate it)",
+              }}
+            />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
 
@@ -408,7 +415,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <InlineField label="Number of cycles">
               <CCP4i2TaskElement itemName="NCYCLES" {...props} qualifiers={{ guiLabel: " " }} />
             </InlineField>
-            <InlineField label="Solvent content" hint="blank = estimate from model and cell">
+            <InlineField label="Solvent content" hint="blank = from the AU contents, or else from the model">
               <CCP4i2TaskElement
                 itemName="SOLVENT_CONTENT"
                 {...props}

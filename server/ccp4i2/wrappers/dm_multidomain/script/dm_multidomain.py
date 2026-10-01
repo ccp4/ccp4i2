@@ -23,6 +23,13 @@ from . import dm_ncs_lib
 class dm_multidomain(CPluginScript):
     TASKNAME = 'dm_multidomain'
     TASKCOMMAND = 'dm'
+    ERROR_CODES = {
+        201: {'description': 'Nothing to average, or starting phases missing'},
+        202: {'description': 'NCS preparation failed'},
+        203: {'description': 'Phase preparation failed'},
+        204: {'description': 'Solvent content will be estimated from the model',
+              'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+    }
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     # -- validation -----------------------------------------------------------
@@ -55,6 +62,16 @@ class dm_multidomain(CPluginScript):
                         'are calculated from the model',
                 name=f'{self.TASKNAME}.container.inputData.ABCD',
                 severity=CCP4ErrorHandling.SEVERITY_ERROR)
+
+        if not ctrl.SOLVENT_CONTENT.isSet() and \
+                not self.container.inputData.ASUIN.isSet():
+            error.append(
+                klass=self.TASKNAME, code=204,
+                details='Without the AU contents (or a solvent content) the '
+                        'solvent content is estimated from the model, and '
+                        'whatever the model lacks is flattened as solvent',
+                name=f'{self.TASKNAME}.container.inputData.ASUIN',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING)
 
         instances = self._assembly_instances()
         if instances is not None:
@@ -491,12 +508,23 @@ class dm_multidomain(CPluginScript):
                          'share any body\'s roles)')
                 return CPluginScript.FAILED
 
-            # solvent content: explicit override or Matthews estimate
+            # Solvent content: as given; else from the AU contents; else
+            # from the model, which counts anything the model lacks as
+            # solvent (a partial model gave 0.79 for 1h1s, ~0.5, and dm
+            # flattened the missing cyclin density away).
+            asuin = self.container.inputData.ASUIN
+            solc = None
             if ctrl.SOLVENT_CONTENT.isSet():
                 solc = float(ctrl.SOLVENT_CONTENT)
-            else:
+            elif asuin.isSet():
+                sg = structure.find_spacegroup()
+                mass = asuin.fileContent.seqList.molecularWeight()
+                solc = dm_ncs_lib.solvent_fraction_from_mass(
+                    mass, structure.cell.volume, len(list(sg.operations())) if sg else 0)
+                print(f"  solvent fraction from the AU contents: {solc}")
+            if solc is None:
                 solc = dm_ncs_lib.estimate_solvent_fraction(structure) or 0.5
-                print(f"  estimated solvent fraction: {solc}")
+                print(f"  solvent fraction estimated from the model: {solc}")
 
             self._domains = domains
             self._operators_by_domain = operators_by_domain
