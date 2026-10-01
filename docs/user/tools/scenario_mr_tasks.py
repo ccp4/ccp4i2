@@ -11,7 +11,8 @@
   (PDB 7b5o) in its cryo-EM map (EMD-12042), both hands, as the test does.
 
 AMPLE is not run: its helical-ensemble mode fails in CCP4 9 (see test_ample).
-MoRDa is not installed here; its page is written from the interface.
+MoRDa is not installed here. Each is set up in MDM2 and not run (i2run
+--delay), for pages written from the interface.
 
     env CCP4I2_HOME=/tmp/docs-home ccp4-python ../docs/user/tools/scenario_mr_tasks.py
 
@@ -69,6 +70,14 @@ def main():
     for project, task in (("MDM2", "comit"), ("MDM2", "mrbump_basic"),
                           ("Gamma", "SIMBAD"), ("CAK", "molrep_map")):
         clone_last(project, task)
+    # Set up, not run (i2run --delay): AMPLE for helical ensembles, MoRDa.
+    i2run("MDM2", "AMPLE", "--delay",
+          "--AMPLE_F_SIGF", "fileOut=[1].HKLOUT[0]",
+          "--AMPLE_SEQIN", "fileOut=ProvideSequence[-1].SEQUENCEFILE_LIST[0]",
+          "--AMPLE_EXISTING_MODELS", "False")
+    i2run("MDM2", "morda_i2", "--delay",
+          "--F_SIGF", "fileOut=[1].HKLOUT[0]", "--FREERFLAG", "fileOut=[1].FREEROUT",
+          "--ASUIN", "fileOut=[9].ASUCONTENTFILE")
 
 
 if __name__ == "__main__":

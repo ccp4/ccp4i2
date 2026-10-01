@@ -9,6 +9,8 @@ def test_comit(mtz8xfm):
     args += ["--F_PHI_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FWT,PHWT]"]
     with i2run(args) as job:
         gemmi.read_mtz_file(str(job / "F_PHI_OUT.mtz"))
+        # Named for what it is in later jobs' file menus, not "F_PHI_OUT.mtz".
+        assert "Composite omit map (comit)" in (job / "params.xml").read_text()
 
 
 def test_comit_from_intensities(mtz8xfm, tmp_path):

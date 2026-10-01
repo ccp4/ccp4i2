@@ -56,7 +56,10 @@ class SIMBAD(CPluginScript):
             
         # General flags
         self.appendCommandLine(['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
-        self.appendCommandLine(['-nproc', str(params.SIMBAD_NPROC)])
+        # Unset means every processor; SIMBAD's own default is one. (The Qt
+        # default, 9993, asked for that many parallel jobs.)
+        nproc = int(params.SIMBAD_NPROC) if params.SIMBAD_NPROC.isSet() else (os.cpu_count() or 1)
+        self.appendCommandLine(['-nproc', str(nproc)])
         
         # Program-specific
         if params.SIMBAD_SEARCH_LEVEL != 'Lattice' and params.SIMBAD_ORGANISM != 'ALL':
@@ -81,7 +84,11 @@ class SIMBAD(CPluginScript):
         """
         top_files = SimbadResults(os.path.join(self.getWorkDirectory(),SIMBAD_DIRNAME)).top_files()
         if top_files:
-            for fo in top_files:
+            for rank, fo in enumerate(top_files, 1):
+                # SIMBAD's own annotations ("PDB #1 from REFMAC-refined result
+                # of the lattice search") do not say which structure: the
+                # files are named <pdb code>_refinement_output.*.
+                code = os.path.basename(fo.ref_pdb).split('_')[0]
                 # Need to copy the files into the actual project directory - cannot be a sub-directory. Not entirely sure why but...
                 xyz = os.path.join(self.getWorkDirectory(),os.path.basename(fo.ref_pdb))
                 mtz = os.path.join(self.getWorkDirectory(),os.path.basename(fo.ref_mtz))
@@ -89,8 +96,10 @@ class SIMBAD(CPluginScript):
                 if os.path.isfile(fo.ref_pdb): shutil.copy2(fo.ref_pdb, xyz)
                 if os.path.isfile(fo.ref_mtz): shutil.copy2(fo.ref_mtz, mtz)
                 self.container.outputData.XYZOUT.append(xyz)
-                self.container.outputData.XYZOUT[-1].annotation = fo.ref_pdb_annotation
+                self.container.outputData.XYZOUT[-1].annotation = \
+                    f'SIMBAD hit {rank}: {code}, placed and refined'
                 self.container.outputData.HKLOUT.append(mtz)
-                self.container.outputData.HKLOUT[-1].annotation = fo.ref_mtz_annotation
+                self.container.outputData.HKLOUT[-1].annotation = \
+                    f'SIMBAD hit {rank}: {code}, refinement output'
 
         return self.SUCCEEDED

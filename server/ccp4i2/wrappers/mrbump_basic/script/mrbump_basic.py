@@ -199,6 +199,7 @@ class mrbump_basic(CPluginScript):
 
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
+        self.container.outputData.HKLOUT.annotation = 'Reflections and maps from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from MrBump refinement'
 

@@ -154,8 +154,8 @@
 	            <className>CInt</className>
 	            <qualifiers>
 		              <guiLabel>Number of processors</guiLabel>
-		              <toolTip>Number of processors to run on</toolTip>
-		              <default>9993</default>
+		              <toolTip>Number of processors to run on (blank: all of them)</toolTip>
+		              <allowUndefined>True</allowUndefined>
 		              <min>1</min>
 	            </qualifiers>
             </content>

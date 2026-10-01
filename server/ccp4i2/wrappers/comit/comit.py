@@ -24,4 +24,5 @@ class comit(CPluginScript):
         self.appendCommandLine(["-pad-radius", params.PAD_RADIUS])
 
     def processOutputFiles(self):
+        self.container.outputData.F_PHI_OUT.annotation = "Composite omit map (comit)"
         return self.splitHklout(["F_PHI_OUT"], ["i2.F_phi.F,i2.F_phi.phi"])

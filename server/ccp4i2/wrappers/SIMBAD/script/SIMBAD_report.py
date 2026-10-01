@@ -6,6 +6,17 @@ import xml.etree.ElementTree as ET
 from ccp4i2.report.CCP4ReportParser import Report
 
 
+_LONG_FLOAT = re.compile(r'\s*-?\d+\.\d{5,}\s*')
+
+
+def _tidy_number(text):
+    """SIMBAD writes penalties as raw floats (0.0058999999999969), which
+    widen the lattice table past its box: four decimals say as much."""
+    if text and _LONG_FLOAT.fullmatch(text):
+        return str(round(float(text), 4))
+    return text
+
+
 class SIMBAD_report(Report):
     TASKNAME = 'SIMBAD'
     RUNNING = True
@@ -57,6 +68,10 @@ class SIMBAD_report(Report):
                         t1.tag = 'tbody'
                     for e2 in e1.iter():
                         e2.attrib.pop('class', None)
+                        e2.text = _tidy_number(e2.text)
+                        # "probability_score" cannot wrap; "probability score" can.
+                        if e2.tag == 'th' and e2.text:
+                            e2.text = e2.text.replace('_', ' ')
                     e1.find('tbody').set('class', 'fancy')
                     self.e1_dict[tid[:-5]] = e1
             if len(self.e1_dict.keys()): return True

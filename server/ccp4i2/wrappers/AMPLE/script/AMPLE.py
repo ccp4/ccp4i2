@@ -142,7 +142,10 @@ class AMPLE(CPluginScript):
                 for b in a.split() if b
             ])
         # General flags
-        self.appendCommandLine(['-nproc', str(params.AMPLE_NPROC)])
+        # Unset, AMPLE uses every processor (the Qt default, 9993, asked for
+        # that many parallel MrBUMP jobs).
+        if params.AMPLE_NPROC.isSet():
+            self.appendCommandLine(['-nproc', str(params.AMPLE_NPROC)])
         self.appendCommandLine(
             ['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
         return self.SUCCEEDED
