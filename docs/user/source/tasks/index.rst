@@ -96,6 +96,7 @@ Molecular replacement
 
    mrbump_basic/index
    phaser_simple_phil/index
+   phaser_mr_phil/index
    phaser_pipeline/index
    molrep_pipe/index
    csymmatch/index

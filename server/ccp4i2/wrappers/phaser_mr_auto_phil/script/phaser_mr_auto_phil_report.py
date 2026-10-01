@@ -22,22 +22,43 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
 
     def drawSolutions(self, parent):
         solutions = self.xmlnode.find("Solutions")
-        table = parent.addTable(xmlnode=solutions, select="Solution", style="width:700px;",
-                                outputXml=self.outputXml, internalId="PhaserSolutionsTable")
-        for title, select in (("#", "Number"), ("Space group", "spaceGroup"), ("LLG", "LLG"),
-                              ("TFZ", "TFZ"), ("TFZ-equiv", "TFZeq"), ("R", "R"),
-                              ("Clashes", "PAK"), ("Annotation", "Annotation")):
-            table.addData(title=title, select=select)
-        for i, solution in enumerate(solutions.findall("Solution")):
+        found = solutions.findall("Solution")
+        # Phaser keeps every score on a solution, and one not calculated is
+        # 0: a translation-function solution "has" LLG 0.00, R 0.00 and no
+        # clashes. Its placements say what was calculated (the annotation
+        # carries only those), so a score is shown when one of them has it.
+        # R comes with refinement, as LLG does.
+        computed = [{key for p in s.findall("Placements/Placement") for key in
+                     ("TFZ", "TFZeq", "PAK", "LLG") if p.find(key) is not None}
+                    for s in found]
+
+        def column(field, needs):
+            return [s.findtext(field) if needs in done and s.findtext(field) else "–"
+                    for s, done in zip(found, computed)]
+
+        table = parent.addTable(style="width:700px;", outputXml=self.outputXml,
+                                internalId="PhaserSolutionsTable")
+        table.addData(title="#", data=[s.findtext("Number") for s in found])
+        table.addData(title="Space group", data=[s.findtext("spaceGroup") for s in found])
+        table.addData(title="LLG", data=column("LLG", "LLG"))
+        table.addData(title="TFZ", data=column("TFZ", "TFZ"))
+        table.addData(title="TFZ-equiv", data=column("TFZeq", "TFZeq"))
+        table.addData(title="R", data=column("R", "LLG"))
+        table.addData(title="Clashes", data=column("PAK", "PAK"))
+        table.addData(title="Annotation", data=[s.findtext("Annotation") or "" for s in found])
+        for i, solution in enumerate(found):
             placements = solution.find("Placements")
             if placements is None or len(placements) == 0:
                 continue
             fold = parent.addFold(label=f"Solution {i + 1}: placements", initiallyOpen=(i == 0))
-            table = fold.addTable(xmlnode=placements, select="Placement", style="width:600px;",
-                                  outputXml=self.outputXml, internalId=f"PhaserPlacements{i}")
+            table = fold.addTable(style="width:600px;", outputXml=self.outputXml,
+                                  internalId=f"PhaserPlacements{i}")
+            rows = placements.findall("Placement")
             for title, select in (("RFZ", "RFZ"), ("TFZ", "TFZ"), ("TFZ-equiv", "TFZeq"),
-                                  ("Clashes", "PAK"), ("LLG", "LLG"), ("Note", "Note")):
-                table.addData(title=title, select=select)
+                                  ("Clashes", "PAK"), ("LLG", "LLG")):
+                table.addData(title=title, data=[p.findtext(select) or "–" for p in rows])
+            table.addData(title="Note", data=[", ".join(n.text or "" for n in p.findall("Note"))
+                                              or "" for p in rows])
             history = solution.findtext("History")
             if history:
                 fold.addText(text=f"History: {history}")
@@ -50,7 +71,7 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
         strategy = self.xmlnode.find("Strategy")
         attempts = strategy.findall("Attempt") if strategy is not None else \
             self.xmlnode.findall("Attempts/Attempt")
-        if not attempts:
+        if not attempts and getattr(self, "SEARCHES", True):
             parent.addText(text="No search attempt recorded yet" if running
                            else "No search attempt recorded")
         for attempt in attempts:

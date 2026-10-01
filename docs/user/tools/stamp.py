@@ -170,7 +170,10 @@ def labels(shots: dict):
     for shot in shots["shots"]:
         out = shot.get("out", "?")
         section = shot.get("section")
-        if section:
+        # "dynamic_section": a section whose label no source here holds, such
+        # as a PHIL scope's caption, which comes from the program's own
+        # parameter definitions at run time.
+        if section and not shot.get("dynamic_section"):
             yield out, section["text"] if isinstance(section, dict) else section
         for key in ("from", "until", "through"):
             if isinstance(shot.get(key), str):

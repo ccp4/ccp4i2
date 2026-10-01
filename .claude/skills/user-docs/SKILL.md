@@ -135,6 +135,13 @@ request whatever its base.
   capture's `.failed.txt` has the exception.
 - **`task[1]` counts unrun clones; `task[-1]` skips jobs without the file.**
   To name one particular earlier job, use its number: `fileOut=[1].HKLOUT[0]`.
+- **Deleting a job deletes the jobs that used its outputs.** Tidy a scenario
+  project by job number, children last, and check the ids: a range one too
+  long took three new jobs with it.
+- **A file inside a list item** (a Phaser ensemble's structure) takes no
+  `fileOut=`. Give a path and it is imported again as a new file of no
+  known origin; give `.../dbFileId=<id>` (`scenario_common.output_file_id`)
+  and it is the producing job's file, recorded as used.
 - **Run `capture.mjs` in a shell that has not sourced CCP4**: its setup puts
   Node 20 first on the PATH ("WebSocket is not defined").
 - **Omit `"section"` for a first look** at a new page: the shot takes the

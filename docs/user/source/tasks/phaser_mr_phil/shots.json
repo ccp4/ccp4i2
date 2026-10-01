@@ -1,0 +1,183 @@
+{
+  "scenario": "../../../tools/scenario_mr_steps.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "tasks": [
+    "phaser_mr_auto_phil",
+    "phaser_mr_frf_phil",
+    "phaser_mr_ftf_phil",
+    "phaser_mr_pak_phil",
+    "phaser_mr_rnp_phil"
+  ],
+  "shots": [
+    {
+      "out": "phaser_mr_input.png",
+      "job": 89,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Reflections",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "text": "Search models",
+          "badge": "2"
+        },
+        {
+          "field": "Coordinates",
+          "badge": "3"
+        },
+        {
+          "field": "Composition of the asymmetric unit",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "phaser_mr_auto_report.png",
+      "job": 80,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Solutions",
+        "scroll": true
+      },
+      "until": "Search strategy",
+      "callouts": [
+        {
+          "text": "Space group",
+          "closest": "table",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "phaser_mr_frf_report.png",
+      "job": 81,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Rotation peaks",
+        "scroll": true
+      },
+      "until": "Module timeline",
+      "callouts": [
+        {
+          "text": "Ensemble",
+          "closest": "table",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "phaser_mr_frf_peaks.png",
+      "job": 85,
+      "tabs": [
+        "Task interface",
+        "Phaser parameters"
+      ],
+      "click": [
+        "button[value=\"10\"]"
+      ],
+      "section": "Rotation peak selection",
+      "callouts": [
+        {
+          "field": "cutoff",
+          "badge": "7",
+          "dynamic": true
+        },
+        {
+          "field": "Percentage value to search deeper in the rotation list",
+          "badge": "8",
+          "dynamic": true
+        }
+      ],
+      "dynamic_section": true
+    },
+    {
+      "out": "phaser_mr_ftf_input.png",
+      "job": 86,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Search models",
+      "callouts": [
+        {
+          "field": "Rotation list from a rotation-function job",
+          "badge": "9"
+        }
+      ]
+    },
+    {
+      "out": "phaser_mr_ftf_report.png",
+      "job": 82,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Solutions",
+        "scroll": true
+      },
+      "until": "Search strategy",
+      "callouts": [
+        {
+          "text": "Space group",
+          "closest": "table",
+          "badge": "10"
+        }
+      ]
+    },
+    {
+      "out": "phaser_mr_rnp_report.png",
+      "job": 84,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Solutions",
+        "scroll": true
+      },
+      "until": "Search strategy",
+      "callouts": [
+        {
+          "text": "Space group",
+          "closest": "table",
+          "badge": "11"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/phaser_mr_auto_phil/script/phaser_mr_auto_phil.def.xml": "b585d495f31a60e90c624ea1acecc0848ce8eefc",
+    "server/ccp4i2/wrappers/phaser_mr_auto_phil/script/phaser_mr_auto_phil.py": "f0ad058afee78564adf570ec966c8f420f85c704",
+    "server/ccp4i2/wrappers/phaser_mr_auto_phil/script/phaser_mr_auto_phil_report.py": "5eb1d83de556d37805eaa9ec0a084f8abd6578b7",
+    "client/renderer/components/task/task-interfaces/phaser_mr_auto_phil.tsx": "3631ba0e37c1bfed2606eeb5abba8d1fa783f949",
+    "server/ccp4i2/wrappers/phaser_mr_frf_phil/script/phaser_mr_frf_phil.def.xml": "55ec4179727ed9b4833a99f920534cb595578f90",
+    "server/ccp4i2/wrappers/phaser_mr_frf_phil/script/phaser_mr_frf_phil.py": "a8a96ef05e6850582110bb295968fa01bd252756",
+    "server/ccp4i2/wrappers/phaser_mr_frf_phil/script/phaser_mr_frf_phil_report.py": "542f08b54157705d7083661b673a8441be08b3bb",
+    "server/ccp4i2/wrappers/phaser_mr_ftf_phil/script/phaser_mr_ftf_phil.def.xml": "2f9abeebcc23ad3a41fd90b12f915703eea9fd69",
+    "server/ccp4i2/wrappers/phaser_mr_ftf_phil/script/phaser_mr_ftf_phil.py": "ad736ad487a6cab8741437d87e242e585ed5b5b8",
+    "server/ccp4i2/wrappers/phaser_mr_ftf_phil/script/phaser_mr_ftf_phil_report.py": "606014ca6d76ba5a6b6c8b4d8e28cc9aa5268754",
+    "client/renderer/components/task/task-interfaces/phaser_mr_ftf_phil.tsx": "691412809f94a826e95e72d13c4b4149b8bb195a",
+    "server/ccp4i2/wrappers/phaser_mr_pak_phil/script/phaser_mr_pak_phil.def.xml": "3239417443e04af9f04b00f22b8c447914fd3eba",
+    "server/ccp4i2/wrappers/phaser_mr_pak_phil/script/phaser_mr_pak_phil.py": "a2c46225a1e898256e8bca56eb0666e517a18d22",
+    "server/ccp4i2/wrappers/phaser_mr_pak_phil/script/phaser_mr_pak_phil_report.py": "ccfb435fe61205353ac00eef779cf486f268067e",
+    "server/ccp4i2/wrappers/phaser_mr_rnp_phil/script/phaser_mr_rnp_phil.def.xml": "54b9cff71b6767dc8e1c0de8301a3342c2feddb1",
+    "server/ccp4i2/wrappers/phaser_mr_rnp_phil/script/phaser_mr_rnp_phil.py": "196176662a63efde210b0fb2b57b6fba472c22b9",
+    "server/ccp4i2/wrappers/phaser_mr_rnp_phil/script/phaser_mr_rnp_phil_report.py": "04aab085c3063abcc1e69ce04800d4f5e7832cb1",
+    "docs/user/tools/scenario_mr_steps.py": "4657bfa68a818efcfa342155c5e131ae0a6f1f26"
+  }
+}
