@@ -1,0 +1,79 @@
+{
+  "scenario": "../../../tools/scenario_coot.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1400
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "coot_find_waters_input.png",
+      "job": 111,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Map coefficients",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "coot_find_waters_parameters.png",
+      "job": 111,
+      "tabs": [
+        "Task interface",
+        "Parameters"
+      ],
+      "section": "Parameters",
+      "callouts": [
+        {
+          "field": "Map threshold for a water (sigma)",
+          "badge": "3"
+        },
+        {
+          "field": "Closest distance to the model (A)",
+          "badge": "4"
+        },
+        {
+          "field": "Furthest distance from the model (A)",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "coot_find_waters_report.png",
+      "job": 108,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "Number of waters found",
+          "badge": "6"
+        }
+      ],
+      "until": "Bibliographic references"
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/coot_find_waters/script/coot_find_waters.def.xml": "2f05968189a920b39d1f6c63dc0d7f53f951efd8",
+    "server/ccp4i2/wrappers/coot_find_waters/script/coot_find_waters.py": "ddaff45b26b13303ce210e627c0eb38ca2093dee",
+    "server/ccp4i2/wrappers/coot_find_waters/script/coot_find_waters_report.py": "c638c42f8988a6a0fcb4d44689dffd0ba6bfe473",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_coot.py": "e8ae65b74f329f51c4f10486fc6902968cf8ec45"
+  }
+}

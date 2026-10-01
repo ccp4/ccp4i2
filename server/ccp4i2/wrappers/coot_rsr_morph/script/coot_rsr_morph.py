@@ -1,9 +1,42 @@
+import math
 import os
 import shutil
 import pathlib
 
+from lxml import etree
+
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
+def shifts(before_path, after_path, top=5):
+    """How far morphing moved the model, as an XML element: the number of
+    atoms matched by chain, residue and name, their RMS, mean and largest
+    shift, and the residues that moved most."""
+    import gemmi
+    def atoms(path):
+        structure = gemmi.read_structure(str(path))
+        return {(c.name, str(r.seqid.num) + r.seqid.icode.strip(), a.name):
+                (a.pos, f"{c.name}/{r.name} {r.seqid.num}")
+                for c in structure[0] for r in c for a in r}
+    before, after = atoms(before_path), atoms(after_path)
+    common = [k for k in before if k in after]
+    root = etree.Element("Shifts")
+    if not common:
+        return root
+    d = {k: before[k][0].dist(after[k][0]) for k in common}
+    values = list(d.values())
+    root.set("atoms", str(len(values)))
+    root.set("rms", "%.2f" % math.sqrt(sum(v * v for v in values) / len(values)))
+    root.set("mean", "%.2f" % (sum(values) / len(values)))
+    root.set("max", "%.2f" % max(values))
+    by_residue = {}
+    for k, v in d.items():
+        label = before[k][1]
+        by_residue[label] = max(v, by_residue.get(label, 0.0))
+    for label, v in sorted(by_residue.items(), key=lambda kv: -kv[1])[:top]:
+        etree.SubElement(root, "Residue", name=label, max="%.2f" % v)
+    return root
 
 
 class coot_rsr_morph(CPluginScript):
@@ -44,5 +77,17 @@ class coot_rsr_morph(CPluginScript):
         status = CPluginScript.FAILED
         if success and os.path.exists(str(self.container.outputData.XYZOUT)):
             status = CPluginScript.SUCCEEDED
+            # Say how far the model moved (the report said only "finished",
+            # the output was "XYZOUT.pdb"): a few tenths of an Angstrom is
+            # the tidy local correction morphing is for.
+            moved = shifts(xyzin, str(self.container.outputData.XYZOUT))
+            root = etree.Element("coot_rsr_morph")
+            root.append(moved)
+            with open(self.makeFileName("PROGRAMXML"), "wb") as f:
+                f.write(etree.tostring(root, pretty_print=True))
+            if moved.get("atoms"):
+                self.container.outputData.XYZOUT.annotation = (
+                    "RSR morph: %s atoms moved, RMS %s A, largest %s A" % (
+                        moved.get("atoms"), moved.get("rms"), moved.get("max")))
         self.reportStatus(status)
         return status

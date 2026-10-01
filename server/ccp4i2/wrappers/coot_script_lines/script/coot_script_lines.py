@@ -91,6 +91,18 @@ class coot_script_lines(CPluginScript):
         
         return CPluginScript.SUCCEEDED
 
+    STARTPOINT_NAMES = {
+        'FILL_PARTIAL_RESIDUES': 'fill partial residues',
+        'FIT_PROTEIN': 'fit protein',
+        'STEPPED_REFINE_PROTEIN_FOR_RAMA': 'stepped refinement with Ramachandran restraints',
+        'STEPPED_REFINE_PROTEIN': 'stepped refinement',
+        'MORPH_FIT': 'morph fit',
+    }
+
+    def recipeName(self):
+        start = str(self.container.controlParameters.STARTPOINT)
+        return 'Scripted Coot, ' + self.STARTPOINT_NAMES.get(start, 'own script')
+
     def processOutputFiles(self):
         print('#coot_script_lines.processOutputFiles')
         #First up check for exit status of the program
@@ -115,7 +127,10 @@ class coot_script_lines(CPluginScript):
                 outputFilePath = os.path.join(self.workDirectory,'XYZOUT_'+str(iPDBOut)+'-coordinates.pdb')
                 shutil.copyfile(outputPDB, outputFilePath)
                 xyzoutList[-1].setFullPath(outputFilePath)
-                xyzoutList[-1].annotation=fname
+                # Which recipe made it, as well as the file name: every
+                # starting-point script writes "output.pdb", so later jobs'
+                # menus listed each run's model by that name alone.
+                xyzoutList[-1].annotation = self.recipeName() + ': ' + fname
                 iPDBOut += 1
         except:
             return CPluginScript.FAILED

@@ -421,6 +421,11 @@ async function shoot(shot) {
           out.push(`item     ${text(el).slice(0, 140)}`); seen.add(el);
         } else if (/^(P|PRE|H[1-6])$/.test(el.tagName) && text(el)) {
           out.push(`text     ${text(el).slice(0, 140)}`); seen.add(el);
+        } else if (el.tagName === "SPAN" && !el.children.length && text(el) &&
+                   !el.closest("label, button, [role=tab], li, p, table, .MuiFormControl-root")) {
+          // A report's own text is a bare span (CCP4i2ReportText): it was
+          // missed, so "Number of waters found: 48" read as absent.
+          out.push(`text     ${text(el).slice(0, 140)}`); seen.add(el);
         }
       }
       return out;

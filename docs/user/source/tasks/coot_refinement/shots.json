@@ -1,0 +1,18 @@
+{"scenario":"../../../tools/scenario_coot.py","project":"MDM2","viewport":[1400,1800],"settle":25000,"draft":true,
+"task":"coot_rsr_morph",
+"shots":[
+{"out":"rsr_morph_input.png","job":109,"tabs":["Task interface"],"section":"Main inputs",
+ "callouts":[{"field":"Atomic model","badge":"1"},{"field":"Map coefficients","badge":"2"}]},
+{"out":"rsr_morph_options.png","job":109,"tabs":["Task interface"],"section":"Options",
+ "callouts":[{"text":"Local radius","badge":"3"},{"text":"GM alpha","badge":"4"},{"text":"Blur B-factor","badge":"5"}]},
+{"out":"rsr_morph_report.png","job":105,"tabs":["Report"],"section":{"text":"Input Data","scroll":true},"until":"Bibliographic references",
+ "callouts":[{"text":"Coot real-space morphing moved","badge":"6"}]}
+],
+  "sources": {
+    "server/ccp4i2/wrappers/coot_rsr_morph/script/coot_rsr_morph.def.xml": "e43c9a0273d82e89dd986d05906a76e3ff586265",
+    "server/ccp4i2/wrappers/coot_rsr_morph/script/coot_rsr_morph.py": "1b359301ac7e5e4cf77ca9af0a113f14751e3d05",
+    "server/ccp4i2/wrappers/coot_rsr_morph/script/coot_rsr_morph_report.py": "2044ccb3bfd9acc9e7ba8810005bda170787e054",
+    "client/renderer/components/task/task-interfaces/coot_rsr_morph.tsx": "0eb34723c6dac51a66836e30938ab21d34fae530",
+    "docs/user/tools/scenario_coot.py": "e8ae65b74f329f51c4f10486fc6902968cf8ec45"
+  }
+}

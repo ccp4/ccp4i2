@@ -28,18 +28,21 @@
             <content id="THRESHOLD">
                 <className>CFloat</className>
                 <qualifiers>
+                    <guiLabel>Map threshold for a water (sigma)</guiLabel>
                     <default>1.75</default>
                 </qualifiers>
             </content>
             <content id="MINDIST">
                 <className>CFloat</className>
                 <qualifiers>
+                    <guiLabel>Closest distance to the model (A)</guiLabel>
                     <default>2.4</default>
                 </qualifiers>
             </content>
             <content id="MAXDIST">
                 <className>CFloat</className>
                 <qualifiers>
+                    <guiLabel>Furthest distance from the model (A)</guiLabel>
                     <default>3.4</default>
                 </qualifiers>
             </content>

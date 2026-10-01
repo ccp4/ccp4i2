@@ -24,3 +24,9 @@ def test_rename_chain():
         assert out, f"No PDB output: {list(job.iterdir())}"
         chains = {c.name for p in out for c in gemmi.read_structure(str(p))[0]}
         assert "B" in chains, chains
+        # Named by the recipe, not only the file the script wrote.
+        from ccp4i2.db import models
+        record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
+        names = [f.annotation for f in models.File.objects.filter(
+            job=record, job_param_name__startswith="XYZOUT")]
+        assert names == ["Scripted Coot, own script: output.pdb"], names
