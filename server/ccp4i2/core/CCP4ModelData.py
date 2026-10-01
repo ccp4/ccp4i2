@@ -135,6 +135,53 @@ class CAsuDataFile(CI2XmlDataFile):
         # Look up in selection dict, default to True if not found
         return self.selection.get(name, True)
 
+    def selectionMode(self) -> int:
+        """The selectionMode qualifier as an int: a def.xml gives the string "1"."""
+        try:
+            return int(self.get_qualifier('selectionMode', default=0) or 0)
+        except (TypeError, ValueError):
+            return 0
+
+    def validity(self):
+        """Add the sequence-selection rule that the selectionMode qualifier states.
+
+        selectionMode 0 means the task uses every sequence; 1 that it takes
+        exactly one (MolRep: a file of several is an error to the program);
+        2 that it takes any non-empty subset. With nothing chosen every
+        sequence counts as selected, so a mode-1 task given a file of several
+        sequences starts out invalid, and the user is asked to pick one.
+        """
+        import os
+        from ccp4i2.core.base_object.error_reporting import SEVERITY_ERROR
+
+        report = super().validity()
+        mode = self.selectionMode()
+        if mode not in (1, 2) or report.maxSeverity() >= SEVERITY_ERROR:
+            return report
+        path = self.getFullPath()
+        if not path or not os.path.exists(str(path)):
+            return report
+        try:
+            self.loadFile()
+            seqs = list(self.fileContent.seqList)
+        except Exception:
+            return report  # an unreadable file is reported elsewhere
+        if len(seqs) < 2:
+            return report
+        selected = [s for s in seqs if self.isSelected(s)]
+        if mode == 1 and len(selected) != 1:
+            report.append(
+                klass=self.__class__.__name__, code=110,
+                details=f'Select one sequence from the AU contents '
+                        f'({len(selected)} of {len(seqs)} selected)',
+                name=self.object_path(), severity=SEVERITY_ERROR)
+        elif mode == 2 and not selected:
+            report.append(
+                klass=self.__class__.__name__, code=111,
+                details='Select at least one sequence from the AU contents',
+                name=self.object_path(), severity=SEVERITY_ERROR)
+        return report
+
     def saveFile(self):
         """
         Save fileContent to an XML file.
@@ -240,7 +287,7 @@ class CAsuDataFile(CI2XmlDataFile):
             return
 
         # Get selection mode from qualifiers if available
-        selectionMode = self.get_qualifier('selectionMode', default=0)
+        selectionMode = self.selectionMode()
 
         text = ''
 

@@ -554,7 +554,11 @@ class PluginPopulator:
                         return
 
                 final_key = nested_parts[-1]
-                if hasattr(current, final_key):
+                if isinstance(current, CCP4Data.CDict):
+                    # A dict's keys are data, not attributes: an AU file's
+                    # selection/<sequence name>=True|False
+                    current[final_key] = {"True": True, "False": False}.get(val, val)
+                elif hasattr(current, final_key):
                     setattr(current, final_key, val)
             else:
                 # Direct attribute

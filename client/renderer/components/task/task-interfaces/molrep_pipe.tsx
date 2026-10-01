@@ -78,9 +78,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="ASUIN"
               qualifiers={{ guiLabel: "AU contents" }}
             />
-            <Typography variant="body2" sx={{ mt: 1, fontStyle: "italic" }}>
-              Select one sequence
-            </Typography>
             <InlineField
               label="The number of monomers to search for"
               sx={{ mt: 1 }}
