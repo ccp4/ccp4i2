@@ -20,8 +20,11 @@ You are drafting the CCP4i2 user-help page for **[task]** in the worktree
 - Page directory: `docs/user/source/tasks/[dir]/` ([Qt page to rewrite |
   new page; add it to `tasks/index.rst` under [category]]).
 - Checked facts you may state: [the numbers and conclusions, with where
-  each came from]. State nothing else as a result of this run without
-  checking it in the job's files, and say in your report what you checked.
+  each came from, and the job directory's path]. Check them too: a fact in
+  a brief can be wrong (a His tag from another project's sequence reached
+  a brief in the first trial; the subagent caught it in the job's files).
+  State nothing else as a result of this run without checking it in the
+  job's files, and say in your report what you checked.
 
 **What to do**
 
@@ -34,6 +37,10 @@ You are drafting the CCP4i2 user-help page for **[task]** in the worktree
    mean and what to do next. Keep the old page's prose where still true.
 4. `python3 docs/user/tools/compress_images.py docs/user/source/tasks/[dir]`,
    then `python3 docs/user/tools/stamp.py stamp [dir]`.
+
+Captures are slow when several run at once (ten minutes a shot with five
+in parallel, two alone): outline first, capture each shot once it is
+right, and leave no capture or other process running when you report.
 
 **Do not** change any file outside `docs/user/source/tasks/[dir]/` and the
 index entry; do not run i2run, scenarios or the test suites; do not commit.

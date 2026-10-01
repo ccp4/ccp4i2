@@ -88,6 +88,14 @@ defects instead of fixing them**. Fixes made in parallel collide, and a
 claim a subagent drew from a picture has not been checked. A cheaper model
 can draft; the main session reviews every page before it is stamped.
 
+The first trial (five utility tasks, #715) cost each Sonnet subagent 80-130k
+tokens and five to eight minutes, and its reports found nine real defects
+the outlines had not. Expect the review to be real work: read each page's
+"not in the checked facts" list, check or cut those claims, then fix the
+defects, restart Django, clear the reports and recapture **one page at a
+time**. A field relabelled by a fix breaks the shots that name it
+(`"field"` matches the whole label): update them before recapturing.
+
 ## Write the judgement down
 
 Every page says, in plain words, what an experienced user would know and a

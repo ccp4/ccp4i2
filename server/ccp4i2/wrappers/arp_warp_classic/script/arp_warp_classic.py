@@ -17,8 +17,7 @@ class arp_warp_classic(CPluginScript):
     def getAsuParams(asuObj):
         maxResidues = asuResidues = asuCopies = 0
         for seqObj in asuObj.fileContent.seqList:
-            selectionMode = asuObj.qualifiers('selectionMode')
-            if selectionMode == 0 or (not asuObj.selection.isSet()) or asuObj.selection[name]:
+            if asuObj.selectionMode() == 0 or asuObj.isSelected(seqObj):
                 seqResidues = int(seqObj.numberOfResidues(countMulti=True))
                 asuResidues += seqResidues
                 if seqResidues > maxResidues:
