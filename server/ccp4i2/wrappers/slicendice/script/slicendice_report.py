@@ -38,7 +38,13 @@ class slicendice_report(Report):
         solved = best.findtext("Solved") == "True"
         rfree, r = float(best.findtext("RFree")), float(best.findtext("R"))
         n = best.findtext("bid")
-        if solved:
+        partial = best.findtext("Partial") == "True"
+        if solved and partial:
+            parent.addDiv().addText(text="Partly solved: the placement from %s split%s refined to R %.3f, "
+                           "R-free %.3f, which passes SliceNDice's test (both below 0.45), but not "
+                           "every search model was placed (below)." % (
+                               n, "" if n == "1" else "s", r, rfree))
+        elif solved:
             parent.addDiv().addText(text="Solved: the placement from %s split%s refined to R %.3f, "
                            "R-free %.3f." % (n, "" if n == "1" else "s", r, rfree))
         else:
@@ -51,8 +57,36 @@ class slicendice_report(Report):
         table.addData(title="Splits", data=[s.findtext("SolID") for s in sols])
         table.addData(title="Search models (residues)",
                       data=["; ".join(splits.get(s.findtext("SolID"), [])) for s in sols])
-        for title, tag in (("LLG", "llg"), ("TFZ", "tfz"), ("R", "srf"), ("R-free", "sre")):
+        # SliceNDice's LLG and TFZ per split are those of Phaser's last listed
+        # solution, not its best: labelled as SliceNDice's, beside each piece's own.
+        for title, tag in (("LLG (SliceNDice)", "llg"), ("TFZ (SliceNDice)", "tfz"),
+                           ("R", "srf"), ("R-free", "sre")):
             table.addData(title=title, data=[s.findtext(tag) for s in sols])
+        # Each search model's placement (Phaser's best solution, in the order
+        # placed). SliceNDice's own TFZ is one number per split; a lobe placed
+        # at TFZ 26 and one not placed at all (TFZ 6, LLG +18) read as 6.
+        for sol in sols:
+            comps = sol.findall("Component")
+            if not comps:
+                continue
+            models = splits.get(sol.findtext("SolID"), [])
+            parts, unsure, previous = [], [], 0.0
+            for c in comps:
+                i = int(c.get("cluster")) if c.get("cluster", "").isdigit() else None
+                where = ("residues " + models[i]) if i is not None and i < len(models) else "model %s" % c.get("cluster")
+                gain = float(c.get("llg") or 0) - previous
+                previous = float(c.get("llg") or 0)
+                clashes = c.get("clashes")
+                parts.append("%s: TFZ %s, LLG +%.0f, %s clash%s" % (
+                    where, c.get("tfz"), gain, clashes, "" if clashes == "1" else "es"))
+                if c.get("tfz") and float(c.get("tfz")) < 8:
+                    unsure.append(where)
+            text = "%s split%s, each search model as Phaser placed it: %s." % (
+                sol.findtext("SolID"), "" if sol.findtext("SolID") == "1" else "s", "; ".join(parts))
+            if unsure:
+                text += (" A TFZ below 8 is not a clear placement: %s probably did not find "
+                         "its place, even where the refined R-free passes." % " and ".join(unsure))
+            parent.addDiv().addText(text=text)
         tried = {s.findtext("SolID") for s in sols}
         untried = sorted(set(splits) - tried)
         if untried:

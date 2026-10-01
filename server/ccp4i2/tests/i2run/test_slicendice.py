@@ -6,6 +6,10 @@ There was no test, and the task could not run at all: its def.xml required
 an ENSEMBLES list nothing filled, so every job failed validity. Then its
 outputs were assigned as bare paths (``out.XYZOUT = path``), which left
 nothing to annotate or glean. About ten minutes.
+
+It is a partial solution, and the test says so: the C-lobe places (TFZ 26.4,
+0.46 A from 4c3f after csymmatch), the N-lobe does not (TFZ 6.0, 18 A off),
+yet the refined R-free (0.427) passes SliceNDice's own test.
 """
 import json
 import xml.etree.ElementTree as ET
@@ -45,5 +49,10 @@ def test_lck_kinase_two_lobes(tmp_path):
             from ccp4i2.db import models
             record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
             xyz = models.File.objects.filter(job=record, job_param_name="XYZOUT").first()
-            assert xyz is not None and xyz.annotation.startswith("SliceNDice solution: 2 splits"), \
+            # The C-lobe places (TFZ 26), the N-lobe does not (TFZ about 6):
+            # R-free passes SliceNDice's test, but it is a partial solution.
+            assert xyz is not None and xyz.annotation.startswith("SliceNDice partial solution: 2 splits"), \
                 xyz and xyz.annotation
+            parts = ET.parse(job / "program.xml").findall(".//Sol/Component")
+            assert float(parts[0].get("tfz")) > 8 > float(parts[1].get("tfz")), \
+                [p.attrib for p in parts]
