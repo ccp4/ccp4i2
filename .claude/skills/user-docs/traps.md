@@ -83,6 +83,11 @@ Each was met for real; most cost an hour the first time.
 
 ## Capture
 
+- **Absence in an outline is not absence on the page.** The outline missed
+  a report's bare text (fixed since), and "the report does not give the
+  number of waters" went into a subagent's report and nearly into a fix:
+  the count was on screen all along. Before fixing something an outline
+  says is missing, take the picture.
 - **Outline first, picture last.** A full-page screenshot read to learn a
   page's labels costs many times an outline.
 - **A shot's section must be a heading the page shows**; a select's value or

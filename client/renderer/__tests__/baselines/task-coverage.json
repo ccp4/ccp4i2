@@ -1,5 +1,9 @@
 {
- "gaps": {},
+ "gaps": {
+  "coot_script_lines": [
+   "SHOWSCRIPT"
+  ]
+ },
  "phantom": {},
  "reachable": {
   "acorn": [
@@ -995,6 +999,7 @@
    "inputData.DICT",
    "inputData.FREERFLAG",
    "inputData.F_SIGF",
+   "inputData.TLSIN",
    "inputData.UNMERGED",
    "inputData.XYZIN",
    "inputParameters.AUTO_WGT",
@@ -1847,6 +1852,14 @@
    "modelParameters.MIN_SPLITS",
    "modelParameters.PLDDT_THRESHOLD",
    "modelParameters.RMS_THRESHOLD"
+  ],
+  "coot_script_lines": [
+   "controlParameters.SCRIPT",
+   "controlParameters.STARTPOINT",
+   "inputData.DELFPHIIN",
+   "inputData.DICT",
+   "inputData.FPHIIN",
+   "inputData.XYZIN"
   ],
   "splitMtz": [
    "inputData.COLUMNGROUPLIST",

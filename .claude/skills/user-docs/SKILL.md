@@ -43,7 +43,10 @@ The mechanics are in `docs/user/README.md`; the traps, by stage, are in
 Work goes in **routes**: a set of related tasks illustrated from one project,
 each route a pull request. Routes stack on each other while CI runs; a stack
 is flattened into one pull request to `django` so it takes one CI cycle
-(retargeting re-runs CI since #705). `django` is PR-only.
+(retargeting re-runs CI since #705). `django` is PR-only. Merging the bottom
+of a stack: retarget the PR above it to `django` *first*; deleting the merged
+branch (`--delete-branch`) closes every PR based on it, and a closed PR's base
+cannot be changed (#722 had to be reopened as #723).
 
 1. **Choose the route and its data for the science.** The project must show
    each task doing its job and answering a real question (MDM2 with its

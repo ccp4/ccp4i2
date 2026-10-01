@@ -50,5 +50,8 @@ class coot_find_waters(CPluginScript):
         status = CPluginScript.FAILED
         if os.path.exists(xyzout):
             status = CPluginScript.SUCCEEDED
+            # Say what it added (the output was listed as "XYZOUT.pdb").
+            self.container.outputData.XYZOUT.annotation = (
+                "Find waters: %s waters added" % nwaters)
         self.reportStatus(status)
         return status

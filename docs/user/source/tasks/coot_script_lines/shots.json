@@ -1,0 +1,70 @@
+{
+  "scenario": "../../../tools/scenario_coot.py",
+  "project": "MDM2",
+  "draft": true,
+  "viewport": [
+    1400,
+    1400
+  ],
+  "settle": 20000,
+  "shots": [
+    {
+      "out": "coot_script_lines_input.png",
+      "job": 110,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Models and maps",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Map coefficients",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "coot_script_lines_script.png",
+      "job": 110,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Script",
+      "callouts": [
+        {
+          "field": "Start from",
+          "badge": "3"
+        },
+        {
+          "field": "Coot script",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "coot_script_lines_report.png",
+      "job": 106,
+      "tabs": [
+        "Report"
+      ],
+      "section": "Output Data",
+      "callouts": [
+        {
+          "text": "Scripted Coot, fill partial residues",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/coot_script_lines/script/coot_script_lines.def.xml": "81f9ef316e47d040605fcb385edb1757a600cab5",
+    "server/ccp4i2/wrappers/coot_script_lines/script/coot_script_lines.py": "30bd9ddbf6197fe382e74dd59b27e78c625a31ba",
+    "server/ccp4i2/wrappers/coot_script_lines/script/coot_script_lines_report.py": "8cc8962dc3e38d690e073edf443967b8c2ddcaa3",
+    "client/renderer/components/task/task-interfaces/coot_script_lines.tsx": "7b65ab83d0681a33d89a808e3dd57778a28f1c22",
+    "client/renderer/components/task/task-interfaces/coot_script_templates.ts": "11cdb55ae101652704302ebe80d939a6f4212f15",
+    "docs/user/tools/scenario_coot.py": "e8ae65b74f329f51c4f10486fc6902968cf8ec45"
+  }
+}
