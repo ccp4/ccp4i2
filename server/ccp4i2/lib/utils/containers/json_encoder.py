@@ -75,6 +75,9 @@ class CCP4i2JsonEncoder(json.JSONEncoder):
             elif isinstance(o, CList):
                 # CList stores items in ordered array - they'll be serialized recursively
                 value = list(o) if hasattr(o, '__iter__') else []
+            elif hasattr(o, '_dict_data'):
+                # CDict keeps plain entries, not CData children
+                value = dict(o._dict_data)
             else:
                 # All other CData (CContainer, CDataFile, and any @cdata_class objects)
                 # Build dict of children by name from children()
