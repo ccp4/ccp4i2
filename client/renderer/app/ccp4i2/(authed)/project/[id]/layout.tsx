@@ -120,8 +120,12 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                       </Box>
                     ) : (
                       // Desktop: Side-by-side panels
-                      <PanelGroup direction="horizontal" style={{flex: "auto"}}>
-                        <Panel defaultSize={30} minSize={20}>
+                      // Explicit ids: the generated ones can differ between the
+                      // server render and the client, and the panels then look
+                      // up a group the DOM does not have ("No group found for
+                      // id"), which crashes the whole page.
+                      <PanelGroup id="project-panels" direction="horizontal" style={{flex: "auto"}}>
+                        <Panel id="project-sidebar" order={1} defaultSize={30} minSize={20}>
                           <Stack sx={{ height: "100%" }}>
                             <Tabs
                               value={leftTabValue}
@@ -140,6 +144,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                           </Stack>
                         </Panel>
                         <PanelResizeHandle
+                          id="project-panels-handle"
                           style={{
                             width: 10,
                             backgroundColor: "transparent",
@@ -158,7 +163,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                             }}
                           />
                         </PanelResizeHandle>
-                        <Panel defaultSize={70} minSize={20}>
+                        <Panel id="project-content" order={2} defaultSize={70} minSize={20}>
                           {props.children}
                         </Panel>
                       </PanelGroup>

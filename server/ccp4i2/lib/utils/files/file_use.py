@@ -526,6 +526,21 @@ def _role_of(keyword: str):
     )
 
 
+def resolve_db_file_id(file_id: str) -> dict:
+    """The fields that identify the File with database id *file_id* to a
+    CDataFile, as :func:`file_dict_for_file` gives them for a fileIn= /
+    fileOut= reference. A bare dbFileId= on the command line needs them too:
+    alone it left the file with no path when the job was validated, so its
+    requiredContentFlag was never checked."""
+    from ....db import models
+
+    try:
+        the_file = models.File.objects.get(uuid=file_id)
+    except (models.File.DoesNotExist, ValueError):
+        raise FileUseError(f"dbFileId={file_id}: no such file") from None
+    return file_dict_for_file(the_file)
+
+
 def resolve_file_reference(
     project, keyword: str, text: str, with_full_path: bool = False
 ) -> dict:

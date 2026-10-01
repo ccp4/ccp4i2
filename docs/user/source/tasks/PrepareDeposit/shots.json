@@ -1,0 +1,77 @@
+{
+  "scenario": "../../../tools/scenario_deposit.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "task": "adding_stats_to_mmcif_i2",
+  "shots": [
+    {
+      "out": "deposit_input.png",
+      "job": 95,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Asymmetric unit content",
+        "scroll": true
+      },
+      "until": "TLS coefficients",
+      "callouts": [
+        {
+          "field": "AU contents",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        },
+        {
+          "text": "Use validation server",
+          "badge": "3"
+        },
+        {
+          "text": "Add scaling statistics",
+          "badge": "4"
+        },
+        {
+          "text": "Related files",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "deposit_report.png",
+      "job": 92,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Data reduction statistics",
+        "scroll": true
+      },
+      "until": "Sequence alignment detail",
+      "callouts": [
+        {
+          "text": "Low resolution limit",
+          "closest": "table",
+          "badge": "6"
+        },
+        {
+          "text": "Sequence alignment summary",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.def.xml": "455b34910e2729cdfc4e193edc39b871c28fbb83",
+    "server/ccp4i2/wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.py": "17149ed5c1452e22e6c38a4b5478828a1fa628b8",
+    "server/ccp4i2/wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2_report.py": "fc85be56cfde09a1cb7b1409d1243e581c64429f",
+    "client/renderer/components/task/task-interfaces/adding_stats_to_mmcif_i2.tsx": "25934074cdb91082ceef51c28b5e69d228f5b4aa",
+    "docs/user/tools/scenario_deposit.py": "64a1654d7c24869edca2000399b91290b1a770d7"
+  }
+}

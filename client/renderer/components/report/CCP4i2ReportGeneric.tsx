@@ -49,6 +49,10 @@ export const CCP4i2ReportGeneric: React.FC<CCP4i2ReportElementProps> = (
   ) : isSVG ? (
     <CCP4i2ReportSVG {...props} />
   ) : (
-    <div dangerouslySetInnerHTML={{ __html: props.item.innerHTML }} />
+    // The cleaned HTML, not the raw: an SVG nested deeper than a direct
+    // child (Privateer's glycan drawings, each inside its own div) arrives
+    // as <ns0:svg>, which the HTML parser does not know, so only its text
+    // showed. Without the prefix it parses as SVG.
+    <div dangerouslySetInnerHTML={{ __html: cleanedInnerHTML }} />
   );
 };

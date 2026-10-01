@@ -64,3 +64,7 @@ class zanuda(CPluginScript):
             if rr and rr[-1][0] == "<<":
                 out.PERFORMANCE.RFactor = rr[-1][-2]
                 out.PERFORMANCE.RFree = rr[-1][-1]
+                spacegroup = " ".join(rr[-1][2].split())
+                out.XYZOUT.annotation.set(f"Model in {spacegroup} from Zanuda")
+                out.FPHIOUT.annotation.set(f"Map coefficients in {spacegroup} from Zanuda")
+                out.DIFFPHIOUT.annotation.set(f"Difference map coefficients in {spacegroup} from Zanuda")

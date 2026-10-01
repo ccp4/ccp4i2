@@ -1,0 +1,58 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "modelASUCheck_input.png",
+      "job": 44,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Input coordinates",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "Input coordinates",
+          "badge": "1"
+        },
+        {
+          "text": "Input AU Contents",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "modelASUCheck_report.png",
+      "job": 35,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Sequence alignment summary",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "Chain A",
+          "badge": "3"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/modelASUCheck/script/modelASUCheck.def.xml": "ef4fc2d7852ad268c6d1640256f29136b4995c9a",
+    "server/ccp4i2/wrappers/modelASUCheck/script/modelASUCheck.py": "b26c3287e1036d15208325302e5247de1cf3957a",
+    "server/ccp4i2/wrappers/modelASUCheck/script/modelASUCheck_report.py": "00478b0d48adde951957adc85de2eba014a6ef98",
+    "client/renderer/components/task/task-interfaces/modelASUCheck.tsx": "2ff89b29f622f7b3d3c04590388a29f8f8d282a9",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

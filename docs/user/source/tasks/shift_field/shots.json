@@ -1,0 +1,87 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "sheetbend_input.png",
+      "job": 52,
+      "tabs": [
+        "Task interface",
+        "Input Data"
+      ],
+      "section": "Input reflections",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "sheetbend_options.png",
+      "job": 52,
+      "tabs": [
+        "Task interface",
+        "Basic Options"
+      ],
+      "section": {
+        "text": "Parameters to refine",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "Parameters to refine",
+          "badge": "3"
+        },
+        {
+          "text": "Number of cycles",
+          "badge": "4"
+        },
+        {
+          "text": "Resolution",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "sheetbend_report.png",
+      "job": 48,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Note: R factors",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "Cycle",
+          "closest": "table",
+          "badge": "6"
+        },
+        {
+          "text": "Model after shift-field refinement",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/sheetbend/script/sheetbend.def.xml": "8635ff3a8466569b35e4d1974cd1b63e635056d4",
+    "server/ccp4i2/wrappers/sheetbend/script/sheetbend.py": "070e16329741294dadd6d0f1f550439f4b226997",
+    "server/ccp4i2/pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline_report.py": "a166d42ce40740c3905a03f33b1e930e6aa57749",
+    "client/renderer/components/task/task-interfaces/sheetbend.tsx": "ed3e1cbc5412e0adf03efaa23cb89704b7ce081d",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

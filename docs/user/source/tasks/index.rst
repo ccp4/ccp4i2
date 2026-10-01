@@ -9,6 +9,7 @@ Import merged data, AU Contents, alignments or coordinates
    :maxdepth: 1
 
    import_merged/index
+   import_files/index
    ProvideAsuContents/index
    ProvideSequence/index
    ProvideAlignment/index
@@ -95,6 +96,7 @@ Molecular replacement
 
    mrbump_basic/index
    phaser_simple_phil/index
+   phaser_mr_phil/index
    phaser_pipeline/index
    molrep_pipe/index
    csymmatch/index
@@ -141,6 +143,7 @@ Refinement
    servalcat_pipe/index
    prosmart_refmac/index
    tls/index
+   SubtractNative/index
    coot_refinement/index
    lorestr_i2/index
    pairef/index
@@ -205,6 +208,9 @@ Coordinate data tools
    gesamt/index
    coordinate_selector/index
    fractional_coordinates/index
+   areaimol/index
+   pdbset_ui/index
+   modelASUCheck/index
 
 Indices and tables
 ==================

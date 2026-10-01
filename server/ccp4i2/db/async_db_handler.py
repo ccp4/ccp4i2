@@ -803,6 +803,14 @@ class AsyncDatabaseHandler:
                         print(f"[GLEAN DEBUG]   isMMCIF() returned: {is_mmcif}")
                         logger.debug(f"[GLEAN DEBUG]   isMMCIF() returned: {is_mmcif}")
 
+                        # Record what the file holds when the wrapper did not
+                        # say: a refinement's PDB-format model was recorded with
+                        # content 0, so a task needing mmCIF (deposition) was not
+                        # told it had been given the wrong one.
+                        if not metadata.get('content_flag'):
+                            metadata['content_flag'] = (CPdbDataFile.CONTENT_FLAG_MMCIF
+                                                        if is_mmcif else CPdbDataFile.CONTENT_FLAG_PDB)
+
                         if is_mmcif:
                             print(f"[GLEAN DEBUG]   File IS mmCIF format")
                             # Check if file needs renaming (wrong extension for mmCIF)

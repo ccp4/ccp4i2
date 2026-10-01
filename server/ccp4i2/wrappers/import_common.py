@@ -353,10 +353,14 @@ class CImportMiniMtzBase(CPluginScript):
         """Set contentFlag / subType / annotation on the output object."""
         if content_flag is not None:
             out_obj.contentFlag.set(content_flag)
+        # "Observation columns F,SIGF from refined.mtz". (It read "Observation
+        # from refined columns HKL_base/[F,SIGF]".) The dataset is named only
+        # when it is a real one: HKL_base is the MTZ's placeholder.
         annotation = (self.TYPE_LABEL[:1].upper() + self.TYPE_LABEL[1:]
-                      + ' from ' + Path(str(self.container.inputData.HKLIN.baseName)).stem)
-        prefix = (dataset + '/') if dataset else ''
-        annotation += ' columns ' + prefix + '[' + ','.join(labels) + ']'
+                      + ' columns ' + ','.join(labels)
+                      + ' from ' + Path(str(self.container.inputData.HKLIN.baseName)).name)
+        if dataset and dataset.split('/')[-1] != 'HKL_base':
+            annotation += ' (' + dataset + ')'
         try:
             out_obj.annotation.set(annotation)
         except Exception:

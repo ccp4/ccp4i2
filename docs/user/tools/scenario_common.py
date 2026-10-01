@@ -57,3 +57,20 @@ def clone_last(project: str, task: str):
         f"task_name='{task}', parent__isnull=True).order_by('-id').first()\n"
         "clone_job(str(job.uuid))\n")],
         check=True, env={**os.environ, **DJANGO})
+
+
+
+def output_file_id(project: str, task: str, param: str) -> str:
+    """The database id of the named output of the project's last top-level
+    <task> job that has one. For a file inside a list item (a Phaser
+    ensemble's structure), where the fileOut= syntax does not reach: given
+    as ".../dbFileId=<id>" it is that job's file, recorded as used, where a
+    path would be imported again as a new file of no known origin."""
+    out = subprocess.run([sys.executable, "manage.py", "shell", "-c", (
+        "from ccp4i2.db.models import File\n"
+        f"f = File.objects.filter(job__project__name='{project}', "
+        f"job__task_name='{task}', job__parent__isnull=True, "
+        f"job_param_name='{param}').order_by('-job__id').first()\n"
+        "print('ID=' + str(f.uuid))\n")],
+        check=True, env={**os.environ, **DJANGO}, capture_output=True, text=True).stdout
+    return next(line[3:] for line in out.splitlines() if line.startswith("ID="))

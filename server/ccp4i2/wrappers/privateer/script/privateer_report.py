@@ -7,6 +7,7 @@ import numpy
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.report import Report
+from ccp4i2.report.svg import fit_svg, inline_svg
 
 
 class privateer_report(Report):
@@ -22,7 +23,7 @@ class privateer_report(Report):
 
     # Read the SVG content for inline embedding in the report
     with open(imageFileJob, 'r') as f:
-        imageFileSvg = f.read()
+        imageFileSvg = fit_svg(inline_svg(f.read()), 250)
 
     background_pyranosesSrc = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers/privateer/script/mercator_pyranoses.png' )
     background_pyranosesJob = os.path.join(jobInfo['fileroot'], 'mercator_pyranoses.png' )
@@ -244,7 +245,7 @@ class privateer_report(Report):
             svg_filename = os.path.join ( directory, glycan.text )
 
             svg_file = open(svg_filename, 'r')
-            svg_string = svg_file.read()
+            svg_string = inline_svg(svg_file.read())
             svg_file.close()
 
             svg_string_partitioned = svg_string.partition("width=\"")
@@ -295,7 +296,7 @@ class privateer_report(Report):
                                 svg_filename_permutation = os.path.join ( directory, permutationsvg )
 
                                 svg_file_permutation = open(svg_filename_permutation, 'r')
-                                svg_string_permutation = svg_file_permutation.read()
+                                svg_string_permutation = inline_svg(svg_file_permutation.read())
                                 svg_file_permutation.close()
 
                                 # svg_string_partitioned_permutation = svg_string_permutation.partition("width=\"")

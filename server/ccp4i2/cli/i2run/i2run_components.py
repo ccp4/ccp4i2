@@ -428,7 +428,19 @@ class PluginPopulator:
                                         # Normal CData object - navigate directly
                                         current = attr
 
-                                if current is not None:
+                                if current is not None and nested_parts[-1] in (
+                                        "fileIn", "fileOut", "fileUse", "dbFileId") \
+                                        and isinstance(current, CDataFile):
+                                    # A file inside a list item named the way a
+                                    # top-level file is ("pdbItemList/structure/
+                                    # fileOut=chainsaw[-1].XYZOUT"): resolved by
+                                    # the same code, so it is that job's file,
+                                    # recorded as used. Without this the keyword
+                                    # set a dead attribute and the file was unset.
+                                    PluginPopulator._handle_file_with_subvalues(
+                                        current, [f"{nested_parts[-1]}={val}"])
+                                    logger.info(f"    Resolved {key}={val!r}")
+                                elif current is not None:
                                     final_key = nested_parts[-1]
                                     # For CData objects, attributes are created dynamically
                                     # For attributes that collide with HierarchicalObject properties,
@@ -656,6 +668,20 @@ class PluginPopulator:
                 resolve_file_reference(project_id, keyword, reference)
             )
             logger.info("Resolved %s=%s to %s", keyword, reference, parsed_values)
+
+        # A bare dbFileId= (a file named by its database id, as the app names
+        # one) gets the rest of what identifies the file -- project, baseName,
+        # contentFlag, subType -- as fileIn=/fileOut= do. Alone it left the
+        # file with no path when the job was validated, so requiredContentFlag
+        # was never checked: a PDB-format model went to a task that needs
+        # mmCIF, passed validation, and the job failed parsing it as mmCIF.
+        if (has_key_value_syntax and "dbFileId" in parsed_values
+                and not file_keywords
+                and not any(k in parsed_values for k in ("baseName", "fullPath", "relPath"))):
+            from ccp4i2.lib.utils.files.file_use import resolve_db_file_id
+
+            parsed_values = {**resolve_db_file_id(parsed_values["dbFileId"]), **parsed_values}
+            logger.info("Resolved dbFileId to %s", parsed_values)
 
         # Special handling for sequence files with seqFile= (CAsuDataFile)
         if has_key_value_syntax and "seqFile" in parsed_values:

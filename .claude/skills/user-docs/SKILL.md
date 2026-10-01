@@ -80,6 +80,10 @@ request whatever its base.
 - **An exception thrown inside a page-side timer never rejects**: the capture
   hangs. Keep page steps synchronous and sleep on the Node side.
 - **JPEG is wrong for screenshots**: 256-colour PNG is smaller and sharper.
+- **Never send a scenario's data to an outside service.** The deposition
+  task's "Use validation server" is on by default and uploads the structure
+  to wwPDB: scenarios pass `--SENDTOVALIDATIONSERVER False`. PdbView
+  (`pdbview_edit`) opens a desktop editor, like QtPISA: not scriptable.
 - **Never run an interactive task in a scenario.** Some tasks' "program" is a
   desktop window: qtpisa opens QtPISA, the coot and ccp4mg tasks open theirs,
   Lidia's "sketch" input opens a sketcher. Run from a scenario, they pop up on
@@ -124,6 +128,28 @@ request whatever its base.
   all and the warning would stop being read. The label check still searches
   the widgets. A page whose task name is not its directory or an `ALIASES`
   entry names it with `"task"` in `shots.json`.
+- **A report's text is parsed as XML.** HTML entities (`&Aring;`, `&sup2;`,
+  `&rarr;`) are undefined there and fail the whole report; write the
+  characters. Escape anything taken from a log (`27 < 50` broke PAIREF's).
+  Build a new report in a unit test (`test_pairef_results.py`), which
+  catches both before a capture does.
+- **"Application error: a client-side exception"** on a job page was the
+  resizable panels' generated ids differing between server and client; the
+  project and job layouts now give them fixed ids. If it comes back, the
+  capture's `.failed.txt` has the exception.
+- **`task[1]` counts unrun clones; `task[-1]` skips jobs without the file.**
+  To name one particular earlier job, use its number: `fileOut=[1].HKLOUT[0]`.
+- **Deleting a job deletes the jobs that used its outputs.** Tidy a scenario
+  project by job number, children last, and check the ids: a range one too
+  long took three new jobs with it.
+- **A file inside a list item** (a Phaser ensemble's structure) takes no
+  `fileOut=`. Give a path and it is imported again as a new file of no
+  known origin; give `.../dbFileId=<id>` (`scenario_common.output_file_id`)
+  and it is the producing job's file, recorded as used.
+- **Run `capture.mjs` in a shell that has not sourced CCP4**: its setup puts
+  Node 20 first on the PATH ("WebSocket is not defined").
+- **Omit `"section"` for a first look** at a new page: the shot takes the
+  whole open tab, which shows what the sections and labels are called.
 
 ## Write the judgement down
 

@@ -4,6 +4,10 @@ from ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report impor
 
 class phaser_mr_rnp_phil_report(phaser_mr_auto_phil_report):
     TASKNAME = "phaser_mr_rnp_phil"
+    # These modes (and FTF and PAK, which inherit this report) work on what
+    # they are given and record no search of their own: "No search attempt
+    # recorded" would read as something missing.
+    SEARCHES = False
 
     def drawVerdict(self, parent, running):
         # Refinement of placed solutions: Phaser gives the refined LLGs, no

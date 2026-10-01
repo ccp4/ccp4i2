@@ -52,7 +52,9 @@ class sheetbend(CPluginScript):
         self.appendCommandScript( "xmlout %s"%(self.makeFileName('PROGRAMXML')) )
         return CPluginScript.SUCCEEDED
 
-    def processOutputFiles(self):        
+    def processOutputFiles(self):
         self.xmlroot = etree.parse(self.makeFileName('PROGRAMXML')).getroot()
+        self.container.outputData.XYZOUT.annotation.set(
+            'Model after shift-field refinement')
         return CPluginScript.SUCCEEDED
 

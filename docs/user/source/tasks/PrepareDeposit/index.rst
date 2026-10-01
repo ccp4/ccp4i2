@@ -2,80 +2,71 @@
 Prepare and validate files for deposition
 #########################################
 
-   The final stage of the crystallographic structure solution is the
-   deposition of the final structure and the observations in the Protein
-   Data Bank (PDB). The PDB require that the files be provided in a
-   standard form, specifically the observations and the atomic model
-   must be in CIF format. This task will automatically prepare the
-   required files in the appropriate formats.
+The last step of a structure is depositing it in the Protein Data Bank.
+The PDB takes the model and the observations as mmCIF, and wants the
+model's file to say how the data were reduced and the structure refined.
+This task makes those two files from the final refinement:
+
+- the **model**, with the refinement's statistics, the sequence of every
+  chain, and the data reduction statistics (resolution, completeness,
+  R\ :sub:`merge`, CC\ :sub:`1/2` and so on, overall and in shells) added;
+- the **reflections**, merged and, if they are in the project, the scaled
+  unmerged data, with the free R flags and the map coefficients.
+
+It can also send them to the wwPDB validation server and show the
+validation report it returns. Upload the files to `OneDep
+<https://deposit.wwpdb.org/>`_ to deposit.
+
+The pictures on this page come from the MDM2 project of the refinement
+route: the model refined with ProSMART restraints, prepared for
+deposition with the statistics of its Aimless run.
 
 Input
 =====
 
-   |image1|
+.. figure:: deposit_input.png
+   :alt: Figure 1: Prepare deposition input
 
-   Firstly, the contents of the asymmetric unit must be supplied **(1)**.
-   This must contain the complete sequences of all macromolecule chains
-   present in the coordinate file i.e. including parts present in the
-   crystallized species but not modelled.
+   Figure 1: Prepare deposition input
 
-   Next add the coordinates from the final refinement job **(2)**.
-   At this point all the information from this job will be harvested
-   from the database and the related files section will be populated.
+The AU contents **(1)**: they must hold the complete sequence of every
+chain, including any part that is in the crystal but not in the model;
+the PDB records the full sequence. The refined model **(2)**: choose the
+refinement's mmCIF model, which carries its statistics (a PDB-format model
+is refused). Choosing it fills in the rest: the task traces the model back
+to the refinement job that made it and the data reduction job before that,
+and fills the related files **(5)** from them.
 
-   You may choose not to send the data and coordinates to the wwPDB
-   Validation Service **(3)**. In this case the task will prepare the
-   files but you will not receive a validation report.
+Whether to send the files to the wwPDB validation server **(3)**: it
+takes at least five minutes and often much longer, because the task waits
+for the report, and it sends your unpublished structure to an outside
+service. Leave it off to prepare the files only; OneDep validates them
+again when you deposit. Whether to add the data reduction statistics
+**(4)**: these come from the data reduction job's mmCIF statistics, or
+from Aimless's own report when there are none.
 
-   The option to add statistics from data reduction **(4)** is
-   described below.
-
-   If you have run the data reduction task in this CCP4i2 project this
-   task should be able to identify the correct job that produced the
-   data that were used in refinement and add data reduction statistics
-   to the coordinate mmCIF file. 
-   
-   There are two reasons why this automatic detection does not work.
-   Firstly, data reduction was not done within CCP4i2. However, if data
-   reduction was done within CCP4i2 but the space group used differs
-   from that of the refined structure the detection will fail. In both
-   cases this pop-up will appear.
-
-   |image2|
-
-   How to proceed depends on whether data reduction was done within
-   CCP4i2. 
-
-   |image3|
-
-   If data reduction was done within CCP4i2 you can locate the output
-   XML from Aimless that contains the data reduction statistics **(5)**.
-   Alternatively you can choose to not add data reduction statistics to
-   the coordinate mmCIF file **(4)** and instead enter this information
-   into the wwPDB OneDep system. 
+When the related files cannot be found: data reduced outside CCP4i2 or
+in a different space group from the refinement's leave the data reduction
+job unfound. Then either point the task at the scaling job's report, or
+untick the statistics and enter them in OneDep instead.
 
 Results
 =======
-   If you chose to send the coordinates and data to the wwPDB
-   Validation Service the task will take at least five minutes (but
-   often much longer) to run as it waits until  the Validation Service
-   returns the validation report. 
-   
-   |image4|
 
-   If you chose to add data reduction statistics a summary of these is
-   provided and/or chose to send the coordinates and data to the wwPDB
-   Validation Service a summary is shown **(1)**.
+.. figure:: deposit_report.png
+   :alt: Figure 2: Prepare deposition report
 
-   |image5|
+   Figure 2: Prepare deposition report
 
-   You can view and export the coordinates **(2)**, reflection data
-   **(3)**, and validation report **(4)**. You can also run a Coot job
-   **(5)** to inspect issues highlighted in the validation report.
+The data reduction statistics that went into the model's file **(6)**,
+overall and in the inner and outer shells: here to 1.35 Å, with CC\
+:sub:`1/2` 0.140 and completeness 45% in the outer shell (where to cut
+there is what :doc:`../pairef/index` tests). Below them, the model's chains against the
+AU contents **(7)** (as :doc:`../modelASUCheck/index` reports): 91 of the
+97 residues of the construct are modelled. Check that every chain
+appears here at 100% identity before depositing.
 
-
-.. |image1| image:: PrepareDeposit_task_1.png
-.. |image2| image:: PrepareDeposit_task_2.png
-.. |image3| image:: PrepareDeposit_task_3.png
-.. |image4| image:: PrepareDeposit_report_1.png
-.. |image5| image:: PrepareDeposit_report_2.png
+The validation report, when it was asked for, follows. The files to
+upload to OneDep are the outputs: *Coordinates in MMCIF format for upload*
+and *Reflections in MMCIF format for upload*, with a Coot script that
+tours the issues the validation report raised.

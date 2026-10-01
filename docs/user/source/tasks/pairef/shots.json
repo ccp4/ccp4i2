@@ -1,0 +1,86 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "pairef_input.png",
+      "job": 56,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Reflections, to beyond the resolution the model was refined at",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        },
+        {
+          "field": "Restraint dictionary (the one the model was refined with)",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "pairef_shells.png",
+      "job": 56,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Resolution shells",
+      "callouts": [
+        {
+          "field": "Shells to add",
+          "badge": "4"
+        },
+        {
+          "field": "Starting resolution (\u00c5; 0 reads it from the model)",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "pairef_report.png",
+      "job": 39,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Paired refinement",
+        "scroll": true
+      },
+      "until": "PAIREF's own report",
+      "callouts": [
+        {
+          "text": "Suggested high-resolution cutoff",
+          "badge": "6"
+        },
+        {
+          "text": "Shell added",
+          "closest": "table",
+          "badge": "7"
+        },
+        {
+          "text": "PAIREF warned",
+          "badge": "8"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/pairef/pairef.def.xml": "66a430543e0e324e06ab0deb6edd4869f1291386",
+    "server/ccp4i2/wrappers/pairef/pairef.py": "987147e9a6e9dc9fe32180bc4ea70fa3bdcf1dd8",
+    "server/ccp4i2/wrappers/pairef/pairef_report.py": "b64356fe4a5a547ba9844186d5851bc3989b1066",
+    "client/renderer/components/task/task-interfaces/pairef.tsx": "f9c2b16d39d1af4a52be15be4b704aac7ea6f509",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

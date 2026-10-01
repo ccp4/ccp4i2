@@ -19,17 +19,13 @@ class sheetbend_report(Report):
         parent.append( "<p>Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</p>" )
 
         tableDiv = parent.addDiv(style="float:left;border:0px;")
-        print("##################################################")
-        print("##################################################")
-        print(select)
-        print("##################################################")
-        print("##################################################")
         table = tableDiv.addTable(select=select, transpose=False, id='cycles') 
         try:
-          for title,select,expr in [[ "Cycle" , "Cycles/Cycle/Number", "x" ],
-                                    [ "Resolution" , "Cycles/Cycle/Resolution", "x" ],
-                                    [ "R<sub>Work</sub>"  ,   "Cycles/Cycle/Rwork", "round(x,3)"],
-                                    [ "R<sub>Free</sub>" ,    "Cycles/Cycle/Rfree","round(x,3) if float(x)>0.0 else '-' " ] ]:
+          for title,select,expr in [[ "Cycle" , "Cycles/Cycle/Number", "int(float(x))" ],
+                                    [ "Resolution (Å)" , "Cycles/Cycle/Resolution", "'%.2f' % float(x)" ],
+                                    [ "Radius (Å)" , "Cycles/Cycle/Radius", "'%.1f' % float(x)" ],
+                                    [ "R<sub>Work</sub>"  ,   "Cycles/Cycle/Rwork", "'%.3f' % x"],
+                                    [ "R<sub>Free</sub>" ,    "Cycles/Cycle/Rfree", "'%.3f' % x if x > 0.0 else '-'" ] ]:
             table.addData(title=title,select=select,expr=expr)
         except Exception as e:
             print( "ERROR sheetbend_report ", e, file=sys.stderr )

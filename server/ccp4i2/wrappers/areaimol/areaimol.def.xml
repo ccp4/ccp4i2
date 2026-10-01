@@ -9,6 +9,7 @@
       <content id="XYZIN">
         <className>CPdbDataFile</className>
         <qualifiers>
+          <guiLabel>Model</guiLabel>
           <mustExist>True</mustExist>
           <allowUndefined>False</allowUndefined>
           <fromPreviousJob>False</fromPreviousJob>
@@ -18,6 +19,7 @@
       <content id="XYZIN2">
         <className>CPdbDataFile</className>
         <qualifiers>
+          <guiLabel>Second model, to compare with the first</guiLabel>
           <mustExist>True</mustExist>
           <allowUndefined>True</allowUndefined>
           <fromPreviousJob>False</fromPreviousJob>

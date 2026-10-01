@@ -41,7 +41,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           {...props}
           qualifiers={{
             guiLabel:
-              "Symmetryse input model before further transformations",
+              "Symmetrise the input model before further transformations",
           }}
         />
       </CCP4i2ContainerElement>

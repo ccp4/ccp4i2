@@ -48,5 +48,10 @@ class pdbset_ui(CPluginScript):
                 logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
 
+        # Say what was done to it: the keywords, which are the whole edit.
+        keywords = [line.strip() for line in str(self.container.controlParameters.EXTRA_PDBSET_KEYWORDS).splitlines()
+                    if line.strip() and line.strip().upper() != "END" and not line.strip().startswith("#")]
+        self.container.outputData.XYZOUT.annotation.set(
+            "Model edited by pdbset" + (": " + "; ".join(keywords) if keywords else ""))
         return CPluginScript.SUCCEEDED
       

@@ -28,6 +28,11 @@ def read_doc_and_structure(path):
             structure = gemmi.make_structure_from_block(doc[0])
         except (RuntimeError, ValueError):
             structure = gemmi.read_structure(path)
+            # Without these, a PDB file's residues come out with no
+            # label_seq_id, which mmCIF readers expect. force: number them
+            # even when the file has no SEQRES to number them against.
+            structure.setup_entities()
+            structure.assign_label_seq_id(force=True)
             doc = structure.make_mmcif_document()
     return doc, structure
 

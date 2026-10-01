@@ -39,6 +39,24 @@ ALIASES = {
     "coot_rsr_morph": "coot_refinement",
     "dials_image": "dials",
     "phaser_pipeline_phil": "phaser_pipeline",
+    "adding_stats_to_mmcif_i2": "PrepareDeposit",
+    # One page for Phaser MR over PHIL, whole or in steps.
+    "phaser_mr_auto_phil": "phaser_mr_phil",
+    "phaser_mr_frf_phil": "phaser_mr_phil",
+    "phaser_mr_ftf_phil": "phaser_mr_phil",
+    "phaser_mr_pak_phil": "phaser_mr_phil",
+    "phaser_mr_rnp_phil": "phaser_mr_phil",
+    # One page for the single-file import tasks.
+    "ImportCoordinate": "import_files",
+    "ImportSequence": "import_files",
+    "ImportAsuContent": "import_files",
+    "ImportDictionary": "import_files",
+    "ImportMap": "import_files",
+    "ImportObs": "import_files",
+    "ImportUnmerged": "import_files",
+    "ImportMapCoeffs": "import_files",
+    "ImportFreeR": "import_files",
+    "ImportPhases": "import_files",
 }
 
 

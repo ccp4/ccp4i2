@@ -1,0 +1,63 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "tls_input.png",
+      "job": 54,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Input data",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Starting TLS set",
+          "badge": "2"
+        },
+        {
+          "text": "Group ID",
+          "closest": "table",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "tls_report.png",
+      "job": 50,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "TLS provided",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "TLS provided",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/ProvideTLS/script/ProvideTLS.def.xml": "667e7a78e13878e64ff46906debfdd0917ab60bc",
+    "server/ccp4i2/wrappers/ProvideTLS/script/ProvideTLS.py": "f45278d712d5c7cb9558daaa7d22c4aa6a7f1a0f",
+    "server/ccp4i2/wrappers/ProvideTLS/script/ProvideTLS_report.py": "8d08c462904dc629299850ef8fdeace13611fecd",
+    "client/renderer/components/task/task-interfaces/ProvideTLS.tsx": "80c2efe2c8c7a4dc586ddecfe3e1a9357f8f9d9b",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

@@ -2,6 +2,7 @@ import os
 import sys
 import xml.etree.ElementTree as etree
 
+from ccp4i2.report.svg import inline_svg
 from ccp4i2.report.CCP4ReportParser import Report
 from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
 from ccp4i2.wrappers.refmac.script import refmac_report
@@ -48,7 +49,9 @@ class adding_stats_to_mmcif_i2_report(Report):
         clearingDiv = parent.addDiv(style="clear:both;")
         scaledUnmergedFold = parent.addFold(label="Scaled unmerged", initiallyOpen=True)
         if len(self.jobInfo['filenames']['SCALEDUNMERGED'].strip()) != 0:
-            scaledUnmergedFold.append(f"Unmerged data were incorporated from file {self.jobInfo['filenames']['SCALEDUNMERGED']}")
+            scaledUnmergedFold.append(
+                "Unmerged data were incorporated from "
+                + os.path.basename(self.jobInfo['filenames']['SCALEDUNMERGED'].strip()))
         else:
             scaledUnmergedFold.append(f"No unmerged data were incorporated")
 
@@ -78,12 +81,24 @@ class adding_stats_to_mmcif_i2_report(Report):
                 parent.append ( "<p>Failed to download validation summary. Regenerating svg...</p>" )
                 self.makeValidationSvg(summary, validationSvg)
 
+        if not summary and not os.path.exists(validationSvg):
+            # Nothing came back from the wwPDB validation server, usually
+            # because it was not asked: say so once, not as two "No ...
+            # downloaded" folds that read like failures.
+            fold = parent.addFold(label="Validation", initiallyOpen=True)
+            fold.append("<p>No validation report: the files were not sent to the wwPDB "
+                        "validation server, or it returned nothing. Tick <i>Use validation "
+                        "server</i> to have them validated here, or upload the files "
+                        "below to OneDep, which validates them as part of deposition.</p>")
+            return
+
         summaryFold = parent.addFold(label="Validation summary", initiallyOpen=True)
-        #htmlCode = '<img src="./validation.svg" alt="Diagram" style="margin-top:20px; margin-right: 30px; float:left;" />'
         if os.path.exists(validationSvg):
-            summaryFold.append(open(validationSvg).read())
+            # Without its XML declaration, which breaks the report when
+            # embedded (as Privateer's drawings did).
+            summaryFold.append(inline_svg(open(validationSvg).read()))
         else:
-            summaryFold.append("<p>No validation SVG downloaded...</p>")
+            summaryFold.append("<p>No validation summary was downloaded.</p>")
 
         clearingDiv = parent.addDiv(style="clear:both;")
         statisticsFold = parent.addFold(label="Validation statistics", initiallyOpen=True)
@@ -95,7 +110,7 @@ class adding_stats_to_mmcif_i2_report(Report):
                 if s['value'] is not None:
                     table.addData(title = s['label'], data = [s['value'], s['pc_abs'], s['pc_rel']])
         else:
-            statisticsFold.append ( "<p>No validation XML downloaded...</p>" )
+            statisticsFold.append ( "<p>No validation statistics were downloaded.</p>" )
 
     def addCifStatsTable(self, parent):
         """Render data reduction statistics from CIF stats (no Aimless XML)."""
