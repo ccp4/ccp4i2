@@ -38,6 +38,9 @@ jobs:
           python-version: "3.13"
       - run: pip install -r docs/user/requirements.txt
       - run: docs/user/tools/build.sh "$RUNNER_TEMP/site"
+      # Sphinx keeps its build cache (.doctrees) in the output directory: not
+      # for readers, and most of the artifact's files.
+      - run: rm -rf "$RUNNER_TEMP/site/.doctrees"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/site
