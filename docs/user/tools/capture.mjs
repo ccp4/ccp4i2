@@ -158,6 +158,24 @@ const PAGE_HELPERS = () => {
       if (spec == null) {
         return [...document.querySelectorAll("[role=tabpanel]")].find(visible) || document.body;
       }
+      if (typeof spec === "object" && spec.graph) {
+        // {graph: "..."}: one graph and its menu, the menu named by its label
+        // or by the graph it shows (as in "plots"; give "plots" first to
+        // choose the graph, then name the choice here). The Qt pictures
+        // were one graph each; a fold's crop showed a dozen.
+        const sq = (t) => (t || "").replace(/\s+/g, " ").trim();
+        const roots = [...document.querySelectorAll(".MuiAutocomplete-root")].filter((r) => {
+          const label = r.querySelector("label"), input = r.querySelector("input");
+          return (label && sq(label.textContent).startsWith(sq(spec.graph))) ||
+            (input && sq(input.value).startsWith(sq(spec.graph)));
+        });
+        const root = roots[spec.nth || 0];
+        if (!root) throw new Error(`No graph shows "${spec.graph}"`);
+        let el = root.parentElement;
+        while (el && !el.querySelector("canvas,svg")) el = el.parentElement;
+        if (!el) throw new Error(`No drawing beside the graph menu "${spec.graph}"`);
+        return el.closest(".MuiPaper-root") || el;
+      }
       if (typeof spec === "object") {
         let el = this.containing(spec.text);
         while (el && !/auto|scroll/.test(getComputedStyle(el).overflowY)) el = el.parentElement;
@@ -166,6 +184,31 @@ const PAGE_HELPERS = () => {
       }
       const l = this.label(spec);
       return l.closest(".MuiAccordion-root,.MuiPaper-root") || l.parentElement.parentElement;
+    },
+    // Open every collapsed fold around el, outermost first: a graph in a
+    // closed fold is in the page, measured at no height, and a crop of it
+    // photographs the fold headers in front of it. Returns how many it opened.
+    // A graph menu by its label or the graph it shows now ("plots", {graph}).
+    graphMenu(name, nth) {
+      const sq = (t) => (t || "").replace(/\s+/g, " ").trim();
+      const roots = [...document.querySelectorAll(".MuiAutocomplete-root")].filter((r) => {
+        const label = r.querySelector("label"), input = r.querySelector("input");
+        return (label && sq(label.textContent).startsWith(sq(name))) ||
+          (input && sq(input.value).startsWith(sq(name)));
+      });
+      return roots[nth || 0] || null;
+    },
+    reveal(el) {
+      const folds = [];
+      for (let a = el.closest(".MuiAccordion-root"); a; a = a.parentElement && a.parentElement.closest(".MuiAccordion-root")) {
+        folds.unshift(a);
+      }
+      let opened = 0;
+      for (const fold of folds) {
+        const summary = fold.querySelector(".MuiAccordionSummary-root");
+        if (summary && summary.getAttribute("aria-expanded") !== "true") { summary.click(); opened++; }
+      }
+      return opened;
     },
     // The element holding the first visible text that starts with the given
     // text. (Walks text nodes: innerText on every element of a report full of
@@ -246,6 +289,49 @@ async function shoot(shot) {
     }, heading);
     await sleep(1500);
   }
+  // "plots": choose the graph a report's graph group shows, as a user does:
+  // open its menu (an Autocomplete labelled with the group's title) and pick
+  // the option whose text starts with "choose". {"menu": its label or the
+  // graph it shows now, "choose": title, "nth": which of several matches
+  // (default 0)}. A group menu picks a table, then its "Plot" menu a graph. The
+  // Qt pictures each showed one chosen graph, which a shot could not reach.
+  for (const plot of shot.plots || []) {
+    const opened = await page.evaluate((pl) => {
+      const root = __cap.graphMenu(pl.menu, pl.nth);
+      return root ? __cap.reveal(root) : 0;
+    }, plot);
+    if (opened) await sleep(1500);
+    await page.evaluate((pl) => {
+      // A menu is named by its label or, better, by what it shows now: the
+      // labels are generic ("Plot", "Group of 13 graphs") and there are many.
+      const roots = [...document.querySelectorAll(".MuiAutocomplete-root")].filter((r) => {
+        const label = r.querySelector("label");
+        const input = r.querySelector("input");
+        const sq = (t) => t.replace(/\s+/g, " ").trim();
+        return (label && sq(label.textContent).startsWith(sq(pl.menu))) ||
+          (input && sq(input.value).startsWith(sq(pl.menu)));
+      });
+      const root = roots[pl.nth || 0];
+      if (!root) throw new Error(`No graph menu labelled or showing "${pl.menu}"`);
+      if (!root) throw new Error(`"${pl.menu}" is not a graph menu`);
+      root.scrollIntoView({ block: "center" });
+      const opener = root.querySelector(".MuiAutocomplete-popupIndicator");
+      if (opener) opener.click(); else root.querySelector("input").focus();
+    }, plot);
+    await sleep(800);
+    await page.evaluate((pl) => {
+      // Graph titles carry runs of spaces ("within   5 sd"): compare squeezed.
+      const sq = (t) => t.replace(/\s+/g, " ").trim();
+      const options = [...document.querySelectorAll('[role="option"]')];
+      const option = options.find((o) => sq(o.textContent).startsWith(sq(pl.choose)));
+      if (!option) {
+        throw new Error(`Graph menu "${pl.menu}" has no "${pl.choose}"; it offers: ` +
+          options.map((o) => o.textContent.trim()).join(" | "));
+      }
+      option.click();
+    }, plot);
+    await sleep(2500);
+  }
   // "click": press controls that have no visible label, by CSS selector
   // (a file row's "Expand options" chevron). Every match is pressed; a
   // selector matching nothing fails the shot, as a missing label does.
@@ -261,6 +347,30 @@ async function shoot(shot) {
   // new page's sections and labels are called (a full-page screenshot read
   // for that costs many times more). Written to <out>.outline.txt and printed.
   if (shot.outline) {
+    // Graph menus show only the graph chosen; open each in turn and note what
+    // else it offers (for "plots"), then close it.
+    const nMenus = await page.evaluate(() =>
+      document.querySelectorAll(".MuiAutocomplete-root").length);
+    for (let i = 0; i < nMenus; i++) {
+      const opened = await page.evaluate((k) => {
+        const r = document.querySelectorAll(".MuiAutocomplete-root")[k];
+        const opener = r && r.querySelector(".MuiAutocomplete-popupIndicator");
+        if (!opener || !r.getClientRects().length) return false;
+        r.scrollIntoView({ block: "center" });
+        opener.click();
+        return true;
+      }, i);
+      if (!opened) continue;
+      await sleep(400);
+      await page.evaluate((k) => {
+        const r = document.querySelectorAll(".MuiAutocomplete-root")[k];
+        const opts = [...document.querySelectorAll('[role="option"]')]
+          .map((o) => o.textContent.replace(/\s+/g, " ").trim());
+        r.setAttribute("data-cap-options", opts.join(" | "));
+        r.querySelector(".MuiAutocomplete-popupIndicator").click();
+      }, i);
+      await sleep(200);
+    }
     const lines = await page.evaluate((sec) => {
       // No section: the job's panel (its fixed id, project/[id]/layout.tsx),
       // not the whole page with the job list beside it.
@@ -302,6 +412,9 @@ async function shoot(shot) {
           const shown = text(el.querySelector('[role="combobox"], .MuiSelect-select'));
           const value = shown || (input ? input.value : "");
           out.push(`field    ${label || "(no label)"} = ${value.slice(0, 90)}`); seen.add(el);
+          const menu = el.closest(".MuiAutocomplete-root");
+          const options = menu && menu.getAttribute("data-cap-options");
+          if (options) out.push(`  menu   ${options}`);
         } else if (el.tagName === "BUTTON" && text(el) && el.getAttribute("role") !== "tab") {
           out.push(`button   ${text(el)}`); seen.add(el);
         } else if ((el.tagName === "LI" || cls.includes("MuiListItemText-root")) && text(el)) {
@@ -322,6 +435,13 @@ async function shoot(shot) {
   }
   // Bring the section into view, then measure it and its fields.
   // (Two steps: an error thrown in a timer callback would never reach us.)
+  if (shot.section && shot.section.graph) {
+    const opened = await page.evaluate((sec) => {
+      const root = __cap.graphMenu(sec.graph, sec.nth);
+      return root ? __cap.reveal(root) : 0;
+    }, shot.section);
+    if (opened) await sleep(1500);
+  }
   await page.evaluate((sec) => __cap.section(sec).scrollIntoView({ block: "start" }), shot.section);
   await sleep(800);
   const measured = await page.evaluate((sec, labels, until, from, through) => {
@@ -350,7 +470,11 @@ async function shoot(shot) {
       section.height -= top - section.y;
       section.y = top;
     }
-    return { section, fields: labels.map((l) => __cap.rect(__cap.target(l))) };
+    // The clip is in document coordinates, the rectangles in the viewport's:
+    // when scrollIntoView scrolled the document itself (a graph card in a
+    // report's grid), the picture came from where the card had been.
+    return { section, fields: labels.map((l) => __cap.rect(__cap.target(l))),
+             scroll: { x: window.scrollX, y: window.scrollY } };
   }, shot.section, shot.callouts || [], shot.until || null, shot.from || null, shot.through || null);
   // Number the fields: a badge in a margin left of the section, level with each.
   const margin = (shot.callouts || []).length ? 48 : 0;
@@ -381,10 +505,12 @@ async function shoot(shot) {
       document.body.appendChild(b);
     });
   }, measured.section, measured.fields, badges);
-  const pad = 8;
+  // A graph card sits beside others in a report's grid: padding reaches into
+  // its neighbour's text.
+  const pad = shot.section && shot.section.graph ? 1 : 8;
   const left = Math.max(0, measured.section.x - pad - margin);
   const clip = {
-    x: left, y: Math.max(0, measured.section.y),
+    x: left + measured.scroll.x, y: Math.max(0, measured.section.y) + measured.scroll.y,
     width: measured.section.x + measured.section.width + pad - left,
     height: Math.min(measured.section.height + pad, h - Math.max(0, measured.section.y)),
     scale: 1,

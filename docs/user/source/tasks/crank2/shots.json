@@ -1,12 +1,18 @@
 {
   "scenario": "../../../tools/scenario_ep_shelx.py",
   "project": "GammaXe",
-  "viewport": [1400, 2400],
+  "viewport": [
+    1400,
+    2400
+  ],
   "shots": [
     {
       "out": "crank2_input.png",
       "job": 8,
-      "tabs": ["Task interface", "Input Data"],
+      "tabs": [
+        "Task interface",
+        "Input Data"
+      ],
       "settle": 25000,
       "section": {
         "text": "Start pipeline with",
@@ -55,15 +61,24 @@
     {
       "out": "crank2_important.png",
       "job": 8,
-      "tabs": ["Task interface", "Important Options"],
+      "tabs": [
+        "Task interface",
+        "Important Options"
+      ],
       "section": "Crystal composition",
       "callouts": []
     },
     {
       "out": "crank2_advanced.png",
       "job": 8,
-      "tabs": ["Task interface", "Advanced Options"],
-      "viewport": [1400, 5200],
+      "tabs": [
+        "Task interface",
+        "Advanced Options"
+      ],
+      "viewport": [
+        1400,
+        5200
+      ],
       "settle": 25000,
       "section": {
         "text": "Note: empty input fields mean",
@@ -100,72 +115,137 @@
     {
       "out": "crank2_fa.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["FA estimation and/or other substructure detection preparations"],
+      "expand": [
+        "FA estimation and/or other substructure detection preparations"
+      ],
       "section": "FA estimation and/or other substructure detection preparations",
       "callouts": []
     },
     {
       "out": "crank2_substrdet.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Substructure determination"],
+      "expand": [
+        "Substructure determination"
+      ],
       "section": "Substructure determination",
       "callouts": []
     },
     {
       "out": "crank2_phasing.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Iterative substructure improvement and phasing"],
+      "expand": [
+        "Iterative substructure improvement and phasing"
+      ],
       "section": "Iterative substructure improvement and phasing",
       "callouts": []
     },
     {
       "out": "crank2_hand.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Hand determination"],
+      "expand": [
+        "Hand determination"
+      ],
       "section": "Hand determination",
       "callouts": []
     },
     {
       "out": "crank2_dm.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Density modification with Fourier recycling"],
+      "expand": [
+        "Density modification with Fourier recycling"
+      ],
       "section": "Density modification with Fourier recycling",
       "callouts": []
     },
     {
       "out": "crank2_building.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Combined iterative model building with density modification with phased refinement"],
+      "expand": [
+        "Combined iterative model building with density modification with phased refinement"
+      ],
       "section": "Combined iterative model building with density modification with phased refinement",
       "callouts": []
     },
     {
       "out": "crank2_ref.png",
       "job": 6,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Macromolecular reciprocal space refinement"],
+      "expand": [
+        "Macromolecular reciprocal space refinement"
+      ],
       "section": "Macromolecular reciprocal space refinement",
       "callouts": []
+    },
+    {
+      "out": "cfom-trials.png",
+      "job": 6,
+      "tabs": [
+        "Report"
+      ],
+      "plots": [
+        {
+          "menu": "CC against CCweak",
+          "choose": "Distribution of CFOM from trials"
+        }
+      ],
+      "section": {
+        "graph": "Distribution of CFOM from trials"
+      }
     }
   ],
   "sources": {
@@ -174,5 +254,9 @@
     "server/ccp4i2/pipelines/crank2/script/crank2_report.py": "b8a2d277caf587a67a5f3e169a47e8e2682719a5",
     "client/renderer/components/task/task-interfaces/crank2.tsx": "170b9d1eecc1f7540adad216503a1448edb501f2",
     "docs/user/tools/scenario_ep_shelx.py": "ef321b5b4225370d2561f4d726b28629656fc874"
+  },
+  "kept": {
+    "anom-cchalf.png": "Anomalous CC1/2 needs unmerged (half-dataset) data; the GammaXe scenario imports merged data, whose report offers Dano/Sigdano, completeness and I/SigI instead. A plot alone: still true.",
+    "signed-anom-diff-correl-MAD.png": "MAD only; the GammaXe scenario is SAD. A plot alone."
   }
 }

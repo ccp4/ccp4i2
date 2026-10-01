@@ -43,6 +43,18 @@ the user sees, so when a label changes the capture fails and names it: that is
 the moment to reread the page's text too. A shot with `"outline": true` prints
 the page as text instead (tabs, sections, fields and their values, report
 tables): the cheap way to learn what a new page's sections and labels are.
+A report's graphs are reached the way a user reaches them. `"plots": [{"menu":
+"<the menu's label, or the graph it shows now>", "choose": "<graph title>"}]`
+picks a graph from a graph group's menu, and `"section": {"graph": "<title>"}`
+crops to that one graph; both open the collapsed folds around it first. An
+outline lists every graph menu's options (`menu   a | b | c`), so the titles to
+choose are found without guessing.
+
+`tools/stamp.py check` also names, per page, every figure its documents use
+that no shot makes: a Qt-era picture still in place. Recapture it, or keep it on
+purpose with `"kept": {"x.png": "why"}` in `shots.json` (a plot whose pictured
+data no scenario reproduces, say).
+
 Captures run one at a time: each waits on a lock (`ccp4i2-capture.lock` in
 the temporary directory) while another runs, since several at once against
 one dev server slowed every shot five-fold.

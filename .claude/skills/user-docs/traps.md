@@ -98,6 +98,13 @@ Each was met for real; most cost an hour the first time.
   column and say "beside it".
 - **A section that appears only for some choices** cannot be a callout on a
   default job: describe it in the text.
+- **A converted page can still carry Qt pictures** on its other documents
+  (aimless_pipe's sub-pages: 15 of 20). `stamp.py check` names them now;
+  recapture with `"plots"` and `{"graph": ...}`, or `"kept"` with a reason. A
+  Qt plot alone still teaches; one showing Qt's selectors and buttons is to go.
+- **A graph in a collapsed fold is in the page at no height**: a crop of it
+  photographed the fold headers in front. `"plots"` and `{"graph"}` open the
+  folds around it; `"expand"` is for anything else.
 - **Heavy reports need longer to settle** (`"settle": 30000`).
 - **A label from the program's own definitions** (a PHIL scope's caption) is
   in no source file: mark the callout `"dynamic": true` and the shot

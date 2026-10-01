@@ -530,7 +530,9 @@ class ctruncate_report(Report):
                 minlist.append(x.findall('min')[0].text)
                 maxlist.append(x.findall('max')[0].text)
                 if len(self.xmlnode.findall('DataStatistics/ResolutionRange/percentage'))>0:
-                    percentlist.append(x.findall('percentage'))
+                    # The text, not the list of elements (it printed
+                    # "[<Element 'percentage' at 0x...>]" in the table).
+                    percentlist.append(x.findtext('percentage', default=''))
             table.addData(title='Statistic',data=tablist)
             table.addData(title="Min Resolution", data=minlist)
             table.addData(title="Max Resolution", data=maxlist)
@@ -719,9 +721,9 @@ class ctruncate_report(Report):
                 testtab.append('L-test')
                 resulttab.append(twinblock.findall('L-test/Twinned')[0].text)
                 scoretab.append(twinblock.findall('L-test/Result')[0].text)
-                alphatab.append(twinblock.findall('L-test/TwinFraction'))
+                alphatab.append(twinblock.findtext('L-test/TwinFraction', default=''))
             table.addData(title='Test',data=testtab)
-            table.addData(title='Twinnned?',data=resulttab)
+            table.addData(title='Twinned?',data=resulttab)
             table.addData(title='Score',data=scoretab)
             table.addData(title='alpha',data=alphatab)
                     

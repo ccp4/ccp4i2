@@ -1048,24 +1048,27 @@ class aimless_report(Report):
 
     for datasetresultnode in datasetresultnodes:  # loop datasets
       reslimitnodes = datasetresultnode.findall("ResolutionLimitEstimate")
-      # First 2 or 3 will be Overall
-      noverall = 2
-      # Thresholds will be the same for each dataset, but are stored separately
-      if len(reslimitnodes[0].findall(".//*[@type='CChalf']"))>0:
-        thresholdCC = reslimitnodes[0].findall("Threshold")[0].text
-      try:
-          thresholdIovsd = reslimitnodes[1].findall("Threshold")[0].text
-      except:
-          pass
-      # May be 3rd Overall one for different threshold
+      # The leading estimates are the Overall ones: CC(1/2), I/sd and,
+      # sometimes, I/sd at a second threshold ("I/sd gt 2"). Their type is an
+      # attribute of each ResolutionLimitEstimate. (It was looked for among
+      # their descendants, with an unclosed XPath for the third, whose error a
+      # bare except swallowed: a third Overall estimate was never recognised,
+      # every direction after it read one node out of step, and the table
+      # showed two "Overall" rows, the I/sd-at-2 limit under CC(1/2).)
+      noverall = 0
+      while (noverall < len(reslimitnodes) and
+             reslimitnodes[noverall].findtext("Direction", "").strip() == "Overall"):
+        noverall += 1
+      noverall = max(noverall, 2)
+      byType = {n.get("type"): n for n in reslimitnodes[:noverall]}
+      if "CChalf" in byType:
+        thresholdCC = byType["CChalf"].findtext("Threshold")
+      if "I/sd" in byType:
+        thresholdIovsd = byType["I/sd"].findtext("Threshold")
       thresholdIovsd2 = None
-      try:
-        if reslimitnodes[2].findall("Direction")[0].text == "Overall" and len(reslimitnodes[2].findall(".//*[@type='I/sd"))>0:
-          noverall = 3
-          thresholdIovsd2 = reslimitnodes[2].findall("Threshold")[0].text
-      except:
-        pass
-      
+      if noverall >= 3:
+        thresholdIovsd2 = reslimitnodes[2].findtext("Threshold")
+
       message = "Estimates of limits from CC(1/2) (threshold"+\
               str(thresholdCC)+") <br/>and Mn(I/sd) (threshold"+str(thresholdIovsd)+")"
       datasetname = datasetresultnode.findall("[@name]")[0].attrib["name"]

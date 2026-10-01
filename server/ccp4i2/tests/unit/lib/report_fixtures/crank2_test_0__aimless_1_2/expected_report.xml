@@ -5,8 +5,8 @@
     <CCP4i2ReportText class="" style="font-weight:bold; font-size:120%;">Key statistics for Dataset: crank2_test_0/GaAda/Ga1</CCP4i2ReportText>
     <CCP4i2ReportGeneric class="" style="">
       <div style="margin-left: 40px;">Unit cell:   34.150  54.810  68.000  90.000  90.000  90.000, wavelength 1.541790Å<br />
-        <span style="color:Blue;font-size:100%;">Estimates of resolution: input resolution     1.78Å, beyond  1.78Å from CC(1/2) &gt; 0.0,  1.78Å from I/σ &gt; 1.00</span>
-        <br />Anisotropic limits:  - Along h axis 1.78Å CC(1/2), 1.78Å I/σ - Along k axis 1.78Å CC(1/2), 1.78Å I/σ<br /> Rmeas: overall    0.046, inner bin    0.062<br />In outer bin: Mean(I/σI)    4.1    CC(1/2)  0.891<br />Overall filtered Mean(chi^2):   0.80<br />Anomalous CC(1/2) in inner bin     0.639<br />Significant anomalous signal extends to a resolution of 1.80A (above CCanom threshold  0.10)<br />
+        <span style="color:Blue;font-size:100%;">Estimates of resolution: input resolution     1.78Å, beyond  1.78Å from CC(1/2) &gt;  0.20,  1.78Å from I/σ &gt; 1.00</span>
+        <br />Anisotropic limits:  - Along h axis 1.78Å CC(1/2), 1.78Å I/σ - Along k axis 1.78Å CC(1/2), 1.78Å I/σ - Along l axis 1.78Å CC(1/2), 1.78Å I/σ<br /> Rmeas: overall    0.046, inner bin    0.062<br />In outer bin: Mean(I/σI)    4.1    CC(1/2)  0.891<br />Overall filtered Mean(chi^2):   0.80<br />Anomalous CC(1/2) in inner bin     0.639<br />Significant anomalous signal extends to a resolution of 1.80A (above CCanom threshold  0.10)<br />
       </div>
     </CCP4i2ReportGeneric>
     <CCP4i2ReportGeneric class="" style="">
@@ -34,7 +34,7 @@
           <p>Resolution estimates</p>
         </CCP4i2ReportGeneric>
         <CCP4i2ReportGeneric class="" style="">
-          <p>Estimates of limits from CC(1/2) (threshold0.0) <br />and Mn(I/sd) (threshold 1.00)</p>
+          <p>Estimates of limits from CC(1/2) (threshold 0.20) <br />and Mn(I/sd) (threshold 1.00)</p>
         </CCP4i2ReportGeneric>
         <CCP4i2ReportTable class="center" style="" transpose="True">
           <table class="center transpose">
@@ -50,17 +50,17 @@
                 <td> 1.78*</td>
               </tr>
               <tr>
-                <th>Overall</th>
-                <td> 1.78*</td>
-                <td> 1.78*</td>
-              </tr>
-              <tr>
                 <th> - Along h axis</th>
                 <td> 1.78*</td>
                 <td> 1.78*</td>
               </tr>
               <tr>
                 <th> - Along k axis</th>
+                <td> 1.78*</td>
+                <td> 1.78*</td>
+              </tr>
+              <tr>
+                <th> - Along l axis</th>
                 <td> 1.78*</td>
                 <td> 1.78*</td>
               </tr>
