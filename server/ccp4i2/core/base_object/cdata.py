@@ -1531,13 +1531,18 @@ class CData(HierarchicalObject):
         return True
 
     def _assign_path_string(self, name: str, value: str, existing_attr) -> bool:
-        """Handle ``self.HKLIN = "/path/to/file.mtz"`` on a CDataFile."""
+        """Handle ``self.HKLIN = "/path/to/file.mtz"`` on a CDataFile.
+
+        A ``pathlib.Path`` is a path too. Only ``str`` was accepted, so
+        ``out.XYZOUT = some_path`` replaced the file object with a bare Path:
+        nothing could annotate it and the gleaner never saw the file
+        (SliceNDice's outputs, 2026-10-01)."""
         if (
-            isinstance(value, str)
+            isinstance(value, (str, os.PathLike))
             and hasattr(existing_attr, 'setFullPath')
             and callable(existing_attr.setFullPath)
         ):
-            existing_attr.setFullPath(value)
+            existing_attr.setFullPath(os.fspath(value))
             self._mark_set(name)
             return True
         return False
@@ -1630,7 +1635,7 @@ class CData(HierarchicalObject):
         2. Metadata attrs (qualifiers, CONTENT_ORDER, subitem) → direct store
         3. dict → ``_assign_dict``
         4. CData → CData → ``_assign_cdata``
-        5. str → CDataFile → ``_assign_path_string``
+        5. str or os.PathLike → CDataFile → ``_assign_path_string``
         6. list → CList → ``_assign_list``
         7. primitive → value-type CData → ``_assign_primitive``
         8. Fallthrough: store in hierarchy (CData) or ``__dict__`` (other)

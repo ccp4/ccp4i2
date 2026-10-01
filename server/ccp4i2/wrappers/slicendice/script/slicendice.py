@@ -105,12 +105,15 @@ class slicendice(CPluginScript):
         xyzout = self.workDirectory / xyz.name
         hklout = self.workDirectory / hkl.name
 
+        # setFullPath, not assignment: `out.XYZOUT = path` replaced the file
+        # object with a bare Path, so nothing could annotate it and the
+        # gleaner saw no output file.
         if xyz.is_file():
             shutil.copy2(xyz, xyzout)
-            out.XYZOUT = xyzout
+            out.XYZOUT.setFullPath(str(xyzout))
         if hkl.is_file():
             shutil.copy2(hkl, hklout)
-            out.HKLOUT = hklout
+            out.HKLOUT.setFullPath(str(hklout))
 
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
