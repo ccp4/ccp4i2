@@ -46,7 +46,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 1 }}>
           Annotation for the alignment
         </Typography>
-        <CCP4i2TaskElement itemName="ANNOTATION" {...props} />
+        <CCP4i2TaskElement itemName="ANNOTATION" {...props} qualifiers={{ guiLabel: "Annotation" }} />
       </CCP4i2ContainerElement>
     </Paper>
   );

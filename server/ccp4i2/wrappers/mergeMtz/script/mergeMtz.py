@@ -11,20 +11,34 @@ class mergeMtz(CPluginScript):
 
     def startProcess(self):
       inFiles = []
-      for miniMtz in self.container.inputData.MINIMTZINLIST:
+      used = set()
+      for n, miniMtz in enumerate(self.container.inputData.MINIMTZINLIST):
         if miniMtz.fileName.isSet() and miniMtz.fileName.exists():
           cls,contentFlag =  miniMtz.fileName.miniMtzType()
           if cls is not None:
-            # Create instance of class to use the columnNames() method
-            stdColumnNames = cls().columnNames(True,contentFlag)
-            userColumnNames = ''
+            # The standard column names of this kind of mini-MTZ. (It called
+            # cls().columnNames(True, contentFlag), the Qt-era signature: the
+            # second argument is now asString, the flag was lost, and every
+            # file gave no columns -- a merge of four files wrote H,K,L alone.)
+            kind = cls()
+            kind.contentFlag.set(contentFlag)
+            inColumns = kind.columnNames(True)
+            outColumns = inColumns
             if miniMtz.columnNames.isSet():
               userColumnNames = re.sub(' ','',miniMtz.columnNames.__str__())
-              if not userColumnNames.count(',') == stdColumnNames.count(','): userColumnNames = ''
-            if len(userColumnNames)==0:
-              inFiles.append([miniMtz.fileName.__str__(),stdColumnNames])
-            else:
-              inFiles.append([miniMtz.fileName.__str__(),userColumnNames])
+              if userColumnNames.count(',') == inColumns.count(','):
+                outColumns = userColumnNames
+            # The tag is a prefix, as its tooltip says; without one, a name an
+            # earlier file already used is prefixed with this file's position,
+            # so two sets of map coefficients do not both become F,PHI.
+            labels = [c for c in outColumns.split(',') if c]
+            tag = str(miniMtz.columnTag).strip() if miniMtz.columnTag.isSet() else ''
+            if tag:
+              labels = ['%s_%s' % (tag, c) for c in labels]
+            elif used.intersection(labels):
+              labels = ['%d_%s' % (n + 1, c) for c in labels]
+            used.update(labels)
+            inFiles.append([miniMtz.fileName.__str__(), inColumns, ','.join(labels)])
 
       if not inFiles:
         # joinMtz with nothing to join succeeds and writes no file, so without
@@ -39,4 +53,7 @@ class mergeMtz(CPluginScript):
         return CPluginScript.FAILED
 
       rv = self.joinMtz(self.container.outputData.HKLOUT.fullPath.__str__(),inFiles)
+      # Say what is in it (it was listed as "HKLOUT.mtz").
+      self.container.outputData.HKLOUT.annotation = 'Merged from %d files: columns %s' % (
+        len(inFiles), ','.join(f[2] for f in inFiles))
       return rv

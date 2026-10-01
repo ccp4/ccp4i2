@@ -22,16 +22,16 @@ COLUMN_GROUP_TYPE_MAP = {
 # Maps (group_type, subType) -> descriptor string
 # subType values from CMapCoeffsDataFile: 1=normal, 2=difference, 3=anomalous difference
 TYPE_DESCRIPTORS = {
-    ('Obs', 1): 'Anom I',       # Anomalous intensities
-    ('Obs', 2): 'Anom SF',      # Anomalous SFs
-    ('Obs', 3): 'Mean I',       # Mean intensities
-    ('Obs', 4): 'Mean SF',      # Mean SFs
-    ('Phs', 1): 'HL Phs',       # Hendrickson-Lattman phases
-    ('Phs', 2): 'Phi-FOM Phs',  # Phi/FOM phases
-    ('MapCoeffs', 1): '2Fo-Fc',        # Normal map (e.g., FWT/PHWT)
-    ('MapCoeffs', 2): 'Fo-Fc',         # Difference map (e.g., DELFWT/PHDELWT)
-    ('MapCoeffs', 3): 'Anom diff',     # Anomalous difference map (e.g., FAN/PHAN)
-    ('FreeR', None): 'FreeR',
+    ('Obs', 1): 'Anomalous intensities',      # Anomalous intensities
+    ('Obs', 2): 'Anomalous structure factors',     # Anomalous SFs
+    ('Obs', 3): 'Mean intensities',      # Mean intensities
+    ('Obs', 4): 'Mean structure factors',     # Mean SFs
+    ('Phs', 1): 'Hendrickson-Lattman phases',      # Hendrickson-Lattman phases
+    ('Phs', 2): 'Phases and FOM', # Phi/FOM phases
+    ('MapCoeffs', 1): '2Fo-Fc map coefficients',       # Normal map (e.g., FWT/PHWT)
+    ('MapCoeffs', 2): 'Fo-Fc map coefficients',        # Difference map (e.g., DELFWT/PHDELWT)
+    ('MapCoeffs', 3): 'Anomalous difference map coefficients',    # Anomalous difference map (e.g., FAN/PHAN)
+    ('FreeR', None): 'Free R set',
 }
 
 # Column patterns for identifying map coefficient subtypes
@@ -77,7 +77,7 @@ class splitMtz(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
 
-        input_basename = Path(str(inp.HKLIN.baseName)).stem
+        input_basename = Path(str(inp.HKLIN.baseName)).name
         files_created = 0
 
         # Build list of column groups to process
@@ -293,9 +293,14 @@ class splitMtz(CPluginScript):
             if group_type == 'MapCoeffs' and inferred_subtype is not None:
                 out.MINIMTZOUTLIST[-1].subType.set(inferred_subtype)
 
-            # Annotation format: {type_descriptor} from {input_file} columns {dataset}/[col1,col2,...]
-            col_list_str = ','.join(column_labels)
-            annotation = type_descriptor + ' from ' + input_basename + ' columns ' + dataset + '/[' + col_list_str + ']'
+            # "Mean structure factors columns F,SIGF from refined.mtz", as the
+            # import tasks write it. (It read "Mean SF from refined columns
+            # crystal/[F,SIGF]".) The dataset is named only when it is a real
+            # one: HKL_base is the MTZ's placeholder.
+            annotation = (type_descriptor + ' columns ' + ','.join(column_labels)
+                          + ' from ' + input_basename)
+            if dataset and dataset.split('/')[-1] != 'HKL_base':
+                annotation += ' (' + dataset + ')'
             out.MINIMTZOUTLIST[-1].annotation.set(annotation)
 
             print('Created: ' + output_path + ' (' + type_descriptor + ')')
