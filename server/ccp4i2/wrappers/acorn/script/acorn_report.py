@@ -18,6 +18,18 @@ class acorn_report(Report):
         results = self.addResults()
         
         parent.append("<p>Results for Acorn Run</p>")
+        # The numbers, not only the plot: where the correlation started, its
+        # best and where it ended (cycle 0 is the starting point, before any
+        # dynamic density modification).
+        cycles = [(c.findtext("NCycle"), c.findtext("CorrelationCoef"))
+                  for c in self.xmlnode.findall(".//RunInfo/Cycle")] if self.xmlnode is not None else []
+        cycles = [(int(n), float(cc)) for n, cc in cycles if n and cc and int(n) > 0]
+        if cycles:
+            best = max(cycles, key=lambda c: c[1])
+            parent.addText(text="Correlation coefficient %.3f after cycle %d, best %.3f "
+                           "(cycle %d), final %.3f after %d cycles." % (
+                               cycles[0][1], cycles[0][0], best[1], best[0],
+                               cycles[-1][1], cycles[-1][0]))
         graph_height = 300
         graph_width = 500
         

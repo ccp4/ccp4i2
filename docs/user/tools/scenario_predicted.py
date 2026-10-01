@@ -53,7 +53,12 @@ def main():
           "--XYZIN", f"fullPath={model}",
           "--BFACTOR_TREATMENT", "plddt",
           "--SEARCH_PDB", "False", "--SEARCH_AFDB", "False",
-          "--NO_MOLS", "1")
+          "--NO_MOLS", "1",
+          # One number of splits, two: the domain in the crystal (26-111) is
+          # then a search model of its own. SliceNDice 0.1.3 (CCP4 9) keeps
+          # only one split directory for MR, whichever its glob lists last,
+          # so a range of splits tries one of them, often the unsplit model.
+          "--MIN_SPLITS", "2", "--MAX_SPLITS", "2")
 
     for task in ("editbfac", "slicendice"):
         clone_last(PROJECT, task)

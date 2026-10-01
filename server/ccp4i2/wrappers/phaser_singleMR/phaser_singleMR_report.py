@@ -22,6 +22,7 @@ class phaser_singleMR_report(Report):
         if parent is None:
             parent = self
         self.addResults()
+        self._summary(parent)
         parent.append("<p>Results for Phaser Single Atom MR Run</p>")
         bda = self.xmlnode.findall('.//SubJob_000/RunDate')[0].text
         parent.append("<p>" + bda + "</p>")
@@ -33,6 +34,28 @@ class phaser_singleMR_report(Report):
         parent.addPre(text=bestCC)
         parent.append("<p>Note : the best available solution was selected for I2</p>")
         self._add_graphs(parent)
+
+    def _summary(self, parent):
+        """The result first: atoms in the solution and the final R-factor and
+        LLG after each round. (The report began with Phaser's own text.)"""
+        summary = self.xmlnode.find(".//Summary")
+        if summary is None:
+            return
+        atoms = summary.find("Atoms")
+        cycles = summary.findall("Cycle")
+        if atoms is not None and cycles:
+            elements = ", ".join("%s %s" % (e.get("count"), e.get("name"))
+                                 for e in atoms.findall("Element"))
+            parent.addText(text="Solution 1 has %s atoms (%s); after %d round%s of "
+                           "refinement and completion, R %s%%, LLG %s." % (
+                               atoms.get("total"), elements, len(cycles),
+                               "" if len(cycles) == 1 else "s",
+                               cycles[-1].get("r"), cycles[-1].get("llg")))
+        if cycles:
+            table = parent.addTable()
+            table.addData(title="Round", data=[c.get("number") for c in cycles])
+            table.addData(title="LLG", data=[c.get("llg") for c in cycles])
+            table.addData(title="R-factor (%)", data=[c.get("r") for c in cycles])
 
     def _add_graphs(self, parent):
         """Build graphs from GraphTable elements embedded in program.xml.

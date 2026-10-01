@@ -65,6 +65,14 @@ def test_alphafold_pae(alphafold_cif, alphafold_pae):
         gemmi.read_pdb(str(job / "converted_model.pdb"))
         for i in range(1, 5):
             gemmi.read_pdb(str(job / f"converted_model_chainA{i}.pdb"))
+        # Each file says what it holds (they were annotated with their names).
+        from ccp4i2.db import models
+        record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
+        found = sorted(f.annotation for f in models.File.objects.filter(
+            job=record, job_param_name__startswith="XYZFILES"))
+        assert found[0].startswith("Domain A1: residues "), found
+        assert any(a.startswith("Processed model: ") and " residues kept" in a
+                   for a in found), found
 
 
 def test_robetta(robetta_pdb):

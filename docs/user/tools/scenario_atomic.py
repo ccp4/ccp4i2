@@ -67,7 +67,7 @@ def main():
           "--ACORN_PHSIN_TYPE", "phases",
           "--ABCD", "fileOut=phaser_singleMR[-1].ABCDOUT[0]")
     cc = float(ET.parse(job_dir(4) / "program.xml").findall(".//CorrelationCoef")[-1].text)
-    assert cc > 0.1, f"ACORN final CC {cc}"
+    assert cc > 0.5, f"ACORN final CC {cc}"   # 0.69 in the scenario run
 
     for task in ("phaser_singleMR", "acorn"):
         clone_last(PROJECT, task)

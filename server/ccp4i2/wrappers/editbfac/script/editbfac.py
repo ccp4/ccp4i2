@@ -14,6 +14,46 @@ except ImportError:
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
+def residue_ranges(numbers):
+    """[26, 27, 28, 40] -> "26-28, 40"."""
+    ranges, start, prev = [], None, None
+    for n in sorted(numbers):
+        if start is None:
+            start = prev = n
+        elif n == prev + 1:
+            prev = n
+        else:
+            ranges.append((start, prev))
+            start = prev = n
+    if start is not None:
+        ranges.append((start, prev))
+    return ", ".join(str(a) if a == b else f"{a}-{b}" for a, b in ranges)
+
+
+def describe_model(path):
+    """(number of residues, their ranges) of a model file's first model."""
+    structure = gemmi.read_structure(str(path))
+    numbers = [r.seqid.num for c in structure[0] for r in c] if len(structure) else []
+    return len(numbers), residue_ranges(numbers)
+
+
+def summarise(input_path, model_path, domain_paths):
+    """What was kept, as an XML element: the input's residue count, the
+    processed model's, and each domain's chain, residues and ranges."""
+    root = etree.Element("editbfac")
+    n_in, _ = describe_model(input_path)
+    etree.SubElement(root, "InputResidues").text = str(n_in)
+    n_kept, kept = describe_model(model_path)
+    model = etree.SubElement(root, "Model", residues=str(n_kept), ranges=kept)
+    model.text = os.path.basename(model_path)
+    for path in domain_paths:
+        n, ranges = describe_model(path)
+        chain = os.path.splitext(os.path.basename(path))[0].rsplit("_chain", 1)[-1]
+        domain = etree.SubElement(root, "Domain", chain=chain, residues=str(n), ranges=ranges)
+        domain.text = os.path.basename(path)
+    return root
+
+
 class editbfac(CPluginScript):
     TASKNAME = 'editbfac'
 
@@ -152,17 +192,27 @@ class editbfac(CPluginScript):
                 self.dm.write_model_file(m1, outp, chainid)
 
     def processOutputFiles(self):
-        status = CPluginScript.FAILED
+        # Say what each file holds (they were listed by file name alone, so a
+        # user could not tell which domain was which without opening them),
+        # and record it for the report.
+        summary = summarise(self.container.inputData.XYZIN.fullPath.__str__(),
+                            self.filelist[0], self.filelist[1:])
+        n_in = summary.findtext("InputResidues")
+        model = summary.find("Model")
+        domains = {d.text: d for d in summary.findall("Domain")}
         outputXYZFILES = self.container.outputData.XYZFILES
         for afile in self.filelist:
             outputXYZFILES.append(outputXYZFILES.makeItem())
             outputXYZFILES[-1].setFullPath(afile)
-            outputXYZFILES[-1].annotation = os.path.basename(afile)
-        status = CPluginScript.SUCCEEDED
-        # Create a trivial xml output file
+            d = domains.get(os.path.basename(afile))
+            if d is None:
+                text = "Processed model: %s of %s residues kept" % (model.get("residues"), n_in)
+            else:
+                text = "Domain %s: residues %s (%s residues)" % (
+                    d.get("chain"), d.get("ranges"), d.get("residues"))
+            outputXYZFILES[-1].annotation = text
         from ccp4i2.core import CCP4File
-        root = etree.Element('editbfac')
         self.container.outputData.XYZOUT.subType = 1
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
-        f.saveFile(root)
-        return status
+        f.saveFile(summary)
+        return CPluginScript.SUCCEEDED
