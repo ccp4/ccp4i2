@@ -13,7 +13,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="MINIMTZINLIST" {...props}
-          qualifiers={{ guiLabel: "Reflection data to merge (a tag prefixes a file's column names)" }} />
+          qualifiers={{ guiLabel: "Reflection data to merge" }} />
       </CCP4i2ContainerElement>
       <CCP4i2ContainerElement
         {...props}

@@ -30,6 +30,3 @@ class ProvideAlignment_report(Report):
         for aliNode in self.xmlnode.findall('.//Alignment'):
             parent.addAlignment(text=aliNode.text)
 
-        for aliNode in self.xmlnode.findall('.//Commentary'):
-            commentFold = parent.addFold(label="Conversion commentary", initiallyOpen=False)
-            commentFold.addText(select = './/Commentary')

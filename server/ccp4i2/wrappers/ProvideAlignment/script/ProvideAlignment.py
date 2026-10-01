@@ -43,7 +43,7 @@ class ProvideAlignment(CPluginScript):
               AlignIO.write(alignment, outputString ,'clustal')
               self.container.outputData.ALIGNMENTFILE.annotation.set(self.container.controlParameters.ANNOTATION.__str__())
             except:
-              self.appendErrorReport(201,fileName)
+              self.appendErrorReport(201,str(self.container.outputData.ALIGNMENTFILE))
               status = CPluginScript.FAILED
             else:
               alignmentText = outputString.getvalue()
@@ -56,10 +56,9 @@ class ProvideAlignment(CPluginScript):
             else:
               format = 'Blast'
               alignmentText = self.container.inputData.BLASTIN.fileContent.getAlignmentText(self.container.inputData.ALI_INDEX)
-            print('alignmentText',alignmentText)
-          except CException as e:
+          except Exception as e:
             commentary = 'Failed extracting alignment from '+format+' file'
-            self.extendErrorReport(e)
+            self.appendErrorReport(203,format+': '+str(e))
             status = CPluginScript.FAILED
           else:
             try:

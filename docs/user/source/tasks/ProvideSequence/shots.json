@@ -1,0 +1,47 @@
+{
+  "scenario": "../../../tools/scenario_utils.py",
+  "project": "MDM2",
+  "viewport": [1400, 1800],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "provide_sequence_input.png",
+      "job": 101,
+      "tabs": ["Task interface"],
+      "section": "Sequence",
+      "callouts": [
+        {"field": "Sequence text", "badge": "1"},
+        {"text": "Detected format", "badge": "2"}
+      ]
+    },
+    {
+      "out": "provide_sequence_files.png",
+      "job": 101,
+      "tabs": ["Task interface"],
+      "section": "Input files",
+      "callouts": [
+        {"field": "File from which to extract sequence", "badge": "3"},
+        {"field": "Coordinate file (for extracting sequence or Matthews calc)", "badge": "4"}
+      ]
+    },
+    {
+      "out": "provide_sequence_report.png",
+      "job": 100,
+      "tabs": ["Report"],
+      "section": {"text": "Conversion commentary", "scroll": true},
+      "until": "creationtime",
+      "callouts": [
+        {"text": "4HG7_A", "badge": "5"},
+        {"text": "AU contents: 4HG7_A", "badge": "6"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/ProvideSequence/script/ProvideSequence.def.xml": "5e252484dccb9ccdb98c29fcff2c37b4c1059680",
+    "server/ccp4i2/wrappers/ProvideSequence/script/ProvideSequence.py": "b8a82f4e6a27375215f0db54895474bb3eefd294",
+    "server/ccp4i2/wrappers/ProvideSequence/script/ProvideSequence_report.py": "6150e4a67903f77789e2b8ca5cc556a32a4e5203",
+    "client/renderer/components/task/task-interfaces/ProvideSequence.tsx": "580da266f13f6b659ea7d3b58077728f6d5494ba",
+    "docs/user/tools/scenario_utils.py": "d702e9d4b82a69aad4c39d1b72cead46bbad0db6"
+  }
+}

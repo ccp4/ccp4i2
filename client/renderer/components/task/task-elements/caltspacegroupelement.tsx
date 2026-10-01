@@ -28,7 +28,9 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
   });
   const { inFlight } = useTaskInterface();
 
-  const [value, setValue] = useState<SpaceGroup | undefined>(spaceGroups[0]);
+  // Empty until the job has a space group. (It started on the list's first
+  // entry, so an unset space group read "P 1", as if P 1 had been chosen.)
+  const [value, setValue] = useState<SpaceGroup | null>(null);
 
   useEffect(() => {
     if (typeof serverValue === "string" && serverValue) {
@@ -38,8 +40,10 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
           (sg: SpaceGroup) =>
             sg.name === serverValue ||
             sg.name.replace(/\s+/g, "") === normalized
-        )
+        ) ?? null
       );
+    } else {
+      setValue(null);
     }
   }, [serverValue]);
 
