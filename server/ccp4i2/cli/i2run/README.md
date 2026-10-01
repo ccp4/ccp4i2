@@ -34,6 +34,21 @@ treats a leading `-` as an option.
 `fileUse=` is a deprecated alias that names no direction (produced first, then
 consumed). It still resolves, with a warning.
 
+A task-qualified non-negative index is a literal position among that task's
+jobs, unrun ones included: `aimless_pipe[1]` is the second aimless job, which
+may be a clone that has not run. To name one particular job, use its number,
+`fileOut=[1].HKLOUT[0]`.
+
+A file inside a list item is named the same way, as a sub-key of the item:
+
+    --ENSEMBLES label=MDMX use=True number=1 \
+                pdbItemList/identity_to_target=0.57 \
+                "pdbItemList/structure/fileOut=chainsaw[-1].XYZOUT"
+
+It resolves exactly as a top-level reference does, so the job uses that
+job's file and records it as used. (`.../fullPath=` would import the file again
+as a new one of no known origin.)
+
 Worked parameter examples follow.
 
 ccp4-python manage.py i2run prosmart_refmac --project_name refmac_gamma_test_0
