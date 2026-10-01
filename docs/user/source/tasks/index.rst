@@ -98,6 +98,7 @@ Molecular replacement
    phaser_simple_phil/index
    phaser_mr_phil/index
    phaser_pipeline/index
+   phaser_singleMR/index
    molrep_pipe/index
    csymmatch/index
    ample/index
@@ -105,7 +106,6 @@ Molecular replacement
    comit/index
    dimple/index
    morda_i2/index
-   phaser_pipeline/single_atom
    
 
 ====================

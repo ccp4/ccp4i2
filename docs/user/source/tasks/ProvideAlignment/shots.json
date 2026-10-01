@@ -1,0 +1,38 @@
+{
+  "scenario": "../../../tools/scenario_utils.py",
+  "project": "Gamma",
+  "viewport": [1400, 1800],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "alignment_input.png",
+      "job": 25,
+      "tabs": ["Task interface"],
+      "section": "Optional objects from which to start definition",
+      "callouts": [
+        {"text": "Paste or read alignment, or extract from HHPred or Blast search", "badge": "1"},
+        {"field": "Aligned sequences", "badge": "2"},
+        {"field": "Annotation (the alignment's name in the project)", "badge": "3"}
+      ]
+    },
+    {
+      "out": "alignment_report.png",
+      "job": 22,
+      "tabs": ["Report"],
+      "section": {"text": "Conversion commentary", "scroll": true},
+      "until": "creationtime",
+      "callouts": [
+        {"text": "Protein Sequence Alignment", "badge": "4"},
+        {"text": "Imported alignment", "badge": "5"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/ProvideAlignment/script/ProvideAlignment.def.xml": "7e50a863804bbee1a2bb305650f1d3c2309a7a69",
+    "server/ccp4i2/wrappers/ProvideAlignment/script/ProvideAlignment.py": "ddd2697c62400446ed9111125e823326f4eef75e",
+    "server/ccp4i2/wrappers/ProvideAlignment/script/ProvideAlignment_report.py": "602bdf0303553cc9a95d8f89f9f78da6bf01f64b",
+    "client/renderer/components/task/task-interfaces/ProvideAlignment.tsx": "5223a35a24b651442eab65fd607a9612e546263b",
+    "docs/user/tools/scenario_utils.py": "d702e9d4b82a69aad4c39d1b72cead46bbad0db6"
+  }
+}

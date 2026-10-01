@@ -864,6 +864,21 @@ class import_merged(CPluginScript):
         return {'finishStatus': CPluginScript.FAILED}
 
     # -------------------------------------------------------------------------
+    @staticmethod
+    def contentFlagOfColumns(columnGroups, obsColLabels):
+        """The content flag of the column group whose labels are obsColLabels
+        ("F,SIGF"), which must be one of the file's observation groups."""
+        wanted = [c.strip() for c in str(obsColLabels).split(',') if c.strip()]
+        for group in columnGroups:
+            labels = [str(col.columnLabel) for col in group.columnList]
+            if labels == wanted and int(group.contentFlag or 0) > 0:
+                return int(group.contentFlag)
+        raise ValueError(
+            'No observation group in the file has the columns %s; groups: %s' % (
+                ','.join(wanted), '; '.join(
+                    ','.join(str(c.columnLabel) for c in g.columnList) for g in columnGroups)))
+
+    # -------------------------------------------------------------------------
     def columnthings(self, filename):
         #  Sort out which columns are wanted, cf x2mtz.py
         print('HKLIN_OBS_COLUMNS', self.container.inputData.HKLIN_OBS_COLUMNS)
@@ -877,7 +892,13 @@ class import_merged(CPluginScript):
         iBestObs, ifree = self.bestcolumns(columnGroups)
         if inputData.HKLIN_OBS_COLUMNS.isSet():
             obsColLabels = str(self.container.inputData.HKLIN_OBS_COLUMNS)
-            self.contentFlag = self.container.inputData.HKLIN_OBS_CONTENT_FLAG
+            self.contentFlag = int(self.container.inputData.HKLIN_OBS_CONTENT_FLAG or 0)
+            if not self.contentFlag:
+                # Columns named without saying what they are (from i2run, say):
+                # the file's own group with those labels says. (It passed
+                # flag 0 on, and the import died with KeyError: 0.)
+                self.contentFlag = self.contentFlagOfColumns(columnGroups, obsColLabels)
+                outputData.OBSOUT.contentFlag.set(self.contentFlag)
         else:
             # Obs columns not already set (should not happen)
             self.contentFlag = columnGroups[iBestObs].contentFlag

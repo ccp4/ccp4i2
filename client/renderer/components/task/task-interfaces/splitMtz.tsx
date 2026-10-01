@@ -480,7 +480,7 @@ const TwoColumnSelector: React.FC<{
           variant="subtitle2"
           sx={{ p: 1, bgcolor: "success.light", color: "success.contrastText", borderBottom: 1, borderColor: "divider" }}
         >
-          Selected for Export ({selectedGroups.length})
+          Selected to split out ({selectedGroups.length})
         </Typography>
         <List dense sx={{ maxHeight: 300, overflow: "auto" }}>
           {selectedGroups.length === 0 ? (
@@ -1040,7 +1040,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {selectedGroups.length > 0 && (
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
                   {selectedGroups.length} column group{selectedGroups.length !== 1 ? "s" : ""} will be
-                  exported as separate files.
+                  imported into the project as separate files.
                 </Typography>
               )}
 

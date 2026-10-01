@@ -1,9 +1,38 @@
 import os
+import re
 import xml.etree.ElementTree as ET
+from collections import Counter
 
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.smartie import smartie
+
+
+
+def summarise(log_text, xyz_path=None):
+    """What the run achieved, as an XML element. Phaser completes each
+    placement of the atoms searched for in turn, ending each with a "Final
+    Log-Likelihood" and "Final R-factor": one <Completion> per placement, in
+    log order. It ranks its solutions by LLG and CCP4i2 keeps solution 1, so
+    <Best> is the completion with the highest LLG. <Atoms> counts solution 1's
+    atoms by element (those searched for, then those the LLG maps added)."""
+    summary = ET.Element("Summary")
+    llgs = re.findall(r"Final Log-Likelihood = +([-\d.]+)", log_text)
+    rs = re.findall(r"Final R-factor = +([\d.]+)", log_text)
+    pairs = list(zip(llgs, rs))
+    for n, (llg, r) in enumerate(pairs, 1):
+        ET.SubElement(summary, "Completion", number=str(n), llg=llg, r=r)
+    if pairs:
+        llg, r = max(pairs, key=lambda p: float(p[0]))
+        ET.SubElement(summary, "Best", llg=llg, r=r)
+    if xyz_path and os.path.isfile(xyz_path):
+        import gemmi
+        structure = gemmi.read_structure(str(xyz_path))
+        counts = Counter(a.element.name for c in structure[0] for r in c for a in r)
+        atoms = ET.SubElement(summary, "Atoms", total=str(sum(counts.values())))
+        for element, n in sorted(counts.items()):
+            ET.SubElement(atoms, "Element", name=element, count=str(n))
+    return summary
 
 
 class phaser_singleMR(CPluginScript):
@@ -59,11 +88,25 @@ class phaser_singleMR(CPluginScript):
                              outputBaseName=['MAPOUT', 'ABCDOUT'],
                              outputContentFlags=[1, CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL],
                              infileList=self.container.outputData.HKLOUT)
-        for indx in range(len(self.container.outputData.MAPOUT)):
-            self.container.outputData.MAPOUT[indx].annotation = 'Map for solution ' + str(indx + 1)
-            self.container.outputData.MAPOUT[indx].contentFlag = 1
-            self.container.outputData.MAPOUT[indx].subType = 1
-            self.container.outputData.ABCDOUT[indx].annotation = 'H-L Co-efficients' + str(indx + 1)
+        # Say what the solution is (it was "Positioned coordinates for
+        # solution 1", "SingleMR.1.mtz" and "H-L Co-efficients1").
+        with open(self.makeFileName("LOG"), encoding="utf-8", errors="replace") as f:
+            self.summary = summarise(f.read(), self.container.outputData.XYZOUT[0].fullPath.__str__())
+        best = self.summary.find("Best")
+        atoms = self.summary.find("Atoms")
+        what = "Single-atom MR"
+        if atoms is not None:
+            what += ", %s atoms" % atoms.get("total")
+        if best is not None:
+            what += ", R %s%%" % best.get("r")
+        out = self.container.outputData
+        out.XYZOUT[0].annotation = what
+        out.HKLOUT[0].annotation = what + ": data, phases and map coefficients"
+        for indx in range(len(out.MAPOUT)):
+            out.MAPOUT[indx].annotation = what + ": map coefficients"
+            out.MAPOUT[indx].contentFlag = 1
+            out.MAPOUT[indx].subType = 1
+            out.ABCDOUT[indx].annotation = what + ": phases (HL coefficients)"
         self.parseLogfile()
         return CPluginScript.SUCCEEDED
 
@@ -130,6 +173,8 @@ class phaser_singleMR(CPluginScript):
         logfile = self.makeFileName("LOG")
         smin = smartie.parselog(logfile)
         xmltree = _convert_log(smin)
+        if getattr(self, "summary", None) is not None:
+            xmltree.getroot().append(self.summary)
         xmltree.write(str(self.workDirectory / "program.xml"))
 
 

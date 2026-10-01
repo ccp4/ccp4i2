@@ -7,32 +7,6 @@ class mrbump_basic(CPluginScript):
     TASKNAME = 'mrbump_basic'
     TASKCOMMAND = 'mrbump'
 
-    def validity(self):
-        """Override to filter out ENSEMBLES list length error.
-
-        ENSEMBLES is defined in .def.xml with listMinLength=1 but is not used
-        by MrBUMP - it's a vestigial element from when phaser was called directly.
-        MrBUMP finds its own search models via sequence searches.
-        """
-        # Get parent validation
-        error = super(mrbump_basic, self).validity()
-
-        # Filter out the ENSEMBLES minimum length error (code 101)
-        filtered = CCP4ErrorHandling.CErrorReport()
-        for err in error.getErrors():
-            # Skip error code 101 (min list length) for ENSEMBLES
-            if err.get('code') == 101 and 'ENSEMBLES' in err.get('name', ''):
-                continue
-            filtered.append(
-                klass=err.get('class', ''),
-                code=err.get('code', 0),
-                details=err.get('details', ''),
-                name=err.get('name', ''),
-                severity=err.get('severity', 0)
-            )
-
-        return filtered
-
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
         error = None

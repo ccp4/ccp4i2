@@ -12,7 +12,9 @@ categories) the page is one of:
 A current or draft page is also marked *stale* when the files it describes
 have changed since it was checked against them (tools/stamp.py).
 
-conf.py calls write_status(); run directly to print the counts.
+conf.py calls write_status(); run directly to print the counts, or with
+`todo` to list the tasks still Qt or without a page, by chooser category
+(each task once, under its first category): the menu routes are chosen from.
 """
 import json
 import re
@@ -144,7 +146,24 @@ def write_status(out: Path):
     return counts
 
 
+def todo():
+    """[(category, [(task, state)])] for tasks still Qt or without a page."""
+    seen, out = set(), []
+    for title, tasks in chooser_categories():
+        left = [(t, state(t)[0]) for t in tasks
+                if t not in seen and state(t)[0] in ("Qt", "none")]
+        seen.update(tasks)
+        if left:
+            out.append((title, left))
+    return out
+
+
 if __name__ == "__main__":
+    import sys
     import tempfile
-    with tempfile.TemporaryDirectory() as d:
-        print(write_status(Path(d) / "status.rst"))
+    if sys.argv[1:] == ["todo"]:
+        for title, left in todo():
+            print(f"{title}:\n    " + ", ".join(f"{t} [{s}]" for t, s in left))
+    else:
+        with tempfile.TemporaryDirectory() as d:
+            print(write_status(Path(d) / "status.rst"))

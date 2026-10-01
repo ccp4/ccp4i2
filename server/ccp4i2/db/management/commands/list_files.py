@@ -54,7 +54,7 @@ class Command(BaseCommand):
 
         # Determine scope
         if options.get('job'):
-            files = self._get_job_files(options['job'])
+            files = self._get_job_files(options['job'], options.get('project'))
             scope = f"job {options['job']}"
         elif options.get('project'):
             files = self._get_project_files(options['project'])
@@ -83,41 +83,52 @@ class Command(BaseCommand):
         elif format_type == 'json':
             self._output_json(files)
 
+    def _get_project(self, project_identifier):
+        """A project by UUID or by name."""
+        try:
+            import uuid
+            return Project.objects.get(uuid=uuid.UUID(project_identifier))
+        except (ValueError, Project.DoesNotExist):
+            return Project.objects.get(name=project_identifier)
+
     def _get_project_files(self, project_identifier):
         """Get files for a specific project."""
-        try:
-            # Try UUID first
-            import uuid
-            project_uuid = uuid.UUID(project_identifier)
-            project = Project.objects.get(uuid=project_uuid)
-        except (ValueError, Project.DoesNotExist):
-            # Try name
-            project = Project.objects.get(name=project_identifier)
+        project = self._get_project(project_identifier)
 
         # Get all jobs in project, then get files for those jobs
         jobs = Job.objects.filter(project=project)
         return File.objects.filter(job__in=jobs)
 
-    def _get_job_files(self, job_identifier):
-        """Get files used by a specific job."""
+    def _get_job_files(self, job_identifier, project_identifier=None):
+        """The files a job produced and the files it used.
+
+        The job is a UUID, or a job number ("12", "3.1") within --project.
+        (A number used to be refused even with the project given, and only the
+        files the job used were listed, not those it made.)
+        """
+        from django.db.models import Q
         from ccp4i2.db.models import FileUse
 
+        import uuid
         try:
-            # Try UUID first
-            import uuid
-            job_uuid = uuid.UUID(job_identifier)
-            job = Job.objects.get(uuid=job_uuid)
+            job = Job.objects.get(uuid=uuid.UUID(job_identifier))
         except (ValueError, Job.DoesNotExist):
-            # Try job number (need project context)
-            self.stdout.write(self.style.ERROR(
-                "Error: Job must be specified by UUID"
-            ))
-            return File.objects.none()
+            if not project_identifier:
+                self.stdout.write(self.style.ERROR(
+                    "Error: give a job by UUID, or by number with --project"
+                ))
+                return File.objects.none()
+            project = self._get_project(project_identifier)
+            try:
+                job = Job.objects.get(project=project, number=job_identifier)
+            except Job.DoesNotExist:
+                self.stdout.write(self.style.ERROR(
+                    f"Error: project {project.name} has no job {job_identifier}"
+                ))
+                return File.objects.none()
 
-        # Get all files used by this job
-        file_uses = FileUse.objects.filter(job=job)
-        file_ids = [fu.file.id for fu in file_uses]
-        return File.objects.filter(id__in=file_ids)
+        used = FileUse.objects.filter(job=job).values_list('file_id', flat=True)
+        return File.objects.filter(Q(job=job) | Q(id__in=list(used)))
 
     def _output_table(self, files, scope):
         """Output files as a formatted table."""
@@ -211,6 +222,11 @@ class Command(BaseCommand):
                     'uuid': str(f.job.project.uuid) if f.job and f.job.project else None,
                 },
                 'type': f.type.name if f.type else None,
+                # What a file is to the job and to a reader
+                'param': f.job_param_name,
+                'annotation': f.annotation,
+                'content': f.content,
+                'sub_type': f.sub_type,
             }
             for f in files
         ]

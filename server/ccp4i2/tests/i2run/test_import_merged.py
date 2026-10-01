@@ -24,6 +24,18 @@ def test_gamma_mtz():
         check_output(job, freer)
 
 
+def test_columns_named_without_a_content_flag():
+    """Naming the columns is enough: the file says what they are. It passed
+    flag 0 on and died with KeyError: 0 (the content flag is set by the
+    interface, never by an i2run user naming columns)."""
+    args = ["import_merged"]
+    args += ["--HKLIN", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--HKLIN_OBS_COLUMNS", "Iplus,SIGIplus,Iminus,SIGIminus"]
+    with i2run(args) as job:
+        labels = [c.label for c in gemmi.read_mtz_file(str(job / "OBSOUT.mtz")).columns]
+        assert labels[3:] == ["Iplus", "SIGIplus", "Iminus", "SIGIminus"], labels
+
+
 def check_output(job, freerin):
     """Check import_merged's outputs, and that the free set obeys freerflag's contract.
 

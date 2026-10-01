@@ -1,0 +1,87 @@
+{
+  "scenario": "../../../tools/scenario_predicted.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "editbfac_input.png",
+      "job": 104,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Atomic model",
+      "until": "Distance model file",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Remove low confidence residues (lddt or rmsd) (recommended)",
+          "badge": "2"
+        },
+        {
+          "field": "Split model into compact regions (recommended)",
+          "badge": "3"
+        },
+        {
+          "field": "json data",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "editbfac_settings.png",
+      "job": 104,
+      "tabs": [
+        "Additional Settings"
+      ],
+      "section": "Options",
+      "callouts": [
+        {
+          "field": "Minimum LDDT for removing residues",
+          "badge": "5"
+        },
+        {
+          "field": "Minimum domain length (residues)",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "editbfac_report.png",
+      "job": 102,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "179 of 491",
+        "scroll": true
+      },
+      "until": "Log from cctbx",
+      "callouts": [
+        {
+          "text": "179 of 491",
+          "badge": "7"
+        },
+        {
+          "text": "Region",
+          "closest": "table",
+          "badge": "8"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/editbfac/script/editbfac.def.xml": "b8872f83fbaa4319d6bfeaea93a89de4c52e0adf",
+    "server/ccp4i2/wrappers/editbfac/script/editbfac.py": "22f9f1554e4e91c97c8b7f48e786814f627cfa6c",
+    "server/ccp4i2/wrappers/editbfac/script/editbfac_report.py": "ce15e9d1b8a585b204c6232990bf9ef7ba95b9bf",
+    "client/renderer/components/task/task-interfaces/editbfac.tsx": "a03007ce8cb36d417cb381309c1301269e532b39",
+    "docs/user/tools/scenario_predicted.py": "a92426bd68eaa72f09cb977772834a991e2ef6d9"
+  }
+}

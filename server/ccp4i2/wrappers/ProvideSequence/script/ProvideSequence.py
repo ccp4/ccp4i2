@@ -91,7 +91,14 @@ class ProvideSequence(CPluginScript):
             outputString = StringIO()
             with open(outputFile.__str__(),'w') as outputFileHandle:
                 SeqIO.write([seq],outputFileHandle,'fasta')
-            outputFile.annotation = seq.id + '-' + seq.description
+            # Biopython's description begins with the id, so "id-description"
+            # read "4HG7:A|PDBID|CHAIN|SEQUENCE-4HG7:A|PDBID|CHAIN|SEQUENCE".
+            # Name it as ClustalW does (a PDB header becomes "4HG7_A"), then
+            # whatever the description adds.
+            from ccp4i2.wrappers.clustalw.script.clustalw import sequence_name
+            rest = seq.description[len(seq.id):].strip() if seq.description.startswith(seq.id) \
+                else seq.description.strip()
+            outputFile.annotation = sequence_name(seq.id) + (' ' + rest if rest else '')
         
             sequenceElement = etree.SubElement(root,'Sequence')
             outputString = StringIO()
@@ -119,6 +126,10 @@ class ProvideSequence(CPluginScript):
                 entry.description.set(sequenceFile.fileContent.description)
                 entry.autoSetPolymerType()
             self.container.outputData.CASUCONTENTOUT.saveFile()
+            names = [str(f.annotation).split()[0] for f in self.container.outputData.SEQUENCEFILE_LIST
+                     if str(f.annotation).strip()]
+            self.container.outputData.CASUCONTENTOUT.annotation.set(
+                'AU contents: ' + ', '.join(names) if names else 'AU contents')
         except Exception as err:
             print("Failed to create CASUCONTENTOUT with error", err)
         return CPluginScript.SUCCEEDED
