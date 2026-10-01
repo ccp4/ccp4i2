@@ -84,9 +84,9 @@ const SequenceLabel: React.FC<{ seq: SequenceEntry }> = ({ seq }) => (
  * The task's selectionMode qualifier (as in Qt i2) decides the selector:
  *   0 - none; the task uses every sequence
  *   2 - checkboxes, any non-empty subset; collapsed unless something is deselected
- *   1 - radio buttons, exactly one; always drawn open when the file has several
- *       sequences, because the task cannot run until one is chosen (the server's
- *       CAsuDataFile.validity() reports it as an error)
+ *   1 - radio buttons, exactly one; always drawn open, so the user sees which
+ *       sequence the task uses. With several sequences the task cannot run until
+ *       one is chosen (the server's CAsuDataFile.validity() reports it as an error)
  * A choice updates the selection CDict on the file object.
  *
  * If no file is selected, shows a "Create ASU Content" button that opens an
@@ -196,13 +196,13 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   // Determine if we should force the panel expanded
   const forceExpanded = useMemo(() => {
     if (!hasSequences) return false;
-    // Mode 1 with a choice to make: always open
-    if (selectionMode === 1) return (fileDigest?.sequences?.length ?? 0) > 1;
+    // Mode 1: always open, so the user sees which sequence the task uses
+    if (selectionMode === 1) return true;
     // Mode 2: expand if any sequence is deselected (non-default state)
     if (selectionMode === 2)
       return Object.values(localSelections).some((selected) => !selected);
     return false;
-  }, [hasSequences, selectionMode, fileDigest?.sequences, localSelections]);
+  }, [hasSequences, selectionMode, localSelections]);
 
   /**
    * Handle the output file from the inline ProvideAsuContents task.
