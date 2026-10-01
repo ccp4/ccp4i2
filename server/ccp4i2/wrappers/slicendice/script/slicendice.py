@@ -157,7 +157,7 @@ class slicendice(CPluginScript):
         rfree_text = "%.3f" % float(jdd["dice"][best_split]["final_r_free"])
         # A split can pass on R-free with one of its pieces never placed:
         # say so when any piece's TFZ is below 8 (Phaser's clear placement).
-        best_log = jdd["dice"][best_split].get("phaser_log")
+        best_log = jdd["dice"][best_split].get("phaser_logfile")
         best_parts = (phaser_components(Path(best_log).read_text(encoding="utf-8", errors="replace"))
                       if best_log and Path(best_log).is_file() else [])
         partial = solved and any(t and float(t) < 8 for _, t, _, _ in best_parts)
@@ -197,7 +197,7 @@ class slicendice(CPluginScript):
             etree.SubElement(xmlcyc, "tfz").text = str(jdd["dice"][key]["phaser_tfz"])
             etree.SubElement(xmlcyc, "srf").text = str(jdd["dice"][key]["final_r_fact"])
             etree.SubElement(xmlcyc, "sre").text = str(jdd["dice"][key]["final_r_free"])
-            log = jdd["dice"][key].get("phaser_log")
+            log = jdd["dice"][key].get("phaser_logfile")
             if log and Path(log).is_file():
                 for cluster, tfz, llg, pak in phaser_components(
                         Path(log).read_text(encoding="utf-8", errors="replace")):
