@@ -715,6 +715,56 @@ class CDict(CCollection):
         """Clear all items from dictionary."""
         self._dict_data.clear()
 
+    # The entries live in _dict_data, not in CData children or value states,
+    # so every generic CData path (set, isSet, XML, copyData) saw an empty,
+    # unset object: an ASU file's sequence selection was dropped on the way
+    # to params.xml and ignored by writeFasta. These overrides make the dict
+    # itself the state. A dict is set when it has entries, as in Qt i2.
+
+    def set(self, values) -> None:
+        """Replace the entries with those of a dict or another CDict."""
+        if values is None:
+            self._dict_data = {}
+        elif isinstance(values, CDict):
+            self._dict_data = dict(values._dict_data)
+        else:
+            self._dict_data = dict(values)
+
+    def isSet(self, field_name: str = None, allowUndefined: bool = False,
+              allowDefault: bool = False, allSet: bool = True) -> bool:
+        return len(self._dict_data) > 0
+
+    def unSet(self, field_name: str = 'value') -> None:
+        self._dict_data = {}
+
+    def getEtree(self, name: str = None, excludeUnset: bool = False, allSet: bool = False):
+        """Serialise as Qt i2 did: <item><key>k</key><value>v</value></item>."""
+        import xml.etree.ElementTree as ET
+        elem = ET.Element(name if name is not None else self.objectName())
+        for key, value in self._dict_data.items():
+            item = ET.SubElement(elem, 'item')
+            ET.SubElement(item, 'key').text = str(key)
+            ET.SubElement(item, 'value').text = str(value)
+        return elem
+
+    def setEtree(self, element, ignore_missing: bool = False, preserve_state: bool = False):
+        """Read the Qt i2 layout. "True"/"False" come back as booleans, the
+        only values a selection holds; anything else stays a string."""
+        self._dict_data = {}
+        for item in element.findall('item'):
+            key = item.findtext('key')
+            if key is None:
+                continue
+            text = item.findtext('value')
+            self._dict_data[key] = {'True': True, 'False': False}.get(text, text)
+
+    def _deep_copy_from(self, source) -> None:
+        if isinstance(source, CDict):
+            self._dict_data = dict(source._dict_data)
+
+    def _smart_assign_from_cdata(self, source) -> None:
+        self._deep_copy_from(source)
+
 
 class CFollowFromJob(CUUID):
 

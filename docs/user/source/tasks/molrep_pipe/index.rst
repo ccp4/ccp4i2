@@ -44,7 +44,10 @@ AU contents* or a sequence file. MOLREP then aligns it with the first
 chain of the search model and modifies the model, renaming and pruning
 non-conserved residues. Names of retained atoms are changed to match the
 target, and residues are numbered consistently with the target sequence.
-Without a sequence, the search model is used as it is.
+Without a sequence, the search model is used as it is. MOLREP takes only
+one sequence: when the AU contents hold several, the field lists them and
+the task will not run until you choose the one that matches the search
+model.
 
 The number of copies to search for **(5)** can be given, or left for
 MOLREP to estimate. MOLREP takes the best result for the first copy, fixes

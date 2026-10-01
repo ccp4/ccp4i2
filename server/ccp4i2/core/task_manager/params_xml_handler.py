@@ -624,6 +624,7 @@ class ParamsXmlHandler:
 
     def _import_structured_data(self, xml_elem: ET.Element, param: CData) -> bool:
         """Import structured data from XML into a parameter."""
+        from ccp4i2.core.CCP4Data import CDict
         from ccp4i2.core.CCP4File import CDataFile
         from ccp4i2.core.base_object.fundamental_types import CList
         try:
@@ -657,6 +658,13 @@ class ParamsXmlHandler:
                 if isinstance(attr, CList):
                     self._import_container_values(child, attr)
                     imported_any = True
+                    continue
+
+                # A CDict's <item><key/><value/></item> entries are data, not
+                # attributes, so the walk below would skip them all
+                if isinstance(attr, CDict):
+                    attr.setEtree(child)
+                    imported_any |= attr.isSet()
                     continue
 
                 # If the child has nested elements, it's a CData object - recurse
