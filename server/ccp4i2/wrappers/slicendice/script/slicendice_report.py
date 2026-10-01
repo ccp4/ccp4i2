@@ -3,6 +3,8 @@ import os
 from ccp4i2.report import Report
 
 
+# Each sentence group in a div of its own: addText makes an inline span, and
+# two in a row run together with no space between them.
 class slicendice_report(Report):
     TASKNAME = 'slicendice'
     USEPROGRAMXML = True
@@ -12,7 +14,7 @@ class slicendice_report(Report):
     def __init__(self, xmlnode=None, jobInfo={}, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, cssVersion=self.CSS_VERSION, **kw)
         results = self.addResults()
-        results.addText(text="SliceNDice prepares a predicted model for molecular replacement "
+        results.addDiv().addText(text="SliceNDice prepares a predicted model for molecular replacement "
                         "(B-factors from its confidence, low-confidence residues removed), "
                         "slices it into rigid regions, and tries each set of slices in Phaser, "
                         "refining every placement with Refmac.")
@@ -21,7 +23,7 @@ class slicendice_report(Report):
         # the file exists -- failed; and it pasted the log in unescaped.)
         best = self.xmlnode.find(".//RunInfo/Best") if self.xmlnode is not None else None
         if best is None:
-            results.addText(text="Running: results will appear here when the "
+            results.addDiv().addText(text="Running: results will appear here when the "
                             "placements have been refined.")
         else:
             self.summary(results, best)
@@ -37,10 +39,10 @@ class slicendice_report(Report):
         rfree, r = float(best.findtext("RFree")), float(best.findtext("R"))
         n = best.findtext("bid")
         if solved:
-            parent.addText(text="Solved: the placement from %s split%s refined to R %.3f, "
+            parent.addDiv().addText(text="Solved: the placement from %s split%s refined to R %.3f, "
                            "R-free %.3f." % (n, "" if n == "1" else "s", r, rfree))
         else:
-            parent.addText(text="No solution. The best placement (%s split%s) refined only to "
+            parent.addDiv().addText(text="No solution. The best placement (%s split%s) refined only to "
                            "R %.3f, R-free %.3f; SliceNDice counts a placement as a solution "
                            "when both are below 0.45." % (n, "" if n == "1" else "s", r, rfree))
         splits = {s.get("id"): [m.text for m in s.findall("Model")] for s in run.findall("Split")}
@@ -54,7 +56,7 @@ class slicendice_report(Report):
         tried = {s.findtext("SolID") for s in sols}
         untried = sorted(set(splits) - tried)
         if untried:
-            parent.addText(text="Not tried in molecular replacement: %s split%s (%s). "
+            parent.addDiv().addText(text="Not tried in molecular replacement: %s split%s (%s). "
                            "SliceNDice 0.1.3 runs MR on one of the splits it makes; to try "
                            "a particular number of splits, set the minimum and maximum "
                            "splits to it." % (

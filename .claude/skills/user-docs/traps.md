@@ -47,6 +47,16 @@ Each was met for real; most cost an hour the first time.
   ccp4-python's site-packages: run checks from `server/`, or with
   `PYTHONPATH`, or a fix will seem not to work.
 
+- **Count before you read a sample.** A fact for a brief taken from
+  `grep ... | tail` is a sample: single-atom MR's log has six final LLG/R
+  pairs, `tail -6` showed three, and "three rounds of refinement" went into
+  a brief and into the report code. `grep -c` first; then read them all.
+  The subagent caught it from the job's files, which is why briefs say
+  "check these too". Facts from a brief were wrong in two routes of two.
+- **Know what a program's repeated lines are before you label them.** Six
+  pairs were six candidate solutions completed in turn, not six rounds of
+  one; the kept solution was the highest LLG, which happened to be last.
+
 ## The app
 
 - **Django runs `--noreload`**: `devserver.sh restart django` after any server
@@ -96,6 +106,9 @@ Each was met for real; most cost an hour the first time.
   anything taken from a log (`27 < 50`). Embed SVG through
   `ccp4i2.report.svg.inline_svg` (an XML declaration mid-document fails it)
   and `fit_svg` (a fixed-size drawing overflows its box).
+- **`addText` is an inline span**: two in a row run together with no space
+  ("...435-490.Split into 3 regions"). One text per block, or each in its
+  own `addDiv()`.
 - **Build every new or changed report in a unit test**; it catches the above
   before a capture does (`test_pairef_results.py`, `test_areaimol_areas.py`).
 - **Graph titles cannot contain spaces** (the loggraph header is split on

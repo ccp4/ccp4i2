@@ -62,6 +62,6 @@ def test_report_leads_with_what_was_kept(summary, tmp_path, monkeypatch):
                              jobInfo={}, jobStatus="Finished")
     text = ET.tostring(report.as_data_etree(), encoding="unicode")
     assert "142 of 491 residues kept: 26-111, 435-490." in text
-    assert "Split into 2 regions" in text
+    assert "26-111, 435-490. Split into 2 regions" in text
     assert "435-490" in text and "A2" in text
     assert "59.22" in text   # the log, escaped, in its fold
