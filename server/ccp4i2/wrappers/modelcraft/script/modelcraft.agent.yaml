@@ -1,0 +1,375 @@
+task: modelcraft
+status: draft
+reviewed_by: []
+purpose: >
+  Builds a model into X-ray data automatically: protein with Buccaneer,
+  nucleic acid with NucleoFind (or Nautilus), waters with findwaters, cycling
+  density modification (Parrot), pruning and REFMAC refinement, and outputs
+  the cycle with the lowest R-work. It starts from phases (experimental
+  phasing) or from a placed model (molecular replacement), whose refinement
+  then supplies the phases.
+
+use_when:
+  - Molecular replacement placed a model that is distant (a homologue, a
+    Chainsaw or predicted model) or covers only part of the AU, and quick
+    refinement left R-free above about 0.40; the model is to be rebuilt into
+    the target sequence.
+  - Experimental phasing (SAD/MAD/SIR) gave phases but no model; give the
+    phases (preferably after density modification) of the hand that looks
+    right, or build both hands and compare.
+  - A partial model (from an earlier build or manual work) is to be extended
+    and completed against the same data.
+
+not_when:
+  - text: The placed model is already the same protein, complete and
+      correctly placed (R-free near or below 0.35 after quick refinement).
+      ModelCraft then has nothing to build and can make the model worse
+      (BetaBlip 5 - input R-free 0.343, output 0.382, two spurious fragments).
+    instead: servalcat_pipe
+  - text: The data are a cryo-EM map, not reflections; this wrapper runs only
+      ModelCraft's X-ray mode.
+    instead: molrep_map
+  - text: The MR placement itself is in doubt (search TFZ below Phaser's 8,
+      wrong space group or hand not excluded). Building cannot rescue a wrong
+      placement; it builds and sequences it all the same (Thaumatin 17.10).
+    instead: phaser_simple_phil
+
+inputs:
+  - param: inputData.ASUIN
+    advice: >
+      The sequences to build and the copies of each in the AU. ModelCraft
+      builds and sequences against these and Parrot takes the solvent content
+      from them: a wrong copy number gives a wrong solvent fraction and a
+      wrong target for building. Give the whole AU, every chain, as in
+      BetaBlip 5 (BETA 263 + BLIP 165 residues). Residues built beyond what
+      the contents account for are suspect (BetaBlip 5 built 444 for 428).
+  - param: inputData.XYZIN
+    advice: >
+      After MR, the refined placement (e.g. phaser_simple_phil's
+      XYZOUT_REFMAC). ModelCraft refines it twice, after Sheetbend and
+      without it, 10 REFMAC cycles each, keeps the lower R-free (BetaBlip 5
+      kept the one without, 0.333 against 0.334), and then uses it to seed
+      Buccaneer and to assign sequence. It must be in the same space group
+      and cell as F_SIGF: ModelCraft stops with "Model cell is incompatible"
+      otherwise. If Phaser changed the space group, give its F_SIGF_OUT and
+      FREERFLAG_OUT, not the original data. Remove what you believe is wrong
+      with the atom selection. Leave it unset for a build from experimental
+      phases alone.
+  - param: controlParameters.USE_MODEL_PHASES
+    advice: >
+      True (default) takes the starting phases from refining XYZIN; set it
+      False after experimental phasing and give PHASES. With the default and
+      no XYZIN the job has no phases at all, and nothing in validation stops
+      it: ModelCraft then fails reading its arguments (from the code; not
+      seen in a run).
+  - param: inputData.PHASES
+    advice: >
+      Only when USE_MODEL_PHASES is False: phases from phasing or density
+      modification, for the hand you judge correct (GammaXe 3.4 and 3.5 were
+      given the parrot ABCDOUT of each hand). controlParameters.UNBIASED
+      passes them to REFMAC as restraints until R-work reaches 0.35.
+      ModelCraft's help recommends it after experimental phasing and never
+      after MR (model phases are biased); phaser_ep_phil does not set it for
+      its density-modified phases. Whether to set it for DM phases is not
+      settled here.
+  - param: controlParameters.CYCLES
+    advice: >
+      Default 25, stopping after STOP_CYCLES (default 4) cycles without a
+      lower R-work. Pipelines set their own: dr_mr_modelbuild_pipeline ran 5
+      (Thaumatin 17); phaser_ep_phil sets BASIC, STOP_CYCLES 2 and takes the
+      cycles from its MODELCRAFT_ITERATIONS (default 1; GammaXe used 3). A
+      hard case from poor phases may need the full 25. Ticking BASIC in the
+      interface also sets CYCLES to 5; from i2run it does not.
+  - param: inputData.FREERFLAG
+    advice: >
+      The Free R set the project refines against (the one any earlier model
+      of this crystal was refined against), never a new one when such a
+      model exists.
+
+results:
+  RFREE_PX:
+    file: program.xml
+    xpath: .//Final/r_free
+    type: float
+    meaning: >
+      R-free of the output model (the cycle with the lowest R-work,
+      not the lowest R-free). Written by the wrapper since program.xml was
+      added; the evidence jobs predate it, and these values were read from
+      program.xml rebuilt from their modelcraft.json with program_xml():
+      BetaBlip 5 0.382; GammaXe 3.4 0.379, 3.5 0.563; Thaumatin 17.5 0.234,
+      17.10 0.456.
+  RFREE_PARAMS:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/RFree
+    type: float
+    meaning: >
+      The same R-free as the job's KPI "RFree", for jobs run before
+      program.xml existed (all five evidence jobs; same values as above).
+  RWORK_PX:
+    file: program.xml
+    xpath: .//Final/r_work
+    type: float
+    meaning: >
+      R-work of the output model. BetaBlip 5 0.261; GammaXe 3.4
+      0.342, 3.5 0.546; Thaumatin 17.5 0.204, 17.10 0.406.
+  RWORK_PARAMS:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/RFactor
+    type: float
+    meaning: >
+      The same R-work (KPI "RFactor"), for jobs before program.xml.
+  INPUT_RFREE:
+    file: program.xml
+    xpath: .//InputModel/r_free
+    type: float
+    meaning: >
+      R-free of the starting model as given, before ModelCraft's first
+      refinement of it (the initial R-free of that refinement). Written only
+      when a model was given. BetaBlip 5 0.34; Thaumatin 17.5 0.281, 17.10
+      0.461; absent for GammaXe (phases only). For older jobs, the previous
+      refinement job's RFree KPI is the same number (BetaBlip 4 0.343,
+      Thaumatin 17.4 0.281, 17.9 0.461).
+  RESIDUES:
+    file: program.xml
+    xpath: .//Final/residues
+    type: int
+    meaning: >
+      Residues in the output model (protein + nucleic). Compare with
+      AU_CONTENTS. BetaBlip 5 444 (428 expected); GammaXe 3.4 115 and 3.5 48
+      (135 expected); Thaumatin 17.5 and 17.10 207 (207 expected).
+  RESOLUTION:
+    file: program.xml
+    xpath: .//ResolutionHigh
+    type: float
+    meaning: >
+      High-resolution limit refined against (A). BetaBlip 3.004,
+      GammaXe 1.792, Thaumatin 1.168.
+  TERMINATION:
+    file: program.xml
+    xpath: .//TerminationReason
+    type: str
+    meaning: >
+      Why ModelCraft stopped. "Normal" in all five evidence jobs.
+      Otherwise "No residues built", "No residues to refine" or "Model cell
+      is incompatible": with no model yet the job fails (error 201 carries
+      the reason); after a model from an earlier cycle the job SUCCEEDS with
+      that earlier cycle's model.
+  STARTING_MODEL:
+    file: params.xml
+    xpath: .//inputData/XYZIN/baseName
+    type: str
+    meaning: >
+      File name of the starting model; absent when the build started
+      from phases alone (GammaXe 3.4, 3.5). BetaBlip 5 XYZOUT_REFMAC.pdb;
+      Thaumatin 17.5, 17.10 XYZOUT.pdb.
+  STARTING_PHASES:
+    file: params.xml
+    xpath: .//inputData/PHASES/baseName
+    type: str
+    meaning: >
+      File name of the starting phases (GammaXe 3.4, 3.5
+      ABCDOUT.mtz); absent in the three model-based evidence jobs. Used only
+      when USE_MODEL_PHASES is False.
+  AU_CONTENTS:
+    file: params.xml
+    xpath: .//inputData/ASUIN/annotation
+    type: str
+    meaning: >
+      The AU contents as annotated, with chain lengths, e.g. "BETA
+      (protein, 263 res), BLIP (protein, 165 res)". Absent when the contents
+      file was imported without an annotation (GammaXe 3.4, 3.5).
+  # FINDING: program.xml does not yet carry Buccaneer's own counts, which are
+  #   only in modelcraft/modelcraft.json (jobs[] entries named cbuccaneer):
+  #   residues built, residues sequenced, chains and fragments built, longest
+  #   fragment, completeness by residue and by chain; nor the expected residue
+  #   count (contents.json). These separate a clean build from BetaBlip 5's
+  #   (444 built for 428 expected, 4 fragments) and a model-seeded wrong
+  #   build from a right one. Add Buccaneer/{ResiduesBuilt,ResiduesSequenced,
+  #   ChainsBuilt,FragmentsBuilt,CompletenessRes,CompletenessChn} for the
+  #   chosen cycle and ExpectedResidues to program_xml() in modelcraft.py.
+  # NOTE: each R factor has a program.xml and a params.xml form so the file
+  #   judges jobs from before and after program.xml; a missing one is
+  #   unknown, so "A or B" holds on whichever was read. All xpaths were run
+  #   on the five evidence jobs (params.xml) and on program.xml rebuilt from
+  #   their modelcraft.json.
+
+verdict:
+  - when: RFREE_PX > INPUT_RFREE - 0.02 or RFREE_PARAMS > INPUT_RFREE - 0.02
+    outcome: no_better_than_input
+    basis: >
+      Building should lower R-free well below the given model's. Our runs:
+      the right Thaumatin space group went 0.281 -> 0.234 (17.5); the wrong
+      enantiomorph 0.461 -> 0.456 (17.10) with every residue built and
+      sequenced; the complete, correct BetaBlip placement 0.34 -> 0.382
+      (BetaBlip 5) - nothing to build. The 0.02 margin is our choice, not a
+      published value: it is above the cycle-to-cycle wander of R-free in a
+      run that was going nowhere (Thaumatin 17.10 cycles 0.455-0.463). Needs
+      INPUT_RFREE, which program.xml has only when a model was given, so it
+      applies only to model-based jobs run since program.xml was added.
+  - when: TERMINATION != "Normal" and (RFREE_PX <= 0.40 or RFREE_PARAMS <= 0.40)
+    outcome: partial
+    basis: >
+      ModelCraft stopped early (modelcraft/pipeline.py terminate) after an
+      earlier cycle had produced a model; that earlier model is the output,
+      so a low R-free is not a finished build. From the code; no evidence
+      job stopped early.
+  - when: RFREE_PX <= 0.35 or RFREE_PARAMS <= 0.35
+    outcome: built
+    basis: >
+      The band the task's own report uses: R-free 0.35 or below "the model
+      is approaching completion" (server/ccp4i2/wrappers/modelcraft/script/
+      modelcraft_report.py:81-90). Our run: Thaumatin 17.5, 0.234 at 1.17 A,
+      207 of 207 residues built and sequenced in one chain, from an input
+      model at 0.281. Resolution-dependent: at 3 A a finished model may sit
+      above 0.35; an expert should say whether the band should move with
+      resolution.
+  - when: RFREE_PX <= 0.40 or RFREE_PARAMS <= 0.40
+    outcome: partial
+    basis: >
+      Report band 0.35-0.40: "likely to contain correct regions but requires
+      further work" (modelcraft_report.py:86-88). Our runs: GammaXe 3.4
+      (0.379 at 1.79 A from experimental phases, original hand: 115 of 135
+      residues built, 105 sequenced, 6 fragments, 3 basic cycles) and, for
+      jobs without program.xml, BetaBlip 5 (0.382 at 3.0 A; with program.xml
+      it is no_better_than_input).
+  - when: RFREE_PX <= 0.50 or RFREE_PARAMS <= 0.50
+    outcome: poor
+    basis: >
+      Report band 0.40-0.50: "substantially incomplete and may contain
+      incorrect regions" (modelcraft_report.py:83-85). Our one run in this
+      band was WRONG, not incomplete: Thaumatin 17.10, the MR model in the
+      enantiomorphic space group (P 43 21 2 against P 41 21 2), R-free 0.456
+      with all 207 residues built and sequenced; with program.xml it is
+      no_better_than_input. No correct but incomplete build in this band was
+      seen here; one from weak phases or a distant model may well sit here.
+  - when: RFREE_PX > 0.50 or RFREE_PARAMS > 0.50
+    outcome: failed
+    basis: >
+      Report band above 0.50: "very incomplete or wrong"
+      (modelcraft_report.py:81-82). Our run: GammaXe 3.5, the inverted hand
+      of the experimental phases, R-free 0.563, 48 residues of 135 built and
+      24 sequenced, against 0.379 for the other hand (GammaXe 3.4).
+  - when: true
+    outcome: failed
+    basis: >
+      No R-free recorded - ModelCraft stopped before producing a model
+      (TERMINATION and the job's error 201 say why) or the job failed earlier.
+
+traps:
+  - >
+    With a starting model, "all residues built and sequenced" proves
+    nothing: Buccaneer is seeded from the model and takes its sequence
+    (modelcraftxray.py:164-168). Thaumatin 17.10 - a model in the wrong
+    enantiomorph - came out with 207 of 207 residues sequenced in one chain
+    at R-free 0.456. Judge by whether R-free fell well below the input
+    model's (INPUT_RFREE): 0.461 -> 0.456 there, 0.281 -> 0.234 for the
+    right space group.
+  - >
+    The output is the cycle with the lowest R-WORK, and auto-stop counts
+    cycles without a lower R-work (modelcraftxray.py:328-335), although
+    ModelCraft's own help, this task's help page and its interface all say
+    R-free. In BetaBlip 5 cycle 1 had R-free 0.359 but cycle 2 (R-work
+    0.261, R-free 0.382, 16 more residues) was output; the final side-chain
+    fixing cycle (R-free 0.374) was not output either, because its R-work
+    0.261 did not beat 0.261. A large R-free - R-work gap (0.12 there, at
+    3.0 A) is a sign the chosen cycle is over-built.
+  - >
+    ModelCraft can make a good model worse. Given the complete, correct
+    BetaBlip placement (R-free 0.343 after Phaser's quick refinement; 0.333
+    after ModelCraft's own refinement of it) it output R-free 0.382 with two
+    8-residue fragments the AU contents do not account for. Compare RESIDUES
+    with AU_CONTENTS and the output R-free with the input's before going on.
+  - >
+    After experimental phasing, build both hands and keep the one whose
+    R-free falls (GammaXe 3.4 0.379 vs 3.5 0.563, the same data). A build
+    from the wrong hand still finishes and still outputs a model.
+  - >
+    ModelCraft stops with exit status 0 when it cannot go on ("Model cell is
+    incompatible" when the model's space group or cell does not match the
+    data, "No residues built"). With no model yet, the wrapper fails the job
+    with error 201 and the reason; read it there or in TERMINATION. After an
+    earlier cycle's model, the job SUCCEEDS with that model and only
+    TERMINATION shows it stopped early.
+
+next:
+  - when: outcome == "no_better_than_input" and INPUT_RFREE <= 0.36
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "modelcraft[-1].XYZIN"
+      HKLIN: "modelcraft[-1].F_SIGF"
+      FREERFLAG: "modelcraft[-1].FREERFLAG"
+    advice: >
+      The model given was already near complete (BetaBlip 5, 0.34): refine
+      IT, not the build. XYZIN resolves to the model this job consumed.
+      The 0.36 is our choice (the report's 0.35 band plus rounding), not a
+      published value.
+  - when: outcome == "no_better_than_input" and INPUT_RFREE > 0.36
+    advice: >
+      The build did not improve a poor starting model: suspect the
+      placement before building more (Thaumatin 17.10, 0.461 -> 0.456, was
+      the wrong enantiomorph). Check the space group and enantiomorph
+      (pointless_reindexToMatch, then MR in the other one), the MR scores and
+      the AU contents; dr_mr_modelbuild_pipeline builds in both enantiomorphs
+      and keeps the lower R-free (dr_mr_modelbuild_pipeline.py:321-325). If
+      the placement is sound and the model distant, rerun modelcraft from
+      this XYZOUT with CYCLES 25.
+  - when: outcome == "built"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "modelcraft[-1].XYZOUT"
+      HKLIN: "modelcraft[-1].F_SIGF"
+      FREERFLAG: "modelcraft[-1].FREERFLAG"
+    advice: >
+      Restrained refinement to convergence (prosmart_refmac with XYZIN,
+      F_SIGF, FREERFLAG is the alternative), then validate_protein (XYZIN_1
+      the refined model, F_SIGF_1 the data). Ligands, alternative
+      conformations and the regions validation flags need a person in Coot.
+      F_SIGF and FREERFLAG resolve to the files this job consumed.
+  - when: outcome == "partial"
+    task: modelcraft
+    inputs:
+      XYZIN: "modelcraft[-1].XYZOUT"
+      F_SIGF: "modelcraft[-1].F_SIGF"
+      FREERFLAG: "modelcraft[-1].FREERFLAG"
+      ASUIN: "modelcraft[-1].ASUIN"
+    advice: >
+      When RESIDUES is short of AU_CONTENTS and R-free was still falling,
+      build again from this model with CYCLES 25 (the default) and BASIC
+      off. When the residues already cover the contents, go to
+      servalcat_pipe as for "built" instead; residues beyond the contents
+      (BetaBlip 5's two 8-residue fragments) should be deleted by a person
+      in Coot before refinement. After an early stop (TERMINATION not
+      "Normal"), read the reason first.
+  - when: outcome == "poor" and STARTING_MODEL != ""
+    advice: >
+      First compare R-free with the starting model's (INPUT_RFREE, or the
+      previous refinement job's RFree KPI). If it did not fall well below,
+      treat it as no_better_than_input above: suspect the placement. If it
+      fell substantially, the placement is probably right and the model
+      distant: rerun modelcraft from this XYZOUT with CYCLES 25.
+  - when: outcome == "poor" and STARTING_PHASES != ""
+    advice: >
+      Build the other hand if it was not built, improve the phases (more
+      density modification, a better substructure), or run 25 full cycles
+      (BASIC off) from these phases.
+  - when: outcome == "failed"
+    advice: >
+      With R-free above 0.50 the model is wrong or nearly empty: after
+      experimental phasing build the other hand, or return to phasing; after
+      MR, return to MR (the placement, space group or model). With no R-free
+      at all, read TERMINATION or the job's error ("Model cell is
+      incompatible": give the data in the model's space group, e.g.
+      Phaser's F_SIGF_OUT; "No residues built": the phases carry no
+      interpretable density).
+
+sources:
+  - docs/user/source/tasks/modelcraft/index.rst
+  - server/ccp4i2/wrappers/modelcraft/script/modelcraft.py (program_xml, error 201)
+  - server/ccp4i2/wrappers/modelcraft/script/modelcraft_report.py (R-free bands)
+  - server/ccp4i2/pipelines/phaser_ep_phil/script/phaser_ep_phil.py (modelcraft per hand, BASIC, STOP_CYCLES 2)
+  - server/ccp4i2/pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline.py (both enantiomorphs, lower R-free kept)
+  - "ModelCraft 6.1.1 source, ccp4-20260702 site-packages/modelcraft/modelcraftxray.py, pipeline.py and arguments.py"
+  - "run: BetaBlip job 5 (from the expert Phaser placement, 5 cycles, 3.0 A)"
+  - "run: GammaXe jobs 3.4 and 3.5 (phaser_ep_phil, original and inverted hand, BASIC, 3 cycles, 1.79 A)"
+  - "run: Thaumatin jobs 17.5 and 17.10 (dr_mr_modelbuild_pipeline, P 41 21 2 and P 43 21 2, 5 cycles, 1.17 A)"
+  - "Bond & Cowtan, Acta Cryst. D78 (2022), doi:10.1107/S2059798322007732 (cited by the help page; not read here)"
