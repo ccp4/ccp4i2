@@ -88,6 +88,12 @@ def problems(judgement):
     for name, spec in results.items():
         if spec.get("file", "program.xml") != "kpi" and not spec.get("xpath"):
             found.append(f"result {name}: no xpath")
+        elif spec.get("xpath"):
+            try:  # a path ElementTree cannot compile would read as missing, always
+                ET.fromstring("<x/>").find(spec["xpath"])
+            except (SyntaxError, KeyError, TypeError) as err:
+                found.append(f"result {name}: xpath {spec['xpath']!r} is not one ElementTree "
+                             f"reads ({err}); keep to tags, /, //, [n], [last()], [@a='v'], [tag='v']")
         if spec.get("type", "float") not in _TYPES:
             found.append(f"result {name}: type {spec['type']!r} is not one of {sorted(_TYPES)}")
     for section in ("verdict", "next"):
