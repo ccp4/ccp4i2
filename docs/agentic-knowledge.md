@@ -72,8 +72,13 @@ results:                          # the numbers that decide, and where they are
   TFZ:
     file: program.xml             # program.xml | a job file named here | kpi
     xpath: .//Solution/TFZ        # ElementTree subset, first match
-    type: float                   # float | int | str
+    type: float                   # float | int | str ("4.01%" reads as 4.01)
     meaning: Translation-function Z-score of the top solution.
+  TNCS:
+    file: program.xml
+    xpath: .//Analysis/TNCS
+    attribute: tNCS               # an attribute of the element, not its text
+    type: str
   LLG:
     file: program.xml
     xpath: .//Solution/LLG
