@@ -27,8 +27,9 @@ but with the following enhancements:
 Pipeline
 ========
 
-If a starting model was provided, ModelCraft refines it
-with shift-field refinement using SHEETBEND followed by 10 cycles of REFMAC.
+If a starting model was provided, ModelCraft refines it with 10 cycles of
+REFMAC, both with and without shift-field refinement by SHEETBEND first,
+and keeps whichever gives the lower R-free.
 A single cycle of ModelCraft then consists of the following seven steps:
 
 1. **Prune incorrect protein chains, residues and side chains**
@@ -52,13 +53,12 @@ A single cycle of ModelCraft then consists of the following seven steps:
    As in the third step, the model with waters is only accepted
    if it has a better R-free than the model without waters.
 
-The best model from all cycles is chosen as the output.
-If the resolution is better than 2.5 Å
-and R-work is better than 30% at the end of the pipeline,
-ModelCraft rebuilds side chains that are missing or predicted to be incorrect
-using COOT followed by 5 cycles of REFMAC.
-This side chain rebuilding step is performed once at the end of the pipeline
-to fix side chains.
+The best model from all cycles is chosen as the output: best by R-work,
+not R-free (ModelCraft 6.1.1; its own help says R-free), so the output can
+have a higher R-free than an earlier cycle. At the end of the pipeline
+ModelCraft rebuilds side chains that are missing or predicted to be
+incorrect, using COOT followed by 5 cycles of REFMAC, whatever the
+resolution.
 
 Input
 =====
@@ -70,7 +70,7 @@ crystal. By default the phases come from refining the starting model
 **(3)**, the usual case after molecular replacement. After experimental
 phasing, untick this and give the phases instead; if they are unbiased
 (experimental), say so, and they are used as restraints in refinement
-until the model is good enough, R-free 35% or better, not to need them.
+until the model is good enough, R-work 35% or better, not to need them.
 There is no need to run density modification first: ModelCraft runs
 Parrot itself.
 
@@ -84,11 +84,11 @@ atoms you are confident of. Clear it for a build from the phases alone.
 
 |options|
 
-ModelCraft runs for up to 25 cycles, stopping early when R-free has not
-improved for 4 **(1)**; untick the stop to run them all. The basic
-pipeline **(2)** is quicker: it builds with Buccaneer and Nautilus and
-refines with REFMAC, running Parrot and Sheetbend on the first cycle only,
-and sets the cycles to 5. Build selenomethionine instead of methionine for
+ModelCraft runs for up to 25 cycles, stopping early when R-work (not
+R-free) has not improved for 4 **(1)**; untick the stop to run them all.
+The basic pipeline **(2)** is quicker: it builds with Buccaneer and
+Nautilus and refines with REFMAC, running Parrot on the first cycle only;
+choosing it here also sets the cycles to 5. Build selenomethionine instead of methionine for
 SeMet protein **(3)**, and use twinned refinement only when you are sure
 the crystal is twinned **(4)**. The optional steps of the pipeline
 described above can each be turned off **(5)**.
@@ -110,8 +110,13 @@ both chains whole (263 and 165 residues) and reached R-work 0.26 and
 R-free 0.38 at 3.0 Å. It also built two short fragments, 8 residues each,
 that the AU contents do not account for: pieces built into density that
 belongs to something else, or to nothing. Look at anything the model holds
-beyond its expected contents before refining further. More cycles, the
-default 25 with automatic stopping, would usually do better.
+beyond its expected contents before refining further.
+
+This is also a run that did not help. The model it was given was complete
+and refined to R-free 0.343; ModelCraft's output is worse, 0.382 (its first
+cycle reached 0.359, but the output is chosen by R-work). A model that
+already accounts for the asymmetric unit needs refinement, not rebuilding:
+compare the output's R-free with the input's before going on from it.
 
 Reference
 =========
