@@ -1005,6 +1005,7 @@ class CPluginScript(CData):
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
         """
+        self._reported_status = None  # this run has not reported its finish yet
         # Validate input data using runTimeValidity() which includes both the
         # cheap container checks (validity()) and any heavier pre-flight checks
         # that plugins may define (e.g. monomer dictionary coverage).
@@ -3185,6 +3186,17 @@ class CPluginScript(CData):
         logger = logging.getLogger(__name__)
 
         logger.debug(f"[reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
+
+        # Once per run. Wrappers that report from their own startProcess()
+        # (coot_find_waters and a dozen others) were reported again by
+        # process(), so a pipeline listening for `finished` ran its next step
+        # twice (prosmart_refmac's post-water refinement and validation, each
+        # as two sub-jobs). The same status again is a no-op; a different one
+        # is a real change, and goes through.
+        if getattr(self, "_reported_status", None) == status:
+            logger.debug("[reportStatus] %s already reported for this run", status)
+            return status
+        self._reported_status = status
 
         # Save params.xml with the final container state (including output data)
         self.saveParams()
