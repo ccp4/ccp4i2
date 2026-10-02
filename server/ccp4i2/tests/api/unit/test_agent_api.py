@@ -47,12 +47,12 @@ def test_parameters_are_one_line_each(client, project):
 
 
 def test_a_task_without_judgement_says_so(client, project):
-    r = client.get(f"{API}/agent/tasks/ProvideAsuContents/")
+    r = client.get(f"{API}/agent/tasks/freerflag/")  # a task nobody has written up
     assert r.status_code == 200
     assert r.json()["data"]["judgement"] is None
     assert client.get(f"{API}/agent/tasks/no_such_task/").status_code == 404
 
-    job = _job(client, project)
+    job = _job(client, project, task="freerflag")
     verdict = client.get(f"{API}/jobs/{job.id}/judgement/").json()["data"]
     assert verdict["outcome"] is None and "No judgement" in verdict["note"]
 
