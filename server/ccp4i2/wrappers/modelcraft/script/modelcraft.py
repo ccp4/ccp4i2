@@ -38,11 +38,15 @@ def program_xml(result):
     refinements = [job for job in result.get("jobs") or [] if "rfree" in job]
     if refinements:
         first = refinements[0]
-        node = etree.SubElement(root, "InputModel")  # its first refinement's starting R
-        add(node, "r_work", first.get("initial_rwork"))
-        add(node, "r_free", first.get("initial_rfree"))
         add(root, "ResolutionHigh", first.get("resolution_high"))
         add(root, "DataCompleteness", first.get("data_completeness"))
+        if "--model" in (result.get("args") or []):
+            # Given a model, ModelCraft refines it first: that refinement's
+            # starting R is the model's. From phases alone, the first
+            # refinement is of what was built, and says nothing of an input.
+            node = etree.SubElement(root, "InputModel")
+            add(node, "r_work", first.get("initial_rwork"))
+            add(node, "r_free", first.get("initial_rfree"))
     return root
 
 

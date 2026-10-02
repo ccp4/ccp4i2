@@ -262,6 +262,82 @@ def strategy_attempts(blocks):
     return attempts, unparsed
 
 
+_ELLG_TARGET = re.compile(r"eLLG Target:\s*([\d.]+)")
+_ELLG_ROW = re.compile(r"^\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+(\S+)\s*$")
+_ELLG_RESO_ROW = re.compile(r"^\s*([\d.]+)\s+(\S+)\s*$")
+_ELLG_CALL = re.compile(r'eLLG indicates that placement of a single copy of ensemble "([^"]+)" should be (.+?)\s*$')
+
+
+def _table_after(lines, heading):
+    """The lines of the first table after the line that starts with `heading`:
+    from there to the first blank line after a row (column titles included)."""
+    rows, started = [], False
+    for line in lines:
+        if not started:
+            started = line.strip().startswith(heading)
+            continue
+        if not line.strip():
+            if rows:
+                break
+            continue
+        rows.append(line)
+    return rows
+
+
+def expected_llg(text):
+    """Phaser's expected LLG of each ensemble, from its EXPECTED LLG block.
+
+    Returns {"target": float or None, "ensembles": [{name, ellg, rmsd,
+    fraction_scattering, resolution_for_target, call}]}: one copy of each
+    ensemble alone, as Phaser tabulates them before searching. What it
+    expects says whether a search can succeed; the fractions of scattering
+    say how much of the asymmetric unit the models account for.
+    """
+    lines = text.splitlines()
+    m = _ELLG_TARGET.search(text)
+    out = {"target": float(m.group(1)) if m else None, "ensembles": []}
+    by_name = {}
+    for line in _table_after(lines, "eLLG: eLLG of ensemble alone"):
+        row = _ELLG_ROW.match(line)
+        if row:
+            entry = {"name": row.group(4), "ellg": float(row.group(1)),
+                     "rmsd": float(row.group(2)), "fraction_scattering": float(row.group(3))}
+            by_name[entry["name"]] = entry
+            out["ensembles"].append(entry)
+    # The first such table is for these data; a later one is "with perfect data"
+    for line in _table_after(lines, "eLLG-reso: Resolution to achieve target eLLG"):
+        row = _ELLG_RESO_ROW.match(line)
+        if row and row.group(2) in by_name:
+            by_name[row.group(2)]["resolution_for_target"] = float(row.group(1))
+    for line in lines:
+        call = _ELLG_CALL.search(line)
+        if call and call.group(1) in by_name:
+            by_name[call.group(1)]["call"] = call.group(2)
+    return out
+
+
+def expected_llg_xml(text, parent):
+    """expected_llg as <ExpectedLLG>, if Phaser computed one."""
+    found = expected_llg(text)
+    if not found["ensembles"]:
+        return None
+    node = etree.SubElement(parent, "ExpectedLLG")
+    if found["target"] is not None:
+        etree.SubElement(node, "Target").text = str(found["target"])
+    # One copy of each ensemble: how much of the AU the search models are
+    etree.SubElement(node, "FractionScatteringOfEnsembles").text = "%.5f" % sum(
+        e["fraction_scattering"] for e in found["ensembles"])
+    tags = {"name": "Name", "ellg": "eLLG", "rmsd": "RMSD",
+            "fraction_scattering": "FractionScattering",
+            "resolution_for_target": "ResolutionForTarget", "call": "Call"}
+    for entry in found["ensembles"]:
+        ensemble = etree.SubElement(node, "Ensemble")
+        for key, tag in tags.items():
+            if key in entry:
+                etree.SubElement(ensemble, tag).text = str(entry[key])
+    return node
+
+
 def _next_component(text):
     """The line marked '*' under 'Search Order (next search *)': '#2  blip *'.
 

@@ -14,6 +14,7 @@ from ccp4i2.wrappers.modelcraft.script.modelcraft import program_xml  # noqa: E4
 RESULT = {
     "version": "6.1.1",
     "termination_reason": "Normal",
+    "args": ["xray", "--contents", "contents.json", "--model", "xyzin.cif"],
     "jobs": [
         {"name": "csheetbend", "seconds": 2.1},
         {"name": "refmacat", "rwork": 0.27, "rfree": 0.30, "initial_rwork": 0.32,
@@ -47,3 +48,12 @@ def test_an_early_stop_says_why_and_claims_nothing():
     root = program_xml({"termination_reason": "No residues built", "cycles": []})
     assert root.findtext("TerminationReason") == "No residues built"
     assert root.find("Final") is None and root.find("InputModel") is None
+
+
+def test_from_phases_alone_there_is_no_input_model():
+    # The first refinement is then of the first build (GammaXe, from
+    # experimental phases): its starting R is not an input model's.
+    result = dict(RESULT, args=["xray", "--contents", "contents.json", "--phases", "x.mtz"])
+    root = program_xml(result)
+    assert root.find("InputModel") is None
+    assert root.findtext("ResolutionHigh") == "1.17"

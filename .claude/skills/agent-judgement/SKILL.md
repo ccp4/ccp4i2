@@ -64,3 +64,16 @@ An expert's reading is what turns `draft` into `reviewed`; the facade says
   the first thing an expert is asked to check.
 - Declare every result's `type` (float, int, str): an untyped text value is
   read as a float, fails, and is silently missing.
+- **Never name an interactive task as a `next` `task:`** (coot_rebuild,
+  moorhen, coot1; anything with `interactive=True` or a GUI an agent cannot
+  drive). Say in `advice:` what a person should do there, and give the
+  non-interactive task that follows, if there is one.
+- **One vocabulary per kind of task,** so an agent reasons the same way
+  whichever program ran. Refinement (prosmart_refmac, servalcat_pipe):
+  `refined` (done for now), `unconverged` (same again, more cycles),
+  `not_improving` (R-free did not fall: something upstream is wrong),
+  `needs_building` (fell, below 0.40: build next), `placed` (fell, at or
+  above 0.40: a right but distant or partial model, or a wrong one; build
+  decides), `failed`, `unjudged` (nothing to judge on). MR: `solved`,
+  `placed`, `partial`, `ambiguous`, `failed`.
+
