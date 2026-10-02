@@ -18,6 +18,12 @@ from ccp4i2.core.tasks import TASKS
     ("true", {}, True),
     ("false or RFREE < 1e-1", {"RFREE": 0.05}, True),
     ("-1 < X", {"X": 0}, True),
+    ("A - B >= 0.02", {"A": 0.30, "B": 0.25}, True),
+    ("A - B >= 0.02", {"A": 0.30, "B": 0.29}, False),
+    ("A-B>0", {"A": 2, "B": 1}, True),
+    ("A / B > 1.1 and -A < 0", {"A": 0.5, "B": 0.4}, True),
+    ("1 + 2 * 3 == 7", {}, True),
+    ("(1 + 2) * 3 == 9", {}, True),
 ])
 def test_conditions(text, values, expected):
     assert condition.holds(text, values) is expected
@@ -30,11 +36,13 @@ def test_a_missing_result_never_passes():
     assert not condition.holds("TFZ < 8", {"TFZ": None})
     assert not condition.holds("not (TFZ < 8)", {})
     assert not condition.holds('TFZ > "x"', {"TFZ": 3})
+    assert not condition.holds("A - B > 0", {"A": 1})
+    assert not condition.holds("A / B > 0", {"A": 1, "B": 0})
 
 
 @pytest.mark.parametrize("text", [
     "TFZ >=", "(TFZ > 8", "TFZ > 8)", "TFZ > 8 and", "__import__('os')",
-    "TFZ > 8; x", "and TFZ",
+    "TFZ > 8; x", "and TFZ", "A - ", "A * * B",
 ])
 def test_not_conditions(text):
     with pytest.raises(condition.ConditionError):

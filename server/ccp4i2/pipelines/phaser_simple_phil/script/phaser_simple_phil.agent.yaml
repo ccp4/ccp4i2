@@ -1,0 +1,327 @@
+task: phaser_simple_phil
+status: draft
+reviewed_by: []
+purpose: >
+  Places one search model (NCOPIES copies of it, optionally beside a
+  structure already placed) in the crystal by likelihood molecular
+  replacement with Phaser, trying the other space groups of the point group,
+  then by default runs shift-field refinement (Sheetbend) and ten cycles of
+  jelly-body REFMAC on the top solution as a quick test of the placement.
+
+use_when:
+  - The asymmetric unit holds one kind of molecule, or you place one
+    component at a time, and you have one model of it - a homologue, a
+    predicted model, or the same protein from another crystal form - whose
+    sequence identity or expected RMS deviation you can state.
+  - You have merged reflections (intensities or amplitudes), the AU
+    contents, and the Free R set the project will refine against.
+
+not_when:
+  - text: >
+      The AU holds several different molecules to be searched together,
+      or one component is to be searched with an ensemble of several models,
+      or you want the search as separate steps you can inspect.
+    instead: phaser_pipeline_phil
+  - text: >
+      You have no model yet and need one found and prepared from the
+      sequence.
+    instead: mrbump_basic
+  - text: >
+      The model was refined against this same crystal form (isomorphous);
+      no search is needed, only refinement.
+    instead: prosmart_refmac
+  - text: >
+      The data are a cryo-EM map, not reflections.
+    instead: molrep_map
+
+inputs:
+  - param: inputData.XYZIN
+    advice: >
+      One copy of the molecule, placed as one rigid body. Use the atom
+      selection to remove what will not match the crystal (flexible termini
+      and loops, ligands, other chains of the downloaded file), or give a
+      Chainsaw/Sculptor model. A multi-chain file is one rigid body: either
+      select one chain and set NCOPIES to the number in the AU, or keep the
+      oligomer and count it as one copy - NCOPIES counts copies of what is in
+      this file. MDM2 job 25 placed a Chainsaw model at 57% identity and the
+      solution came only from Phaser's deeper search (the 23rd rotation peak);
+      a poorer model than that may need phaser_pipeline_phil.
+  - param: inputData.SEARCHSEQUENCEIDENTITY
+    advice: >
+      A FRACTION (0.57, not 57). The default 0.9 says the model is nearly
+      the same protein; left at the default for a 30-50% homologue it tells
+      Phaser the model is better than it is. Phaser turns it into an expected
+      error that sets the expected LLG and from it the search resolution
+      (MDM2 job 25: identity 0.57 became "input RmsD 0.731" and the search was
+      cut to 3.85 A). Take the identity from the alignment that made the
+      model. With inputData.ID_RMS set to RMS, give SEARCHRMS instead; what
+      to give for a predicted model was not checked here.
+  - param: inputData.NCOPIES
+    advice: >
+      Copies of the search model in the AU, from the AU contents and a
+      Matthews analysis. Phaser reports a solution with fewer copies placed
+      than asked: count the Placement elements in program.xml.
+  - param: inputData.COMP_BY
+    advice: >
+      Give the WHOLE AU contents (ASU, with ASUFILE from Define AU contents)
+      even when the model covers only part of it, as in BetaBlip job 3
+      (contents BETA + BLIP, model beta only). Without a composition Phaser
+      assumes 50% solvent (help page), and the expected LLG and fraction of
+      scattering it uses are wrong.
+  - param: inputData.FREERFLAG
+    advice: >
+      Not used by Phaser, but by the Sheetbend and REFMAC after it, whose
+      R-free the verdict reads. Give the set the rest of the project refines
+      against - the one any earlier model of this crystal was refined
+      against - never a new one if such a model exists.
+  - param: inputData.XYZIN_FIXED
+    advice: >
+      With INPUT_FIXED True, a structure already placed in THIS crystal's
+      frame (same origin, hand and indexing) - typically the XYZOUT of an
+      earlier MR job on these data. It is not searched for, and the code
+      gives it an identity of 0.9 whatever it is (optimistic for a placed
+      homologue).
+  - param: inputData.RUNREFMAC
+    advice: >
+      Leave on (with RUNSHEETBEND): the ten jelly-body cycles are a test of
+      the placement, not a refinement, and the verdict separates "solved"
+      from "placed" by their R-free. With it off, a solution can be judged
+      only "placed".
+
+results:
+  VERDICT:
+    file: program.xml
+    xpath: .//PhaserMrResults/Verdict
+    type: str
+    meaning: >
+      Phaser's own one-line result. "Single Solution" in MDM2 job 25
+      and BetaBlip jobs 3 and 4, including the incomplete BetaBlip 3 - it does
+      not say the AU is complete. Absent when Phaser found nothing (the job
+      then ends Unsatisfactory, with no XYZOUT).
+  TFZ_FIRST:
+    file: program.xml
+    xpath: .//Solutions/Solution/Placements/Placement/TFZ
+    type: float
+    meaning: >
+      Translation-function Z-score of the first component placed, as
+      found in the search, before refinement. MDM2 25 8.0; BetaBlip 3 10.4.
+  TFZ_LAST:
+    file: program.xml
+    xpath: .//Solutions/Solution/Placements/Placement[last()]/TFZ
+    type: float
+    meaning: >
+      Search TFZ of the last component placed (the same element as
+      TFZ_FIRST for one copy). This is the number Phaser's 8.0 cutoff applies
+      to. BetaBlip 4 (phaser_pipeline_phil, second component) 18.6.
+  TFZ_REFINED:
+    file: program.xml
+    xpath: .//Solutions/Solution/TFZ
+    type: float
+    meaning: >
+      TFZ-equivalent of the refined top solution at full resolution
+      (MDM2 25 12.72, BetaBlip 3 24.40). This is the TFZ in the report's
+      solutions table. Always higher than the search TFZ; do NOT apply the
+      search thresholds to it.
+  LLG:
+    file: program.xml
+    xpath: .//Solutions/Solution/LLG
+    type: float
+    meaning: >
+      Log-likelihood gain of the refined top solution. MDM2 25 104.27;
+      BetaBlip 3 473.85 (beta only); BetaBlip 4 1053.54 (beta + BLIP).
+  SEARCH_OUTCOME:
+    file: program.xml
+    xpath: .//Strategy/Attempt[last()]
+    attribute: outcome
+    type: str
+    meaning: >
+      How the search for the last component ended, as the wrapper
+      narrates it - "placed" in all three evidence jobs; otherwise "no
+      definite solution", "no signal in translation function" or "no
+      solution at lower resolution" (strings in phaser_run.py, not seen in a
+      run here).
+  SPACEGROUP:
+    file: program.xml
+    xpath: .//Solutions/Solution/spaceGroup
+    type: str
+    meaning: >
+      Space group of the solution. If it differs from the input
+      data's, the data were reindexed and F_SIGF_OUT / FREERFLAG_OUT are the
+      files to use downstream.
+  RFREE_START:
+    file: program.xml
+    xpath: .//REFMAC/Overall_stats/stats_vs_cycle/new_cycle/r_free
+    type: float
+    meaning: >
+      R-free entering REFMAC (cycle 0, after Sheetbend). MDM2 25 0.543;
+      BetaBlip 3 0.453; BetaBlip 4 0.376.
+  RFREE:
+    file: program.xml
+    xpath: .//REFMAC/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free
+    type: float
+    meaning: >
+      R-free after the ten jelly-body cycles; also the job's KPI
+      "RFree". Absent if RUNREFMAC is False. MDM2 25 0.503 (1.35 A);
+      BetaBlip 3 0.447 (3.0 A); BetaBlip 4 0.343.
+  RWORK:
+    file: program.xml
+    xpath: .//REFMAC/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor
+    type: float
+    meaning: >
+      R after the ten cycles. MDM2 25 0.489; BetaBlip 3 0.435.
+  RESOLUTION:
+    file: program.xml
+    xpath: .//REFMAC/Overall_stats/resolution_high
+    type: float
+    meaning: >
+      High-resolution limit refined against (A). MDM2 25 1.346;
+      BetaBlip 3 3.004.
+  # FINDING: the expected LLG (eLLG) and the fraction of the AU scattering the
+  #   model represents are only in the Phaser log (job_1/log.txt, "eLLG ...
+  #   frac-scat"), not in program.xml. They are what would let an agent see
+  #   a partial solution (LLG well below what the contents predict). Both
+  #   should be added to program.xml.
+  # FINDING: dataReindexed (whether the data were reindexed to the solution's
+  #   space group) is an output parameter, not in program.xml; SPACEGROUP has
+  #   to be compared with the input data's instead.
+  # NOTE: [last()] is ElementTree XPath outside the subset the format lists;
+  #   judgement.read_result supports it. All xpaths were run against MDM2
+  #   job 25 and BetaBlip jobs 3 and 4. REFMAC values carry whitespace.
+
+verdict:
+  - when: TFZ_LAST >= 8 and RFREE < 0.40
+    outcome: solved
+    basis: >
+      TFZ 8: Phaser's own cutoff, printed in its log as "Z-score cutoff for
+      definite solution (8.00)" (BetaBlip job 3 job_1/log.txt line 1379),
+      and the help page ("A TFZ of 8 or more is usually a solution"); it
+      applies to the search TFZ, not the refined one. R-free 0.40: our runs
+      only - every R-free below 0.40 after the automatic refinement came from
+      a correct, near-complete model (BetaBlip 4 0.343 at 3.0 A; Gamma
+      molrep_pipe job 2 0.253; Thaumatin 17.4 0.281), and the one known wrong
+      solution refined to 0.461 (Thaumatin 17.9, wrong enantiomorph). Not a
+      published threshold; resolution-dependent; an expert should set it.
+  - when: TFZ_LAST >= 6 and RFREE < 0.40 and RFREE < RFREE_START
+    outcome: solved
+    basis: >
+      A search TFZ below Phaser's definite cutoff, but refinement confirms
+      the placement (R-free below 0.40 and falling). The 0.40 has the basis
+      above; the 6 has the basis of the "ambiguous" rule below. No evidence
+      job falls here.
+  - when: TFZ_LAST >= 8
+    outcome: placed
+    basis: >
+      The placement is right by Phaser's criterion (cutoff 8.00, above), but
+      the quick refinement did not bring R-free below 0.40 because the model
+      is distant or the AU is incomplete. Both phaser_simple_phil evidence
+      jobs land here and both are correct placements, checked by overlaying
+      C-alphas under symmetry: MDM2 job 25 (search TFZ 8.0, R-free 0.543 ->
+      0.503 at 1.35 A, a 57%-identity Chainsaw model; 78/85 CA within 2 A of
+      the refined MDM2 job 3 model) and BetaBlip job 3 (search TFZ 10.4,
+      R-free 0.453 -> 0.447 at 3.0 A, BLIP still unplaced; 263/263 CA within
+      2 A of BetaBlip 4's model). MDM2's 8.0 is rounded and sits on the line.
+  - when: TFZ_LAST >= 6
+    outcome: ambiguous
+    basis: >
+      Lower bound from the Phaser documentation's TFZ guide as recalled
+      (6-7 "possibly", 7-8 "probably" solved) - NOT verified in this
+      workspace: no document here states it and no job here has a search TFZ
+      between 6 and 8. An expert should confirm or remove it.
+  - when: true
+    outcome: failed
+    basis: No placement, or a search TFZ below 6.
+
+traps:
+  - >
+    The TFZ in the solutions table and in program.xml's Solution/TFZ
+    (TFZ_REFINED) is after refinement and far higher than the search TFZ
+    (MDM2 25 12.72 vs 8.0; BetaBlip 3 24.40 vs 10.4). Judging Phaser's 8
+    cutoff on it calls borderline searches clear.
+  - >
+    "Single Solution" and a high TFZ say the model is placed, not that the AU
+    is complete. BetaBlip 3 placed beta-lactamase (TFZ 10.4) with BLIP still
+    missing: LLG 474 and R-free 0.447, against LLG 1054 and R-free 0.343
+    once both were placed (BetaBlip 4). Compare what was placed with the AU
+    contents before deciding what "placed" means.
+  - >
+    A correct solution from a homologue refines to a high R-free here:
+    MDM2 25 (57%-identity Chainsaw model, correct) ended at R-free 0.503
+    after Sheetbend and ten jelly-body cycles. Do not reject a TFZ >= 8
+    solution on R-free alone, and do not answer it with more refinement:
+    rebuild it.
+  - >
+    SEARCHSEQUENCEIDENTITY is a fraction and defaults to 0.9. A homologue
+    left at the default, or given as a percentage, misinforms the error
+    model and the choice of search resolution.
+  - >
+    Phaser tries the other space groups of the point group and may change
+    the space group (MDM2 25 tested six P6x22 groups). When SPACEGROUP
+    differs from the input data's, build and refine against this job's
+    F_SIGF_OUT and FREERFLAG_OUT; a later job given the original data with
+    the reindexed model has an R-free near 0.5 and looks like a wrong
+    solution.
+
+next:
+  - when: outcome == "solved"
+    task: prosmart_refmac
+    inputs:
+      XYZIN: "phaser_simple_phil[-1].XYZOUT_REFMAC"
+      F_SIGF: "phaser_simple_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_simple_phil[-1].FREERFLAG"
+    advice: >
+      Full restrained refinement, then rebuild (coot_rebuild, or modelcraft
+      when the model is a homologue to be rebuilt into the target sequence).
+      F_SIGF and FREERFLAG resolve to the files this job consumed (it
+      produced none under those names). If SPACEGROUP differs from the input
+      data's, use phaser_simple_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT
+      instead. Keep the task name in the reference: a bare [-1].F_SIGF_OUT
+      skips back to an older job when this one has none.
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "phaser_simple_phil[-1].XYZOUT_REFMAC"
+      F_SIGF: "phaser_simple_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_simple_phil[-1].FREERFLAG"
+      ASUIN: "phaser_simple_phil[-1].ASUFILE"
+    advice: >
+      When the model covers the whole AU but is distant (MDM2 25), build
+      from the placement; judge by modelcraft's R-free, not the ten-cycle
+      one. Same space-group caveat as for "solved".
+  - when: outcome == "placed"
+    advice: >
+      FIRST compare what was placed with the AU contents. If the AU holds
+      another molecule or more copies (BetaBlip 3), place them before
+      building: run phaser_simple_phil again with INPUT_FIXED True,
+      XYZIN_FIXED "phaser_simple_phil[-1].XYZOUT[0]" and the next model as
+      XYZIN, or phaser_pipeline_phil with every component.
+  - when: outcome == "ambiguous"
+    task: modelcraft
+    inputs:
+      XYZIN: "phaser_simple_phil[-1].XYZOUT_REFMAC"
+      F_SIGF: "phaser_simple_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_simple_phil[-1].FREERFLAG"
+      ASUIN: "phaser_simple_phil[-1].ASUFILE"
+    advice: >
+      Build and judge by modelcraft's R-free; a wrong placement does not
+      improve. In parallel, check the identity given, trim the model further,
+      and read the Phaser log for tNCS or twinning warnings, which lower the
+      TFZ of a correct solution.
+  - when: outcome == "failed"
+    advice: >
+      Check the inputs first (identity as a fraction, NCOPIES against a
+      Matthews analysis, model trimmed to its core, full AU contents). Then
+      try molrep_pipe with the same model, other models (mrbump_basic finds
+      and prepares them), or several models as an ensemble in
+      phaser_pipeline_phil.
+
+sources:
+  - docs/user/source/tasks/phaser_simple_phil/index.rst
+  - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.py
+  - server/ccp4i2/pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.py
+  - server/ccp4i2/wrappers/phaser_phil/script/phaser_run.py (program.xml layout, Attempt outcomes)
+  - server/ccp4i2/lib/utils/files/file_use.py (produced before consumed; relative references skip jobs without the file)
+  - "run: MDM2 job 25 (phaser_simple_phil; Chainsaw model, identity 0.57; correct, distant)"
+  - "run: BetaBlip job 3 (phaser_simple_phil; beta only; correct, partial)"
+  - "run: BetaBlip job 4 (phaser_pipeline_phil; beta + BLIP; complete)"
+  - "run: Thaumatin job 17.9 (refmac after MOLREP in the wrong enantiomorph)"
+  - "Phaser log text: 'Z-score cutoff for definite solution (8.00)'"

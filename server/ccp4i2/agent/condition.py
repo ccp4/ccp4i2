@@ -4,11 +4,12 @@ Deliberately tiny, and parsed here rather than handed to ``eval``, because
 the files are data that anyone may edit:
 
     TFZ >= 8 and LLG > 60
+    RFREE_START - RFREE >= 0.02 and RFREE - RWORK < 0.07
     outcome == "solved"
     not (RFREE > 0.35) or true
 
 Names are result names; values are numbers, double-quoted strings, ``true``
-and ``false``. A comparison with a result that could not be read is unknown, and an
+and ``false``; ``+ - * /`` combine numbers. A comparison with a result that could not be read is unknown, and an
 unknown condition does not hold, so a verdict list falls through to its
 catch-all rather than claiming success on a missing number.
 """
@@ -17,9 +18,10 @@ import re
 
 _TOKEN = re.compile(r"""
     \s*(?:
-      (?P<num>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)
+      (?P<num>\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)
     | "(?P<str>[^"]*)"
     | (?P<op><=|>=|==|!=|<|>)
+    | (?P<arith>[-+*/])
     | (?P<paren>[()])
     | (?P<word>[A-Za-z_][A-Za-z0-9_]*)
     )""", re.X)
@@ -28,6 +30,9 @@ _COMPARE = {
     "<": operator.lt, "<=": operator.le, ">": operator.gt,
     ">=": operator.ge, "==": operator.eq, "!=": operator.ne,
 }
+
+
+_ARITH = {"+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.truediv}
 
 
 class ConditionError(ValueError):
@@ -93,11 +98,31 @@ def parse(text):
         if peek() == ("word", "not"):
             take()
             return ("not", factor())
-        left = atom()
+        left = sum_()
         if peek()[0] == "op":
             op = take()[1]
-            return ("cmp", op, left, atom())
+            return ("cmp", op, left, sum_())
         return left
+
+    def sum_():
+        node = product()
+        while peek() in (("arith", "+"), ("arith", "-")):
+            op = take()[1]
+            node = ("arith", op, node, product())
+        return node
+
+    def product():
+        node = signed()
+        while peek() in (("arith", "*"), ("arith", "/")):
+            op = take()[1]
+            node = ("arith", op, node, signed())
+        return node
+
+    def signed():
+        if peek() == ("arith", "-"):
+            take()
+            return ("arith", "-", ("lit", 0.0), signed())
+        return atom()
 
     def atom():
         kind, value = peek()
@@ -134,7 +159,7 @@ def names(tree):
         return set()
     if kind == "not":
         return names(tree[1])
-    if kind == "cmp":
+    if kind in ("cmp", "arith"):
         return names(tree[2]) | names(tree[3])
     return names(tree[1]) | names(tree[2])
 
@@ -162,6 +187,14 @@ def evaluate(tree, values):
         if decisive in sides:
             return decisive
         return MISSING if MISSING in sides else not decisive
+    if kind == "arith":
+        left, right = evaluate(tree[2], values), evaluate(tree[3], values)
+        if left is MISSING or right is MISSING:
+            return MISSING
+        try:
+            return _ARITH[tree[1]](left, right)
+        except (TypeError, ZeroDivisionError):  # text, or a ratio to zero: unknown
+            return MISSING
     left, right = evaluate(tree[2], values), evaluate(tree[3], values)
     if left is MISSING or right is MISSING:
         return MISSING
