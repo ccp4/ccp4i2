@@ -18,19 +18,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Xia2 runs" }}
         containerHint="FolderLevel"
       >
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          Xia2 directory to import
+        <CCP4i2TaskElement
+          itemName="XIA2_DIRECTORY"
+          {...props}
+          qualifiers={{
+            guiLabel: "xia2 run directory, or a directory of runs",
+            toolTip: "The directory of one xia2 run (it holds DataFiles), or one holding several runs",
+          }}
+        />
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          The runs are found in it: the directory itself if it is a xia2 run,
+          otherwise each sub-directory that is. Each run&apos;s merged data, free
+          set and unmerged integrated reflections are imported.
         </Typography>
-        <CCP4i2TaskElement itemName="XIA2_DIRECTORY" {...props} qualifiers={{ toolTip: "Browse to the directory \"xia2\"" }} />
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 1 }}>
-          When a valid top-level XIA2 directory is selected above, the list of successful
-          data reduction protocols that XIA2 performed will be summarised below.
-          Select and delete ("-") the protocols you do not wish to import.
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          Protocols to keep from this XIA2 directory
-        </Typography>
-        <CCP4i2TaskElement itemName="runSummaries" {...props} />
       </CCP4i2ContainerElement>
     </Paper>
   );

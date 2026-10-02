@@ -31,6 +31,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             />
             <CCP4i2TaskElement
               {...props}
+              itemName="XIA2_RUN"
+              qualifiers={{ guiLabel: "Previous xia2 run directories" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
               itemName="DIALS_INTEGRATED"
               qualifiers={{ guiLabel: "DIALS .refl" }}
             />
@@ -95,12 +100,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             >
               <CCP4i2TaskElement
                 {...props}
-                itemName="max_clusters"
+                itemName="clustering__max_output_clusters"
                 qualifiers={{ guiLabel: "Maximum number of clusters" }}
               />
               <CCP4i2TaskElement
                 {...props}
-                itemName="cluster_method"
+                itemName="clustering__method"
                 qualifiers={{ guiLabel: "Metric on which to perform clustering" }}
               />
             </CCP4i2ContainerElement>

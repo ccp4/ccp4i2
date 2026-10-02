@@ -1,5 +1,8 @@
 {
  "gaps": {
+  "AlternativeImportXIA2": [
+   "runSummaries"
+  ],
   "coot_script_lines": [
    "SHOWSCRIPT"
   ]
@@ -186,7 +189,6 @@
    "inputData.XYZIN_REF"
   ],
   "AlternativeImportXIA2": [
-   "controlParameters.runSummaries",
    "inputData.XIA2_DIRECTORY"
   ],
   "ImportAsuContent": [
@@ -213,6 +215,9 @@
   "ImportObs": [
    "controlParameters.COLUMNS",
    "inputData.HKLIN"
+  ],
+  "ImportUnmerged": [
+   "inputData.UNMERGEDIN"
   ],
   "ImportPhases": [
    "controlParameters.COLUMNS",
@@ -384,6 +389,14 @@
    "inputData.DELFPHIIN_LIST",
    "inputData.DICT",
    "inputData.FPHIIN_LIST",
+   "inputData.XYZIN_LIST"
+  ],
+  "moorhen": [
+   "inputData.DELFPHIINANOM_LIST",
+   "inputData.DELFPHIIN_LIST",
+   "inputData.DICT_LIST",
+   "inputData.FPHIIN_LIST",
+   "inputData.MAPIN_LIST",
    "inputData.XYZIN_LIST"
   ],
   "coot_rebuild": [
@@ -567,9 +580,18 @@
    "controlParameters.PHASE_SOURCE",
    "controlParameters.SOLVENT_CONTENT",
    "inputData.ABCD",
+   "inputData.ASUIN",
    "inputData.FREERFLAG",
    "inputData.F_SIGF",
    "inputData.XYZIN"
+  ],
+  "dnatco_pipe": [
+   "controlParameters.GENERATE_RESTRAINTS",
+   "controlParameters.MAX_RMSD",
+   "controlParameters.RESTRAINTS_SIGMA",
+   "controlParameters.TOGGLE_XYZIN2",
+   "inputData.XYZIN1",
+   "inputData.XYZIN2"
   ],
   "dials_image": [
    "inputData.JSON_IN",
@@ -824,6 +846,15 @@
    "inputData.NPhiObjects",
    "inputData.Obs_1",
    "inputData.Phi_1"
+  ],
+  "pandda_campaign": [
+   "controlParameters.DISPATCH_TARGET",
+   "controlParameters.LOCAL_CPUS",
+   "controlParameters.MIN_CHARACTERISATION_DATASETS",
+   "controlParameters.PANDDA_EXECUTABLE",
+   "controlParameters.RUN_MODE",
+   "controlParameters.SCRATCH_DIR",
+   "inputData.DATASETS"
   ],
   "matthews": [
    "inputData.ASUIN",

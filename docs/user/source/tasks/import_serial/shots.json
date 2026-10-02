@@ -1,0 +1,28 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [1400, 1500],
+  "draft": true,
+  "shots": [
+    {
+      "out": "import_serial_input.png",
+      "job": 10,
+      "tabs": ["Task interface"],
+      "section": "Input Data",
+      "callouts": [
+        {"field": "Merged data file (I)", "badge": "1"},
+        {"field": "Number of resolution bins", "badge": "2"},
+        {"field": "Load symmetry from", "badge": "3"},
+        {"field": "Space group", "badge": "4"},
+        {"field": "Wavelength (A)", "badge": "5"},
+        {"field": "High resolution cutoff", "badge": "6"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/import_serial_pipe/script/import_serial_pipe.def.xml": "0190039c26d130b36e71ec03f5694d6a983771c3",
+    "server/ccp4i2/pipelines/import_serial_pipe/script/import_serial_pipe.py": "999ba4c884a7260e9dc1b7e250927656e89729c5",
+    "client/renderer/components/task/task-interfaces/import_serial_pipe.tsx": "138e0dc9a7485374af77155e93498ee05a1b2e6a",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1400
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "mrparse_input.png",
+      "job": 33,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "field": "Sequence",
+          "badge": "1"
+        },
+        {
+          "field": "Observed data",
+          "badge": "2"
+        },
+        {
+          "field": "Most search models to prepare",
+          "badge": "3"
+        },
+        {
+          "field": "Where to look for search models",
+          "badge": "4"
+        },
+        {
+          "field": "Predict secondary structure, coiled coils and transmembrane regions",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "mrparse_report.png",
+      "job": 32,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Finished running MrParse"
+      },
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "Open MrParse Results",
+          "badge": "6"
+        },
+        {
+          "text": "Output Data",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/mrparse/script/mrparse.def.xml": "57fdfa31e4c4d5f5844d10c1c7a008f814792d7b",
+    "server/ccp4i2/wrappers/mrparse/script/mrparse_wrapper.py": "2f76033c515eed46548e475842f932b0f7dae4c7",
+    "server/ccp4i2/wrappers/mrparse/script/mrparse_report.py": "92fa7966809b69dff6d068121ca7a788dc467b50",
+    "client/renderer/components/task/task-interfaces/mrparse.tsx": "425cceb3e0919f6df1aa28ec1b14399ea23c1bfa",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

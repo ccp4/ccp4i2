@@ -60,6 +60,16 @@ class xia2_multiplex(PhilPluginScript):
             expt = refl.rsplit(".refl", 1)[0] + ".expt"
             self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
 
+        # The previous xia2 runs: their integrated DIALS files are in
+        # DataFiles. This input was declared and offered but never read, so a
+        # job given only xia2 runs ran with no data ("No Experiments found").
+        for run in self.container.inputData.XIA2_RUN:
+            run_dir = str(run.getFullPath() or "").strip()
+            if not run_dir:
+                continue
+            for expt, refl in self.extract_integrated_dials_files(os.path.join(run_dir, "DataFiles")):
+                self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
+
         self.xmlroot = etree.Element("Xia2Multiplex")
 
         self.watchFile(

@@ -40,10 +40,12 @@ X-ray data reduction and analysis
    :maxdepth: 1
 
    aimless_pipe/index
+   xia2_multiplex/index
    freerflag/index
    matthews/index
    srf/index
    AUSPEX/index
+   xia2_ssx_reduce/index
 
 
 ===================================

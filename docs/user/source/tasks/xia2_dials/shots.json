@@ -1,0 +1,88 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "xia2_dials_input.png",
+      "job": 2,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Locate datasets",
+      "callouts": [
+        {
+          "field": "Image file",
+          "badge": "1"
+        },
+        {
+          "text": "Image range",
+          "badge": "2"
+        },
+        {
+          "text": "...Or let xia2 find datasets",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "xia2_dials_settings.png",
+      "job": 2,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Basic parameters",
+      "callouts": [
+        {
+          "field": "Separate anomalous pairs in merging",
+          "badge": "4",
+          "dynamic": true
+        },
+        {
+          "field": "Space group",
+          "badge": "5"
+        },
+        {
+          "field": "High resolution cutoff",
+          "badge": "6",
+          "dynamic": true
+        }
+      ],
+      "dynamic_section": true
+    },
+    {
+      "out": "xia2_dials_report.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "xia2 summary",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "Probable space groups",
+          "badge": "7"
+        },
+        {
+          "text": "High res.",
+          "badge": "8"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/xia2_dials/script/xia2_dials.def.xml": "1e1f16f793756d9a931ff73ff0cddff0320035be",
+    "server/ccp4i2/wrappers/xia2_dials/script/xia2_dials.py": "cdf4df41510c8e703e375552560a145a99872a7e",
+    "server/ccp4i2/wrappers/xia2_dials/script/xia2_dials_report.py": "550c4d5881c9c3132f12dffd58e41d3d407e06c6",
+    "client/renderer/components/task/task-interfaces/xia2_dials.tsx": "cbae7ca8c27bc84986c45605479719613606309b",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

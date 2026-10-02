@@ -15,6 +15,8 @@ class findmyseq(CPluginScript):
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
                            'In case needed (Prob not needed here)', 
+                           'severity':CCP4ErrorHandling.SEVERITY_ERROR },
+                    102 : {'description' : 'findmysequence wrote no results file',
                            'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
 
     def __init__(self, *args, **kwargs):
@@ -83,7 +85,11 @@ class findmyseq(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def loadJsonOut(self):
-        # Load json file & write output sequence
+        # Load json file & write output sequence. If the program stopped
+        # before writing it, say so rather than raise on the open.
+        if not os.path.isfile(self.outjfile):
+            self.appendErrorReport(102, str(self.outjfile))
+            return False
         jfi = open(self.outjfile)
         data = json.load(jfi)
         jfi.close()

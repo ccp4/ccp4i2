@@ -1,0 +1,94 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 15000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "xia2_ssx_reduce_input.png",
+      "job": 9,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Search for xia2.ssx integrated files",
+      "callouts": [
+        {
+          "field": "Root directory",
+          "badge": "1"
+        },
+        {
+          "field": "Reflections from DIALS",
+          "badge": "2",
+          "dynamic": true
+        }
+      ]
+    },
+    {
+      "out": "xia2_ssx_reduce_basic.png",
+      "job": 9,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Basic parameters",
+      "callouts": [
+        {
+          "field": "d_min",
+          "badge": "3"
+        },
+        {
+          "field": "Reference model or intensities",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "xia2_ssx_reduce_workflow.png",
+      "job": 9,
+      "tabs": [
+        "Task interface",
+        "Advanced parameters"
+      ],
+      "section": "Workflow options",
+      "callouts": [
+        {
+          "text": "Workflow:",
+          "badge": "5"
+        },
+        {
+          "field": "reduction_batch_size",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "xia2_ssx_reduce_cell.png",
+      "job": 9,
+      "tabs": [
+        "Task interface",
+        "Advanced parameters"
+      ],
+      "section": "Unit cell filtering",
+      "callouts": [
+        {
+          "text": "Calculated median cell",
+          "badge": "7"
+        },
+        {
+          "text": "Absolute angle tolerance",
+          "badge": "8"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/xia2_ssx_reduce/script/xia2_ssx_reduce.def.xml": "98cfe02b0ece5e0be5b5b496f8951438839fac4d",
+    "server/ccp4i2/wrappers/xia2_ssx_reduce/script/xia2_ssx_reduce.py": "69caab62768c4eaf92e7fb3922db2b14c6b7a67f",
+    "server/ccp4i2/wrappers/xia2_ssx_reduce/script/xia2_ssx_reduce_report.py": "2504594ce4b3468807bbaea58dbf050dc0f37a87",
+    "client/renderer/components/task/task-interfaces/xia2_ssx_reduce.tsx": "c44330fa226bb501e2987de75e8a50704e59871c",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "MDM2",
+  "viewport": [1400, 1400],
+  "settle": 15000,
+  "draft": true,
+  "shots": [
+    {"out": "arpwarp_input.png", "job": 126, "tabs": ["Input data"], "section": "Input data",
+     "callouts": [
+       {"field": "AWA_FOBS", "badge": "1"},
+       {"field": "Free R set", "badge": "2"},
+       {"field": "Atomic model", "badge": "3"},
+       {"field": "Phases", "badge": "4"},
+       {"field": "Substructure", "badge": "5"},
+       {"field": "AU contents", "badge": "6"}
+     ]},
+    {"out": "arpwarp_parameters.png", "job": 126, "tabs": ["Parameters"], "section": "Parameters",
+     "callouts": [
+       {"field": "AWA_ARP_MODE", "badge": "7"},
+       {"field": "AWA_REF_MODE", "badge": "8"},
+       {"field": "AWA_BIG_CYCLES", "badge": "9"},
+       {"field": "AWA_SMALL_CYCLES", "badge": "10"}
+     ]}
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/arp_warp_classic/script/arp_warp_classic.def.xml": "c738792d2c59323ee8d9dfaeed8df5574010d5e5",
+    "server/ccp4i2/wrappers/arp_warp_classic/script/arp_warp_classic.py": "113030a44ec1def8b658f8781d88186169e0d634",
+    "server/ccp4i2/wrappers/arp_warp_classic/script/arp_warp_classic_report.py": "2dbc9db3b296aacf2f37502eceb88365aa1adab4",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}
