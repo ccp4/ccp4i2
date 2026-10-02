@@ -3,6 +3,7 @@ import React, {
   forwardRef,
   useCallback,
   useMemo,
+  useRef,
   useState,
   createContext,
   useContext,
@@ -55,6 +56,7 @@ import { useFileMenu } from "../providers/file-context-menu";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { useSet } from "../hooks";
+import { deletesViewedJob } from "../utils";
 
 // =============================================================================
 // Types
@@ -109,6 +111,8 @@ interface JobTreeContextValue {
   selectMode: boolean;
   selectedJobIds: Set<number>;
   toggleJobSelection: (jobId: number) => void;
+  /** Applies a row click to the selection; true if it was a selection click. */
+  selectByClick: (job: JobTreeNode, event: React.MouseEvent) => boolean;
 }
 
 const JobTreeContext = createContext<JobTreeContextValue>({
@@ -119,6 +123,7 @@ const JobTreeContext = createContext<JobTreeContextValue>({
   selectMode: false,
   selectedJobIds: new Set(),
   toggleJobSelection: () => {},
+  selectByClick: () => false,
 });
 
 // =============================================================================
@@ -424,6 +429,9 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     [selectedJobIds]
   );
 
+  // The job a shift-click extends the range from.
+  const anchorJobId = useRef<number | null>(null);
+
   // Single consolidated API call
   const { jobTree, isLoading, mutate: mutateJobTree } = useJobTree(projectId);
 
@@ -448,7 +456,48 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     ? (lookups.jobsById.get(Number(jobid))?.uuid ?? null)
     : null;
 
-  // Context value including selection state
+  // Transform to tree view format (with optional filtering)
+  const treeViewItems = useTreeViewItems(jobTree, filterText);
+
+  // Ctrl/Cmd-click toggles a job and shift-click ticks a range of the jobs on
+  // screen; either enters select mode, ticking the open job first. In select
+  // mode a plain click toggles. Only top-level jobs can be selected.
+  const selectByClick = useCallback(
+    (job: JobTreeNode, event: React.MouseEvent) => {
+      const toggle = event.ctrlKey || event.metaKey;
+      if (!selectMode && !toggle && !event.shiftKey) return false;
+      if (job.number.includes(".")) return true;
+
+      if (!selectMode) {
+        setSelectMode(true);
+        anchorJobId.current = null;
+        const viewed = lookups.jobsById.get(Number(jobid));
+        if (viewed && !viewed.number.includes(".")) {
+          selectedJobIds.add(viewed.id);
+          anchorJobId.current = viewed.id;
+          if (viewed.id === job.id) return true;
+        }
+      }
+
+      if (event.shiftKey && anchorJobId.current !== null) {
+        const visible = treeViewItems.map((item) => lookups.jobsByUuid.get(item.uuid)?.id);
+        const from = visible.indexOf(anchorJobId.current);
+        const to = visible.indexOf(job.id);
+        if (from >= 0 && to >= 0) {
+          visible
+            .slice(Math.min(from, to), Math.max(from, to) + 1)
+            .forEach((id) => id !== undefined && selectedJobIds.add(id));
+          return true;
+        }
+      }
+
+      toggleJobSelection(job.id);
+      anchorJobId.current = job.id;
+      return true;
+    },
+    [selectMode, lookups, jobid, selectedJobIds, treeViewItems, toggleJobSelection]
+  );
+
   const contextValue = useMemo<JobTreeContextValue>(
     () => ({
       ...lookups,
@@ -456,12 +505,10 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
       selectMode,
       selectedJobIds,
       toggleJobSelection,
+      selectByClick,
     }),
-    [lookups, taskShortTitles, selectMode, selectedJobIds, toggleJobSelection]
+    [lookups, taskShortTitles, selectMode, selectedJobIds, toggleJobSelection, selectByClick]
   );
-
-  // Transform to tree view format (with optional filtering)
-  const treeViewItems = useTreeViewItems(jobTree, filterText);
 
   const getItemLabel = useItemLabel(taskShortTitles);
 
@@ -484,6 +531,16 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
       }
     },
     [lookups.jobsByUuid, navigate, selectMode, toggleJobSelection]
+  );
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (selectMode && event.key === "Escape") {
+        exitSelectMode();
+        (document.activeElement as HTMLElement | null)?.blur();
+      }
+    },
+    [selectMode, exitSelectMode]
   );
 
   const handleTreeSelection = useCallback(
@@ -525,9 +582,16 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
           type: "show",
           what: `${jobIds.length} selected job${jobIds.length !== 1 ? "s" : ""}`,
           onDelete: async () => {
+            exitSelectMode();
+            const deleted = [
+              ...jobIds.map((id) => lookups.jobsById.get(id)!),
+              ...(additional_dependents || []),
+            ];
+            if (deletesViewedJob(lookups.jobsById.get(Number(jobid)), deleted)) {
+              navigate.push(`/ccp4i2/project/${projectId}`);
+            }
             await api.post("jobs/bulk_delete/", { job_ids: jobIds });
             mutateJobTree();
-            exitSelectMode();
           },
           onCancel: () => {},
           children:
@@ -561,7 +625,17 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     } catch (error) {
       console.error("Failed to fetch bulk dependencies:", error);
     }
-  }, [selectedJobIds, api, deleteDialog, mutateJobTree]);
+  }, [
+    selectedJobIds,
+    api,
+    deleteDialog,
+    mutateJobTree,
+    exitSelectMode,
+    lookups.jobsById,
+    jobid,
+    navigate,
+    projectId,
+  ]);
 
   if (isLoading) {
     return <Skeleton variant="rectangular" width="100%" height={200} />;
@@ -576,6 +650,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
       {selectMode ? (
         <Paper
           elevation={2}
+          onKeyDown={handleKeyDown}
           sx={{ p: 1, mb: 1, bgcolor: "action.selected" }}
         >
           <Stack direction="row" alignItems="center" spacing={1}>
@@ -636,6 +711,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
         slots={{ item: CustomTreeItem }}
         onSelectedItemsChange={handleTreeSelection}
         selectedItems={selectedItems}
+        onKeyDown={handleKeyDown}
         sx={{ flex: "auto", overflowY: "auto", scrollbarWidth: "thin" }}
       />
     </JobTreeContext.Provider>
@@ -649,7 +725,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
   function CustomTreeItem({ id, itemId, label, disabled, children }, ref) {
     const { job, file, isJob, timestamp } = useTreeItemData(itemId);
-    const { selectMode, selectedJobIds, toggleJobSelection } = useContext(JobTreeContext);
+    const { selectMode, selectedJobIds, selectByClick } = useContext(JobTreeContext);
     // Only top-level jobs can be selected for bulk deletion.
     const isTopLevelJob = Boolean(job && !job.number.includes("."));
 
@@ -770,18 +846,22 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       [handleMenuClick, selectMode]
     );
 
-    // In select mode a click anywhere on a top-level row toggles its checkbox
-    // (sub-job rows do nothing). defaultMuiPrevented stops the tree view from
-    // treating the click as a selection, which would otherwise navigate.
+    // defaultMuiPrevented stops the tree view from treating a selection
+    // click as its own selection, which would otherwise navigate.
     const handleContentClick = useCallback(
       (event: React.MouseEvent<HTMLElement> & TreeViewCancellableEvent) => {
-        if (!selectMode) return;
-        event.defaultMuiPrevented = true;
-        if (job && isTopLevelJob) {
-          toggleJobSelection(job.id);
-        }
+        const handled = job ? selectByClick(job, event) : selectMode;
+        if (handled) event.defaultMuiPrevented = true;
       },
-      [selectMode, job, isTopLevelJob, toggleJobSelection]
+      [selectMode, job, selectByClick]
+    );
+
+    // Shift-click would otherwise select the label text.
+    const handleContentMouseDown = useCallback(
+      (event: React.MouseEvent<HTMLElement>) => {
+        if (event.shiftKey) event.preventDefault();
+      },
+      []
     );
 
     // Double-clicking the label starts a rename; not while selecting.
@@ -900,7 +980,10 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
         sx={undefined}
       >
         <TreeItem2Content
-          {...getContentProps({ onClick: handleContentClick })}
+          {...getContentProps({
+            onClick: handleContentClick,
+            onMouseDown: handleContentMouseDown,
+          })}
           onContextMenu={handleContextMenu}
           onDoubleClick={handleDoubleClick}
           sx={{
@@ -953,11 +1036,6 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
             <Checkbox
               size="small"
               checked={selectedJobIds.has(job.id)}
-              onChange={(e) => {
-                e.stopPropagation();
-                toggleJobSelection(job.id);
-              }}
-              onClick={(e) => e.stopPropagation()}
               sx={{ p: 0.5 }}
             />
           )}
