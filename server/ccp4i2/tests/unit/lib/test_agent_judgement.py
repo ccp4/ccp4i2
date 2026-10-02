@@ -53,7 +53,7 @@ def test_names():
     assert condition.names(condition.parse("A > 1 and (B < 2 or not C == 3)")) == {"A", "B", "C"}
 
 
-PROGRAM_XML = """<PHASER><Solution><TFZ>12.4</TFZ><LLG>310</LLG>
+PROGRAM_XML = """<PHASER><Rama>4.01%</Rama><Solution><TFZ>12.4</TFZ><LLG>310</LLG>
 <Space attr="P 21 21 21"/></Solution><Solution><TFZ>5.0</TFZ></Solution></PHASER>"""
 
 JUDGEMENT = {
@@ -65,6 +65,7 @@ JUDGEMENT = {
         "SG": {"xpath": ".//Solution/Space", "attribute": "attr", "type": "str"},
         "RFREE": {"file": "kpi", "kpi": "RFree"},
         "ABSENT": {"xpath": ".//Nowhere"},
+        "RAMA": {"xpath": ".//Rama"},
     },
     "verdict": [
         {"when": "TFZ >= 8 and LLG > 60", "outcome": "solved", "basis": "doc"},
@@ -87,7 +88,7 @@ def job_dir(tmp_path):
 def test_results_are_read_from_the_job(job_dir):
     values = judgement.read_results(JUDGEMENT, job_dir, kpis={"RFree": 0.27})
     assert values == {"TFZ": 12.4, "LLG": 310, "SG": "P 21 21 21",
-                      "RFREE": 0.27, "ABSENT": None}
+                      "RFREE": 0.27, "ABSENT": None, "RAMA": 4.01}
 
 
 def test_verdict_first_that_holds(job_dir):

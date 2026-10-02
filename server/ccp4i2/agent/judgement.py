@@ -33,7 +33,13 @@ def load(task_name=None, path=None):
         return yaml.safe_load(stream)
 
 
-_TYPES = {"float": float, "int": lambda s: int(float(s)), "str": str, "string": str}
+def _number(text):
+    """A number as a program wrote it: "4.01" or "4.01%" (a percentage as text)."""
+    text = str(text).strip()
+    return float(text[:-1] if text.endswith("%") else text)
+
+
+_TYPES = {"float": _number, "int": lambda s: int(_number(s)), "str": str, "string": str}
 
 
 def read_result(spec, job_dir, kpis=None):
