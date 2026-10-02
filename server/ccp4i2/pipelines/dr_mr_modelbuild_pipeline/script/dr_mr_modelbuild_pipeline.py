@@ -314,17 +314,14 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             print("Now I have to work out what is best")
 
             try:
-                # TODO: Will break without the old Buccaneer pipeline
-                print("Get rfactors")
-                rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
-                print("Get rfrees")
-                rfrees = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
-                r0 = rfactors[0].text
-                r1 = rfactors[1].text
-                rf0 = rfrees[0].text
-                rf1 = rfrees[1].text
+                # The R factors of the build in each space group, from each
+                # ModelCraft run's own result (this read the old Buccaneer
+                # pipeline's XML, which is no longer written, so the choice
+                # always failed). Choose by R-free.
+                r0, rf0 = modelcraft_r_factors(self.modelcraft)
+                r1, rf1 = modelcraft_r_factors(self.modelcraft2)
 
-                if float(r0) < float(r1):
+                if float(rf0) <= float(rf1):
 
                     print("Copy FREER")
                     shutil.copyfile(str(self.aimlessPlugin.container.outputData.FREEROUT), str(self.container.outputData.FREEROUT))
@@ -693,55 +690,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         self.cootPlugin.process()
 
     def processModelCraft(self, plugin, **kw):
-        #I am reimplementing this because I want to be able to reproduce the top part of ModelCraft pipeline so that I can get its XML.
-        ''' Check input data is set, create program command script (by calling makeCommandAndScript
-        which should be implemented in sub-class and call startProcess '''
-        #print 'CPluginScript.process',plugin.objectName()
-        #plugin.loadProjectDefaults()
-        try:
-            unsetData = plugin.checkInputData()
-        except:
-            plugin.appendErrorReport(41)
-            return plugin.reportStatus(CPluginScript.FAILED)
-        #print 'CPluginScript.process unsetData',unsetData
-        if len(unsetData) > 0:
-            return plugin.reportStatus(CPluginScript.FAILED)
-        try:
-            rv = plugin.checkOutputData(plugin.container)
-            #print 'CPluginScript.process unsetOutputData',e
-        except Exception as e:
-            plugin.appendErrorReport(42, exc_info=sys.exc_info())
-        else:
-            if len(rv) > 0:
-                plugin.extendErrorReport(rv)
-        try:
-            status = plugin.processInputFiles()
-        except CException as e:
-            return plugin.reportStatus(CPluginScript.FAILED)
-        except Exception as e:
-            plugin.appendErrorReport(43, exc_info=sys.exc_info())
-            plugin.reportStatus(CPluginScript.FAILED)
-            return CPluginScript.FAILED
-        else:
-            #print 'CPluginScript.process processInputFiles',status
-            if status == CPluginScript.FAILED:
-                return plugin.reportStatus(CPluginScript.FAILED)
+        """Run ModelCraft, recording where its output goes.
 
-        if plugin.editComFile:
-            plugin.displayEditor()
-            return
-        try:
-            rv = self.startModelCraftProcess(plugin)
-        except:
-            plugin.appendErrorReport(48, exc_info=sys.exc_info())
-            return plugin.reportStatus(CPluginScript.FAILED)
-        else:
-            if rv == CPluginScript.FAILED:
-                return plugin.reportStatus(rv)
-        if not plugin._ifAsync:
-            return plugin.postProcess(processId=plugin._runningProcessId)
-        else:
-            return CPluginScript.SUCCEEDED
+        This was a copy of an old CPluginScript.process(), and used
+        attributes the class no longer has (editComFile, _ifAsync): the
+        ModelCraft step stopped with an AttributeError before it started.
+        ModelCraft's own process() does all of it."""
+        return self.startModelCraftProcess(plugin)
 
     def startModelCraftProcess(self, plugin):
         print("##################################################")
@@ -805,3 +760,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+
+
+
+def modelcraft_r_factors(plugin):
+    """(R, R-free) of a ModelCraft run's final model, from modelcraft.json."""
+    with open(os.path.join(str(plugin.workDirectory), "modelcraft", "modelcraft.json")) as stream:
+        final = json.load(stream)["final"]
+    return final["r_work"], final["r_free"]

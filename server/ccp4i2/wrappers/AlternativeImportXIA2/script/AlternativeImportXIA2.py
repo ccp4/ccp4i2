@@ -55,7 +55,7 @@ class AlternativeImportXIA2(CPluginScript):
                     shutil.copyfile(srcPath, destPath)
                     unmergedOut.append(unmergedOut.makeItem())
                     unmergedOut[-1].fullPath = destPath
-                    unmergedOut[-1].annotation = runName+' of '+srcFilename[:-13]
+                    unmergedOut[-1].annotation = 'xia2 run '+runName+': integrated, unmerged ('+srcFilename+')'
                 except:
                     print('Unable to import unmerged')
             else:
@@ -83,11 +83,11 @@ class AlternativeImportXIA2(CPluginScript):
                         from ccp4i2.core import CCP4XtalData
                         obsOut.append(obsOut.makeItem())
                         obsOut[-1].fullPath = obsPath
-                        obsOut[-1].annotation = runName+' of '+srcFilename[:-8]
+                        obsOut[-1].annotation = 'xia2 run '+runName+': merged intensities'
                         obsOut[-1].contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
                         freerOut.append(freerOut.makeItem())
                         freerOut[-1].fullPath = freerPath
-                        freerOut[-1].annotation = 'FreeR from '+runName+' of '+srcFilename[:-8]
+                        freerOut[-1].annotation = 'xia2 run '+runName+': free R set'
                     else:
                         print('CSplitMTZ Failed')
                 except:

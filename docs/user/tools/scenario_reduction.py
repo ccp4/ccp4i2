@@ -100,6 +100,9 @@ def main(only=()):
                     ["--XIA2_RUN", f"fullPath={half1}", "--XIA2_RUN", f"fullPath={half2}"])
         if full and wanted("AlternativeImportXIA2"):
             run("Thaumatin", "AlternativeImportXIA2", ["--XIA2_DIRECTORY", f"fullPath={full}"])
+    if wanted("xia2_xds"):
+        # XDS is not installed here: set up on the same sweep, not run.
+        run("Thaumatin", "xia2_xds", ["--delay"] + sweep(images(), 1, N_IMAGES), clone=False)
     for task in ("xia2_ssx_reduce", "import_serial_pipe"):
         if wanted(task):
             run("Thaumatin", task, ["--delay"], clone=False)
@@ -127,7 +130,8 @@ def main(only=()):
                                   "--XYZIN", "fileOut=[25].XYZOUT[0]",
                                   "--FPHI", "fileOut=[25].MAPOUT_REFMAC"], clone=False)
     if wanted("arp_warp_classic"):
-        run("MDM2", "arp_warp_classic", ["--delay", "--AWA_FOBS", "fileOut=[1].HKLOUT[0]",
+        run("MDM2", "arp_warp_classic", ["--delay", "--AWA_ARP_MODE", "WARPNTRACEMODEL",
+                                         "--AWA_FOBS", "fileOut=[1].HKLOUT[0]",
                                          "--AWA_FREE", "fileOut=[1].FREEROUT",
                                          "--AWA_MODELIN", "fileOut=[25].XYZOUT[0]",
                                          "--AWA_SEQIN", "fileOut=[9].ASUCONTENTFILE"], clone=False)
