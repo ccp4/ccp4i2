@@ -383,6 +383,10 @@ const formatFriendlyDate = (isoString: string): string => {
 
 const formatFloatValue = (value: number): string => formatKpiValue(value);
 
+// RichTreeView rebuilds its item state in an effect whenever getItemId
+// changes identity, so it must not be an inline arrow.
+const getItemId = (jobOrFile: TreeViewItem | DjangoFile) => jobOrFile.uuid;
+
 // =============================================================================
 // Main component
 // =============================================================================
@@ -624,7 +628,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
         items={treeViewItems}
         isItemEditable={() => true}
         experimentalFeatures={{ labelEditing: true }}
-        getItemId={(jobOrFile) => jobOrFile.uuid}
+        getItemId={getItemId}
         getItemLabel={getItemLabel}
         slots={{ item: CustomTreeItem }}
         onSelectedItemsChange={handleTreeSelection}
