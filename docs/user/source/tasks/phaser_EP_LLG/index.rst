@@ -14,7 +14,7 @@ Use it when you have a *partial* structure and anomalous data, most often
 after molecular replacement or after a SAD or SIRAS run has built a model,
 and you want to find the anomalous scatterers the model lacks. It is not
 the task for finding the substructure from nothing (use
-Phaser EP, :doc:`../crank2/index` or :doc:`../shelx/index`), and it is not
+Phaser EP, :doc:`../crank2/crank2` or :doc:`../shelx/shelx`), and it is not
 a refinement: the model is not changed, and no coordinates of the
 scatterers are fitted. You read the peaks off the map and decide.
 

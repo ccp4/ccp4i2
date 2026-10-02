@@ -85,15 +85,15 @@ theta, phi, chi, the Euler angles and the height Rf and Rf/sigma; every
 symmetry-related equivalent is in the job's ``molrep.doc.txt`` (Directory
 tab). For 1h1s:
 
-======  =======  ======  =====  ===========
-Peak    theta    phi     chi    Rf/sigma
-======  =======  ======  =====  ===========
-1       0.00     0.00    0      25.16
-2       128.12   27.86   180    2.27
-3       90.00    -98.50  180    2.04
-4       90.00    -90.00  90     1.84
-5       8.68     -107.10 180    1.81
-======  =======  ======  =====  ===========
+======  =======  =======  =====  ===========
+Peak    theta    phi      chi    Rf/sigma
+======  =======  =======  =====  ===========
+1       0.00     0.00     0      25.16
+2       128.12   27.86    180    2.27
+3       90.00    -98.50   180    2.04
+4       90.00    -90.00   90     1.84
+5       8.68     -107.10  180    1.81
+======  =======  =======  =====  ===========
 
 Peak 1 is the origin. Peak 2, a two-fold, is the highest peak that is not
 the origin, and it is the non-crystallographic two-fold of 1h1s: when the
