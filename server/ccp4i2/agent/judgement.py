@@ -33,7 +33,7 @@ def load(task_name=None, path=None):
         return yaml.safe_load(stream)
 
 
-_TYPES = {"float": float, "int": lambda s: int(float(s)), "str": str}
+_TYPES = {"float": float, "int": lambda s: int(float(s)), "str": str, "string": str}
 
 
 def read_result(spec, job_dir, kpis=None):
@@ -82,6 +82,8 @@ def problems(judgement):
     for name, spec in results.items():
         if spec.get("file", "program.xml") != "kpi" and not spec.get("xpath"):
             found.append(f"result {name}: no xpath")
+        if spec.get("type", "float") not in _TYPES:
+            found.append(f"result {name}: type {spec['type']!r} is not one of {sorted(_TYPES)}")
     for section in ("verdict", "next"):
         for i, entry in enumerate(judgement.get(section) or []):
             if "when" not in entry:

@@ -103,7 +103,7 @@ def test_reviewed_judgement_carries_no_draft_note(job_dir):
 
 def test_problems_are_named():
     bad = {
-        "results": {"TFZ": {}},
+        "results": {"TFZ": {}, "SG": {"xpath": ".//SG", "type": "text"}},
         "verdict": [{"when": "TFZ > 8", "outcome": "solved"},
                     {"when": "LLG > 1", "outcome": "x", "basis": "b"},
                     {"when": "TFZ >", "basis": "b"},
@@ -111,6 +111,7 @@ def test_problems_are_named():
     }
     assert judgement.problems(bad) == [
         "result TFZ: no xpath",
+        "result SG: type 'text' is not one of ['float', 'int', 'str', 'string']",
         "verdict[0]: a threshold with no basis",
         "verdict[1]: unknown result ['LLG']",
         "verdict[2]: 'TFZ >' ends too soon",

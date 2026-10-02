@@ -22,6 +22,10 @@ def test_molrep():
         assert rfrees[-1] < rfrees[0]
         assert rworks[-1] < 0.26
         assert rfrees[-1] < 0.28
+        # MOLREP's own result, not the placeholders once written in its place
+        # (Gamma gives score 0.79, z-score 18.9).
+        assert float(xml.findtext(".//MR_TF/mr_score")) > 0.5
+        assert float(xml.findtext(".//MR_TF/mr_zscore")) > 10
 
 
 def test_molrep_uses_the_selected_sequence(tmp_path):

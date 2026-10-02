@@ -72,7 +72,7 @@ results:                          # the numbers that decide, and where they are
   TFZ:
     file: program.xml             # program.xml | a job file named here | kpi
     xpath: .//Solution/TFZ        # ElementTree subset, first match
-    type: float
+    type: float                   # float | int | str
     meaning: Translation-function Z-score of the top solution.
   LLG:
     file: program.xml
