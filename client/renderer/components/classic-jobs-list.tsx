@@ -39,7 +39,7 @@ import {
 import { CheckBoxOutlined, Clear, Delete, MoreVert } from "@mui/icons-material";
 import { useUiPreference } from "../lib/ui-preferences";
 import { useDraggable } from "@dnd-kit/core";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { EndpointFetch, useApi } from "../api";
 import {
@@ -396,7 +396,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   parent = null,
   withSubtitles = false,
 }) => {
-  const [selectedItems, setSelectedItems] = useState<string | null>(null);
+  const { jobid } = (useParams() ?? {}) as { jobid?: string };
   const navigate = useRouter();
   const api = useApi();
   const deleteDialog = useDeleteDialog();
@@ -444,6 +444,10 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   // Build lookup maps for tree items
   const lookups = useJobTreeLookups(jobTree);
 
+  const selectedItems = jobid
+    ? (lookups.jobsById.get(Number(jobid))?.uuid ?? null)
+    : null;
+
   // Context value including selection state
   const contextValue = useMemo<JobTreeContextValue>(
     () => ({
@@ -478,7 +482,6 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
       if (job) {
         navigate.push(`/ccp4i2/project/${job.project}/job/${job.id}`);
       }
-      setSelectedItems(ids);
     },
     [lookups.jobsByUuid, navigate, selectMode, toggleJobSelection]
   );
