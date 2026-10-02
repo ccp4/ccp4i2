@@ -3,11 +3,13 @@ import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useBoolToggle } from "../task-elements/shared-hooks";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container } = useJob(props.job.id);
-  const symmetrySource = useBoolToggle(useTaskItem, "SYMMETRY_SOURCE");
+  // A menu, not a yes/no: each file field belongs to one of its choices.
+  // (Read through useBoolToggle, "reference" was never true and no file
+  // field ever showed.)
+  const { value: symmetrySource } = useTaskItem("SYMMETRY_SOURCE");
 
   if (!container) return <LinearProgress />;
 
@@ -25,13 +27,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement itemName="HKLIN2" {...props} />
         <CCP4i2TaskElement itemName="N_BINS" {...props} qualifiers={{ guiLabel: "Number of resolution bins" }} />
         <CCP4i2TaskElement itemName="SYMMETRY_SOURCE" {...props} qualifiers={{ guiLabel: "Load symmetry from" }} />
-        {symmetrySource.value && (
+        {symmetrySource === "reference" && (
           <CCP4i2TaskElement itemName="REFERENCEFILE" {...props} />
         )}
-        {symmetrySource.value && (
+        {symmetrySource === "cellfile" && (
           <CCP4i2TaskElement itemName="CELLFILE" {...props} />
         )}
-        {symmetrySource.value && (
+        {symmetrySource === "streamfile" && (
           <CCP4i2TaskElement itemName="STREAMFILE" {...props} />
         )}
         <CCP4i2TaskElement itemName="SPACEGROUP" {...props} qualifiers={{ guiLabel: "Space group" }} />

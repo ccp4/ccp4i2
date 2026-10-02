@@ -50,3 +50,20 @@ def test_molrep_uses_the_selected_sequence(tmp_path):
                      if line.startswith(">")]
             assert names == ["Gamma"]
         gemmi.read_pdb(str(job / "XYZOUT.pdb"))
+
+
+def test_molrep_takes_an_mmcif_model(tmp_path):
+    """An mmCIF search model reaches MOLREP as PDB.
+
+    The wrapper converted it to PDB for the run, then wrote the original to
+    molrep_input.pdb unconverted; MOLREP refused mmCIF under a .pdb name
+    ("CIF_file must has extension .crd or .cif"), so every mmCIF model failed.
+    """
+    model = tmp_path / "gamma_model.cif"
+    gemmi.read_structure(demoData("gamma", "gamma_model.pdb")).make_mmcif_document().write_file(str(model))
+    args = ["molrep_mr"]
+    args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--XYZIN", str(model)]
+    with i2run(args) as job:
+        assert (job / "molrep_input.pdb").read_text().startswith(("HEADER", "CRYST1", "ATOM", "REMARK"))
+        gemmi.read_pdb(str(job / "XYZOUT.pdb"))

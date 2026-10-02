@@ -141,9 +141,16 @@ class mrbump_basic(CPluginScript):
               #self.appendCommandLine(['input.model='+xyzin.fullPath.__str__()])
               keyin += "LOCALFILE %s\n" % xyzin.fullPath.__str__()
           else:
-              xyzin.selection.text='{'+xyzin.selection.__str__()+'} and {(ALA,CYS,ASP,GLU,PHE,GLY,HIS,ILE,LYS,LEU,MET,ASN,PRO,GLN,ARG,SER,THR,VAL,TRP,TYR)}'
+              xyzin.selection.text='{'+xyzin.selection.__str__()+'} and {protein}'
               inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected_'+iCoordSet.__str__()+'.pdb'))
               xyzin.getSelectedAtomsPdbFile(inputCoordPath)
+              # The selection kept only amino acids with a residue-name list the
+              # selection language no longer parses: nothing was written, and the
+              # program failed later on a missing file. 'protein' says it; and a
+              # selection that writes nothing stops here, saying which.
+              if not os.path.isfile(inputCoordPath):
+                  raise RuntimeError('The atom selection %s of %s selects nothing that could be written'
+                                     % (xyzin.selection.__str__(), xyzin.fullPath.__str__()))
               #self.appendCommandLine(['input.model='+inputCoordPath])
               keyin += "LOCALFILE %s\n" % inputCoordPath
     
@@ -192,6 +199,7 @@ class mrbump_basic(CPluginScript):
 
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
+        self.container.outputData.HKLOUT.annotation = 'Reflections and maps from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from MrBump refinement'
 

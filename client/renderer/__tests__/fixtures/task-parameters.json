@@ -233,6 +233,16 @@
     "SEQOUT"
    ]
   },
+  "ImportUnmerged": {
+   "declared": {
+    "inputData": [
+     "UNMERGEDIN"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDOUT"
+   ]
+  },
   "Lidia": {
    "declared": {
     "inputData": [
@@ -717,7 +727,8 @@
      "OBSAS",
      "LIGANDAS",
      "LIGAND_CODE",
-     "RESOLUTION_RANGE"
+     "RESOLUTION_RANGE",
+     "OVERRIDE_CELL_DIFFERENCE"
     ],
     "inputData": [
      "SMILES",
@@ -1949,7 +1960,8 @@
     ]
    },
    "outputData": [
-    "XYZOUT"
+    "XYZOUT",
+    "DICTOUT"
    ],
    "qtExposed": [
     "DELFPHIINANOM_LIST",
@@ -2590,7 +2602,8 @@
      "F_SIGF",
      "ABCD",
      "FREERFLAG",
-     "XYZIN"
+     "XYZIN",
+     "ASUIN"
     ]
    },
    "outputData": [
@@ -2598,6 +2611,44 @@
     "FPHIOUT",
     "PERFORMANCE",
     "MASKOUT"
+   ]
+  },
+  "dnatco": {
+   "declared": {
+    "controlParameters": [
+     "GENERATE_RESTRAINTS",
+     "MAX_RMSD",
+     "RESTRAINTS_SIGMA"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "CIFOUT",
+    "JSONOUT",
+    "RESTRAINTS"
+   ]
+  },
+  "dnatco_pipe": {
+   "declared": {
+    "controlParameters": [
+     "TOGGLE_XYZIN2",
+     "GENERATE_RESTRAINTS",
+     "MAX_RMSD",
+     "RESTRAINTS_SIGMA"
+    ],
+    "inputData": [
+     "XYZIN1",
+     "XYZIN2"
+    ]
+   },
+   "outputData": [
+    "CIFOUT1",
+    "CIFOUT2",
+    "JSONOUT1",
+    "JSONOUT2",
+    "RESTRAINTS"
    ]
   },
   "dr_mr_modelbuild_pipeline": {
@@ -2826,6 +2877,7 @@
   "freerflag": {
    "declared": {
     "controlParameters": [
+     "OVERRIDE_CELL_DIFFERENCE",
      "CUTRESOLUTION",
      "COMPLETE",
      "FRAC",
@@ -3352,6 +3404,37 @@
     "XYZIN_FIX"
    ]
   },
+  "molrep_map": {
+   "declared": {
+    "controlParameters": [
+     "ENGINE",
+     "NMON",
+     "NP",
+     "BADD",
+     "DOWNSAMPLE",
+     "SEARCH_RESOLUTION",
+     "TIME_LIMIT",
+     "BORDER",
+     "MASK_RADIUS"
+    ],
+    "inputData": [
+     "XYZIN",
+     "MAPIN",
+     "HALFMAP1",
+     "HALFMAP2"
+    ]
+   },
+   "outputData": [
+    "ORIGINALMODEL",
+    "INVERTEDMODEL",
+    "ORIGINALTRIMMEDMAP",
+    "INVERTEDTRIMMEDMAP",
+    "ORIGINALMASK",
+    "INVERTEDMASK",
+    "HALFMAPOUT1",
+    "HALFMAPOUT2"
+   ]
+  },
   "molrep_mr": {
    "declared": {
     "controlParameters": [
@@ -3549,6 +3632,22 @@
     "SEQ",
     "SIM",
     "SURF"
+   ]
+  },
+  "moorhen": {
+   "declared": {
+    "inputData": [
+     "XYZIN_LIST",
+     "FPHIIN_LIST",
+     "DELFPHIIN_LIST",
+     "DELFPHIINANOM_LIST",
+     "MAPIN_LIST",
+     "DICT_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "DICTOUT"
    ]
   },
   "morda_i2": {
@@ -3880,6 +3979,67 @@
     "WSHELL",
     "XYZIN",
     "tip"
+   ]
+  },
+  "pandda_campaign": {
+   "declared": {
+    "controlParameters": [
+     "RUN_MODE",
+     "LOCAL_CPUS",
+     "MAX_SHELL_DATASETS",
+     "MIN_CHARACTERISATION_DATASETS",
+     "SCRATCH_DIR",
+     "DISPATCH_TARGET",
+     "PANDDA_EXECUTABLE"
+    ],
+    "inputData": [
+     "DATASETS"
+    ]
+   },
+   "outputData": [
+    "MANIFEST",
+    "STAGING_DIR",
+    "PANDDA_OUT_DIR",
+    "PROVENANCE_EXECUTABLE",
+    "PROVENANCE_PROBE",
+    "PROVENANCE_ARGV",
+    "CONTRACT_VERSION",
+    "DISPATCH",
+    "PERFORMANCE"
+   ]
+  },
+  "pandda_events": {
+   "declared": {
+    "inputData": [
+     "PANDDA_OUT_DIR",
+     "DTAG",
+     "RUN_JOB_UUID",
+     "RUN_INCOMPLETE"
+    ]
+   },
+   "outputData": [
+    "XYZIN_APO",
+    "ZMAP",
+    "EVENTS",
+    "DICT",
+    "PANDDA_MODEL",
+    "SCENE",
+    "PERFORMANCE"
+   ]
+  },
+  "pandda_fanout": {
+   "declared": {
+    "controlParameters": [
+     "PANDDA_OUT_DIR",
+     "DRY_RUN",
+     "RUN_RECEIPTS"
+    ],
+    "inputData": [
+     "MANIFEST"
+    ]
+   },
+   "outputData": [
+    "PERFORMANCE"
    ]
   },
   "parrot": {
@@ -5426,6 +5586,181 @@
     "XYZIN_LIST"
    ]
   },
+  "phaser_ep_auto_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "WAVELENGTH",
+     "XYZIN_HA",
+     "PARTIAL_BY",
+     "XYZIN_PARTIAL",
+     "ELEMENTS",
+     "LLGC_CYCLES",
+     "PURE_ANOMALOUS",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT",
+    "ABCDOUT",
+    "MAPOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_ep_phil": {
+   "declared": {
+    "controlParameters": [
+     "RUNPARROT",
+     "RUNMODELCRAFT",
+     "MODELCRAFT_ITERATIONS"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "WAVELENGTH",
+     "XYZIN_HA",
+     "PARTIAL_BY",
+     "XYZIN_PARTIAL",
+     "ELEMENTS",
+     "LLGC_CYCLES",
+     "PURE_ANOMALOUS",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "SOLVENT_FRACTION",
+     "FREERFLAG",
+     "SUBSTRUCTURE_BY",
+     "SFAC",
+     "FIND",
+     "NTRY",
+     "HAND"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "ABCDOUT",
+    "MAPOUT",
+    "FPHIOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_mr_auto_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLIN",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_mr_frf_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLIN",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "RFILEOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_mr_ftf_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "RFILEIN",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "SOLOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_mr_pak_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLIN",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "SOLOUT"
+   ],
+   "philDriven": true
+  },
+  "phaser_mr_rnp_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLIN",
+     "SOLVENT_FRACTION"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT"
+   ],
+   "philDriven": true
+  },
   "phaser_phil": {
    "declared": {
     "inputData": [
@@ -5648,6 +5983,44 @@
     "RUNSHEETBEND"
    ]
   },
+  "phaser_pipeline_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLIN",
+     "SOLVENT_FRACTION",
+     "FREERFLAG",
+     "XYZIN_TARGET",
+     "RUNSHEETBEND",
+     "RUNREFMAC"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_CSYMMATCH",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "philDriven": true
+  },
   "phaser_rnp_pipeline": {
    "declared": {
     "inputData": [
@@ -5855,6 +6228,41 @@
     "SELECTIONS",
     "XYZIN_PARENT"
    ]
+  },
+  "phaser_rnp_pipeline_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "XYZIN_PARENT",
+     "SELECTIONS",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLVENT_FRACTION",
+     "FREERFLAG",
+     "RUNSHEETBEND",
+     "RUNREFMAC"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "philDriven": true
   },
   "phaser_simple": {
    "declared": {
@@ -6085,6 +6493,50 @@
     "XYZIN",
     "XYZIN_FIXED"
    ]
+  },
+  "phaser_simple_phil": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ENSEMBLES",
+     "XYZIN",
+     "NCOPIES",
+     "ID_RMS",
+     "SEARCHSEQUENCEIDENTITY",
+     "SEARCHRMS",
+     "INPUT_FIXED",
+     "XYZIN_FIXED",
+     "FIXENSEMBLES",
+     "COMP_BY",
+     "ASUFILE",
+     "SEQUENCES",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "SOLVENT_FRACTION",
+     "FREERFLAG",
+     "XYZIN_TARGET",
+     "RUNSHEETBEND",
+     "RUNREFMAC"
+    ]
+   },
+   "outputData": [
+    "dataReindexed",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_CSYMMATCH",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "philDriven": true
   },
   "phaser_singleMR": {
    "declared": {
@@ -7129,6 +7581,7 @@
      "MAPIN2",
      "MAPMASK",
      "METALCOORD_RESTRAINTS",
+     "PLATONYZER_RESTRAINTS",
      "PROSMART_PROTEIN_RESTRAINTS",
      "PROSMART_NUCLEICACID_RESTRAINTS",
      "SERVALCAT_KEYWORD_FILE",
@@ -7264,6 +7717,7 @@
      "MAPIN2",
      "MAPMASK",
      "METALCOORD_RESTRAINTS",
+     "PLATONYZER_RESTRAINTS",
      "PROSMART_PROTEIN_RESTRAINTS",
      "PROSMART_NUCLEICACID_RESTRAINTS",
      "SERVALCAT_KEYWORD_FILE",
@@ -7905,8 +8359,7 @@
     "SUBSTR_ATOMS_NATIVE",
     "USE_COMB",
     "XYZIN_SUB"
-   ],
-   "qtReferenceFrom": "crank2"
+   ]
   },
   "shelxeMR": {
    "declared": {

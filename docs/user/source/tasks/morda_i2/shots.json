@@ -1,0 +1,59 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "morda_i2_data.png",
+      "job": 117,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Reflection data",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Free R set",
+          "badge": "2"
+        },
+        {
+          "text": "Check alternative space groups",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "morda_i2_model.png",
+      "job": 117,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Model preparation",
+      "callouts": [
+        {
+          "field": "AU contents",
+          "badge": "4"
+        },
+        {
+          "text": "Number of homologous structures to try:",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/morda_i2/script/morda_i2.def.xml": "37eb42cc19f828b069f88ca7e4e97e4b2456e800",
+    "server/ccp4i2/wrappers/morda_i2/script/morda_i2.py": "0e5a4e6da6a44edc68b9016bdcf73c4315c23399",
+    "server/ccp4i2/wrappers/morda_i2/script/morda_i2_report.py": "941e79aca5921c97534b3884c0db71f8b4946242",
+    "client/renderer/components/task/task-interfaces/morda_i2.tsx": "0fb0b6dc78995f1ff492f528b8872b80cd4530a1",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}

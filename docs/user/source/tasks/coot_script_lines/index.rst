@@ -1,57 +1,96 @@
-##########################
-Coot Scripting from CCP4i2
-##########################
+##########################################
+Scripted model building - COOT
+##########################################
 
-The user can provide their own script to be run non-graphically by Coot.
-This is a useful way to access the model building Coot tools quickly.
-The task interface has input options for the user to enter models, maps
-and difference maps and (in the *Options* tab) a text edit field to
-enter a coot script. When you click *Run* a Coot script is generated
-that causes Coot to import and display the selected files and then has
-the script you have entered and finally has a command to close down
-Coot.
+This task runs a Python script of your own in Coot, without graphics, on
+the models and maps you give it, and saves the models the script writes as
+the job's output. Use it for a model-building step you want to repeat
+exactly and have recorded in the project: the script is kept with the job,
+the run needs nobody at the screen, and the same recipe can be cloned and
+run on the next model. For interactive work, looking at the map and moving
+atoms by hand, use the Coot task instead; for real-space refinement
+morphing alone, see :doc:`../coot_refinement/index`, and to add waters see
+:doc:`../coot_find_waters/index`.
 
-Here is a simple example of a script that could be entered to perform a
-protein fit:
+The task runs CCP4's Coot 1 (``coot-1``) with no graphics window. A script
+written for an older Coot (0.9) may need changes: Coot 1's Python
+functions have Coot 1's names, so a Coot 0.9 name such as ``rename_chain``
+is not there (``change_chain_id`` is).
 
-::
+The pictures on this page come from the MDM2 project. Job 25 is Phaser's
+placement of a Chainsaw-pruned MDMX model: placed clearly, but a homologue
+with its side chains truncated. The model was first moved into the map by
+:doc:`../coot_refinement/index`; this task then gave back the truncated side
+chains, and the model was refined (R-free 0.490, against 0.503 for the
+placed model).
 
-   fit_protein(MolHandle_0)
-   write_pdb_file(MolHandle_0,os.path.join(dropDir,"refined.pdb"))
+Input
+=====
 
-If one each of model, map and difference map have also been selected
-then the final Coot script will look like this:
+.. figure:: coot_script_lines_input.png
+   :alt: Figure 1: Scripted Coot, models and maps
 
-::
+   Figure 1: Models and maps
 
-   MolHandle_0=read_pdb('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_52/XYZOUT.pdb')
-   MapHandle_0=make_and_draw_map('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_4/FPHIOUT.mtz', 'F', 'PHI', 'PHI', 0, 0)
-   DifmapHandle_0=make_and_draw_map('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_4/DIFFPHIOUT.mtz', 'F', 'PHI', 'PHI', 0, 1)
-   dropDir="/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_79/COOT_FILE_DROP"
+Give the models **(1)**, the maps **(2)**, any difference maps and, if the
+script handles a ligand, its dictionary. Each list can hold several
+entries. They reach the script under fixed names, counted from 1 in the
+order of the lists: ``MolHandle_1``, ``MolHandle_2``, ...; ``MapHandle_1``,
+...; ``DifmapHandle_1``, .... Maps are given as map coefficients (F, PHI),
+as Phaser and Refmac write them. The first model of Figure 1 is therefore
+``MolHandle_1`` and its map ``MapHandle_1``.
 
-   fit_protein(MolHandle_0)
-   write_pdb_file(MolHandle_0,os.path.join(dropDir,"refined.pdb"))
+.. figure:: coot_script_lines_script.png
+   :alt: Figure 2: Scripted Coot, the script
 
-   coot_real_exit(0)
+   Figure 2: The script
 
-| Some point note here:
-| The ids for the imported models and maps have been assigned to
-  variables called *MolHandle\_*\ i, *MapHandle\_*\ i and
-  *DifmapHandle\_*\ i where i is 0 to the number of entered files of
-  that type. You will need to substitute these variable names for the
-  imported data into your script.
-| CCP4i2 automatically creates a 'drop directory' for any Coot output
-  files and after Coot has finished CCP4i2 will treat all files in that
-  directory as output from the job and save them to the CCP4i2 database
-  so they can be easily accessed by subsequent jobs. Within the script
-  the drop directory is in variable name *dropDir*. Your script should
-  include a command such as *write_pdb_file* to write files to the drop
-  directory.
-| The choice of output file name is down to you but since it will be
-  seen in the GUI try to make it something meaningful.
-| If you need to debug the running of your script it can be useful to
-  look in the *Project directory* view (one of the tabs on the left hand
-  side of the project window) - open the directory for your task (will
-  be at the bottom for a recently run task) and look at the files
-  *script.py* (the Coot script) and *log.txt* (the Coot output) and the
-  sub-directory *COOT_FILE_DROP*.
+*Start from* **(3)** puts a ready-made script in the script box **(4)**,
+replacing what is there; run it as it is or edit it first. The starting
+points are recipes for common jobs:
+
+- **Fill partial residues**: complete side chains that are truncated, as
+  they are after Chainsaw or Sculptor, fitting the missing atoms to the map.
+- **Fit protein**: automatic fitting of the whole model to the map.
+- **Perform stepped refinement** (with or without Ramachandran
+  restraints): real-space refinement of the model a few residues at a
+  time, along each chain; the first also restrains the backbone torsions
+  towards favoured Ramachandran regions.
+- **Iterative morph fit molecule with decreasing blur**: morph fitting
+  of each chain in rounds, from a coarse, blurred map to the full map; for
+  a model that is generally right but displaced.
+- **Blank script**: copies the input to the output, with commented examples
+  to uncomment.
+
+The script is Python. Keep to what the task sets up:
+
+- The script must write its result into ``dropDir``, for example
+  ``write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))``.
+  The task collects the ``.pdb`` files in that directory as the job's
+  output models, named by the starting point and the file name
+  ("Scripted Coot, fill partial residues: output.pdb").
+  A file of any other kind is not collected.
+- A script that raises an error now fails the job, with the Python
+  traceback in the job's log. (It used to stop silently, with no output.)
+- To debug, open the job's *Logs* tab or its directory: ``script.py`` is
+  the whole generated script, with the lines that read the inputs, and
+  ``log.txt`` is Coot's output.
+
+Results
+=======
+
+.. figure:: coot_script_lines_report.png
+   :alt: Figure 3: Scripted Coot, output
+
+   Figure 3: Output
+
+The report lists the input files and the output models **(5)**, each named
+by the starting point used; it does not say what the script changed, so
+check the result yourself. Here
+``fill_partial_residues`` took the 600 atoms of the morphed model to 699,
+the truncated side chains returned. Fitting a side chain to a map that
+barely shows it gives it a plausible place, not a measured one: refine the
+model next (Refmac) and look at R-free, which here fell to 0.490, and
+check with the map before trusting the new atoms.
+
+The output model is ready for refinement, or for :doc:`../coot_find_waters/index`.

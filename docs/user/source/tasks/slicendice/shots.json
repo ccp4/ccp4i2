@@ -1,0 +1,90 @@
+{
+  "scenario": "../../../tools/scenario_slicendice.py",
+  "project": "LckKinase",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "slicendice_input.png",
+      "job": 4,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "field": "The number of monomers to search for",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        },
+        {
+          "field": "What the model's B-factor column holds",
+          "badge": "3"
+        },
+        {
+          "field": "pLDDT threshold",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "slicendice_options.png",
+      "job": 4,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Options",
+      "callouts": [
+        {
+          "field": "Fewest pieces to split the model into",
+          "badge": "5"
+        },
+        {
+          "field": "Most pieces to split the model into",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "slicendice_report.png",
+      "job": 3,
+      "tabs": [
+        "Report"
+      ],
+      "until": "SliceNDice log",
+      "callouts": [
+        {
+          "text": "Partly solved",
+          "badge": "7"
+        },
+        {
+          "text": "Splits",
+          "closest": "table",
+          "badge": "8"
+        },
+        {
+          "text": "2 splits, each search model",
+          "badge": "9"
+        }
+      ],
+      "section": {
+        "text": "SliceNDice prepares",
+        "scroll": true
+      }
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/slicendice/script/slicendice.def.xml": "66e49a20176b9518854a4fdc8da2309a4d68afb3",
+    "server/ccp4i2/wrappers/slicendice/script/slicendice.py": "e7c65c48bbc7c5dfd7e596fce9d61dc4c3d496d9",
+    "server/ccp4i2/wrappers/slicendice/script/slicendice_report.py": "def0ebd299471949ff75757909dd1033579b0c77",
+    "client/renderer/components/task/task-interfaces/slicendice.tsx": "fdcb108c9ba3c73b4c30e32b43f01cdd5fd864e5",
+    "docs/user/tools/scenario_slicendice.py": "160160729d02e3af0b41390603945384753f498f"
+  }
+}

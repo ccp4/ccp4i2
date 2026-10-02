@@ -1,0 +1,60 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "draft": true,
+  "task": "AlternativeImportXIA2",
+  "shots": [
+    {
+      "out": "xia2import_input.png",
+      "job": 14,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Xia2 runs",
+      "callouts": [
+        {
+          "field": "xia2 run directory, or a directory of runs",
+          "badge": "1"
+        }
+      ]
+    },
+    {
+      "out": "xia2import_report.png",
+      "job": 13,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Xia2 runs imported",
+        "scroll": true
+      },
+      "until": "Created",
+      "callouts": [
+        {
+          "text": "xia2 run job_1: integrated, unmerged",
+          "badge": "2"
+        },
+        {
+          "text": "xia2 run job_1: merged intensities",
+          "badge": "3"
+        },
+        {
+          "text": "xia2 run job_1: free R set",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2.def.xml": "281e85bbba8de6af94156063c3f0b36d41bcf60b",
+    "server/ccp4i2/wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2.py": "acc3bd8aa1fac6250180940877a16b174b6d7a33",
+    "server/ccp4i2/wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2_report.py": "6ecb1c057320bad864a4e644a541e79cffd194e1",
+    "client/renderer/components/task/task-interfaces/AlternativeImportXIA2.tsx": "0128f0a29f684dbf7545dae835b9e1cbdca0850f",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

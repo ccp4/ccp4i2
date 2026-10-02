@@ -33,12 +33,14 @@
                     <onlyEnumerators>True</onlyEnumerators>
                     <menuText>Yes,No</menuText>
                     <enumerators>True,False</enumerators>
-                    <default>False</default>
+                    <guiLabel>Predict secondary structure, coiled coils and transmembrane regions</guiLabel>
+                 <default>False</default>
                 </qualifiers>
         </content>
         <content id="MAXHITS">
            <className>CInt</className>
             <qualifiers>
+                 <guiLabel>Most search models to prepare</guiLabel>
                  <default>5</default>
             </qualifiers>
         </content>
@@ -48,7 +50,8 @@
               <onlyEnumerators>True</onlyEnumerators>
               <enumerators>PDB,AFDB,All</enumerators>
               <menuText>PDB,AFDB,All</menuText>
-              <default>All</default>
+              <guiLabel>Where to look for search models</guiLabel>
+                 <default>All</default>
           </qualifiers>
         </content>
         <content id="PDBLOCAL">
@@ -89,6 +92,7 @@
                  <allowUndefined>False</allowUndefined>
                  <mustExist>True</mustExist>
                  <onlyEnumerators>True</onlyEnumerators>
+                 <guiLabel>Number of processors</guiLabel>
                  <default>1</default>
             </qualifiers>
         </content>

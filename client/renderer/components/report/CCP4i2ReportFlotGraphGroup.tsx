@@ -82,7 +82,10 @@ export const CCP4i2ReportFlotGraphGroup: React.FC<CCP4i2ReportElementProps> = (
   }, [graphs, shown]);
 
   return graphs.length > 0 && xmlGraphs.length > 0 && graphTitles.length > 0 ? (
-    <div style={{ height: "450px" }}>
+    // At least, not exactly, 450px: the menu and the graph together are
+    // taller, so a fixed height cut off the graph's x axis and let the next
+    // group's title overlap the bottom of this one.
+    <div style={{ minHeight: "450px" }}>
       {$(props.item).attr("title")}
       {graphs && graphs.length > 1 && (
         <Autocomplete

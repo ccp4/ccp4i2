@@ -1,0 +1,36 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "MDM2",
+  "viewport": [1400, 1800],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {"out": "shelxeMR_input.png", "job": 124, "tabs": ["Task interface", "Input Data and Run Parameters"],
+     "section": "Select input data", "through": "Solvent Content",
+     "callouts": [
+       {"field": "Reflections", "badge": "1"},
+       {"field": "Free R set", "badge": "2"},
+       {"field": "Atomic model", "badge": "3"},
+       {"field": "Fraction of solvent in the asymmetric unit:", "badge": "4"}
+     ]},
+    {"out": "shelxeMR_options.png", "job": 124, "tabs": ["Task interface", "Run Options"],
+     "section": "Shelxe Run Options",
+     "callouts": [
+       {"field": "Number of shelxe tracing cycles:", "badge": "5"},
+       {"field": "Number of density modification cycles (per trace cycle):", "badge": "6"},
+       {"field": "Search for Alpha Helices", "badge": "7"},
+       {"field": "Optimize correlation coefficient for input model:", "badge": "8"}
+     ]},
+    {"out": "shelxeMR_report.png", "job": 123, "tabs": ["Report"],
+     "section": {"text": "Best trace: cycle", "scroll": true},
+     "until": "Input Data",
+     "callouts": [{"field": "Plot", "badge": "9"}]}
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/shelxeMR/script/shelxeMR.def.xml": "181940a7c0c98f17b814bafeb5734368b0c5b894",
+    "server/ccp4i2/wrappers/shelxeMR/script/shelxeMR.py": "1680544b2663c1939ea8f3e127bba3343802448c",
+    "server/ccp4i2/wrappers/shelxeMR/script/shelxeMR_report.py": "318c1f144303b043969973a5a461ee6533a66400",
+    "client/renderer/components/task/task-interfaces/shelxeMR.tsx": "a8cb3638a1e8b7612cd10d7ffe8fdf6af29608bd",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

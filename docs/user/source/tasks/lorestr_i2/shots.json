@@ -1,0 +1,93 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "lorestr_input.png",
+      "job": 16,
+      "tabs": [
+        "Input Data"
+      ],
+      "section": "Main inputs",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Observed data",
+          "badge": "2"
+        },
+        {
+          "field": "Free R set",
+          "badge": "3"
+        },
+        {
+          "text": "Reference model",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "lorestr_options.png",
+      "job": 16,
+      "tabs": [
+        "Options"
+      ],
+      "section": "Main options",
+      "callouts": [
+        {
+          "text": "Automatically fetch homologues",
+          "badge": "5"
+        },
+        {
+          "text": "Number of CPUs",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "lorestr_report.png",
+      "job": 15,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Starting Parameters Of The Structure",
+        "scroll": true
+      },
+      "until": "B-factor analysis",
+      "callouts": [
+        {
+          "text": "Description of Refinement Protocols",
+          "badge": "7"
+        },
+        {
+          "text": "Execution of Refinement Protocols",
+          "badge": "8"
+        },
+        {
+          "text": "Best Refinement Protocol",
+          "badge": "9"
+        }
+      ],
+      "expand": [
+        "Description of Refinement Protocols",
+        "Execution of Refinement Protocols"
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/lorestr_i2/script/lorestr_i2.def.xml": "55385fbed82d07b884ff6ba078f339ab55a4ca2a",
+    "server/ccp4i2/wrappers/lorestr_i2/script/lorestr_i2.py": "dd6004652f9ffb7e70932ee4dfffc1af022784c2",
+    "server/ccp4i2/wrappers/lorestr_i2/script/lorestr_i2_report.py": "1fc1465dbc396ed8c073a4ba7fe30064dd0b851d",
+    "client/renderer/components/task/task-interfaces/lorestr_i2.tsx": "450d194fb7f41af3995bcecf5c489b042ca581b2",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}

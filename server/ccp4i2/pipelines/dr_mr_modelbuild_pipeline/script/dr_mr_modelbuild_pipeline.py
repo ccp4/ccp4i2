@@ -25,7 +25,8 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },
                     302 : { 'description' : 'No Laue results in program xml output from first molrep run' },
-                    202 : { 'description' : 'Failed in harvesting file from lidia/acedrg' }
+                    202 : { 'description' : 'Failed in harvesting file from lidia/acedrg' },
+                    203 : { 'description' : 'The data for the chosen input type are missing' },
                     }
     PURGESEARCHLIST = [ [ 'molrep_mr%*/align.pdb' , 1],
                         [ 'molrep_mr%*/molrep_mtz.cif' , 1 ],
@@ -52,12 +53,28 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                     err.get('name', ''),
                     err.get('severity', 0)
                 )
-            return filtered
+            error = filtered
+        # F_SIGF, FREERFLAG and UNMERGEDFILES were all required, though the
+        # pipeline fills F_SIGF and FREERFLAG itself and each input type
+        # needs only its own data: no job could pass. Require what the chosen
+        # type reads, on the field the interface shows for it.
+        data_type = str(self.container.controlParameters.MERGED_OR_UNMERGED)
+        needs = {"UNMERGED": "UNMERGEDFILES", "MERGED": "F_SIGF_IN", "MERGED_F": "HKLIN"}.get(data_type)
+        if needs is not None:
+            item = getattr(self.container.inputData, needs)
+            missing = (len(item) == 0 or not item[0].file.isSet()) if needs == "UNMERGEDFILES" \
+                else not item.isSet()
+            if missing:
+                error.append(klass=self.TASKNAME, code=203,
+                             details=f"The input data for '{data_type}' are not set",
+                             name=f"{self.TASKNAME}.container.inputData.{needs}",
+                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
 
     def process(self):
       self.runningJobs=[]
-      self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
+      self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup) \
+          if self.container.inputData.F_SIGF.isSet() else None
 
       self.xmlroot = etree.Element('CCP4i2DRMRMBPipe')
       self.xmlroot.text = '\n'
@@ -297,17 +314,14 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             print("Now I have to work out what is best")
 
             try:
-                # TODO: Will break without the old Buccaneer pipeline
-                print("Get rfactors")
-                rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
-                print("Get rfrees")
-                rfrees = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
-                r0 = rfactors[0].text
-                r1 = rfactors[1].text
-                rf0 = rfrees[0].text
-                rf1 = rfrees[1].text
+                # The R factors of the build in each space group, from each
+                # ModelCraft run's own result (this read the old Buccaneer
+                # pipeline's XML, which is no longer written, so the choice
+                # always failed). Choose by R-free.
+                r0, rf0 = modelcraft_r_factors(self.modelcraft)
+                r1, rf1 = modelcraft_r_factors(self.modelcraft2)
 
-                if float(r0) < float(r1):
+                if float(rf0) <= float(rf1):
 
                     print("Copy FREER")
                     shutil.copyfile(str(self.aimlessPlugin.container.outputData.FREEROUT), str(self.container.outputData.FREEROUT))
@@ -676,55 +690,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         self.cootPlugin.process()
 
     def processModelCraft(self, plugin, **kw):
-        #I am reimplementing this because I want to be able to reproduce the top part of ModelCraft pipeline so that I can get its XML.
-        ''' Check input data is set, create program command script (by calling makeCommandAndScript
-        which should be implemented in sub-class and call startProcess '''
-        #print 'CPluginScript.process',plugin.objectName()
-        #plugin.loadProjectDefaults()
-        try:
-            unsetData = plugin.checkInputData()
-        except:
-            plugin.appendErrorReport(41)
-            return plugin.reportStatus(CPluginScript.FAILED)
-        #print 'CPluginScript.process unsetData',unsetData
-        if len(unsetData) > 0:
-            return plugin.reportStatus(CPluginScript.FAILED)
-        try:
-            rv = plugin.checkOutputData(plugin.container)
-            #print 'CPluginScript.process unsetOutputData',e
-        except Exception as e:
-            plugin.appendErrorReport(42, exc_info=sys.exc_info())
-        else:
-            if len(rv) > 0:
-                plugin.extendErrorReport(rv)
-        try:
-            status = plugin.processInputFiles()
-        except CException as e:
-            return plugin.reportStatus(CPluginScript.FAILED)
-        except Exception as e:
-            plugin.appendErrorReport(43, exc_info=sys.exc_info())
-            plugin.reportStatus(CPluginScript.FAILED)
-            return CPluginScript.FAILED
-        else:
-            #print 'CPluginScript.process processInputFiles',status
-            if status == CPluginScript.FAILED:
-                return plugin.reportStatus(CPluginScript.FAILED)
+        """Run ModelCraft, recording where its output goes.
 
-        if plugin.editComFile:
-            plugin.displayEditor()
-            return
-        try:
-            rv = self.startModelCraftProcess(plugin)
-        except:
-            plugin.appendErrorReport(48, exc_info=sys.exc_info())
-            return plugin.reportStatus(CPluginScript.FAILED)
-        else:
-            if rv == CPluginScript.FAILED:
-                return plugin.reportStatus(rv)
-        if not plugin._ifAsync:
-            return plugin.postProcess(processId=plugin._runningProcessId)
-        else:
-            return CPluginScript.SUCCEEDED
+        This was a copy of an old CPluginScript.process(), and used
+        attributes the class no longer has (editComFile, _ifAsync): the
+        ModelCraft step stopped with an AttributeError before it started.
+        ModelCraft's own process() does all of it."""
+        return self.startModelCraftProcess(plugin)
 
     def startModelCraftProcess(self, plugin):
         print("##################################################")
@@ -788,3 +760,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+
+
+
+def modelcraft_r_factors(plugin):
+    """(R, R-free) of a ModelCraft run's final model, from modelcraft.json."""
+    with open(os.path.join(str(plugin.workDirectory), "modelcraft", "modelcraft.json")) as stream:
+        final = json.load(stream)["final"]
+    return final["r_work"], final["r_free"]

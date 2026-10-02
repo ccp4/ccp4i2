@@ -1,0 +1,64 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "srf_input.png",
+      "job": 10,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Experimental data",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        }
+      ]
+    },
+    {
+      "out": "srf_report.png",
+      "job": 9,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Conclusion of search for anisotropy:",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "Conclusion of search for anisotropy:",
+          "badge": "2"
+        },
+        {
+          "text": "Conclusion of search for translational symmetry:",
+          "badge": "3"
+        },
+        {
+          "text": "Self Rotation Function Plot",
+          "badge": "4"
+        },
+        {
+          "text": "Self Rotation peaks",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/molrep_selfrot/script/molrep_selfrot.def.xml": "41138b184f753f23d922ab5694d3104cb0b7fe29",
+    "server/ccp4i2/wrappers/molrep_selfrot/script/molrep_selfrot.py": "7d549ba9f26be43acc410ff256360cd332ae2902",
+    "server/ccp4i2/wrappers/molrep_selfrot/script/molrep_selfrot_report.py": "ba8e91d53aaf2891eb37502cc5125b5cbff493ed",
+    "client/renderer/components/task/task-interfaces/molrep_selfrot.tsx": "34c265202aecac6b53b8041c19ad779e61277415",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

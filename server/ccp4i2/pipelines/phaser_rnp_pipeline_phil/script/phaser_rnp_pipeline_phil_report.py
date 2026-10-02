@@ -1,11 +1,13 @@
 """The pipeline's report: the reindexing, the RNP task's record, then
 whatever ran after."""
 from ccp4i2.pipelines.phaser_pipeline_phil.script.phaser_pipeline_phil_report import phaser_pipeline_phil_report
+from ccp4i2.wrappers.phaser_mr_rnp_phil.script.phaser_mr_rnp_phil_report import phaser_mr_rnp_phil_report
 from ccp4i2.wrappers.pointless.script.pointless_report import pointless_report
 
 
 class phaser_rnp_pipeline_phil_report(phaser_pipeline_phil_report):
     TASKNAME = "phaser_rnp_pipeline_phil"
+    PHASER_REPORT = phaser_mr_rnp_phil_report
 
     def drawContent(self, jobStatus=None, parent=None):
         if parent is None:

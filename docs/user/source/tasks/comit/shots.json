@@ -1,0 +1,22 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "MDM2",
+  "draft": true,
+  "viewport": [1400, 1400],
+  "shots": [
+    {"out": "comit_input.png", "job": 120, "tabs": ["Task interface", "Input Data"], "section": "Input reflections",
+     "callouts": [{"field": "Observed data", "badge": "1"}, {"field": "Map coefficients", "badge": "2"}]},
+    {"out": "comit_options.png", "job": 120, "tabs": ["Task interface", "Options"], "section": "Omit parameters",
+     "callouts": [{"field": "Number of omit regions to use", "badge": "3"}, {"field": "Padding radius at edge of omit regions", "badge": "4"}]},
+    {"out": "comit_report.png", "job": 119, "tabs": ["Report"], "section": {"text": "Input Data", "scroll": true},
+     "until": "Bibliographic references",
+     "callouts": [{"text": "Output Data", "badge": "5"}]}
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/comit/comit.def.xml": "ccf07f00cc8ac27d834c1c8e07e6ae44ea48f961",
+    "server/ccp4i2/wrappers/comit/comit.py": "5cc7be585a114cb943c0b75a64800d750443f09c",
+    "server/ccp4i2/wrappers/comit/comit_report.py": "dd28f5daf92bcbc40320137bd4683f2465b34530",
+    "client/renderer/components/task/task-interfaces/comit.tsx": "e576d4f15371a0b5c30fb913574e6bd8b902b47f",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}

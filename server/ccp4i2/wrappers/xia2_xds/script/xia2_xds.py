@@ -84,4 +84,4 @@ class xia2_xds(xia2_dials.xia2_dials):
     @staticmethod
     def _get_annotation(prefix, suffix):
         """Form suitable annotation strings"""
-        return prefix + " from XDS integration of " + suffix
+        return prefix + " from XDS integration of " + suffix.rstrip("_-")  # file stems are cut short ("..._SWEEP1_")

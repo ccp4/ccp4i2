@@ -40,10 +40,12 @@ X-ray data reduction and analysis
    :maxdepth: 1
 
    aimless_pipe/index
+   xia2_multiplex/index
    freerflag/index
    matthews/index
    srf/index
    AUSPEX/index
+   xia2_ssx_reduce/index
 
 
 ===================================
@@ -95,11 +97,13 @@ Molecular replacement
    :maxdepth: 1
 
    mrbump_basic/index
+   SIMBAD/index
    phaser_simple_phil/index
    phaser_mr_phil/index
    phaser_pipeline/index
    phaser_singleMR/index
    molrep_pipe/index
+   molrep_map/index
    csymmatch/index
    ample/index
    fragon/index
@@ -116,6 +120,7 @@ Density Modification
 
    acorn/index
    parrot/index
+   dm_multidomain/index
 
 ===========================
 Model building and graphics
@@ -129,6 +134,7 @@ Model building and graphics
    coot_rebuild/index
    coot_find_waters/index
    coot_script_lines/index
+   nucleofind/index
    nautilus_build_refine/index
    ccp4mg_general/index
    shelxeMR/index
@@ -147,7 +153,11 @@ Refinement
    coot_refinement/index
    lorestr_i2/index
    pairef/index
+   pdb_redo_api/index
+   metalCoord/index
+   buster/index
    shift_field/index
+   phaser_rnp_pipeline_phil/index
 
 =======
 Ligands
@@ -166,6 +176,7 @@ Validation and analysis
    :maxdepth: 1
 
    validate_protein/index
+   dnatco_pipe/index
    edstats/index
    privateer/index
    pisapipe/index

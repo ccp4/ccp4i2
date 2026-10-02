@@ -74,3 +74,16 @@ def output_file_id(project: str, task: str, param: str) -> str:
         "print('ID=' + str(f.uuid))\n")],
         check=True, env={**os.environ, **DJANGO}, capture_output=True, text=True).stdout
     return next(line[3:] for line in out.splitlines() if line.startswith("ID="))
+
+
+def last_job_dir(project: str, task: str) -> Path:
+    """The directory of the project's last top-level <task> job, to read its
+    results (program.xml, the log) and assert the outcome. Scenarios hard-coded
+    job numbers for this, which break whenever a project is rebuilt."""
+    out = subprocess.run([sys.executable, "manage.py", "shell", "-c", (
+        "from ccp4i2.db.models import Job\n"
+        f"job = Job.objects.filter(project__name='{project}', "
+        f"task_name='{task}', parent__isnull=True).order_by('-id').first()\n"
+        "print('DIR=' + str(job.directory))\n")],
+        check=True, env={**os.environ, **DJANGO}, capture_output=True, text=True).stdout
+    return Path(next(line[4:] for line in out.splitlines() if line.startswith("DIR=")))

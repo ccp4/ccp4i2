@@ -8,6 +8,9 @@ from ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report impor
 
 class phaser_pipeline_phil_report(Report):
     TASKNAME = "phaser_pipeline_phil"
+    # How Phaser's part is drawn: a search here; the rigid-body pipeline
+    # draws a refinement, which has no verdict and no search to record.
+    PHASER_REPORT = phaser_mr_auto_phil_report
     RUNNING = True
     SEPARATEDATA = True
 
@@ -25,7 +28,7 @@ class phaser_pipeline_phil_report(Report):
             parent.addText(text="Phaser has not reported yet" if (jobStatus or "").lower() == "running"
                            else "No Phaser record", style="color:orange;")
             return
-        phaser_mr_auto_phil_report(xmlnode=node, jobStatus="nooutput").drawContent(jobStatus=jobStatus, parent=parent)
+        self.PHASER_REPORT(xmlnode=node, jobStatus="nooutput").drawContent(jobStatus=jobStatus, parent=parent)
         if self.xmlnode.find("Csymmatch") is not None:
             fold = parent.addFold(label="Output from csymmatch", initiallyOpen=False, brief="Symmatch")
             csymmatch_report(xmlnode=self.xmlnode.find("Csymmatch"), jobStatus="nooutput").drawContent(

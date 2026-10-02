@@ -43,6 +43,10 @@ Each was met for real; most cost an hour the first time.
   too long took three new jobs with it.
 - **Deleting a project leaves its directory**: files imported again get
   `_1` names. Remove the directory too before rebuilding a project.
+- **Never merge, switch or rebase the worktree while a scenario or test
+  runs from it.** A merge with conflicts leaves markers in the wrappers the
+  running job imports ("Plugin 'slicendice' not found in registry"), and an
+  hour-long run is void. Wait, or use a second worktree.
 - **A script outside `server/` imports the INSTALLED ccp4i2** from
   ccp4-python's site-packages: run checks from `server/`, or with
   `PYTHONPATH`, or a fix will seem not to work.
@@ -79,6 +83,11 @@ Each was met for real; most cost an hour the first time.
 
 ## Capture
 
+- **Absence in an outline is not absence on the page.** The outline missed
+  a report's bare text (fixed since), and "the report does not give the
+  number of waters" went into a subagent's report and nearly into a fix:
+  the count was on screen all along. Before fixing something an outline
+  says is missing, take the picture.
 - **Outline first, picture last.** A full-page screenshot read to learn a
   page's labels costs many times an outline.
 - **A shot's section must be a heading the page shows**; a select's value or
@@ -94,6 +103,13 @@ Each was met for real; most cost an hour the first time.
   column and say "beside it".
 - **A section that appears only for some choices** cannot be a callout on a
   default job: describe it in the text.
+- **A converted page can still carry Qt pictures** on its other documents
+  (aimless_pipe's sub-pages: 15 of 20). `stamp.py check` names them now;
+  recapture with `"plots"` and `{"graph": ...}`, or `"kept"` with a reason. A
+  Qt plot alone still teaches; one showing Qt's selectors and buttons is to go.
+- **A graph in a collapsed fold is in the page at no height**: a crop of it
+  photographed the fold headers in front. `"plots"` and `{"graph"}` open the
+  folds around it; `"expand"` is for anything else.
 - **Heavy reports need longer to settle** (`"settle": 30000`).
 - **A label from the program's own definitions** (a PHIL scope's caption) is
   in no source file: mark the callout `"dynamic": true` and the shot

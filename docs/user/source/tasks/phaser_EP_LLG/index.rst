@@ -1,53 +1,107 @@
-=======================
-SAD phasing with Phaser
-=======================
+===================================================
+Anomalous LLG map from coordinates (Phaser)
+===================================================
 
+The anomalous LLG map shows where the crystal scatters anomalously that
+your model does not yet explain. Phaser takes the phases from a model you
+already have, compares the anomalous differences in your data with what
+that model predicts, and writes the log-likelihood gradient (LLG) of the
+mismatch as a map. Peaks in it are places where adding an anomalous
+scatterer would improve the fit: a heavy atom or ion you did not know was
+there, a missing sulfur, a metal in a site you had built as water.
 
-.. image:: phaser_ep_task_1.png
-      :scale: 70 %
+Use it when you have a *partial* structure and anomalous data, most often
+after molecular replacement or after a SAD or SIRAS run has built a model,
+and you want to find the anomalous scatterers the model lacks. It is not
+the task for finding the substructure from nothing (use
+Phaser EP, :doc:`../crank2/crank2` or :doc:`../shelx/shelx`), and it is not
+a refinement: the model is not changed, and no coordinates of the
+scatterers are fitted. You read the peaks off the map and decide.
 
-
-When solving a structure using anomalous data, it can be useful to look for (additional) anomalous scatters which can be used to improve the phasing calculation, or in order to locate anomalous scattering atoms such as sulfurs which may help in building the structure. Anomalous scatterers may be located by using the anomalous differences in combination which phases from a partial structure, for example from molecular replacement.
+The pictures on this page come from the GammaXe project: xenon-derivatised
+crystals measured with copper radiation, and the model built by Crank2 from
+them, which contains protein only (942 atoms: carbon, nitrogen, oxygen and
+four sulfurs, no xenon).
 
 Input
 =====
 
-In order to generate an optimal anomalous map, the reflection data (which must include anomalous pairs of reflections) and a set of atomic coordinates (to provide phase information) are required.
+.. figure:: phaser_EP_LLG_input.png
+   :alt: Figure 1: Anomalous LLG map input
 
-Before carrying out SAD phasing in Phaser, you need an atomic model. Several model options are available in CCP4i2.
+   Figure 1: Anomalous LLG map input
 
+The reflection data **(1)** must contain anomalous pairs: intensities or
+amplitudes kept as separate I(+) and I(-) (here, the Xe derivative data from the
+merging step). The partial model is given as coordinates, as a map, or not
+at all **(2)**; here it is the model built by Crank2 **(3)**. Choose
+*Coordinate data* or *Map coefficients* when you have phases from a model
+or a density-modified map. With *No partial model* there are no phases to
+compare against: use the Phaser EP task to find the substructure instead.
 
-**Find heavy atoms**
+The **composition of the unit cell** **(4, 5)** tells Phaser how much
+scattering matter is not accounted for by the partial model, so that its
+contribution to the expected structure factor can be evaluated; give it as
+molecular weights or from a sequence file. The map in the figures was made
+without it. Resolution limits, the wavelength and
+the expected similarity of the model to the true structure (sequence
+identity or RMS error) are set below it; the wavelength matters for the
+anomalous scattering factors (the default is copper, 1.5418 Å), so
+set it for the beamline if you did not measure at the copper edge. A
+resolution limit can reduce noise from missing low-resolution terms or
+from poor phases at high resolution.
 
-The minimal Phaser input requires specification of the atom type that provides the anomalous scattering (e.g. Se, S, I, Fe, Zn etc), the number of atoms can be specified if known.
+The **Keywords** tab takes Phaser keywords not otherwise offered; see the
+`Phaser documentation <http://www.phaser.cimr.cam.ac.uk/index.php/Keywords>`__.
 
-Alternatively, you can provide a partial model of the structure of the macromolecule, with or without a set of anomalous scatterers.
+Results
+=======
 
-**Partial protein/nucleic acid model**
+.. figure:: phaser_EP_LLG_report.png
+   :alt: Figure 2: Anomalous LLG map report
 
-For this mode, partial model must be provided. Phaser will phase SAD data and completes the structure from log-likelihood gradient maps using a partial structure as the initial atomic substructure. Only a non-anomalous signal from the partial structure is used. 
+   Figure 2: Anomalous LLG map report
 
-It's possible to provide an electron density map as partial model by choosing **Map coeeficents for protein\nucleic acid** option
+Phaser's report gives its warnings, the figure of merit against
+resolution, and the files **(7, 8)**. The figure of merit for the SAD
+refinement against the partial model was 0.79 here. The report does not
+list peaks, and the task does not search the map for them: the result
+is the map file *Anomalous LLG map* (and, beside it, the
+phased map and the phase estimates), which you open in Moorhen or Coot
+with *Model building - COOT* under **What next**, or from the file's own
+menu.
 
-A set of **resolution limits** may optionally be specified to reduce the noise due to missing low resolution terms or larger phase errors at high resolution.
+Reading the map
+---------------
 
-The **composition of the unit cell** must also be specified, to allow for the contribution of unaccounted for scattering matter to be evaluated. This may be specified in terms of molecular weights or sequences. First, select the type of information to be provided, and then provide the required information in the boxes below.
+Peak heights below are in multiples of the map's standard deviation
+(sd). Here every peak above 4 sd was real, and they were of two kinds: a
+peak with nothing of the model under it is a scatterer the model lacks,
+and a peak on an atom of the model says that atom scatters anomalously.
 
-**Destiny modification** is performed by `Parrot <../parrot/index.html>`_. It improves the initial phases using prior information about protein electron density maps.
+In the GammaXe map the strongest peaks are 42.9 sd and 17.5 sd, each within
+0.4 Å of a xenon site and in a pocket of the protein (3.4 Å from Ile90 CG2
+for the stronger, 3.6 Å from Asn113 OD1 for the other): the xenon atoms
+that the protein-only model lacks. Two weaker peaks, 6.3 sd on the SD of
+Met106 and 4.5 sd on the SD of Met57, lie on sulfurs that are in the model.
+So the map shows two kinds of thing: the scatterers the model is missing,
+and the weaker anomalous signal of sulfur the model does have, since it
+is an anomalous map and not a difference map against the model's own
+anomalous scattering. Check what is under each peak before calling it a
+heavy atom: a ligand or ion is as likely as the atom you were looking for.
 
-Structure rebuilding is usually required after phasing, SAD phasing with Phaser task uses the `Buccaneer <../buccaneer_build_refine_mr/index.html>`_ as a **model building** program.
+What next
+---------
 
-Read more about Phaser on `Phaser wiki <https://www.phaser.cimr.cam.ac.uk/index.php/Experimental_Phasing>`_
+Add the atoms at the strong peaks to the model as the right element
+(:doc:`../coot_rebuild/index`, or Moorhen), then refine with anomalous
+scattering switched on and re-run this task: the peaks you have explained
+should vanish, and what is left is what you still have to find. Where the
+new atoms improve the phases, run density modification
+(:doc:`../parrot/index`) and rebuild.
 
-Keywords
-========
-
-   |image2|
-   For documentation of the advanced options, see the `Phaser
-   documentation <http://www.phaser.cimr.cam.ac.uk/index.php/Keywords>`__.
-
-.. |image2| image:: phaser_EP_LLG_task_2.png
-
+Read more about Phaser's experimental phasing on the
+`Phaser wiki <https://www.phaser.cimr.cam.ac.uk/index.php/Experimental_Phasing>`_.
 
 **References**
 

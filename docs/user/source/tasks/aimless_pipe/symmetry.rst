@@ -135,6 +135,12 @@ reflection (figure 5).
 
    Figure 7: alternative indexing scores
 
+When a reference is given, the report's Key summary says which indexing was matched: for the
+MDM2 data in point group 622 (P6\ :sub:`5`\ 22), checked against the coordinates 4hg7.pdb, it reads
+"Sole alternative indexing [h,k,l] relative to reference file", because this point group has no
+other valid indexing, and Pointless then does no symmetry search (so the tables in figures 3 to 6 are not
+produced for this run). The pictures on this page come from other datasets.
+
 In some point-groups there are more than one (typically two or four)
 valid but non-equivalent indexing possibilities. For your first crystal,
 you may choose any of these, but subsequent crystals must match the

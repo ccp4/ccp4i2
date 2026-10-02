@@ -185,7 +185,7 @@ class xia2_dials(PhilPluginScript):
     @staticmethod
     def _get_annotation(prefix, suffix):
         """Form suitable annotation strings"""
-        return prefix + " from DIALS integration of " + suffix
+        return prefix + " from DIALS integration of " + suffix.rstrip("_-")  # file stems are cut short ("..._SWEEP1_")
 
     @staticmethod
     def _extract_data_from_json(json_txt):

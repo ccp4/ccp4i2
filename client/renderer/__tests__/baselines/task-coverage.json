@@ -1,5 +1,12 @@
 {
- "gaps": {},
+ "gaps": {
+  "AlternativeImportXIA2": [
+   "runSummaries"
+  ],
+  "coot_script_lines": [
+   "SHOWSCRIPT"
+  ]
+ },
  "phantom": {},
  "reachable": {
   "acorn": [
@@ -182,7 +189,6 @@
    "inputData.XYZIN_REF"
   ],
   "AlternativeImportXIA2": [
-   "controlParameters.runSummaries",
    "inputData.XIA2_DIRECTORY"
   ],
   "ImportAsuContent": [
@@ -209,6 +215,9 @@
   "ImportObs": [
    "controlParameters.COLUMNS",
    "inputData.HKLIN"
+  ],
+  "ImportUnmerged": [
+   "inputData.UNMERGEDIN"
   ],
   "ImportPhases": [
    "controlParameters.COLUMNS",
@@ -380,6 +389,14 @@
    "inputData.DELFPHIIN_LIST",
    "inputData.DICT",
    "inputData.FPHIIN_LIST",
+   "inputData.XYZIN_LIST"
+  ],
+  "moorhen": [
+   "inputData.DELFPHIINANOM_LIST",
+   "inputData.DELFPHIIN_LIST",
+   "inputData.DICT_LIST",
+   "inputData.FPHIIN_LIST",
+   "inputData.MAPIN_LIST",
    "inputData.XYZIN_LIST"
   ],
   "coot_rebuild": [
@@ -563,9 +580,18 @@
    "controlParameters.PHASE_SOURCE",
    "controlParameters.SOLVENT_CONTENT",
    "inputData.ABCD",
+   "inputData.ASUIN",
    "inputData.FREERFLAG",
    "inputData.F_SIGF",
    "inputData.XYZIN"
+  ],
+  "dnatco_pipe": [
+   "controlParameters.GENERATE_RESTRAINTS",
+   "controlParameters.MAX_RMSD",
+   "controlParameters.RESTRAINTS_SIGMA",
+   "controlParameters.TOGGLE_XYZIN2",
+   "inputData.XYZIN1",
+   "inputData.XYZIN2"
   ],
   "dials_image": [
    "inputData.JSON_IN",
@@ -821,6 +847,15 @@
    "inputData.Obs_1",
    "inputData.Phi_1"
   ],
+  "pandda_campaign": [
+   "controlParameters.DISPATCH_TARGET",
+   "controlParameters.LOCAL_CPUS",
+   "controlParameters.MIN_CHARACTERISATION_DATASETS",
+   "controlParameters.PANDDA_EXECUTABLE",
+   "controlParameters.RUN_MODE",
+   "controlParameters.SCRATCH_DIR",
+   "inputData.DATASETS"
+  ],
   "matthews": [
    "inputData.ASUIN",
    "inputData.HKLIN",
@@ -955,7 +990,6 @@
   ],
   "mrbump_basic": [
    "controlParameters.BUCC",
-   "controlParameters.INCLUDE",
    "controlParameters.LOCALONLY",
    "controlParameters.NCYC",
    "controlParameters.NMON",
@@ -995,6 +1029,7 @@
    "inputData.DICT",
    "inputData.FREERFLAG",
    "inputData.F_SIGF",
+   "inputData.TLSIN",
    "inputData.UNMERGED",
    "inputData.XYZIN",
    "inputParameters.AUTO_WGT",
@@ -1847,6 +1882,14 @@
    "modelParameters.MIN_SPLITS",
    "modelParameters.PLDDT_THRESHOLD",
    "modelParameters.RMS_THRESHOLD"
+  ],
+  "coot_script_lines": [
+   "controlParameters.SCRIPT",
+   "controlParameters.STARTPOINT",
+   "inputData.DELFPHIIN",
+   "inputData.DICT",
+   "inputData.FPHIIN",
+   "inputData.XYZIN"
   ],
   "splitMtz": [
    "inputData.COLUMNGROUPLIST",

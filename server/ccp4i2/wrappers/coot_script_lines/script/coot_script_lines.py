@@ -10,7 +10,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class coot_script_lines(CPluginScript):
     TASKNAME = 'coot_script_lines'
-    TASKCOMMAND = 'coot'
+    # Coot 1, as CCP4 9 ships it ("coot-1"; the interactive coot1 task names
+    # it too). It asked for "coot", which a CCP4 9 install does not have: the
+    # job found nothing, or another Coot on PATH (a Homebrew one that could not
+    # load its own libraries, here).
+    TASKCOMMAND = 'coot-1'
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
 
@@ -29,6 +33,16 @@ class coot_script_lines(CPluginScript):
         self.appendCommandLine(['--no-state-script','--no-graphics','--python','--script',cootScriptPath])
 
         cootScript = open(cootScriptPath,"w")
+        # Coot 1 keeps its scripting API in modules, not the script's globals
+        # (read_pdb was undefined); the starting-point scripts use it bare.
+        cootScript.write("import os\n"
+                         "try:\n"
+                         "    import coot\n"
+                         "    from coot import *\n"
+                         "    import coot_utils\n"
+                         "    from coot_utils import *\n"
+                         "except ImportError:\n"
+                         "    pass\n\n")
         
         i = 1
         for XYZIN in self.container.inputData.XYZIN:
@@ -62,13 +76,32 @@ class coot_script_lines(CPluginScript):
             cootScript.write ('try:\n')
             for scriptLine in scriptLines:
                 cootScript.write('    '+scriptLine+'\n')
-            cootScript.write('except:\n    coot_real_exit(0)\n')
+            # Print what went wrong before leaving: it exited silently, so a
+            # script calling a function Coot 1 lacks made nothing and said
+            # nothing. Exit non-zero, so the job fails with the traceback in
+            # its log rather than finishing with no output.
+            cootScript.write('except Exception:\n'
+                             '    import traceback\n'
+                             '    traceback.print_exc()\n'
+                             '    coot_real_exit(1)\n')
             cootScript.write ('\n')
           
         cootScript.write("coot_real_exit(0)\n")
         cootScript.close()
         
         return CPluginScript.SUCCEEDED
+
+    STARTPOINT_NAMES = {
+        'FILL_PARTIAL_RESIDUES': 'fill partial residues',
+        'FIT_PROTEIN': 'fit protein',
+        'STEPPED_REFINE_PROTEIN_FOR_RAMA': 'stepped refinement with Ramachandran restraints',
+        'STEPPED_REFINE_PROTEIN': 'stepped refinement',
+        'MORPH_FIT': 'morph fit',
+    }
+
+    def recipeName(self):
+        start = str(self.container.controlParameters.STARTPOINT)
+        return 'Scripted Coot, ' + self.STARTPOINT_NAMES.get(start, 'own script')
 
     def processOutputFiles(self):
         print('#coot_script_lines.processOutputFiles')
@@ -94,7 +127,10 @@ class coot_script_lines(CPluginScript):
                 outputFilePath = os.path.join(self.workDirectory,'XYZOUT_'+str(iPDBOut)+'-coordinates.pdb')
                 shutil.copyfile(outputPDB, outputFilePath)
                 xyzoutList[-1].setFullPath(outputFilePath)
-                xyzoutList[-1].annotation=fname
+                # Which recipe made it, as well as the file name: every
+                # starting-point script writes "output.pdb", so later jobs'
+                # menus listed each run's model by that name alone.
+                xyzoutList[-1].annotation = self.recipeName() + ': ' + fname
                 iPDBOut += 1
         except:
             return CPluginScript.FAILED

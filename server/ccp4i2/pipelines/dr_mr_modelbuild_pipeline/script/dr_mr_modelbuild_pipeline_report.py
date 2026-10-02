@@ -144,29 +144,33 @@ class dr_mr_modelbuild_pipeline_report(Report):
     otherText = ""
 
     if self.enantio:
-        summaryDiv.addText(text='The input data have been processed in an entiomorphic space group.')
+        summaryDiv.addText(text='The input data have been processed in an enantiomorphic space group.')
         summaryDiv.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
         if jobStatus in ['Running','Running remotely']:
             summaryDiv.addText(text='Because of this the pipeline is being run for both enantiomers: '+best_sg+" and "+self.otherSG)
         else:
             summaryDiv.addText(text='Because of this the pipeline has been run for both enantiomers: '+best_sg+" and "+self.otherSG)
             summaryDiv.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
-            # TODO: This will break without the old Buccaneer pipeline
-            rfactors = xmlnode.findall('.//BuccaneerBuildRefineResult/FinalStatistics/r_factor')
-            r0 = rfactors[0].text
-            r1 = rfactors[1].text
-            summaryDiv.addText(text='The final R-factor from model building in '+best_sg+' is '+r0)
-            clearingDiv = summaryDiv.addDiv(style="clear:both;")
-            summaryDiv.addText(text='The final R-factor from model building in '+self.otherSG+' is '+r1)
-            clearingDiv = summaryDiv.addDiv(style="clear:both;")
-            if float(r0) < float(r1):
-                summaryDiv.addText(text='Based on this the space group '+best_sg+' appears to have given the best solution')
-                originalText = " (space group "+best_sg+" BEST)"
-                otherText = " (space group "+self.otherSG+")"
+            # Each hand's ModelCraft result, from the directories the pipeline
+            # records (this read the old Buccaneer pipeline's XML, never
+            # written now, and the report failed on every finished run).
+            results = modelcraft_results(xmlnode)
+            if len(results) < 2:
+                summaryDiv.addText(text='The model-building results of the two hands were not found.')
             else:
-                summaryDiv.addText(text='Based on this the space group '+self.otherSG+' appears to have given the best solution')
-                originalText = " (space group "+best_sg+")"
-                otherText = " (space group "+self.otherSG+" BEST)"
+                (r0, rf0), (r1, rf1) = results[0], results[1]
+                summaryDiv.addText(text='Model building in '+best_sg+': R '+str(r0)+', R-free '+str(rf0))
+                clearingDiv = summaryDiv.addDiv(style="clear:both;")
+                summaryDiv.addText(text='Model building in '+self.otherSG+': R '+str(r1)+', R-free '+str(rf1))
+                clearingDiv = summaryDiv.addDiv(style="clear:both;")
+                if float(rf0) <= float(rf1):
+                    summaryDiv.addText(text='Based on this the space group '+best_sg+' appears to have given the best solution')
+                    originalText = " (space group "+best_sg+" BEST)"
+                    otherText = " (space group "+self.otherSG+")"
+                else:
+                    summaryDiv.addText(text='Based on this the space group '+self.otherSG+' appears to have given the best solution')
+                    originalText = " (space group "+best_sg+")"
+                    otherText = " (space group "+self.otherSG+" BEST)"
             clearingDiv = summaryDiv.addDiv(style="clear:both;")
 
     if aimlessdone and jobStatus in ['Running','Running remotely']:
@@ -430,3 +434,19 @@ class dr_mr_modelbuild_pipeline_report(Report):
             l.append('label','Correlation Coefficient')
             l.append('colour','teal')
             summaryDivAcorn.addDiv(style="width:100%;border-width: 0px; border-color: black; clear:both; margin:0px; padding:0px;")
+
+
+def modelcraft_results(xmlnode):
+    """(R, R-free) of each ModelCraft run the pipeline recorded, in order."""
+    import json
+    import os
+    results = []
+    for element in xmlnode.findall('.//ModelCraft'):
+        path = os.path.join((element.text or '').strip(), 'modelcraft.json')
+        try:
+            with open(path) as stream:
+                final = json.load(stream)['final']
+            results.append((final['r_work'], final['r_free']))
+        except (OSError, ValueError, KeyError):
+            continue
+    return results

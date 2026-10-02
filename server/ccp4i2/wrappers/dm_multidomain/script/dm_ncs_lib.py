@@ -810,8 +810,18 @@ def estimate_solvent_fraction(structure, protein_density=1.23):
                 el = atom.element
                 mass += el.weight if el else 0.0
     nops = len([op for op in sg.operations()])
-    occupied = protein_density * mass * nops  # A^3 (1.23 A^3 per Da)
-    frac = 1.0 - occupied / cell.volume
+    return solvent_fraction_from_mass(mass, cell.volume, nops, protein_density)
+
+
+def solvent_fraction_from_mass(mass, cell_volume, nops, protein_density=1.23):
+    """Solvent fraction of a cell whose asymmetric unit holds *mass* Da.
+
+    1.23 A^3 per Da is the usual protein value. Returns None when the result
+    is not a fraction (a mass too large for the cell, or no mass at all).
+    """
+    if not mass or not cell_volume or not nops:
+        return None
+    frac = 1.0 - protein_density * mass * nops / cell_volume
     if not (0.0 < frac < 1.0):
         return None
     return round(frac, 3)

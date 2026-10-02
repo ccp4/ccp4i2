@@ -1,0 +1,127 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "LckKinase",
+  "viewport": [
+    1400,
+    2400
+  ],
+  "settle": 30000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "rnp_input.png",
+      "job": 6,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Reflections",
+      "through": "Composition of the asymmetric unit",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "field": "Free R set",
+          "badge": "2"
+        },
+        {
+          "field": "Model to cut into rigid bodies",
+          "badge": "3"
+        },
+        {
+          "field": "Rigid bodies, one selection each (none: the whole model)",
+          "badge": "4"
+        },
+        {
+          "field": "AsuContent file",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "rnp_after.png",
+      "job": 6,
+      "tabs": [
+        "Task interface",
+        "After Phaser"
+      ],
+      "viewport": [
+        1400,
+        900
+      ],
+      "section": "Refinement of the solution",
+      "callouts": [
+        {
+          "field": "Run shift-field refinement (sheetbend) on the solution",
+          "badge": "6"
+        },
+        {
+          "field": "Run refmac on the solution",
+          "badge": "7"
+        }
+      ]
+    },
+    {
+      "out": "rnp_report.png",
+      "job": 5,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "section": {
+        "text": "Solutions",
+        "scroll": true
+      },
+      "until": "Search strategy",
+      "callouts": [
+        {
+          "text": "Solutions",
+          "badge": "8"
+        },
+        {
+          "text": "Solution 1: placements",
+          "badge": "9"
+        }
+      ]
+    },
+    {
+      "out": "rnp_refmac.png",
+      "job": 5,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3600
+      ],
+      "settle": 30000,
+      "section": {
+        "text": "Note: R factors and free R factors are only comparable",
+        "scroll": true
+      },
+      "until": "Per cycle statistics",
+      "callouts": [
+        {
+          "text": "Note: R factors and free R factors are only comparable",
+          "badge": "10"
+        },
+        {
+          "text": "Summary of refinement",
+          "badge": "11"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/phaser_rnp_pipeline_phil/script/phaser_rnp_pipeline_phil.def.xml": "c09b7c75c187bb4398bb12ad7b2be27aaf21cbdb",
+    "server/ccp4i2/pipelines/phaser_rnp_pipeline_phil/script/phaser_rnp_pipeline_phil.py": "8ed61eeeeb37959f84cdf9154b3499bd3a65be92",
+    "server/ccp4i2/pipelines/phaser_rnp_pipeline_phil/script/phaser_rnp_pipeline_phil_report.py": "9037561a414cecf2c07e28507654980cc9280ab1",
+    "client/renderer/components/task/task-interfaces/phaser_rnp_pipeline_phil.tsx": "8c87e2dff97ea5d4252005906d07b5a072320ff1",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

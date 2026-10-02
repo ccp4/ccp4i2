@@ -59,7 +59,7 @@ class lorestr_i2(CPluginScript):
             return CPluginScript.SUCCEEDED
 
     def flushXML(self):
-        newXml = ET.tostring(self.xmlroot)
+        newXml = ET.tostring(self.xmlroot, encoding="unicode")  # bytes cannot go to a text file
         if len(newXml)>self.xmlLength:
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
@@ -203,17 +203,16 @@ class lorestr_i2(CPluginScript):
            xml_validation = ET.SubElement(self.xmlroot,"Validation")
            print(xml_validation)
 
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
-
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
-
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
-
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
-
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
-
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
+           # What the validation task writes now (as prosmart_refmac reads
+           # it): B_averages and Ramachandran_maps are gone, and asking for
+           # them failed the whole step, so no report showed validation.
+           # Read with the same ElementTree as xmlroot: an lxml element
+           # cannot be appended to a stdlib one.
+           validateRoot = ET.parse(validateXMLPath).getroot()
+           for name in ("Model_info", "B_factors", "Ramachandran", "Molprobity"):
+               found = validateRoot.find(name)
+               if found is not None:
+                   xml_validation.append(found)
 
            self.flushXML()
         except Exception as err:

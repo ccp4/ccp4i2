@@ -1,0 +1,65 @@
+{
+  "scenario": "../../../tools/scenario_analysis.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [1400, 1400],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "dm_input.png",
+      "job": 8,
+      "tabs": ["Task interface", "Input Data"],
+      "section": "Reflection Data",
+      "through": "NCS model",
+      "callouts": [
+        "Reflections (F/SIGF or intensities)",
+        "Starting phases from",
+        "Free R set (optional)",
+        "Model (the copies are read from this)",
+        "AU contents (sets the solvent content; a partial model would understate it)"
+      ]
+    },
+    {
+      "out": "dm_domains.png",
+      "job": 8,
+      "tabs": ["Task interface", "Domains"],
+      "section": "Which chains are copies of each other?",
+      "through": "Which parts move as one unit?",
+      "callouts": []
+    },
+    {
+      "out": "dm_parameters.png",
+      "job": 8,
+      "tabs": ["Task interface", "Parameters"],
+      "viewport": [1400, 900],
+      "section": "Density modification",
+      "callouts": ["Solvent flattening", "Histogram matching", "Number of cycles", "Solvent content", "Mask radius"]
+    },
+    {
+      "out": "dm_report.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 1800],
+      "section": {"text": "What was averaged", "scroll": true},
+      "until": "Input Data",
+      "from": "What was averaged",
+      "callouts": [
+        {"text": "What was averaged"},
+        {"text": "NCS averaging correlation by domain"},
+        {"text": "Plot", "closest": ".MuiPaper-root"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/dm_multidomain/script/dm_multidomain.def.xml": "d30dcb71e383827aa4a6d0c66575b3f6b8b749ce",
+    "server/ccp4i2/wrappers/dm_multidomain/script/dm_multidomain.py": "2dfc6e104d59e6d44934f119fc9ea63efd82b65b",
+    "server/ccp4i2/wrappers/dm_multidomain/script/dm_multidomain_report.py": "6f71ed6673970a85a77ebd91b6d4db1a8c6dbe02",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/assembly-grid.tsx": "01c91acf9c174486feb7909e978b207f2a9f5903",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/bodies-editor.tsx": "0eb283f1e66f0b4b386da2bf487a01b01b3fbfb7",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/coverage-strip.tsx": "e185f7f19e2feb4c107111fa145095e1bef8ee0b",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/dm-spec.ts": "558b91defe28dcd8b599faf7c9854673902a1506",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/index.tsx": "04ec8114e4577c4c141b4d5f690f1f076a9fb4ae",
+    "client/renderer/components/task/task-interfaces/dm_multidomain/use-ncs-preview.ts": "87e44b8aee7dbc36140857fa967e508438bbc143",
+    "docs/user/tools/scenario_analysis.py": "5d5a0ae22f9374d5dbbb0098cda01d2502fb200d"
+  }
+}

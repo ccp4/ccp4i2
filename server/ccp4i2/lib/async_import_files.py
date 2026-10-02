@@ -6,6 +6,7 @@ and uses the new CData metadata system instead of fragile string-based access.
 """
 
 import asyncio
+import os
 import logging
 import shutil
 import uuid
@@ -95,6 +96,16 @@ async def import_input_files_async(job, plugin, db_handler):
                         logger.info(f"Registered existing file for {file_obj.objectName()}")
                         files_imported += 1
                         continue
+
+            # A directory (an image directory, a previous xia2 run) is read in
+            # place: there is no file to copy, and copying raised IsADirectory.
+            try:
+                full_path = file_obj.getFullPath() if hasattr(file_obj, 'getFullPath') else None
+            except Exception:
+                full_path = None
+            if full_path and os.path.isdir(str(full_path)):
+                logger.info(f"Not importing {file_obj.objectName()}: a directory, read in place")
+                continue
 
             # Check if file has a baseName set (external file to import)
             if hasattr(file_obj, 'baseName'):

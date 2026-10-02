@@ -210,3 +210,46 @@ def test_a_fresh_job_starts_with_one_blank_body(tmp_path):
     assert len(plugin.container.controlParameters.DOMAINS) == 1
     assert plugin.container.controlParameters.DOMAINS[0].segments_spec() == ""
     assert 213 in _codes(plugin.validity())
+
+
+# ---------------------------------------------------------------------------
+# Solvent content. Estimated from the model alone, anything the model lacks
+# counts as solvent: 1h1s from its CDK2 chains gave 0.79 (truly ~0.5), and dm
+# flattened the missing cyclin density away (cyclin map CC 0.65 -> 0.14).
+
+def test_solvent_from_model_alone_is_warned(tmp_path):
+    report = _plugin(tmp_path, assembly=ASSEMBLY).validity()
+    assert 204 in _codes(report)
+
+
+def test_no_warning_when_solvent_content_is_given(tmp_path):
+    plugin = _plugin(tmp_path, assembly=ASSEMBLY)
+    plugin.container.controlParameters.SOLVENT_CONTENT.set(0.5)
+    assert 204 not in _codes(plugin.validity())
+
+
+def test_solvent_fraction_from_mass():
+    from ccp4i2.wrappers.dm_multidomain.script.dm_ncs_lib import solvent_fraction_from_mass
+    # 4 ASUs of 50 kDa in a 492,000 A^3 cell: 1 - 1.23*50000*4/492000 = 0.5
+    assert solvent_fraction_from_mass(50000, 492000, 4) == 0.5
+    assert solvent_fraction_from_mass(200000, 492000, 4) is None   # does not fit
+    assert solvent_fraction_from_mass(0, 492000, 4) is None
+
+
+def test_per_cycle_correlations_with_two_copies():
+    """dm prints a 2x2 matrix for two copies. The parser wanted three values
+    a row, so the report's 'per-domain NCS correlation' lines were never
+    drawn for the commonest case."""
+    seg = """
+<h4>NCS AVERAGING CORRELATIONS BETWEEN REGIONS IN DOMAIN 1</h4>
+  0.997 0.782
+  0.781 0.997
+
+<h4>NCS AVERAGING CORRELATIONS BETWEEN REGIONS IN DOMAIN 2</h4>
+  0.996 0.790
+  0.787 0.997
+
+ HISTOGRAM MAPPING:
+"""
+    corr = get_plugin_class("dm_multidomain")._cycle_domain_correlations(seg)
+    assert corr == {"1": (0.782 + 0.781) / 2, "2": (0.790 + 0.787) / 2}

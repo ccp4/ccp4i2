@@ -20,3 +20,5 @@ def test_gamma():
         read_mtz_file(str(job / "FPHIOUT.mtz"))
         xml = ET.parse(job / "program.xml")
         assert float(xml.find(".//BestCC").text) > 43
+        # The trace is offered to later tasks as what it is.
+        assert "SHELXE poly-Ala trace:" in (job / "params.xml").read_text()

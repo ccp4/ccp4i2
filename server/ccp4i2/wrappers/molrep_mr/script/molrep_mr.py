@@ -80,7 +80,16 @@ class molrep_mr(CPluginScript):
         if str(gui.PERFORM) != 'srf' and inp.XYZIN.isSet():
             try:
                 pdbin = os.path.join(self.path_wrk, 'molrep_input.pdb')
-                inp.XYZIN.replaceMSE(pdbin)
+                source = getattr(self, 'selectedXYZIN', None)
+                if source and os.path.abspath(str(source)) != os.path.abspath(str(inp.XYZIN.fullPath)):
+                    # processInputFiles made a PDB (an mmCIF converted, or the
+                    # atom selection): use it. replaceMSE on XYZIN keeps the
+                    # original's format, so an mmCIF went to molrep under a
+                    # .pdb name ("CIF_file must has extension .crd or .cif")
+                    # and a selection was silently ignored.
+                    write_without_mse(str(source), pdbin)
+                else:
+                    inp.XYZIN.replaceMSE(pdbin)
                 self.appendCommandLine(['-m', pdbin])
             except Exception as e:
                 self.appendErrorReport(111, str(e))
@@ -338,3 +347,21 @@ class molrep_mr(CPluginScript):
             except IndexError:
                 continue
         return data
+
+
+def write_without_mse(source, destination):
+    """Write *source* as PDB with selenomethionine as methionine (as
+    replaceMSE does): MSE -> MET, SE -> SD, HETATM -> ATOM."""
+    import gemmi
+    structure = gemmi.read_structure(source)
+    for model in structure:
+        for chain in model:
+            for residue in chain:
+                if residue.name == 'MSE':
+                    residue.name = 'MET'
+                    residue.het_flag = 'A'
+                    for atom in residue:
+                        if atom.name == 'SE':
+                            atom.name = 'SD'
+                            atom.element = gemmi.Element('S')
+    structure.write_pdb(destination)

@@ -131,6 +131,7 @@ import SHELXInterface from "./shelx";
 import ShelxeMRInterface from "./shelxeMR";
 import SIMBADInterface from "./SIMBAD";
 import SlicendiceInterface from "./slicendice";
+import CootScriptLinesInterface from "./coot_script_lines";
 import SplitMtzInterface from "./splitMtz";
 import SubstituteLigandInterface from "./SubstituteLigand";
 import SubtractNativeInterface from "./SubtractNative";
@@ -292,6 +293,7 @@ const TASK_INTERFACES: Record<
   shelxeMR: ShelxeMRInterface,
   SIMBAD: SIMBADInterface,
   slicendice: SlicendiceInterface,
+  coot_script_lines: CootScriptLinesInterface,
   splitMtz: SplitMtzInterface,
   SubstituteLigand: SubstituteLigandInterface,
   SubtractNative: SubtractNativeInterface,

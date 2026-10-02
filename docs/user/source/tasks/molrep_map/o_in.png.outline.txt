@@ -1,0 +1,89 @@
+tab* TASK INTERFACE
+tab  VALIDATION
+tab  COMMENTS
+tab  DIRECTORY
+tab  LOGS
+tab* INPUT DATA
+tab  PARAMETERS
+tab  KEYWORDS
+button   TASK MENU
+button   RUN
+button   CLONE JOB
+button   HELP
+button   BIBLIOGRAPHY
+text     2
+text     Place in cryo-EM map
+field    Take context from: = 
+  menu   2:Place in cryo-EM map | 1:Place in cryo-EM map
+text     Input data
+field    Model to place = 1: 7b5o.pdb
+  menu   1: 7b5o.pdb | 1: Model placed in the original-hand map (recommended) | 1: Model placed in the inverted-hand map | 
+text     Atom Selection
+field    (no label) = 
+text     Chains
+text     All
+text     |
+text     None
+check    [x] Hprotein(69)
+check    [x] Iprotein(309)
+check    [x] Jprotein(339)
+text     Residue Ranges (optional)
+text     H:
+field    (no label) = 
+text     -
+field    (no label) = 
+text     I:
+field    (no label) = 
+text     -
+field    (no label) = 
+text     J:
+field    (no label) = 
+text     -
+field    (no label) = 
+text     Include / Exclude Categories
+text     Protein
+text     Nucleic
+text     Ligand
+text     Sugar
+text     Solvent
+text     Click to cycle: none → include (blue) → exclude (red) → none
+text     Atom Filter
+text     All atoms
+text     Backbone only
+text     Sidechain only
+text     Individual Ligands (1)
+check    [ ] I74Chain J, Res 40158 atoms
+text     Selected ligands are added to the selection (OR logic)
+text     Residue Names
+text     LEU (91)
+text     HOH (73)
+text     ALA (45)
+text     GLU (42)
+text     PRO (38)
+text     SER (37)
+text     ARG (36)
+text     LYS (35)
+text     ILE (32)
+text     GLY (32)
+text     PHE (32)
+text     THR (29)
+text     ASP (29)
+text     VAL (28)
+text     ASN (28)
+text     TYR (27)
+text     GLN (26)
+text     HIS (19)
+text     MET (18)
+text     CYS (13)
+text     TRP (6)
+text     I74 (1)
+text     Click to filter by specific residue types (AND logic)
+text     Selecting: all atoms
+text     Selection String
+field    (no label) = 
+field    Cryo-EM map = 1: emd_12042.map
+  menu   1: emd_12042.map | 1: Original-hand map trimmed to the model (recommended) | 1: Inverted-hand map trimmed to the model | 1: Mask around the original-hand model (recommended) | 1: Mask around the inverted-hand model | 
+field    Half map 1 (optional, for cross-validated refinement) = 
+  menu   1: emd_12042.map | 1: Original-hand map trimmed to the model (recommended) | 1: Inverted-hand map trimmed to the model | 1: Mask around the original-hand model (recommended) | 1: Mask around the inverted-hand model | 
+field    Half map 2 (optional, for cross-validated refinement) = 
+  menu   1: emd_12042.map | 1: Original-hand map trimmed to the model (recommended) | 1: Inverted-hand map trimmed to the model | 1: Mask around the original-hand model (recommended) | 1: Mask around the inverted-hand model | 

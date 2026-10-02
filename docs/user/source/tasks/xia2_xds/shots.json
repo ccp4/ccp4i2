@@ -1,0 +1,67 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 15000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "xia2xds_input.png",
+      "job": 15,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Locate datasets",
+      "callouts": [
+        {
+          "field": "Image file",
+          "badge": "1"
+        },
+        {
+          "text": "Image range",
+          "badge": "2"
+        },
+        {
+          "field": "Or a directory of images (xia2 finds the sweeps)",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "xia2xds_settings.png",
+      "job": 15,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Basic parameters",
+      "callouts": [
+        {
+          "field": "Main processing pipeline",
+          "badge": "4",
+          "dynamic": true
+        },
+        {
+          "field": "Maximum wedge size (images)",
+          "badge": "5",
+          "dynamic": true
+        },
+        {
+          "field": "Space group",
+          "badge": "6",
+          "dynamic": true
+        }
+      ],
+      "dynamic_section": true
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/xia2_xds/script/xia2_xds.def.xml": "e016fb58c2cb91782e0b59031650a1aefb9d933e",
+    "server/ccp4i2/wrappers/xia2_xds/script/xia2_xds.py": "ac991f5cc55f6d2a6b01cfcaef36e27c6409ff0d",
+    "server/ccp4i2/wrappers/xia2_xds/script/xia2_xds_report.py": "8f4fe7cdb2a97b190bceaefc161ed57412b21e75",
+    "client/renderer/components/task/task-interfaces/xia2_dials.tsx": "cbae7ca8c27bc84986c45605479719613606309b",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

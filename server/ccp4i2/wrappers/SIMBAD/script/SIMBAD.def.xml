@@ -36,9 +36,9 @@
 	            <className>CInt</className>
 	            <qualifiers>
 		              <guiLabel>Number of processors</guiLabel>
-		              <toolTip>Number of processors to run on</toolTip>
+		              <toolTip>Number of processors to run on (blank: all of them)</toolTip>
 		              <min>1</min>
-		              <default>9993</default>
+		              <allowUndefined>True</allowUndefined>
 	            </qualifiers>
             </content>
  			<content id="SIMBAD_PROCESS_ALL">

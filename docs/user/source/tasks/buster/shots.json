@@ -1,0 +1,57 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "buster_input.png",
+      "job": 13,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Free R set",
+          "badge": "2"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "3"
+        },
+        {
+          "field": "Restraint dictionary",
+          "badge": "4"
+        },
+        {
+          "field": "Big cycles of refinement",
+          "badge": "5"
+        },
+        {
+          "field": "Treatment of waters",
+          "badge": "6"
+        },
+        {
+          "field": "Automatic NCS restraints",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/buster/script/buster.def.xml": "82771041ec110c9d52cca238866070fdccd03262",
+    "server/ccp4i2/wrappers/buster/script/buster.py": "2f8a17d7a42f424bbd62997e4d45a057793a05b4",
+    "server/ccp4i2/wrappers/buster/script/buster_report.py": "ab19ba2f1ebcaaad185ce65dcf90e53acce6e43e",
+    "client/renderer/components/task/task-interfaces/buster.tsx": "0c7466642933ac06462c589af1032700e435215b",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}

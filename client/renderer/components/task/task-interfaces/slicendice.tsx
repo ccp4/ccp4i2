@@ -24,7 +24,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement itemName="ASUIN" {...props} />
         <CCP4i2TaskElement itemName="NO_MOLS" {...props} qualifiers={{ guiLabel: "The number of monomers to search for" }} />
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
-        <CCP4i2TaskElement itemName="BFACTOR_TREATMENT" {...props} />
+        <CCP4i2TaskElement itemName="BFACTOR_TREATMENT" {...props}
+          qualifiers={{ guiLabel: "What the model's B-factor column holds" }} />
         {/* The threshold each treatment needs. Neither was here, so choosing a
             treatment left its cut-off at whatever the default happened to be. */}
         <CCP4i2TaskElement
@@ -48,10 +49,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Options" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="MIN_SPLITS" {...props} />
-        <CCP4i2TaskElement itemName="MAX_SPLITS" {...props} />
-        <CCP4i2TaskElement itemName="NPROC" {...props} />
-        <CCP4i2TaskElement itemName="NCYC" {...props} />
+        <CCP4i2TaskElement itemName="MIN_SPLITS" {...props}
+          qualifiers={{ guiLabel: "Fewest pieces to split the model into" }} />
+        <CCP4i2TaskElement itemName="MAX_SPLITS" {...props}
+          qualifiers={{ guiLabel: "Most pieces to split the model into" }} />
+        <CCP4i2TaskElement itemName="NPROC" {...props}
+          qualifiers={{ guiLabel: "Splits to run at once (processors)" }} />
+        <CCP4i2TaskElement itemName="NCYC" {...props}
+          qualifiers={{ guiLabel: "Refmac cycles after each placement" }} />
       </CCP4i2ContainerElement>
     </Paper>
   );

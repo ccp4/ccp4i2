@@ -19,7 +19,7 @@ class molrep_selfrot_report(Report):
         for structureFactorNode in self.xmlnode.findall('.//StructureFactors'):
             parent.append('<br/>')
             parent.append('<br/>')
-            parent.addText(text = 'Conclusion of search for anisotropy:',style='font-size:120%;')
+            parent.addText(text = 'Conclusion of search for anisotropy: ',style='font-size:120%;')
             parent.addText(xmlnode=structureFactorNode, select='INFO',style='font-size:120%;')
             dataTable = parent.addTable(xmlnode = self.xmlnode, select='StructureFactors')
             headings = {'LowResProvided':'Dmax',
@@ -37,7 +37,7 @@ class molrep_selfrot_report(Report):
             #Pull out conclusion of search for translational symmetry
             parent.append('<br/>')
             parent.append('<br/>')
-            parent.addText(text = 'Conclusion of search for translational symmetry:',style='font-size:120%;')
+            parent.addText(text = 'Conclusion of search for translational symmetry: ',style='font-size:120%;')
             parent.addText(xmlnode=pattersonNode, select='INFO',style='font-size:120%;')
 
             # Surface pseudo-translation warning with vector details
@@ -77,7 +77,7 @@ class molrep_selfrot_report(Report):
             #Provide list of symmetry-expanded rotation funciton peaks as a table
             parent.append('<br/>')
             selfRotationFold=parent.addFold(label='Self Rotation peaks',initiallyOpen=False,style='font-size:110%;')
-            peakTable = selfRotationFold.addTable(xmlnode = rotationNode, select='Peak',title='Self-Patterson peaks')
+            peakTable = selfRotationFold.addTable(xmlnode = rotationNode, select='Peak',title='Self-rotation peaks')
             headings=  'No theta    phi     chi    alpha    beta   gamma      Rf    Rf_sigma'.split()
             for heading in headings:
                 peakTable.addData(select=heading, title=heading)

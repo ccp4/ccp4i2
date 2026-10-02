@@ -56,7 +56,7 @@ class arcimboldo(CPluginScript):
         f_bor.write('distribute_computing = %s\n' % (controlParameters.ARCIMBOLDO_RUN))
         if controlParameters.ARCIMBOLDO_RUN != 'multiprocessing':
             if controlParameters.RUN_MODE == 'SYSTEM':
-                f_bor.write('setup_bor_path =  %s/lib/python3.7/site-packages/arcimboldo/setup.bor\n' % (ccp4_home))
+                f_bor.write('setup_bor_path =  %s\n' % system_setup_bor(ccp4_home))
             else:
                 config_file = os.path.join(inputData.CONFIG_FILE.relPath.__str__(),inputData.CONFIG_FILE.baseName.__str__())
                 f_bor.write('setup_bor_path = %s\n' % (config_file))
@@ -73,7 +73,7 @@ class arcimboldo(CPluginScript):
                 f_bor.write('helix_length = %d\n' % (controlParameters.HELIX_LENGTH)) 
             elif controlParameters.LITE_MODELS == 'CUSTOM':
                 f_bor.write('fragment_to_search = %d\n' % (controlParameters.N_FRAGMENTS)) 
-                f_bor.write('model_file = %d\n' % (inputData.PDB_LITE)) 
+                f_bor.write('model_file = %s\n' % (inputData.PDB_LITE.fullPath))  # %d on a file raised TypeError
             elif controlParameters.LITE_MODELS == 'HELICES':
                 frag_count = 0
                 i = 0
@@ -240,3 +240,13 @@ class arcimboldo(CPluginScript):
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))
+
+
+def system_setup_bor(ccp4_home):
+    """The installed arcimboldo package's setup.bor (the path was hard-coded
+    to python3.7, which no current CCP4 has)."""
+    import importlib.util
+    spec = importlib.util.find_spec('arcimboldo')
+    if spec is not None and spec.origin:
+        return os.path.join(os.path.dirname(spec.origin), 'setup.bor')
+    return os.path.join(ccp4_home, 'lib', 'python3.7', 'site-packages', 'arcimboldo', 'setup.bor')
