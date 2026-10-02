@@ -81,12 +81,7 @@ class buster(CPluginScript):
         self.logfc = os.path.join(os.path.split(self.hklin)[0], 'rcadout.log')
         arglist = ['hklin1', self.hklin, 'hklout', self.outfilec]
         # Extra input needed to be read-in by cad
-        if self.bIData:
-            inputText = "LABIN FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=F_SIGF_I E4=F_SIGF_SIGI E5=FREERFLAG_FREER\n"
-            inputText += ("LABOUT FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=F_SIGF_I E4=F_SIGF_SIGI E5=FREER")
-        elif self.bFData:
-            inputText = "LABIN FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREERFLAG_FREER\n"
-            inputText += ("LABOUT FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREER")
+        inputText = cad_keywords(self.bIData, self.container.inputData.FREERFLAG.isSet())
         # Fire the hkl conversion up.
         pid = CCP4Modules.PROCESSMANAGER().startProcess("cad", arglist, inputText=inputText, logFile=self.logfc)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
@@ -129,11 +124,11 @@ class buster(CPluginScript):
         gop = re.findall(r"(best refinement in BUSTER reached\D*)(\d*\.?\d+)/(\d*\.?\d+)", bltxt)
         linee = bltxt.splitlines()
         blfile.close()
-        # Final R/Rfree from log
-        rrfr = [gop[0][1], gop[0][2]]
-        # Set Perfm. Output
-        self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(str(rrfr[0]))
-        self.container.outputData.PERFORMANCEINDICATOR.RFree.set(str(rrfr[1]))
+        # Final R/Rfree from log (absent if BUSTER stopped before its summary)
+        if gop:
+            rrfr = [gop[0][1], gop[0][2]]
+            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(str(rrfr[0]))
+            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(str(rrfr[1]))
         # Extract graphs from logfile
         graphf = False
         allcyc = []
@@ -207,3 +202,19 @@ class buster(CPluginScript):
             self.appendCommandLine("-noWAT")
         self.xmlout = self.makeFileName('PROGRAMXML')
         return CPluginScript.SUCCEEDED
+
+
+def cad_keywords(intensities, free_set):
+    """CAD keywords renaming the free-R column to the FREER that refine reads.
+
+    The free set is optional: its column is named only when it was given (it
+    always was, so a job without one failed in CAD)."""
+    labels = ["F_SIGF_F", "F_SIGF_SIGF"]
+    if intensities:
+        labels += ["F_SIGF_I", "F_SIGF_SIGI"]
+    labout = list(labels)
+    if free_set:
+        labels.append("FREERFLAG_FREER")
+        labout.append("FREER")
+    return ("LABIN FILE 1 " + " ".join(f"E{i}={c}" for i, c in enumerate(labels, 1)) + "\n"
+            + "LABOUT FILE 1 " + " ".join(f"E{i}={c}" for i, c in enumerate(labout, 1)))

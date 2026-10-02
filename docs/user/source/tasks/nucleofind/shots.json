@@ -1,0 +1,74 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "RNA_1hr2",
+  "viewport": [
+    1400,
+    1200
+  ],
+  "settle": 15000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "nucleofind_input.png",
+      "job": 4,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Map coefficients",
+          "badge": "1"
+        }
+      ]
+    },
+    {
+      "out": "nucleofind_parameters.png",
+      "job": 4,
+      "tabs": [
+        "Task interface",
+        "Parameters"
+      ],
+      "section": "Parameters",
+      "callouts": [
+        {
+          "field": "Overlap between prediction boxes",
+          "badge": "2"
+        },
+        {
+          "field": "Kind of map written",
+          "badge": "4"
+        },
+        {
+          "field": "High-resolution cutoff in A (blank: all the data)",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "nucleofind_report.png",
+      "job": 3,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Output Data"
+      },
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "NucleoFind Predicted Phosphate Map",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/nucleofind/nucleofind.def.xml": "e4e04f29413332c798df3b02699c5705bc27ede8",
+    "server/ccp4i2/wrappers/nucleofind/nucleofind.py": "ec63add24cbbbdcfc19c41ab7f0b8127079b659d",
+    "server/ccp4i2/wrappers/nucleofind/nucleofind_report.py": "84b3a74f2f6aa9f173b504844bc10ba279a58b75",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}

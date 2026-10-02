@@ -28,7 +28,7 @@
         <content id="XYZIN">
             <className>CPdbDataFile</className>
             <qualifiers>
-                <ifAtomSelection>True</ifAtomSelection>
+                <ifAtomSelection>False</ifAtomSelection>
                 <mustExist>True</mustExist>
                 <allowUndefined>False</allowUndefined>
                 <fromPreviousJob>True</fromPreviousJob>
@@ -128,6 +128,7 @@
        <className>CBoolean</className>
            <qualifiers>
               <default>False</default>
+              <guiLabel>Automatic NCS restraints</guiLabel>
               <toolTip>Turn on automated NCS restraints.</toolTip>
            </qualifiers>
        </content>
@@ -135,6 +136,7 @@
        <className>CBoolean</className>
            <qualifiers>
               <default>False</default>
+              <guiLabel>Rigid-body refinement in the first big cycle</guiLabel>
               <toolTip>Turn on rigid body refinement for first large cycle.</toolTip>
            </qualifiers>
        </content>
@@ -142,6 +144,7 @@
        <className>CBoolean</className>
            <qualifiers>
               <default>False</default>
+              <guiLabel>TLS refinement</guiLabel>
               <toolTip>Turn on TLS Refinement.</toolTip>
            </qualifiers>
        </content>
@@ -150,8 +153,9 @@
            <qualifiers>
               <default>AUTO</default>
               <onlyEnumerators>True</onlyEnumerators>
-              <menuText>Treatment of waters</menuText>
-              <enumerators>OFF,ON,MAN</enumerators>
+              <guiLabel>Treatment of waters</guiLabel>
+              <menuText>BUSTER's default,None (-noWAT),Add waters (-WAT),Add waters from a given big cycle</menuText>
+              <enumerators>AUTO,OFF,ON,MAN</enumerators>
               <toolTip>Water Treatment</toolTip>
            </qualifiers>
        </content>

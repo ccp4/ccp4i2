@@ -118,9 +118,9 @@ class lorestr_i2_report(Report):
             table = startingStructureFold.addTable(select="StartingStructure[last()]", transpose = True ) # ,style="width:250px;")
 
             for title, select in  [[ "Twinning" ,"StartingStructure/twin" ],
-                                  [ "Jelly-body run<br>after MR" ,"StartingStructure/jellyAfterMR" ],
+                                  [ "Jelly-body run after MR" ,"StartingStructure/jellyAfterMR" ],
                                   [ "Scaling method"  , "StartingStructure/scaling" ],
-                                  [ "Solvent parameters<br>(VDW, ION, RSHR)" , "StartingStructure/solvent" ],
+                                  [ "Solvent parameters (VDW, ION, RSHR)" , "StartingStructure/solvent" ],
                                   ["Starting R-factor","StartingStructure/Rfact"],
                                   ["Starting R-free","StartingStructure/Rfree"]]:
               node = self.xmlnode.findall(select)
@@ -159,7 +159,9 @@ class lorestr_i2_report(Report):
                   try: name.append(protocolNode.findall('Name')[0].text)
                   except: name.append('')
 
-                  try: desc.append(protocolNode.findall('Description')[0].text)
+                  # LORESTR separates the parts of a description with "<br>",
+                  # which a table cell shows as written.
+                  try: desc.append(protocolNode.findall('Description')[0].text.replace('<br>', '; '))
                   except: desc.append('')
 
               table = protocolsDescriptionFold.addTable(select="Protocols[last()]/*" ) # ,style="width:250px;")
@@ -224,10 +226,10 @@ class lorestr_i2_report(Report):
 
                 graph = protocolBestFold.addFlotGraph( title="Statistics for Protocols", select=".//Protocols",style="height:300px; width:450px; float:left; border:0px;")
                 p = graph.addPlotObject()
-                p.append('title','Rfree vs. MolProbity score')
+                p.append('title','Rfree vs. MolProbity percentile')
                 p.append('plottype','xy')
                 p.append('xlabel','Rfree')
-                p.append('ylabel','MolProbity Score')
+                p.append('ylabel','MolProbity percentile')
 
                 protocols = self.xmlnode.findall('Protocols/*')
                 rFrees = []
@@ -240,8 +242,10 @@ class lorestr_i2_report(Report):
 
                 counter = 1
                 while len(self.xmlnode.findall('.//Protocols/P%d' % counter)) > 0:
+                    # The legend shows these titles: name the protocol, or the
+                    # four points cannot be told apart.
                     graph.addData (title="Rfree",  select="P%d/Rfree" %counter)
-                    graph.addData (title="Molprob",  select="P%d/molprobPercentile" %counter)
+                    graph.addData (title="Protocol %d" % counter,  select="P%d/molprobPercentile" %counter)
                     l = p.append('plotline',xcol=2* counter - 1,ycol=2* counter)
                     l.append('label','%d' % counter)
                     l.append('colour', COLOUR[counter][1])
@@ -255,7 +259,7 @@ class lorestr_i2_report(Report):
             for title, select1 in  [["Name", "Protocols/P%d/Name" % bestProtocolNumber],
                                   ["Description", "Protocols/P%d/Description" % bestProtocolNumber]]:
               node1 = self.xmlnode.findall(select1)
-              table.addData(title=title, data=[node1[0].text])
+              table.addData(title=title, data=[(node1[0].text or '').replace('<br>', '; ')])
 
 
             table = protocolBestFold.addTable(select="Protocols[last()]/*" ) # ,style="width:250px;")
@@ -265,6 +269,18 @@ class lorestr_i2_report(Report):
               node1 = self.xmlnode.findall(select1)
               node2 = self.xmlnode.findall(select2)
               table.addData(title=title, data=[node1[0].text, node2[0].text])
+
+            # LORESTR says in its log when no protocol beat the start; say it here.
+            try:
+                before = float(self.xmlnode.findall("StartingStructure/Rfree")[0].text)
+                after = float(self.xmlnode.findall("Protocols/P%d/Rfree" % bestProtocolNumber)[0].text)
+                if after >= before:
+                    protocolBestFold.addText(
+                        text="No protocol improved R-free (%.3f before, %.3f for the best): "
+                             "LORESTR could not improve this structure. " % (before, after),
+                        style="color:orange;")
+            except (IndexError, TypeError, ValueError):
+                pass
 
             if self.molProbity:
               for title, select1, select2 in  [[ "Ramachandran outliers (%)" ,"StartingStructure/ramaOut",  "Protocols/P%d/ramaOut" % bestProtocolNumber ],
@@ -284,29 +300,18 @@ class lorestr_i2_report(Report):
                   validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
 
                if validateReport is not None:
-                  try:
-                     if validateReportNode.findall ( ".//B_averages" )[0].text != "" :
-                        baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
-                        validateReport.b_factor_graph(parent = baverageFold)
-                        baverageChainFold = baverageFold.addFold ( label="B-factor analysis by chain", initiallyOpen=False )
-                        validateReport.b_factor_tables(parent = baverageChainFold)
-                  except:
-                     self.addText("Warning - B-factor analysis failed")
-                  try:
-                     if validateReportNode.findall ( ".//Ramachandran_maps" )[0].text != "" :
-                        ramachandranFold = self.addFold ( label="Ramachandran plots", initiallyOpen=False )
-                        validateReport.rama_graph(parent = ramachandranFold)
-                  except:
-                     self.addText("Warning - Ramachandran plot generation failed")
-                  try:
-                     if validateReportNode.findall ( ".//Molprobity" )[0].text != "" :
-                        molprobityFold = self.addFold ( label="MolProbity geometry analysis", initiallyOpen=False )
-                        validateReport.add_molprobity_summary(parent = molprobityFold)
-                        molprobityFold.addDiv(style="clear:both;")
-                        molprobityDetailedFold = molprobityFold.addFold ( label="Detailed MolProbity geometry analysis", initiallyOpen=False )
-                        validateReport.add_molprobity_results(parent = molprobityDetailedFold)
-                  except:
-                     self.addText("Warning - MolProbity analysis failed")
+                  # The sections the validation task writes now, drawn as
+                  # prosmart_refmac draws them.
+                  for name, label, draw in (
+                          ("B_factors", "B-factor analysis", validateReport.add_b_factors),
+                          ("Ramachandran", "Ramachandran plots", validateReport.add_ramachandran),
+                          ("Molprobity", "MolProbity analysis", validateReport.add_molprobity)):
+                     try:
+                        found = validateReportNode.findall(".//" + name)
+                        if found and found[0].text != "":
+                           draw(parent=self.addFold(label=label, initiallyOpen=False))
+                     except Exception:
+                        self.addText(text="Warning - " + label + " failed")
             except:
                pass
 

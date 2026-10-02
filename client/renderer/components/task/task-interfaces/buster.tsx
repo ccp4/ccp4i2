@@ -23,8 +23,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
         <CCP4i2TaskElement itemName="DICT" {...props} />
-        <CCP4i2TaskElement itemName="NBCYCLES" {...props} qualifiers={{ guiLabel: "Perform" }} />
-        <CCP4i2TaskElement itemName="NSCYCLES" {...props} qualifiers={{ guiLabel: "refinements (\"big cycles\") with a maximum of" }} />
+        <CCP4i2TaskElement itemName="NBCYCLES" {...props} qualifiers={{ guiLabel: "Big cycles of refinement" }} />
+        <CCP4i2TaskElement itemName="NSCYCLES" {...props} qualifiers={{ guiLabel: "Small cycles, at most, in each big cycle" }} />
         <CCP4i2TaskElement itemName="WAT" {...props} />
         {watMode === "MAN" && (
           <CCP4i2TaskElement itemName="WATCYC" {...props} qualifiers={{ guiLabel: "From big cycle" }} />

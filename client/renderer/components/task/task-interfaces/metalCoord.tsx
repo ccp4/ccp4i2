@@ -54,7 +54,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <InlineField label="Procrustes distance threshold: (range 0-1)">
             <CCP4i2TaskElement itemName="PROCRUSTES_DISTANCE_THRESHOLD" {...props} qualifiers={{ guiLabel: " " }} />
           </InlineField>
-          <InlineField label="Minimum sample size for statistics:">
+          <InlineField label="Minimum sample size for statistics:" hint="blank = 30">
             <CCP4i2TaskElement itemName="MINIMUM_SAMPLE_SIZE" {...props} qualifiers={{ guiLabel: " " }} />
           </InlineField>
           <CCP4i2TaskElement itemName="USE_PDB" {...props} qualifiers={{ guiLabel: "Use COD structures based on the input PDB/mmCIF coordinates" }} />

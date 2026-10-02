@@ -1,0 +1,26 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [1400, 1800],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {"out": "pdb_redo_input.png", "job": 14, "tabs": ["Task interface", "Input Data"],
+     "callouts": [
+       {"field": "Atomic model", "badge": "1"},
+       {"field": "Observed data", "badge": "2"},
+       {"field": "Free R set", "badge": "3"},
+       {"field": "Sequence", "badge": "4"},
+       {"field": "Geometry dictionary", "badge": "5"},
+       {"text": "Perform paired refinement", "badge": "6"}
+     ]},
+    {"out": "pdb_redo_advanced.png", "job": 14, "tabs": ["Task interface", "Advanced Options"]}
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api.def.xml": "c6c320fb96f21a28ed6df823cab31b5b896d574e",
+    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api.py": "757a5ae707f48506e1c3d2016bf36033495ac133",
+    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api_report.py": "1ca9db0b194c4d7cdb70f93f903c34d108aebe23",
+    "client/renderer/components/task/task-interfaces/pdb_redo_api.tsx": "4623164d6647c0cf7226c8c55445f3077e87459d",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}

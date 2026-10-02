@@ -69,6 +69,19 @@ def _expected(path):
     return f" (expected path: {path})" if path else ""
 
 
+def _step_key(step):
+    """What identifies a step across models: its name without the leading
+    entry id. DNATCO names steps <entry>_<chain>_<res>_<num>_<res>_<num>, and
+    the entry differs between files ("1hr2_A_U_202_C_203" against
+    "custom_A_U_202_C_203" for a re-refined copy), so pairing on the whole
+    name paired nothing: every step was listed twice, "model 1 only" and
+    "model 2 only"."""
+    name = step.get("name")
+    if name:
+        return name.split("_", 1)[1] if "_" in name else name
+    return f"{step['chain']} {step['step']}"
+
+
 def _merged_steps(models):
     """Steps of all models aligned by CIF step name, in first-model order.
 
@@ -81,7 +94,7 @@ def _merged_steps(models):
         if ntc is None:
             continue
         for step in ntc["steps"]:
-            key = step["name"] or f"{step['chain']} {step['step']}"
+            key = _step_key(step)
             entry = by_name.get(key)
             if entry is None:
                 entry = {"name": key, "chain": step["chain"], "step": step["step"],

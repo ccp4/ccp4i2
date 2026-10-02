@@ -16,6 +16,9 @@ def test_lorestr_1h1s(pdb1h1s, mtz1h1s):
         xyzout = job / "XYZOUT.pdb"
         assert xyzout.exists(), f"No XYZOUT: {list(job.iterdir())}"
         gemmi.read_pdb(str(xyzout))
+        # The validation after refinement reaches the report (it failed on
+        # element names the validation task no longer writes).
+        assert "<B_factors" in (job / "program.xml").read_text()
 
         # Check map coefficients
         for name in ["FPHIOUT", "DIFFPHIOUT"]:
