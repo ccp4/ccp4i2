@@ -2,168 +2,181 @@
 Low Resolution Structure Refinement Pipeline
 ############################################
 
-   Low Resolution Structure Refinement Pipeline (LORESTR) is a fully
-   automated and easy-to-use tool.
+LORESTR refines a model against low-resolution data by trying several
+restraint schemes and keeping the best. At low resolution (worse than
+about 3 Å) the data alone do not fix the geometry, so extra information
+helps: LORESTR takes it from homologous structures, which it turns into
+external restraints with ProSMART, and from generic hydrogen-bond and
+jelly-body restraints. It runs one or more REFMAC5 refinements for each
+scheme (a *protocol*), compares them, and reports the best.
 
-   The minimal input required is a PDB file containing the current model
-   (the target structure) and corresponding diffraction data. In
-   automatic mode, LORESTR extracts the sequences of all chains present
-   in the PDB file and runs a BLAST search over the whole Protein Data
-   Bank (internet connection required). It then downloads up to ten
-   homologues that share at least 75% sequence identity and cover at
-   least 75% of the protein chain (only homologues satisfying these
-   criteria proved to improve refinement). LORESTR specifies for
-   ProSMART hydrogen bond restraints to be used for any chains for which
-   there are no close homologues found. Users can also manually supply
-   any number of homologous structures.
+Use it when the data are poor and a better-determined homologue exists
+(or is likely to), and ordinary refinement leaves a high R-free or poor
+geometry. Do not expect it to help at good resolution, or when the model
+is incomplete: restraints cannot supply what is not in the model. In that
+case it says so rather than claiming a gain, as in the example below.
+If you already know which homologue to use and want to control the
+restraints yourself, use ProSMART with REFMAC5 by hand
+(:doc:`../prosmart_refmac/index`). For ordinary resolutions use
+:doc:`../servalcat_pipe/index` or REFMAC5.
 
-   After downloading homologues, the pipeline analyses the input data in
-   order to determine the set of most appropriate refinement parameters.
-   It checks whether the data are derived from a twinned crystal, in
-   which case automated handling of twinning in REFMAC5 is enabled. The
-   pipeline also tries standard and least-squares scaling options,
-   selecting the one that performs better (gives lower Rfree) and
-   figures out solvent parameters.
+How it works
+============
 
-   The pipeline then generates a number of refinement protocols,
-   depending on the number of available homologous chains. If no
-   homologues are supplied and no homologues are found during the BLAST
-   search, the pipeline will just test the two protocols that do not
-   require availability of external homologues, i.e. hydrogen bond
-   restraints and jelly-body restraints. For all protocols for which
-   external homologues are available, the pipeline runs one round of
-   REFMAC5 refinement using the external restraints, before then
-   executing a second round of refinement using only jelly-body
-   restraints in order to allow the structure to relax into its new
-   conformation (as this approach proved to be optimal in the vast
-   majority of our test cases).
+LORESTR first analyses the data: it checks for twinning (and enables
+REFMAC5's twin handling if found), tries standard and least-squares
+scaling and keeps the one giving the lower R-free, and chooses solvent
+parameters. It records the starting R-factors, Ramachandran statistics
+and MolProbity percentiles.
 
-   The pipeline supports multitasking and can run several jobs in
-   parallel, should the user so wish. After running all jobs, LORESTR
-   selects the best-performing protocol according to a quality indicator
-   that depends on both Rfree and the MolProbity score, or just simply
-   Rfree if MolProbity is not available from a local PHENIX installation
-   (phenix.molprobity shall be in the $PATH for automated assesment of
-   the structure quality).
+It then compares the model with each supplied or fetched homologue,
+rejecting chains that are too different (the log gives RMSD, coverage and
+sequence identity for each rejection), and builds the protocols. Without
+usable homologues it tries only the two protocols that need none:
+hydrogen-bond restraints and jelly-body restraints. With homologues it
+adds protocols using external restraints from 1, 2, ... of the closest
+homologous chains per chain of the model (up to the number set in the
+Advanced options). For these, one round of REFMAC5 uses the external
+restraints, then a second round with jelly-body restraints alone lets the
+structure relax into its new conformation. Protocols run in parallel on
+as many CPUs as you give it.
+
+Finally LORESTR picks the protocol with the best quality indicator, which
+combines R-free and the MolProbity score percentile
+(Kovalevskiy et al., 2016), and compares the result with the starting
+model.
+
+The example on this page
+------------------------
+
+The pictures come from the CDK2/cyclin A project of the refinement
+route. The model is the CDK2-only partial model of 1h1s refined earlier:
+two CDK2 chains, with the two cyclins missing, so about half of the
+asymmetric unit is absent. The data reach 2.2 Å. The reference model is
+1jst, CDK2/cyclin A from another crystal, supplied as a local file;
+automatic fetching was switched off and four CPUs were used. This is not
+a low-resolution problem, so it shows what LORESTR does when there is
+nothing for it to gain.
 
 Input
 =====
 
-   |image1|
+.. figure:: lorestr_input.png
+   :alt: Figure 1: LORESTR input
 
-   LORESTR input is simple: a target model for refinement and
-   experimental data, including Rfree.
+   Figure 1: LORESTR input
 
-   Also, you may provide optional file with TLS coefficients and any
-   number of homologous structures for restraints generation. Please
-   note, that if you are using auto mode (which is recommended default),
-   the pipeline will automatically download homologous structures from
-   the PDB, so you don't need to provide them manually. However, you can
-   use auto mode and manually supplied homologous structures
-   simultaneously (for instance, when you have both unpublished
-   structures of your protein and homologues deposited to the PDB).
+The model to refine **(1)**, the reflection data **(2)** and the free-R
+set **(3)** are required. Optional: TLS coefficients, a ligand
+description, and any number of homologous structures as the *Reference
+model* list **(4)**, to which more are added with the plus button. Models
+you supply are used alongside any fetched automatically, so you can offer
+unpublished structures of your own protein as well as PDB entries.
+
+Here the reference is 1jst. Its cyclin chains were rejected (about 6%
+sequence identity to the chains of the model, which has no cyclin), and
+its two CDK2 chains were kept as sources of restraint.
 
 Options
 =======
 
-   |image2|
+.. figure:: lorestr_options.png
+   :alt: Figure 2: LORESTR options
 
-   **Auto mode:** recommended default. In this mode pipeline extracts
-   the sequences of all chains present in the PDB file, runs a BLAST
-   search over the whole Protein Data Bank and downloads appropriate
-   homologues for restraints generation. Internet connection is required
-   for this functionality.
+   Figure 2: LORESTR options
 
-   **Generate retraints for DNA/RNA chains:** please tick this box if
-   you have DNA or RNA in your model
+**Automatically fetch homologues from following databases (5):** the
+choices are *PDB and AlphaFold*, *PDB only*, *AlphaFold only* and *None
+(do not fetch)*. When on, LORESTR sends the sequence of each chain to the
+chosen databases to search for homologues, and needs an internet
+connection; that means your sequence leaves your machine. It was off in
+the example, so only the supplied reference was used.
 
-   **Number of CPUs to use:** please specify number of processors for
-   parallel execution of several refinement protocols.
+**Refine overall B-factors:** forces overall B-factor refinement, for very
+low resolution.
 
-   **Run 100-200 cycles of jelly body refinement:** please tick this box
-   if your model is straight after molecular replacements and has not
-   been refined. The pipeline will figure out initial R-factors and
-   depending on them decide how many jelly body cycles to run to improve
-   fit of your model (may take up to several hours)
+**Generate external restraints for DNA/RNA chains:** tick it if the model
+contains nucleic acid.
 
-Advanced Options
-================
+**Number of CPUs to use (6):** protocols run in parallel, so more CPUs
+shorten the run when there are several protocols.
 
-   |image3|
+**Run 100-200 cycles of jelly body refinement first:** for a model
+straight from molecular replacement that has not been refined; this can
+take hours.
 
-   **Normally you don't need to change the default values.**
-
-   **Save disk space by removing excessive ProSMART output:** for large
-   structures, ProSMART output could be up to a hundred or two hundred
-   megabytes. As the pipeline runs up to ten (or more) protocols, that
-   can easily go up to several GB of data per single pipeline run. By
-   checking this box (default option is ON) you ask pipeline to remove
-   all excessive ProSMART output (detailed results of structures
-   analysis, scripts for visualisation programs, etc) and leave only
-   restraints used for refinement. If you are interested in reusing
-   ProSMART analysis data, uncheck this box.
-
-   **Download homologues with resolution better than X:** a simple
-   treshold for downloading homologues in the pipeline "Auto" mode.
-   Structures with resolution lower than this treshold will be ignored
-   for restraints generation.
-
-   **Use up to X homologues for restraints:** maximal number of
-   homologues for analysis. In our tests we spotted that by increasing
-   number of homologues used for simultaneous restrants generation,
-   efficiency of the refinement drops down. Default value delivers best
-   performance in our tests.
-
-   **Use up to X chains to generate restraints:** specifies maximal
-   number of homologous chains used for restraints generation. As
-   pipeline will generate protocols with 1, 2, ... X homologous chains
-   per target chain, changing this value will change number of
-   refinement protocols tried by the pipeline. Default value delivered
-   best performance in our tests and we don't advice to change it.
+**Advanced options** (normally leave alone): *Save disk space by removing
+excessive ProSMART output* (on by default; ProSMART output can reach
+hundreds of megabytes per protocol); *Download and use homologues with
+resolution better than* (3.5 Å) which limits what is fetched
+automatically; *Use up to* 5 homologues for restraints; and *Use up to* 3
+chains to generate restraints, which sets how many protocols are tried.
+More homologues or chains is not better: the defaults performed best in
+the authors' tests.
 
 Results
 =======
 
-      |image4|
+.. figure:: lorestr_report.png
+   :alt: Figure 3: LORESTR report
 
-      Average run of the Low Resolution Refinement Pipeline takes from
-      15 minutes to several hours depending on your hardware, size of
-      your structure and number of CPUs available for parallel execution
-      of multiple refinement protocols.
+   Figure 3: LORESTR report
 
-      During the run, top bar of the Results page shows current status
-      of the pipeline. For instance, on this screenshot LORESTR is
-      analysing the data; it already determined twinning status of the
-      data and is still estimating best scaling method and solvent
-      parameters.
+The report starts with the structure's starting parameters (twinning,
+scaling method, solvent parameters). *Description of refinement
+protocols* **(7)** lists the protocols with, for each chain, the homologue
+chain used and its sequence identity and local and global RMSD to the
+model. Here there were four: 1, jelly body only; 2, restraints from the
+closest homologue chain; 3, restraints from the two closest; 4, hydrogen
+bonds for all chains. *Execution of refinement protocols* **(8)** gives
+R-factor, R-free, Ramachandran outliers and favoured, ClashScore
+percentile and MolProbity percentile for each.
+*Best refinement protocol* **(9)** plots R-free against the MolProbity
+percentile for every protocol and compares the chosen one with the
+starting model.
 
-      |image5|
+The numbers in the example:
 
-      Once input analysis is over and refinement protocols are
-      generated, the pipeline starts to execute refinements. It can run
-      several refinements in parallel if user specified multiple CPUs in
-      the options. On this screenshot you can see typical report page in
-      the middle of the run. First refinement protocol has been finished
-      and the table was populated with corresponding values of resulting
-      R-factors, etc. Other protocols are running, few protocols are
-      waiting for the execution (number of CPUs was less than the total
-      number of refinement protocols).
+======== ======= ======= ========================
+Protocol R       R-free  MolProbity percentile
+======== ======= ======= ========================
+start    0.417   0.444   4.5
+1        0.413   0.445   6.4
+2        0.416   0.448   4.7
+3        0.414   0.448   7.7
+4        0.407   0.452   2.0
+======== ======= ======= ========================
 
-      |image6|
-      
-      After running all refinement protocols, LORESTR selects the
-      best-performing protocol according to a quality indicator that
-      depends on both Rfree and the MolProbity score percentile
-      (Kovalevskiy et al., 2016).
+Protocol 1 (jelly body only) was chosen, and the report says that no
+protocol improved R-free (the log: "Sorry, this program failed to improve
+Rfree value for your structure."). R-free went
+from 0.444 to 0.445, R from 0.417 to 0.413. That is the honest result.
+The external restraints did not help (R-free 0.448), and the
+hydrogen-bond protocol lowered R but raised R-free and damaged the
+geometry: its Ramachandran favoured fell to 90.9% and its MolProbity
+percentile to 2.0. Restraints from a homologue add information only when
+the data are weak enough to need it; at 2.2 Å, with half the asymmetric
+unit missing, the missing chains are the problem and no restraint scheme
+helps. What this model needs is the cyclins built in (the
+:doc:`../parrot/index` page recovers their density from this same
+start).
 
-      The pipeline reports final statistics on all protocols as a
-      scatter plot with Rfree and MolProbity score percentile on the
-      axes. Quality of the structure before and after refinement is
-      reported.
+Read the result this way: a protocol that lowers R-free by a clear margin
+and does not worsen the geometry is a gain. Changes of a thousandth or
+two in R-free, as here, are noise. When LORESTR reports a failure to
+improve, keep your starting model.
 
-.. |image1| image:: lorestr_i2_task_1.png
-.. |image2| image:: lorestr_i2_task_2.png
-.. |image3| image:: lorestr_i2_task_3.png
-.. |image4| image:: lorestr_i2_report_1.png
-.. |image5| image:: lorestr_i2_report_2.png
-.. |image6| image:: lorestr_i2_report_3.png
+Below these, the report shows validation of the refined model: *B-factor
+analysis* (mean, standard deviation and counts for the whole model and for
+each chain, by kind of atom), *Ramachandran plots* (non-proline, proline
+and glycine, with a table of outliers) and *MolProbity analysis*
+(a summary with the Ramachandran, rotamer and C\ β figures, then
+the outlying residues, suggested side-chain flips and atomic clashes).
+The refined model, and the maps after refinement (weighted and
+difference), are the outputs.
+
+**Reference**
+
+Kovalevskiy, O., Nicholls, R. A. & Murshudov, G. N. (2016). Automated
+refinement of macromolecular structures at low resolution using
+prior information. Acta Cryst. D72, 1149-1161.

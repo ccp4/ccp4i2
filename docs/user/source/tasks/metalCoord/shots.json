@@ -1,0 +1,85 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "MetalSite",
+  "viewport": [
+    1400,
+    1500
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "metalcoord_input.png",
+      "job": 2,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "text": "Monomer code",
+          "badge": "2"
+        },
+        {
+          "text": "Distance threshold",
+          "badge": "3"
+        },
+        {
+          "text": "Maximum coordination number",
+          "badge": "4"
+        },
+        {
+          "text": "Procrustes distance threshold",
+          "badge": "5"
+        },
+        {
+          "text": "Minimum sample size for statistics",
+          "badge": "6"
+        },
+        {
+          "text": "Update link records",
+          "badge": "7"
+        }
+      ]
+    },
+    {
+      "out": "metalcoord_report.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Metal site",
+        "scroll": true
+      },
+      "until": "Angles",
+      "callouts": [
+        {
+          "text": "Only one coordination class",
+          "badge": "8"
+        },
+        {
+          "text": "Procrustes distance",
+          "closest": "table",
+          "badge": "9"
+        },
+        {
+          "text": "Distance in input model",
+          "closest": "table",
+          "badge": "10"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/metalCoord/script/metalCoord.def.xml": "6849c25a2a57d8f841257194df738779b63ce81d",
+    "server/ccp4i2/wrappers/metalCoord/script/metalCoord.py": "447dc7469367b9cec82515a5d1739c3582f5d78e",
+    "server/ccp4i2/wrappers/metalCoord/script/metalCoord_report.py": "143fc117bf0dff86b8baffcb7a20a8995d93207a",
+    "client/renderer/components/task/task-interfaces/metalCoord.tsx": "b6fb1a63c69f2deb005cbcc7e43305b9ed0c5dcd",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}

@@ -132,6 +132,7 @@ Model building and graphics
    coot_rebuild/index
    coot_find_waters/index
    coot_script_lines/index
+   nucleofind/index
    nautilus_build_refine/index
    ccp4mg_general/index
    shelxeMR/index
@@ -150,6 +151,9 @@ Refinement
    coot_refinement/index
    lorestr_i2/index
    pairef/index
+   pdb_redo_api/index
+   metalCoord/index
+   buster/index
    shift_field/index
    phaser_rnp_pipeline_phil/index
 
@@ -170,6 +174,7 @@ Validation and analysis
    :maxdepth: 1
 
    validate_protein/index
+   dnatco_pipe/index
    edstats/index
    privateer/index
    pisapipe/index

@@ -1,0 +1,62 @@
+{
+  "scenario": "../../../tools/scenario_refine_tail.py",
+  "project": "RNA_1hr2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "dnatco_input.png",
+      "job": 6,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Nucleic acid structure model",
+          "badge": "1"
+        },
+        {
+          "text": "Compare with another structure model",
+          "badge": "2"
+        },
+        {
+          "field": "Second structure model",
+          "badge": "3"
+        },
+        {
+          "text": "Generate NtC restraints for refinement",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "dnatco_ntc.png",
+      "job": 5,
+      "tabs": [
+        "Report"
+      ],
+      "section": "Overall structure quality"
+    },
+    {
+      "out": "dnatco_naval.png",
+      "job": 5,
+      "tabs": [
+        "Report"
+      ],
+      "section": "NAVAL bond lengths and angles validation",
+      "until": "Bond lengths of concern"
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/dnatco_pipe/script/dnatco_pipe.def.xml": "b68ec874d546a3a3c28fd2d65f68dc62286a884d",
+    "server/ccp4i2/pipelines/dnatco_pipe/script/dnatco_pipe.py": "5825210a7ea00dd7768bb64eee0399220c03c0ff",
+    "server/ccp4i2/pipelines/dnatco_pipe/script/dnatco_pipe_report.py": "270ac0ae05778f942a03ee496917d8d4b85c2540",
+    "client/renderer/components/task/task-interfaces/dnatco_pipe.tsx": "f8603befac2f304a8d891a6459a82b6f7da949ff",
+    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+  }
+}
