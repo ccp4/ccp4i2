@@ -1,0 +1,540 @@
+task: prosmart_refmac
+status: draft
+reviewed_by: []
+purpose: >
+  Restrained (or rigid-body) maximum-likelihood refinement of an atomic model
+  against merged reflections with REFMAC5, optionally with ProSMART
+  restraints to reference structures and Platonyzer metal-site restraints,
+  optionally followed by Coot water picking and five more cycles, and then
+  validation of the refined model (validate_protein: B-factors,
+  Ramachandran, and MolProbity when VALIDATE_MOLPROBITY is on).
+
+use_when:
+  - You have a model placed in THIS crystal's frame (from molecular
+    replacement, model building, or an isomorphous earlier structure) and
+    the merged reflections with the Free R set the project already uses.
+  - After every round of rebuilding, ligand fitting or water picking, to
+    re-refine and see whether R-free fell.
+  - At low resolution (worse than about 3 A) when a higher-resolution
+    structure of the same or a homologous molecule exists, switch on
+    ProSMART restraints to it (prosmartProtein.TOGGLE, REFERENCE_MODELS).
+
+not_when:
+  - text: >
+      The model has not been placed in this crystal yet (a homologue or
+      predicted model in its own frame).
+    instead: phaser_simple_phil
+  - text: >
+      The model is a distant or incomplete placement (R-free stays at or
+      above 0.40 after refinement) and most of it must be rebuilt into the
+      target sequence; more refinement cycles will not do that.
+    instead: modelcraft
+  - text: >
+      The data are a cryo-EM map rather than reflections.
+    instead: servalcat_pipe
+  - text: >
+      Low resolution and you want the restraint and weight choices made for
+      you (homologue search, several refinement protocols compared).
+    instead: lorestr_i2
+
+inputs:
+  - param: inputData.FREERFLAG
+    advice: >
+      The Free R set this model has ALWAYS been refined against in this
+      project - the FREERFLAG of the data-reduction/import job, or the one
+      the previous refinement or MR job used ("prosmart_refmac[-1].FREERFLAG").
+      Never generate a new set for a model already refined against these
+      data: its R-free can then start biased low and drift up as the model
+      forgets (see traps). Without a free set the job runs, with a warning,
+      and nothing it reports can be judged.
+  - param: inputData.F_SIGF
+    advice: >
+      The same reflections (and so the same indexing and space group) the
+      model was placed or last refined against. If an MR job changed the
+      space group, use that job's reindexed output, not the original data.
+  - param: inputData.XYZIN
+    advice: >
+      The model to refine, in this crystal's frame. A selection can drop
+      atoms (MDM2 job 3 used "not (HOH)" to rebuild the waters). Every
+      ligand in it needs a dictionary: in the CCP4 monomer library or given
+      in inputData.DICT_LIST (from LidiaAcedrgNew / acedrgNew); without one
+      the job stops (run-time validation, or REFMAC's new-ligand exit).
+  - param: controlParameters.NCYCLES
+    advice: >
+      Default 10, and CCP4Cloud asks for at least 10 while a model is
+      unfinished (verdict_refmac.py lines 449-461). Enough when R-free has
+      levelled off (RFREE_3BACK - RFREE <= 0.003). Straight after MR, or
+      with jelly-body or ProSMART restraints, convergence is slower: 20-50
+      cycles (help page: up to 200 with jelly-body after MR). Cycles past
+      convergence do not help and can let R-free creep up (Gamma
+      molrep_pipe job 2: 0.249 at cycle 6, 0.253 at cycle 20).
+  - param: controlParameters.USE_JELLY
+    advice: >
+      Jelly-body restraints (JELLY_SIGMA default 0.01, JELLY_DIST 4.2 A).
+      Switch on straight after molecular replacement and at low resolution
+      (worse than ~3 A), or when the R-free/R gap grows; give more cycles
+      with it. They stabilise refinement, they do not complete a model.
+  - param: controlParameters.WEIGHT_OPT
+    advice: >
+      Leave AUTO. Go MANUAL (with controlParameters.WEIGHT) only to fix a
+      geometry problem the automatic weight left: final RMS bond deviation
+      above 0.02 A -> a LOWER weight than WEIGHT_USED; persistent
+      overfitting -> lower.
+  - param: controlParameters.TLSMODE
+    advice: >
+      NONE by default. AUTO (with NTLSCYCLES 5-10, and BFACSETUSE to reset
+      B-factors first) is worth trying at medium and low resolution
+      (about 2-3.5 A) once the model is nearly complete; keep it only if
+      R-free falls compared with the same refinement without TLS.
+  - param: controlParameters.USE_NCS
+    advice: >
+      Off by default. Switch on (local, NCS_TYPE L) when the AU holds
+      several copies of the same molecule, especially at medium and low
+      resolution and when R and R-free diverge (help page, Restraints).
+  - param: controlParameters.USE_TWIN
+    advice: >
+      Off by default. Only when the data analysis (aimless/ctruncate
+      twinning tests) says the crystal is twinned AND the model is good
+      (R-free below 0.40): twin refinement of a poor model misleads (help
+      page; CCP4Cloud verdict_refmac.py lines 479-480).
+  - param: controlParameters.B_REFINEMENT_MODE
+    advice: >
+      ISOT (default). ANIS only at high resolution (help page: usually only
+      better than ~1.5 A), and keep it only if R-free falls; at lower
+      resolution it overfits.
+  - param: controlParameters.ADD_WATERS
+    advice: >
+      Coot water picking after the main refinement, then 5 more cycles.
+      Only done when R-WORK (not R-free) is below REFPRO_RSR_RWORK_LIMIT
+      (default 0.40; the code's test is strict <); otherwise skipped with
+      no trace in program.xml or the report. When it is done the job's
+      final statistics are those of the 5 post-water cycles (CYCLES_RUN 5),
+      and the first refinement's statistics are only in its sub-job.
+  - param: prosmartProtein.TOGGLE
+    advice: >
+      With prosmartProtein.REFERENCE_MODELS, generates external restraints
+      to the reference structure(s). Worth it at low resolution with a
+      higher-resolution homologue; at high resolution the data dominate
+      (help page: at 1.35 A "the restraints change little").
+  - param: controlParameters.VALIDATE_MOLPROBITY
+    advice: >
+      Leave on (default True): without it there is no clashscore, no
+      MolProbity summary and no program Verdict in program.xml (CDK2 job 2
+      and Gamma job 12 ran with it off and have none).
+
+results:
+  RFREE:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free
+    type: float
+    meaning: >
+      R-free after the last cycle of the last REFMAC run (the post-water run
+      when waters were added); the job's KPI "RFree". CDK2 2 0.445; MDM2 3
+      0.247; Gamma 12 0.255; MDM2 107 0.490.
+  RFREE_START:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle/r_free
+    type: float
+    meaning: >
+      R-free at cycle 0 of the same (last) REFMAC run. CDK2 2 0.438; MDM2 3
+      0.262 (post-water run; the first run started at 0.259); Gamma 12
+      0.254; MDM2 107 0.527.
+  RFREE_3BACK:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()-3]/r_free
+    type: float
+    meaning: >
+      R-free three cycles before the end; RFREE_3BACK - RFREE is CCP4Cloud's
+      plateau test (its rFreeList[-4] vs [-1]). CDK2 2 0.442; MDM2 3 0.251;
+      Gamma 12 0.254; MDM2 107 0.503.
+  RWORK:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor
+    type: float
+    meaning: >
+      R-work after the last cycle. CDK2 2 0.415; MDM2 3 0.235; Gamma 12
+      0.237; MDM2 107 0.474.
+  RWORK_START:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle/r_factor
+    type: float
+    meaning: >
+      R-work at cycle 0. CDK2 2 0.423; MDM2 3 0.257; Gamma 12 0.237;
+      MDM2 107 0.534.
+  RESOLUTION:
+    file: program.xml
+    xpath: .//Overall_stats/resolution_high
+    type: float
+    meaning: >
+      High-resolution limit used (A). CDK2 2 1.900; MDM2 3 1.346; Gamma 12
+      1.814; MDM2 107 1.346.
+  CYCLES_RUN:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()]/cycle
+    type: int
+    meaning: >
+      Cycles in the last REFMAC run: NCYCLES, or 5 for the post-water run
+      whatever NCYCLES was (so 5 is also the sign that waters were added
+      when NCYCLES was larger). CDK2 2 5; MDM2 3 5; Gamma 12 5; MDM2 107 10.
+  RMS_BONDS:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsBOND
+    type: float
+    meaning: >
+      REFMAC's final RMS deviation of bond lengths from the restraint
+      targets (A). CDK2 2 0.0052; MDM2 3 0.0125; Gamma 12 0.0081; MDM2 107
+      0.0075. (MolProbity's RMS_bonds is against its own targets and
+      differs: MDM2 3 0.0189, MDM2 107 0.0415.)
+  RMS_ANGLES:
+    file: program.xml
+    xpath: .//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsANGLE
+    type: float
+    meaning: >
+      Final RMS deviation of bond angles (degrees). CDK2 2 1.516; MDM2 3
+      1.925; Gamma 12 1.761; MDM2 107 2.108.
+  WEIGHT_USED:
+    file: program.xml
+    xpath: .//Cycle[last()-1]/WeightUsed
+    type: float
+    meaning: >
+      Weight on the X-ray term in the last refinement cycle (the final Cycle
+      element, the closing statistics, carries none; this is the value the
+      report prints). CDK2 2 0.0253; MDM2 3 0.386; Gamma 12 0.156; MDM2 107
+      0.0364.
+  N_FREE:
+    file: program.xml
+    xpath: .//Overall_stats/n_reflections_free
+    type: int
+    meaning: >
+      Reflections in the free set. CDK2 2 4974 (of 100109); MDM2 3 and 107
+      1530 (of 32047); Gamma 12 581 (of 11908).
+  RAMA_OUTLIERS:
+    file: program.xml
+    xpath: .//Validation/Ramachandran/Totals/Outliers
+    type: int
+    meaning: >
+      Ramachandran outliers counted by validate_protein (not MolProbity's
+      percentage, which can disagree - MDM2 3 has 1 here and 0.0% in
+      MolProbity). CDK2 2 16 of 592; MDM2 3 1 of 91; Gamma 12 0 of 120;
+      MDM2 107 1 of 85. Absent if VALIDATE_RAMACHANDRAN is off.
+  RAMA_RESIDUES:
+    file: program.xml
+    xpath: .//Validation/Ramachandran/Totals/Residues
+    type: int
+    meaning: >
+      Residues in the Ramachandran analysis. CDK2 2 592; MDM2 3 91; Gamma 12
+      120; MDM2 107 85.
+  CLASHSCORE:
+    file: program.xml
+    xpath: .//Validation/Molprobity/Summary/Clashscore
+    type: float
+    meaning: >
+      MolProbity clashscore. MDM2 3 3.54; MDM2 107 29.72. Absent when
+      VALIDATE_MOLPROBITY was off (CDK2 2, Gamma 12).
+  MOLPROBITY_SCORE:
+    file: program.xml
+    xpath: .//Validation/Molprobity/Summary/Molprobity_score
+    type: float
+    meaning: >
+      MolProbity score. MDM2 3 1.14; MDM2 107 2.81. Absent with MolProbity
+      off.
+  PDB_MEAN_RFREE:
+    file: program.xml
+    xpath: .//Verdict/meanRfree
+    type: float
+    meaning: >
+      Mean R-free of PDB entries in this resolution bin, from the CCP4Cloud
+      verdict the pipeline runs (0.19 for MDM2 3 and 107 at 1.35 A). Only
+      written when MolProbity ran and the verdict code succeeded. Not used
+      by the verdict: the band table there is the same CCP4Cloud table, so
+      it gives the same answer and works without MolProbity.
+  # FINDING: when waters are added, the job's program.xml holds only the
+  #   post-water REFMAC run; the first run's start and end (MDM2 3: 0.259 ->
+  #   0.267, R-free ROSE) are only in the sub-job's program.xml (job_3/job_2).
+  # FINDING: there is no reliable record that waters were added. MDM2 3's
+  #   CootAddWaters element survives only because the post-water stage ran
+  #   twice; in a single run finishUp's saveXml overwrites it (see notes).
+  #   CYCLES_RUN 5 with NCYCLES larger is the usable sign.
+  # NOTE: every xpath was read from CDK2_CyclinA 2, MDM2 3, Gamma 12 and
+  #   MDM2 107, and the R/geometry ones also from the refmac sub-jobs MDM2
+  #   25.3 and 3.2, BetaBlip 3.3 and 4.3, Gamma 2.3, Thaumatin 17.4 and
+  #   17.9, LckKinase 5.4 (same Overall_stats layout under REFMAC).
+  # NOTE (hazard): the first Overall_stats in the evidence is the last REFMAC
+  #   run because finishUp's saveXml rewrote program.xml from an in-memory
+  #   root holding that run first. saveXml writes only if the XML grew
+  #   (prosmart_refmac.py:233-240); a water job with little validation output
+  #   (VALIDATE_* off, or rigid mode) may keep the first run first, and
+  #   these xpaths would then read the FIRST run. Not seen in any job here.
+
+verdict:
+  - when: >
+      RMS_BONDS <= 0.02 and (
+      (RESOLUTION < 0.75 and RFREE < 0.196) or
+      (RESOLUTION >= 0.75 and RESOLUTION < 0.85 and RFREE < 0.208) or
+      (RESOLUTION >= 0.85 and RESOLUTION < 0.95 and RFREE < 0.214) or
+      (RESOLUTION >= 0.95 and RESOLUTION < 1.05 and RFREE < 0.224) or
+      (RESOLUTION >= 1.05 and RESOLUTION < 1.15 and RFREE < 0.232) or
+      (RESOLUTION >= 1.15 and RESOLUTION < 1.25 and RFREE < 0.241) or
+      (RESOLUTION >= 1.25 and RESOLUTION < 1.35 and RFREE < 0.250) or
+      (RESOLUTION >= 1.35 and RESOLUTION < 1.45 and RFREE < 0.258) or
+      (RESOLUTION >= 1.45 and RESOLUTION < 1.55 and RFREE < 0.263) or
+      (RESOLUTION >= 1.55 and RESOLUTION < 1.65 and RFREE < 0.268) or
+      (RESOLUTION >= 1.65 and RESOLUTION < 1.75 and RFREE < 0.273) or
+      (RESOLUTION >= 1.75 and RESOLUTION < 1.85 and RFREE < 0.280) or
+      (RESOLUTION >= 1.85 and RESOLUTION < 1.95 and RFREE < 0.284) or
+      (RESOLUTION >= 1.95 and RESOLUTION < 2.05 and RFREE < 0.289) or
+      (RESOLUTION >= 2.05 and RESOLUTION < 2.15 and RFREE < 0.294) or
+      (RESOLUTION >= 2.15 and RESOLUTION < 2.25 and RFREE < 0.299) or
+      (RESOLUTION >= 2.25 and RESOLUTION < 2.35 and RFREE < 0.304) or
+      (RESOLUTION >= 2.35 and RESOLUTION < 2.45 and RFREE < 0.308) or
+      (RESOLUTION >= 2.45 and RESOLUTION < 2.55 and RFREE < 0.311) or
+      (RESOLUTION >= 2.55 and RESOLUTION < 2.65 and RFREE < 0.315) or
+      (RESOLUTION >= 2.65 and RESOLUTION < 2.75 and RFREE < 0.318) or
+      (RESOLUTION >= 2.75 and RESOLUTION < 2.85 and RFREE < 0.322) or
+      (RESOLUTION >= 2.85 and RESOLUTION < 2.95 and RFREE < 0.326) or
+      (RESOLUTION >= 2.95 and RESOLUTION < 3.05 and RFREE < 0.329) or
+      (RESOLUTION >= 3.05 and RESOLUTION < 3.15 and RFREE < 0.331) or
+      (RESOLUTION >= 3.15 and RESOLUTION < 3.25 and RFREE < 0.333) or
+      (RESOLUTION >= 3.25 and RESOLUTION < 3.35 and RFREE < 0.337) or
+      (RESOLUTION >= 3.35 and RESOLUTION < 3.45 and RFREE < 0.340) or
+      (RESOLUTION >= 3.45 and RESOLUTION < 3.55 and RFREE < 0.343) or
+      (RESOLUTION >= 3.55 and RESOLUTION < 3.65 and RFREE < 0.348) or
+      (RESOLUTION >= 3.65 and RESOLUTION < 3.75 and RFREE < 0.353) or
+      (RESOLUTION >= 3.75 and RESOLUTION < 3.85 and RFREE < 0.358) or
+      (RESOLUTION >= 3.85 and RESOLUTION < 3.95 and RFREE < 0.363) or
+      (RESOLUTION >= 3.95 and RESOLUTION < 4.05 and RFREE < 0.367) or
+      (RESOLUTION >= 4.05 and RESOLUTION < 4.15 and RFREE < 0.370) or
+      (RESOLUTION >= 4.15 and RFREE < 0.373)
+      )
+    outcome: refined
+    basis: >
+      R-free below the PDB mean + 2 sigma for the resolution, per 0.1-A bin
+      of the PDB statistics in CCP4Cloud's verdict_refmac.py (lines
+      249-321): at or above that line it says "Rfree is high; are bits of
+      the structure missing?" (lines 421-422; equality counts as high here
+      too). Bins are centred on 0.1 A (Cloud uses round(res, 1), lines
+      232-246; at an exact x.x5 its banker's rounding can pick the other
+      neighbour, a difference of at most 0.009). Below 0.7 A and above 4.2 A
+      the end bins are used, as Cloud does. RMS bonds at most 0.02: Cloud's
+      upper bound of the ideal range (line 381, 547). Our runs: MDM2 3 0.247
+      at 1.35 A (limit 0.250), Gamma 12 0.255 at 1.81 A (0.280) and Gamma
+      2.3 0.253 pass; Thaumatin 17.4 0.281 at 1.17 A (0.241) and MDM2 3.2
+      0.267 at 1.35 A (0.250) do not.
+  - when: RFREE >= 0.40 and RFREE_START - RFREE < 0.003
+    outcome: not_improving
+    basis: >
+      R-free at or above 0.40 (Cloud's "model is incomplete or poorly
+      fitted", verdict_refmac.py lines 488-492) and it did not fall by the
+      0.003 Cloud counts as a change (plateauReached, lines 173-189). Our
+      runs: CDK2 2 0.438 -> 0.445 (correct CDK2 chains, both cyclins
+      removed: incomplete); Thaumatin 17.9 0.461 -> 0.461 while R-work fell
+      0.449 -> 0.419 (wrong enantiomorph).
+  - when: >
+      CYCLES_RUN < 10 or
+      (RFREE < 0.40 and RFREE_3BACK - RFREE > 0.003) or
+      (RFREE < 0.40 and RMS_BONDS > 0.02)
+    outcome: unconverged
+    basis: >
+      Not refined, and the run was too short or not finished: Cloud asks for
+      at least 10 cycles while a model is below deposition standard
+      (verdict_refmac.py lines 449-461) and more cycles while R-free still
+      changes by more than 0.003 over the last cycles (lines 463-475); bonds
+      above 0.02 call for a lower weight (lines 547-563). A placed model
+      (R-free >= 0.40) still falling after 10 cycles is not sent here: it
+      needs building, not cycles. No evidence prosmart_refmac job lands
+      here (CDK2 2 and Gamma 12 ran 5 cycles but are caught above).
+  - when: RFREE < 0.40
+    outcome: needs_building
+    basis: >
+      R-free below 0.40 (basis above) but above the PDB range: the model is
+      right and largely complete and needs rebuilding, waters, ligands. Our
+      runs: Thaumatin 17.4 0.332 -> 0.281 at 1.17 A; BetaBlip 4.3 (both
+      components placed) 0.376 -> 0.343 at 3.0 A, rebuilt next by modelcraft
+      (BetaBlip 5); MDM2 3.2 (deposited model without waters, 0.267) was
+      followed by water picking and reached 0.247.
+  - when: RFREE < RFREE_START
+    outcome: placed
+    basis: >
+      R-free fell by at least 0.003 but stays at or above 0.40: a correct
+      but distant or incomplete model (or a wrong one; building decides).
+      Our runs, all correct placements: MDM2 107 0.527 -> 0.490 (57%-identity
+      Chainsaw model, morphed and filled); MDM2 25.3 0.543 -> 0.503;
+      BetaBlip 3.3 0.453 -> 0.447 (BLIP still unplaced); LckKinase 5.4 0.445
+      -> 0.431.
+  - when: true
+    outcome: unjudged
+    basis: >
+      No refinement statistics in program.xml: the job failed, stopped for a
+      missing ligand dictionary (UNSATISFACTORY), was never run, or ran
+      without a free set. Whether it FAILED is the job's status, not
+      something this file can read; check that first.
+
+traps:
+  - >
+    The free set must be the one the model was refined against before. A
+    model refined against other free reflections can start with an R-free
+    biased low that rises as refinement proceeds, which reads as the
+    refinement making things worse. MDM2 job 3 refined the deposited 4hg7
+    against a free set made fresh by data reduction: its first REFMAC run
+    started with R-free BELOW R-work (0.259 vs 0.267) and R-free rose to
+    0.267 over 10 cycles while R-work fell - consistent with free
+    reflections the model had been refined against as work reflections
+    (the waters were also stripped and ProSMART restraints on, so it is not
+    proven). R-free below R-work at cycle 0, or a final gap well below the
+    PDB mean for the resolution (MDM2 3: 0.012 vs 0.029 at 1.3 A,
+    verdict_refmac.py line 261), is the signature.
+  - >
+    A flat R-free at or above 0.40 does not say which of three things is
+    wrong. CDK2 2 (0.438 -> 0.445) is a correct but INCOMPLETE model (two
+    CDK2 chains, both cyclins missing); Thaumatin 17.9 (0.461 flat) is a
+    WRONG one (wrong enantiomorph). Compare the model with the AU contents
+    and the free set's history before concluding the placement is wrong.
+  - >
+    A high R-free after MR is not answered by more cycles. MDM2 107 (0.490
+    at 1.35 A) and MDM2 25.3 (0.503) are correct placements of a 57%
+    homologue; R-free was still falling (0.503 -> 0.490 over the last three
+    cycles), but the gap to the 0.25 a finished model reaches here (MDM2 3)
+    is closed by rebuilding (modelcraft), not by refinement.
+  - >
+    When waters are added the job's statistics are those of the 5
+    post-water cycles only (CYCLES_RUN 5): RFREE_START is the start of THAT
+    run, not of the job, and the first run (which may have gone up) is only
+    in the sub-job. In MDM2 3 the first run rose 0.259 -> 0.267 and the
+    post-water run fell 0.262 -> 0.247.
+  - >
+    The report's Verdict panel is not a reliable source: it is only written
+    when MolProbity validation ran, and when waters were added its R-free
+    row reads "NA" (MDM2 3 report). Judge on the numbers in this file.
+
+next:
+  - when: outcome == "refined"
+    task: coot_find_ligand
+    inputs:
+      XYZIN: "prosmart_refmac[-1].XYZOUT"
+      FPHI: "prosmart_refmac[-1].FPHIOUT"
+      DICT: "LidiaAcedrgNew[-1].DICTOUT_LIST[0]"
+    advice: >
+      Only if a ligand is expected in the crystal and not yet in the model:
+      look first for unexplained density in prosmart_refmac[-1].DIFFPHIOUT,
+      make the ligand's dictionary (LidiaAcedrgNew) and set COMPID to its
+      three-letter code. Then refine again with the dictionary in DICT_LIST.
+  - when: outcome == "refined"
+    task: adding_stats_to_mmcif_i2
+    inputs:
+      XYZIN: "prosmart_refmac[-1].CIFFILE"
+      F_SIGF: "prosmart_refmac[-1].F_SIGF"
+      FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
+      ASUCONTENT: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      Deposition, only once the model is finished: waters and ligands
+      built, and the validation reviewed (RAMA_OUTLIERS and, with MolProbity
+      on, CLASHSCORE; the residues are listed in the report). Before that a
+      person inspects and fixes the model in Coot or Moorhen, and it is
+      refined again; at high resolution try B_REFINEMENT_MODE ANIS and riding
+      hydrogens and keep them only if R-free falls. The interface fills
+      REFMACINPUTPARAMSXML (the refinement job's input_params.xml) from the
+      model's lineage; how to give it from i2run was not checked here.
+  - when: outcome == "unconverged"
+    task: prosmart_refmac
+    inputs:
+      XYZIN: "prosmart_refmac[-1].XYZOUT"
+      F_SIGF: "prosmart_refmac[-1].F_SIGF"
+      FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
+    advice: >
+      The same refinement again from its output, with the SAME F_SIGF and
+      FREERFLAG: NCYCLES at least 10 (Cloud suggests 1.5x the cycles run
+      while R-free is still falling); straight after MR, USE_JELLY True and
+      20-50 cycles. If RMS_BONDS was above 0.02, also WEIGHT_OPT MANUAL with
+      WEIGHT below WEIGHT_USED (Cloud scales it by
+      0.99*(0.015/RMS_BONDS)^1.46, verdict_refmac.py lines 168-171, 555).
+  - when: outcome == "needs_building"
+    task: modelcraft
+    inputs:
+      XYZIN: "prosmart_refmac[-1].XYZOUT"
+      F_SIGF: "prosmart_refmac[-1].F_SIGF"
+      FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      When a person is available, rebuilding by hand is usually better for a
+      nearly complete model: they look at it with prosmart_refmac[-1].FPHIOUT
+      and .DIFFPHIOUT in Coot or Moorhen (missing loops and side chains,
+      wrong rotamers, the validation outliers), and the rebuilt model is
+      refined with the same F_SIGF and FREERFLAG, with ADD_WATERS True once
+      R-work is below 0.40. Without one, modelcraft rebuilds and adds waters;
+      judge by its R-free.
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "prosmart_refmac[-1].XYZOUT"
+      F_SIGF: "prosmart_refmac[-1].F_SIGF"
+      FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      FIRST compare the model with the AU contents. If a component or copy
+      is missing (BetaBlip 3.3), place it before building:
+      phaser_simple_phil with INPUT_FIXED True, XYZIN_FIXED
+      "prosmart_refmac[-1].XYZOUT" and the next model as XYZIN. If the AU is
+      covered by a distant model (MDM2 107), build it into the target
+      sequence with modelcraft and judge by modelcraft's R-free. At low
+      resolution with no builder that works, 50-100 jelly-body cycles
+      (USE_JELLY True, NCYCLES 50) are the alternative (CCP4Cloud: "50-200
+      refinement cycles" straight after MR, lines 488-492).
+  - when: outcome == "not_improving"
+    advice: >
+      Do not build on this model yet. Check, in order: (1) the model covers
+      the AU contents - if not, place the rest (phaser_simple_phil with
+      INPUT_FIXED True) or build it (modelcraft); (2) the placement, hand and
+      space group are right - a flat R-free near 0.45-0.50 for a model that
+      should cover the AU is a wrong solution: go back to MR; (3) F_SIGF and
+      FREERFLAG are the data and free set the model was placed against.
+  - when: outcome == "unjudged"
+    advice: >
+      Read the job's status and diagnostic.xml. A missing ligand dictionary:
+      make it (LidiaAcedrgNew) and give it in DICT_LIST. No FREERFLAG: give
+      the project's free set and run again.
+  - when: RFREE - RFREE_START > 0.003
+    advice: >
+      R-free ROSE during the run, by more than the 0.003 Cloud counts as a
+      change, whatever the outcome. Check the free set (RFREE_START below
+      RWORK_START is the signature of a set the model was refined against as
+      work reflections), the AU coverage, and overfitting (gap below). Do
+      not answer it with more cycles.
+  - when: RFREE - RWORK < 0
+    advice: >
+      R-free below R-work at the end: something is wrong with the free set
+      (CCP4Cloud verdict_refmac.py line 599) - it is not the set this model
+      was refined against, or not the free set of these data.
+  - when: >
+      RFREE - RWORK > RFREE_START - RWORK_START and (
+      (RESOLUTION < 1.25 and RFREE - RWORK > 0.037) or
+      (RESOLUTION >= 1.25 and RESOLUTION < 1.85 and RFREE - RWORK > 0.048) or
+      (RESOLUTION >= 1.85 and RESOLUTION < 2.15 and RFREE - RWORK > 0.054) or
+      (RESOLUTION >= 2.15 and RESOLUTION < 3.05 and RFREE - RWORK > 0.060) or
+      (RESOLUTION >= 3.05 and RFREE - RWORK > 0.058))
+    advice: >
+      The R-free/R gap grew during the run and is larger than CCP4Cloud's
+      limit (mean PDB gap + 0.01, verdict_refmac.py line 606; each band
+      uses its largest bin, from the table at lines 249-321, so it is up to
+      0.011 lenient): overfitting, or a wrong model being fitted (Thaumatin
+      17.9: 0.012 -> 0.042 at 1.17 A). Tighten: lower WEIGHT, USE_JELLY
+      True, USE_NCS True with several copies, ISOT B-factors, fewer cycles.
+  - when: N_FREE < 500
+    advice: >
+      Fewer than 500 free reflections (BetaBlip 419 at 3.0 A): R-free
+      is noisy and changes of a few thousandths are within its precision.
+      The 500 is from memory (the usual advice is about 1000 free
+      reflections, or 5-10% of the data) - an expert should set it.
+
+sources:
+  - docs/user/source/tasks/prosmart_refmac/index.rst
+  - server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac.py
+  - server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac_report.py
+  - server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac_verdict.py
+  - server/ccp4i2/wrappers/refmac/script/refmac.def.xml (defaults)
+  - "CCP4Cloud REFMAC verdict: $CCP4/share/jscofe/pycofe/verdicts/verdict_refmac.py (ccp4-20260702; Kovalevskiy, Krissinel, Lebedev; PDB statistics by 0.1-A resolution bin)"
+  - "run: CDK2_CyclinA job 2 (CDK2 chains only of 1h1s, 5 cycles, 1.9 A; incomplete)"
+  - "run: MDM2 job 3 (4hg7 without waters, ProSMART to 4qo4, waters added, new free set; refined)"
+  - "run: Gamma job 12 (re-refinement of Gamma job 2's converged model, same free set)"
+  - "run: MDM2 job 107 (Phaser placement from MDM2 25, coot_rsr_morph job 105, coot_script_lines fill partial residues job 106, 10 cycles)"
+  - "run: refmac sub-jobs MDM2 25.3 (phaser_simple_phil), MDM2 3.2, BetaBlip 3.3 and 4.3 (Phaser), Gamma 2.3 (molrep_pipe), Thaumatin 17.4 and 17.9 (dr_mr_modelbuild_pipeline), LckKinase 5.4 (phaser_rnp_pipeline_phil)"
+  - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.agent.yaml (Thaumatin 17.9 wrong enantiomorph; MDM2 25 and BetaBlip 3 correct placements)
