@@ -224,9 +224,9 @@ class dm_multidomain_report(Report):
                     for s in body.findall('Segment'))
                 fits = ", ".join(f"{f.get('copy')} {f.get('rmsd')} &#8491;"
                                  for f in body.findall('Fit')) or "&#8212;"
-                swatch = (f"<span style='display:inline-block;width:10px;"
-                          f"height:10px;border-radius:2px;background:{colour};"
-                          f"margin-right:6px;'></span>")
+                # A glyph, not a sized empty box: the report renderer does not
+                # lay out an inline-block span, and the box overprinted the number.
+                swatch = f"<span style='color:{colour};'>&#9632;</span> "
                 rows.append(
                     f"<tr><td>{swatch}{i + 1}</td><td>{segments}</td>"
                     f"<td>{body.get('mode')}</td><td>{fits}</td></tr>")

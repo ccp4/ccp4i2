@@ -42,7 +42,8 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
     TASKNAME = 'phaser_EP_AUTO'
 
-    ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }}
+    ERROR_CODES = { 105 : { 'description' : 'Phaser stopped with an error' },
+                    201 : { 'description' : 'Failed to find file' }}
 
     def __init__(self, *args, **kw):
         super(phaser_EP_AUTO, self).__init__(*args, **kw)

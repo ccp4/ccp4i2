@@ -19,7 +19,11 @@ class sheetbend_report(Report):
         parent.append( "<p>Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</p>" )
 
         tableDiv = parent.addDiv(style="float:left;border:0px;")
-        table = tableDiv.addTable(select=select, transpose=False, id='cycles') 
+        # Drawn into a pipeline's fold, the parent's XML is the pipeline's:
+        # without a select of its own (molrep_pipe passes one, relative to the
+        # pipeline), read this report's node, or every column comes back empty.
+        table = tableDiv.addTable(select=select, transpose=False, id='cycles',
+                                  xmlnode=self.xmlnode if select == "." else None)
         try:
           for title,select,expr in [[ "Cycle" , "Cycles/Cycle/Number", "int(float(x))" ],
                                     [ "Resolution (Å)" , "Cycles/Cycle/Resolution", "'%.2f' % float(x)" ],

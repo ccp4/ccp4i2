@@ -30,7 +30,7 @@ class AUSPEX_report(Report):
             ("SigI_plot.png", "Plot of sigma (intensity) against resolution"),
             ("ISigI_plot.png", "Plot of intensity / sigma against resolution"),
             ("F_plot.png", "Plot of amplitudes against resolution"),
-            ("SigF_plot.png", "Plot of sigma (intensity) against resolution"),
+            ("SigF_plot.png", "Plot of sigma (amplitude) against resolution"),
             ("FSigF_plot.png", "Plot of amplitude / sigma against resolution"),
             ("score.png", "Plot of icefinder score and intensities vs resolution"),
             ("intensities.png", "Plots for intensities"),
