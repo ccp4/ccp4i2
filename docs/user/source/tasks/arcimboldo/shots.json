@@ -1,0 +1,42 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Arcimboldo2ccf",
+  "viewport": [1400, 1800],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "arcimboldo_input.png",
+      "job": 2,
+      "tabs": ["Task interface"],
+      "section": {"text": "Run ARCIMBOLDO", "scroll": true},
+      "callouts": [
+        {"text": "Run ARCIMBOLDO", "badge": "1"},
+        {"field": "Reflections", "badge": "2"},
+        {"text": "Asymmetric unit contains", "badge": "3"},
+        {"field": "Search model type", "badge": "4"},
+        {"text": "Expected r.m.s.d. from target", "badge": "5"},
+        {"text": "Search for", "badge": "6"}
+      ]
+    },
+    {
+      "out": "arcimboldo_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "section": {"text": "The job is finished", "scroll": true},
+      "until": "Input Data",
+      "callouts": [
+        {"text": "The job is finished", "badge": "7"},
+        {"text": "Summary", "badge": "8"},
+        {"text": "Status", "badge": "9"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/arcimboldo/script/arcimboldo.def.xml": "bd6883afe965ec5082f80834c5c71c6e5a2b79dc",
+    "server/ccp4i2/wrappers/arcimboldo/script/arcimboldo.py": "83829112b5a5a60bb597c1b74e93268cb9788e0a",
+    "server/ccp4i2/wrappers/arcimboldo/script/arcimboldo_report.py": "5d38fba5628df28ab2a9d9220010c98ba8fa0da2",
+    "client/renderer/components/task/task-interfaces/arcimboldo.tsx": "2147fd221969f9b9c1794b827a37a2c3a466ebaa",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

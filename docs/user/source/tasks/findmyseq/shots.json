@@ -1,0 +1,28 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "MDM2",
+  "viewport": [1400, 1400],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "findmyseq_input.png",
+      "job": 125,
+      "tabs": ["Task interface"],
+      "section": "Input Data",
+      "callouts": [
+        {"field": "Observed data", "badge": "1"},
+        {"field": "Map coefficients", "badge": "2"},
+        {"field": "Atomic model", "badge": "3"},
+        {"field": "Local Sequence Database", "badge": "4"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/findmyseq/script/findmyseq.def.xml": "65285bdb2eed0708d24050502a093ef79851cf64",
+    "server/ccp4i2/wrappers/findmyseq/script/findmyseq.py": "df6636fa6224c961f65fc33be56bcbed2a9a8b6a",
+    "server/ccp4i2/wrappers/findmyseq/script/findmyseq_report.py": "7f05969a8db7eecbb096e92d5de3e239f2c643ef",
+    "client/renderer/components/task/task-interfaces/findmyseq.tsx": "39aceada4ea3ffeeabbae93ac4f1fd74c7fd4576",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

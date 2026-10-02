@@ -1,0 +1,113 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "drmrmb_data.png",
+      "job": 18,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "text": "Input data type",
+          "badge": "1"
+        },
+        {
+          "field": "File",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "drmrmb_model.png",
+      "job": 18,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Search model",
+      "until": "Atom Selection",
+      "callouts": [
+        {
+          "field": "Molecular replacement target source",
+          "badge": "3"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "drmrmb_options.png",
+      "job": 18,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Sequence of target model",
+      "through": "Ligand geometry",
+      "callouts": [
+        {
+          "field": "AU contents",
+          "badge": "5"
+        },
+        {
+          "text": "The number of monomers to search for",
+          "badge": "6"
+        },
+        {
+          "text": "Run Aimless twice",
+          "badge": "7"
+        },
+        {
+          "text": "Run phase refinement with acorn",
+          "badge": "8"
+        },
+        {
+          "text": "cycles of restrained refinement after MR",
+          "badge": "9"
+        },
+        {
+          "text": "model building pipeline iterations",
+          "badge": "10"
+        },
+        {
+          "text": "Format in which geometry will be specified",
+          "badge": "11"
+        }
+      ]
+    },
+    {
+      "out": "drmrmb_report.png",
+      "job": 17,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "The input data have been processed",
+        "scroll": true
+      },
+      "until": "Aimless Pipeline",
+      "callouts": [
+        {
+          "text": "Based on this the space group",
+          "badge": "12"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline.def.xml": "5c562daeb64117a4bbdb2468ec25eac9ff21d3f9",
+    "server/ccp4i2/pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline.py": "8d4e22b9d8555cae4a26fe669c5c89f60c80641a",
+    "server/ccp4i2/pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline_report.py": "0702b4b944d1fd21e0521634035c4d2f1e154541",
+    "client/renderer/components/task/task-interfaces/dr_mr_modelbuild_pipeline.tsx": "ce1ff422706520be920a437563dfd9e46f7c628f",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}

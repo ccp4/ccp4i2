@@ -1,0 +1,49 @@
+{
+  "scenario": "../../../tools/scenario_reduction.py",
+  "project": "Thaumatin",
+  "viewport": [1400, 1800],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "multiplex_input.png",
+      "job": 6,
+      "tabs": ["Task interface"],
+      "section": "Search for DIALS integrated files",
+      "callouts": [
+        {"field": "Root directory", "badge": "1"},
+        {"text": "DIALS .refl", "badge": "2"}
+      ]
+    },
+    {
+      "out": "multiplex_basic.png",
+      "job": 6,
+      "tabs": ["Task interface"],
+      "section": "Basic parameters",
+      "callouts": [
+        {"field": "Space group", "badge": "3"},
+        {"field": "High resolution cutoff", "badge": "4"},
+        {"field": "Method", "badge": "5"}
+      ]
+    },
+    {
+      "out": "multiplex_report.png",
+      "job": 5,
+      "tabs": ["Report"],
+      "section": {"text": "xia2.multiplex report", "scroll": true},
+      "until": "Bibliographic references",
+      "callouts": [
+        {"text": "Open xia2.multiplex.html report", "badge": "6"},
+        {"text": "xia2.multiplex summary", "badge": "7"},
+        {"text": "Output Data", "badge": "8"}
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/xia2_multiplex/script/xia2_multiplex.def.xml": "99d7a40d8fbdbb9944906233e64abd0434468719",
+    "server/ccp4i2/wrappers/xia2_multiplex/script/xia2_multiplex.py": "09d312b1ea617faa2a4e662f502b53d11ce1b647",
+    "server/ccp4i2/wrappers/xia2_multiplex/script/xia2_multiplex_report.py": "fc1519365e4d169d323d9f681dd8eeb1954c9acd",
+    "client/renderer/components/task/task-interfaces/xia2_multiplex.tsx": "1f9bfd7b327bf5fa313df0d9dd6fd58286224f63",
+    "docs/user/tools/scenario_reduction.py": "295ceedfb036ddb9c3e289e13e60a493be2c8474"
+  }
+}
