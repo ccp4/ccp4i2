@@ -135,6 +135,15 @@ def main(only=()):
                                          "--AWA_FREE", "fileOut=[1].FREEROUT",
                                          "--AWA_MODELIN", "fileOut=[25].XYZOUT[0]",
                                          "--AWA_SEQIN", "fileOut=[9].ASUCONTENTFILE"], clone=False)
+    if wanted("arcimboldo"):
+        # ARCIMBOLDO_LITE: two 14-residue helices (the data have tNCS, so it
+        # searches pairs; with one it stops and asks for another), expanded by SHELXE,
+        # on PDB-REDO's 2ccf data (1.6 kDa per helix; a small protein).
+        mtz = fetch("https://pdb-redo.eu/db/2ccf/2ccf_final.mtz", "2ccf_final.mtz")
+        run("Arcimboldo2ccf", "arcimboldo", [
+            "--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]",
+            "--ARCIMBOLDO_OPTIONS", "LITE", "--N_COMPONENTS", "1",
+            "--MOLECULAR_WEIGHT", "6000", "--N_FRAGMENTS", "2", "--HELIX_LENGTH", "14"])
     if wanted("mrparse"):
         run("Gamma", "mrparse", ["--SEQIN", f"fullPath={GAMMA_SEQ}",
                                  "--DATABASE", "PDB", "--USEAPI", "False"])

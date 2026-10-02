@@ -31,6 +31,7 @@
       <content id="IMAGE_DIRECTORY">
         <className>CDataFile</className>
         <qualifiers>
+          <guiLabel>Or a directory of images (xia2 finds the sweeps)</guiLabel>
           <mustExist>True</mustExist>
           <allowUndefined>True</allowUndefined>
           <isDirectory>True</isDirectory>

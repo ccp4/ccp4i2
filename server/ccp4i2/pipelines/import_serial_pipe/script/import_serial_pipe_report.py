@@ -7,7 +7,7 @@ class import_serial_pipe_report(Report):
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
 
-        if jobStatus is None or jobStatus.lower() is 'nooutput': return
+        if jobStatus is None or jobStatus.lower() == 'nooutput': return
         self.defaultReport()
         
     def defaultReport(self, parent=None):
