@@ -250,6 +250,8 @@ type TaskInfo = {
   /** The task that replaces this one: it stays registered (old jobs still
    *  open, and clone as the successor) but is not offered for new jobs. */
   supersededBy?: string | null;
+  /** Search terms the title and description lack */
+  searchTerms?: string[];
 };
 type TaskRef = { name: string; info: TaskInfo };
 type TaskLookup = Record<string, TaskInfo>;
@@ -303,6 +305,7 @@ export function TaskChooser(props: {
           onChange={setSearchText}
           placeholder="Search tasks..."
           size="small"
+          autoFocus
         />
         <ViewModeToggle mode={viewMode} onChange={setViewMode} />
       </Stack>
@@ -336,17 +339,18 @@ function FilteredTasks(props: {
   onTaskSelect: (taskName: string) => void;
 }) {
   const filteredTasks = useMemo(() => {
-    const searchText = props.searchText.toUpperCase();
-    // Rank matches so title matches weigh more: a TASKTITLE that starts with
-    // the query ranks above one that merely contains it, above a name match,
-    // above a description-only match. Lower score = shown first; -1 = no match.
+    const searchText = props.searchText.trim().toUpperCase();
+    // Rank matches so title matches weigh more.
+    // Lower score = shown first; -1 = no match.
     const score = (name: string): number => {
       const info = props.taskLookup[name];
       const title = info.TASKTITLE?.toUpperCase() ?? "";
       if (title.startsWith(searchText)) return 0;
       if (title.includes(searchText)) return 1;
       if (name.toUpperCase().includes(searchText)) return 2;
-      if (info.DESCRIPTION?.toUpperCase().includes(searchText)) return 3;
+      if (info.searchTerms?.some((t) => t.toUpperCase().includes(searchText)))
+        return 3;
+      if (info.DESCRIPTION?.toUpperCase().includes(searchText)) return 4;
       return -1;
     };
     return Object.keys(props.taskLookup)

@@ -12,6 +12,7 @@ export default function SearchField(props: {
   onChange: (value: string) => void;
   placeholder?: string;
   size?: "small" | "medium";
+  autoFocus?: boolean;
   sx?: SxProps<Theme>;
 }) {
   return (
@@ -40,6 +41,7 @@ export default function SearchField(props: {
       }}
       fullWidth
       size={props.size}
+      autoFocus={props.autoFocus}
       sx={props.sx}
     />
   );
