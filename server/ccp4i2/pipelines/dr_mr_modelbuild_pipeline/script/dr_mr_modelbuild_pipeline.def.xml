@@ -49,7 +49,7 @@
         <className>CObsDataFile</className>
         <qualifiers>
           <mustExist>True</mustExist>
-          <allowUndefined>False</allowUndefined>
+          <allowUndefined>True</allowUndefined>
           <fromPreviousJob>True</fromPreviousJob>
           <requiredContentFlag>4</requiredContentFlag>
         </qualifiers>
@@ -151,7 +151,7 @@
           <qualifiers>
             <crystalName>
               <guiLabel>crystal name</guiLabel>
-              <allowUndefined>False</allowUndefined>
+              <allowUndefined>True</allowUndefined>
               <minLength>1</minLength>
               <allowedCharsCode>1</allowedCharsCode>
             </crystalName>
@@ -239,7 +239,7 @@
             <className>CFreeRDataFile</className>
             <qualifiers>
                 <mustExist>True</mustExist>
-                <allowUndefined>False</allowUndefined>
+                <allowUndefined>True</allowUndefined>
                 <fromPreviousJob>True</fromPreviousJob>
                 <sameCrystalAs>F_SIGF</sameCrystalAs>
             </qualifiers>

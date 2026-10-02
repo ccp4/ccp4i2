@@ -480,7 +480,11 @@ class CDataFile(CData):
 
         # Determine relPath by looking for known directory patterns FIRST
         # Pattern 1: CCP4_JOBS/job_17 or CCP4_JOBS/job_17/job_1 (nested jobs)
-        jobs_match = re.search(r'(CCP4_JOBS/job_\d+(?:/job_\d+)*)', path_str)
+        # Matched in the parent: relPath is the directory the file (or
+        # directory) is in. Matched in the whole path, a job directory given
+        # as the input itself (a previous xia2 run) got its own name twice:
+        # relPath CCP4_JOBS/job_3 and baseName job_3, i.e. .../job_3/job_3.
+        jobs_match = re.search(r'(CCP4_JOBS(?:/job_\d+)*)', str(Path(path_str).parent))
         if jobs_match:
             rel_path = jobs_match.group(1)
             new_basename = Path(path_str).name

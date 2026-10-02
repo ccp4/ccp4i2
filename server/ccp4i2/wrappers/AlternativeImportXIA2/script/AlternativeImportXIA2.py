@@ -24,42 +24,34 @@ class AlternativeImportXIA2(CPluginScript):
         obsOut =  self.container.outputData.HKLOUT
         freerOut =  self.container.outputData.FREEROUT
 
-        for runSummary in self.container.controlParameters.runSummaries:
-            runName = runSummary.split(':')[0]
+        for runName, dirPath in self.xia2Runs():
             runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runName))
-            dirPath = os.path.join(self.container.controlParameters.directoryPath.__str__(), runName)
             destDirPath = self.workDirectory
+            filePrefix = runName[:-4] if runName.endswith('-run') else runName
 
             # Grab digested ispyb XML
             fileNameIfAny = os.path.join(dirPath, "ispyb.xml")
             if os.path.isfile(fileNameIfAny):
                 runXML.append(CCP4Utils.openFileToEtree(fileNameIfAny))
             for programName in ['pointless','aimless','truncate']:
-                programEtree = self.harvestLogXML(runName, programName)
+                programEtree = self.harvestLogXML(runName, programName, dirPath)
                 if programEtree is not None: runXML.append(programEtree)
         
             #Grab integrated (unmerged) files
             import sys
-            pattern = None
-            if runName.startswith('3d'):
-                pattern = os.path.join(dirPath,'DataFiles','Integrate','')+'*INTEGRATE.HKL'
-            elif runName.startswith('2d') or runName.startswith('dials'):
-                pattern = os.path.join(dirPath,'DataFiles','Integrate','')+'*INTEGRATE.mtz'
-            possibleFilesToCopy = glob.glob(pattern)
-            #At some point these files have been moved out of an Integrate subdirectory
-            #and into the "DataFiles" directory...not sure how to know when this may have happened
-            #so just try searching in alternative location if none found in Integrate subdirectory
-            if len(possibleFilesToCopy) == 0:
-                if runName.startswith('3d'):
-                    pattern = os.path.join(dirPath,'DataFiles','')+'*INTEGRATE.HKL'
-                elif runName.startswith('2d') or runName.startswith('dials'):
-                    pattern = os.path.join(dirPath,'DataFiles','')+'*INTEGRATE.mtz'
-            possibleFilesToCopy = glob.glob(pattern)
+            # By what is there, not by the run's name (only "3d..", "2d.."
+            # and "dials.." names were recognised; anything else gave no
+            # pattern and a TypeError): in DataFiles/Integrate (older xia2)
+            # or DataFiles, MTZ (DIALS, MOSFLM) or XDS's INTEGRATE.HKL.
+            possibleFilesToCopy = []
+            for where in (os.path.join(dirPath, 'DataFiles', 'Integrate'), os.path.join(dirPath, 'DataFiles')):
+                for suffix in ('*INTEGRATE.mtz', '*INTEGRATE.HKL'):
+                    possibleFilesToCopy = possibleFilesToCopy or sorted(glob.glob(os.path.join(where, suffix)))
             if len(possibleFilesToCopy) != 0:
                 try:
                     srcPath = possibleFilesToCopy[0]
                     srcFilename = os.path.split(srcPath)[1]
-                    destPath = os.path.join(destDirPath, runName[0:-4]+'_'+srcFilename)
+                    destPath = os.path.join(destDirPath, filePrefix+'_'+srcFilename)
                     shutil.copyfile(srcPath, destPath)
                     unmergedOut.append(unmergedOut.makeItem())
                     unmergedOut[-1].fullPath = destPath
@@ -77,10 +69,10 @@ class AlternativeImportXIA2(CPluginScript):
                     srcPath = possibleFilesToCopy[0]
                     srcFilename = os.path.split(srcPath)[1]
                     # Need original file for export
-                    allPath = os.path.join(destDirPath, runName[0:-4]+'_'+srcFilename[:-9]+'_all.mtz')
+                    allPath = os.path.join(destDirPath, filePrefix+'_'+srcFilename[:-9]+'_all.mtz')
                     shutil.copyfile(srcPath,allPath)
-                    obsPath = os.path.join(destDirPath, runName[0:-4]+'_'+srcFilename[:-9]+'_obs.mtz')
-                    freerPath = os.path.join(destDirPath, runName[0:-4]+'_'+srcFilename)
+                    obsPath = os.path.join(destDirPath, filePrefix+'_'+srcFilename[:-9]+'_obs.mtz')
+                    freerPath = os.path.join(destDirPath, filePrefix+'_'+srcFilename)
                     colin = 'I(+),SIGI(+),I(-),SIGI(-)'
                     colout = 'Iplus,SIGIplus,Iminus,SIGIminus'
                     colfree = 'FreeR_flag'
@@ -109,8 +101,26 @@ class AlternativeImportXIA2(CPluginScript):
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED
 
-    def harvestLogXML(self, runName, programName):
-        pattern = os.path.join(self.container.controlParameters.directoryPath.__str__(), runName, 'LogFiles','') + "*" + programName + ".log"
+    def xia2Runs(self):
+        """(name, directory) of each xia2 run to import.
+
+        The runs listed in runSummaries, under directoryPath (as the Qt
+        interface filled them); else, as the new interface leaves them empty,
+        found from XIA2_DIRECTORY: the directory itself when it is one xia2
+        run (it has DataFiles), else each sub-directory that is."""
+        names = [n for n in (str(r).split(':')[0].strip() for r in self.container.controlParameters.runSummaries) if n]
+        if names:
+            base = str(self.container.controlParameters.directoryPath)
+            return [(name, os.path.join(base, name)) for name in names]
+        base = str(self.container.inputData.XIA2_DIRECTORY.getFullPath() or
+                   self.container.controlParameters.directoryPath)
+        if os.path.isdir(os.path.join(base, 'DataFiles')):
+            return [(os.path.basename(os.path.normpath(base)), base)]
+        return [(name, os.path.join(base, name)) for name in sorted(os.listdir(base))
+                if os.path.isdir(os.path.join(base, name, 'DataFiles'))] if os.path.isdir(base) else []
+
+    def harvestLogXML(self, runName, programName, dirPath):
+        pattern = os.path.join(dirPath, 'LogFiles', '') + "*" + programName + ".log"
         candidateFiles = glob.glob(pattern)
         pointlessEtree = None
         if len(candidateFiles) > 0:

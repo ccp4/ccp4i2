@@ -115,3 +115,28 @@ def test_file_with_no_project_markers_keeps_its_absolute_path(
     assert os.path.realpath(xyzin.getFullPath()) == os.path.realpath(
         project_layout["unmarked"]
     )
+
+
+def test_job_directory_itself_keeps_its_path(project_layout, file_in_db_context):
+    """A previous job's directory as the input (xia2.multiplex and the xia2
+    import take xia2 run directories) became .../job_43/job_43: the job
+    pattern was matched in the whole path, so the directory was both
+    relPath and baseName."""
+    xyzin = file_in_db_context()
+    xyzin.set(str(project_layout["job_dir"]))
+
+    assert str(xyzin.relPath) == "CCP4_JOBS"
+    assert str(xyzin.baseName) == "job_43"
+    assert os.path.realpath(xyzin.getFullPath()) == os.path.realpath(
+        project_layout["job_dir"]
+    )
+
+
+def test_file_in_a_job_directory_keeps_it(project_layout, file_in_db_context):
+    path = project_layout["job_dir"] / "XYZOUT.pdb"
+    path.write_text("")
+    xyzin = file_in_db_context()
+    xyzin.set(str(path))
+
+    assert str(xyzin.relPath) == "CCP4_JOBS/job_43"
+    assert str(xyzin.baseName) == "XYZOUT.pdb"

@@ -25,7 +25,8 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },
                     302 : { 'description' : 'No Laue results in program xml output from first molrep run' },
-                    202 : { 'description' : 'Failed in harvesting file from lidia/acedrg' }
+                    202 : { 'description' : 'Failed in harvesting file from lidia/acedrg' },
+                    203 : { 'description' : 'The data for the chosen input type are missing' },
                     }
     PURGESEARCHLIST = [ [ 'molrep_mr%*/align.pdb' , 1],
                         [ 'molrep_mr%*/molrep_mtz.cif' , 1 ],
@@ -52,12 +53,28 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                     err.get('name', ''),
                     err.get('severity', 0)
                 )
-            return filtered
+            error = filtered
+        # F_SIGF, FREERFLAG and UNMERGEDFILES were all required, though the
+        # pipeline fills F_SIGF and FREERFLAG itself and each input type
+        # needs only its own data: no job could pass. Require what the chosen
+        # type reads, on the field the interface shows for it.
+        data_type = str(self.container.controlParameters.MERGED_OR_UNMERGED)
+        needs = {"UNMERGED": "UNMERGEDFILES", "MERGED": "F_SIGF_IN", "MERGED_F": "HKLIN"}.get(data_type)
+        if needs is not None:
+            item = getattr(self.container.inputData, needs)
+            missing = (len(item) == 0 or not item[0].file.isSet()) if needs == "UNMERGEDFILES" \
+                else not item.isSet()
+            if missing:
+                error.append(klass=self.TASKNAME, code=203,
+                             details=f"The input data for '{data_type}' are not set",
+                             name=f"{self.TASKNAME}.container.inputData.{needs}",
+                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
 
     def process(self):
       self.runningJobs=[]
-      self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
+      self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup) \
+          if self.container.inputData.F_SIGF.isSet() else None
 
       self.xmlroot = etree.Element('CCP4i2DRMRMBPipe')
       self.xmlroot.text = '\n'
