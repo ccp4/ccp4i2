@@ -121,8 +121,9 @@ def judge(task_name, job_dir, kpis=None, judgement=None):
         return {"task": task_name, "outcome": None,
                 "note": f"No judgement has been written for {task_name}."}
     values = read_results(judgement, job_dir, kpis)
+    optional = {n for n, spec in (judgement.get("results") or {}).items() if spec.get("optional")}
     verdict = {"task": task_name, "results": values, "outcome": None,
-               "missing": sorted(n for n, v in values.items() if v is None)}
+               "missing": sorted(n for n, v in values.items() if v is None and n not in optional)}
     for entry in judgement.get("verdict") or []:
         if condition.holds(_when(entry), values):
             verdict.update(outcome=entry.get("outcome"), because=_when(entry),

@@ -86,6 +86,14 @@ def parse_fileuse(fileuse: str) -> dict:
     }
 
 
+def _as_uuid(text):
+    import uuid
+    try:
+        return uuid.UUID(str(text).strip())
+    except (ValueError, AttributeError):
+        return None
+
+
 def resolve_fileuse(project, fileuse: str):
     """Resolve *fileuse* against *project*, as ``Result.ok`` / ``Result.fail``.
 
@@ -94,6 +102,18 @@ def resolve_fileuse(project, fileuse: str):
     """
     if fileuse.startswith("fileUse="):
         fileuse = fileuse[len("fileUse=") :]
+
+    # A file's own id (as project_jobs and the file list give it) names it
+    # unambiguously, including a file that went into a list element, which
+    # a [job].PARAM reference cannot name.
+    file_uuid = _as_uuid(fileuse)
+    if file_uuid is not None:
+        from ....db import models
+        from .file_use import file_dict_for_file
+        the_file = models.File.objects.filter(uuid=file_uuid, job__project=project).first()
+        if the_file is None:
+            return Result.fail(f"no file {fileuse} in this project")
+        return Result.ok(file_dict_for_file(the_file, with_full_path=True))
 
     first_error = None
     for keyword in (FILE_OUT, FILE_IN):

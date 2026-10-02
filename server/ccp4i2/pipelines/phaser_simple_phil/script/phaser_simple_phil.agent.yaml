@@ -130,6 +130,7 @@ results:
       Log-likelihood gain of the refined top solution. MDM2 25 104.27;
       BetaBlip 3 473.85 (beta only); BetaBlip 4 1053.54 (beta + BLIP).
   ORIGIN_NOTE:
+    optional: true     # absent is normal: not listed as missing
     file: program.xml
     xpath: .//Solutions/Solution/Placements/Placement[1]/Note
     type: str

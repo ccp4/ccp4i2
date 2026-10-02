@@ -120,6 +120,7 @@ results:
       context of beta). Placements lists only what was placed, in the order
       placed: for a single copy TFZ_LAST and TFZ_FIRST are the same element.
   ORIGIN_NOTE:
+    optional: true     # absent is normal: not listed as missing
     file: program.xml
     xpath: .//Solutions/Solution/Placements/Placement[1]/Note
     type: str

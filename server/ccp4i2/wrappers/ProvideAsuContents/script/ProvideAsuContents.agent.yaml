@@ -113,6 +113,7 @@ results:
       dependence. It is 1.00 whenever only one multiple fits (BetaBlip 2),
       however typical or atypical that Vm is.
   PROB_2:
+    optional: true     # absent is normal: not listed as missing
     file: program.xml
     xpath: ".//matthewsCompositions/composition[nMolecules='2']/matthewsProbability"
     type: float

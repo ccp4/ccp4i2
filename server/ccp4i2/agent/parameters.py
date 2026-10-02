@@ -61,6 +61,36 @@ def _value(obj):
     return _plain(value)
 
 
+def _fields(item, depth=0):
+    """What an item of a list holds: each field's class, label, choices and,
+    for a list inside it, its own item fields. A file field takes
+    {"file": "<reference or file id>"}."""
+    out = {}
+    for child in item.children():
+        name = child.objectName()
+        if not name or name.startswith("_"):
+            continue
+        field = {"class": type(child).__name__}
+        label = _qualifier(child, "guiLabel")
+        if label:
+            field["label"] = str(label)
+        if isinstance(child, CDataFile):
+            field["value"] = '{"file": "<reference like [3].XYZOUT[0], or a file id>"}'
+        enumerators = _qualifier(child, "enumerators")
+        if enumerators:
+            field["choices"] = _plain(enumerators)
+        default = _qualifier(child, "default")
+        if default is not None and not isinstance(child, CDataFile):
+            field["default"] = _plain(default)
+        if isinstance(child, CList) and depth < 3:
+            field["item_fields"] = _fields(child.makeItem(), depth + 1)
+        elif not isinstance(child, CDataFile) and depth < 3 and any(
+                c.objectName() for c in child.children()):
+            field["fields"] = _fields(child, depth + 1)
+        out[name] = field
+    return out
+
+
 def describe(obj, path):
     entry = {"path": path, "class": type(obj).__name__}
     label = _qualifier(obj, "guiLabel")
@@ -88,6 +118,12 @@ def describe(obj, path):
         mime = _qualifier(obj, "mimeTypeName")
         if mime:
             entry["file_type"] = str(mime)
+    if isinstance(obj, CList):
+        # Set a list whole, as the interface does: a JSON array of items
+        try:
+            entry["item_fields"] = _fields(obj.makeItem())
+        except Exception:  # a list whose item cannot be built here
+            pass
     return entry
 
 

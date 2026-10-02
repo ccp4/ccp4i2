@@ -79,6 +79,7 @@ results:                          # the numbers that decide, and where they are
     xpath: .//Analysis/TNCS
     attribute: tNCS               # an attribute of the element, not its text
     type: str
+    optional: true                # absent is normal: not listed as missing
   LLG:
     file: program.xml
     xpath: .//Solution/LLG

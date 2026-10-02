@@ -14,7 +14,8 @@ from ccp4i2.agent import mcp_server  # noqa: E402
 EXPECTED_TOOLS = {
     "list_projects", "create_project", "list_tasks", "describe_task", "project_jobs",
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
-    "upload_file", "validate", "run_job", "job_status", "judge_job", "what_next",
+    "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
+    "what_next",
 }
 
 
@@ -71,6 +72,7 @@ def test_validate_splits_errors_from_warnings(api):
 
 def test_a_refusal_reaches_the_agent_as_its_reason(api):
     _, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
     answers[("POST", "jobs/7/set_parameter")] = mcp_server.ApiError("Use clone API first")
     # The SDK hands a ToolError's message to the model (an is_error result
     # over the protocol); any other exception would reach it as a bare
@@ -87,4 +89,57 @@ def test_list_tasks_leaves_out_superseded_and_interactive(api):
         "phaser_simple": {"TASKTITLE": "Phaser old", "supersededBy": "phaser_simple_phil"},
         "moorhen_rebuild": {"TASKTITLE": "Moorhen", "interactive": True},
     }
-    assert [t["task"] for t in mcp_server.list_tasks("phaser")] == ["phaser_simple_phil"]
+    assert [t["task"] for t in mcp_server.list_tasks("phaser")["tasks"]] == ["phaser_simple_phil"]
+
+
+def test_wait_for_job_returns_when_the_job_ends(api, monkeypatch):
+    _, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "number": "3", "task_name": "x", "status": 6}
+    monkeypatch.setattr("time.sleep", lambda s: None)
+    out = mcp_server.wait_for_job(7, max_seconds=5)
+    assert out["status"] == "Finished" and out["waited_out"] is False
+
+
+def test_a_list_is_set_whole_with_its_files_resolved(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "projects/3/resolve_fileuse")] = {
+        "project": "p", "baseName": "beta.pdb", "dbFileId": "f1", "relPath": "CCP4_JOBS/job_3",
+        "fullPath": "/x/beta.pdb"}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [
+        {"path": "inputData.ENSEMBLES", "set": True, "value": [{"label": "beta"}]}]}
+    out = mcp_server.set_parameter(7, "inputData.ENSEMBLES", [
+        {"label": "beta", "number": 1, "use": True,
+         "pdbItemList": [{"structure": {"file": "[3].XYZOUT"}, "identity_to_target": 1.0}]}])
+    posted = next(c for c in calls if c[1] == "jobs/7/set_parameter")[2]
+    structure = posted["value"][0]["pdbItemList"][0]["structure"]
+    assert structure == {"project": "p", "baseName": "beta.pdb", "dbFileId": "f1",
+                         "relPath": "CCP4_JOBS/job_3"}
+    assert posted["value"][0]["label"] == "beta"
+    assert out == {"path": "inputData.ENSEMBLES", "now": [{"label": "beta"}], "set": True}
+
+
+def test_a_value_echoed_from_job_parameters_round_trips(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "projects/3/resolve_fileuse")] = {"project": "p", "baseName": "a.mtz",
+                                                      "dbFileId": "abc"}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": []}
+    mcp_server.set_parameter(7, "inputData.F_SIGF", {"file": "a.mtz", "annotation": "x", "fileId": "abc"})
+    resolve = next(c for c in calls if c[1] == "projects/3/resolve_fileuse")
+    assert resolve[3] == {"fileuse": "abc"}
+
+
+def test_severity_as_the_server_writes_it(api):
+    # The validation endpoint writes <severity>ERROR</severity>: read as a
+    # number it was 0, and an agent was told there were no errors.
+    _, answers = api
+    answers[("GET", "jobs/7/validation")] = {"xml": (
+        "<errorReportList><errorReport><code>113</code><description>add a sequence"
+        "</description><severity>ERROR</severity></errorReport><errorReport>"
+        "<severity>WARNING</severity><description>no free set</description>"
+        "</errorReport></errorReportList>")}
+    answers[("GET", "jobs/7/run_time_validation")] = {"xml": "<errorReportList/>"}
+    out = mcp_server.validate(7)
+    assert [e["code"] for e in out["errors"]] == ["113"]
+    assert [w["description"] for w in out["warnings"]] == ["no free set"]

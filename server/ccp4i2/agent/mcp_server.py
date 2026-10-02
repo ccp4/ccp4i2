@@ -45,7 +45,7 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    job_parameters lists them, e.g. inputData.XYZIN.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
-5. Poll job_status(job) until it is Finished, Failed or Unsatisfactory.
+5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory.
    Then judge_job(job). "Finished" means it ran, not that it worked: the
    judgement decides, and a draft judgement is a guide, not a rule.
 6. To change a finished job, clone_job it and edit the clone.
@@ -121,9 +121,9 @@ def _errors(xml_text):
 # -- projects and tasks ------------------------------------------------------
 
 @server.tool()
-def list_projects() -> list[dict]:
+def list_projects() -> dict:
     """The projects, with their ids."""
-    return [{"id": p["id"], "name": p["name"]} for p in _get("projects")]
+    return {"projects": [{"id": p["id"], "name": p["name"]} for p in _get("projects")]}
 
 
 @server.tool()
@@ -134,7 +134,7 @@ def create_project(name: str) -> dict:
 
 
 @server.tool()
-def list_tasks(query: str = "") -> list[dict]:
+def list_tasks(query: str = "") -> dict:
     """The tasks that can be run, optionally only those whose name, title or
     description contains ``query``. Superseded and interactive (in-app
     window) tasks are left out."""
@@ -147,7 +147,7 @@ def list_tasks(query: str = "") -> list[dict]:
         if query and query not in f"{name} {text}".lower():
             continue
         out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION")})
-    return out
+    return {"tasks": out}
 
 
 @server.tool()
@@ -159,22 +159,23 @@ def describe_task(task: str) -> dict:
 
 
 @server.tool()
-def project_jobs(project_id: int) -> list[dict]:
-    """A project's jobs, newest first: number, id, task, status, key numbers
-    and the files each made or imported (with the reference set_file takes)."""
+def project_jobs(project_id: int) -> dict:
+    """A project's jobs, newest first: id (what job tools take), number (what
+    references use), task, status, key numbers, and the files each made or
+    imported, each with a file_id that set_file and file fields accept."""
     tree = _get(f"projects/{project_id}/job_tree")
     out = []
     for job in tree["job_tree"]:
         files = [{"param": f.get("job_param_name"), "name": f.get("name"),
                   "type": f.get("type"), "annotation": f.get("annotation") or None,
-                  "reference": f"[{job['number']}].{f.get('job_param_name')}"}
+                  "file_id": f.get("uuid")}
                  for f in job.get("files") or []]
         out.append({"number": job["number"], "id": job["id"], "task": job["task_name"],
                     "title": job.get("title"), "status": STATUS.get(job["status"], job["status"]),
                     "kpis": {**(job.get("kpis") or {}).get("float_values", {}),
                              **(job.get("kpis") or {}).get("char_values", {})},
                     "files": files})
-    return out
+    return {"jobs": out}
 
 
 # -- making and running a job ------------------------------------------------
@@ -196,29 +197,55 @@ def clone_job(job_id: int) -> dict:
 
 
 @server.tool()
-def job_parameters(job_id: int, section: str = "", only_set: bool = False, query: str = "") -> list[dict]:
+def job_parameters(job_id: int, section: str = "", only_set: bool = False, query: str = "") -> dict:
     """A job's parameters, one entry each: path, label, value, whether set
-    and required, choices, default. ``section`` limits to inputData,
-    controlParameters or outputData; ``query`` to paths or labels containing
-    it. Use the path with set_parameter / set_file."""
+    and required, choices, default; for a list, item_fields: what each item
+    holds. ``section`` limits to inputData, controlParameters or outputData;
+    ``query`` to paths or labels containing it. Use the path with
+    set_parameter / set_file."""
     data = _get(f"jobs/{job_id}/parameters", section=section or None,
                 only_set="1" if only_set else None, query=query or None)
-    return data["parameters"]
+    return {"parameters": data["parameters"]}
+
+
+def _resolve_files(value, project_id):
+    """Replace each {"file": <reference or file id>} (or a value echoed from
+    job_parameters, which carries fileId) with the file as the server takes it."""
+    if isinstance(value, list):
+        return [_resolve_files(v, project_id) for v in value]
+    if not isinstance(value, dict):
+        return value
+    target = value.get("fileId") or value.get("file_id") or (
+        value.get("file") if set(value) <= {"file", "annotation", "fileId", "file_id"} else None)
+    if target is not None and set(value) <= {"file", "annotation", "fileId", "file_id"}:
+        resolved = _get(f"projects/{project_id}/resolve_fileuse", fileuse=str(target))
+        resolved.pop("fullPath", None)  # a path the client is not to hand back
+        return resolved
+    return {k: _resolve_files(v, project_id) for k, v in value.items()}
 
 
 @server.tool()
-def set_parameter(job_id: int, path: str, value: str | int | float | bool | None) -> dict:
-    """Set a non-file parameter of a pending job (path as job_parameters
-    gives it, e.g. controlParameters.NCYCLES)."""
-    return _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": value})
+def set_parameter(job_id: int, path: str,
+                  value: str | int | float | bool | list | dict | None) -> dict:
+    """Set a parameter of a pending job (path as job_parameters gives it).
+    A list is set whole, as a JSON array of items shaped as its item_fields
+    say; a file anywhere in a value is {"file": "<reference like [3].XYZOUT[0],
+    or a file id>"}. For a single file parameter set_file is simpler."""
+    project_id = _job(job_id)["project"]
+    _post(f"jobs/{job_id}/set_parameter",
+          {"object_path": path, "value": _resolve_files(value, project_id)})
+    entries = _get(f"jobs/{job_id}/parameters", query=path.split(".")[-1])["parameters"]
+    now = next((e for e in entries if e["path"] == path), None)
+    return {"path": path, "now": now.get("value") if now else None, "set": bool(now and now.get("set"))}
 
 
 @server.tool()
 def set_file(job_id: int, path: str, reference: str) -> dict:
     """Set a file input of a pending job to a file already in the project:
-    ``reference`` is "[n].PARAM" or "[n].PARAM[i]" (n a job number, or -1 the
-    latest job, -2 the one before; PARAM the producing job's parameter, as
-    project_jobs lists it), or "task[-1].PARAM" (the latest job of a task)."""
+    ``reference`` is a file_id from project_jobs, or "[n].PARAM" /
+    "[n].PARAM[i]" (n a job NUMBER, or -1 the latest job, -2 the one before;
+    PARAM the producing job's parameter), or "task[-1].PARAM" (the latest
+    job of a task)."""
     job = _job(job_id)
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
@@ -246,8 +273,11 @@ def upload_file(job_id: int, path: str, local_path: str, column_labels: str = ""
                   f'filename="{source.name}"\r\nContent-Type: {kind}\r\n\r\n').encode()
                  + source.read_bytes() + b"\r\n")
     parts.append(f"--{boundary}--\r\n".encode())
-    return _request("POST", f"jobs/{job_id}/upload_file_param", body=b"".join(parts),
-                    content_type=f"multipart/form-data; boundary={boundary}")
+    _request("POST", f"jobs/{job_id}/upload_file_param", body=b"".join(parts),
+             content_type=f"multipart/form-data; boundary={boundary}")
+    entries = _get(f"jobs/{job_id}/parameters", query=path.split(".")[-1])["parameters"]
+    now = next((e for e in entries if e["path"] == path), None)
+    return {"path": path, "now": now.get("value") if now else None}
 
 
 @server.tool()
@@ -268,10 +298,15 @@ def validate(job_id: int) -> dict:
             reports.append(report)
 
     def severity(report):
+        # The server writes the name ("ERROR", "WARNING"); older reports a number
+        text = str(report.get("severity", "0")).strip().upper()
+        names = {"ERROR": 4, "WARNING": 2, "INFO": 1, "OK": 0}
+        if text in names:
+            return names[text]
         try:
-            return int(report.get("severity", 0))
+            return int(text)
         except ValueError:
-            return 0
+            return 4  # a severity nobody recognises is not safe to call advice
     return {"errors": [r for r in reports if severity(r) >= 4],
             "warnings": [r for r in reports if 2 <= severity(r) < 4]}
 
@@ -290,6 +325,24 @@ def job_status(job_id: int) -> dict:
     return {"id": job["id"], "number": job["number"], "task": job["task_name"],
             "status": STATUS.get(job["status"], job["status"]),
             "kpis": {**(job.get("float_values") or {}), **(job.get("char_values") or {})}}
+
+
+TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
+
+
+@server.tool()
+def wait_for_job(job_id: int, max_seconds: int = 600) -> dict:
+    """Wait until a job ends (Finished, Failed, Unsatisfactory, Interrupted)
+    or max_seconds pass (at most 1800), then give its status. Call again if
+    it is still running."""
+    import time
+    deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
+    while True:
+        status = job_status(job_id)
+        if status["status"] in TERMINAL or time.monotonic() >= deadline:
+            status["waited_out"] = status["status"] not in TERMINAL
+            return status
+        time.sleep(10)
 
 
 @server.tool()

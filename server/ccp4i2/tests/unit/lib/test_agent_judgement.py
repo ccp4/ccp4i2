@@ -66,6 +66,7 @@ JUDGEMENT = {
         "RFREE": {"file": "kpi", "kpi": "RFree"},
         "ABSENT": {"xpath": ".//Nowhere"},
         "RAMA": {"xpath": ".//Rama"},
+        "NOTE": {"xpath": ".//Note", "type": "str", "optional": True},
     },
     "verdict": [
         {"when": "TFZ >= 8 and LLG > 60", "outcome": "solved", "basis": "doc"},
@@ -88,7 +89,7 @@ def job_dir(tmp_path):
 def test_results_are_read_from_the_job(job_dir):
     values = judgement.read_results(JUDGEMENT, job_dir, kpis={"RFree": 0.27})
     assert values == {"TFZ": 12.4, "LLG": 310, "SG": "P 21 21 21",
-                      "RFREE": 0.27, "ABSENT": None, "RAMA": 4.01}
+                      "RFREE": 0.27, "ABSENT": None, "RAMA": 4.01, "NOTE": None}
 
 
 def test_verdict_first_that_holds(job_dir):

@@ -47,6 +47,8 @@ class phaser_pipeline_phil(PhilPluginScript):
         207: {"description": "Phaser produced no coordinates"},
         210: {"description": "Refmac failed"},
         211: {"description": "Copying a sub-job output failed"},
+        220: {"description": "No free-R set: the refinement after MR will have no R-free",
+              "severity": CCP4ErrorHandling.SEVERITY_WARNING},
     }
 
     def get_phil_exclude_scopes(self):
@@ -66,6 +68,16 @@ class phaser_pipeline_phil(PhilPluginScript):
                 error.append(klass=self.TASKNAME, code=report["code"], details=report["details"],
                              name=str(report.get("name", "")).replace(f"{self.MR_TASK}.", f"{self.TASKNAME}."),
                              severity=report["severity"])
+        inp = self.container.inputData
+        if inp.RUNREFMAC and not inp.FREERFLAG.isSet():
+            # Advice, not a block: the placement does not need one. But R-free
+            # is what says whether the placed model is right, and the free set
+            # should be the one every later refinement of these data uses.
+            error.append(klass=self.TASKNAME, code=220,
+                         details="No free-R set: the refinement after MR will report no R-free, "
+                                 "which is what judges the solution. Give the data's free set.",
+                         name=f"{self.TASKNAME}.container.inputData.FREERFLAG",
+                         severity=CCP4ErrorHandling.SEVERITY_WARNING)
         return error
 
     # -- the run -----------------------------------------------------------
