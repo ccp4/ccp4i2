@@ -129,6 +129,19 @@ results:
     meaning: >
       Log-likelihood gain of the refined top solution. MDM2 25 104.27;
       BetaBlip 3 473.85 (beta only); BetaBlip 4 1053.54 (beta + BLIP).
+  ORIGIN_NOTE:
+    file: program.xml
+    xpath: .//Solutions/Solution/Placements/Placement[1]/Note
+    type: str
+    meaning: >
+      First note on the first placement. "rotation 000 by the input model's
+      low R-factor" when Phaser took the model where it stood (annotation
+      RF*0 TF*0) because its R-factor at the origin was below 40% (fixture
+      summary_gamma_1copy.txt line 278); such a placement has no search TFZ.
+      In the two-copy fixture (summary_gamma_2copy.txt) the first copy is
+      placed this way while the Strategy records plain "placed", so this
+      note, not SEARCH_OUTCOME, is what shows it. Absent in MDM2 25 and
+      BetaBlip 3 and 4.
   SEARCH_OUTCOME:
     file: program.xml
     xpath: .//Strategy/Attempt[last()]
@@ -176,11 +189,18 @@ results:
     meaning: >
       High-resolution limit refined against (A). MDM2 25 1.346;
       BetaBlip 3 3.004.
-  # FINDING: the expected LLG (eLLG) and the fraction of the AU scattering the
-  #   model represents are only in the Phaser log (job_1/log.txt, "eLLG ...
-  #   frac-scat"), not in program.xml. They are what would let an agent see
-  #   a partial solution (LLG well below what the contents predict). Both
-  #   should be added to program.xml.
+  FRAC_SCATTERING_MODELS:
+    file: program.xml
+    xpath: .//ExpectedLLG/FractionScatteringOfEnsembles
+    type: float
+    meaning: >
+      Fraction of the AU scattering ONE copy of the search model accounts
+      for, from Phaser's expected-LLG table (recorded since commit
+      60e8c6713; read from synthetic program.xml files built with
+      phaser_run.expected_llg_xml from each evidence job's own EXPECTED LLG
+      summary): BetaBlip 3 0.610 (BLIP missing); MDM2 25 0.755 (a trimmed
+      Chainsaw model of the whole AU); BetaBlip 4 0.982. Multiply by
+      NCOPIES: 0.5 for one of two copies is complete.
   # FINDING: dataReindexed (whether the data were reindexed to the solution's
   #   space group) is an output parameter, not in program.xml; SPACEGROUP has
   #   to be compared with the input data's instead.
@@ -189,7 +209,33 @@ results:
   #   job 25 and BetaBlip jobs 3 and 4. REFMAC values carry whitespace.
 
 verdict:
-  - when: TFZ_LAST >= 8 and RFREE < 0.40
+  - when: >
+      SEARCH_OUTCOME != "placed"
+      and SEARCH_OUTCOME != "placed (model already at the origin, no search needed)"
+      and TFZ_LAST >= 8
+    outcome: partial
+    basis: >
+      The last search attempt did not place its copy (the wrapper's
+      narration, phaser_run.py strategy_attempts 210-262; Phaser retries a
+      copy at full resolution after failing at the lowered one, so only the
+      last attempt says how the run ended), while what WAS placed passes
+      Phaser's cutoff (8.00, below). Phaser writes the partial solution
+      (summary_gamma_2copy.txt lines 909-912: two copies asked of a one-copy
+      crystal, "Sorry - No solution with all components", "Partial Solution
+      #1 written") and the pipeline refines and finishes on it. No evidence
+      job is partial; from the fixture and the code.
+  - when: >
+      SEARCH_OUTCOME != "placed"
+      and SEARCH_OUTCOME != "placed (model already at the origin, no search needed)"
+      and (TFZ_LAST >= 6 or ORIGIN_NOTE == "rotation 000 by the input model's low R-factor")
+    outcome: partial
+    basis: >
+      As above, but the placed part is weaker (search TFZ 6-8, the
+      "ambiguous" band below) or was placed at the origin without a search
+      (no TFZ at all), as in summary_gamma_2copy.txt (first copy RF*0 TF*0,
+      second copy given up). Judge the placed part by refinement before
+      building on it.
+  - when: TFZ_LAST >= 8 and RFREE > 0 and RFREE < 0.40
     outcome: solved
     basis: >
       TFZ 8: Phaser's own cutoff, printed in its log as "Z-score cutoff for
@@ -201,13 +247,17 @@ verdict:
       molrep_pipe job 2 0.253; Thaumatin 17.4 0.281), and the one known wrong
       solution refined to 0.461 (Thaumatin 17.9, wrong enantiomorph). Not a
       published threshold; resolution-dependent; an expert should set it.
-  - when: TFZ_LAST >= 6 and RFREE < 0.40 and RFREE < RFREE_START
+      RFREE > 0 guards against a 0.000 written when REFMAC ran without a
+      free set (what it writes then was not checked).
+  - when: TFZ_LAST >= 6 and RFREE > 0 and RFREE < 0.40 and RFREE < RFREE_START
     outcome: solved
     basis: >
       A search TFZ below Phaser's definite cutoff, but refinement confirms
       the placement (R-free below 0.40 and falling). The 0.40 has the basis
       above; the 6 has the basis of the "ambiguous" rule below. No evidence
       job falls here.
+      RFREE > 0 guards against a 0.000 written when REFMAC ran without a
+      free set (what it writes then was not checked).
   - when: TFZ_LAST >= 8
     outcome: placed
     basis: >
@@ -227,6 +277,23 @@ verdict:
       (6-7 "possibly", 7-8 "probably" solved) - NOT verified in this
       workspace: no document here states it and no job here has a search TFZ
       between 6 and 8. An expert should confirm or remove it.
+  - when: >
+      SEARCH_OUTCOME == "placed (model already at the origin, no search needed)"
+      and RFREE > 0 and RFREE < 0.40
+    outcome: solved
+    basis: >
+      Phaser placed the model where it stood, without a search, because its
+      R-factor at the origin was below 40% (fixture
+      tests/unit/lib/fixtures/phaser/summary_gamma_1copy.txt line 278;
+      outcome string phaser_run.py line 240). Such a placement has no search
+      TFZ, so every TFZ rule above is unknown and refinement alone decides,
+      on the R-free 0.40 of the first "solved" rule (RFREE > 0 as there).
+      No evidence job; from the fixture and the code.
+  - when: SEARCH_OUTCOME == "placed (model already at the origin, no search needed)"
+    outcome: placed
+    basis: >
+      Placed at the origin without a search (as above) but not confirmed by
+      refinement below R-free 0.40; build, as for any "placed".
   - when: true
     outcome: failed
     basis: No placement, or a search TFZ below 6.
@@ -260,6 +327,11 @@ traps:
     F_SIGF_OUT and FREERFLAG_OUT; a later job given the original data with
     the reindexed model has an R-free near 0.5 and looks like a wrong
     solution.
+  - >
+    A model already at the origin (R-factor there below 40%) is placed
+    without a search: no search TFZ, Strategy outcome "placed (model
+    already at the origin, no search needed)". It is judged by R-free
+    alone; do not read the missing TFZ as a failure.
 
 next:
   - when: outcome == "solved"
@@ -276,6 +348,34 @@ next:
       data's, use phaser_simple_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT
       instead. Keep the task name in the reference: a bare [-1].F_SIGF_OUT
       skips back to an older job when this one has none.
+  - when: outcome == "partial"
+    advice: >
+      FIRST check NCOPIES against a Matthews analysis and the AU contents.
+      If the crystal holds fewer copies than were asked (the two-copy
+      fixture: two asked of a one-copy crystal), the placed part IS the AU:
+      do not search again; judge it by its R-free as "solved" or "placed"
+      would, and build. Running this task again with the right NCOPIES only
+      repeats the search to get a cleaner record.
+  - when: outcome == "partial"
+    task: phaser_pipeline_phil
+    inputs:
+      SOLIN: "phaser_simple_phil[-1].SOLOUT"
+      F_SIGF: "phaser_simple_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_simple_phil[-1].FREERFLAG"
+      ASUFILE: "phaser_simple_phil[-1].ASUFILE"
+    advice: >
+      When copies really are missing: search for them with what was placed
+      kept fixed. One ENSEMBLES entry labelled "SearchModel" (the label this
+      task gives its model, phaser_simple_phil.py line 36, and the name in
+      its SOLOUT) with the same model file and identity, Copies = the
+      number still missing; add "KnownStructure" with Copies 0 if this job
+      had INPUT_FIXED. Better here than this task again: phaser_simple_phil
+      would redo the search from scratch, or, with the placed copies given
+      as XYZIN_FIXED, treat them as a fixed model of identity 0.9 whatever
+      they are (phaser_simple_phil.py line 55); the pipeline keeps Phaser's
+      own solution. A different molecule missing is the same route, with a
+      second entry for it. Set COMP_BY ASU with the ASUFILE (it exists only
+      if this job used one). Same space-group caveat as for "solved".
   - when: outcome == "placed"
     task: modelcraft
     inputs:
@@ -287,6 +387,12 @@ next:
       When the model covers the whole AU but is distant (MDM2 25), build
       from the placement; judge by modelcraft's R-free, not the ten-cycle
       one. Same space-group caveat as for "solved".
+  - when: outcome == "placed" and FRAC_SCATTERING_MODELS < 0.9
+    advice: >
+      The model accounts for less of the AU than it holds (BetaBlip 3:
+      0.61). Unless NCOPIES (multiply by it) or trimming (MDM2 25, 0.75,
+      covers the whole AU) explains it, a component is missing: place it
+      before building, as below.
   - when: outcome == "placed"
     advice: >
       FIRST compare what was placed with the AU contents. If the AU holds

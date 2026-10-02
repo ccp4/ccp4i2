@@ -237,6 +237,7 @@ def strategy_attempts(blocks):
             if _AT_ORIGIN in text and current is not None:
                 # The input model already sits at the origin: placed without a search
                 recognised = True
+                # Matched exactly by the Phaser judgement files (*.agent.yaml): change both
                 current["outcome"] = "placed (model already at the origin, no search needed)"
                 current = None
             if _GIVEN_UP in text and current is not None:
