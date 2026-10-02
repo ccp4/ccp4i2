@@ -55,9 +55,11 @@ The Free R set
    you give another fraction **(6)**; possible twinning operators are taken
    into account.
 
-   Tick *Do not copy or generate a FreeR set* **(7)** to import the data
-   alone. This is ticked automatically for StarAniso output, whose free set
-   must be kept as StarAniso made it. By default a Free R set is cut to the
+   Tick *Do not copy or generate a FreeR set* **(7)** to keep the file's
+   own free set exactly as it is: it is copied, not completed or remade,
+   and none is made if the file has none. The interface ticks this for
+   StarAniso output, whose free set must be kept as StarAniso made it; a
+   job set up any other way (i2run, the API) must set it itself. By default a Free R set is cut to the
    resolution of the data, and one whose cell differs from the data's is
    replaced by a new set unless you accept it.
 

@@ -32,6 +32,33 @@ def task_lookup(request):
 
 
 @api_view(["GET"])
+def agent_task(request, task_name):
+    """What an agent needs to know about a task before running it.
+
+    GET agent/tasks/phaser_simple_phil/ -> {task, title, description,
+    successor, interactive, judgement}. ``judgement`` is the task's
+    ``<task>.agent.yaml`` (docs/agentic-knowledge.md): when to use it, the
+    inputs needing judgement, how its results are read and judged, the traps
+    and the next steps; null for a task with none written yet. A job's
+    parameters come from the job (jobs/<id>/parameters/), once created.
+    """
+    from ..agent.judgement import load
+    from ..lib.response import api_error, api_success
+
+    task = TASKS.get(task_name)
+    if task is None:
+        return api_error(f"No task {task_name!r}", status=404)
+    return api_success({
+        "task": task_name,
+        "title": task.title,
+        "description": task.description,
+        "successor": task.successor,
+        "interactive": task.interactive,
+        "judgement": load(task_name),
+    })
+
+
+@api_view(["GET"])
 def repository_entry(request, repository, entry):
     """What a repository entry offers for fetching into a project.
 

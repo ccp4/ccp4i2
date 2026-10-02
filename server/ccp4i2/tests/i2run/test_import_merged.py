@@ -281,3 +281,22 @@ def test_skip_freer_makes_no_free_set():
         analyses = [d for d in job.glob("job_*") if (d / "params.xml").exists()
                     and "aimless_pipe" in (d / "params.xml").read_text()]
         assert len(analyses) == 1, f"The analysis ran {len(analyses)} times"
+
+
+def test_cif_without_free_flags(tmp_path):
+    """An sf-mmCIF with no free flags gets a new free set, said to be new.
+    The import went on to "complete" a free file ConvertCIF never wrote,
+    failed, retried, and reported the user's free set as not kept."""
+    import xml.etree.ElementTree as ET
+    with download(pdbe_sfcif("2ceu")) as cif:
+        # The same reflections, with the free-flag column renamed out of reach
+        text = open(cif).read().replace("_refln.status", "_refln.ccp4i2_not_a_flag")
+        stripped = tmp_path / "2ceu_nofree.cif"
+        stripped.write_text(text)
+    args = ["import_merged", "--HKLIN", str(stripped), "--SPACEGROUP", "I 2 2 2"]
+    with i2run(args) as job:
+        program = ET.parse(job / "program.xml")
+        assert program.findtext(".//FreeRfailed") in (None, "False")
+        free = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
+        flags = np.array(free.rfree_column(), dtype=int)
+        assert 0.03 <= (flags == 0).mean() <= 0.07

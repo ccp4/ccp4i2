@@ -1,0 +1,618 @@
+task: aimless_pipe
+status: draft
+reviewed_by: []
+purpose: >
+  Data reduction: takes unmerged integrated intensities (Mosflm, XDS, DIALS),
+  decides the Laue group and space group or matches the indexing to a
+  reference (POINTLESS), scales and merges (AIMLESS), analyses the merged
+  data for information content, twinning, tNCS and anisotropy (Phaser,
+  CTRUNCATE), converts intensities to amplitudes, and makes or extends a
+  free-R set. Optionally runs AIMLESS twice to cut the resolution where the
+  information content falls below a threshold.
+
+use_when:
+  - You have unmerged intensities from an integration program (unmerged MTZ
+    from DIALS or Mosflm, XDS_ASCII.HKL or INTEGRATE.HKL, SCA, SHELX, or an
+    mmCIF reflection file) and need merged data for any later task.
+  - A new crystal of a form already solved in the project, to be merged on
+    the same indexing as the earlier data or model (MODE MATCH).
+  - Rerunning earlier data reduction with a resolution limit, excluded
+    batches or an imposed space group, after reading a first run.
+
+not_when:
+  - text: The data are already merged (an MTZ or mmCIF of merged
+      intensities or amplitudes, e.g. from the PDB or a facility pipeline).
+    instead: import_merged
+  - text: You only need a free-R set for merged data that already exist in
+      the project.
+    instead: freerflag
+
+inputs:
+  - param: inputData.UNMERGEDFILES
+    advice: >
+      One entry per integrated file. The crystal and dataset names given
+      here label the output (MDM2 job 1: hg7/DS1). Files with the SAME
+      dataset name are merged into one output; different dataset names
+      (e.g. MAD wavelengths) give separate outputs, HKLOUT[0], HKLOUT[1] ...
+      Only one file may be given when the input is mmCIF (validity code 202).
+  - param: controlParameters.MODE
+    advice: >
+      LAUE (default) determines the Laue group and space group from the
+      data. Use MATCH with a reference (REFERENCE_DATASET HKL with
+      inputData.HKLIN_REF, or XYZ with inputData.XYZIN_REF) for every crystal
+      of a form already in the project: in point groups with alternative
+      indexings (e.g. 3, 4, 6, 32, 321, 312, and pseudo-symmetric cells) a
+      second crystal is indexed arbitrarily and must be matched to the first
+      (help symmetry.rst lines 144-160). MDM2 jobs 1 and 37 matched to 4hg7;
+      in P6522 there is no alternative ("Sole alternative indexing [h,k,l]").
+      Use CHOOSE (CHOOSE_MODE SPACEGROUP + CHOOSE_SPACEGROUP, or LAUEGROUP +
+      CHOOSE_LAUEGROUP) only to impose a group already decided elsewhere,
+      e.g. by molecular replacement or zanuda.
+  - param: controlParameters.AUTOCUTOFF
+    advice: >
+      Off by default. On, AIMLESS runs twice and the second run is cut where
+      Phaser's information content falls below INFOCONTENTTHRESHOLD (default
+      0.1 bits/reflection). It needs DOPHASERANALYSIS on (otherwise it is
+      dropped, validity code 203). MDM2 job 1: 1.25 A cut to 1.35 A. The
+      cut is generous compared with CC(1/2): at 1.35 A the outer shell had
+      CC(1/2) 0.140 and I/sigI 0.3. Paired refinement on the uncut data
+      (MDM2 job 39) did not reject 1.25 A, though on a last shell of only 27
+      free reflections (see traps). Reasonable for a first pass; for final
+      refinement, keep the wider range and test it with pairef.
+  - param: controlParameters.RESOLUTION_RANGE
+    advice: >
+      An explicit range, applied to every step. With AUTOCUTOFF the
+      estimated limit replaces only the high-resolution end. Set it on a
+      rerun when the first run shows where the data stop; do not cut back
+      to make merging statistics look better (help scaling_and_merging.rst
+      lines 117-122).
+  - param: inputData.FREERFLAG
+    advice: >
+      Give the free-R set already used for this crystal form in the project
+      (the FREEROUT of the first aimless_pipe job, or the set any model was
+      refined against). It is copied and extended to the new resolution
+      (MDM2 job 37 extended job 1's set from 1.35 to 1.25 A, Mode
+      "Complete"). Leave it unset only for the first dataset of a crystal
+      form. If the cell or Laue group does not match, NO free set is made
+      and the job still finishes (see traps).
+  - param: controlParameters.EXCLUDED_BATCHES
+    advice: >
+      With EXCLUDE_BATCH True, batch ranges to omit (radiation damage at the
+      end of a sweep, single bad images). Decide this from a first run's
+      analysis against batch, and check the cumulative completeness before
+      dropping the end of a sweep (MDM2: decay mild, not worth omitting,
+      help scaling_and_merging.rst lines 213-225).
+
+results:
+  # Every path takes the FIRST match: a job with several datasets (MAD,
+  # HKLOUT[0], HKLOUT[1] ...) is judged on dataset 1 only.
+  PIPELINE_ERROR:
+    file: program.xml
+    xpath: ./PIPELINE_ERROR
+    type: str
+    meaning: The pipeline's fatal error, one of "Pointless failed",
+      "Aimless failed", "Ctruncate failed", "Very poor data"
+      (aimless_pipe.py process_finish). Absent in a normal run (all evidence
+      jobs).
+  DISASTER:
+    file: program.xml
+    xpath: ./AIMLESS/DisasterMessage
+    type: str
+    meaning: Text of the "data are VERY poor" test (inner-shell CC(1/2)
+      below CCHALFDISASTER 0.1 with multiplicity above 1.3). Absent in all
+      evidence jobs.
+  MERGED_INPUT:
+    file: program.xml
+    xpath: ./POINTLESS/ReflectionFile[@stream="HKLIN"]/MergedData
+    type: str
+    meaning: '"True" when the input was already merged (the import_merged
+      sub-jobs), "False" for unmerged input (MDM2 1 and 37, Thaumatin 17.1).'
+  SPACEGROUP:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/SpacegroupName
+    type: str
+    meaning: Space group of the merged output. MDM2 1 and 37 "P 65 2 2";
+      Thaumatin 17.1 "P 41 21 2".
+  SG_CONFIDENCE:
+    file: program.xml
+    xpath: ./POINTLESS/BestSolution/Confidence
+    type: float
+    meaning: POINTLESS space-group confidence, sqrt(Score*(Score -
+      NextBestScore)), the next best being the next DISTINCT score, so an
+      enantiomorphic tie does not lower it but an unresolved screw axis
+      does. Absent with MODE MATCH (MDM2 1, 37). Thaumatin 17.1 0.659
+      = sqrt(0.775 x (0.775 - 0.215)).
+  LAUE_CONFIDENCE:
+    file: program.xml
+    xpath: ./POINTLESS/BestSolution/LGconfidence
+    type: float
+    meaning: POINTLESS Laue-group confidence. Thaumatin 17.1 0.999; absent
+      with MODE MATCH.
+  OTHER_LAUE_ACCEPTED:
+    file: program.xml
+    xpath: ./POINTLESS/LaueGroupScoreList/LaueGroupScore[LaueGroupScoreAccept="Accepted"]/LaueGroupName
+    type: str
+    meaning: The name of a Laue group, other than the chosen one, that
+      POINTLESS accepted for further testing (likelihood above ACCEPT 0.2 x
+      the best). POINTLESS marks each scored group "Original" (the top),
+      "Accepted" or "NotAccepted". Absent in every evidence job (Thaumatin
+      17.1 lists P 4/m m m "Original", the rest "NotAccepted"); absent with
+      MODE MATCH, which skips the search.
+  SOLUTION_WARNING:
+    file: program.xml
+    xpath: ./POINTLESS/SolutionWarning
+    type: str
+    meaning: 'POINTLESS warning on the chosen group. Thaumatin 17.1:
+      "WARNING: You will have to resolve the enantiomorphic ambiguity later".
+      Absent when there is none or with MODE MATCH.'
+  RESOLUTION:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/ResolutionHigh/Overall
+    type: float
+    meaning: High-resolution limit of the merged data (A). MDM2 1 1.35
+      (after the automatic cut); MDM2 37 1.25; Thaumatin 17.1 1.17.
+  RES_EST_CCHALF:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/ResolutionLimitEstimate[@type="CChalf"]/MaximumResolution
+    type: float
+    meaning: AIMLESS's estimate of where the fitted CC(1/2) falls to 0.2
+      (overall direction; equal to RESOLUTION when the data reach the edge
+      of what was integrated). MDM2 1 and 37 1.44; Thaumatin 17.1 1.17
+      (edge). For merged input it is 0.00 without I+/I- (BetaBlip 1.2) and,
+      with I+/I-, measures I+ vs I- agreement, not resolution (Gamma 1.2
+      1.81).
+  RES_EST_ISIGMA:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/ResolutionLimitEstimate[@type="I/sd"]/MaximumResolution
+    type: float
+    meaning: Where <I/sigma(<I>)> falls to 1.5 (Aimless's own default, now
+      also the pipeline's). MDM2 1 and 37 1.53; Thaumatin 17.1 1.35.
+  INFO_RES:
+    file: program.xml
+    xpath: ./PHASER_ANALYSES/PHASER_ANALYSIS/ResolutionEstimate/ResolutionLimitEstimate
+    type: float
+    meaning: Phaser's resolution where information content falls to the
+      threshold (0.1 bits). MDM2 1 1.35; MDM2 37 1.35; Thaumatin 17.1 1.17.
+  AUTOCUTOFF_APPLIED:
+    file: program.xml
+    xpath: ./Autocutoff/Cutoff
+    type: str
+    meaning: '"Yes" if AUTOCUTOFF cut the data (MDM2 1), "No" if the data
+      already ended at the threshold; absent if AUTOCUTOFF was off.'
+  CCHALF_INNER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/CChalf/Inner
+    type: float
+    meaning: CC(1/2) in the lowest-resolution shell. MDM2 1 0.996; Thaumatin
+      17.1 0.982. Merged input - 0.000 without I+/I- (BetaBlip 1.2); with
+      I+/I- it is I+ vs I- agreement, not data quality (Gamma 1.2 0.986).
+  CCHALF_OUTER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/CChalf/Outer
+    type: float
+    meaning: CC(1/2) in the highest-resolution shell. MDM2 1 0.140; MDM2 37
+      0.893 (from 96 reflections, see traps); Thaumatin 17.1 0.000
+      (multiplicity 1.0, not computable).
+  ISIGMA_OUTER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/MeanIoverSD/Outer
+    type: float
+    meaning: Mean I/sigma(I) of the outer shell. MDM2 1 0.3; MDM2 37 -0.0;
+      Thaumatin 17.1 0.6.
+  NREFL_OUTER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/NumberReflections/Outer
+    type: int
+    meaning: Unique reflections in the outer shell. MDM2 1 796; MDM2 37 96;
+      Thaumatin 17.1 160. A shell of a few dozen to a hundred reflections
+      makes every outer-shell statistic noise.
+  COMPLETENESS:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/Completeness/Overall
+    type: float
+    meaning: Overall completeness (%). MDM2 1 90.2; MDM2 37 75.8 (the same
+      data, uncut, see traps); Thaumatin 17.1 75.2.
+  COMPLETENESS_INNER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/Completeness/Inner
+    type: float
+    meaning: Completeness of the lowest-resolution shell (%), a small bin
+      (288 reflections in MDM2 1, 564 in Thaumatin). MDM2 1 96.6; MDM2 37
+      97.2; Thaumatin 17.1 89.2 (a 45-degree sweep, phi 82-127).
+  COMPLETENESS_OUTER:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/Completeness/Outer
+    type: float
+    meaning: Outer-shell completeness (%). MDM2 1 45.4; MDM2 37 4.5;
+      Thaumatin 17.1 3.9.
+  MULTIPLICITY:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/Multiplicity/Overall
+    type: float
+    meaning: MDM2 1 3.0; MDM2 37 2.9; Thaumatin 17.1 2.7. Merged input 1.0
+      without I+/I- (BetaBlip, LckKinase, LassoPeptide 1.2), 1.8 with I+/I-
+      (Gamma 1.2, where I+ and I- count as two observations).
+  RMEAS:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/RmeasOverall/Overall
+    type: float
+    meaning: Rmeas over all I+ and I- (the value in the job's KPI rMeas).
+      MDM2 1 0.069; MDM2 37 0.070; Thaumatin 17.1 0.075. Not a resolution
+      criterion (help scaling_and_merging.rst lines 67-69).
+  RPIM:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/RpimOverall/Overall
+    type: float
+    meaning: Rpim over all I+ and I-. MDM2 1 0.037; MDM2 37 0.038;
+      Thaumatin 17.1 0.040.
+  CCANOM:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/AnomalousCChalf/Overall
+    type: float
+    meaning: CC(anom) between half-datasets, overall. MDM2 1 -0.067; MDM2
+      37 -0.062; Thaumatin 17.1 0.036 (inner shell 0.391). Meaningless for
+      merged input.
+  CCANOM_LIMIT:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/AnomalousLimitEstimate/MaximumResolution
+    type: float
+    meaning: Resolution to which AIMLESS's fitted CC(anom) stays above 0.15
+      (A); 0.00 when no shell reaches it ("weak or missing data, all
+      observed data below threshold" in all evidence jobs). Meaningless for
+      merged input (GammaXe 1.2 reads 0.00 with a xenon signal to 2.57 A by
+      ANOM_LIMIT).
+  ANOM_LIMIT:
+    file: program.xml
+    xpath: ./CTRUNCATES/CTRUNCATE/AnomStatistics/ResolutionRange[@id="Measurability Limit"]/max
+    type: float
+    meaning: CTRUNCATE's resolution limit of measurable anomalous
+      differences (A), the same result the import_merged judgement reads;
+      NaN when there is none (compares false with everything). NaN in MDM2
+      1, 37 and Thaumatin 17.1; 2.57 for GammaXe 1.2 (xenon, solved by
+      crank2).
+  ANOM_NPSLOPE:
+    file: program.xml
+    xpath: ./AIMLESS/Result/Dataset/AnomalousNPslope
+    type: float
+    meaning: Slope of the normal probability plot of anomalous differences;
+      above 1.0 the differences exceed their errors (help
+      scaling_and_merging.rst lines 344-346). MDM2 1 0.945; Thaumatin 0.954.
+  TNCS_PHASER:
+    file: program.xml
+    xpath: ./PHASER_ANALYSES/PHASER_ANALYSIS/Analysis/tNCS
+    attribute: tNCS
+    type: str
+    meaning: '"True"/"False" from Phaser''s tNCS analysis; the call this file
+      acts on. "False" in every evidence job.'
+  TNCS_CTRUNCATE:
+    file: program.xml
+    xpath: ./CTRUNCATES/CTRUNCATE/translationalNCS/detected
+    type: str
+    meaning: '"Yes"/"No" from CTRUNCATE''s native Patterson (off-origin peak
+      above 20% of origin or Q-score below 1, its own text). "No" in MDM2 1,
+      37 and Thaumatin 17.1; "Yes" in LassoPeptide 1.2, where Phaser and the
+      MR that followed (LassoPeptide job 3 log, "No tNCS found in
+      Patterson") found none.'
+  TWIN_LTEST:
+    file: program.xml
+    xpath: ./CTRUNCATES/CTRUNCATE/Twinning/L-test/Twinned
+    type: str
+    meaning: CTRUNCATE's own twinning call from the L-test, "No" in every
+      evidence job.
+  L_STATISTIC:
+    file: program.xml
+    xpath: ./CTRUNCATES/CTRUNCATE/Twinning/L-test/Result
+    type: float
+    meaning: <|L|>; 0.500 untwinned, 0.440 at twin fraction 0.1, 0.375 for
+      a perfect twin (CTRUNCATE's comment in program.xml). MDM2 1 0.501;
+      Thaumatin 17.1 0.497; LckKinase 1.2 0.467 (L-test twin fraction 0.07,
+      called "No").
+  SECOND_MOMENT:
+    file: program.xml
+    xpath: ./PHASER_ANALYSES/PHASER_ANALYSIS/Analysis/Twinning/AcentricMoments/Observed
+    type: float
+    meaning: Phaser's acentric <I^2>/<I>^2 after anisotropy correction; 2.0
+      untwinned, 1.5 perfect twin (theoretical values printed beside it).
+      MDM2 1 2.07; Thaumatin 17.1 2.01; LckKinase 1.2 1.88.
+  WILSON_OUTLIERS:
+    file: program.xml
+    xpath: ./CTRUNCATES/CTRUNCATE/OutlierRingsAnalysis/percentage
+    type: float
+    meaning: Percent of resolution bins deviating from the Wilson plot; the
+      report colours it red above 3 (ctruncate_report.py addWarningWilson).
+      MDM2 1 3.4; MDM2 37 9.9; Thaumatin 17.1 7.8.
+  PHASER_FAIL:
+    file: program.xml
+    xpath: ./PHASER_ANALYSES/PHASER_ANALYSIS/PhaserFailMessage
+    type: str
+    meaning: Present only if Phaser's analysis failed; the pipeline carries
+      on without it. Absent in all evidence jobs.
+  FREER_STATUS:
+    file: program.xml
+    xpath: ./FREERFLAG/status
+    type: int
+    meaning: 0 = free-R set made or extended; 1 = freerflag did not succeed
+      (usually the cell/Laue check on the given set); 100 = failed joining
+      the files (possible even with OVERRIDE_CELL_DIFFERENCE). 0 in MDM2 1,
+      37 and Thaumatin 17.1. Absent for merged-data analysis (import_merged
+      sub-jobs) and after any PIPELINE_ERROR.
+  FREER_MODE:
+    file: program.xml
+    xpath: ./FREERFLAG/FREERFLAGINFO/Mode
+    type: str
+    meaning: '"New" (MDM2 1, Thaumatin 17.1) or "Complete" (an input set
+      copied and extended, MDM2 37). Read this, not the report text (see
+      traps).'
+  # FINDING: Phaser's twinning probabilities are two numbers in one element
+  #   (Analysis/Twinning/Pvalues, "P(untwinned) P(twin fraction < 5%)", e.g.
+  #   "8.55e-05  0.235" in LckKinase 1.2), so neither can be read as a
+  #   number. They should be two elements.
+  # FINDING: POINTLESS's own L-test on the unmerged data is only in a table
+  #   title (POINTLESS/CCP4Table[@id="L-test"], "twin fraction 0.009" in
+  #   MDM2 1), not a value of its own.
+  # FINDING: CTRUNCATE's tNCS peak height and Q-score (translationalNCS/
+  #   PeakList) and Phaser's Patterson peak height are written only when
+  #   tNCS is detected; not seen in any unmerged evidence job.
+  # FINDING: when AUTOCUTOFF ran Aimless twice, the final
+  #   PHASER_ANALYSIS/Analysis/Resolution/InputResolution holds the FIRST
+  #   run's limit (MDM2 1: 1.25, though the data analysed end at 1.35).
+  #   Use RESOLUTION, never that element.
+  # NOTE: the ./AIMLESS/... paths match only the final AIMLESS block, not
+  #   AIMLESS1 (the first run when AUTOCUTOFF cut the data).
+
+verdict:
+  - when: PIPELINE_ERROR == "Very poor data"
+    outcome: unusable
+    basis: >
+      The pipeline's own test (aimless_pipe.py checkaimlessresult): CC(1/2)
+      in the inner shell below CCHALFDISASTER (default 0.1) while
+      multiplicity there exceeds MULTIPLICITYDISASTER (default 1.3). The job
+      is then UNSATISFACTORY, not FAILED, so a search for failed jobs misses
+      it. Inner shells in our runs: 0.982-0.996. No run here triggered it.
+  - when: PIPELINE_ERROR != ""
+    outcome: failed
+    basis: >
+      Pointless, Aimless or Ctruncate failed (PIPELINE_ERROR written by
+      process_finish): no HKLOUT or FREEROUT was produced. For "Ctruncate
+      failed" the scaled intensities exist in the aimless sub-job and the
+      Aimless statistics above are still valid.
+  - when: MERGED_INPUT == "True" and RESOLUTION > 0
+    outcome: analysed_merged
+    basis: >
+      Merged input: POINTLESS only tests for under-merging and AIMLESS does
+      not scale (pointless.html on merged files; pointless_report.py
+      keyTextMerged). Merging and anomalous statistics are not data
+      quality: without I+/I- they are placeholders (BetaBlip 1.2,
+      LckKinase 1.2: multiplicity 1.0, CC(1/2) 0.000, Rmeas 0.000); with
+      I+/I- they measure I+ vs I- agreement (Gamma 1.2: multiplicity 1.8,
+      CC(1/2) 0.986). The import_merged judgement reads such a job.
+  - when: FREER_STATUS != 0
+    outcome: no_free_set
+    basis: >
+      aimless_pipe.py runFreerflag returns FAILED (1) or 100 and FREEROUT is
+      not set, but process_finish still reports the job as finished. Report
+      text: "the FreeR set has not been created, because the input FreeR set
+      is incompatible with the new data" (aimless_pipe_report.py
+      addFreerReports). Checked before the symmetry and twinning outcomes,
+      which it would hide; fix the free set first. Not seen in our runs.
+  - when: OTHER_LAUE_ACCEPTED != ""
+    outcome: check_symmetry
+    basis: >
+      POINTLESS itself considered a second Laue group worth testing: its
+      likelihood exceeded AcceptanceLimit x the best, default ACCEPT 0.2
+      ($CCP4/html/pointless.html lines 484-487, 779-782), and POINTLESS
+      marks it "Accepted". It still chose the top group; this says the
+      choice was not clear-cut. Not triggered in any of our runs (Thaumatin
+      17.1: 0.999 vs 0.000); absent with MODE MATCH.
+  - when: TWIN_LTEST != "No"
+    outcome: twinning_suspected
+    basis: >
+      CTRUNCATE's own L-test call. Its threshold is not documented
+      (ctruncate.html gives none); the highest twin fraction seen WITHOUT a
+      call is 0.07 (LckKinase 1.2, <|L|> 0.467). The report shows a call as
+      possible twinning, or as "possibly twinned and merged in a higher
+      symmetry than the true spacegroup" (ctruncate_report.py
+      addWarningTwin). "No" in every run here.
+  - when: TNCS_PHASER == "True"
+    outcome: tncs
+    basis: >
+      Phaser's own detection, the same rule as the import_merged judgement.
+      Phaser rather than CTRUNCATE because CTRUNCATE flagged LassoPeptide
+      1.2 where Phaser and the later MR found none. "False" in every run
+      here.
+  - when: RESOLUTION > 0
+    outcome: usable
+    basis: >
+      Merged data, no second Laue group accepted, free set made, no twinning
+      or tNCS call. MDM2 job 1's data (1.35 A) refined 4hg7 to R-free 0.247
+      (MDM2 job 3, KPI); job 37's data (1.25 A) were used by pairef (job
+      39); Thaumatin 17.1 (1.17 A) was solved by MR and refined to R-free
+      0.281 (job 17.4). The verdict does not read the report's other
+      warnings (ice rings, Wilson deviations, anisotropy, radiation damage).
+  - when: true
+    outcome: failed
+    basis: No merged-data result could be read (the job did not run, or
+      stopped before AIMLESS produced a summary).
+
+traps:
+  - >
+    Outer-shell statistics from a nearly empty shell are noise. Integrated
+    into the detector corners and not cut, MDM2 37's outer shell (1.27-1.25
+    A) held 96 reflections, 4.5% complete, with CC(1/2) 0.893, I/sigI -0.0,
+    Rmeas 0.000 and RmeasOverall -10.271. The same data cut at 1.35 A (job 1)
+    are 90.2% complete overall instead of 75.8%. Judge the resolution from
+    RES_EST_CCHALF, RES_EST_ISIGMA and INFO_RES, and completeness from the
+    inner shells, not from the outer-shell row of "Table 1".
+  - >
+    Do not cut back to the CC(1/2) estimate to make the statistics look
+    better. The automatic cut (information content 0.1 bits) kept MDM2 data
+    to 1.35 A where outer CC(1/2) is 0.140 and I/sigI 0.3, beyond the
+    CC(1/2)=0.2 estimate of 1.44 A. pairef on the uncut data (MDM2 job 39)
+    suggested 1.30 A, then 1.25 A, with its own warning that the last shell
+    held only 27 free reflections: weak evidence either way, but it did not
+    reject the extra data. Weak high-resolution data help refinement (help
+    scaling_and_merging.rst lines 117-122).
+  - >
+    An enantiomorphic pair cannot be told apart from the data: POINTLESS
+    picks the first (Thaumatin 17.1: P 41 21 2, warning "You will have to
+    resolve the enantiomorphic ambiguity later", SG_CONFIDENCE 0.659). The
+    choice was right here, but the other hand (job 17.7, P 43 21 2) also
+    gave a MOLREP solution and refined only to R-free 0.461 against 0.281.
+    Molecular replacement must test both (Phaser does by default: MDM2 job
+    25 tried all six P6x22 groups).
+  - >
+    A free-R failure does not fail the job. If the given FREERFLAG does not
+    match in cell or Laue group, FREER_STATUS is 1 (or 100), there is no
+    FREEROUT, and the job still finishes. Also, the report says "A free-R set
+    has been created" even when the set was copied and extended (MDM2 37);
+    FREER_MODE says which.
+  - >
+    Merged input (import_merged sub-jobs) gives merging and anomalous
+    statistics that are not data quality: placeholders without I+/I-
+    (multiplicity 1.0, CC(1/2) 0.000, Rmeas 0.000 in BetaBlip 1.2), I+ vs I-
+    agreement with them (Gamma 1.2 CC(1/2) 0.986), and AIMLESS's anomalous
+    estimate 0.00 even for GammaXe 1.2's real xenon signal. Read
+    ANOM_LIMIT (CTRUNCATE) for anomalous signal.
+  - >
+    Twinning and tNCS warnings can disagree. LassoPeptide 1.2: CTRUNCATE
+    tNCS "Yes", Phaser "False", and the MR found none. LckKinase 1.2 (P 21
+    21 21, no twin operators): the report says "possible twin" from Phaser
+    (P(twin fraction < 5%) 0.235; Phaser's own rule is below 0.01), while
+    the L-test says "No" at <|L|> 0.467. Read L_STATISTIC yourself: below
+    about 0.48 is worth a look, whatever the call.
+
+next:
+  - when: outcome == "usable" or outcome == "check_symmetry" or outcome == "twinning_suspected" or outcome == "tncs"
+    task: ProvideAsuContents
+    advice: >
+      Before molecular replacement, define the AU contents (sequences and
+      copies). Then check them with matthews (HKLIN
+      "aimless_pipe[-1].HKLOUT[0]", ASUIN
+      "ProvideAsuContents[-1].ASUCONTENTFILE").
+  - when: outcome == "usable" or outcome == "check_symmetry" or outcome == "twinning_suspected" or outcome == "tncs"
+    task: phaser_simple_phil
+    inputs:
+      F_SIGF: "aimless_pipe[-1].HKLOUT[0]"
+      FREERFLAG: "aimless_pipe[-1].FREEROUT"
+      ASUFILE: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      Phaser tests all space groups of the point group by default, which
+      settles enantiomorphs and screw axes left open here, and models tNCS.
+      If the space group it reports differs, use its F_SIGF_OUT and
+      FREERFLAG_OUT downstream. With MOLREP instead (molrep_pipe), set
+      SG_OPTIONS laue for the same reason. If the crystal form is already
+      solved in the project and was matched to it (MODE MATCH), refine the
+      existing model instead: prosmart_refmac (F_SIGF, FREERFLAG, XYZIN) or
+      servalcat_pipe (HKLIN, FREERFLAG, XYZIN), with the same two files.
+  - when: outcome == "usable" and RESOLUTION < RES_EST_CCHALF
+    advice: >
+      The data extend beyond the CC(1/2)=0.2 estimate. Keep them for MR and
+      refinement; once a refined model exists, run pairef (F_SIGF,
+      FREERFLAG, XYZIN) to test the cutoff, as in MDM2 job 39, and heed its
+      warning when the last shell holds few free reflections.
+  - when: outcome == "usable" and RES_EST_CCHALF <= RESOLUTION and RES_EST_CCHALF > 0
+    advice: >
+      CC(1/2) is still above 0.2 at the last shell, so the limit is where
+      the data were integrated, not where they end (Thaumatin 17.1: 1.17 A
+      both). If the images allow, reintegrate to higher resolution and rerun
+      (help aimless_pipe.rst lines 74-77). Not needed to proceed to MR.
+  - when: MERGED_INPUT == "False" and COMPLETENESS_INNER < 80
+    advice: >
+      The lowest-resolution shell is less than 80% complete (a value chosen
+      here, not published; the shell is small and overloads or the beamstop
+      can do this to usable data). If more sweeps or crystals of this form
+      exist, add them to UNMERGEDFILES (same dataset name) and rerun. MR can
+      still work (Thaumatin, 89% inner completeness), but maps will be
+      poorer.
+  - when: SOLUTION_WARNING != "" and MERGED_INPUT == "False"
+    advice: >
+      POINTLESS left part of the space group open (Thaumatin 17.1: the
+      enantiomorph, P 41 21 2 or P 43 21 2; also when axial reflections are
+      too few to decide a screw axis, as for h00 there with 8 observations).
+      The data cannot settle it; molecular replacement must test the
+      alternatives (phaser_simple_phil does by default; molrep with
+      SG_OPTIONS laue). Do not rerun data reduction for this.
+  - when: outcome == "tncs"
+    advice: >
+      Phaser found translational NCS. Use Phaser for MR (it models tNCS),
+      not MOLREP. Expect higher R factors for a correct model, because a
+      tNCS-modulated pattern has many systematically weak reflections (help
+      scaling_and_merging.rst lines 410-418). A tNCS translation near
+      (0,0,1/2) can mimic or hide a screw axis, so treat the space group as
+      open.
+  - when: TNCS_CTRUNCATE == "Yes" and TNCS_PHASER == "False"
+    advice: >
+      CTRUNCATE saw an off-origin Patterson peak that Phaser did not
+      (LassoPeptide 1.2, cell 19 x 21 x 30 A, not confirmed by its MR). Look
+      at CTRUNCATE's peak list in the report; take no action on it.
+  - when: (ANOM_LIMIT > 0 or CCANOM_LIMIT > 0) and MERGED_INPUT == "False"
+    task: crank2
+    inputs:
+      F_SIGFanom: "aimless_pipe[-1].HKLOUT[0]"
+    advice: >
+      Measurable anomalous signal (CTRUNCATE's limit ANOM_LIMIT, or
+      AIMLESS's CC(anom) above 0.15 to CCANOM_LIMIT A): experimental
+      phasing is possible. crank2 also needs the sequence and the
+      substructure atom type. Restrict substructure location to about where
+      CC(anom) falls to 0.1-0.3 (help scaling_and_merging.rst lines
+      346-348). HKLOUT always carries I+ and I-, whatever AIMLESS's
+      anomalous flag says.
+  - when: outcome == "check_symmetry"
+    advice: >
+      POINTLESS accepted a second Laue group (OTHER_LAUE_ACCEPTED). Run MR in
+      the chosen group (above); if it fails, rerun aimless_pipe with MODE
+      CHOOSE, CHOOSE_MODE LAUEGROUP and CHOOSE_LAUEGROUP set to
+      OTHER_LAUE_ACCEPTED, and repeat MR. After a model is refined, zanuda
+      (F_SIGF, FREERFLAG, XYZIN) checks whether the true symmetry is lower.
+  - when: outcome == "twinning_suspected"
+    advice: >
+      Proceed to MR (above), but treat the point group as possibly too high
+      (twinning can make lower symmetry look higher); compare with
+      SECOND_MOMENT and L_STATISTIC, refine with twin refinement, and run
+      zanuda once a model exists.
+  - when: PHASER_FAIL != ""
+    advice: >
+      Phaser's analysis did not run: information content, Phaser's tNCS and
+      twinning readings and any automatic cutoff are missing; CTRUNCATE's
+      are still there. Judge tNCS from CTRUNCATE with care (see traps).
+  - when: outcome == "no_free_set"
+    advice: >
+      The given FREERFLAG does not match these data. If no model has been
+      refined against that set, rerun without FREERFLAG for a new set. If one
+      has, check the cell and indexing first (MODE MATCH to the earlier data);
+      override the cell check (OVERRIDE_CELL_DIFFERENCE) only if sure the
+      crystals are isomorphous.
+  - when: outcome == "unusable"
+    advice: >
+      Not fixable here: the inner shell does not agree with itself. Check
+      that the right files were given, the lattice and indexing (multiple
+      lattices, wrong cell), then reintegrate.
+  - when: outcome == "failed"
+    advice: >
+      Read the job's diagnostic and the failing step's log (PIPELINE_ERROR
+      names the program). Common causes: unreadable or mixed input formats,
+      several mmCIF inputs, a MATCH reference that is missing or not
+      compatible.
+  - when: outcome == "analysed_merged"
+    advice: >
+      This is merged-data analysis inside import_merged; judge and continue
+      with that job (its judgement reads the same space group, twinning,
+      tNCS and anomalous results).
+
+sources:
+  - docs/user/source/tasks/aimless_pipe/aimless_pipe.rst
+  - docs/user/source/tasks/aimless_pipe/symmetry.rst
+  - docs/user/source/tasks/aimless_pipe/scaling_and_merging.rst
+  - server/ccp4i2/pipelines/aimless_pipe/script/aimless_pipe.py
+  - server/ccp4i2/pipelines/aimless_pipe/script/aimless_pipe_report.py (addFreerReports)
+  - server/ccp4i2/wrappers/ctruncate/script/ctruncate_report.py (keyText warnings)
+  - server/ccp4i2/wrappers/phaser_analysis/script/phaser_analysis_report.py (istwin)
+  - server/ccp4i2/wrappers/aimless/script/aimless.py (analysisParameters)
+  - $CCP4/html/pointless.html (ACCEPT 0.2; scoring), $CCP4/html/aimless.html (ANALYSIS defaults, ANOMALOUS) in ccp4-20260702
+  - "run: MDM2 job 1 (unmerged, MATCH to 4hg7, AUTOCUTOFF 1.25 -> 1.35 A, new free set)"
+  - "run: MDM2 job 37 (same data, no cutoff, 1.25 A, free set extended from job 1)"
+  - "run: MDM2 job 39 (pairef on job 37's data: 1.30 then 1.25 A, last shell 27 free reflections)"
+  - "run: Thaumatin job 17.1 (aimless_pipe in dr_mr_modelbuild_pipeline; DIALS data, LAUE, P 41 21 2 with enantiomorph warning)"
+  - "run: Thaumatin jobs 17.4 (R-free 0.281, P 41 21 2) and 17.9 (0.461, P 43 21 2)"
+  - "run: import_merged sub-jobs BetaBlip 1.2, Gamma 1.2 and 8.2, GammaXe 1.2, LassoPeptide 1.2, LckKinase 1.2 (merged input)"
+  - "run: LassoPeptide job 3 log, 'No tNCS found in Patterson'"

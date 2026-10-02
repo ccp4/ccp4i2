@@ -1,0 +1,656 @@
+task: servalcat_pipe
+status: draft
+reviewed_by: []
+purpose: >
+  Restrained maximum-likelihood refinement of an atomic model with Servalcat.
+  Against crystal data (refine_xtal_norefmac) it takes merged or unmerged
+  X-ray, electron or neutron diffraction data, and uses intensities by
+  default when the file has them. Against a cryo-EM single-particle
+  reconstruction (refine_spa_norefmac) it takes the two half maps. ProSMART,
+  MetalCoord and Platonyzer restraints can be added. Optionally, Coot picks
+  waters and a second refinement follows; the result can be validated with
+  Iris, Ramachandran plots and MolProbity.
+
+use_when:
+  - You have an atomic model in the same crystal (same space group and
+    origin) as merged or unmerged reflections, and want it refined. This
+    can be after molecular replacement, after building, after a Coot
+    session, or to re-refine a deposited model against its data.
+  - You have a placed model and the two half maps of a single-particle
+    reconstruction, in the same frame, and you know the map's resolution.
+    An example is the recommended hand from molrep_map when that job was
+    given half maps.
+
+not_when:
+  - text: >
+      You have a cryo-EM map but no half maps. Servalcat itself can refine
+      against a single map (refine_spa_norefmac --map), but this task always
+      passes two half maps (servalcat.py lines 401-403), so the job cannot run.
+      CCP4i2 has no non-interactive alternative. A person can refine in real
+      space in Coot or Moorhen.
+    instead: none
+  - text: You want TLS refinement, or another REFMAC-only feature; this task
+      offers no TLS.
+    instead: prosmart_refmac
+  - text: You have phases but no model to refine, or the model covers only a
+      small part of the AU.
+    instead: modelcraft
+
+inputs:
+  - param: controlParameters.DATA_METHOD
+    advice: >
+      xtal (default) for diffraction data, spa for cryo-EM half maps. In spa
+      mode:
+        - the reflection and Free R fields are ignored;
+        - electron scattering factors are used whatever SCATTERING_FACTORS
+          says (servalcat.py line 411);
+        - RES_MIN is required.
+  - param: inputData.XYZIN
+    advice: >
+      The model must be in the SAME space group as HKLIN. The def.xml demands
+      an exact match (sameCrystalMatch spaceGroup) because Servalcat would
+      otherwise silently keep the model's space group; REFMAC is more
+      tolerant. When Phaser changed the space group, refine against that
+      Phaser job's F_SIGF_OUT and FREERFLAG_OUT. Every residue needs a
+      dictionary: give ligands in DICT_LIST. The check before the run names
+      any residue that has none.
+  - param: controlParameters.F_SIGF_OR_I_SIGI
+    advice: >
+      The default is I_SIGI. When HKLIN holds intensities, Servalcat then
+      refines against them and reports R1 and CC(I) instead of R
+      (R1work/R1free in program.xml, KPI R1Free). Leave it at I_SIGI unless
+      you need an R-free to compare with a REFMAC job on the same data; for
+      that, set F_SIGF so that both report R on amplitudes. With
+      amplitude-only data the setting does nothing (servalcat.py lines
+      122-124).
+  - param: inputData.FREERFLAG
+    advice: >
+      Give the Free R set the project already refines against: the one any
+      earlier model of this crystal was refined against. Never give a new
+      one.
+      Without a Free R set the job still runs, with a warning, but reports
+      only an overall R, and this judgement cannot judge it.
+      Servalcat takes as the test set the smallest flag value that marks
+      fewer than half the reflections (servalcat utils/hkl.py lines
+      516-534). That is 0 for CCP4 sets, and it also suits 0/1 sets in which
+      1 marks the minority. Set FREERFLAG_NUMBER only for an unusual
+      convention.
+  - param: controlParameters.NCYCLES
+    advice: >
+      Default 10.
+      The X-ray weight starts from the resolution: exp(0.9104*d_min +
+      0.2162), which is 7.0 at 1.90 A in CDK2_NU6102 job 1 and 21.5 at
+      3.13 A in the 1tf6 test job.
+      After that it changes only in three cases (servalcat refine/refine.py
+      lines 1026-1035, from the third cycle on):
+        - divided by 1.1 when bond rmsZ is above 1.0 and rising;
+        - divided by 1.1 when bond rmsZ jumped more than 1.5-fold;
+        - multiplied by 1.3 when bond rmsZ is below 0.5 two cycles running
+          and falling.
+      A steady bond rmsZ above 1.0 is never corrected.
+      Five cycles are enough to re-refine a finished model against new data,
+      as in the PanDDA runs. After MR or large rebuilding, give 10-20 cycles
+      with USE_JELLY.
+  - param: controlParameters.USE_JELLY
+    advice: >
+      Jelly-body restraints, off by default; JELLY_SIGMA 0.01 and JELLY_DIST
+      4.2 when on. Use them for a model straight from MR, at low resolution,
+      and for cryo-EM.
+  - param: controlParameters.RES_MIN
+    advice: >
+      In spa mode this is required: the map's resolution, d_min in A
+      (validity code 201). molrep_map does not fill it in.
+      In xtal mode it is used only with RES_CUSTOM True.
+  - param: inputData.MAPIN1
+    advice: >
+      spa mode: half map 1. MAPIN2 is half map 2, from the same
+      reconstruction, and both must be in the same frame as XYZIN. After
+      molrep_map, use the trimmed half maps of the recommended hand
+      (HALFMAPOUT1/2), which exist only if the placement was given half maps.
+      The def.xml marks both fields optional and no validity check requires
+      them, but the refinement cannot run without them.
+      MAPMASK is used only for the Fo-Fc map (--mask_for_fofc). It does not
+      mask the refinement: Servalcat masks around the model itself.
+  - param: controlParameters.ADD_WATERS
+    advice: >
+      Coot picks waters in the refined map, then NCYCLES_AFTER_ADD_WATERS
+      more cycles run (5 by default). Use it once the protein model is
+      nearly complete, with R-free near its final value; not on a model
+      straight from MR. The verdict below reads the FIRST refinement (see
+      the traps).
+  - param: controlParameters.OCCUPANCY_REFINEMENT
+    advice: >
+      The box is ticked by default, but it does nothing unless
+      OCCUPANCY_GROUPS is also True with groups defined
+      (servalcat.def.xml lines 497-515; servalcat.py line 606).
+      With the defaults no occupancy is refined: CDK2_NU6102 1.1 refined.log
+      line 172 shows 0 occupancy parameters.
+      To refine the occupancies of alternative conformations or of a
+      ligand, define the groups.
+
+results:
+  RFREE_START:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle/data/summary/Rfree
+    type: float
+    meaning: >
+      R-free of the input model (cycle 0), on amplitudes. Present only for
+      amplitude refinement with a Free R set. CDK2_NU6102 1 0.2889; 1tf6
+      0.3393; PanDDA baz2b 5e9l 0.2843.
+  RFREE:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rfree
+    type: float
+    meaning: >
+      R-free after the last cycle of the main refinement. It is the KPI
+      "RFree" unless waters were added. CDK2_NU6102 1 0.2740 (1.90 A); 1tf6
+      0.3210 (3.13 A, 2 cycles); PanDDA baz2b 5e9l 0.2859 (1.90 A), 5e9m
+      0.2854 (1.78 A).
+  RFREE_3BACK:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/Rfree
+    type: float
+    meaning: >
+      R-free three cycles before the end. RFREE_3BACK - RFREE is the fall
+      over the last three cycles, the plateau test. It is missing for runs of
+      fewer than three cycles. CDK2_NU6102 1 0.2750 (cycle 7); 5e9l 0.2855
+      (cycle 2).
+  RWORK:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rwork
+    type: float
+    meaning: >
+      R-work at the last cycle. CDK2_NU6102 1 0.2179; 1tf6 0.2500.
+  CCFREE_F:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCFfreeavg
+    type: float
+    meaning: >
+      Average Fo-Fc correlation over the free set, amplitude refinement.
+      CDK2_NU6102 1 0.783; 1tf6 0.808.
+  R1FREE_START:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle/data/summary/R1free
+    type: float
+    meaning: >
+      Intensity refinement only: R1-free of the input model. R1 is computed
+      on sqrt(I) against |Fc|, and reflections with I/sigma(I) < 2 are left
+      out (a SHELX-like R1; servalcat xtal/sigmaa.py lines 92 and 129).
+      MDM2_Nutlin 1.4 0.2937.
+  R1FREE:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1free
+    type: float
+    meaning: >
+      R1-free after the last cycle (KPI "R1Free"). MDM2_Nutlin 1.4 0.2932
+      (1.35 A, 5 cycles). That model is DIMPLE's output with no ligand and
+      no waters.
+  R1FREE_3BACK:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/R1free
+    type: float
+    meaning: >
+      R1-free three cycles before the end. MDM2_Nutlin 1.4 0.2922 at cycle
+      2: R1-free rose by 0.001 over the last three cycles.
+  R1WORK:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1work
+    type: float
+    meaning: >
+      R1-work at the last cycle. MDM2_Nutlin 1.4 0.2765.
+  CCFREE_I:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCIfreeavg
+    type: float
+    meaning: >
+      Average correlation of observed and calculated intensities over the
+      free set, intensity refinement. Unlike R1, all reflections count.
+      MDM2_Nutlin 1.4 0.680.
+  BOND_RMSZ_START:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle/geom/summary/rmsZ/Bond_distances_non_H
+    type: float
+    meaning: >
+      Bond-length rms Z-score (non-H) of the input model. CDK2 1 1.679
+      (the deposited 1h1s); MDM2_Nutlin 1.4 0.755; 1tf6 0.847.
+  BOND_RMSZ:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsZ/Bond_distances_non_H
+    type: float
+    meaning: >
+      Bond rmsZ after the last cycle. Servalcat's weight targets 0.5-1.0,
+      but it reacts only to a rising value (see NCYCLES). CDK2 1 0.812;
+      MDM2_Nutlin 1.4 0.923; 1tf6 1.252 (0.847 -> 1.734 -> 1.252 over two
+      cycles, with the weight unchanged at 21.47).
+  BOND_RMSD:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsd/Bond_distances_non_H
+    type: float
+    meaning: >
+      Bond-length RMSD (A) after the last cycle. CDK2 1 0.0103;
+      MDM2_Nutlin 1.4 0.0119; 1tf6 0.0256.
+  RESOLUTION:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle/data/binned[last()]/d_min
+    type: float
+    meaning: >
+      High-resolution limit of the data refined against (A): the d_min of
+      the last resolution shell. CDK2 1 1.900; MDM2_Nutlin 1.4 1.346; 1tf6
+      3.131.
+  LAST_SHELL_COMPLETENESS:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle/data/binned[last()]/Cmpl
+    type: float
+    meaning: >
+      Completeness (%) of that last shell. CDK2 1 12.0: there the nominal
+      1.90 A overstates the effective resolution, and the verdict's band is
+      the stricter one. MDM2_Nutlin 1.4 46.3; 1tf6 61.2; 5e9l 99.1.
+  CYCLES:
+    file: program.xml
+    xpath: ./SERVALCAT_FIRST/cycle[last()]/Ncyc
+    type: int
+    meaning: >
+      Cycles run. CDK2 1 10; MDM2_Nutlin 1.4 5; 1tf6 2.
+  CLASHSCORE:
+    file: program.xml
+    xpath: ./Validation/Molprobity/Summary/Clashscore
+    type: float
+    meaning: >
+      MolProbity clashscore of the refined model. Absent when
+      VALIDATE_MOLPROBITY is off, as in the SubstituteLigand sub-job, the
+      1tf6 test and the PanDDA runs. CDK2 1 11.54.
+  RAMA_OUTLIERS_PCT:
+    file: program.xml
+    xpath: ./Validation/Molprobity/Summary/Ramachandran_outliers
+    type: float
+    meaning: >
+      MolProbity's Ramachandran outliers (%); "0.82%" is read as 0.82.
+      This is the figure to act on: it is the one deposition validation
+      reports. CDK2 1 0.82. validate_protein's own Ramachandran table in the
+      same program.xml (./Validation/Ramachandran/Totals/Outliers) counts 25
+      of 1108 (2.3%) for the same model. It uses different reference
+      distributions, so do not mix the two.
+  MOLPROBITY_SCORE:
+    file: program.xml
+    xpath: ./Validation/Molprobity/Summary/Molprobity_score
+    type: float
+    meaning: >
+      MolProbity score. CDK2 1 2.37.
+  # FINDING: cryo-EM (spa) jobs record FSCaverage per cycle, not R-factors.
+  #   servalcat refine/spa.py lines 98-103 write it into the summary; after
+  #   json2xml it should be at
+  #   ./SERVALCAT_FIRST/cycle[last()]/data/summary/FSCaverage, and the KPI
+  #   is "FSCaverage". No spa job of servalcat_pipe exists in any workspace
+  #   searched (docs-home2, ~/.cache/ccp4i2-tests, ~/.ccp4i2-pandda), so the
+  #   xpath is unverified and is left out of the results. A spa job is
+  #   judged "unjudged", and the next step says what to read. The evidence
+  #   job needed is the CAK molrep_map placement, redone with half maps and
+  #   then run through this task.
+  # FINDING (wiring): the spa command line always uses --halfmaps
+  #   (servalcat.py lines 401-403), although Servalcat accepts --map in its
+  #   place (servalcat refine/refine_spa.py lines 23-25). MAPIN1 and MAPIN2 are
+  #   allowUndefined (servalcat.def.xml lines 55-74), and the spa branch of
+  #   servalcat_pipe.validity() (servalcat_pipe.py lines 78-104) requires
+  #   RES_MIN but not them. A spa job without half maps therefore passes
+  #   validation and then fails in Servalcat.
+  # FINDING (placeholder): servalcat.py lines 363-364 and 374-375 set the
+  #   KPI RFree / R1Free to 0 when the summary lacks a free R
+  #   (summary.get('Rfree', 0)). With Servalcat 0.4.142 this cannot happen:
+  #   sigmaa.py writes work and free together. The judgement reads
+  #   program.xml, not KPIs, so it would not see the 0. The facade's KPI
+  #   listing would. The default should be dropped.
+  # FINDING: with ADD_WATERS the second refinement is stored under
+  #   ./SERVALCAT_WATERS (servalcat_pipe.py lines 608 and 621), and the job's
+  #   KPIs come from it (lines 1072 and 1089-1090), while the results above
+  #   read the first refinement. No evidence job added waters.
+  # FINDING: without a Free R set the summary carries only "R" or "R1" (the
+  #   KPI then is R or R1). No evidence job lacked a free set, so no result
+  #   reads it, and such a job is judged "unjudged".
+  # NOTE: [last()] and [last()-3] are ElementTree XPath, and
+  #   judgement.read_result supports them. ./SERVALCAT_FIRST/cycle/... with
+  #   no index is cycle 0, the input model. data/binned holds one element per
+  #   resolution shell, repeated under every cycle.
+  #   Every xpath above was read on CDK2_NU6102 job 1, MDM2_Nutlin job 1.4,
+  #   the 1tf6 test job and the five PanDDA baz2b jobs.
+
+verdict:
+  - when: >
+      BOND_RMSD <= 0.02 and (
+      (RESOLUTION < 0.75 and RFREE < 0.196) or
+      (RESOLUTION >= 0.75 and RESOLUTION < 0.85 and RFREE < 0.208) or
+      (RESOLUTION >= 0.85 and RESOLUTION < 0.95 and RFREE < 0.214) or
+      (RESOLUTION >= 0.95 and RESOLUTION < 1.05 and RFREE < 0.224) or
+      (RESOLUTION >= 1.05 and RESOLUTION < 1.15 and RFREE < 0.232) or
+      (RESOLUTION >= 1.15 and RESOLUTION < 1.25 and RFREE < 0.241) or
+      (RESOLUTION >= 1.25 and RESOLUTION < 1.35 and RFREE < 0.250) or
+      (RESOLUTION >= 1.35 and RESOLUTION < 1.45 and RFREE < 0.258) or
+      (RESOLUTION >= 1.45 and RESOLUTION < 1.55 and RFREE < 0.263) or
+      (RESOLUTION >= 1.55 and RESOLUTION < 1.65 and RFREE < 0.268) or
+      (RESOLUTION >= 1.65 and RESOLUTION < 1.75 and RFREE < 0.273) or
+      (RESOLUTION >= 1.75 and RESOLUTION < 1.85 and RFREE < 0.280) or
+      (RESOLUTION >= 1.85 and RESOLUTION < 1.95 and RFREE < 0.284) or
+      (RESOLUTION >= 1.95 and RESOLUTION < 2.05 and RFREE < 0.289) or
+      (RESOLUTION >= 2.05 and RESOLUTION < 2.15 and RFREE < 0.294) or
+      (RESOLUTION >= 2.15 and RESOLUTION < 2.25 and RFREE < 0.299) or
+      (RESOLUTION >= 2.25 and RESOLUTION < 2.35 and RFREE < 0.304) or
+      (RESOLUTION >= 2.35 and RESOLUTION < 2.45 and RFREE < 0.308) or
+      (RESOLUTION >= 2.45 and RESOLUTION < 2.55 and RFREE < 0.311) or
+      (RESOLUTION >= 2.55 and RESOLUTION < 2.65 and RFREE < 0.315) or
+      (RESOLUTION >= 2.65 and RESOLUTION < 2.75 and RFREE < 0.318) or
+      (RESOLUTION >= 2.75 and RESOLUTION < 2.85 and RFREE < 0.322) or
+      (RESOLUTION >= 2.85 and RESOLUTION < 2.95 and RFREE < 0.326) or
+      (RESOLUTION >= 2.95 and RESOLUTION < 3.05 and RFREE < 0.329) or
+      (RESOLUTION >= 3.05 and RESOLUTION < 3.15 and RFREE < 0.331) or
+      (RESOLUTION >= 3.15 and RESOLUTION < 3.25 and RFREE < 0.333) or
+      (RESOLUTION >= 3.25 and RESOLUTION < 3.35 and RFREE < 0.337) or
+      (RESOLUTION >= 3.35 and RESOLUTION < 3.45 and RFREE < 0.340) or
+      (RESOLUTION >= 3.45 and RESOLUTION < 3.55 and RFREE < 0.343) or
+      (RESOLUTION >= 3.55 and RESOLUTION < 3.65 and RFREE < 0.348) or
+      (RESOLUTION >= 3.65 and RESOLUTION < 3.75 and RFREE < 0.353) or
+      (RESOLUTION >= 3.75 and RESOLUTION < 3.85 and RFREE < 0.358) or
+      (RESOLUTION >= 3.85 and RESOLUTION < 3.95 and RFREE < 0.363) or
+      (RESOLUTION >= 3.95 and RESOLUTION < 4.05 and RFREE < 0.367) or
+      (RESOLUTION >= 4.05 and RESOLUTION < 4.15 and RFREE < 0.370) or
+      (RESOLUTION >= 4.15 and RFREE < 0.373)
+      )
+    outcome: refined
+    basis: >
+      R-free is below the PDB mean + 2 sigma for the resolution, per 0.1-A
+      bin. The bins are the PDB statistics in CCP4Cloud's verdict_refmac.py
+      (lines 249-321). At or above that line Cloud says "Rfree is high; are
+      bits of the structure missing?" (lines 421-422).
+      This is the same block as the prosmart_refmac judgement: bins centred
+      on 0.1 A, and the end bins used below 0.7 A and above 4.2 A. Bond RMSD
+      must be at most 0.02 A, Cloud's upper bound of the ideal range (line
+      381). A missing BOND_RMSD (an unrestrained run) blocks this outcome, as
+      RMS_BONDS does for REFMAC.
+      Our runs:
+        - CDK2_NU6102 1: 0.274 at 1.90 A (limit 0.284), passes;
+        - PanDDA baz2b 5e9k: 0.274 at 2.07 A (limit 0.294), passes;
+        - PanDDA baz2b 5e9l: 0.286 at 1.90 A (limit 0.284), just misses;
+        - PanDDA baz2b 5dyu: 0.277 at 1.65 A (limit 0.273), just misses;
+        - PanDDA baz2b 5e9y: 0.279 at 1.65 A (limit 0.273), just misses.
+  - when: >
+      BOND_RMSD <= 0.02 and (
+      (RESOLUTION < 0.75 and R1FREE < 0.196) or
+      (RESOLUTION >= 0.75 and RESOLUTION < 0.85 and R1FREE < 0.208) or
+      (RESOLUTION >= 0.85 and RESOLUTION < 0.95 and R1FREE < 0.214) or
+      (RESOLUTION >= 0.95 and RESOLUTION < 1.05 and R1FREE < 0.224) or
+      (RESOLUTION >= 1.05 and RESOLUTION < 1.15 and R1FREE < 0.232) or
+      (RESOLUTION >= 1.15 and RESOLUTION < 1.25 and R1FREE < 0.241) or
+      (RESOLUTION >= 1.25 and RESOLUTION < 1.35 and R1FREE < 0.250) or
+      (RESOLUTION >= 1.35 and RESOLUTION < 1.45 and R1FREE < 0.258) or
+      (RESOLUTION >= 1.45 and RESOLUTION < 1.55 and R1FREE < 0.263) or
+      (RESOLUTION >= 1.55 and RESOLUTION < 1.65 and R1FREE < 0.268) or
+      (RESOLUTION >= 1.65 and RESOLUTION < 1.75 and R1FREE < 0.273) or
+      (RESOLUTION >= 1.75 and RESOLUTION < 1.85 and R1FREE < 0.280) or
+      (RESOLUTION >= 1.85 and RESOLUTION < 1.95 and R1FREE < 0.284) or
+      (RESOLUTION >= 1.95 and RESOLUTION < 2.05 and R1FREE < 0.289) or
+      (RESOLUTION >= 2.05 and RESOLUTION < 2.15 and R1FREE < 0.294) or
+      (RESOLUTION >= 2.15 and RESOLUTION < 2.25 and R1FREE < 0.299) or
+      (RESOLUTION >= 2.25 and RESOLUTION < 2.35 and R1FREE < 0.304) or
+      (RESOLUTION >= 2.35 and RESOLUTION < 2.45 and R1FREE < 0.308) or
+      (RESOLUTION >= 2.45 and RESOLUTION < 2.55 and R1FREE < 0.311) or
+      (RESOLUTION >= 2.55 and RESOLUTION < 2.65 and R1FREE < 0.315) or
+      (RESOLUTION >= 2.65 and RESOLUTION < 2.75 and R1FREE < 0.318) or
+      (RESOLUTION >= 2.75 and RESOLUTION < 2.85 and R1FREE < 0.322) or
+      (RESOLUTION >= 2.85 and RESOLUTION < 2.95 and R1FREE < 0.326) or
+      (RESOLUTION >= 2.95 and RESOLUTION < 3.05 and R1FREE < 0.329) or
+      (RESOLUTION >= 3.05 and RESOLUTION < 3.15 and R1FREE < 0.331) or
+      (RESOLUTION >= 3.15 and RESOLUTION < 3.25 and R1FREE < 0.333) or
+      (RESOLUTION >= 3.25 and RESOLUTION < 3.35 and R1FREE < 0.337) or
+      (RESOLUTION >= 3.35 and RESOLUTION < 3.45 and R1FREE < 0.340) or
+      (RESOLUTION >= 3.45 and RESOLUTION < 3.55 and R1FREE < 0.343) or
+      (RESOLUTION >= 3.55 and RESOLUTION < 3.65 and R1FREE < 0.348) or
+      (RESOLUTION >= 3.65 and RESOLUTION < 3.75 and R1FREE < 0.353) or
+      (RESOLUTION >= 3.75 and RESOLUTION < 3.85 and R1FREE < 0.358) or
+      (RESOLUTION >= 3.85 and RESOLUTION < 3.95 and R1FREE < 0.363) or
+      (RESOLUTION >= 3.95 and RESOLUTION < 4.05 and R1FREE < 0.367) or
+      (RESOLUTION >= 4.05 and RESOLUTION < 4.15 and R1FREE < 0.370) or
+      (RESOLUTION >= 4.15 and R1FREE < 0.373)
+      )
+    outcome: refined
+    basis: >
+      The same bins applied to R1-free. The offset between R1 and an
+      all-data R on the same model and data is UNMEASURED. R1 leaves out
+      reflections with I/sigma < 2, so it should read lower, and these bins
+      are probably lenient for R1. To measure the offset, rerun MDM2_Nutlin
+      1.4 with F_SIGF_OR_I_SIGI F_SIGF. An expert should set R1 bins.
+  - when: >
+      (RFREE >= 0.40 and RFREE_START - RFREE < 0.003) or
+      (R1FREE >= 0.40 and R1FREE_START - R1FREE < 0.003)
+    outcome: not_improving
+    basis: >
+      R-free is at or above 0.40 (Cloud: "model is incomplete or poorly
+      fitted", verdict_refmac.py lines 488-492) and did not fall by the 0.003
+      Cloud counts as a change (plateauReached, lines 173-189). The model
+      does not fit and refinement is not moving it. Example: REFMAC on
+      Thaumatin 17.9, the wrong enantiomorph, stayed at 0.461 -> 0.461.
+      Below 0.40 a flat R-free is not this outcome. A model that was already
+      refined does not move in 5 more cycles; it needs building
+      (MDM2_Nutlin 1.4, below). The same rule is in prosmart_refmac.
+  - when: >
+      (BOND_RMSZ > 1.0 and CYCLES < 10 and (RFREE < 0.40 or R1FREE < 0.40)) or
+      (RFREE < 0.40 and RFREE_3BACK - RFREE > 0.003) or
+      (R1FREE < 0.40 and R1FREE_3BACK - R1FREE > 0.003) or
+      ((RFREE < 0.40 or R1FREE < 0.40) and BOND_RMSD > 0.02)
+    outcome: unconverged
+    basis: >
+      Not refined, and the run was not finished. Three cases:
+        - A short run (fewer than 10 cycles) ended with bond rmsZ above
+          Servalcat's target range of 0.5-1.0 (refine_xtal.py line 75; help
+          page lines 95-98). Servalcat's automatic weight does not act before
+          the third cycle, and after that it lowers the weight only while rmsZ
+          is above 1.0 AND rising (refine.py lines 1026-1035), so a short run
+          can stop anywhere. 1tf6 (2 cycles): rmsZ 0.847 -> 1.734 -> 1.252,
+          weight unchanged at 21.47, bond RMSD 0.026 A.
+        - R-free was still falling by more than 0.003 over the last three
+          cycles (Cloud, verdict_refmac.py lines 463-475). PanDDA 5e9m:
+          0.2901 -> 0.2854 over its last three cycles.
+        - Bond RMSD is above 0.02 A (Cloud, lines 547-563).
+      The CYCLES < 10 condition is not used alone here, unlike in
+      prosmart_refmac. Five-cycle re-refinements are the norm in
+      SubstituteLigand and PanDDA.
+  - when: RFREE < 0.40 or R1FREE < 0.40
+    outcome: needs_building
+    basis: >
+      R-free is below 0.40 (basis above) but above the PDB range for the
+      resolution. The model is right but incomplete or locally wrong:
+      build, add waters, fit ligands.
+      Our runs:
+        - MDM2_Nutlin 1.4, R1-free 0.2932 at 1.35 A (limit 0.250): DIMPLE's
+          model with no ligand and no waters. The same data with REFMAC on
+          the complete model (MDM2 3: nutlin, waters) reach 0.247.
+        - PanDDA 5dyu, 5e9l and 5e9y, 0.28-0.29 at 1.65-1.90 A, each just
+          above its bin.
+        - REFMAC: Thaumatin 17.4, 0.281 at 1.17 A.
+        - REFMAC: BetaBlip 4.3, 0.343 at 3.0 A.
+  - when: RFREE < RFREE_START or R1FREE < R1FREE_START
+    outcome: placed
+    basis: >
+      R-free fell by at least 0.003 but ends at 0.40 or more. Correct but
+      partial or distant models end here, and so can wrong ones; building
+      decides.
+      Our runs, REFMAC, all correct placements:
+        - BetaBlip 3.3, beta without BLIP: 0.453 -> 0.447.
+        - MDM2 25.3: 0.543 -> 0.503.
+        - MDM2 107: 0.527 -> 0.490.
+        - LckKinase 5.4: 0.445 -> 0.431.
+  - when: true
+    outcome: unjudged
+    basis: >
+      No R-free or R1-free was read. The job may be:
+        - a cryo-EM (spa) job, which this file does not yet judge (see
+          FINDING);
+        - a job without a Free R set;
+        - a job that failed or was never run.
+      Whether it FAILED is the job's status, which the facade returns beside
+      the verdict; check that first.
+
+traps:
+  - >
+    R1 is not R. With intensities, which is the default (F_SIGF_OR_I_SIGI
+    I_SIGI), the report, the KPI (R1Free) and program.xml all give R1: an R
+    on sqrt(I) for reflections with I/sigma >= 2, with the weak data left
+    out. Never set an R1-free beside a REFMAC R-free (an R on all
+    amplitudes) to choose the "better" refinement. To compare like with
+    like, rerun with F_SIGF_OR_I_SIGI F_SIGF.
+  - >
+    "Finished" is not "good". The pipeline never ends Unsatisfactory: the
+    wrapper has no such outcome, and the pipeline's branch for it
+    (servalcat_pipe.py line 513) is dead. A refinement that made the model
+    worse finishes green. Judge by the numbers: R-free against
+    RFREE_START, and bond rmsZ.
+  - >
+    Bond rmsZ above 1.0 is not fixed by the automatic weight unless it is
+    rising. The 1tf6 job (2 cycles) ended at rmsZ 1.25 and bond RMSD 0.026 A
+    with its R-free looking fine. More cycles help a short run. After 10 or
+    more cycles at a steady rmsZ above 1.0, look for a geometry problem
+    (dictionary, link) or lower the weight; the help page's "a manual
+    weight is rarely better" is not "never".
+  - >
+    The model and the data must have exactly the same space group. The
+    def.xml enforces it; Servalcat itself would quietly use the model's.
+    When Phaser reindexed the data (its SPACEGROUP differs from the input
+    data's), give the Phaser job's F_SIGF_OUT and FREERFLAG_OUT here, not
+    the original files.
+  - >
+    Cryo-EM needs both half maps, although the fields are marked optional.
+    A single full map cannot be refined by this task, nor can the trimmed
+    map from molrep_map without its trimmed half maps. RES_MIN must be set.
+    The mask is used only for the Fo-Fc map. There is no Free R set:
+    cross-validation is by the half maps (CROSS_VALIDATION, off by default).
+  - >
+    With ADD_WATERS, the final model comes from a second refinement after
+    Coot's water picking, recorded under SERVALCAT_WATERS. The verdict here
+    is on the first refinement, before waters were added. The job's KPI
+    R-free is the one after.
+
+next:
+  - when: outcome == "refined"
+    task: coot_find_ligand
+    inputs:
+      XYZIN: "servalcat_pipe[-1].XYZOUT"
+      FPHI: "servalcat_pipe[-1].FPHIOUT"
+      DICT: "LidiaAcedrgNew[-1].DICTOUT_LIST[0]"
+    advice: >
+      Only if a ligand is expected in the crystal and is not yet in the
+      model. First look for unexplained density in
+      servalcat_pipe[-1].DIFFPHIOUT, make the ligand's dictionary
+      (LidiaAcedrgNew), and set COMPID to its three-letter code. Then refine
+      again with the dictionary in DICT_LIST.
+      Otherwise, "refined" means done for now. A person should inspect the
+      model in Coot or Moorhen with FPHIOUT and DIFFPHIOUT: the
+      difference-map peaks, alternative conformations, and the outliers in
+      the report's Validation section (RAMA_OUTLIERS_PCT, CLASHSCORE).
+      Each round then refines again with servalcat_pipe: the edited model as
+      XYZIN, the same HKLIN, FREERFLAG and DICT_LIST, and ADD_WATERS True
+      once the protein is complete.
+      Stop when R-free no longer falls (RFREE_3BACK - RFREE <= 0.003) and
+      validation is clean.
+      Through i2run, give a file this job consumed as fileIn, e.g.
+      HKLIN "fileIn=servalcat_pipe[-1].HKLIN" (cli/i2run/README.md).
+  - when: outcome == "unconverged"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "servalcat_pipe[-1].XYZOUT"
+      HKLIN: "servalcat_pipe[-1].HKLIN"
+      FREERFLAG: "servalcat_pipe[-1].FREERFLAG"
+    advice: >
+      Continue the same refinement with NCYCLES 10 or more, and the same
+      dictionaries and restraints. Then judge the new job.
+  - when: BOND_RMSZ > 1.0 and CYCLES >= 10
+    advice: >
+      Bond rmsZ is still above 1.0 after 10 or more cycles, and Servalcat
+      will not correct a steady value. Check the geometry the data pull
+      against: a missing or wrong ligand dictionary, a missing covalent link
+      (FIND_LINKS True), or a misbuilt region. If there is none, refine
+      again with WEIGHT_OPT MANUAL and WEIGHT below this run's final weight
+      (./SERVALCAT_FIRST/cycle[last()]/weight). Keep the run whose R-free is
+      no worse.
+  - when: outcome == "needs_building"
+    task: modelcraft
+    inputs:
+      XYZIN: "servalcat_pipe[-1].XYZOUT"
+      F_SIGF: "servalcat_pipe[-1].HKLIN"
+      FREERFLAG: "servalcat_pipe[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      Use ModelCraft when residues are missing or the model is a homologue
+      to be rebuilt into the target sequence.
+      When the chain is complete and only ligands, waters and local errors
+      remain (MDM2_Nutlin 1.4), take the other route:
+        - coot_find_ligand for an expected ligand (inputs as for "refined");
+        - servalcat_pipe with ADD_WATERS True;
+        - a person's Coot/Moorhen session for local errors;
+        - then refine again.
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "servalcat_pipe[-1].XYZOUT"
+      F_SIGF: "servalcat_pipe[-1].HKLIN"
+      FREERFLAG: "servalcat_pipe[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      FIRST compare the model with the AU contents. If a copy or a component
+      is missing, place it before building: phaser_simple_phil with
+      INPUT_FIXED True, XYZIN_FIXED "servalcat_pipe[-1].XYZOUT", and the
+      next model as XYZIN.
+      If the model covers the AU, build with ModelCraft. Treat the placement
+      as wrong if ModelCraft cannot bring R-free below 0.40.
+      After MR at low resolution, 20-50 cycles with USE_JELLY True are worth
+      one run before building.
+  - when: outcome == "not_improving"
+    advice: >
+      Do not build on this model. Check, in order:
+        1. FREERFLAG is the set this model was refined against before.
+           R-free starting below R-work and rising is the signature of a
+           wrong set. If the old set is lost, refine on and accept a higher
+           R-free.
+        2. HKLIN belongs to this crystal and to the model's space group.
+        3. The model covers the AU contents.
+        4. The placement, hand and space group are right. A flat R-free near
+           0.45-0.50 with a model that should fit is a wrong solution: go
+           back to MR.
+  - when: RFREE - RFREE_START > 0.003 or R1FREE - R1FREE_START > 0.003
+    advice: >
+      R-free ROSE during the run, by more than the 0.003 CCP4Cloud counts as
+      a change. Whatever the outcome, check first that FREERFLAG is the set
+      this model was refined against before: R-free starting below R-work
+      and rising is the signature of a wrong set. Then check for
+      overfitting: a large and growing R-free/R gap, a weight that is too
+      high. PanDDA 5e9l rose by 0.0016, which is below the tolerance; its
+      free set was made in the campaign.
+  - when: RFREE_3BACK - RFREE > 0.003 or R1FREE_3BACK - R1FREE > 0.003
+    advice: >
+      R-free was still falling over the last three cycles, by more than
+      CCP4Cloud's 0.003 plateau tolerance. Unless the outcome is "placed"
+      (rebuild instead), re-run from servalcat_pipe[-1].XYZOUT with more
+      cycles before judging.
+  - when: outcome == "unjudged"
+    advice: >
+      Cryo-EM (spa): read FSCaverage at
+      ./SERVALCAT_FIRST/cycle[last()]/data/summary/FSCaverage (KPI
+      FSCaverage) and compare it with cycle 0. It should rise, and bond
+      rmsZ should end within 0.5-1.0. No threshold for FSCaverage is given
+      here: it depends on the map's resolution and quality. Then a person
+      inspects MAP_FO and MAP_FOFC.
+      Without a Free R set: rerun with the project's FREERFLAG.
+      With no statistics at all: read diagnostic.xml. Codes 105 and 106 mean
+      Servalcat itself failed; its sub-job's log.txt and stderr.txt say why
+      (often a missing dictionary, or a cell or space-group mismatch).
+
+sources:
+  - docs/user/source/tasks/servalcat_pipe/index.rst
+  - server/ccp4i2/pipelines/servalcat_pipe/script/servalcat_pipe.py
+  - server/ccp4i2/pipelines/servalcat_pipe/script/servalcat_pipe_report.py
+  - server/ccp4i2/wrappers/servalcat/script/servalcat.py (command line, KPIs, outputs)
+  - server/ccp4i2/wrappers/servalcat/script/servalcat.def.xml (sameCrystalMatch spaceGroup, defaults, OCCUPANCY_REFINEMENT)
+  - "Servalcat 0.4.142 source, ccp4-20260702 Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/servalcat: xtal/sigmaa.py (R1), refine/refine.py (weight adjustment), refine/refine_xtal.py (defaults, initial weight), refine/refine_spa.py (--map), refine/spa.py (FSCaverage), utils/hkl.py (free flag)"
+  - "CCP4Cloud verdict_refmac.py, ccp4-20260702 share/jscofe/pycofe/verdicts (per-resolution R-free bands, plateau tolerance, 0.40 line)"
+  - docs/user/source/tasks/molrep_map/index.rst (cryo-EM handoff)
+  - "run: CDK2_NU6102 job 1 (1h1s re-refined against PDB-REDO data, F, 10 cycles, 1.90 A)"
+  - "run: MDM2_Nutlin job 1.4 (servalcat_pipe inside SubstituteLigand on DIMPLE's model, no ligand or waters; intensities, 5 cycles, 1.35 A)"
+  - "run: ~/.cache/ccp4i2-tests/20260930_125104_3796_servalcat_test_1tf6_platonyzer job 1 (1tf6 PDB-REDO, F, plain 2-cycle refinement with no external restraints, 3.13 A)"
+  - "run: ~/.ccp4i2-pandda/projects/baz2b_demo_campaign_{5dyu,5e9k,5e9l,5e9m} job 1.4 and 5e9y job 1.3 (re-refinement, F, 5 cycles, 1.65-2.07 A)"
+  - "runs (REFMAC, for the bands): MDM2 3, Thaumatin 17.9, BetaBlip 3, MDM2 25 and 107, CDK2_CyclinA 2, LckKinase 5.4 (KPIs in docs-home2/db.sqlite3)"

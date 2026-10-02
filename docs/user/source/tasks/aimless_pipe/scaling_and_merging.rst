@@ -51,7 +51,7 @@ Phaser and **(8c)** the
 average signal/noise after averaging symmetry-related observations
 <<I>/ |sgr| (<I>)>, labelled Mn(I)/sd(Mn(I)) in the Aimless table. 
 The current default cut-offs are: on CC(|frac12|), 0.2; on
-<<I>/ |sgr| <I>)>, 1.0; and on information content, 0.1. 
+<<I>/ |sgr| <I>)>, 1.5; and on information content, 0.1. 
 Resolution cut-offs ought to take into account anisotropy,
 see `below <#anisotropy>`_.
 The optional automatic cutoff in the pipeline is based on the information

@@ -22,6 +22,9 @@ def test_gamma_basic():
         assert record.findtext("Verdict") == "Single Solution"
         assert max(float(e.text) for e in record.findall("Solutions/Solution/LLG")) > 1000
         assert record.findtext("Solutions/Solution/Components/Component/Name") == "SearchModel"
+        # What Phaser expected of the model, as numbers a judge can read
+        assert float(record.findtext("ExpectedLLG/Ensemble/eLLG")) > 0
+        assert 0 < float(record.findtext("ExpectedLLG/FractionScatteringOfEnsembles")) <= 1
 
 
 @pytest.mark.order("first")

@@ -1,0 +1,348 @@
+task: validate_protein
+status: draft
+reviewed_by: []
+purpose: >
+  Validates a protein model residue by residue: all-atom contacts, rotamers,
+  C-beta deviations, peptide planarity, Ramachandran statistics and the
+  MolProbity score (MolProbity, run inside Iris), a second Ramachandran
+  classification of Iris's own, per-residue B-factor summaries, and - when
+  reflections are given - the fit of each residue to the density, drawn as
+  Iris charts. It changes nothing: it says whether the geometry of a model
+  is ready and which residues to look at.
+
+use_when:
+  - After refinement, to decide whether the model's geometry is ready for
+    deposition or which residues need rebuilding. Refinement already runs
+    it as a sub-job on the refined model (servalcat_pipe, prosmart_refmac,
+    lorestr_i2); run it on its own for a model from elsewhere (a building
+    program, the PDB, an earlier job).
+  - Before and after a round of rebuilding, with TWO_DATASETS, to see what
+    the rebuild changed.
+
+not_when:
+  - text: >
+      You want to know whether the model fits the data or is complete. This
+      task judges geometry; it does not read R-free and does not compare the
+      model with the AU contents. A model missing a whole chain comes out
+      only "needs attention" here (CDK2_CyclinA job 15.1: cyclin A absent,
+      R-free 0.445); judge the refinement first.
+    instead: servalcat_pipe
+  - text: >
+      The model is nucleic acid, or a cryo-EM model to be judged against a
+      map: the Ramachandran and rotamer analyses are for protein, and the
+      refinement pipelines pass reflections to it only for X-ray data.
+    instead: servalcat_pipe
+
+inputs:
+  - param: inputData.XYZIN_1
+    advice: >
+      The model to judge. Optional in the def.xml, so the task accepts a job
+      with no model (what then happens is untested); always set it. With
+      TWO_DATASETS True the summary numbers below are for XYZIN_2, not
+      XYZIN_1 (validate_protein.py keeps only the last model of the series
+      for MolProbity, B-factors and Ramachandran): put the model you are
+      judging, the newer one, in XYZIN_2.
+  - param: inputData.F_SIGF_1
+    advice: >
+      Optional: the reflections the model was refined against. They add the
+      Iris density-fit rings to the charts and nothing else; no number in
+      program.xml uses them.
+  - param: controlParameters.DO_MOLPROBITY
+    advice: >
+      Leave True (the default): every number the verdict reads comes from
+      MolProbity. Off (as in the prosmart_refmac sub-jobs CDK2_CyclinA 2.2
+      and Gamma 12.2, VALIDATE_MOLPROBITY False there) or failing (its
+      reference data missing), the Molprobity section is simply absent and
+      the job still finishes; the verdict is then "unjudged".
+  - param: controlParameters.DO_TORTOIZE
+    advice: >
+      Rama-Z is computed only for the Iris charts; it is not written to
+      program.xml, so an agent cannot read it. Leave off unless a person
+      will look at the charts.
+
+results:
+  MOLPROBITY_SCORE:
+    file: program.xml
+    xpath: .//Molprobity/Summary/Molprobity_score
+    type: float
+    meaning: >
+      MolProbity score (Chen et al. 2010): 0.426 ln(1+clashscore) +
+      0.33 ln(1+max(0, rotamer outliers % - 1)) + 0.25 ln(1+max(0,
+      100 - Rama favoured % - 2)) + 0.5 (mmtbx/validation/utils.py:123-134),
+      scaled to read like a resolution; lower is better. -1 means mmtbx
+      could not compute it. BetaBlip 6 3.36; MDM2 3.5 1.14; MDM2 107.2 2.81;
+      CDK2_CyclinA 15.1 2.52; CDK2_NU6102 1.2 2.37.
+  CLASHSCORE:
+    file: program.xml
+    xpath: .//Molprobity/Summary/Clashscore
+    type: float
+    meaning: >
+      All-atom clashes (overlap >= 0.4 A; reduce adds hydrogens first) per
+      1000 atoms. BetaBlip 6 43.88; MDM2 3.5 3.54; MDM2 107.2 29.72;
+      CDK2_CyclinA 15.1 9.34; CDK2_NU6102 1.2 11.54.
+  RAMA_OUTLIERS:
+    file: program.xml
+    xpath: .//Molprobity/Summary/Ramachandran_outliers
+    type: float
+    meaning: >
+      MolProbity Ramachandran outliers, percent (written "4.01%"; the reader
+      drops the sign). BetaBlip 6 4.01; MDM2 3.5 0.0; MDM2 107.2 0.0;
+      CDK2_CyclinA 15.1 1.2; CDK2_NU6102 1.2 0.82.
+  RAMA_FAVOURED:
+    file: program.xml
+    xpath: .//Molprobity/Summary/Ramachandran_favoured
+    type: float
+    meaning: >
+      MolProbity Ramachandran favoured, percent. BetaBlip 6 79.48; MDM2 3.5
+      100.0; MDM2 107.2 93.98; CDK2_CyclinA 15.1 95.21; CDK2_NU6102 1.2
+      96.17.
+  ROTAMER_OUTLIERS:
+    file: program.xml
+    xpath: .//Molprobity/Summary/Rotamer_outliers
+    type: float
+    meaning: >
+      MolProbity rotamer outliers, percent. BetaBlip 6 4.5; MDM2 3.5 0.0;
+      MDM2 107.2 3.85; CDK2_CyclinA 15.1 8.24; CDK2_NU6102 1.2 5.07.
+  CBETA:
+    file: program.xml
+    xpath: .//Molprobity/Summary/CBeta_deviations
+    type: int
+    meaning: >
+      NUMBER (not percentage) of residues whose C-beta deviates >= 0.25 A
+      from its ideal position - usually a backbone or side chain built the
+      wrong way round. BetaBlip 6 7; MDM2 3.5 0; MDM2 107.2 1; CDK2_CyclinA
+      15.1 9; CDK2_NU6102 1.2 11.
+  RMS_BONDS:
+    file: program.xml
+    xpath: .//Molprobity/Summary/RMS_bonds
+    type: float
+    meaning: >
+      RMS bond-length deviation (A) against MolProbity's restraint library.
+      BetaBlip 6 0.0077; MDM2 3.5 0.0189; MDM2 107.2 0.0415; CDK2_NU6102
+      0.012. Not used in the verdict (no bound in the workspace).
+  RMS_ANGLES:
+    file: program.xml
+    xpath: .//Molprobity/Summary/RMS_angles
+    type: float
+    meaning: RMS bond-angle deviation (degrees). BetaBlip 6 1.77; MDM2 107.2 2.45.
+  IRIS_RAMA_RESIDUES:
+    file: program.xml
+    xpath: .//Ramachandran/Totals/Residues
+    type: int
+    meaning: >
+      Amino acids in Iris's own Ramachandran section, INCLUDING those with
+      no phi or psi (IRIS_RAMA_NA). BetaBlip 6 428; MDM2 3.5 91.
+  IRIS_RAMA_OUTLIERS:
+    file: program.xml
+    xpath: .//Ramachandran/Totals/Outliers
+    type: int
+    meaning: >
+      Ramachandran outliers by Iris's classifier (clipper probabilities,
+      cut-offs 0.02 / 0.002), NOT MolProbity's. They disagree: BetaBlip 6
+      Iris 42, MolProbity 17 (4.01%); MDM2 3.5 Iris 1, MolProbity 0. The
+      only Ramachandran number when MolProbity did not run (CDK2_CyclinA
+      2.2 16 of 592; Gamma 12.2 0 of 120). Informational; not in the
+      verdict.
+  IRIS_RAMA_NA:
+    file: program.xml
+    xpath: .//Ramachandran/Totals/NA
+    type: int
+    meaning: Residues with no phi or psi (chain ends, breaks). BetaBlip 6 4.
+  # FINDING: Ramachandran_outliers, Ramachandran_favoured and
+  #   Rotamer_outliers are written with a "%" suffix
+  #   (validate_protein.py:232-234). The judgement reader strips it, but
+  #   any other consumer of program.xml must too; better to write bare
+  #   numbers and let the report add the sign.
+  # FINDING: the resolution is not in program.xml. Iris computes it when
+  #   reflections are given (iris_validation/metrics/__init__.py:40,
+  #   resolution_limit) and writes it only to logfile_iris.json. With it
+  #   (and mmtbx's get_percentile_for_mpscore(score, resolution),
+  #   molprobity/percentile_mpscore.py) a second, resolution-relative
+  #   "poor" trigger becomes possible, e.g. a MolProbity-score percentile
+  #   below 10 at high resolution (MDM2 107.2: 2nd percentile at 1.35 A).
+  # FINDING: the per-residue density fit (Iris fit_score, main- and
+  #   side-chain) and Rama-Z (DO_TORTOIZE) are only in logfile_iris.json /
+  #   the SVG; program.xml has no density-fit summary or per-residue list.
+  # NOTE: the per-residue lists an agent turns into a rebuild list are
+  #   .//Molprobity/{Ramachandran_outliers,Rotamer_outliers,CBeta_outliers,
+  #   Nonplanar_omegas,Side_chain_flips}/Outlier (attributes chain, seqnum,
+  #   name, score) and .//Molprobity/Clashes/Outlier (first_atom,
+  #   second_atom as "B 119 TYR HB2", overlap negative, all <= -0.4 A).
+  #   Scores are percent: a Ramachandran outlier is below 0.05% (general
+  #   residues) or 0.2% (Gly, Pro, pre-Pro, Ile/Val) (mmtbx ramalyze.py
+  #   evalScore, ~383-394), a rotamer outlier below 0.3%; the C-beta score
+  #   is the deviation in A.
+  # NOTE: all xpaths were run against BetaBlip 6, MDM2 3.5/3.7/107.2,
+  #   CDK2_CyclinA 15.1 and 2.2, CDK2_NU6102 1.2 and Gamma 12.2. The
+  #   Molprobity section is absent from CDK2_CyclinA 2.2 and Gamma 12.2
+  #   (DO_MOLPROBITY False); B_factors absent from CDK2_NU6102 1.2
+  #   (servalcat_pipe's VALIDATE_BAVERAGE defaults to False).
+
+verdict:
+  - when: CLASHSCORE >= 40 or RAMA_FAVOURED < 95 or MOLPROBITY_SCORE >= 3.5
+    outcome: poor
+    basis: >
+      Clashscore 40 and Ramachandran favoured 95 are the first numbers of
+      mmtbx's own (bound, bound, goal) triples
+      (mmtbx/validation/molprobity/__init__.py:788-792,
+      iter_molprobity_gui_fields); that the first number of each pair is
+      the red flag is our reading of the Phenix GUI, not seen in the
+      workspace (no shipped code consumes the triples). Both are
+      resolution-independent. MolProbity score 3.5 is a backstop: worse
+      than 99% of the 2006 PDB entries in mmtbx's percentile_mpscore.py at
+      1.0-2.0 A, 89% at 2.5 A, 63% at 3.0 A; no evidence job reaches it.
+      BetaBlip 6 lands here (3.0 A, five ModelCraft cycles: favoured 79.48,
+      clashscore 43.88; the help page calls it "a model that needs
+      rebuilding and refinement"), and so does MDM2 107.2 (1.35 A, an
+      unrebuilt 57%-identity homologue after a Coot morph, R-free 0.490:
+      favoured 93.98, rotamer outliers 3.85, clashscore 29.72, score 2.81 -
+      worse than 98% of 2006 entries at that resolution). Rotamer or
+      Ramachandran outliers above the first bound (2%, 0.5%) alone are NOT
+      made poor: CDK2_NU6102 1.2 (the deposited 1h1s re-refined, R-free
+      0.274) breaks both and needs a person with a list, not a rebuild.
+  - when: MOLPROBITY_SCORE >= 0 and RAMA_OUTLIERS <= 0.2 and RAMA_FAVOURED >= 98 and ROTAMER_OUTLIERS <= 1 and CBETA <= 2 and CLASHSCORE < 20
+    outcome: acceptable
+    basis: >
+      MolProbity's own goals: Ramachandran outliers < 0.2%, favoured > 98%,
+      rotamer outliers 1%, C-beta outliers 0 (__init__.py:788-791); C-beta
+      2 and clashscore 20 are the second bounds of the same triples
+      (__init__.py:791-792). The goals are resolution-independent. MDM2 3.5
+      and 3.7 land here (1.35 A, 4hg7 re-refined: 0.0 / 100.0 / 0.0, no
+      C-beta outliers, clashscore 3.54, score 1.14). The MolProbity score
+      is not a separate gate: with these goals met it is low anyway
+      (formula above). "Acceptable" is for the geometry only, after the
+      listed outliers have been looked at in the density.
+  - when: MOLPROBITY_SCORE >= 0
+    outcome: needs_attention
+    basis: >
+      MolProbity ran, nothing breaks the poor bounds, but at least one
+      MolProbity goal is missed. CDK2_CyclinA 15.1 (1.9 A: Rama outliers
+      1.2%, favoured 95.21, rotamers 8.24%, 9 C-beta, clashscore 9.34;
+      cyclin A missing, R-free 0.445) and CDK2_NU6102 1.2 (1.9 A: 0.82%,
+      96.17, 5.07%, 11 C-beta, 11.54; R-free 0.274) land here.
+  - when: true
+    outcome: unjudged
+    basis: >
+      No MolProbity summary: DO_MOLPROBITY was off (CDK2_CyclinA 2.2, Gamma
+      12.2), MolProbity's reference data are missing, Iris could not read
+      the model, or the job never ran (BetaBlip 12). The job ends
+      "finished" in the first three cases.
+
+traps:
+  - >
+    Geometry is not fit. This task never reads R-free and does not know the
+    AU contents. MDM2 107.2 (an unrebuilt homologue, R-free 0.490) has 0%
+    MolProbity Ramachandran outliers; CDK2_CyclinA 15.1 is missing all of
+    cyclin A (R-free 0.445) and looks like a nearly finished model. Judge
+    the refinement job (R-free, and the model against the AU contents)
+    first; this verdict says only whether the geometry is ready.
+  - >
+    Two Ramachandran answers in one report. "MolProbity Analyses" (the
+    Molprobity element) and "Ramachandran Analyses" (the Ramachandran
+    element, Iris's classifier, residues without phi/psi counted in the
+    denominator) disagree: BetaBlip 6 has 17 MolProbity outliers (4.01%)
+    and 42 Iris "outliers" (9.8%). Use MolProbity's numbers and lists; the
+    Iris totals are only for when MolProbity did not run.
+  - >
+    A job that "finished" may have judged nothing: with MolProbity off or
+    broken the Molprobity section is simply absent. A missing
+    MOLPROBITY_SCORE means not judged, never "no problems".
+  - >
+    The model a refinement's validation sub-job judged cannot be named by
+    any file reference: sub-jobs record none of their inputs, so
+    "validate_protein[-1].XYZIN_1" skips them and resolves to the last
+    STANDALONE validation's model (or to nothing), and "[3.5].XYZIN_2"
+    fails. For a sub-job N.M, name the parent's refined model,
+    "[N].CIFFILE" (or "[N].XYZOUT" in PDB format); for a standalone job,
+    its XYZIN_1 (or XYZIN_2 with TWO_DATASETS).
+  - >
+    Building a rebuild list: take every residue in
+    Molprobity/Ramachandran_outliers, Rotamer_outliers, CBeta_outliers and
+    Nonplanar_omegas (chain + seqnum), add the residues of the worst
+    clashes (every listed clash is already >= 0.4 A, MolProbity's "serious"
+    cut; sort by overlap, most negative first; chain and number are the
+    first two words of first_atom/second_atom), and rank residues flagged
+    in more than one list, or in runs of neighbours, first (BetaBlip 6:
+    B 3, B 72, B 133). Side_chain_flips (Asn/Gln/His) are flips, not
+    rebuilds. A genuine outlier in clear density is kept, so the list is
+    for a person to look at with the density, not a list of residues to
+    delete.
+
+next:
+  - when: outcome == "acceptable"
+    task: adding_stats_to_mmcif_i2
+    inputs:
+      XYZIN: "servalcat_pipe[-1].CIFFILE"
+      ASUCONTENT: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      Deposit if the refinement is also done (R-free sensible for the
+      resolution, model complete, ligands and waters placed). The task
+      needs the refinement's mmCIF (CIFFILE; XYZOUT is the PDB-format copy
+      and is refused) and the data and free set it was refined against
+      (F_SIGF, FREERFLAG). If the refinement was prosmart_refmac, use
+      "prosmart_refmac[-1].CIFFILE"; for a standalone validation, the
+      mmCIF of the job that made the model. Look at the remaining listed
+      outliers in the density first.
+  - when: outcome == "needs_attention"
+    advice: >
+      If the refinement says the model is incomplete or misplaced (R-free
+      far above what the resolution allows), fix that first (place the
+      missing component, or build with modelcraft). Otherwise make the
+      rebuild list (traps): a PERSON must rebuild those residues in an
+      interactive builder (Moorhen or Coot 1) with the refinement's maps -
+      an agent cannot drive them, and more refinement cycles do not fix
+      Ramachandran or rotamer outliers. Then refine the rebuilt model
+      again (servalcat_pipe or prosmart_refmac, with the same data and free
+      set) and run this task on the result.
+  - when: outcome == "poor"
+    task: modelcraft
+    inputs:
+      XYZIN: "[-1].XYZOUT"
+      F_SIGF: "[-1].F_SIGF"
+      FREERFLAG: "[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      Rebuild automatically from the model this job judged: for BetaBlip 6
+      that is ModelCraft job 5's XYZOUT (more cycles), for MDM2 107.2 the
+      refinement job 107's model (an unrebuilt homologue to be rebuilt into
+      the target sequence). The unqualified "[-1]" means the most recent
+      top-level job with that file - right only if the job that made the
+      judged model is the newest; otherwise name it ("[5].XYZOUT",
+      "[107].XYZOUT") and give the data and free set it was refined
+      against. Then refine, and validate again. A large RMS_BONDS (0.04 A
+      in MDM2 107.2) says the geometry was distorted before or during
+      refinement; check the restraint weight and where the model came
+      from.
+  - when: outcome == "unjudged"
+    advice: >
+      Run validate_protein again with controlParameters.DO_MOLPROBITY True
+      (the default) and XYZIN_1 set to the model (see the trap on naming a
+      sub-job's model: "[N].CIFFILE" for a refinement job N). If the
+      Molprobity section is still absent, MolProbity's reference data
+      (rotarama/Top8000) are not installed, or Iris could not read the file
+      (it skips mmCIF that clipper cannot parse; give the PDB-format copy) -
+      the log says which.
+
+sources:
+  - docs/user/source/tasks/validate_protein/index.rst
+  - docs/user/source/tasks/PrepareDeposit/index.rst (adding_stats_to_mmcif_i2 refuses a PDB-format model)
+  - server/ccp4i2/wrappers/validate_protein/script/validate_protein.py
+  - server/ccp4i2/wrappers/validate_protein/script/validate_protein_report.py
+  - server/ccp4i2/wrappers/validate_protein/script/validate_protein.def.xml
+  - server/ccp4i2/wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.def.xml (XYZIN requiredContentFlag 2)
+  - server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac.py (lines 618-650, the validation sub-job)
+  - server/ccp4i2/pipelines/servalcat_pipe/script/servalcat_pipe.py (_runMultimericValidation)
+  - server/ccp4i2/lib/utils/files/file_use.py:241-258 (task-qualified references keep sub-jobs) and 388-395 (relative references skip jobs without the file)
+  - server/ccp4i2/lib/async_run_job.py:86 (input FileUse rows written for top-level jobs only)
+  - ccp4-20260702 site-packages iris_validation/metrics/__init__.py (_get_molprobity_data), metrics/residue.py, _defs.py:192
+  - ccp4-20260702 site-packages mmtbx/validation/utils.py:123-136 (MolProbity score formula)
+  - ccp4-20260702 site-packages mmtbx/validation/molprobity/__init__.py:787-794 (MolProbity bounds and goals)
+  - ccp4-20260702 site-packages mmtbx/validation/ramalyze.py (evalScore outlier cut-offs)
+  - ccp4-20260702 site-packages mmtbx/validation/molprobity/percentile_mpscore.py (2006 PDB MolProbity scores by resolution)
+  - "literature: Chen et al. (2010) Acta Cryst. D66, 12-21 (MolProbity score; cited in mmtbx utils.py)"
+  - "run: BetaBlip job 6 (standalone, ModelCraft model, 3.0 A; poor)"
+  - "run: MDM2 jobs 3.5 and 3.7 (prosmart_refmac sub-jobs, 4hg7 re-refined, 1.35 A; acceptable)"
+  - "run: MDM2 job 107.2 (prosmart_refmac sub-job, unrebuilt MR homologue, R-free 0.490; poor)"
+  - "run: CDK2_CyclinA job 15.1 (lorestr_i2 sub-job, CDK2 only, R-free 0.445, 1.9 A; needs attention)"
+  - "run: CDK2_NU6102 job 1.2 (servalcat_pipe sub-job, 1h1s re-refined, 1.9 A, R-free 0.274; needs attention)"
+  - "run: CDK2_CyclinA job 2.2 and Gamma job 12.2 (prosmart_refmac sub-jobs, MolProbity off; unjudged)"

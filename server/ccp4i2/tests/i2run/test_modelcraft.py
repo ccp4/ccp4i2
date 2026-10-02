@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import xml.etree.ElementTree as ET
 from gemmi import CoorFormat, read_mtz_file, read_structure
 from .utils import demoData, hasLongLigandName, i2run
 
@@ -11,6 +12,10 @@ def _check_output(job: Path, max_rfree):
     with (job / "modelcraft" / "modelcraft.json").open() as json_file:
         results = json.load(json_file)
         assert results["final"]["r_free"] < max_rfree
+    # The same, where a reader of program.xml (an agent's judgement) finds it.
+    program = ET.parse(job / "program.xml")
+    assert program.findtext(".//TerminationReason") == "Normal"
+    assert float(program.findtext(".//Final/r_free")) == results["final"]["r_free"]
 
 
 def test_8xfm(cif8xfm, mtz8xfm, seq8xfm):

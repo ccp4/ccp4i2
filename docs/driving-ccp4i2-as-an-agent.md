@@ -159,11 +159,11 @@ Each gap gets a "now built" note here as it closes:
 
 | Anatomy faculty | Today | Will be closed by |
 |---|---|---|
-| Tools / actions | ✅ REST API + `i2run` | (add a curated **MCP facade** so any agent connects with no bespoke glue) |
+| Tools / actions | ✅ REST API + `i2run` | ✅ **now built (first version):** the MCP facade `i2-mcp` (`pip install ccp4i2[agent]`), see [agentic-knowledge.md](agentic-knowledge.md) §5 |
 | Memory & provenance | ✅ recorded & reproducible | (expose it as agent-readable *working* memory, not just a record) |
 | Safety & validation | ✅ strong input checks | — |
-| Expert knowledge | ◐ locked in pipelines | a **task/recipe catalogue** the agent can consult |
-| Perceive / Evaluate & critique | ○ metrics shown, not judged | result-critique helpers that turn KPIs/reports into pass-fail signals |
+| Expert knowledge | ◐ locked in pipelines | ◐ **now started:** per-task judgement files (`<task>.agent.yaml`), ten so far, served by `agent/tasks/<task>/` and `describe_task`; drafts until an expert reviews them |
+| Perceive / Evaluate & critique | ○ metrics shown, not judged | ◐ **now started:** `jobs/<id>/judgement/` (and `judge_job`) reads a job's deciding numbers and gives an outcome and next steps from its task's judgement |
 | Goal & planning | ○ absent | a `JobPlan` resolver (see `docs/NLP_JOB_CONSTRUCTION_DISCUSSION.md`) |
 
 When any row moves from ○/◐ to ✅, update §1, §6 and the relevant flow above so a

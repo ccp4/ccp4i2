@@ -4,9 +4,12 @@ Generate a Free R set
 
 A set of Free-R reflections may be selected at random for a given set of
 observations. The proportion of the reflections assigned to the Free-R
-set defaults to 5%, but can be altered. The Free-R set is selected in the
-highest symmetry point group consistent with the current point group, in
-case the space group has been wrongly determined. The Free-R set is
+set defaults to 5%, but can be altered. Reflections related by the point
+group, and by any twin law the lattice allows (merohedral, or
+pseudo-merohedral within 5 degrees), get the same flag: so if the space
+group was wrongly determined, or the crystal is twinned, no reflection in
+the Free-R set has a partner in the working set. Extending an existing set
+keeps its flags as they are. The Free-R set is
 described by a data object containing flags which identify which
 reflections belong to it.
 
