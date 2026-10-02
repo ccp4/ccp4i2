@@ -143,3 +143,12 @@ def test_severity_as_the_server_writes_it(api):
     out = mcp_server.validate(7)
     assert [e["code"] for e in out["errors"]] == ["113"]
     assert [w["description"] for w in out["warnings"]] == ["no free set"]
+
+
+def test_a_value_inside_a_list_item_is_echoed(api):
+    _, answers = api
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.ENSEMBLES", "value": [
+        {"label": "beta", "pdbItemList": [{"structure": {"file": "beta.pdb"}}]}]}]}
+    assert mcp_server._value_at(7, "inputData.ENSEMBLES[0].pdbItemList[0].structure") == (
+        {"file": "beta.pdb"}, True)
+    assert mcp_server._value_at(7, "inputData.ENSEMBLES[1].label") == (None, False)

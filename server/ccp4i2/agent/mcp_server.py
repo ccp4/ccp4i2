@@ -32,6 +32,9 @@ STATUS = {0: "Unknown", 1: "Pending", 2: "Queued", 3: "Running", 4: "Interrupted
 INSTRUCTIONS = """\
 CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 
+0. Reflection data from outside: import them first with import_merged,
+   which checks them and makes (or keeps) the free-R set every later job
+   needs; models and sequences can be uploaded where they are used.
 1. describe_task(task) before using a task: its judgement says when to use
    it, which inputs need thought, how its result is judged, its traps and
    what comes next. A task with no judgement is one nobody has written up:
@@ -208,6 +211,26 @@ def job_parameters(job_id: int, section: str = "", only_set: bool = False, query
     return {"parameters": data["parameters"]}
 
 
+def _value_at(job_id, path):
+    """A parameter's value now, for a path that may reach into a list item
+    (inputData.ENSEMBLES[1].pdbItemList[0].structure)."""
+    import re
+    section, _, rest = path.partition(".")
+    top = re.split(r"[.\[]", rest, 1)[0]
+    entries = _get(f"jobs/{job_id}/parameters", query=top)["parameters"]
+    entry = next((e for e in entries if e["path"] == f"{section}.{top}"), None)
+    if entry is None:
+        return None, False
+    value = entry.get("value")
+    for step in re.findall(r"\[(\d+)\]|\.(\w+)", rest[len(top):]):
+        index, key = step
+        try:
+            value = value[int(index)] if index else value.get(key)
+        except (IndexError, KeyError, TypeError, AttributeError):
+            return None, False
+    return value, value is not None
+
+
 def _resolve_files(value, project_id):
     """Replace each {"file": <reference or file id>} (or a value echoed from
     job_parameters, which carries fileId) with the file as the server takes it."""
@@ -234,9 +257,8 @@ def set_parameter(job_id: int, path: str,
     project_id = _job(job_id)["project"]
     _post(f"jobs/{job_id}/set_parameter",
           {"object_path": path, "value": _resolve_files(value, project_id)})
-    entries = _get(f"jobs/{job_id}/parameters", query=path.split(".")[-1])["parameters"]
-    now = next((e for e in entries if e["path"] == path), None)
-    return {"path": path, "now": now.get("value") if now else None, "set": bool(now and now.get("set"))}
+    now, is_set = _value_at(job_id, path)
+    return {"path": path, "now": now, "set": is_set}
 
 
 @server.tool()
@@ -257,7 +279,11 @@ def set_file(job_id: int, path: str, reference: str) -> dict:
 def upload_file(job_id: int, path: str, local_path: str, column_labels: str = "") -> dict:
     """Import a file from this computer into a pending job's file input
     (an MTZ needs ``column_labels`` when it holds more than one data set,
-    e.g. "/*/*/[FP,SIGFP]")."""
+    e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, set the list
+    first with set_parameter (items without the file), then upload to the
+    item's path, e.g. inputData.ENSEMBLES[0].pdbItemList[0].structure.
+    Reflection data from outside the project: import them with import_merged
+    instead, which checks them and makes the free-R set."""
     source = Path(local_path).expanduser()
     if not source.is_file():
         raise ApiError(f"no file {source}")
@@ -275,9 +301,8 @@ def upload_file(job_id: int, path: str, local_path: str, column_labels: str = ""
     parts.append(f"--{boundary}--\r\n".encode())
     _request("POST", f"jobs/{job_id}/upload_file_param", body=b"".join(parts),
              content_type=f"multipart/form-data; boundary={boundary}")
-    entries = _get(f"jobs/{job_id}/parameters", query=path.split(".")[-1])["parameters"]
-    now = next((e for e in entries if e["path"] == path), None)
-    return {"path": path, "now": now.get("value") if now else None}
+    now, _ = _value_at(job_id, path)
+    return {"path": path, "now": now}
 
 
 @server.tool()
