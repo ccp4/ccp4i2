@@ -64,3 +64,18 @@ def test_an_unknown_db_file_id_is_an_error(test_project_path):
     _file(test_project_path)
     with pytest.raises(FileUseError):
         resolve_db_file_id(str(uuid.uuid4()))
+
+
+def test_resolve_fileuse_takes_a_file_id(test_project_path):
+    # A file that went into a list element has no [job].PARAM reference that
+    # resolves; its id names it, so an agent can give it back.
+    from ccp4i2.lib.utils.files.resolve_fileuse import resolve_fileuse
+    the_file = _file(test_project_path, content=4)
+    project = the_file.job.project
+    for text in (str(the_file.uuid), str(the_file.uuid).replace("-", "")):
+        result = resolve_fileuse(project, text)
+        assert result.success, result.error
+        assert result.data["dbFileId"] == str(the_file.uuid).replace("-", "")
+        assert result.data["baseName"] == "OBSOUT.mtz"
+    other = models.Project.objects.create(name="other", directory=str(test_project_path / "other"))
+    assert not resolve_fileuse(other, str(the_file.uuid)).success   # not across projects
