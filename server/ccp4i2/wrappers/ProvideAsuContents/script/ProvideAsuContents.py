@@ -62,11 +62,16 @@ class ProvideAsuContents(CPluginScript):
               weight = etree.SubElement(entry,"weight")
               sequence = etree.SubElement(entry,"sequence")
               nCopies.text = str(seqObj.nCopies)
+              etree.SubElement(entry, "polymerType").text = str(seqObj.polymerType)
               name.text = str(seqObj.name)
               weight.text = "{0:.1f}".format(float(seqObj.molecularWeight(seqObj.polymerType)))
               sequence.text = str(seqObj.sequence)
           totalWeightTag = etree.SubElement(xmlroot,"totalWeight")
           totalWeightTag.text = str(totWeight)
+          # P protein, D nucleic acid, C both: it sets the density, and so
+          # the range of solvent content a crystal can have
+          if polymerMode:
+              etree.SubElement(xmlroot, "polymerMode").text = polymerMode
 
       if self.container.inputData.HKLIN.isSet() and len(self.container.inputData.ASU_CONTENT) > 0:
           if totWeight > 1e-6:

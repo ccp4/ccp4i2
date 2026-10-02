@@ -134,3 +134,5 @@ def test_contents_from_a_file_alone():
             [s.findtext("sequence").strip() for s in expected]
         program = ET.parse(job / "program.xml")
         assert program.findall(".//matthewsCompositions/composition")
+        assert program.findtext(".//polymerMode") == "P"
+        assert program.findtext(".//entries/entry/polymerType") == "PROTEIN"
