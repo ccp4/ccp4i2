@@ -55,6 +55,11 @@ CCP4_PROVIDED_ABI = {
 # Update these pins deliberately, alongside the pyproject dependency.
 KEYCHAIN_CONDITIONAL = """
 # --- OS keychain support (config/credentials.py) ---------------------------
+# Markers matter here: a lock generated on one platform must still install the
+# right backend on the other two, and CCP4's python is 3.11 so the <3.12
+# backports are real requirements, not no-ops. Without these, keyring imports
+# but selects no backend, and credentials silently fall back to a 0600 file.
+# cryptography (SecretStorage's dep) is deliberately absent - CCP4 provides it.
 keyring==25.7.0
 jaraco.classes==3.4.0
 jaraco.context==6.1.2
@@ -64,6 +69,8 @@ backports.tarfile==1.2.0 ; python_version < "3.12"
 importlib_metadata==9.0.0 ; python_version < "3.12"
 zipp==4.1.0 ; python_version < "3.12"
 pywin32-ctypes==0.2.3 ; sys_platform == "win32"
+# --- the MCP SDK on Windows (ccp4i2/agent/) ---------------------------------
+pywin32==311 ; sys_platform == "win32"
 SecretStorage==3.5.0 ; sys_platform == "linux"
 jeepney==0.9.0 ; sys_platform == "linux"
 """
@@ -73,7 +80,7 @@ jeepney==0.9.0 ; sys_platform == "linux"
 KEYCHAIN_NAMES = {
     "keyring", "jaraco.classes", "jaraco.context", "jaraco.functools",
     "more-itertools", "backports.tarfile", "importlib-metadata", "zipp",
-    "pywin32-ctypes", "secretstorage", "jeepney",
+    "pywin32-ctypes", "secretstorage", "jeepney", "pywin32",
 }
 
 

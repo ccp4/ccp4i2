@@ -20,6 +20,7 @@ import urllib.parse
 import urllib.request
 import uuid
 import xml.etree.ElementTree as ET
+from contextvars import ContextVar
 from pathlib import Path
 
 from mcp.server.mcpserver import MCPServer
@@ -57,7 +58,15 @@ Report what you ran, the numbers that decided each step, and anything you
 were unsure of. Never delete or overwrite a user's work.
 """
 
-server = MCPServer("ccp4i2", instructions=INSTRUCTIONS)
+from .request_state import request_state_security  # noqa: E402
+
+server = MCPServer("ccp4i2", instructions=INSTRUCTIONS,
+                   request_state_security=request_state_security())
+
+# Served over HTTP by the app itself (agent/http.py), each call goes back to
+# the same server's REST API with the caller's own Authorization; over stdio
+# the environment says where the server is and what token to use.
+_caller = ContextVar("ccp4i2_mcp_caller", default=None)
 
 
 class ApiError(ToolError):
@@ -65,6 +74,9 @@ class ApiError(ToolError):
 
 
 def _base():
+    caller = _caller.get()
+    if caller is not None:
+        return caller["base"].rstrip("/")
     return os.environ.get("CCP4I2_URL", "http://127.0.0.1:3421/api/ccp4i2").rstrip("/")
 
 
@@ -77,9 +89,12 @@ def _request(method, path, body=None, query=None, content_type="application/json
     if body is not None:
         data = json.dumps(body).encode() if content_type == "application/json" else body
         headers["Content-Type"] = content_type
-    token = os.environ.get("CCP4I2_TOKEN")
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    caller = _caller.get()
+    if caller is not None:
+        if caller.get("authorization"):
+            headers["Authorization"] = caller["authorization"]
+    elif os.environ.get("CCP4I2_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
     req = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=300) as response:
