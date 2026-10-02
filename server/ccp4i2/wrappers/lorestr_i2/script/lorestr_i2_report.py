@@ -284,29 +284,18 @@ class lorestr_i2_report(Report):
                   validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
 
                if validateReport is not None:
-                  try:
-                     if validateReportNode.findall ( ".//B_averages" )[0].text != "" :
-                        baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
-                        validateReport.b_factor_graph(parent = baverageFold)
-                        baverageChainFold = baverageFold.addFold ( label="B-factor analysis by chain", initiallyOpen=False )
-                        validateReport.b_factor_tables(parent = baverageChainFold)
-                  except:
-                     self.addText("Warning - B-factor analysis failed")
-                  try:
-                     if validateReportNode.findall ( ".//Ramachandran_maps" )[0].text != "" :
-                        ramachandranFold = self.addFold ( label="Ramachandran plots", initiallyOpen=False )
-                        validateReport.rama_graph(parent = ramachandranFold)
-                  except:
-                     self.addText("Warning - Ramachandran plot generation failed")
-                  try:
-                     if validateReportNode.findall ( ".//Molprobity" )[0].text != "" :
-                        molprobityFold = self.addFold ( label="MolProbity geometry analysis", initiallyOpen=False )
-                        validateReport.add_molprobity_summary(parent = molprobityFold)
-                        molprobityFold.addDiv(style="clear:both;")
-                        molprobityDetailedFold = molprobityFold.addFold ( label="Detailed MolProbity geometry analysis", initiallyOpen=False )
-                        validateReport.add_molprobity_results(parent = molprobityDetailedFold)
-                  except:
-                     self.addText("Warning - MolProbity analysis failed")
+                  # The sections the validation task writes now, drawn as
+                  # prosmart_refmac draws them.
+                  for name, label, draw in (
+                          ("B_factors", "B-factor analysis", validateReport.add_b_factors),
+                          ("Ramachandran", "Ramachandran plots", validateReport.add_ramachandran),
+                          ("Molprobity", "MolProbity analysis", validateReport.add_molprobity)):
+                     try:
+                        found = validateReportNode.findall(".//" + name)
+                        if found and found[0].text != "":
+                           draw(parent=self.addFold(label=label, initiallyOpen=False))
+                     except Exception:
+                        self.addText(text="Warning - " + label + " failed")
             except:
                pass
 
