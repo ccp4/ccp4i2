@@ -628,6 +628,13 @@ class import_merged(CPluginScript):
                                 outfile, freerfile, reducehkl, resorange)
 
         self.mmcifXML = convertcif.getXML()
+        if not os.path.isfile(freerfile):
+            # The block had no free-R flags, so ConvertCIF wrote none: there is
+            # no set to complete, as for an MTZ without one (importmtz). Left
+            # pointing at the missing file, completion failed and the import
+            # reported the user's free set as not kept.
+            self.freeout = None
+            self.container.inputData.HASFREER.set(False)
         status = {'finishStatus':CPluginScript.FAILED}
         if convertcif.getstatus():
             contentFlag = convertcif.contentFlag()
