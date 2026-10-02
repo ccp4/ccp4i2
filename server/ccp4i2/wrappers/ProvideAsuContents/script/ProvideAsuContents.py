@@ -6,7 +6,34 @@ from lxml import etree
 class ProvideAsuContents(CPluginScript):
     TASKNAME = 'ProvideAsuContents'
 
+    def validity(self):
+      """The contents come from the list or, if it is empty, from a file.
+
+      The interface copies a loaded file into the list; a job set up without
+      the interface may give the file alone, so an empty list is not an
+      error when there is a file. With neither, the list's own error stands.
+      """
+      from ccp4i2.core import CCP4ErrorHandling
+
+      error = super(ProvideAsuContents, self).validity()
+      if not self.container.inputData.ASUCONTENTIN.isSet():
+          return error
+      filtered = CCP4ErrorHandling.CErrorReport()
+      for err in error.getErrors():
+          if err.get('code') == 101 and str(err.get('name', '')).endswith('inputData.ASU_CONTENT'):
+              continue
+          filtered.append(err.get('class', ''), err.get('code', 0), err.get('details', ''),
+                          err.get('name', ''), err.get('severity', 0))
+      return filtered
+
     def startProcess(self):
+      inp = self.container.inputData
+      if len(inp.ASU_CONTENT) == 0 and inp.ASUCONTENTIN.isSet():
+          # The interface copies a loaded file's contents into the list to be
+          # edited; a job set up without it (i2run, the API, an agent) records
+          # the file's contents as they are, rather than nothing.
+          inp.ASUCONTENTIN.loadFile()
+          inp.ASU_CONTENT.set(inp.ASUCONTENTIN.fileContent.seqList)
       asuFileObject = self.container.outputData.ASUCONTENTFILE
       asuFileObject.fileContent.seqList.set(self.container.inputData.ASU_CONTENT)
       asuFileObject.saveFile()

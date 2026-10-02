@@ -117,3 +117,20 @@ def test_beta_blip():
             f"XML mismatch:\nActual: {ET.tostring(actual, encoding='unicode')}\n"
             f"Expected: {ET.tostring(expected, encoding='unicode')}"
         )
+
+
+def test_contents_from_a_file_alone():
+    # Given only an existing contents file (as i2run, the API or an agent
+    # sets a job up; the interface copies it into the list instead), the job
+    # records that file's contents, and their Matthews analysis.
+    from .utils import demoData
+    args = ["ProvideAsuContents"]
+    args += ["--ASUCONTENTIN", demoData("gamma", "gamma.asu.xml")]
+    args += ["--HKLIN", demoData("gamma", "merged_intensities_Xe.mtz")]
+    with i2run(args) as job:
+        seqs = ET.parse(job / "ASUCONTENTFILE.asu.xml").findall(".//seqList/CAsuContentSeq")
+        expected = ET.parse(demoData("gamma", "gamma.asu.xml")).findall(".//seqList/CAsuContentSeq")
+        assert [s.findtext("sequence").strip() for s in seqs] == \
+            [s.findtext("sequence").strip() for s in expected]
+        program = ET.parse(job / "program.xml")
+        assert program.findall(".//matthewsCompositions/composition")
