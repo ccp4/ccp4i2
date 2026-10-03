@@ -1,0 +1,474 @@
+task: shelx
+status: draft
+reviewed_by: []
+purpose: >
+  Solves a structure from anomalous data (SAD, SIRAS or MAD) with the SHELX
+  route of the Crank2 pipeline: SHELXC prepares FA values, SHELXD finds the
+  anomalous substructure, SHELXE density-modifies and traces poly-alanine in
+  both hands and picks one, then Buccaneer and REFMAC build and refine a
+  sequenced model, and REFMAC refines it once more. With the default
+  END_PIPELINE ("ref") the output XYZOUT is a built and refined model; ended
+  earlier, it is a SHELXE trace or nothing.
+
+use_when:
+  - You have merged (or unmerged) data with an anomalous signal (I+/I- or
+    F+/F-), know the anomalous scatterer, and have no model to place.
+  - You want SHELX's fast substructure search and SHELXE tracing, which works
+    best at about 2.5 A or better (SHELXE builds poly-Ala into the map; its
+    trace CC is the decisive number).
+
+not_when:
+  - text: >
+      You want only the substructure (sites for another program, or to look
+      at SHELXD's CFOM before committing to phasing).
+    instead: ShelxCD
+  - text: >
+      The anomalous signal is weak or the resolution is poor, where Crank2's
+      own route (REFMAC SAD substructure refinement, PARROT/SOLOMON,
+      combined phasing and building) is more robust than SHELXE.
+    instead: crank2
+  - text: >
+      You have a model to place (homologue or prediction); use molecular
+      replacement, and combine with the anomalous data only if MR alone
+      fails.
+    instead: phaser_simple_phil
+  - text: >
+      The data are merged means (IMEAN/FMEAN) only: there is no anomalous
+      difference to phase from; the task refuses them (crank2_script.py
+      lines 140-144).
+    instead: none
+
+inputs:
+  - param: inputData.F_SIGFanom
+    advice: >
+      The anomalous data, as I+/I- or F+/F- pairs (an import_merged OBSOUT
+      with Ipair content). Mean-only data are refused. The free set and every
+      later refinement use these same reflections.
+  - param: inputData.ATOM_TYPE
+    advice: >
+      The anomalous scatterer's element (Se, S, Xe, ...); required (validity
+      code 200). It sets f'' and so SHELXD's and SHELXE's expectations.
+  - param: inputData.SEQIN
+    advice: >
+      The WHOLE asymmetric-unit contents, every residue of every chain. Crank2
+      derives from it the copies in the AU and the solvent content (a
+      Matthews analysis), the default number of sites, and Buccaneer's
+      sequence. The haiku trial gave a 66-residue fragment of the 134-residue
+      gamma-adaptin ear: Crank2 assumed 2 copies (program.xml monomers_asym
+      2, residues_mon 66), searched for 4 Xe sites instead of 2, and Buccaneer
+      left a correct trace of 116 residues in 4 chains, 48 of them alanine,
+      at R-free 0.398 - against 120 residues in one sequenced chain at R-free
+      0.283 with the full sequence (GammaXe job 7). Check MONOMERS_ASSUMED and
+      RESIDUES_PER_MONOMER below against what you know.
+  - param: inputData.NUMBER_SUBSTRUCTURE
+    advice: >
+      Sites in the WHOLE AU (per molecule times copies). Left unset, Crank2
+      estimates it from the sequence: Met (+Sec) for Se, Met+Cys for S, and
+      for any other element (Xe, metals) the sequence length / 200 with a
+      minimum of 2, per copy (crank2_script.py lines 591-640, which mirror
+      Crank2's own guess). For soaks (Xe, halides, heavy atoms) that is a
+      guess: give your best count. GammaXe job 7 gave 2 (SHELXD FIND 2) and
+      found 2 sites above 25% occupancy, 4 in all; the trial left it unset,
+      got 4 and still found the substructure, so SHELXD tolerates an
+      overestimate here. For S-SAD with disulfides see the help page (count
+      each S; min distance 1.5 A at better than ~2.1 A anomalous resolution,
+      S-S pairs and 3.5 A at worse).
+  - param: inputData.MONOMERS_ASYM
+    advice: >
+      With USER_MONOMERS_ASYM, the copies in the AU; with SOLVENT_CONTENT
+      (USER_SOLVENT_CONTENT) the solvent fraction. Left empty they come from
+      the Matthews analysis of SEQIN, which the help page calls "only a
+      guess" (shelx.rst lines 99-103). SHELXE uses the solvent fraction
+      directly (-s0.417 in GammaXe job 7). Set them when you know better.
+  - param: inputData.FREE
+    advice: >
+      "new" (default) makes a NEW free set (FREEROUT); "existing" uses
+      FREERFLAG; "no" refines without one. If the project already has a free
+      set (an import_merged job's FREEOUT, or one an earlier model was
+      refined against), give FREE existing with that FREERFLAG, so that every
+      R-free in the project is measured on the same reflections. With the
+      default, refine downstream against this job's FREEROUT.
+  - param: controlParameters.SUBSTRDET_HIGH_RES_CUTOFF
+    advice: >
+      With USER_SUBSTRDET_HIGH_RES_CUTOFF. Unset, the SHELX route cuts SHELXD
+      at the data's resolution + 0.5 A (substrdet.py lines 125-130, 203:
+      2.29 A for the 1.79 A GammaXe data, SHEL 999 2.29 in SHELXD.log). If
+      SHELXD fails, look at SHELXC's <d"/sig> by resolution (about 0.8 means
+      no signal; SHELXC.log) and try cut-offs where it is still above ~1.2,
+      in separate jobs; the help page recommends several (shelx.rst lines
+      114-117, 166-170).
+  - param: controlParameters.SUBSTRDET_NUM_TRIALS
+    advice: >
+      SHELXD trials, 2000 by default for SAD/SIRAS, 500 for MAD
+      (substrdet.py lines 104-109). Crank2 stops SHELXD once CFOM reaches
+      the threshold (75 SAD, 120 MAD), but not before trial 45
+      (substrdet.py lines 791-792): GammaXe 7 ran 62 trials and the trial 71,
+      both above 75 from early on. Raise it only when the signal is weak and
+      CFOM never separates.
+  - param: controlParameters.PHDMMB_BIGCYC
+    advice: >
+      SHELXE building cycles (with USER_PHDMMB_BIGCYC); Crank2 sets 8 when
+      unset (phdmmb.py lines 40-41). More cycles, or ARGUMENTS_SHELXE such as
+      -t5 for beta-rich proteins (help page), help a trace whose CC is near
+      25. Once the substructure is right, run SHELXE again without SHELXD:
+      a new job with START_PIPELINE "phdmmb" and the substructure as
+      XYZIN_SUB (see next); cloning alone does not carry the substructure,
+      which is an output.
+  - param: inputData.END_PIPELINE
+    advice: >
+      Leave at "ref" for a built and refined model. Ended at "phdmmb" the job
+      gives phases and a poly-Ala SHELXE trace only, no R-free, and is at
+      best "phased".
+
+results:
+  RFREE:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/RFree
+    type: float
+    meaning: >
+      R-free after the final REFMAC refinement (the job's KPI "RFree").
+      GammaXe job 7 0.2832; trial job 6 0.3977. Absent if the pipeline
+      ended before building, or with FREE "no" (no free set).
+  RWORK:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/RFactor
+    type: float
+    meaning: >
+      R-work after the final refinement (KPI "RFactor"). GammaXe 7 0.251;
+      trial 6 0.3669. Crank2's report line "Majority of the model should be
+      successfully built!" is R-WORK below 0.40 (mbref.py line 411), not
+      R-free. Judged on only when there is no R-free.
+  CFOM:
+    file: program.xml
+    xpath: .//CrankSteps/Step[@name='substrdet']/CFOM
+    type: float
+    meaning: >
+      SHELXD's best combined figure of merit, CC(all) + CC(weak) (SHELXD.log
+      "Try 1 ... CC All/Weak 48.3 / 28.4, CFOM 76.7"). GammaXe 7 76.7;
+      trial 6 76.0. Written by the driver since commit acb315505, whatever
+      the route; absent if SHELXD did not run. Jobs run before that have it
+      only in CFOM_SUBJOB.
+  CFOM_SUBJOB:
+    optional: true
+    file: job_3/params.xml
+    xpath: .//PERFORMANCE/CFOM
+    type: float
+    meaning: >
+      The same number, for jobs run before commit acb315505: the SHELXD
+      subjob's own record. It is job_3 only on the default route (free set
+      made first, then SHELXC, then SHELXD); on another route this reads as
+      missing, never as another number (only SHELXD records CFOM).
+  BEST_CC:
+    file: program.xml
+    xpath: .//CrankSteps/Step[@name='phdmmb']/CC
+    type: float
+    meaning: >
+      SHELXE's best "CC for partial structure against native data" (in %)
+      of the chosen hand: the trace CC. GammaXe 7 55.82 (hand 1); trial 6
+      48.13 (hand 2). Not the KPI "CC" of a ShelxCD job, which is SHELXD's
+      CC(all) (trial job 5: CC 48.3 = "CC All/Weak 48.3 / 28.3"). Absent if
+      SHELXE did not run, or for jobs run before commit acb315505 (then
+      BEST_CC_SUBJOB).
+  BEST_CC_SUBJOB:
+    optional: true
+    file: job_4/params.xml
+    xpath: .//PERFORMANCE/CC
+    type: float
+    meaning: >
+      The same number for older jobs, from the SHELXE subjob: job_4 only on
+      the default route (only that step records CC).
+  HAND1_CC:
+    file: program.xml
+    xpath: .//CrankSteps/Step[@name='phdmmb']/Hand1Score
+    type: float
+    optional: true
+    meaning: >
+      Best trace CC of hand 1. GammaXe 7 55.82; trial 6 37.97. Absent means
+      0 (a score of 0.0 is not written). A value below 1 is a map contrast,
+      not a CC: Crank2 falls back to contrast when no hand was traced
+      (phdmmb.py lines 253-256). Older jobs: job_4/params.xml
+      .//PERFORMANCE/Hand1Score on the default route.
+  HAND2_CC:
+    file: program.xml
+    xpath: .//CrankSteps/Step[@name='phdmmb']/Hand2Score
+    type: float
+    optional: true
+    meaning: >
+      Best trace CC of the inverted hand. GammaXe 7 53.13; trial 6 48.13.
+      The hand with the higher score is chosen (phdmmb.py line 257). Absent
+      means 0; below 1 is a contrast, as for HAND1_CC.
+  MONOMERS_ASSUMED:
+    file: program.xml
+    xpath: .//sequence/monomers_asym
+    type: int
+    meaning: >
+      Copies in the AU the pipeline used (given or from Matthews).
+      GammaXe 7 1; trial 6 2 (wrong: the sequence given was half the
+      protein).
+  SOLVENT_ASSUMED:
+    file: program.xml
+    xpath: .//sequence/solvent_content
+    type: float
+    meaning: Solvent fraction used (GammaXe 7 0.417; trial 6 0.425).
+  RESIDUES_PER_MONOMER:
+    file: program.xml
+    xpath: .//sequence/residues_mon
+    type: int
+    meaning: >
+      Residues per copy in the sequence used. GammaXe 7 134; trial 6 66.
+  SITES_SOUGHT:
+    file: program.xml
+    xpath: .//model/exp_num_atoms
+    type: int
+    meaning: >
+      Substructure sites the pipeline asked for (SHELXD FIND). GammaXe 7 2;
+      trial 6 4. The first model block is read (five carry it, all equal in
+      both jobs). Present only once a step with a substructure model ran.
+  # FINDING: SHELXD's CC(all) and CC(weak) are only in job_3/SHELXD.log
+  #   ("CC All/Weak 48.3 / 28.4" GammaXe 7; "48.1 / 27.9" trial 6) and in
+  #   crank.loggraph tables; only their sum (CFOM) reaches the XML.
+  # FINDING: SHELXE map contrast and connectivity per cycle, the pseudo-free
+  #   CC and the residues traced are only in job_4/hand1|hand2/SHELXE.log
+  #   ("Estimated mean FOM = 0.700   Pseudo-free CC = 72.10 %" hand 1,
+  #   70.55 % hand 2, GammaXe 7; 68.87 / 71.07 % trial 6), crank.loggraph,
+  #   and i2.xml report prose ("Max. number of residues built (for the
+  #   chosen hand) is 119").
+  # FINDING: the number of residues in the final model ("Number of residues
+  #   in the built model: 120" / 116) is only in i2.xml prose; chains and
+  #   unsequenced (ALA) residues only in XYZOUT (n_part.pdb).
+  # FINDING: the data resolution is not in program.xml, so the R-free lines
+  #   below cannot be scaled by resolution.
+  # NOTE: CFOM, BEST_CC and the hand scores were read from the evidence jobs'
+  #   subjob params.xml (run before acb315505) and, through the CrankSteps
+  #   paths, from synthetic program.xml files built from those values.
+
+verdict:
+  - when: RFREE < 0.35
+    outcome: built
+    basis: >
+      Our runs only, at 1.8 A: GammaXe job 7 R-free 0.283 (R 0.251), 120 of
+      134 residues in one sequenced chain; Crank2's own route on the same
+      data, GammaXe job 6, 0.274. The trial with a half sequence stayed at
+      0.398 with a correct but unsequenced, fragmented trace. 0.35 separates
+      the two; it is not a published threshold, it depends on resolution
+      (the final REFMAC runs only 15 cycles), and an expert should set it.
+      The help page's "under 40%" (shelx.rst lines 264-267, 277-279) would
+      call the trial finished.
+  - when: RFREE == null and RWORK < 0.30
+    outcome: built
+    basis: >
+      No free set (FREE "no"): R-work is all there is, as Crank2 itself
+      judges (mbref.py line 411, at the lenient 0.40). GammaXe 7 R-work
+      0.251, trial 6 0.367; 0.30 is our choice between them. An expert
+      should set it.
+  - when: RFREE < 0.45
+    outcome: phased
+    basis: >
+      The map is right and a model partly built, but not to the point where
+      refinement alone finishes it. Trial job 6: R-free 0.398, trace CC 48.1,
+      116 residues in 4 chains of which 48 alanine; 113 of its 116 CA atoms
+      lie within 1.5 A of GammaXe 7's model after an origin shift (0, 1/2,
+      0), so the hand and the structure are right. 0.45 is our choice, below
+      Crank2's own "partial model probably correctly built" line of R-work
+      0.50 (mbref.py line 413). A trace CC below 20 ends the job before
+      building (phdmmb.py line 299), so the trace is not tested here.
+  - when: RFREE == null and RWORK < 0.40
+    outcome: phased
+    basis: >
+      No free set; R-work between our 0.30 and Crank2's 0.40 "majority
+      built" line (trial 6 R-work 0.367, a right but unsequenced model).
+  - when: BEST_CC >= 25 or BEST_CC_SUBJOB >= 25
+    outcome: phased
+    basis: >
+      No refinement (END_PIPELINE before "ref") or refinement that left
+      R-free at 0.45 or above, but SHELXE traced with CC of 25% or more. The
+      25 is from the help page (shelx.rst lines 250-254, attributed there to
+      SHELXE: "greater than 25%, the structure is probably solved"); the
+      primary source was not checked. SHELXE's own autotracing stops 3
+      cycles after CC > 30 (its usage text), and Crank2 stops SHELXE at 40
+      and the other hand at 30 (phdmmb.py lines 42-45). An expert should
+      confirm 25 against 30. Build again from these phases. No evidence job
+      here.
+  - when: BEST_CC >= 20 or BEST_CC_SUBJOB >= 20
+    outcome: ambiguous
+    basis: >
+      Between Crank2's failure threshold (a trace CC below 20 ends the job
+      Unsatisfactory, "CC too low, the traced model is most likely wrong",
+      phdmmb.py lines 46, 299-300) and the help page's 25. No run behind
+      this band.
+  - when: CFOM >= 75 or CFOM_SUBJOB >= 75
+    outcome: ambiguous
+    basis: >
+      SHELXD reached Crank2's stop threshold for SAD (75, substrdet.py line
+      85; "Specified score threshold (75.0) reached" in both evidence jobs,
+      where the substructure was right) but there is no usable trace:
+      either SHELXE did not run (END_PIPELINE "substrdet") or it traced
+      below 20. Continue from the substructure (next). For MAD the
+      threshold is 120 and this rule is lenient.
+  - when: BEST_CC < 20 or BEST_CC_SUBJOB < 20
+    outcome: failed
+    basis: >
+      SHELXE traced with CC below 20 and SHELXD's CFOM was below 75: Crank2
+      reports "the traced model is most likely wrong" (phdmmb.py lines 46,
+      299-300).
+  - when: CFOM >= 45 or CFOM_SUBJOB >= 45
+    outcome: ambiguous
+    basis: >
+      SHELXE did not run; SHELXD's CFOM is between Crank2's SAD "weak"
+      threshold 45 and its stop 75, which Crank2 reports as "a reasonable
+      chance that the substructure has been correctly determined"
+      (substrdet.py lines 95-99, 700-708). MAD's weak threshold is 65.
+  - when: CFOM < 45 or CFOM_SUBJOB < 45
+    outcome: failed
+    basis: >
+      SHELXD's CFOM below Crank2's "weak" threshold: "unclear" from 22.5 to
+      45, "large chance ... not correctly determined" below 22.5
+      (substrdet.py lines 700-708), and no trace.
+  - when: true
+    outcome: failed
+    basis: >
+      Nothing that decides was readable: no R-free or R-work, no SHELXE
+      trace CC, no SHELXD CFOM (see "missing"). This is not an observed
+      failure; it is no verdict. On an older job run by a non-default route
+      every SHELX number is missing; read the job's report, and check the
+      job status (Unsatisfactory means Crank2 itself judged it failed).
+
+traps:
+  - >
+    "Finished" with "Majority of the model should be successfully built!" is
+    not a finished structure. That message is R-WORK below 0.40 (mbref.py
+    line 411); the trial got it with a fragmented, 41% poly-alanine model at
+    R-free 0.398. Even GammaXe job 7 (R-free 0.283 at 1.8 A, after a final
+    15-cycle REFMAC run) has no waters and 14 of 134 residues unbuilt: it
+    is a start for refinement and completion, not a model to deposit.
+  - >
+    A wrong or partial sequence in SEQIN does not stop the job; it changes
+    the copies, the solvent, the number of sites and what Buccaneer can
+    dock. Check MONOMERS_ASSUMED and RESIDUES_PER_MONOMER against the real
+    AU before believing anything downstream (trial: 2 x 66 assumed for
+    1 x 134).
+  - >
+    Both hands can trace well. In GammaXe 7 hand 1 had trace CC 55.8 and
+    hand 2 53.1; in the trial 38.0 and 48.1, and pseudo-free CC was 68-72%
+    in all four. A high trace CC says the map is solved, not which hand:
+    the R-free of the built model decides. With the job ended before
+    building and the two hand CCs close, build both (XYZOUT_HAND2,
+    FPHOUT_HAND2 are the other hand's outputs when present).
+  - >
+    SHELXD reaching its CFOM threshold (75 for SAD) and the report's
+    "likely to be correctly determined" are scores, not proof; a correct
+    substructure can also score below it with a weak signal (help page,
+    shelx.rst lines 207-209). Judge by the SHELXE trace and the R-free.
+  - >
+    The default FREE "new" makes a NEW free set. The R-free reported here
+    is measured on FREEROUT, and any later refinement must use FREEROUT -
+    or this job should have been given the project's existing set.
+  - >
+    Jobs run before commit acb315505 have CFOM and the trace CCs only in
+    subjob directories numbered by route (job_3 = SHELXD, job_4 = SHELXE
+    on the default route). On another route they read as missing, and the
+    verdict can fall to its last line with nothing judged; read the report.
+
+next:
+  - when: outcome == "built"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "shelx[-1].XYZOUT"
+      HKLIN: "shelx[-1].F_SIGFanom"
+      FREERFLAG: "shelx[-1].FREEROUT"
+    advice: >
+      Refine to convergence (10-20 cycles), then complete the model: a
+      person rebuilds what is missing in Coot or Moorhen, and waters are
+      added (servalcat_pipe ADD_WATERS) once R-free is near its final value;
+      then validate_protein. Use the free set this job refined against
+      (FREEROUT if FREE was "new", else the FREERFLAG it was given:
+      "shelx[-1].FREERFLAG"; with FREE "no", make one with the project's
+      free-set task first). Compare the residues built (report: "Number of
+      residues in the built model") with the AU contents first; if a large
+      part is missing, modelcraft (below) before refinement.
+  - when: outcome == "phased"
+    task: modelcraft
+    inputs:
+      F_SIGF: "shelx[-1].F_SIGFanom"
+      FREERFLAG: "shelx[-1].FREEROUT"
+      ASUIN: "shelx[-1].SEQIN"
+      XYZIN: "shelx[-1].XYZOUT"
+    advice: >
+      Build and sequence from the partial model (USE_MODEL_PHASES True, the
+      default). If SEQIN was wrong or incomplete (MONOMERS_ASSUMED or
+      RESIDUES_PER_MONOMER do not match the real AU), make the right AU
+      contents first (ProvideAsuContents) and give
+      "ProvideAsuContents[-1].ASUCONTENTFILE" as ASUIN. If the job ended
+      before building there is no XYZOUT: set USE_MODEL_PHASES False and
+      give PHASES "shelx[-1].FPHOUT_HL" instead (the chosen hand's phases).
+      Judge the result by modelcraft's R-free; then servalcat_pipe.
+  - when: outcome == "phased"
+    task: shelx
+    inputs:
+      XYZIN_SUB: "shelx[-1].XYZOUT_SUBSTR"
+      START_PIPELINE: phdmmb
+      F_SIGFanom: "shelx[-1].F_SIGFanom"
+      FREE: existing
+      FREERFLAG: "shelx[-1].FREEROUT"
+    advice: >
+      The alternative when the inputs were wrong (the trial's half
+      sequence): SHELXE, building and refinement again from the substructure
+      found, without SHELXD. A new job carries nothing over: give the same
+      ATOM_TYPE and the CORRECTED SEQIN (and NUMBER_SUBSTRUCTURE,
+      MONOMERS_ASYM if known).
+  - when: outcome == "ambiguous"
+    task: shelx
+    inputs:
+      XYZIN_SUB: "shelx[-1].XYZOUT_SUBSTR"
+      START_PIPELINE: phdmmb
+      F_SIGFanom: "shelx[-1].F_SIGFanom"
+      SEQIN: "shelx[-1].SEQIN"
+      FREE: existing
+      FREERFLAG: "shelx[-1].FREEROUT"
+    advice: >
+      SHELXE again from the substructure, with more building cycles
+      (USER_PHDMMB_BIGCYC, PHDMMB_BIGCYC) or ARGUMENTS_SHELXE (e.g. -t5 for
+      beta proteins); give the same ATOM_TYPE and check the solvent content.
+      If the job had no free set yet (FREE "new" but it stopped before
+      FREEROUT was written), leave FREE new. Build both hands with
+      modelcraft if the hand CCs are close, and keep the one whose R-free
+      falls.
+  - when: outcome == "ambiguous"
+    task: crank2
+    inputs:
+      XYZIN_SUB: "shelx[-1].XYZOUT_SUBSTR"
+      START_PIPELINE: refatompick
+      F_SIGFanom: "shelx[-1].F_SIGFanom"
+      SEQIN: "shelx[-1].SEQIN"
+    advice: >
+      Or Crank2's own route from the substructure ("Substructure
+      improvement" = refatompick): REFMAC SAD substructure refinement, hand
+      determination, density modification and combined building, more
+      robust than SHELXE with a weak signal. Same ATOM_TYPE; the same free
+      set as above if one exists (FREE existing, FREERFLAG).
+  - when: outcome == "failed"
+    advice: >
+      If the verdict came from the last line (nothing readable), read the
+      report before anything else. Otherwise check the inputs: the
+      anomalous scatterer, the number of sites, the AU contents. Then look
+      at SHELXC's <d"/sig> by resolution in the report (about 0.8 is no
+      signal) and rerun with SHELXD cut-offs where the signal remains,
+      several jobs if needed, and more trials. If SHELXD never separates
+      (CFOM low, no step in the CFOM distribution), try crank2, or molecular
+      replacement if any model exists.
+
+sources:
+  - docs/user/source/tasks/shelx/shelx.rst
+  - server/ccp4i2/pipelines/shelx/script/shelx_script.py
+  - server/ccp4i2/pipelines/shelx/script/shelx.def.xml
+  - server/ccp4i2/pipelines/crank2/script/crank2_script.py
+  - server/ccp4i2/pipelines/crank2/crank2/ccp4i2crank.py (SummariseSteps, CrankSteps in program.xml; PERFORMANCE)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/substrdet.py (CFOM thresholds, cut-off, minimum trials)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/phdmmb.py (trace CC thresholds, hand choice)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/mbref.py (build verdict)
+  - server/ccp4i2/pipelines/crank2/crank2/programs/shelxe.py (which SHELXE lines are read)
+  - "SHELXE usage text (/Applications/ccp4-9/bin/shelxe): autotracing stops 3 cycles after CC>30"
+  - "run: GammaXe job 7 (docs home; shelx, full sequence, 2 Xe; R-free 0.283)"
+  - "run: GammaXe job 6 (docs home; crank2 on the same data; R-free 0.274)"
+  - "run: trial-gammaxe-sad-haiku job 6 (shelx, half sequence; R-free 0.398; model checked against GammaXe 7)"
+  - "run: trial-gammaxe-sad-haiku job 5 (ShelxCD; CFOM 76.6, CC 48.3)"
