@@ -33,9 +33,12 @@ STATUS = {0: "Unknown", 1: "Pending", 2: "Queued", 3: "Running", 4: "Interrupted
 INSTRUCTIONS = """\
 CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 
-0. Reflection data from outside: import them first with import_merged,
-   which checks them and makes (or keeps) the free-R set every later job
-   needs; models and sequences can be uploaded where they are used.
+0. Reflection data from outside: import them first by running the TASK
+   import_merged (create_job, upload_file, run_job; for unmerged data the
+   task aimless_pipe), which checks them and makes or keeps the free-R set
+   every later job needs. Models and sequences can be uploaded where used.
+   Jobs are named by project and job NUMBER (as project_jobs lists them and
+   [n].PARAM references use), in every tool.
 1. describe_task(task) before using a task: its judgement says when to use
    it, which inputs need thought, how its result is judged, its traps and
    what comes next. A task with no judgement is one nobody has written up:
@@ -53,6 +56,8 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    Then judge_job(job). "Finished" means it ran, not that it worked: the
    judgement decides, and a draft judgement is a guide, not a rule.
 6. To change a finished job, clone_job it and edit the clone.
+7. When a job fails, or its judgement cannot read its numbers, job_errors
+   says what it recorded and shows its log.
 
 Report what you ran, the numbers that decided each step, and anything you
 were unsure of. Never delete or overwrite a user's work.
@@ -112,12 +117,49 @@ def _request(method, path, body=None, query=None, content_type="application/json
     return payload
 
 
+def _text(path):
+    """A file the server serves as is (a log), as text; "" if there is none."""
+    url = f"{_base()}/{path.lstrip('/')}"
+    headers = {}
+    caller = _caller.get()
+    if caller is not None and caller.get("authorization"):
+        headers["Authorization"] = caller["authorization"]
+    elif caller is None and os.environ.get("CCP4I2_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError:
+        return ""
+
+
 def _get(path, **query):
     return _request("GET", path, query={k: v for k, v in query.items() if v not in (None, "", False)})
 
 
 def _post(path, body=None):
     return _request("POST", path, body=body if body is not None else {})
+
+
+def _jid(project_id, job):
+    """The server's id for job number ``job`` (e.g. "3", or a sub-job "3.1")
+    of this project: a job outside the project cannot be reached by mistake."""
+    number = str(job).strip()
+
+    def find(jobs):
+        for entry in jobs:
+            if str(entry["number"]) == number:
+                return entry["id"]
+            found = find(entry.get("children") or [])
+            if found is not None:
+                return found
+        return None
+
+    found = find(_get(f"projects/{project_id}/job_tree")["job_tree"])
+    if found is None:
+        raise ApiError(f"No job {number} in project {project_id}: give the job NUMBER "
+                       f"as project_jobs lists it")
+    return found
 
 
 def _job(job_id):
@@ -169,18 +211,46 @@ def list_tasks(query: str = "") -> dict:
 
 
 @server.tool()
-def describe_task(task: str) -> dict:
-    """What to know before running a task: its title, and its judgement —
-    when to use it and when not, the inputs needing thought, how its results
-    are judged, its traps and next steps. Read this before create_job."""
-    return _get(f"agent/tasks/{task}")
+def describe_task(task: str, full: bool = False) -> dict:
+    """What to know before running a task: its title and its judgement —
+    when to use it and when not, the inputs needing thought, the outcomes it
+    can be judged to, its traps and next steps. Read this before create_job.
+    A summary by default; full=True gives everything, including where each
+    number is read and the basis of every threshold."""
+    data = _get(f"agent/tasks/{task}")
+    judgement = data.get("judgement")
+    if full or not judgement:
+        return data
+
+    def short(text, n=400):
+        text = " ".join(str(text or "").split())
+        return text if len(text) <= n else text[:n].rsplit(" ", 1)[0] + " ..."
+
+    data["judgement"] = {
+        "status": judgement.get("status"),
+        "purpose": short(judgement.get("purpose"), 600),
+        "use_when": [short(u) for u in judgement.get("use_when") or []],
+        "not_when": [{"text": short(n.get("text") if isinstance(n, dict) else n),
+                      "instead": n.get("instead") if isinstance(n, dict) else None}
+                     for n in judgement.get("not_when") or []],
+        "inputs": [{"param": i.get("param"), "advice": short(i.get("advice"))}
+                   for i in judgement.get("inputs") or []],
+        "outcomes": sorted({str(v.get("outcome")) for v in judgement.get("verdict") or []
+                            if v.get("outcome")}),
+        "traps": [short(t, 300) for t in judgement.get("traps") or []],
+        "next": [{"when": n.get("when"), "task": n.get("task"), "advice": short(n.get("advice"), 300)}
+                 for n in judgement.get("next") or []],
+        "note": "Summary: describe_task(task, full=True) for where each number is read and why.",
+    }
+    return data
 
 
 @server.tool()
 def project_jobs(project_id: int) -> dict:
-    """A project's jobs, newest first: id (what job tools take), number (what
-    references use), task, status, key numbers, and the files each made or
-    imported, each with a file_id that set_file and file fields accept."""
+    """A project's jobs, newest first: job (its number, what every job tool
+    and every [n].PARAM reference takes), task, status, key numbers, and the
+    files each made or imported, each with a file_id that set_file and file
+    fields accept."""
     tree = _get(f"projects/{project_id}/job_tree")
     out = []
     for job in tree["job_tree"]:
@@ -188,7 +258,7 @@ def project_jobs(project_id: int) -> dict:
                   "type": f.get("type"), "annotation": f.get("annotation") or None,
                   "file_id": f.get("uuid")}
                  for f in job.get("files") or []]
-        out.append({"number": job["number"], "id": job["id"], "task": job["task_name"],
+        out.append({"job": job["number"], "task": job["task_name"],
                     "title": job.get("title"), "status": STATUS.get(job["status"], job["status"]),
                     "kpis": {**(job.get("kpis") or {}).get("float_values", {}),
                              **(job.get("kpis") or {}).get("char_values", {})},
@@ -204,23 +274,25 @@ def create_job(project_id: int, task: str) -> dict:
     the project's latest results, as in the app: check them with
     job_parameters(only_set=True)."""
     job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
-    return {"id": job["id"], "number": job["number"], "task": job["task_name"]}
+    return {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
 
 
 @server.tool()
-def clone_job(job_id: int) -> dict:
+def clone_job(project_id: int, job: str) -> dict:
     """Copy a job, with its inputs, as a new pending job to edit and run."""
+    job_id = _jid(project_id, job)
     job = _post(f"jobs/{job_id}/clone")
-    return {"id": job["id"], "number": job["number"], "task": job["task_name"]}
+    return {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
 
 
 @server.tool()
-def job_parameters(job_id: int, section: str = "", only_set: bool = False, query: str = "") -> dict:
+def job_parameters(project_id: int, job: str, section: str = "", only_set: bool = False, query: str = "") -> dict:
     """A job's parameters, one entry each: path, label, value, whether set
     and required, choices, default; for a list, item_fields: what each item
     holds. ``section`` limits to inputData, controlParameters or outputData;
     ``query`` to paths or labels containing it. Use the path with
     set_parameter / set_file."""
+    job_id = _jid(project_id, job)
     data = _get(f"jobs/{job_id}/parameters", section=section or None,
                 only_set="1" if only_set else None, query=query or None)
     return {"parameters": data["parameters"]}
@@ -231,7 +303,7 @@ def _value_at(job_id, path):
     (inputData.ENSEMBLES[1].pdbItemList[0].structure)."""
     import re
     section, _, rest = path.partition(".")
-    top = re.split(r"[.\[]", rest, 1)[0]
+    top = re.split(r"[.\[]", rest, maxsplit=1)[0]
     entries = _get(f"jobs/{job_id}/parameters", query=top)["parameters"]
     entry = next((e for e in entries if e["path"] == f"{section}.{top}"), None)
     if entry is None:
@@ -263,12 +335,13 @@ def _resolve_files(value, project_id):
 
 
 @server.tool()
-def set_parameter(job_id: int, path: str,
+def set_parameter(project_id: int, job: str, path: str,
                   value: str | int | float | bool | list | dict | None) -> dict:
     """Set a parameter of a pending job (path as job_parameters gives it).
     A list is set whole, as a JSON array of items shaped as its item_fields
     say; a file anywhere in a value is {"file": "<reference like [3].XYZOUT[0],
     or a file id>"}. For a single file parameter set_file is simpler."""
+    job_id = _jid(project_id, job)
     project_id = _job(job_id)["project"]
     _post(f"jobs/{job_id}/set_parameter",
           {"object_path": path, "value": _resolve_files(value, project_id)})
@@ -277,12 +350,13 @@ def set_parameter(job_id: int, path: str,
 
 
 @server.tool()
-def set_file(job_id: int, path: str, reference: str) -> dict:
+def set_file(project_id: int, job: str, path: str, reference: str) -> dict:
     """Set a file input of a pending job to a file already in the project:
     ``reference`` is a file_id from project_jobs, or "[n].PARAM" /
     "[n].PARAM[i]" (n a job NUMBER, or -1 the latest job, -2 the one before;
     PARAM the producing job's parameter), or "task[-1].PARAM" (the latest
     job of a task)."""
+    job_id = _jid(project_id, job)
     job = _job(job_id)
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
@@ -291,7 +365,7 @@ def set_file(job_id: int, path: str, reference: str) -> dict:
 
 
 @server.tool()
-def upload_file(job_id: int, path: str, local_path: str, column_labels: str = "") -> dict:
+def upload_file(project_id: int, job: str, path: str, local_path: str, column_labels: str = "") -> dict:
     """Import a file from this computer into a pending job's file input
     (an MTZ needs ``column_labels`` when it holds more than one data set,
     e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, set the list
@@ -299,6 +373,7 @@ def upload_file(job_id: int, path: str, local_path: str, column_labels: str = ""
     item's path, e.g. inputData.ENSEMBLES[0].pdbItemList[0].structure.
     Reflection data from outside the project: import them with import_merged
     instead, which checks them and makes the free-R set."""
+    job_id = _jid(project_id, job)
     source = Path(local_path).expanduser()
     if not source.is_file():
         raise ApiError(f"no file {source}")
@@ -321,10 +396,11 @@ def upload_file(job_id: int, path: str, local_path: str, column_labels: str = ""
 
 
 @server.tool()
-def validate(job_id: int) -> dict:
+def validate(project_id: int, job: str) -> dict:
     """Check a pending job before running it: the errors (which block the
     run) and warnings (advice). Includes the slower checks run at
     submission."""
+    job_id = _jid(project_id, job)
     quick = _errors(_get(f"jobs/{job_id}/validation").get("xml"))
     try:
         slow = _errors(_get(f"jobs/{job_id}/run_time_validation").get("xml"))
@@ -352,17 +428,19 @@ def validate(job_id: int) -> dict:
 
 
 @server.tool()
-def run_job(job_id: int) -> dict:
+def run_job(project_id: int, job: str) -> dict:
     """Start a pending job. Poll job_status until it ends."""
+    job_id = _jid(project_id, job)
     _post(f"jobs/{job_id}/run")
-    return job_status(job_id)
+    return job_status(project_id, job)
 
 
 @server.tool()
-def job_status(job_id: int) -> dict:
+def job_status(project_id: int, job: str) -> dict:
     """A job's status and key numbers."""
+    job_id = _jid(project_id, job)
     job = _job(job_id)
-    return {"id": job["id"], "number": job["number"], "task": job["task_name"],
+    return {"project_id": job["project"], "job": job["number"], "task": job["task_name"],
             "status": STATUS.get(job["status"], job["status"]),
             "kpis": {**(job.get("float_values") or {}), **(job.get("char_values") or {})}}
 
@@ -371,14 +449,15 @@ TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
 
 
 @server.tool()
-def wait_for_job(job_id: int, max_seconds: int = 600) -> dict:
+def wait_for_job(project_id: int, job: str, max_seconds: int = 600) -> dict:
     """Wait until a job ends (Finished, Failed, Unsatisfactory, Interrupted)
     or max_seconds pass (at most 1800), then give its status. Call again if
     it is still running."""
+    job_id = _jid(project_id, job)
     import time
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
     while True:
-        status = job_status(job_id)
+        status = job_status(project_id, job)
         if status["status"] in TERMINAL or time.monotonic() >= deadline:
             status["waited_out"] = status["status"] not in TERMINAL
             return status
@@ -386,19 +465,58 @@ def wait_for_job(job_id: int, max_seconds: int = 600) -> dict:
 
 
 @server.tool()
-def judge_job(job_id: int) -> dict:
+def job_errors(project_id: int, job: str, log_lines: int = 40) -> dict:
+    """Why a job failed, or what it warned about: the errors and warnings it
+    recorded, the end of its log, and the same for any of its steps
+    (sub-jobs) that failed. Read this before trying again differently."""
+    job_id = _jid(project_id, job)
+    tree = _get(f"projects/{project_id}/job_tree")["job_tree"]
+
+    def node(entries, number):
+        for entry in entries:
+            if str(entry["number"]) == number:
+                return entry
+            found = node(entry.get("children") or [], number)
+            if found:
+                return found
+        return None
+
+    def report(jid, number):
+        reports = []
+        for r in _errors(_get(f"jobs/{jid}/diagnostic_xml").get("xml")):
+            keep = {k: r[k] for k in ("code", "description", "details", "severityName", "class")
+                    if r.get(k)}
+            if keep and keep not in reports:
+                reports.append(keep)
+        directory = "/".join(f"job_{n}" for n in str(number).split("."))
+        log = _text(f"projects/{project_id}/files_by_path/CCP4_JOBS/{directory}/log.txt")
+        tail = [line for line in log.splitlines() if line.strip()][-max(0, min(int(log_lines), 200)):]
+        return {"job": number, "errors": reports, "log_tail": "\n".join(tail)}
+
+    this = node(tree, str(job).strip()) or {}
+    out = report(job_id, str(job).strip())
+    out["status"] = STATUS.get(this.get("status"), this.get("status"))
+    failed = [c for c in this.get("children") or [] if c.get("status") in (4, 5, 10)]
+    out["failed_steps"] = [dict(report(c["id"], c["number"]), task=c["task_name"]) for c in failed]
+    return out
+
+
+@server.tool()
+def judge_job(project_id: int, job: str) -> dict:
     """Did a finished job work? Reads the numbers the task's judgement names
     from the job's files, and gives the outcome, the reason, and the next
     steps the judgement suggests. ``missing`` lists numbers that could not be
     read; an outcome resting on missing numbers is not to be trusted."""
+    job_id = _jid(project_id, job)
     return _get(f"jobs/{job_id}/judgement")
 
 
 @server.tool()
-def what_next(job_id: int) -> dict:
+def what_next(project_id: int, job: str) -> dict:
     """Next steps after a job: the judgement's (if the task has one) and the
     app's usual follow-on tasks."""
-    verdict = judge_job(job_id)
+    job_id = _jid(project_id, job)
+    verdict = judge_job(project_id, job)
     usual = _get(f"jobs/{job_id}/what_next").get("result", [])
     return {"from_judgement": verdict.get("next") or [],
             "usual_next_tasks": [t.get("taskName") for t in usual]}
