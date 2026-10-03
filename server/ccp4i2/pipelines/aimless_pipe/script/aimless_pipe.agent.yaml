@@ -130,14 +130,21 @@ results:
       with MODE MATCH.
   OTHER_LAUE_ACCEPTED:
     file: program.xml
-    xpath: ./POINTLESS/LaueGroupScoreList/LaueGroupScore[LaueGroupScoreAccept="Accepted"]/LaueGroupName
+    xpath:
+      - ./POINTLESS/LaueGroupScoreList/LaueGroupScore[2][LaueGroupScoreAccept="Accepted"]/LaueGroupName
+      - ./POINTLESS/LaueGroupScoreList/LaueGroupScore[2][LaueGroupScoreAccept="Original"]/LaueGroupName
     type: str
     meaning: The name of a Laue group, other than the chosen one, that
       POINTLESS accepted for further testing (likelihood above ACCEPT 0.2 x
-      the best). POINTLESS marks each scored group "Original" (the top),
-      "Accepted" or "NotAccepted". Absent in every evidence job (Thaumatin
-      17.1 lists P 4/m m m "Original", the rest "NotAccepted"); absent with
-      MODE MATCH, which skips the search.
+      the best). POINTLESS lists the scored groups best first and marks each
+      "Original" (the input symmetry, accepted), "OriginalRejected",
+      "Accepted" or "NotAccepted"; so a second accepted group is the
+      SECOND entry, accepted. The first entry is the chosen group, and it
+      can itself be marked "Accepted" when the input symmetry was rejected
+      (held-out HypF - H -3 m "Accepted" 0.999, input H -3
+      "OriginalRejected"), which the first version of this rule took for a
+      second group. Absent in every evidence job (Thaumatin 17.1, gamma,
+      betablip, HypF); absent with MODE MATCH, which skips the search.
   SOLUTION_WARNING:
     file: program.xml
     xpath: ./POINTLESS/SolutionWarning

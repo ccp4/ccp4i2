@@ -540,6 +540,15 @@ verdict:
 
 traps:
   - >
+    "unconverged" on geometry is not overruled by a good R-free. Held-out
+    RNase Sa (Haiku, 3.1 A): R-work 0.135, R-free 0.258, bond RMSD 0.029 A,
+    rmsZ 2.29, and the model was called "publishable". A gap of 0.12
+    between R-work and R-free with loose geometry is over-fitting: the
+    X-ray weight is too high for the data. Lower it (WEIGHT_OPT MANUAL with
+    a smaller weight) until bonds are within 0.02 A and the gap narrows;
+    R-free then usually holds or falls. (That run had also imported a
+    derivative's 3.1 A data instead of the 2.5 A native: see import_merged.)
+  - >
     R1 is not R. With intensities, which is the default (F_SIGF_OR_I_SIGI
     I_SIGI), the report, the KPI (R1Free) and program.xml all give R1: an R
     on sqrt(I) for reflections with I/sigma >= 2, with the weak data left

@@ -54,6 +54,17 @@ inputs:
       the mean converted on demand (Gamma job 1 OBSOUT_asIMEAN.mtz and
       OBSOUT_asFMEAN.mtz were made for molrep/refinement from an I+/I-
       import). Choose amplitudes only when the file has no intensities.
+      EXCEPT when the file holds more than one dataset (a native and its
+      derivatives, several wavelengths): the default looks at column types
+      only, not datasets, and takes the first anomalous group it finds,
+      which may be a derivative's. Held-out RNase Sa (NATIVE: FNAT,
+      SIGFNAT, FreeR_flag; DERIV_HG, DERIV_I, DERIV_PT each with F(+)/F(-)):
+      left unset, Haiku imported 3.1 A derivative data instead of the 2.5 A
+      native, read it as twinned (L-test 0.43) and refined against it;
+      Sonnet set "FNAT,SIGFNAT" and HKLIN_FREER_COLUMN "FreeR_flag" and
+      reached R-free 0.225. Read the file's datasets first (the import
+      report lists them; or open the file) and name the group you mean;
+      plain labels work.
   - param: inputData.FREERFLAG
     advice: >
       The decision that matters most. If any model has already been refined

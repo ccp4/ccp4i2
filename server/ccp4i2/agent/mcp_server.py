@@ -52,9 +52,14 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    job_parameters lists them, e.g. inputData.XYZIN.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
-5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory.
-   Then judge_job(job). "Finished" means it ran, not that it worked: the
-   judgement decides, and a draft judgement is a guide, not a rule.
+5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory; it
+   returns after max_seconds with waited_out true, so if your own tool calls
+   time out, give a max_seconds below that limit and call it again (jobs
+   can run for an hour). Then judge_job(job). "Finished" means it ran, not
+   that it worked: the judgement decides, and a draft judgement is a
+   guide, not a rule. Do not argue a verdict away with the numbers it
+   already weighed (a low R-free does not excuse geometry the verdict
+   faulted); act on its advice, or report that you stopped short and why.
 6. To change a finished job, clone_job it and edit the clone.
 7. When a job fails, or its judgement cannot read its numbers, job_errors
    says what it recorded and shows its log.
