@@ -53,9 +53,10 @@ Results
 
    Here, allowed 20 cycles, completion added sites in the first three
    cycles, removed those that did not refine, and converged after five,
-   raising the LLG from 968 to 1060 and giving a figure of merit of 0.40.
-   Of the seven sites, two are strong xenons and one weaker; the four very
-   weak ones are probably the protein's sulfurs.
+   raising the LLG from 806 (the given sites, once refined) to 1060 and
+   giving a figure of merit of 0.40. Of the seven sites, two are strong
+   xenons and one weaker; of the four very weak ones, three sit on
+   methionine sulfurs and one is a shoulder of the main xenon site.
 
    The phases (as Hendrickson-Lattman coefficients), the map and the sites
    are the outputs: density modification with Parrot usually comes next.

@@ -4,10 +4,15 @@ Density Modification (parrot)
 
    The "Density modification" task is used to improve initial phase
    estimates to produce a more interpretable electron density map using
-   the "Parrot" software. Density modification is always applied as a
-   follow on to experimental phasing to resolve phase ambiguities,
-   particularly in the case of SAD phasing. It may also be applied after
-   molecular replacement to reduce bias towards the search model. Phase
+   the "Parrot" software. Density modification usually follows
+   experimental phasing, to resolve phase ambiguities, particularly in the
+   case of SAD phasing; the phasing pipelines (Crank2, SHELX, Phaser SAD)
+   and ModelCraft run it themselves. After molecular replacement it
+   reduces bias towards the search model in the parts the model does not
+   cover, at some cost where it does: a map for a person to look at, not
+   a better starting point for building, which ModelCraft does from the
+   model. A rising figure of merit does not show the map is right: the
+   wrong hand of a SAD solution gains too, and building decides the hand. Phase
    improvement is performed using solvent flattening, histogram
    matching, and optionally non-crystallographic symmetry averaging. The
    minimum required inputs are the protein sequence, a set of

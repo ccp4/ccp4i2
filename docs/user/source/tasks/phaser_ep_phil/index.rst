@@ -84,8 +84,9 @@ Results
    sites after completion, with their occupancies, and *Substructure
    completion* **(4)** follows the cycles of adding and removing sites.
    Here completion found seven sites: two strong xenons (occupancies 0.72
-   and 0.35), a weaker one, and four very weak ones, probably the sulfurs
-   of the protein's methionines and cysteines rather than xenon.
+   and 0.35), a weaker one, and four very weak ones: three sit on
+   methionine sulfurs (the sequence has no cysteine) and the fourth is a
+   shoulder of the main xenon site.
 
 Choosing the hand
 -----------------
@@ -95,7 +96,8 @@ Choosing the hand
    Density modification and model building for each hand follow. Here the
    original hand reaches a Parrot figure of merit of 0.70, the inverted
    one 0.62: a difference, but Parrot calls both maps good enough to
-   build. The building decides it: in three quick cycles ModelCraft builds
+   build. The building decides it: in three ModelCraft cycles (set for this
+   example; building is off by default, and one cycle when on) it builds
    115 of the 134 residues into the original hand's map (R-free 0.38) and
    only 48 into the inverted hand's (R-free 0.56), a model it calls very
    incomplete or wrong. The original hand is right.
