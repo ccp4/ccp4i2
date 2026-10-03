@@ -49,6 +49,18 @@ def test_gamma():
         assert free_fraction(job) == approx(0.05, abs=0.01)
 
 
+def test_a_project_named_unmerged():
+    # Aimless's merged output was rejected because the word "unmerged" was
+    # looked for in the whole path, project directory included: in a project
+    # called "...unmerged..." data reduction always failed, with the merged
+    # file on disk (found by an agent trial, 2026-10-03).
+    mtz = demoData("gamma", "gamma_native.mtz")
+    args = ["aimless_pipe", "--UNMERGEDFILES", f"file={mtz}"]
+    with i2run(args) as job:  # its directory is named after this test: "...unmerged"
+        assert "unmerged" in str(job)
+        check_result(job, "P 21 21 21", 1.81, 0.061)
+
+
 def subjob_plugins(job: Path) -> list[str]:
     """The task each sub-job ran, in sub-job order."""
     names = []
