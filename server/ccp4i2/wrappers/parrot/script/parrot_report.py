@@ -34,7 +34,7 @@ class parrot_report(Report):
           nncs = int(self.xmlnode.findall('NncsMR')[0].text)
           nmol = int(0.5*(1.0+(1.0+4.0*nncs)**0.5))
           if nncs > 0: parent.append( "<p>%d NCS operators were identified from the input MR or partial model, suggesting the presence of at least %d molecules.</p>"%(nncs,nmol) )
-          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input MR or partial model.</p>"%(nncs) )
+          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input MR or partial model.</p>" )
         except Exception as e:
           print(e)
 
@@ -42,7 +42,7 @@ class parrot_report(Report):
           nncs = int(self.xmlnode.findall('NncsHA')[0].text)
           nmol = int(0.5*(1.0+(1.0+4.0*nncs)**0.5))
           if nncs > 0: parent.append( "<p>%d NCS operators were identified from the input heavy atom model, suggesting the presence of at least %d molecules.</p>"%(nncs,nmol) )
-          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input heavy atom model.</p>"%(nncs) )
+          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input heavy atom model.</p>" )
         except Exception as e:
           print(e)
 
