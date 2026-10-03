@@ -258,6 +258,14 @@ verdict:
 
 traps:
   - >
+    After experimental phasing the input model's heavy atoms are dropped
+    (Buccaneer outputs protein only; ModelCraft keeps only non-protein
+    residues with a "CA" atom as known structure), and chain is traced
+    through their peaks. With strong scatterers (Hg, Pt, Au, I...) and
+    refinement against the derivative, run add_substructure on the result
+    with the phasing job's XYZOUT_SUBSTR before refining: held-out HypF
+    0.409 -> 0.267.
+  - >
     With a starting model, "all residues built and sequenced" proves
     nothing: Buccaneer is seeded from the model and takes its sequence
     (modelcraftxray.py:164-168). Thaumatin 17.10 - a model in the wrong

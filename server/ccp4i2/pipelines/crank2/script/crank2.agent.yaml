@@ -536,10 +536,14 @@ traps:
   - >
     ModelCraft rebuilds the protein through Buccaneer, which outputs protein
     only, so the substructure is gone after its first cycle even when its
-    input model had it. With a strong scatterer and a "built" result,
-    refine XYZOUT_COMPLETE rather than rebuild; after ModelCraft (the
-    "phased" route) expect a higher R-free than the scatterers would allow,
-    and say so: CCP4i2 has no task yet to add them back.
+    input model had it - and it traces chain into the heavy-atom peaks
+    (held-out HypF: Cys67 N 0.31 A and an UNK atom 0.13 A from the two Hg;
+    R-free 0.394-0.451 however long it refined). After ModelCraft, run
+    add_substructure (XYZIN the ModelCraft model, XYZIN_SUB
+    "crank2[-1].XYZOUT_SUBSTR"): it removes residues built into a heavy
+    atom and adds the sites (that model 0.409 -> 0.267, below Crank2's own
+    0.298). With a strong scatterer and a "built" result, refine
+    XYZOUT_COMPLETE rather than rebuild.
   - >
     The CFOM bands are not proof: the two correct GammaXe runs stopped on
     the trial limit at CFOM 74.9, just under the 75 "likely" threshold,
@@ -599,7 +603,8 @@ next:
       they are ignored, modelcraft.py lines 71, 112). FPHOUT_HL are Crank2's
       final combined phases, already model-influenced, so UNBIASED is not
       set. With no model built (the no-building "phased" case) leave XYZIN
-      out. Then servalcat_pipe on ModelCraft's model.
+      out. Then add_substructure on ModelCraft's model (XYZIN_SUB
+      "crank2[-1].XYZOUT_SUBSTR"), then servalcat_pipe on its XYZOUT.
   - when: outcome == "phased" and NEW_FREE_SET != null
     task: modelcraft
     inputs:

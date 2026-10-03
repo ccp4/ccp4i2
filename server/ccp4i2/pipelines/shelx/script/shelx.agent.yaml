@@ -393,7 +393,9 @@ traps:
     refined to R-free 0.298, then Servalcat on XYZOUT alone reached 0.437,
     and with the two Hg sites 0.295. A refinement much above this job's
     R-free means a missing piece of the model. ModelCraft drops non-protein
-    atoms when it rebuilds, so after it the sites are gone again.
+    atoms when it rebuilds, so after it the sites are gone again and
+    chain is traced through them: run add_substructure on its model with
+    XYZIN_SUB "shelx[-1].XYZOUT_SUBSTR" before refining.
   - >
     Jobs run before commit acb315505 have CFOM and the trace CCs only in
     subjob directories numbered by route (job_3 = SHELXD, job_4 = SHELXE
@@ -440,7 +442,8 @@ next:
       "ProvideAsuContents[-1].ASUCONTENTFILE" as ASUIN. If the job ended
       before building there is no XYZOUT: set USE_MODEL_PHASES False and
       give PHASES "shelx[-1].FPHOUT_HL" instead (the chosen hand's phases).
-      Judge the result by modelcraft's R-free; then servalcat_pipe.
+      Judge the result by modelcraft's R-free; then add_substructure
+      (XYZIN_SUB "shelx[-1].XYZOUT_SUBSTR") and servalcat_pipe on its XYZOUT.
   - when: outcome == "phased"
     task: shelx
     inputs:

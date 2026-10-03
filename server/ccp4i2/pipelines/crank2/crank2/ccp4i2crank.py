@@ -127,21 +127,18 @@ def CompleteModel(i2crank):
   CompleteModel. Never fails the job: without it, XYZOUT is still there.
   """
   from lxml import etree
-  from ccp4i2.pipelines.crank2.script.complete_model import complete_model
+  from ccp4i2.pipelines.crank2.script.complete_model import complete_model, report_element
   out = i2crank.container.outputData
   if not hasattr(out, 'XYZOUT_COMPLETE') or not out.XYZOUT.isSet() or not out.XYZOUT_SUBSTR.isSet():
     return
-  element = etree.Element('CompleteModel')
   try:
     target = os.path.join(str(i2crank.workDirectory), 'XYZOUT_COMPLETE.pdb')
     report = complete_model(str(out.XYZOUT.fullPath), str(out.XYZOUT_SUBSTR.fullPath), target)
     out.XYZOUT_COMPLETE.setFullPath(target)
     out.XYZOUT_COMPLETE.annotation.set('Model with the anomalous substructure (refine this)')
-    for kind in ('added', 'on_model', 'converted', 'clashes'):
-      element.set(kind, str(len(report[kind])))
-      for text in report[kind]:
-        etree.SubElement(element, kind).text = text
+    element = report_element(report)
   except Exception as err:  # noqa: BLE001 - an extra output must not fail the job
+    element = etree.Element('CompleteModel')
     element.set('error', '{}: {}'.format(type(err).__name__, err))
   path = os.path.join(str(i2crank.workDirectory), 'program.xml')
   try:
