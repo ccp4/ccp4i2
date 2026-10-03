@@ -71,7 +71,8 @@ inputs:                           # only the ones that need judgement
 results:                          # the numbers that decide, and where they are
   TFZ:
     file: program.xml             # program.xml | a job file named here | kpi
-    xpath: .//Solution/TFZ        # ElementTree subset, first match
+    xpath: .//Solution/TFZ        # ElementTree subset, first match; or a list
+                                  # of xpaths, the first that reads wins
     type: float                   # float | int | str ("4.01%" reads as 4.01)
     meaning: Translation-function Z-score of the top solution.
   TNCS:
