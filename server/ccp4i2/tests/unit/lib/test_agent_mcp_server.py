@@ -180,3 +180,15 @@ def test_job_errors_reports_the_job_and_its_failed_steps(api, monkeypatch):
     assert out["status"] == "Failed" and out["errors"][0]["code"] == "201"
     assert out["log_tail"] == "last line"
     assert out["failed_steps"][0]["job"] == "5.1" and out["failed_steps"][0]["log_tail"] == "step log"
+
+
+def test_a_job_with_validation_errors_is_not_started(api):
+    calls, answers = api
+    answers[("GET", "jobs/7/validation")] = {"xml": (
+        "<errorReportList><errorReport><severity>ERROR</severity><objectPath>x.inputData.HKLIN"
+        "</objectPath><description>Required value not set</description></errorReport>"
+        "</errorReportList>")}
+    answers[("GET", "jobs/7/run_time_validation")] = {"xml": "<errorReportList/>"}
+    with pytest.raises(mcp_server.ApiError, match="Required value not set"):
+        mcp_server.run_job(3, "5")
+    assert not any(c[1] == "jobs/7/run" for c in calls)

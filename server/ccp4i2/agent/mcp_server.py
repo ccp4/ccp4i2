@@ -429,8 +429,14 @@ def validate(project_id: int, job: str) -> dict:
 
 @server.tool()
 def run_job(project_id: int, job: str) -> dict:
-    """Start a pending job. Poll job_status until it ends."""
+    """Start a pending job, then wait_for_job. As in the app, a job whose
+    validation has errors is not started: the errors come back instead."""
     job_id = _jid(project_id, job)
+    errors = validate(project_id, job)["errors"]
+    if errors:
+        raise ApiError("Not started: validation has errors. " + "; ".join(
+            f"{e.get('objectPath') or e.get('name') or ''}: {e.get('description') or e.get('details') or ''}".strip(": ")
+            for e in errors))
     _post(f"jobs/{job_id}/run")
     return job_status(project_id, job)
 
