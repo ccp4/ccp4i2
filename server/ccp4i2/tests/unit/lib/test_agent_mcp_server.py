@@ -192,3 +192,13 @@ def test_a_job_with_validation_errors_is_not_started(api):
     with pytest.raises(mcp_server.ApiError, match="Required value not set"):
         mcp_server.run_job(3, "5")
     assert not any(c[1] == "jobs/7/run" for c in calls)
+
+
+def test_a_job_number_may_be_given_as_a_number(api):
+    import asyncio as _asyncio
+    _, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "number": "5", "task_name": "x", "status": 6, "project": 3}
+    # An agent sent "job": 1 and the argument check refused it; now it is the
+    # same job as "5" (the call would raise ToolError on a rejected argument)
+    _asyncio.run(mcp_server.server.call_tool("job_status", {"project_id": 3, "job": 5}))
+    assert mcp_server.job_status(3, 5)["job"] == "5"

@@ -278,7 +278,7 @@ def create_job(project_id: int, task: str) -> dict:
 
 
 @server.tool()
-def clone_job(project_id: int, job: str) -> dict:
+def clone_job(project_id: int, job: str | int) -> dict:
     """Copy a job, with its inputs, as a new pending job to edit and run."""
     job_id = _jid(project_id, job)
     job = _post(f"jobs/{job_id}/clone")
@@ -286,7 +286,7 @@ def clone_job(project_id: int, job: str) -> dict:
 
 
 @server.tool()
-def job_parameters(project_id: int, job: str, section: str = "", only_set: bool = False, query: str = "") -> dict:
+def job_parameters(project_id: int, job: str | int, section: str = "", only_set: bool = False, query: str = "") -> dict:
     """A job's parameters, one entry each: path, label, value, whether set
     and required, choices, default; for a list, item_fields: what each item
     holds. ``section`` limits to inputData, controlParameters or outputData;
@@ -335,7 +335,7 @@ def _resolve_files(value, project_id):
 
 
 @server.tool()
-def set_parameter(project_id: int, job: str, path: str,
+def set_parameter(project_id: int, job: str | int, path: str,
                   value: str | int | float | bool | list | dict | None) -> dict:
     """Set a parameter of a pending job (path as job_parameters gives it).
     A list is set whole, as a JSON array of items shaped as its item_fields
@@ -350,7 +350,7 @@ def set_parameter(project_id: int, job: str, path: str,
 
 
 @server.tool()
-def set_file(project_id: int, job: str, path: str, reference: str) -> dict:
+def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict:
     """Set a file input of a pending job to a file already in the project:
     ``reference`` is a file_id from project_jobs, or "[n].PARAM" /
     "[n].PARAM[i]" (n a job NUMBER, or -1 the latest job, -2 the one before;
@@ -365,7 +365,7 @@ def set_file(project_id: int, job: str, path: str, reference: str) -> dict:
 
 
 @server.tool()
-def upload_file(project_id: int, job: str, path: str, local_path: str, column_labels: str = "") -> dict:
+def upload_file(project_id: int, job: str | int, path: str, local_path: str, column_labels: str = "") -> dict:
     """Import a file from this computer into a pending job's file input
     (an MTZ needs ``column_labels`` when it holds more than one data set,
     e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, set the list
@@ -396,7 +396,7 @@ def upload_file(project_id: int, job: str, path: str, local_path: str, column_la
 
 
 @server.tool()
-def validate(project_id: int, job: str) -> dict:
+def validate(project_id: int, job: str | int) -> dict:
     """Check a pending job before running it: the errors (which block the
     run) and warnings (advice). Includes the slower checks run at
     submission."""
@@ -428,7 +428,7 @@ def validate(project_id: int, job: str) -> dict:
 
 
 @server.tool()
-def run_job(project_id: int, job: str) -> dict:
+def run_job(project_id: int, job: str | int) -> dict:
     """Start a pending job, then wait_for_job. As in the app, a job whose
     validation has errors is not started: the errors come back instead."""
     job_id = _jid(project_id, job)
@@ -442,7 +442,7 @@ def run_job(project_id: int, job: str) -> dict:
 
 
 @server.tool()
-def job_status(project_id: int, job: str) -> dict:
+def job_status(project_id: int, job: str | int) -> dict:
     """A job's status and key numbers."""
     job_id = _jid(project_id, job)
     job = _job(job_id)
@@ -455,7 +455,7 @@ TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
 
 
 @server.tool()
-def wait_for_job(project_id: int, job: str, max_seconds: int = 600) -> dict:
+def wait_for_job(project_id: int, job: str | int, max_seconds: int = 600) -> dict:
     """Wait until a job ends (Finished, Failed, Unsatisfactory, Interrupted)
     or max_seconds pass (at most 1800), then give its status. Call again if
     it is still running."""
@@ -471,7 +471,7 @@ def wait_for_job(project_id: int, job: str, max_seconds: int = 600) -> dict:
 
 
 @server.tool()
-def job_errors(project_id: int, job: str, log_lines: int = 40) -> dict:
+def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
     """Why a job failed, or what it warned about: the errors and warnings it
     recorded, the end of its log, and the same for any of its steps
     (sub-jobs) that failed. Read this before trying again differently."""
@@ -508,7 +508,7 @@ def job_errors(project_id: int, job: str, log_lines: int = 40) -> dict:
 
 
 @server.tool()
-def judge_job(project_id: int, job: str) -> dict:
+def judge_job(project_id: int, job: str | int) -> dict:
     """Did a finished job work? Reads the numbers the task's judgement names
     from the job's files, and gives the outcome, the reason, and the next
     steps the judgement suggests. ``missing`` lists numbers that could not be
@@ -518,7 +518,7 @@ def judge_job(project_id: int, job: str) -> dict:
 
 
 @server.tool()
-def what_next(project_id: int, job: str) -> dict:
+def what_next(project_id: int, job: str | int) -> dict:
     """Next steps after a job: the judgement's (if the task has one) and the
     app's usual follow-on tasks."""
     job_id = _jid(project_id, job)
