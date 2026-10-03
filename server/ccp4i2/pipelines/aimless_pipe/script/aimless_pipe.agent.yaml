@@ -496,6 +496,18 @@ next:
       copies). Then check them with matthews (HKLIN
       "aimless_pipe[-1].HKLOUT[0]", ASUIN
       "ProvideAsuContents[-1].ASUCONTENTFILE").
+  - when: (ANOM_LIMIT > 0 or CCANOM_LIMIT > 0) and MERGED_INPUT == "False"
+    task: crank2
+    inputs:
+      F_SIGFanom: "aimless_pipe[-1].HKLOUT[0]"
+    advice: >
+      Measurable anomalous signal (CTRUNCATE's limit ANOM_LIMIT, or
+      AIMLESS's CC(anom) above 0.15 to CCANOM_LIMIT A): experimental
+      phasing is possible. crank2 also needs the sequence and the
+      substructure atom type. Restrict substructure location to about where
+      CC(anom) falls to 0.1-0.3 (help scaling_and_merging.rst lines
+      346-348). HKLOUT always carries I+ and I-, whatever AIMLESS's
+      anomalous flag says.
   - when: outcome == "usable" or outcome == "check_symmetry" or outcome == "twinning_suspected" or outcome == "tncs"
     task: phaser_simple_phil
     inputs:
@@ -552,18 +564,6 @@ next:
       CTRUNCATE saw an off-origin Patterson peak that Phaser did not
       (LassoPeptide 1.2, cell 19 x 21 x 30 A, not confirmed by its MR). Look
       at CTRUNCATE's peak list in the report; take no action on it.
-  - when: (ANOM_LIMIT > 0 or CCANOM_LIMIT > 0) and MERGED_INPUT == "False"
-    task: crank2
-    inputs:
-      F_SIGFanom: "aimless_pipe[-1].HKLOUT[0]"
-    advice: >
-      Measurable anomalous signal (CTRUNCATE's limit ANOM_LIMIT, or
-      AIMLESS's CC(anom) above 0.15 to CCANOM_LIMIT A): experimental
-      phasing is possible. crank2 also needs the sequence and the
-      substructure atom type. Restrict substructure location to about where
-      CC(anom) falls to 0.1-0.3 (help scaling_and_merging.rst lines
-      346-348). HKLOUT always carries I+ and I-, whatever AIMLESS's
-      anomalous flag says.
   - when: outcome == "check_symmetry"
     advice: >
       POINTLESS accepted a second Laue group (OTHER_LAUE_ACCEPTED). Run MR in

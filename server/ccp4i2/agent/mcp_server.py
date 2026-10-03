@@ -62,7 +62,9 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    faulted); act on its advice, or report that you stopped short and why.
 6. To change a finished job, clone_job it and edit the clone.
 7. When a job fails, or its judgement cannot read its numbers, job_errors
-   says what it recorded and shows its log.
+   says what it recorded and shows its log. file_summary("[n].XYZOUT")
+   says what a model holds (chains, residues built, UNK, ligands, heavy
+   atoms) without downloading it.
 
 Report what you ran, the numbers that decided each step, and anything you
 were unsure of. Never delete or overwrite a user's work.
@@ -531,6 +533,24 @@ def what_next(project_id: int, job: str | int) -> dict:
     usual = _get(f"jobs/{job_id}/what_next").get("result", [])
     return {"from_judgement": verdict.get("next") or [],
             "usual_next_tasks": [t.get("taskName") for t in usual]}
+
+
+@server.tool()
+def file_summary(project_id: int, file: str) -> dict:
+    """What a file holds, read by the server: for a model its chains, residue
+    ranges and counts, sequence per chain (X where a residue is UNK),
+    ligands, waters and elements (so: which residues were left unbuilt, and
+    whether heavy atoms or a ligand are in it); for reflection data its
+    cell, space group, resolution and columns; for a sequence file its
+    sequences. ``file`` is a reference "[n].PARAM" (n a job number, -1 the
+    latest; e.g. "[7].XYZOUT") or a file id from job_parameters."""
+    resolved = _get(f"projects/{project_id}/resolve_fileuse", fileuse=str(file))
+    uuid = resolved.get("dbFileId")
+    if not uuid:
+        raise ApiError(f"{file}: no file found")
+    return {"file": {"name": resolved.get("baseName"), "annotation": resolved.get("annotation"),
+                     "job_directory": resolved.get("relPath")},
+            "summary": _get(f"files_by_uuid/{uuid}/digest")}
 
 
 def main():

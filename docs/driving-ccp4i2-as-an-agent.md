@@ -71,6 +71,12 @@ claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
     --header "Authorization: Bearer <token>"
 ```
 
+Run that line, then start a new Claude Code session: the tools load at
+start-up. A JSON file of server settings left in a folder is not read
+unless it is that folder's `.mcp.json` or is passed with `--mcp-config`;
+an agent that finds no `ccp4i2` tools has not been connected, and should
+say so rather than script its own HTTP client around the problem.
+
 Other MCP clients take the same address and header. The tools carry their
 own instructions and each task's judgement (`describe_task`, `judge_job`);
 see [agentic-knowledge.md](agentic-knowledge.md). Port and token change at

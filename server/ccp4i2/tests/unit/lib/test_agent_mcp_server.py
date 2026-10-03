@@ -15,7 +15,7 @@ EXPECTED_TOOLS = {
     "list_projects", "create_project", "list_tasks", "describe_task", "project_jobs",
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
-    "what_next", "job_errors",
+    "what_next", "job_errors", "file_summary",
 }
 
 
@@ -202,3 +202,26 @@ def test_a_job_number_may_be_given_as_a_number(api):
     # same job as "5" (the call would raise ToolError on a rejected argument)
     _asyncio.run(mcp_server.server.call_tool("job_status", {"project_id": 3, "job": 5}))
     assert mcp_server.job_status(3, 5)["job"] == "5"
+
+
+def test_file_summary_digests_the_file_a_reference_names(api):
+    # What an agent could not see without it: whether the heavy atoms
+    # survived into a rebuilt model, which residues were left unbuilt
+    calls, answers = api
+    answers[("GET", "projects/3/resolve_fileuse")] = {
+        "baseName": "modelcraft.cif", "dbFileId": "abc", "relPath": "CCP4_JOBS/job_8",
+        "annotation": "ModelCraft model", "fullPath": "/somewhere/modelcraft.cif"}
+    answers[("GET", "files_by_uuid/abc/digest")] = {"composition": {"elements": ["S"]}}
+    out = mcp_server.file_summary(3, "[8].XYZOUT")
+    assert out == {"file": {"name": "modelcraft.cif", "annotation": "ModelCraft model",
+                            "job_directory": "CCP4_JOBS/job_8"},
+                   "summary": {"composition": {"elements": ["S"]}}}
+    assert ("GET", "projects/3/resolve_fileuse", None, {"fileuse": "[8].XYZOUT"}) in calls
+    assert "/somewhere" not in str(out)
+
+
+def test_file_summary_of_nothing_says_so(api):
+    _, answers = api
+    answers[("GET", "projects/3/resolve_fileuse")] = {}
+    with pytest.raises(ToolError, match="no file found"):
+        mcp_server.file_summary(3, "[9].XYZOUT")

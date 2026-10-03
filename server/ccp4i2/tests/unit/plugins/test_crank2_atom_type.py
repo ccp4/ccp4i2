@@ -22,3 +22,32 @@ def test_not_needed_when_starting_after_phasing(tmp_path):
     plugin = get_plugin_class("crank2")(workDirectory=str(tmp_path), name="c")
     plugin.container.inputData.START_PIPELINE.set("dmfull")
     assert 202 not in _codes(plugin)
+
+
+# The default FREE "new" makes Crank2 choose its own free set, silently: an
+# agent trial caught it only because the guide stresses free sets
+
+
+def test_a_new_free_set_is_warned_of(tmp_path):
+    plugin = get_plugin_class("crank2")(workDirectory=str(tmp_path), name="c")
+    assert 203 in _codes(plugin)
+    plugin.container.inputData.FREERFLAG.setFullPath(str(tmp_path / "free.mtz"))
+    codes = _codes(plugin)
+    assert 204 in codes and 203 not in codes  # given, but ignored
+    plugin.container.inputData.FREE.set("existing")
+    codes = _codes(plugin)
+    assert 203 not in codes and 204 not in codes
+
+
+def test_shelx_warns_too(tmp_path):
+    plugin = get_plugin_class("shelx")(workDirectory=str(tmp_path), name="s")
+    assert 203 in _codes(plugin)
+
+
+def test_modelcraft_says_when_phases_are_ignored(tmp_path):
+    plugin = get_plugin_class("modelcraft")(workDirectory=str(tmp_path), name="m")
+    assert 210 not in _codes(plugin)
+    plugin.container.inputData.PHASES.setFullPath(str(tmp_path / "hl.mtz"))
+    assert 210 in _codes(plugin)  # USE_MODEL_PHASES defaults to True
+    plugin.container.controlParameters.USE_MODEL_PHASES.set(False)
+    assert 210 not in _codes(plugin)

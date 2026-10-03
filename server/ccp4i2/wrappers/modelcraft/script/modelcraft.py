@@ -55,12 +55,29 @@ class modelcraft(CPluginScript):
     TASKCOMMAND = "modelcraft"
     ERROR_CODES = {
         201: {"description": "ModelCraft stopped before it produced a model"},
+        210: {"description": "Phases are given but ignored while USE_MODEL_PHASES is set"},
     }
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild", "coot1"]
 
     def __init__(self, *args, **kws):
         super(modelcraft, self).__init__(*args, **kws)
+
+    def validity(self):
+        error = super(modelcraft, self).validity()
+        # PHASES are passed only with USE_MODEL_PHASES off (processInputFiles);
+        # a job filled in from an experimental-phasing job has both set, and
+        # looks as if it builds on those phases when it does not.
+        if (self.container.inputData.PHASES.isSet()
+                and bool(self.container.controlParameters.USE_MODEL_PHASES)):
+            error.append(
+                klass=self.TASKNAME, code=210,
+                details="These phases are ignored: ModelCraft takes its phases from the "
+                        "model while 'use model phases' is set. Turn it off to build on "
+                        "the phases given.",
+                name=f"{self.TASKNAME}.container.inputData.PHASES",
+                severity=SEVERITY_WARNING)
+        return error
 
     def processInputFiles(self):
         params = self.container.controlParameters
