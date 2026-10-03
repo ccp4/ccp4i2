@@ -116,8 +116,8 @@ inputs:
       Coot picks waters in the refined map, then NCYCLES_AFTER_ADD_WATERS
       more cycles run (5 by default). Use it once the protein model is
       nearly complete, with R-free near its final value; not on a model
-      straight from MR. The verdict below reads the FIRST refinement (see
-      the traps).
+      straight from MR. The verdict then reads the second, after-waters
+      refinement: the final model (see the traps).
   - param: controlParameters.OCCUPANCY_REFINEMENT
     advice: >
       The box is ticked by default, but it does nothing unless
@@ -140,17 +140,22 @@ results:
       0.3393; PanDDA baz2b 5e9l 0.2843.
   RFREE:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rfree
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/Rfree
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rfree
     type: float
     optional: true
     meaning: >
-      R-free after the last cycle of the main refinement. It is the KPI
-      "RFree" unless waters were added. CDK2_NU6102 1 0.2740 (1.90 A); 1tf6
+      R-free of the final model (KPI "RFree"). It comes from the end of the
+      after-waters refinement when ADD_WATERS ran, else from the end of the
+      refinement. CDK2_NU6102 1 0.2740 (1.90 A); 1tf6
       0.3210 (3.13 A, 2 cycles); PanDDA baz2b 5e9l 0.2859 (1.90 A), 5e9m
       0.2854 (1.78 A).
   RFREE_3BACK:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/Rfree
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()-3]/data/summary/Rfree
+      - ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/Rfree
     type: float
     optional: true
     meaning: >
@@ -160,14 +165,18 @@ results:
       (cycle 2).
   RWORK:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rwork
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/Rwork
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rwork
     type: float
     optional: true
     meaning: >
       R-work at the last cycle. CDK2_NU6102 1 0.2179; 1tf6 0.2500.
   CCFREE_F:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCFfreeavg
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/CCFfreeavg
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCFfreeavg
     type: float
     optional: true
     meaning: >
@@ -185,16 +194,22 @@ results:
       MDM2_Nutlin 1.4 0.2937.
   R1FREE:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1free
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/R1free
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1free
     type: float
     optional: true
     meaning: >
-      R1-free after the last cycle (KPI "R1Free"). MDM2_Nutlin 1.4 0.2932
-      (1.35 A, 5 cycles). That model is DIMPLE's output with no ligand and
+      R1-free of the final model (KPI "R1Free"). It comes from the
+      after-waters refinement when ADD_WATERS ran, else from the main one.
+      trial-gammaxe-sad-sonnet 8 0.2748 after waters (0.2824 before them).
+      MDM2_Nutlin 1.4 0.2932 (1.35 A, 5 cycles). That model is DIMPLE's output with no ligand and
       no waters.
   R1FREE_3BACK:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/R1free
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()-3]/data/summary/R1free
+      - ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/R1free
     type: float
     optional: true
     meaning: >
@@ -202,14 +217,18 @@ results:
       2: R1-free rose by 0.001 over the last three cycles.
   R1WORK:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1work
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/R1work
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1work
     type: float
     optional: true
     meaning: >
       R1-work at the last cycle. MDM2_Nutlin 1.4 0.2765.
   CCFREE_I:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCIfreeavg
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/data/summary/CCIfreeavg
+      - ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCIfreeavg
     type: float
     optional: true
     meaning: >
@@ -225,7 +244,9 @@ results:
       (the deposited 1h1s); MDM2_Nutlin 1.4 0.755; 1tf6 0.847.
   BOND_RMSZ:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsZ/Bond_distances_non_H
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/geom/summary/rmsZ/Bond_distances_non_H
+      - ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsZ/Bond_distances_non_H
     type: float
     meaning: >
       Bond rmsZ after the last cycle. Servalcat's weight targets 0.5-1.0,
@@ -234,7 +255,9 @@ results:
       cycles, with the weight unchanged at 21.47).
   BOND_RMSD:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsd/Bond_distances_non_H
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/geom/summary/rmsd/Bond_distances_non_H
+      - ./SERVALCAT_FIRST/cycle[last()]/geom/summary/rmsd/Bond_distances_non_H
     type: float
     meaning: >
       Bond-length RMSD (A) after the last cycle. CDK2 1 0.0103;
@@ -257,30 +280,22 @@ results:
       the stricter one. MDM2_Nutlin 1.4 46.3; 1tf6 61.2; 5e9l 99.1.
   CYCLES:
     file: program.xml
-    xpath: ./SERVALCAT_FIRST/cycle[last()]/Ncyc
+    xpath:
+      - ./SERVALCAT_WATERS/cycle[last()]/Ncyc
+      - ./SERVALCAT_FIRST/cycle[last()]/Ncyc
     type: int
     meaning: >
-      Cycles run. CDK2 1 10; MDM2_Nutlin 1.4 5; 1tf6 2.
-  RFREE_WATERS:
+      Cycles run in the final refinement; for the after-waters run, that is
+      NCYCLES_AFTER_ADD_WATERS. CDK2 1 10; MDM2_Nutlin 1.4 5; 1tf6 2;
+      trial-gammaxe-sad-sonnet 8 5.
+  WATERS_ADDED:
     file: program.xml
-    xpath: ./SERVALCAT_WATERS/cycle[last()]/data/summary/Rfree
-    type: float
+    xpath: ./CootAddWaters
+    type: str
     optional: true
     meaning: >
-      R-free at the end of the second refinement, after Coot added waters
-      (ADD_WATERS True); amplitude refinement. This is the job's KPI when
-      present. No amplitude job with waters was seen; the xpath mirrors
-      R1FREE_WATERS.
-  R1FREE_WATERS:
-    file: program.xml
-    xpath: ./SERVALCAT_WATERS/cycle[last()]/data/summary/R1free
-    type: float
-    optional: true
-    meaning: >
-      R1-free at the end of the second refinement, after waters. This is the
-      job's KPI R1Free. In trial-gammaxe-sad-sonnet job 8, the first
-      refinement ended at 0.2824, Coot added 7 waters, and the second ended
-      at 0.2748 (KPI 0.2748).
+      Present only when ADD_WATERS ran: Coot's count as text, e.g. "Coot
+      added 7 water molecules." (trial-gammaxe-sad-sonnet 8).
   CLASHSCORE:
     file: program.xml
     xpath: ./Validation/Molprobity/Summary/Clashscore
@@ -334,10 +349,11 @@ results:
   #   listing would. The default should be dropped.
   # FINDING: with ADD_WATERS the second refinement is stored under
   #   ./SERVALCAT_WATERS (servalcat_pipe.py lines 608 and 621), and the job's
-  #   KPIs come from it (lines 1072 and 1089-1090). The verdict reads the
-  #   first refinement (./SERVALCAT_FIRST). The format has no "this xpath,
-  #   else that one", so the after-waters numbers are separate results, with
-  #   an advisory in next. Seen in trial-gammaxe-sad-sonnet job 8.
+  #   KPIs come from it (lines 1072 and 1089-1090). The end-of-run results
+  #   (RFREE, R1FREE, RWORK, R1WORK, the 3BACK and CC results, BOND_RMSZ,
+  #   BOND_RMSD, CYCLES) are xpath lists: the after-waters block first, then
+  #   SERVALCAT_FIRST. The *_START results stay on SERVALCAT_FIRST cycle 0,
+  #   the input model. Read in trial-gammaxe-sad-sonnet job 8.
   # FINDING: without a Free R set the summary carries only "R" or "R1" (the
   #   KPI then is R or R1). No evidence job lacked a free set, so no result
   #   reads it, and such a job is judged "unjudged".
@@ -557,12 +573,12 @@ traps:
     cross-validation is by the half maps (CROSS_VALIDATION, off by default).
   - >
     With ADD_WATERS, the final model comes from a second refinement after
-    Coot's water picking, recorded under SERVALCAT_WATERS. The verdict here
-    is on the first refinement, before waters were added. The job's KPI
-    R-free is the one after (RFREE_WATERS / R1FREE_WATERS). In
-    trial-gammaxe-sad-sonnet job 8 the verdict says needs_building on R1-free
-    0.2824 at 1.79 A (limit 0.280), while after waters it is 0.2748, inside
-    the band.
+    Coot's water picking, recorded under SERVALCAT_WATERS. RFREE and R1FREE
+    (and the other end-of-run results) are from that second refinement, the
+    final model. RFREE_START is still the input model's, before both runs.
+    The report shows the two refinements separately. In
+    trial-gammaxe-sad-sonnet job 8 R1-free was 0.2824 before waters and 0.2748
+    after; the verdict uses 0.2748.
 
 next:
   - when: outcome == "refined"
@@ -620,8 +636,7 @@ next:
       trials reported the same for Gamma and BetaBlip.
       What is missing is waters, ligands and local corrections:
         - Waters: run this task again with ADD_WATERS True, unless this job
-          already did (R1FREE_WATERS or RFREE_WATERS present). Then judge by
-          the after-waters R-free.
+          already did (WATERS_ADDED present). Then judge the new job.
         - Ligand: coot_find_ligand when a ligand is expected (inputs as for
           "refined").
         - Local errors (rotamers, loops, the validation outliers): a person
@@ -691,12 +706,6 @@ next:
       overfitting: a large and growing R-free/R gap, a weight that is too
       high. PanDDA 5e9l rose by 0.0016, which is below the tolerance; its
       free set was made in the campaign.
-  - when: RFREE_WATERS < 1 or R1FREE_WATERS < 1
-    advice: >
-      Waters were added in this job. The outcome above is on the refinement
-      BEFORE the waters; the final model's R-free is RFREE_WATERS (or
-      R1FREE_WATERS). Re-read the bands with that number: if it is below the
-      limit for the resolution, treat the job as refined.
   - when: RFREE_3BACK - RFREE > 0.003 or R1FREE_3BACK - R1FREE > 0.003
     advice: >
       R-free was still falling over the last three cycles, by more than
