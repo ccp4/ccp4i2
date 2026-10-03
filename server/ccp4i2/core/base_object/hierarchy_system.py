@@ -624,11 +624,15 @@ class HierarchicalObject(ABC):
                         and child.state == ObjectState.DESTROYED):
                     return child
 
-            # Not found here - search recursively in children
+            # Not found here - search recursively in children. Only a found
+            # object counts: a CString's find() is str.find, whose -1 for "not
+            # here" was taken as the answer, so the search stopped at the first
+            # string parameter it met (ProvideSequence's SEQIN, behind
+            # SEQUENCETEXT, could not be found by name).
             for child in self.children():
                 if hasattr(child, 'find'):
                     result = child.find(name)
-                    if result is not None:
+                    if isinstance(result, HierarchicalObject):
                         return result
 
             return None

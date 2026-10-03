@@ -29,7 +29,27 @@ class crank2(CPluginScript):
   ERROR_CODES = {
     0: {'description': ' '},
     201: {'description': 'Anomalous data input contains mean intensities/amplitudes. SAD/MAD/SIRAS phasing requires anomalous pairs (I+/I- or F+/F-) to calculate anomalous differences.'},
+    202: {'description': 'Substructure atom type not set: give the anomalous scatterer (e.g. Se, Xe, S)'},
   }
+
+  # Steps that need the substructure's atom type: without one Crank2 defines
+  # no substructure model and stops at FA estimation with "No target
+  # specified for process of FA estimation", after its setup has run.
+  _NEEDS_ATOM_TYPE = ('refatompick', 'substrdet', 'phdmmb', 'phas')
+
+  def validity(self):
+    from ccp4i2.core import CCP4ErrorHandling
+    error = super(crank2, self).validity()
+    inp = self.container.inputData
+    start = str(inp.START_PIPELINE) if inp.START_PIPELINE.isSet() else 'substrdet'
+    if (start in self._NEEDS_ATOM_TYPE and not inp.ATOM_TYPE.isSet()
+            and not bool(inp.INPUT_PARTIAL)):
+      error.append(klass=self.TASKNAME, code=202,
+                   details='Give the anomalous scatterer (Atom type, e.g. Se, Xe, S): '
+                           'Crank2 cannot detect or phase a substructure without it.',
+                   name=f'{self.TASKNAME}.container.inputData.ATOM_TYPE',
+                   severity=CCP4ErrorHandling.SEVERITY_ERROR)
+    return error
 
   def has_cont_attr(self,cont,strng):
     try:
