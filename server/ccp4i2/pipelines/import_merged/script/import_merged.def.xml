@@ -57,9 +57,17 @@
        </content>
        <content id="CRYSTALNAME">
         <className>CCrystalName</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Taken from the file when not given</toolTip>
+        </qualifiers>
        </content>
        <content id="DATASETNAME">
         <className>CDatasetName</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Taken from the file when not given</toolTip>
+        </qualifiers>
        </content>
        <content id="FREERFLAG">
         <className>CFreeRDataFile</className>

@@ -9,7 +9,8 @@ the files are data that anyone may edit:
     not (RFREE > 0.35) or true
 
 Names are result names; values are numbers, double-quoted strings, ``true``
-and ``false``; ``+ - * /`` combine numbers. A comparison with a result that could not be read is unknown, and an
+and ``false``; ``+ - * /`` combine numbers. ``NAME == null`` holds when the
+result could not be read (absent), ``NAME != null`` when it could. A comparison with a result that could not be read is unknown, and an
 unknown condition does not hold, so a verdict list falls through to its
 catch-all rather than claiming success on a missing number.
 """
@@ -141,6 +142,8 @@ def parse(text):
                 raise ConditionError(f"{value!r} out of place in {text!r}")
             if value in ("true", "false"):
                 return ("lit", value == "true")
+            if value == "null":
+                return ("null",)
             return ("name", value)
         raise ConditionError(f"{value!r} out of place in {text!r}")
 
@@ -155,7 +158,7 @@ def names(tree):
     kind = tree[0]
     if kind == "name":
         return {tree[1]}
-    if kind == "lit":
+    if kind in ("lit", "null"):
         return set()
     if kind == "not":
         return names(tree[1])
@@ -195,6 +198,15 @@ def evaluate(tree, values):
             return _ARITH[tree[1]](left, right)
         except (TypeError, ZeroDivisionError):  # text, or a ratio to zero: unknown
             return MISSING
+    if tree[3][0] == "null" or tree[2][0] == "null":
+        # NAME == null: the result could not be read (absent); != null: it could
+        other = tree[2] if tree[3][0] == "null" else tree[3]
+        absent = evaluate(other, values) is MISSING
+        if tree[1] == "==":
+            return absent
+        if tree[1] == "!=":
+            return not absent
+        return MISSING
     left, right = evaluate(tree[2], values), evaluate(tree[3], values)
     if left is MISSING or right is MISSING:
         return MISSING

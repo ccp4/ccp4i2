@@ -71,7 +71,8 @@ inputs:                           # only the ones that need judgement
 results:                          # the numbers that decide, and where they are
   TFZ:
     file: program.xml             # program.xml | a job file named here | kpi
-    xpath: .//Solution/TFZ        # ElementTree subset, first match
+    xpath: .//Solution/TFZ        # ElementTree subset, first match; or a list
+                                  # of xpaths, the first that reads wins
     type: float                   # float | int | str ("4.01%" reads as 4.01)
     meaning: Translation-function Z-score of the top solution.
   TNCS:
@@ -117,7 +118,8 @@ Rules:
 - **`when` is a tiny language**, not Python: result names, numbers, strings,
   `+ - * /`, `== != < <= > >=`, `and`, `or`, `not`, parentheses, `true`
   (so `RFREE_START - RFREE >= 0.02`). A result that could not be read makes
-  any condition on it unknown, and an unknown condition never holds. The facade
+  any condition on it unknown, and an unknown condition never holds; to ask
+  about absence itself, `NAME == null` (absent) and `NAME != null` (read). The facade
   evaluates it with its own parser, never `eval`.
 - **Every threshold has a `basis`**: the program's documentation, the
   literature, or our own runs (project and job, with the value seen). A
@@ -141,10 +143,29 @@ building.
 ## 5. The facade (MCP)
 
 A thin adapter over the REST API, so the server's validation still decides
-everything. It runs as a separate process speaking MCP over stdio (desktop:
-it reads the port and token as the About box shows them) or HTTP (a
-deployment). It ships as an optional extra so the desktop app gains no
-required dependency.
+everything. Two ways in:
+
+- **HTTP, served by the app itself at `/mcp`** (`server/ccp4i2/agent/http.py`,
+  mounted in `config/asgi.py`): stateless, so either of the desktop's two
+  uvicorn workers can answer; each tool call goes back to the same server's
+  REST API with the caller's own `Authorization`, so whatever authentication
+  the deployment uses decides it. On the desktop `/mcp` also requires the
+  session token itself. Help > About shows the address and a setup line;
+  both change at every launch, deliberately: an agent's access lasts as
+  long as the session the person started.
+
+      claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
+          --header "Authorization: Bearer <token>"
+
+- **stdio**, `i2-mcp` (or `python -m ccp4i2.agent.mcp_server`), for clients
+  that only speak stdio; `CCP4I2_URL` and `CCP4I2_TOKEN` say where the
+  server is.
+
+`mcp` is a runtime dependency. Its SDK derives a key with a call CCP4's
+`cryptography` (2.8, not ours to replace) cannot make; `agent/request_state.py`
+supplies the same derivation from the standard library through the SDK's own
+codec hook. If the MCP server cannot be built at all, the app serves the REST
+API alone and says so in its log: the agent route never stops the app.
 
 Tools, first set:
 

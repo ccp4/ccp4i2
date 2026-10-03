@@ -180,6 +180,14 @@ def diagnose_reflection_file(path) -> dict:
     return d
 
 
+def _hkl_repeats(mtz):
+    """True if some (h, k, l) occurs more than once in the MTZ."""
+    import numpy
+
+    hkl = numpy.asarray(mtz.make_miller_array())
+    return len(hkl) > 0 and len(numpy.unique(hkl, axis=0)) < len(hkl)
+
+
 def _diagnose_mtz(path, d):
     import gemmi
 
@@ -190,9 +198,18 @@ def _diagnose_mtz(path, d):
         d["spaceGroupNumber"] = mtz.spacegroup.number
     d["resolutionHigh"] = mtz.resolution_high()
     d["resolutionLow"] = mtz.resolution_low()
-    # unmerged iff there are batches or an M/ISYM column; merged otherwise.
+    # Unmerged iff there are batches, or an M/ISYM column AND some hkl occurs
+    # more than once. The column alone is not enough: merged anomalous files
+    # can keep an ISYM column (the held-out CDK1 file: F, DANO, F(+)/F(-),
+    # ISYM, IMEAN, I(+)/I(-), no batches, every hkl once), and calling it
+    # unmerged left import_merged refusing it with no way round.
     has_msym = any(c.type == "Y" for c in mtz.columns)  # M/ISYM
-    d["merged"] = not (len(mtz.batches) > 0 or has_msym)
+    if len(mtz.batches) > 0:
+        d["merged"] = False
+    elif has_msym:
+        d["merged"] = not _hkl_repeats(mtz)
+    else:
+        d["merged"] = True
     # anomalous iff any (+)/(-) column is present.
     d["anomalous"] = any("(+)" in c.label or "(-)" in c.label for c in mtz.columns)
     # StarAniso: the server writes an "SA_flag" column, and stamps "STARANISO"

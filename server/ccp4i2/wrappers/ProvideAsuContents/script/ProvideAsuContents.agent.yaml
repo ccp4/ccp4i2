@@ -279,6 +279,18 @@ next:
       atomic resolution (read it from the import job); an atomic-resolution
       peptide may be better phased ab initio (LassoPeptide used
       phaser_singleMR then acorn).
+  - when: outcome == "plausible" or outcome == "low_solvent"
+    task: crank2
+    inputs:
+      SEQIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      The route when there is no model to place and the data carry an
+      anomalous signal (the data-reduction judgement says so: CCANOM_LIMIT
+      or ANOM_LIMIT above 0, its next step crank2). This file is SEQIN, so
+      Crank2's copies, solvent and site count come from the contents given
+      here; F_SIGFanom is the anomalous data (I+/I-), ATOM_TYPE the
+      scatterer, and FREE "existing" with the project's FREERFLAG. Read
+      describe_task crank2 first.
   - when: outcome == "ambiguous_copies"
     task: phaser_simple_phil
     inputs:

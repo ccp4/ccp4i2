@@ -4466,7 +4466,7 @@ class CPluginScript(CData):
                         'rename': 'identity'  # Special value: use identity mapping
                     })
 
-                elif isinstance(item, (list, tuple)) and len(item) == 2:
+                elif isinstance(item, (list, tuple)) and len(item) == 2 and isinstance(item[0], str):
                     # [name, target_contentFlag] - use identity mapping
                     name, target_flag = item
                     file_objects.append({
@@ -4475,6 +4475,24 @@ class CPluginScript(CData):
                         'target_contentFlag': target_flag,
                         'rename': 'identity'  # Special value: use identity mapping
                     })
+
+                elif hasattr(item, 'objectName') or (
+                        isinstance(item, (list, tuple)) and len(item) == 2
+                        and hasattr(item[0], 'objectName')):
+                    # A file object itself (or [object, target_contentFlag]):
+                    # for files outside inputData/outputData, such as parrot's
+                    # reference data in controlParameters, which by name were
+                    # "not found" and so never reached the program.
+                    file_obj, target_flag = (item if isinstance(item, (list, tuple)) else (item, None))
+                    spec = {
+                        'name': file_obj.objectName(),
+                        'display_name': file_obj.objectName(),
+                        'file_obj': file_obj,
+                        'rename': 'identity',
+                    }
+                    if target_flag is not None:
+                        spec['target_contentFlag'] = target_flag
+                    file_objects.append(spec)
 
                 else:
                     error.append(

@@ -462,34 +462,39 @@ class aimless(CPluginScript):
 
         # out.MTZMERGEDOUT is list of merged MTZ files for processing by ctruncate
         outfilesOK = False   #  will fail if no files unless mode = NONE
+        base = str(out.HKLOUT_BASENAME)
+
+        def outputs(extension):
+            """This job's output files, split into (merged, unmerged).
+
+            By the file's own name: the directory above it is the user's (a
+            project called "...unmerged..." made every merged file look
+            unmerged, and the job failed with Aimless's output on disk)."""
+            files = sorted(glob.glob(os.path.join(self.getWorkDirectory(), base + "*." + extension)))
+            unmerged = [f for f in files if "unmerged" in os.path.basename(f)]
+            return [f for f in files if f not in unmerged], unmerged
+
         for mode in par.OUTPUT_MODE:
             print("processOutputFiles mode:", mode)
             if mode == 'MERGED':
                 # Merged files are HKLOUT[_dname], but not "_unmerged"
-                for file in glob.glob(os.path.join(self.getWorkDirectory(),str(out.HKLOUT_BASENAME)+"*.mtz")):
-                    if not 'unmerged' in file:
-                        nOutFiles += 1
-                        outfilesOK = True
-                        out.MTZMERGEDOUT.append(file)
-                        print("Adding to MTZMERGEDOUT:", file)
-                        #print("Type:", type(file))
-                        #print("HKLOUT_BASENAME:", str(out.HKLOUT_BASENAME))
-                        #print("Work directory", self.getWorkDirectory())
+                for file in outputs("mtz")[0]:
+                    nOutFiles += 1
+                    outfilesOK = True
+                    out.MTZMERGEDOUT.append(file)
+                    print("Adding to MTZMERGEDOUT:", file)
             elif mode == 'UNMERGED':
-                for file in glob.glob(os.path.join(self.getWorkDirectory(),str(out.HKLOUT_BASENAME)+"*.mtz")):
-                    if 'unmerged' in file:
-                        nOutFiles += 1
-                        out.MTZUNMERGEDOUT.append(file)
+                for file in outputs("mtz")[1]:
+                    nOutFiles += 1
+                    out.MTZUNMERGEDOUT.append(file)
             elif mode == 'SP_MERGED':
-                if not file.find('unmerged'):
-                    for file in glob.glob(os.path.join(self.getWorkDirectory(),str(out.HKLOUT_BASENAME)+"*.sca")):
-                        nOutFiles += 1
-                        out.SPMERGEDOUT.append(file)
+                for file in outputs("sca")[0]:
+                    nOutFiles += 1
+                    out.SPMERGEDOUT.append(file)
             elif mode == 'SP_UNMERGED':
-                for file in glob.glob(os.path.join(self.getWorkDirectory(),str(out.HKLOUT_BASENAME)+"*.sca")):
-                    if 'unmerged' in file:
-                        nOutFiles += 1
-                        out.SPUNMERGEDOUT.append(file)
+                for file in outputs("sca")[1]:
+                    nOutFiles += 1
+                    out.SPUNMERGEDOUT.append(file)
             elif mode == 'NONE':
                 outfilesOK = True
 

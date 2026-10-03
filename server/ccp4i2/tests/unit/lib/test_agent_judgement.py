@@ -24,6 +24,11 @@ from ccp4i2.core.tasks import TASKS
     ("A / B > 1.1 and -A < 0", {"A": 0.5, "B": 0.4}, True),
     ("1 + 2 * 3 == 7", {}, True),
     ("(1 + 2) * 3 == 9", {}, True),
+    ("NCS == null", {}, True),
+    ("NCS == null", {"NCS": "mr"}, False),
+    ("NCS != null and NCS == \"mr\"", {"NCS": "mr"}, True),
+    ("NCS != null", {"NCS": None}, False),
+    ("not (NCS == null) or X > 1", {}, False),
 ])
 def test_conditions(text, values, expected):
     assert condition.holds(text, values) is expected
@@ -146,3 +151,14 @@ def test_shipped_judgement_files_are_well_formed(task, path):
     assert data["task"] == task
     assert data.get("status") in ("draft", "reviewed")
     assert judgement.problems(data) == []
+
+
+def test_an_xpath_list_takes_the_first_that_reads(tmp_path):
+    (tmp_path / "program.xml").write_text(
+        "<R><Before><RFree>0.282</RFree></Before><After><RFree></RFree></After></R>")
+    spec = {"xpath": [".//After/RFree", ".//Before/RFree"]}
+    assert judgement.read_result(spec, tmp_path) == 0.282   # After is empty
+    (tmp_path / "program.xml").write_text(
+        "<R><Before><RFree>0.282</RFree></Before><After><RFree>0.275</RFree></After></R>")
+    assert judgement.read_result(spec, tmp_path) == 0.275
+    assert judgement.problems({"results": {"X": {"xpath": [".//A", ".//B[@c!='d'"]}}})

@@ -38,3 +38,23 @@ def test_parrot_honours_asu_copies():
         xml = ET.parse(job / "program.xml")
         solvent = float(xml.find("./SolventContent/SolventContent").text)
         assert abs(solvent - 0.632) < 0.005
+
+
+def test_parrot_with_reference_structure():
+    """Reference data reach parrot, in a file of their own. They were written
+    to hklin.mtz, over the job's own data, and no mtzin-ref line was given."""
+    args = ["parrot"]
+    args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--ABCD", demoData("gamma", "initial_phases.mtz")]
+    args += ["--ASUIN", demoData("gamma", "gamma.asu.xml")]
+    # Gamma itself as the reference: what matters here is the plumbing
+    args += ["--F_SIGF_REF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--ABCD_REF", demoData("gamma", "initial_phases.mtz")]
+    args += ["--XYZIN_REF", demoData("gamma", "gamma_model.pdb")]
+    with i2run(args) as job:
+        assert (job / "hklin_ref.mtz").exists()
+        script = next(job.glob("com.txt")).read_text() if list(job.glob("com.txt")) else ""
+        script += "".join(p.read_text(errors="replace") for p in job.glob("*.script"))
+        log = (job / "log.txt").read_text(errors="replace")
+        assert "mtzin-ref" in script or "mtzin-ref" in log
+        gemmi.read_mtz_file(str(job / "ABCDOUT.mtz"))

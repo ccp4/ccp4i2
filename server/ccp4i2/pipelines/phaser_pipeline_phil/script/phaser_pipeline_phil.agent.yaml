@@ -375,8 +375,49 @@ traps:
     not several molecules. Phaser may also change the space group: build
     against this job's F_SIGF_OUT/FREERFLAG_OUT then, or R-free sits near
     0.5 and a right solution looks wrong.
+  - >
+    A model Phaser placed without a search (already at the origin) that
+    starts refinement at a low R-free was refined against these reflections,
+    or an isomorphous set: the run was a re-refinement, not MR. Its R-free
+    is independent only with the free set the model was refined with; with
+    a new set the "free" reflections were in its working set, and the
+    R-free (Gamma trials: 0.253 at cycle 0, level with R 0.256) is
+    optimistic. "solved" then says the model fits, not that R-free can be
+    trusted.
 
 next:
+  - when: >
+      (SEARCH_OUTCOME == "placed (model already at the origin, no search needed)"
+      or ORIGIN_NOTE == "rotation 000 by the input model's low R-factor")
+      and RFREE_START < 0.35
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phaser_pipeline_phil[-1].XYZOUT[0]"
+      HKLIN: "phaser_pipeline_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_pipeline_phil[-1].FREERFLAG"
+    advice: >
+      The model was already in place and starts refinement at an R-free
+      below 0.35, under every genuine MR start seen here (BetaBlip 4 0.376,
+      complete at 3.0 A; BetaBlip 3 0.453; MDM2 25 0.543). The Gamma
+      trials (trial-gamma-mr-sonnet and -haiku job 3) started at 0.253, and gamma_model.pdb's own header records REFMAC
+      refinement against these data (REMARK 3: 1.79 A, R 0.166, R-free
+      0.218, test set 9.8%, 1204 reflections). Such a model was refined
+      against these reflections or an isomorphous set, and its R-free is
+      only independent with ITS free set. (1) If that set exists (the
+      deposition's, or the project job that refined the model), import it
+      and use it as FREERFLAG from now on; to cover reflections it lacks,
+      run freerflag with it as FREERFLAG and COMPLETE True, which extends it
+      rather than drawing a new one. (2) If it does not (Gamma: the demo
+      freeR.mtz has 5% per flag, not the 9.8% the header records, so a
+      match is not shown), keep the new set but erase the model's memory of
+      the old one before believing R-free: this servalcat_pipe job with
+      RANDOMIZEUSE True, RANDOMIZE 0.25 (A RMS coordinate shake, Servalcat
+      --randomize) and BFACSETUSE True, BFACSET 30 (B-factors reset), then
+      refinement to convergence; judge by that job's R-free, not this one's.
+      That a 0.25 A shake and B reset are enough is recalled practice, not
+      checked here, and neither option has been run in this workspace. No
+      CCP4i2 task recovers a lost original free set. The 0.35 is ours, from
+      the four starts above; an expert should set it.
   - when: outcome == "solved"
     task: prosmart_refmac
     inputs:

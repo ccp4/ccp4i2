@@ -15,8 +15,9 @@ use_when:
     refinement left R-free above about 0.40; the model is to be rebuilt into
     the target sequence.
   - Experimental phasing (SAD/MAD/SIR) gave phases but no model; give the
-    phases (preferably after density modification) of the hand that looks
-    right, or build both hands and compare.
+    phases of the hand that looks right (the phasing job's own by default,
+    since ModelCraft runs Parrot itself; phaser_ep_phil gives parrot's, and
+    the two have not been compared here), or build both hands and compare.
   - A partial model (from an earlier build or manual work) is to be extended
     and completed against the same data.
 
@@ -256,6 +257,15 @@ verdict:
       (TERMINATION and the job's error 201 say why) or the job failed earlier.
 
 traps:
+  - >
+    After experimental phasing the input model's heavy atoms are dropped
+    (Buccaneer outputs protein only; ModelCraft passes as known structure
+    only peptide-like ligands, residues with a C-alpha, not ions or heavy
+    atoms), and chain is traced
+    through their peaks. With strong scatterers (Hg, Pt, Au, I...) and
+    refinement against the derivative, run add_substructure on the result
+    with the phasing job's XYZOUT_SUBSTR before refining: held-out HypF
+    0.409 -> 0.267.
   - >
     With a starting model, "all residues built and sequenced" proves
     nothing: Buccaneer is seeded from the model and takes its sequence

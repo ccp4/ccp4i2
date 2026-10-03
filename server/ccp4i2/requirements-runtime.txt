@@ -25,7 +25,8 @@
 # PLATFORM-CONDITIONAL TAIL: a pip-freeze only ever captures the *generating*
 # machine's platform, so the Windows/Linux halves of keyring's closure can never
 # appear in it. gen_runtime_lock.py therefore appends a fixed, marker-bearing
-# block (KEYCHAIN_CONDITIONAL) after the frozen lines. Regeneration preserves it.
+# block (KEYCHAIN_CONDITIONAL, which also carries the MCP SDK's pywin32) after
+# the frozen lines. Regeneration preserves it.
 #
 # REGENERATE:
 #   python3 -m venv /tmp/lockenv
@@ -33,7 +34,8 @@
 #   /tmp/lockenv/bin/python server/scripts/gen_runtime_lock.py --freeze-from /tmp/lockenv \
 #     > server/ccp4i2/requirements-runtime.txt
 #   # then re-test the server ASGI import on a target CCP4 build before committing.
-
+annotated-types==0.8.0
+anyio==4.15.1
 asgiref==3.11.1
 attrs==26.1.0
 cattrs==26.1.0
@@ -48,18 +50,34 @@ elementpath==5.1.3
 et_xmlfile==2.0.0
 future==1.0.0
 h11==0.16.0
+httpcore2==2.13.1
+httpx2==2.13.1
 idna==3.18
+jsonschema-specifications==2025.9.1
+jsonschema==4.26.0
 lxml_html_clean==0.4.5
+mcp-types==2.2.0
+mcp==2.2.0
 openpyxl==3.1.5
+opentelemetry-api==1.45.0
 platformdirs==4.10.0
 pycparser==3.0
+pydantic_core==2.46.5
+pydantic==2.13.5
 PyJWT==2.13.0
 python-docx==1.2.0
+python-multipart==0.0.32
 pytz==2026.2
+referencing==0.37.0
 requests-cache==1.3.2
 requests==2.34.2
+rpds-py==2026.6.3
 sqlparse==0.5.5
-typing_extensions==4.15.0
+sse-starlette==3.5.0
+starlette==1.7.0
+truststore==0.10.4
+typing_extensions==4.16.0
+typing-inspection==0.4.4
 url-normalize==3.0.0
 urllib3==2.7.0
 uvicorn==0.49.0
@@ -80,5 +98,7 @@ backports.tarfile==1.2.0 ; python_version < "3.12"
 importlib_metadata==9.0.0 ; python_version < "3.12"
 zipp==4.1.0 ; python_version < "3.12"
 pywin32-ctypes==0.2.3 ; sys_platform == "win32"
+# --- the MCP SDK on Windows (ccp4i2/agent/) ---------------------------------
+pywin32==311 ; sys_platform == "win32"
 SecretStorage==3.5.0 ; sys_platform == "linux"
 jeepney==0.9.0 ; sys_platform == "linux"

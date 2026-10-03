@@ -65,6 +65,9 @@ dependencies = [
     "uvicorn",
     "xmlschema",
     "openpyxl",            # Excel file parsing for ADME importers
+    "mcp>=2.2",            # the agent facade, served at /mcp and as i2-mcp
+                           # (ccp4i2/agent/); runs on CCP4's cryptography 2.8
+                           # through agent/request_state.py
 ]
 
 [project.optional-dependencies]
@@ -75,15 +78,9 @@ science = [
     "scipy",               # modelASUCheck (Hungarian assignment)
     "pandas",              # servalcat_pipe difference monitoring
 ]
-# The MCP facade an agent drives CCP4i2 through (ccp4i2/agent/mcp_server.py):
-# a client of the REST API, so the app itself never needs it.
-agent = [
-    "mcp>=2.2",
-]
 # Test/lint toolchain — not needed at runtime. `pip install ccp4i2[dev]`.
 dev = [
     "jsonschema",         # scene contract validation in tests (scene_contracts/*.json)
-    "mcp>=2.2",           # the agent facade's tests (ccp4i2/agent/mcp_server.py)
     "pytest",
     "pytest-asyncio",
     "pytest-django",

@@ -1,0 +1,212 @@
+task: add_substructure
+status: draft
+reviewed_by: []
+purpose: >
+  Puts an anomalous substructure (heavy-atom or anomalous-scatterer sites)
+  into a built model, once each, so refinement models the scatterers. A site
+  that is already a model atom of its element (S-SAD sulphurs on Cys SG /
+  Met SD, any symmetry copy) is not doubled; a Se on a methionine SD makes
+  that residue MSE; an S or Se site with no residue to belong to is
+  reported, never added as a lone atom; a site within 1.5 A of another atom
+  is left out and named; the rest (Hg, Pt, Xe, I, Br, metals) are added as
+  HETATM residues with the occupancy and B the substructure gives. Sites
+  from another job are first put in the model's origin and hand when they
+  do not fit as given (FIND_ORIGIN).
+
+use_when:
+  - >
+    A model was rebuilt after experimental phasing (ModelCraft, Buccaneer,
+    manual rebuilding) and so lost the substructure, and you will refine it
+    against the derivative data. ModelCraft drops non-protein atoms when it
+    rebuilds, so its XYZOUT has no heavy atoms even when its input had.
+  - >
+    A molecular-replacement model whose data show anomalous sites found
+    separately (ShelxCD, Phaser's anomalous completion): metals, ions, a
+    soak.
+  - >
+    To check a substructure against a model: for S-SAD every site should be
+    on a model sulphur (ON_MODEL); sites that are not are ions, sulphate,
+    chloride or misplaced.
+  - >
+    A SeMet crystal refined against its own data: ALL_MET_TO_MSE makes every
+    methionine MSE, found as a site or not.
+
+not_when:
+  - text: >
+      The model and sites come from the same Crank2 or SHELX job: its
+      XYZOUT_COMPLETE is this merge already, done in the job.
+    instead: none
+  - text: >
+      You will build and refine against a native dataset (isomorphous, no
+      heavy atoms): there is nothing to add; use the derivative only for
+      the phases.
+    instead: modelcraft
+
+inputs:
+  - param: inputData.XYZIN
+    advice: >
+      The built model, as last refined or built ("modelcraft[-1].XYZOUT",
+      "servalcat_pipe[-1].XYZOUT").
+  - param: inputData.XYZIN_SUB
+    advice: >
+      The sites: "crank2[-1].XYZOUT_SUBSTR" or "shelx[-1].XYZOUT_SUBSTR"
+      (the same frame as their XYZOUT and FPHOUT_HL, so also the frame of a
+      ModelCraft build on those phases), Phaser EP's sites, or ShelxCD's.
+  - param: controlParameters.FIND_ORIGIN
+    advice: >
+      True by default. Sites that do not fit as given are tried in every
+      origin shift and hand the model's space group allows, scanning a polar
+      axis, and moved only when one placement is clearly best. It needs 3
+      sites or more, and decides well only when sites sit on model atoms (S,
+      Se) or are many: Xe sites in a moved frame were left as given ("several
+      origins fit about equally well") in testing, rather than guessed. With
+      more than one polar axis (P1) the polar shift is not searched.
+  - param: controlParameters.REMOVE_CLASHING
+    advice: >
+      True by default. Model building with no heavy atoms in its model
+      traces chain into the heavy-atom peaks, the strongest in the map:
+      Sonnet's HypF ModelCraft model had Cys67 N 0.31 A and an UNK atom 0.13
+      A from the two Hg. Those residues are removed and the sites added:
+      Servalcat then went from R-free 0.409 (the model as built) to 0.267,
+      below Crank2's own 0.298. A site on an S or Se atom (a sulphur taken
+      for the soaked element: GammaXe's "Xe" on Met57 SD) is never acted on.
+      Turn it off only if you trust the model over the sites there; the
+      removed residues are listed (RESIDUES_REMOVED) for rebuilding.
+  - param: controlParameters.ALL_MET_TO_MSE
+    advice: >
+      Only for a SeMet crystal refined against its own data. Without it only
+      methionines with a Se site become MSE.
+
+results:
+  SITES_ADDED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: added
+    type: int
+    meaning: Sites added to the model as atoms.
+  SITES_ON_MODEL:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: on_model
+    type: int
+    meaning: >
+      Sites already model atoms of their element (S-SAD sulphurs), not
+      doubled. Each is named (element, residue, atom, distance).
+  MET_CONVERTED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: converted
+    type: int
+    meaning: Methionines made MSE because a Se site is on their SD.
+  SITES_NOT_PLACED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: not_placed
+    type: int
+    meaning: >
+      S or Se sites on no residue (an unbuilt or misbuilt residue, sulphate
+      or chloride taken for S, a misplaced site), or every site when the
+      frame could not be established ("frame not established").
+  SITES_CLASHING:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: clashes
+    type: int
+    meaning: >
+      Sites within 1.5 A of a model atom of another element: misplaced, or
+      a sulphur taken for the soaked element (GammaXe: a "Xe" 0.86 A from
+      Met57 SD).
+  RESIDUES_REMOVED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: removed
+    type: int
+    meaning: >
+      Residues removed because they were built into a heavy atom's density
+      (REMOVE_CLASHING). Each is named; rebuild them (by hand, or a
+      ModelCraft run that keeps the sites) once the sites are refined.
+  ORIGIN_MOVED:
+    file: program.xml
+    xpath: ".//CompleteModel/Origin"
+    attribute: moved
+    type: str
+    optional: true
+    meaning: >
+      "True" when the sites were moved to the model's origin or hand (the
+      transform is in the Origin element's "transform"); absent with
+      FIND_ORIGIN off.
+  ORIGIN_SEARCHED:
+    file: program.xml
+    xpath: ".//CompleteModel/Origin"
+    attribute: searched
+    type: str
+    optional: true
+    meaning: >
+      "True" when the sites did not fit as given and a search ran.
+  # NOTE: tested on synthetic moves of real sites: GammaXe Xe (P212121),
+  #   S atoms of 1buh (P21: polar shift 7.3 A plus inversion, recovered to
+  #   0.05 A) and of 4hg7 (P6522, the inverted hand given in P6122). No job
+  #   evidence yet: this task is new.
+
+verdict:
+  - when: SITES_NOT_PLACED > 0 and SITES_ADDED == 0 and MET_CONVERTED == 0 and SITES_ON_MODEL == 0
+    outcome: not_fitted
+    basis: >
+      Nothing could be placed: the sites are not in this model's frame and
+      the search could not find it, or every site is S/Se with no residue.
+      Read the report's origin note.
+  - when: SITES_ADDED > 0 or MET_CONVERTED > 0
+    outcome: added
+    basis: >
+      The model now carries the scatterers. Refine it next; R-free should
+      fall towards what the phasing job's own refinement reached with the
+      sites, or below (HypF, Crank2 0.298: its model without the two Hg
+      0.437, with them 0.295; ModelCraft's rebuild 0.409, with the three
+      residues under the Hg removed and the Hg added 0.267).
+  - when: SITES_ON_MODEL > 0
+    outcome: already_present
+    basis: >
+      Every placed site is already a model atom (an S-SAD substructure on
+      its cysteines and methionines): the model needs nothing added, and the
+      substructure agrees with it.
+  - when: true
+    outcome: nothing_to_add
+    basis: The substructure has no sites, or all clash.
+
+traps:
+  - >
+    S and Se sites with no residue to sit on are never added: a lone S or
+    Se atom is wrong. For SeMet, build the methionine (or check the
+    sequence register) and run this again.
+  - >
+    Sites added at the wrong origin put heavy atoms where none are, and
+    refinement then makes everything worse. That is why the search moves
+    sites only when one placement is clearly best, and adds nothing when the
+    frame cannot be found. Sites from the same job as the model, or from
+    the job whose phases the model was built on, are in its frame already.
+  - >
+    Rebuilding after this (ModelCraft) drops the sites again and builds into
+    their density: add them back after the last rebuild, then refine.
+  - >
+    SITES_CLASHING with REMOVE_CLASHING off, or RESIDUES_REMOVED, means the
+    model was built through a heavy atom: its R-free stays high however
+    long it refines (HypF: 0.409 after ten cycles) until those residues go.
+
+next:
+  - when: outcome == "added"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "add_substructure[-1].XYZOUT"
+    advice: >
+      Refine against the data the sites were found in (the derivative), with
+      the project's free set. Compare R-free with the phasing job's own.
+  - when: outcome == "not_fitted"
+    advice: >
+      Check the sites belong to this crystal and data, and take them from
+      the job whose phases the model was built on (crank2/shelx
+      XYZOUT_SUBSTR). With fewer than 3 sites no search is possible.
+
+sources:
+  - server/ccp4i2/pipelines/crank2/script/complete_model.py
+  - server/ccp4i2/wrappers/add_substructure/script/add_substructure.py
+  - server/ccp4i2/tests/unit/pdb/test_crank2_complete_model.py

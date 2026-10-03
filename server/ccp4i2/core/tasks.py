@@ -439,6 +439,16 @@ TASKS = {
         reportPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report:coordinate_selector_report",
         ccp4_free=True,  # pure gemmi/file ops
     ),
+    "add_substructure": Task(
+        title="Add the anomalous substructure to a model",
+        description="Put heavy-atom or anomalous sites back into a built model, once each (S/Se on residues are not doubled; Se on Met makes MSE), finding their origin and hand if needed",
+        shortTitle="Add substructure",
+        searchTerms=("selenomethionine", "heavy atom", "soak", "merge"),
+        pluginPath="ccp4i2.wrappers.add_substructure.script.add_substructure:add_substructure",
+        defXmlPath="wrappers/add_substructure/script/add_substructure.def.xml",
+        reportPath="ccp4i2.wrappers.add_substructure.script.add_substructure_report:add_substructure_report",
+        ccp4_free=True,  # gemmi only
+    ),
     "coot1": Task(
         title="Coot 1",
         description="Interactive model building with Coot 1",

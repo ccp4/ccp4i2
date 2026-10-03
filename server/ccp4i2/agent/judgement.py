@@ -52,10 +52,23 @@ def read_result(spec, job_dir, kpis=None):
         path = Path(job_dir) / source
         if not path.is_file():
             return None
+        # An xpath, or a list of them: the first that finds an element wins
+        # (e.g. the R-free after waters were added, else before)
+        xpaths = spec.get("xpath")
+        xpaths = xpaths if isinstance(xpaths, list) else [xpaths]
         try:
-            node = ET.parse(path).find(spec["xpath"])
-        except (ET.ParseError, SyntaxError, KeyError):
+            tree = ET.parse(path)
+        except (ET.ParseError, OSError):
             return None
+        node = None
+        for xpath in xpaths:
+            try:
+                node = tree.find(xpath)
+            except (SyntaxError, KeyError, TypeError):
+                node = None
+            if node is not None and (spec.get("attribute") or (node.text or "").strip()):
+                break
+            node = None
         if node is None:
             return None
         attribute = spec.get("attribute")
@@ -89,11 +102,13 @@ def problems(judgement):
         if spec.get("file", "program.xml") != "kpi" and not spec.get("xpath"):
             found.append(f"result {name}: no xpath")
         elif spec.get("xpath"):
-            try:  # a path ElementTree cannot compile would read as missing, always
-                ET.fromstring("<x/>").find(spec["xpath"])
-            except (SyntaxError, KeyError, TypeError) as err:
-                found.append(f"result {name}: xpath {spec['xpath']!r} is not one ElementTree "
-                             f"reads ({err}); keep to tags, /, //, [n], [last()], [@a='v'], [tag='v']")
+            xpaths = spec["xpath"] if isinstance(spec["xpath"], list) else [spec["xpath"]]
+            for xpath in xpaths:
+                try:  # a path ElementTree cannot compile would read as missing, always
+                    ET.fromstring("<x/>").find(xpath)
+                except (SyntaxError, KeyError, TypeError) as err:
+                    found.append(f"result {name}: xpath {xpath!r} is not one ElementTree "
+                                 f"reads ({err}); keep to tags, /, //, [n], [last()], [@a='v'], [tag='v']")
         if spec.get("type", "float") not in _TYPES:
             found.append(f"result {name}: type {spec['type']!r} is not one of {sorted(_TYPES)}")
     for section in ("verdict", "next"):
