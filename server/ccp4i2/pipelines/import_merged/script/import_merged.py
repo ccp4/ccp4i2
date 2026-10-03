@@ -131,6 +131,11 @@ class import_merged(CPluginScript):
             self.container.inputData.HKLIN_OBS_COLUMNS, fcontent.listOfColumns)
         if len(fcontent.datasets) >= 2:
             self.container.inputData.DATASETNAME = fcontent.datasets[1]
+        # The interface fills the crystal name from the file; a job set up
+        # any other way (i2run, the API, an agent) may not have one
+        crystals = list(getattr(fcontent, 'crystalNames', None) or [])
+        if not self.container.inputData.CRYSTALNAME.isSet() and len(crystals) >= 2:
+            self.container.inputData.CRYSTALNAME = crystals[1]
         self.importXML = etree.Element('IMPORT_LOG')
         status = self.importmtz()
         self.makeReportXML(self.importXML)
