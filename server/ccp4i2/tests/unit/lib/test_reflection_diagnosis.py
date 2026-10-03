@@ -264,3 +264,42 @@ def test_diagnose_mmcif_no_staraniso(tmp_path):
     d = diagnose_reflection_file(p)
     assert d["format"] == FORMAT_MMCIF
     assert d["staraniso"] is False
+
+
+# --- merged vs unmerged MTZ: an M/ISYM column alone does not make it unmerged ---
+
+
+def _write_mtz_rows(path, hkls, with_isym):
+    import gemmi
+    import numpy as np
+
+    mtz = gemmi.Mtz(with_base=True)
+    mtz.cell = gemmi.UnitCell(50, 50, 50, 90, 90, 90)
+    mtz.spacegroup = gemmi.find_spacegroup_by_name("P 1")
+    mtz.add_dataset("data")
+    cols = [("F", "F"), ("SIGF", "Q")] + ([("ISYM", "Y")] if with_isym else [])
+    for label, ctype in cols:
+        mtz.add_column(label, ctype)
+    rows = [list(hkl) + [1.0] * len(cols) for hkl in hkls]
+    mtz.set_data(np.array(rows, dtype=np.float32))
+    mtz.write_to_file(str(path))
+
+
+def test_merged_mtz_keeping_an_isym_column_is_merged(tmp_path):
+    # The held-out CDK1 file: merged, every hkl once, with an ISYM column;
+    # it was called unmerged and import_merged refused it (code 202)
+    p = tmp_path / "merged_isym.mtz"
+    _write_mtz_rows(p, [(0, 0, 1), (0, 1, 1), (1, 1, 1)], with_isym=True)
+    assert diagnose_reflection_file(p)["merged"] is True
+
+
+def test_repeated_hkl_with_isym_is_unmerged(tmp_path):
+    p = tmp_path / "unmerged_isym.mtz"
+    _write_mtz_rows(p, [(0, 0, 1), (0, 0, 1), (1, 1, 1)], with_isym=True)
+    assert diagnose_reflection_file(p)["merged"] is False
+
+
+def test_no_isym_no_batches_is_merged(tmp_path):
+    p = tmp_path / "merged.mtz"
+    _write_mtz_rows(p, [(0, 0, 1), (0, 1, 1)], with_isym=False)
+    assert diagnose_reflection_file(p)["merged"] is True
