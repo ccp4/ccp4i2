@@ -248,6 +248,19 @@ results:
       written when MolProbity ran and the verdict code succeeded. Not used
       by the verdict: the band table there is the same CCP4Cloud table, so
       it gives the same answer and works without MolProbity.
+  ADD_WATERS:
+    file: params.xml
+    xpath: .//controlParameters/ADD_WATERS
+    type: str
+    optional: true
+    meaning: >
+      Whether water picking was requested: "True" in MDM2 3 (and trial
+      Gamma job 6), "False" when set off explicitly. params.xml holds only
+      values that differ from the def.xml, so with the default (False) the
+      element is absent (CDK2 2, Gamma 12, MDM2 107). With "True" and
+      CYCLES_RUN 5, the statistics are those of the 5 post-water cycles the
+      pipeline always runs, not a short run (waters are skipped, and
+      CYCLES_RUN is then NCYCLES, when R-work is not below the limit).
   # FINDING: when waters are added, the job's program.xml holds only the
   #   post-water REFMAC run; the first run's start and end (MDM2 3: 0.259 ->
   #   0.267, R-free ROSE) are only in the sub-job's program.xml (job_3/job_2).
@@ -329,6 +342,35 @@ verdict:
       runs: CDK2 2 0.438 -> 0.445 (correct CDK2 chains, both cyclins
       removed: incomplete); Thaumatin 17.9 0.461 -> 0.461 while R-work fell
       0.449 -> 0.419 (wrong enantiomorph).
+  - when: RFREE - RFREE_START > 0.003
+    outcome: not_improving
+    basis: >
+      Not refined, and R-free ROSE over the run by more than the 0.003 Cloud
+      counts as a change (plateauReached, above): the refinement made the
+      model worse against the free set, so neither more cycles nor building
+      on it is the answer; something upstream is wrong (most often a free
+      set the model was earlier refined against as work reflections, or
+      overfitting). A rise in a model already within the PDB range is judged
+      refined above, with the same warning as an advisory. Our runs: trial
+      Gamma job 4 (deposited gamma model, placed by Phaser, refined 20 cycles
+      against a free set made fresh by data reduction) 0.279 -> 0.300 at
+      1.79 A while R-work fell 0.270 -> 0.260; MDM2 3.2 (deposited 4hg7,
+      fresh free set, waters stripped) 0.259 -> 0.267.
+  - when: >
+      ADD_WATERS == "True" and CYCLES_RUN == 5 and RFREE < 0.40 and
+      RFREE_3BACK - RFREE <= 0.003 and RMS_BONDS <= 0.02
+    outcome: needs_building
+    basis: >
+      Waters were added and the 5 cycles are the pipeline's fixed post-water
+      run (prosmart_refmac.py cootFinished, ncyc=5), not a short refinement,
+      so the fewer-than-10-cycles rule below does not apply; converged and
+      below 0.40 (basis below). No evidence job lands here (MDM2 3 is
+      refined first).
+  - when: ADD_WATERS == "True" and CYCLES_RUN == 5 and RFREE >= 0.40 and RFREE < RFREE_START
+    outcome: placed
+    basis: >
+      As above for a water run at or above 0.40 (waters are added only when
+      R-work is below 0.40, so this is rare). Basis of "placed" below.
   - when: >
       CYCLES_RUN < 10 or
       (RFREE < 0.40 and RFREE_3BACK - RFREE > 0.003) or
@@ -341,17 +383,21 @@ verdict:
       changes by more than 0.003 over the last cycles (lines 463-475); bonds
       above 0.02 call for a lower weight (lines 547-563). A placed model
       (R-free >= 0.40) still falling after 10 cycles is not sent here: it
-      needs building, not cycles. No evidence prosmart_refmac job lands
-      here (CDK2 2 and Gamma 12 ran 5 cycles but are caught above).
+      needs building, not cycles. A water run (ADD_WATERS "True", 5
+      post-water cycles) that has converged is caught above. No evidence
+      prosmart_refmac job lands here (CDK2 2 and Gamma 12 ran 5 cycles but
+      are caught above).
   - when: RFREE < 0.40
     outcome: needs_building
     basis: >
       R-free below 0.40 (basis above) but above the PDB range: the model is
-      right and largely complete and needs rebuilding, waters, ligands. Our
-      runs: Thaumatin 17.4 0.332 -> 0.281 at 1.17 A; BetaBlip 4.3 (both
-      components placed) 0.376 -> 0.343 at 3.0 A, rebuilt next by modelcraft
-      (BetaBlip 5); MDM2 3.2 (deposited model without waters, 0.267) was
-      followed by water picking and reached 0.247.
+      right and largely complete and needs completing: waters, ligands,
+      named regions rebuilt - or, when residues are missing or the model is
+      a distant homologue, automated building. Our runs: Thaumatin 17.4
+      0.332 -> 0.281 at 1.17 A (MR model, no waters); BetaBlip 4.3 (both
+      components placed) 0.376 -> 0.343 at 3.0 A - modelcraft on it made it
+      WORSE (BetaBlip 5: 0.382; modelcraft.agent.yaml), so for a complete,
+      correctly placed model the next step is not modelcraft.
   - when: RFREE < RFREE_START
     outcome: placed
     basis: >
@@ -448,6 +494,25 @@ next:
       WEIGHT below WEIGHT_USED (Cloud scales it by
       0.99*(0.015/RMS_BONDS)^1.46, verdict_refmac.py lines 168-171, 555).
   - when: outcome == "needs_building"
+    task: prosmart_refmac
+    inputs:
+      XYZIN: "prosmart_refmac[-1].XYZOUT"
+      F_SIGF: "prosmart_refmac[-1].F_SIGF"
+      FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
+    advice: >
+      The usual case: the model is the same protein, covers the AU contents
+      and is correctly placed (same sequence as the AU, every chain present,
+      only loops/side chains/waters/ligands to do). Do NOT give it to
+      modelcraft - on such models it made R-free worse (BetaBlip 0.343 ->
+      0.382, modelcraft.agent.yaml; agent trials 0.371 -> 0.413). Instead:
+      (a) if no waters yet and R-work is below 0.40, this refinement again
+      with ADD_WATERS True; (b) ligands expected -> coot_find_ligand as for
+      "refined"; (c) a person rebuilds named regions in Coot or Moorhen with
+      prosmart_refmac[-1].FPHIOUT and .DIFFPHIOUT - the Ramachandran and
+      rotamer outliers and clashes listed in the report, and the largest
+      difference-map peaks - and the rebuilt model is refined again with the
+      same F_SIGF and FREERFLAG. Judge each round by R-free falling.
+  - when: outcome == "needs_building"
     task: modelcraft
     inputs:
       XYZIN: "prosmart_refmac[-1].XYZOUT"
@@ -455,13 +520,12 @@ next:
       FREERFLAG: "prosmart_refmac[-1].FREERFLAG"
       ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
     advice: >
-      When a person is available, rebuilding by hand is usually better for a
-      nearly complete model: they look at it with prosmart_refmac[-1].FPHIOUT
-      and .DIFFPHIOUT in Coot or Moorhen (missing loops and side chains,
-      wrong rotamers, the validation outliers), and the rebuilt model is
-      refined with the same F_SIGF and FREERFLAG, with ADD_WATERS True once
-      R-work is below 0.40. Without one, modelcraft rebuilds and adds waters;
-      judge by its R-free.
+      ONLY when automated building has something to build: residues or
+      chains of the AU contents are missing from the model (count them
+      against ProvideAsuContents), the model is a distant homologue not yet
+      rebuilt into the target sequence, or the phases come from experiment
+      rather than this model. Judge by modelcraft's R-free against this
+      job's RFREE; if it is not clearly lower, keep this model.
   - when: outcome == "placed"
     task: modelcraft
     inputs:
@@ -481,12 +545,21 @@ next:
       refinement cycles" straight after MR, lines 488-492).
   - when: outcome == "not_improving"
     advice: >
-      Do not build on this model yet. Check, in order: (1) the model covers
-      the AU contents - if not, place the rest (phaser_simple_phil with
-      INPUT_FIXED True) or build it (modelcraft); (2) the placement, hand and
-      space group are right - a flat R-free near 0.45-0.50 for a model that
-      should cover the AU is a wrong solution: go back to MR; (3) F_SIGF and
-      FREERFLAG are the data and free set the model was placed against.
+      Do not build on this model yet. If R-free ROSE (RFREE > RFREE_START):
+      first ask whether the model was refined before against other
+      reflections or another free set (a deposited or previously refined
+      model, as in trial Gamma 4 and MDM2 3.2; RFREE_START close to or below
+      RWORK_START is the sign). If so the start was biased low and the rise
+      is the model forgetting: keep FREERFLAG fixed from now on, take the
+      output as the new starting point, and judge later runs against its
+      R-free - do not go back to MR. Otherwise check, in order: (1) the
+      model covers the AU contents - if not, place the rest
+      (phaser_simple_phil with INPUT_FIXED True) or build it (modelcraft);
+      (2) the placement, hand and space group are right - a flat R-free near
+      0.45-0.50 for a model that should cover the AU is a wrong solution: go
+      back to MR; (3) F_SIGF and FREERFLAG are the data and free set the
+      model was placed against; (4) overfitting: lower WEIGHT, USE_JELLY
+      True, fewer cycles.
   - when: outcome == "unjudged"
     advice: >
       Read the job's status and diagnostic.xml. A missing ligand dictionary:

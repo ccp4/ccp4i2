@@ -133,6 +133,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle/data/summary/Rfree
     type: float
+    optional: true
     meaning: >
       R-free of the input model (cycle 0), on amplitudes. Present only for
       amplitude refinement with a Free R set. CDK2_NU6102 1 0.2889; 1tf6
@@ -141,6 +142,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rfree
     type: float
+    optional: true
     meaning: >
       R-free after the last cycle of the main refinement. It is the KPI
       "RFree" unless waters were added. CDK2_NU6102 1 0.2740 (1.90 A); 1tf6
@@ -150,6 +152,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/Rfree
     type: float
+    optional: true
     meaning: >
       R-free three cycles before the end. RFREE_3BACK - RFREE is the fall
       over the last three cycles, the plateau test. It is missing for runs of
@@ -159,12 +162,14 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/Rwork
     type: float
+    optional: true
     meaning: >
       R-work at the last cycle. CDK2_NU6102 1 0.2179; 1tf6 0.2500.
   CCFREE_F:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCFfreeavg
     type: float
+    optional: true
     meaning: >
       Average Fo-Fc correlation over the free set, amplitude refinement.
       CDK2_NU6102 1 0.783; 1tf6 0.808.
@@ -172,6 +177,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle/data/summary/R1free
     type: float
+    optional: true
     meaning: >
       Intensity refinement only: R1-free of the input model. R1 is computed
       on sqrt(I) against |Fc|, and reflections with I/sigma(I) < 2 are left
@@ -181,6 +187,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1free
     type: float
+    optional: true
     meaning: >
       R1-free after the last cycle (KPI "R1Free"). MDM2_Nutlin 1.4 0.2932
       (1.35 A, 5 cycles). That model is DIMPLE's output with no ligand and
@@ -189,6 +196,7 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()-3]/data/summary/R1free
     type: float
+    optional: true
     meaning: >
       R1-free three cycles before the end. MDM2_Nutlin 1.4 0.2922 at cycle
       2: R1-free rose by 0.001 over the last three cycles.
@@ -196,12 +204,14 @@ results:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/R1work
     type: float
+    optional: true
     meaning: >
       R1-work at the last cycle. MDM2_Nutlin 1.4 0.2765.
   CCFREE_I:
     file: program.xml
     xpath: ./SERVALCAT_FIRST/cycle[last()]/data/summary/CCIfreeavg
     type: float
+    optional: true
     meaning: >
       Average correlation of observed and calculated intensities over the
       free set, intensity refinement. Unlike R1, all reflections count.
@@ -251,10 +261,31 @@ results:
     type: int
     meaning: >
       Cycles run. CDK2 1 10; MDM2_Nutlin 1.4 5; 1tf6 2.
+  RFREE_WATERS:
+    file: program.xml
+    xpath: ./SERVALCAT_WATERS/cycle[last()]/data/summary/Rfree
+    type: float
+    optional: true
+    meaning: >
+      R-free at the end of the second refinement, after Coot added waters
+      (ADD_WATERS True); amplitude refinement. This is the job's KPI when
+      present. No amplitude job with waters was seen; the xpath mirrors
+      R1FREE_WATERS.
+  R1FREE_WATERS:
+    file: program.xml
+    xpath: ./SERVALCAT_WATERS/cycle[last()]/data/summary/R1free
+    type: float
+    optional: true
+    meaning: >
+      R1-free at the end of the second refinement, after waters. This is the
+      job's KPI R1Free. In trial-gammaxe-sad-sonnet job 8, the first
+      refinement ended at 0.2824, Coot added 7 waters, and the second ended
+      at 0.2748 (KPI 0.2748).
   CLASHSCORE:
     file: program.xml
     xpath: ./Validation/Molprobity/Summary/Clashscore
     type: float
+    optional: true
     meaning: >
       MolProbity clashscore of the refined model. Absent when
       VALIDATE_MOLPROBITY is off, as in the SubstituteLigand sub-job, the
@@ -263,6 +294,7 @@ results:
     file: program.xml
     xpath: ./Validation/Molprobity/Summary/Ramachandran_outliers
     type: float
+    optional: true
     meaning: >
       MolProbity's Ramachandran outliers (%); "0.82%" is read as 0.82.
       This is the figure to act on: it is the one deposition validation
@@ -274,6 +306,7 @@ results:
     file: program.xml
     xpath: ./Validation/Molprobity/Summary/Molprobity_score
     type: float
+    optional: true
     meaning: >
       MolProbity score. CDK2 1 2.37.
   # FINDING: cryo-EM (spa) jobs record FSCaverage per cycle, not R-factors.
@@ -301,8 +334,10 @@ results:
   #   listing would. The default should be dropped.
   # FINDING: with ADD_WATERS the second refinement is stored under
   #   ./SERVALCAT_WATERS (servalcat_pipe.py lines 608 and 621), and the job's
-  #   KPIs come from it (lines 1072 and 1089-1090), while the results above
-  #   read the first refinement. No evidence job added waters.
+  #   KPIs come from it (lines 1072 and 1089-1090). The verdict reads the
+  #   first refinement (./SERVALCAT_FIRST). The format has no "this xpath,
+  #   else that one", so the after-waters numbers are separate results, with
+  #   an advisory in next. Seen in trial-gammaxe-sad-sonnet job 8.
   # FINDING: without a Free R set the summary carries only "R" or "R1" (the
   #   KPI then is R or R1). No evidence job lacked a free set, so no result
   #   reads it, and such a job is judged "unjudged".
@@ -524,7 +559,10 @@ traps:
     With ADD_WATERS, the final model comes from a second refinement after
     Coot's water picking, recorded under SERVALCAT_WATERS. The verdict here
     is on the first refinement, before waters were added. The job's KPI
-    R-free is the one after.
+    R-free is the one after (RFREE_WATERS / R1FREE_WATERS). In
+    trial-gammaxe-sad-sonnet job 8 the verdict says needs_building on R1-free
+    0.2824 at 1.79 A (limit 0.280), while after waters it is 0.2748, inside
+    the band.
 
 next:
   - when: outcome == "refined"
@@ -568,22 +606,54 @@ next:
       again with WEIGHT_OPT MANUAL and WEIGHT below this run's final weight
       (./SERVALCAT_FIRST/cycle[last()]/weight). Keep the run whose R-free is
       no worse.
-  - when: outcome == "needs_building"
-    task: modelcraft
+  - when: outcome == "needs_building" and (RFREE < 0.35 or R1FREE < 0.35)
+    task: servalcat_pipe
     inputs:
       XYZIN: "servalcat_pipe[-1].XYZOUT"
-      F_SIGF: "servalcat_pipe[-1].HKLIN"
+      HKLIN: "servalcat_pipe[-1].HKLIN"
       FREERFLAG: "servalcat_pipe[-1].FREERFLAG"
-      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
     advice: >
-      Use ModelCraft when residues are missing or the model is a homologue
-      to be rebuilt into the target sequence.
-      When the chain is complete and only ligands, waters and local errors
-      remain (MDM2_Nutlin 1.4), take the other route:
-        - coot_find_ligand for an expected ligand (inputs as for "refined");
-        - servalcat_pipe with ADD_WATERS True;
-        - a person's Coot/Moorhen session for local errors;
-        - then refine again.
+      The model is nearly complete: do NOT send it to ModelCraft. ModelCraft's
+      own judgement says it has nothing to build on a complete, correctly
+      placed model (R-free near or below 0.35) and can make it worse: BetaBlip
+      5 went from 0.343 to 0.382, with two spurious fragments. The agent
+      trials reported the same for Gamma and BetaBlip.
+      What is missing is waters, ligands and local corrections:
+        - Waters: run this task again with ADD_WATERS True, unless this job
+          already did (R1FREE_WATERS or RFREE_WATERS present). Then judge by
+          the after-waters R-free.
+        - Ligand: coot_find_ligand when a ligand is expected (inputs as for
+          "refined").
+        - Local errors (rotamers, loops, the validation outliers): a person
+          in Coot or Moorhen with FPHIOUT and DIFFPHIOUT. Their model is then
+          refined here with the same HKLIN, FREERFLAG and DICT_LIST.
+      MDM2_Nutlin 1.4 (DIMPLE's model, no ligand or waters) is this case.
+  - when: outcome == "needs_building" and (RFREE >= 0.35 or R1FREE >= 0.35)
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "servalcat_pipe[-1].XYZOUT"
+      HKLIN: "servalcat_pipe[-1].HKLIN"
+      FREERFLAG: "servalcat_pipe[-1].FREERFLAG"
+    advice: >
+      FIRST decide whether there is anything to build, by comparing the
+      model with the AU contents and the sequence.
+      If the model already covers the AU with the right sequence and is
+      correctly placed (an MR model of the same protein), refine further:
+      USE_JELLY True and NCYCLES 20-50. Then add waters (ADD_WATERS True),
+      and have a person fix local errors in Coot or Moorhen. Example:
+      trial-betablip-sonnet job 6, a complete beta + BLIP placement, 0.375 ->
+      0.372 at 3.0 A.
+      ModelCraft is right only when there is something to build. In that
+      case run modelcraft with XYZIN "servalcat_pipe[-1].XYZOUT", F_SIGF
+      "servalcat_pipe[-1].HKLIN", FREERFLAG "servalcat_pipe[-1].FREERFLAG"
+      and ASUIN "ProvideAsuContents[-1].ASUCONTENTFILE", when:
+        - residues or chains are missing compared with the AU contents;
+        - the model is a distant homologue still to be rebuilt into the
+          target sequence;
+        - the model came from experimental phases and is still fragmentary.
+      Judge that run by modelcraft's own judgement. Keep this model if
+      ModelCraft's R-free is not lower: ModelCraft can make a complete model
+      worse (BetaBlip 5: 0.343 -> 0.382).
   - when: outcome == "placed"
     task: modelcraft
     inputs:
@@ -621,6 +691,12 @@ next:
       overfitting: a large and growing R-free/R gap, a weight that is too
       high. PanDDA 5e9l rose by 0.0016, which is below the tolerance; its
       free set was made in the campaign.
+  - when: RFREE_WATERS < 1 or R1FREE_WATERS < 1
+    advice: >
+      Waters were added in this job. The outcome above is on the refinement
+      BEFORE the waters; the final model's R-free is RFREE_WATERS (or
+      R1FREE_WATERS). Re-read the bands with that number: if it is below the
+      limit for the resolution, treat the job as refined.
   - when: RFREE_3BACK - RFREE > 0.003 or R1FREE_3BACK - R1FREE > 0.003
     advice: >
       R-free was still falling over the last three cycles, by more than
