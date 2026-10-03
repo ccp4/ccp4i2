@@ -354,6 +354,29 @@ results:
     meaning: >
       "existing" when the job was given a free set (Sonnet 4); absent when
       left at the default "new" (GammaXe 6, Haiku 4).
+  SITES_ADDED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: added
+    type: int
+    optional: true
+    meaning: >
+      Substructure sites added to the built model in XYZOUT_COMPLETE (the
+      model to refine). 0 when every site is already a model atom (S-SAD
+      sulphurs; SeMet selenium, whose methionines become MSE). Absent for
+      jobs run before XYZOUT_COMPLETE existed, or with no model built.
+      HypF (Hg soak, 91 residues) 2; GammaXe 3 Xe.
+  SITES_CLASHING:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: clashes
+    type: int
+    optional: true
+    meaning: >
+      Sites left out of XYZOUT_COMPLETE because a model atom of another
+      element lies within 1.5 A: a misplaced site, or a sulphur picked as
+      the soaked element (GammaXe: a "Xe" 0.86 A from Met57 SD). Each is
+      named in CompleteModel/clashes.
   # FINDING (fixed in acb315505): the steps' figures were only in their own
   #   sub-job parameters; program.xml now carries CrankSteps/Step[@name]
   #   with CFOM, FOM, Hand1Score, Hand2Score, CC, RFactor, RFree, and the
@@ -496,11 +519,27 @@ traps:
     used (its FREEROUT when it made one), or every later R-free is against
     reflections the model has seen.
   - >
-    Crank2's R-free is from REFMAC with the experimental phases as
-    restraints (MLHL); a following refinement without them reads higher
-    for the same model: Sonnet's servalcat_pipe on Crank2's 0.272 model
-    (job 6) gave 0.302, before ModelCraft (0.293) and waters (0.275).
-    Compare later jobs with each other, not with Crank2's number.
+    XYZOUT is the built model WITHOUT the anomalous scatterers (they are in
+    XYZOUT_SUBSTR); Crank2's own final refinement modelled both. Refine
+    XYZOUT_COMPLETE, which has them (or, for jobs before it existed, expect
+    the loss). How much it matters goes with how strongly they scatter:
+    held-out HypF (two Hg, 91 residues, Crank2 R-free 0.298), Servalcat on
+    XYZOUT went 0.403 to 0.437 and both trial models then rebuilt and
+    refined without ever recovering (0.394 to 0.451); on XYZOUT plus the two
+    Hg sites the same refinement went 0.287 to 0.295. Neither trial model
+    suspected the missing mercury: both blamed the lost phase restraints.
+    Those do cost something (Crank2's REFMAC is restrained by the
+    experimental phases, MLHL), but a few hundredths, not 0.14: Sonnet's
+    servalcat_pipe on the GammaXe model (Xe, weaker) gave 0.302 from
+    Crank2's 0.272. A refinement much above Crank2's R-free means a missing
+    piece of the model, not a worse one.
+  - >
+    ModelCraft rebuilds the protein through Buccaneer, which outputs protein
+    only, so the substructure is gone after its first cycle even when its
+    input model had it. With a strong scatterer and a "built" result,
+    refine XYZOUT_COMPLETE rather than rebuild; after ModelCraft (the
+    "phased" route) expect a higher R-free than the scatterers would allow,
+    and say so: CCP4i2 has no task yet to add them back.
   - >
     The CFOM bands are not proof: the two correct GammaXe runs stopped on
     the trial limit at CFOM 74.9, just under the 75 "likely" threshold,
@@ -508,11 +547,19 @@ traps:
     substructure by the hand discrimination and the build, not by which
     side of 75 it fell.
 
+  - >
+    If the project also has native data isomorphous with this derivative
+    (same space group and indexing, cell within about 1%), build and refine
+    against the native: modelcraft with F_SIGF the native, PHASES
+    "crank2[-1].FPHOUT_HL", USE_MODEL_PHASES False, and one free set shared
+    by both datasets (made before this job and given to it with FREE
+    "existing"). The native has no heavy atoms to model, and is usually
+    the better data. The derivative is for the phases.
 next:
   - when: outcome == "built" and FREE_SET == "existing"
     task: servalcat_pipe
     inputs:
-      XYZIN: "crank2[-1].XYZOUT"
+      XYZIN: "crank2[-1].XYZOUT_COMPLETE"
       HKLIN: "crank2[-1].F_SIGFanom"
       FREERFLAG: "crank2[-1].FREERFLAG"
     advice: >
@@ -525,7 +572,7 @@ next:
   - when: outcome == "built" and NEW_FREE_SET != null
     task: servalcat_pipe
     inputs:
-      XYZIN: "crank2[-1].XYZOUT"
+      XYZIN: "crank2[-1].XYZOUT_COMPLETE"
       HKLIN: "crank2[-1].F_SIGFanom"
       FREERFLAG: "crank2[-1].FREEROUT"
     advice: >

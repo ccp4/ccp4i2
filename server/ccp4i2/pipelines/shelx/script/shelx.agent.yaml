@@ -224,6 +224,27 @@ results:
       Substructure sites the pipeline asked for (SHELXD FIND). GammaXe 7 2;
       trial 6 4. The first model block is read (five carry it, all equal in
       both jobs). Present only once a step with a substructure model ran.
+  SITES_ADDED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: added
+    type: int
+    optional: true
+    meaning: >
+      Substructure sites added to the built model in XYZOUT_COMPLETE (the
+      model to refine); 0 when every site is already a model atom (S-SAD,
+      SeMet). Absent for jobs before XYZOUT_COMPLETE existed or with no
+      model built.
+  SITES_CLASHING:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: clashes
+    type: int
+    optional: true
+    meaning: >
+      Sites left out of XYZOUT_COMPLETE for lying within 1.5 A of a model
+      atom of another element (a misplaced site, or a sulphur taken for the
+      soaked element); named in CompleteModel/clashes.
   # FINDING: SHELXD's CC(all) and CC(weak) are only in job_3/SHELXD.log
   #   ("CC All/Weak 48.3 / 28.4" GammaXe 7; "48.1 / 27.9" trial 6) and in
   #   crank.loggraph tables; only their sum (CFOM) reaches the XML.
@@ -364,16 +385,34 @@ traps:
     is measured on FREEROUT, and any later refinement must use FREEROUT -
     or this job should have been given the project's existing set.
   - >
+    XYZOUT has no anomalous scatterers (they are XYZOUT_SUBSTR); the final
+    REFMAC refinement here modelled both. Refine XYZOUT_COMPLETE, which has
+    them; atoms the model already has (S-SAD sulphurs, SeMet selenium as
+    MSE) are not doubled (SITES_ADDED, SITES_CLASHING). How much it matters
+    goes with the scattering: Crank2 on held-out HypF (two Hg, 91 residues)
+    refined to R-free 0.298, then Servalcat on XYZOUT alone reached 0.437,
+    and with the two Hg sites 0.295. A refinement much above this job's
+    R-free means a missing piece of the model. ModelCraft drops non-protein
+    atoms when it rebuilds, so after it the sites are gone again.
+  - >
     Jobs run before commit acb315505 have CFOM and the trace CCs only in
     subjob directories numbered by route (job_3 = SHELXD, job_4 = SHELXE
     on the default route). On another route they read as missing, and the
     verdict can fall to its last line with nothing judged; read the report.
 
+  - >
+    If the project also has native data isomorphous with this derivative
+    (same space group and indexing, cell within about 1%), build and refine
+    against the native: modelcraft with F_SIGF the native, PHASES
+    "shelx[-1].FPHOUT_HL", USE_MODEL_PHASES False, and one free set shared
+    by both datasets (made before this job and given to it with FREE
+    "existing"). The native has no heavy atoms to model, and is usually
+    the better data. The derivative is for the phases.
 next:
   - when: outcome == "built"
     task: servalcat_pipe
     inputs:
-      XYZIN: "shelx[-1].XYZOUT"
+      XYZIN: "shelx[-1].XYZOUT_COMPLETE"
       HKLIN: "shelx[-1].F_SIGFanom"
       FREERFLAG: "shelx[-1].FREEROUT"
     advice: >

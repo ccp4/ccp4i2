@@ -63,6 +63,7 @@ def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False,
         getattr(ccp4i2crank.container.outputData,'FREEROUT').setOutputPath(projectId=ccp4i2crank.projectId(), relPath=ccp4i2crank.relPath())
         error = ccp4i2crank.splitHklout(['FREEROUT',], [free.GetLabel('free'),], infile=filepath)
       SummariseSteps(ccp4i2crank, crank)
+      CompleteModel(ccp4i2crank)
     #crank.ccp4i2.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
   #else:
   #  shutil.rmtree(ccp4i2crank.workDirectory)
@@ -113,6 +114,43 @@ def SummariseSteps(i2crank, crank):
   for old in root.findall('CrankSteps'):
     root.remove(old)
   root.append(summary)
+  etree.ElementTree(root).write(path, pretty_print=True)
+
+
+def CompleteModel(i2crank):
+  """XYZOUT_COMPLETE: the built model with the substructure, as Crank2 refined it.
+
+  XYZOUT leaves the anomalous scatterers out (they are XYZOUT_SUBSTR), so
+  refining it alone loses them: for a mercury soak, R-free 0.29 became 0.44.
+  Sites the model already has (S-SAD sulphurs, SeMet selenium) are not added
+  twice; see complete_model. What was done goes into program.xml as
+  CompleteModel. Never fails the job: without it, XYZOUT is still there.
+  """
+  from lxml import etree
+  from ccp4i2.pipelines.crank2.script.complete_model import complete_model
+  out = i2crank.container.outputData
+  if not hasattr(out, 'XYZOUT_COMPLETE') or not out.XYZOUT.isSet() or not out.XYZOUT_SUBSTR.isSet():
+    return
+  element = etree.Element('CompleteModel')
+  try:
+    target = os.path.join(str(i2crank.workDirectory), 'XYZOUT_COMPLETE.pdb')
+    report = complete_model(str(out.XYZOUT.fullPath), str(out.XYZOUT_SUBSTR.fullPath), target)
+    out.XYZOUT_COMPLETE.setFullPath(target)
+    out.XYZOUT_COMPLETE.annotation.set('Model with the anomalous substructure (refine this)')
+    for kind in ('added', 'on_model', 'converted', 'clashes'):
+      element.set(kind, str(len(report[kind])))
+      for text in report[kind]:
+        etree.SubElement(element, kind).text = text
+  except Exception as err:  # noqa: BLE001 - an extra output must not fail the job
+    element.set('error', '{}: {}'.format(type(err).__name__, err))
+  path = os.path.join(str(i2crank.workDirectory), 'program.xml')
+  try:
+    root = etree.parse(path).getroot()
+  except (OSError, etree.XMLSyntaxError):
+    root = etree.Element('CrankResult')
+  for old in root.findall('CompleteModel'):
+    root.remove(old)
+  root.append(element)
   etree.ElementTree(root).write(path, pretty_print=True)
 
 
