@@ -25,3 +25,9 @@ def test_crank2():
         log = (job / "log.txt").read_text()
         foms = [float(x) for x in re.findall(r"FOM is (0\.\d+)", log)]
         assert max(foms) > 0.7
+        # Each step's figures in the job's own program.xml (they were only in
+        # the steps' sub-job parameters, whose numbering depends on the route)
+        import xml.etree.ElementTree as ET
+        steps = ET.parse(job / "program.xml").find("CrankSteps")
+        assert steps is not None
+        assert float(steps.findtext("Step[@name='substrdet']/CFOM")) > 30
