@@ -75,5 +75,14 @@ An expert's reading is what turns `draft` into `reviewed`; the facade says
   `needs_building` (fell, below 0.40: build next), `placed` (fell, at or
   above 0.40: a right but distant or partial model, or a wrong one; build
   decides), `failed`, `unjudged` (nothing to judge on). MR: `solved`,
-  `placed`, `partial`, `ambiguous`, `failed`.
+  `placed`, `partial`, `ambiguous`, `failed`. Experimental phasing (crank2,
+  shelx, phaser_ep_phil): `built` (phased, a model built and refined:
+  refine or validate next), `phased` (substructure and hand decided, map
+  interpretable, little or nothing built: build next), `ambiguous`
+  (substructure found but the hand or the map unconvincing), `failed`.
+  Density modification: `improved`, `no_better`, `failed`.
+- **A pipeline that stops early is not a pipeline that finished.** Say
+  which step's output to look at, and what "finished" means for the model
+  (built and refined, or only phased). An agent trial (Haiku, 2026-10-03)
+  phased Gamma with Crank2, stopped, and called the model ready to deposit.
 
