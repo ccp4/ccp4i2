@@ -259,8 +259,9 @@ verdict:
 traps:
   - >
     After experimental phasing the input model's heavy atoms are dropped
-    (Buccaneer outputs protein only; ModelCraft keeps only non-protein
-    residues with a "CA" atom as known structure), and chain is traced
+    (Buccaneer outputs protein only; ModelCraft passes as known structure
+    only peptide-like ligands, residues with a C-alpha, not ions or heavy
+    atoms), and chain is traced
     through their peaks. With strong scatterers (Hg, Pt, Au, I...) and
     refinement against the derivative, run add_substructure on the result
     with the phasing job's XYZOUT_SUBSTR before refining: held-out HypF
