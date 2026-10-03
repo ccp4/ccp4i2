@@ -118,7 +118,8 @@ Rules:
 - **`when` is a tiny language**, not Python: result names, numbers, strings,
   `+ - * /`, `== != < <= > >=`, `and`, `or`, `not`, parentheses, `true`
   (so `RFREE_START - RFREE >= 0.02`). A result that could not be read makes
-  any condition on it unknown, and an unknown condition never holds. The facade
+  any condition on it unknown, and an unknown condition never holds; to ask
+  about absence itself, `NAME == null` (absent) and `NAME != null` (read). The facade
   evaluates it with its own parser, never `eval`.
 - **Every threshold has a `basis`**: the program's documentation, the
   literature, or our own runs (project and job, with the value seen). A

@@ -24,6 +24,11 @@ from ccp4i2.core.tasks import TASKS
     ("A / B > 1.1 and -A < 0", {"A": 0.5, "B": 0.4}, True),
     ("1 + 2 * 3 == 7", {}, True),
     ("(1 + 2) * 3 == 9", {}, True),
+    ("NCS == null", {}, True),
+    ("NCS == null", {"NCS": "mr"}, False),
+    ("NCS != null and NCS == \"mr\"", {"NCS": "mr"}, True),
+    ("NCS != null", {"NCS": None}, False),
+    ("not (NCS == null) or X > 1", {}, False),
 ])
 def test_conditions(text, values, expected):
     assert condition.holds(text, values) is expected

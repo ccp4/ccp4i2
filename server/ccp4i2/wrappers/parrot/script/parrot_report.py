@@ -51,10 +51,8 @@ class parrot_report(Report):
           opc = self.xmlnode.findall('Final/Operators/NCScorrel')
           opv = self.xmlnode.findall('Final/Operators/NCSvolume')
           nncs = min(len(opc),len(opv))
-          print(nncs)
           ngood = 0
           for i in range(nncs):
-            print(i, opc[i].text, opv[i].text)
             if float(opc[i].text) > 0.4 and float(opv[i].text) > vol/2.0:
               ngood += 1
           if nncs > 0:
@@ -91,6 +89,10 @@ class parrot_report(Report):
           graph.addData(title="Mean_FOM",               select="MeanFOM")
           graph.addData(title="Fcorrel_work", select="Fcorrel")
           graph.addData(title="Fcorrel_free", select="FreeFcorrel" )
+          # cparrot writes 0.000 for every cycle (with or without a free set):
+          # a flat line at zero reads as a result, so it is drawn only when real
+          free = [float(e.text or 0) for e in self.xmlnode.findall('Cycles/Cycle/FreeFcorrel')]
+          free_is_real = any(abs(v) > 1e-6 for v in free)
           graph.addData(title="NCS_correlation_(mean)",     select="NCScormean" )
           graph.addData(title="NCS_volume_(mean)", select="NCSvolmean" )
           graph.addData(title="NCS_volume_(max)",  select="NCSvolmax" )
@@ -102,7 +104,8 @@ class parrot_report(Report):
           p.append( 'xlabel', 'Cycle' )
           l = p.append('plotline',xcol=1,ycol=2)
           l = p.append('plotline',xcol=1,ycol=3)
-          l = p.append('plotline',xcol=1,ycol=4)
+          if free_is_real:
+            l = p.append('plotline',xcol=1,ycol=4)
           p = graph.addPlotObject()
           p.append( 'title', 'NCS correlation statistics by cycle' )
           p.append( 'plottype', 'xy' )
