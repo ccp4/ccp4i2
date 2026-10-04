@@ -403,6 +403,11 @@ LOGGING = {
         "django.request": {
             "level": "ERROR",
         },
+        # The MCP SDK logs every request at INFO ("Terminating session: None"
+        # for each stateless /mcp call): routine traffic, not news
+        "mcp": {
+            "level": "WARNING",
+        },
     },
 }
 

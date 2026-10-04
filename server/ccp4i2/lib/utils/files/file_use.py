@@ -588,7 +588,7 @@ def resolve_file_reference(
     else:
         the_file = _resolve_ref(the_project, ref, role)
 
-    logger.info("%s=%s -> %s", keyword, text, the_file.name)
+    logger.debug("%s=%s -> %s", keyword, text, the_file.name)
     return file_dict_for_file(the_file, with_full_path=with_full_path)
 
 

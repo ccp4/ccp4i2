@@ -1,0 +1,660 @@
+task: crank2
+status: draft
+reviewed_by: []
+purpose: >
+  Solves a structure from anomalous (SAD, MAD) or SIRAS data in one run of
+  the Crank2 pipeline: FA estimation (SHELXC), substructure detection
+  (SHELXD by default), substructure improvement and phasing (REFMAC SAD
+  likelihood), hand determination, density modification (Parrot), combined
+  model building with phased refinement (Buccaneer/SHELXE + REFMAC), and a
+  final REFMAC refinement of the built model restrained by the experimental
+  phases (MLHL).
+
+use_when:
+  - >
+    The data are merged anomalous pairs (I+/I- or F+/F-, as import_merged or
+    aimless_pipe writes them) from a crystal with an anomalous scatterer
+    (Se, S, Xe, a heavy-atom soak ...), and no model is available for
+    molecular replacement.
+  - >
+    You want the whole route from data to a refined, built model in one job,
+    and can state the scatterer and give the protein sequence.
+
+not_when:
+  - text: >
+      You want the SHELXC/D/E route (substructure, both hands through SHELXE
+      density modification and tracing, no separate hand determination).
+    instead: shelx
+  - text: >
+      You want Phaser's SAD likelihood phasing (a second experimental-phasing
+      route, with Parrot and ModelCraft after it), or MR-SAD from a partial
+      model already placed (PARTIAL_BY MODEL, XYZIN_PARTIAL).
+    instead: phaser_ep_phil
+  - text: >
+      A model for molecular replacement exists and the data need not be
+      phased experimentally.
+    instead: phaser_simple_phil
+  - text: >
+      The data are mean intensities or amplitudes only (no I+/I- or F+/F-):
+      Crank2 stops with error 201 (crank2_script.py lines 140-144). Mean
+      data cannot be made anomalous: re-import the I+/I- (or F+/F-) columns
+      with import_merged, or re-reduce with aimless_pipe keeping the
+      anomalous pairs.
+    instead: import_merged
+
+inputs:
+  - param: inputData.F_SIGFanom
+    advice: >
+      The anomalous data as pairs: import_merged's OBSOUT with content flag 1
+      (I+/I-) in every evidence job. Mean data are refused (error 201).
+  - param: inputData.ATOM_TYPE
+    advice: >
+      REQUIRED, the element symbol of the anomalous scatterer (Xe, Se, S ...).
+      Without it Crank2 defines no substructure and stops at FA estimation:
+      trial-gammaxe-sad-haiku job 3 failed with "No target specified for
+      process of FA estimation and/or other substructure detection
+      preparations" because ATOM_TYPE was not set. Validation now refuses
+      such a job (error 202, crank2_script.py lines 35-52).
+  - param: inputData.WAVELENGTH
+    advice: >
+      Leave it to the MTZ unless the MTZ is wrong: Crank2 reads the wavelength
+      from the data (1.54179 A, Cu K-alpha, in every evidence job). A value
+      set here is used ONLY with inputData.USER_WAVELENGTH True
+      (crank2_script.py lines 60-69, 148-149): GammaXe job 6 set WAVELENGTH
+      without the flag and its crank.inp has no wavelength; Sonnet's job 4
+      set both and crank.inp carries wavel=1.54179.
+  - param: inputData.FPRIME
+    advice: >
+      f' and f'' (FDPRIME): Crank2 computes theoretical values from the
+      atom type and wavelength (Xe at 1.54179 A: f' -0.793, f'' 7.357, in
+      all three runs). Near an absorption edge give the fluorescence-scan
+      values - and set USER_FPRIME and USER_FDPRIME True, or they are
+      silently dropped (crank2_script.py lines 150-151: GammaXe job 6 gave
+      -0.79/7.36 without the flags and they are not in its crank.inp).
+  - param: inputData.NUMBER_SUBSTRUCTURE
+    advice: >
+      Sites expected in the AU (per molecule times molecules). Used only
+      with USER_NUMBER_SUBSTRUCTURE True (crank2_script.py lines 208-209);
+      otherwise Crank2 estimates it from the sequence: Met for Se, Met+Cys
+      for S, length/200 (at least 2) for other atoms such as Xe
+      (crank2_script.py lines 633-642), times the copies it assumes. What it
+      used is read back as EXPECTED_SITES. For S-SAD with disulphides see
+      the help page (SUBSTRDET_NUM_DSUL, minimum distance).
+  - param: inputData.SEQIN
+    advice: >
+      An AU-contents file (ProvideAsuContents ASUCONTENTFILE, or the
+      CASUCONTENTOUT of ProvideSequence). Crank2 is given each sequence
+      ONCE (writeFasta without copies, crank2_script.py line 222); the copy
+      number comes from its own Matthews estimate unless MONOMERS_ASYM is
+      set with USER_MONOMERS_ASYM True. CHECK THE SEQUENCE IS WHOLE: read
+      RESIDUES_MON back from the job and compare it with the protein's
+      length. trial-gammaxe-sad-haiku pasted PIR text without PIR's title
+      line, so ProvideSequence took the first sequence line (69 residues) as
+      the title and kept 66 of 134 residues; Crank2 then assumed 2 copies
+      (RESIDUES_MON 66, MONOMERS_ASYM 2) and nothing failed. Do not untick
+      "Give the protein sequence" to give a residue count instead: the count
+      shown then (RESIDUES_MON_COPY) is never passed to Crank2.
+  - param: inputData.FREE
+    advice: >
+      Default "new": Crank2 makes its own free set (5%), written as FREEROUT,
+      and a FREERFLAG given without FREE "existing" is ignored
+      (crank2_script.py lines 239-241, 548-554). Give the project's free set
+      (import_merged's FREEOUT) with FREE "existing", as Sonnet's job 4 did,
+      so every later refinement uses one set. Whichever set Crank2 used, the
+      next jobs must use the same one (see next).
+  - param: inputData.MONOMERS_ASYM
+    advice: >
+      Copies in the AU; with SOLVENT_CONTENT, set only when known, each with
+      its USER_ flag True. Left alone, Crank2 estimates both from the cell
+      and sequence (read back as MONOMERS_ASYM and SOLVENT_FRACTION); the
+      help page says correct values can "significantly improve results".
+
+results:
+  ERROR:
+    file: diagnostic.xml
+    xpath: ".//errorReport[severityName='ERROR']/code"
+    type: int
+    optional: true
+    meaning: >
+      Code of the first error the job reported; absent when it finished
+      cleanly (the three finished evidence jobs have an empty
+      errorReportList). Haiku job 3: 991 (the Crank2 error "No target
+      specified ...").
+  RFREE:
+    file: params.xml
+    xpath: ".//outputData/PERFORMANCE/RFree"
+    type: float
+    meaning: >
+      R-free of the final step: REFMAC with target mlhl, i.e. restrained by
+      the experimental phases (crank.inp "ref target::mlhl" in all runs).
+      Not comparable with a later servalcat_pipe or prosmart_refmac R-free
+      on the same model (see traps). The job's KPI RFree is gleaned from
+      this element. GammaXe 6 0.2736; trial-gammaxe-sad-sonnet 4 0.2724;
+      trial-gammaxe-sad-haiku 4 0.3897. Absent when the pipeline ended
+      before building.
+  RWORK:
+    file: params.xml
+    xpath: ".//outputData/PERFORMANCE/RFactor"
+    type: float
+    meaning: >
+      R of the same refinement (KPI RFactor). GammaXe 6 0.245; Sonnet 4
+      0.2443; Haiku 4 0.3459. Stands in for BUILD_R on jobs written before
+      CrankSteps existed (within 0.004 of it in all three runs).
+  BUILD_R:
+    file: program.xml
+    xpath:
+      - ".//CrankSteps/Step[@name='comb_phdmmb']/RFactor"
+      - ".//CrankSteps/Step[@name='mbref']/RFactor"
+    type: float
+    optional: true
+    meaning: >
+      R of the phased refinement at the end of model building - the number
+      Crank2's own verdict is computed from (manager.py lines 868-882,
+      mb.ph.R). Written to program.xml since commit acb315505
+      (ccp4i2crank.py SummariseSteps); the evidence jobs predate it, and
+      their building sub-jobs' parameters hold GammaXe 6 0.2446, Sonnet 4
+      0.2447, Haiku 4 0.3426.
+  CFOM:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='substrdet']/CFOM"
+    type: float
+    optional: true
+    meaning: >
+      Best SHELXD CFOM (since acb315505). Crank2's bands for SHELXD SAD
+      (substrdet.py lines 83-98, 700-708): >= 75 "likely" correct, 45-75
+      "reasonable chance", 22.5-45 "unclear", < 22.5 "large chance" wrong;
+      for MAD the thresholds are 120 and 65, and PRASA reports on another
+      scale. Evidence sub-jobs: GammaXe 6 74.9, Sonnet 4 74.9, Haiku 4 75.1
+      - all three substructures right.
+  SUBSTRDET_STEP:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='substrdet']"
+    attribute: name
+    type: str
+    optional: true
+    meaning: >
+      "substrdet" when this job ran substructure detection (new jobs only);
+      absent when it started from a given substructure.
+  HANDDET_STEP:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='handdet']"
+    attribute: name
+    type: str
+    optional: true
+    meaning: >
+      "handdet" when this job ran hand determination and was written with
+      CrankSteps (acb315505 or later); absent in older jobs.
+  HAND1:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='handdet']/Hand1Score"
+    type: float
+    optional: true
+    meaning: >
+      Combined DM FOM + phasing CLD score of hand 1. A score of 0.0 is not
+      written (the step leaves it unset), so with HANDDET_STEP present an
+      absent HAND1 means 0. All three runs: 0.0 (absent).
+  HAND2:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='handdet']/Hand2Score"
+    type: float
+    optional: true
+    meaning: >
+      Score of hand 2 (absent means 0, as for HAND1). All three runs 19.5.
+      Crank2 picks a hand when the scores differ by 12 or more
+      (handdet.py lines 71, 215) and calls the discrimination good from 15
+      (lines 296-299).
+  SHELXE_CC:
+    file: program.xml
+    xpath: ".//CrankSteps/Step[@name='phdmmb']/CC"
+    type: float
+    optional: true
+    meaning: >
+      SHELXE trace CC when the SHELXC/D/E route ran inside Crank2
+      (SHELXCDE); informational, not used in the verdict.
+  BUILD_RESULT:
+    file: i2.xml
+    xpath: ".//section[@id='summary']/text[@row='0']/i"
+    type: str
+    meaning: >
+      Crank2's sentence on model building (comb_phdmmb.py lines 810-822):
+      "Majority of model should be successfully built!" (it reached its
+      finishing stage: FOM >= 0.58 with R < 0.45, or FOM >= 0.53 with
+      R < 0.42, lines 674-681), "A partial model was built.", or "Wrong
+      substructure or very weak phases suspected: the model building seems
+      unsuccessful.". All three evidence jobs say "Majority ...", Haiku's
+      with half the sequence: it is not a check of completeness.
+  BUILT_RESIDUES:
+    file: i2.xml
+    xpath: ".//section[@id='summary']/text[@row='1']"
+    type: str
+    optional: true
+    meaning: >
+      "Number of residues in the built model: N" (text). GammaXe 6 120 and
+      Sonnet 4 127, one chain each; Haiku 4 107, of which 43 are UNK (one in
+      chain A, chains B and C of 25 and 17 entirely). Compare with the AU
+      contents.
+  SUBSTR_RESULT:
+    file: i2.xml
+    xpath: ".//section[@id='substrdet']/text[last()-2]"
+    type: str
+    optional: true
+    meaning: >
+      Fallback for jobs without CFOM: Crank2's sentence for the CFOM bands
+      above. Positional: it is third from last only because the sites line
+      follows it (printed when occupancies were read, substrdet.py lines
+      709-713). GammaXe 6 and Sonnet 4 "Judging from the obtained scores,
+      there is a reasonable chance that the substructure has been correctly
+      determined."; Haiku 4 "Judging from the obtained scores, the
+      substructure is likely to be correctly determined.".
+  CFOM_TEXT:
+    file: i2.xml
+    xpath: ".//section[@id='substrdet']/text[last()-1]"
+    type: str
+    optional: true
+    meaning: >
+      "Maximum CFOM: 74.90 occurring at Trial 938." (GammaXe 6; Sonnet 4
+      74.90, Haiku 4 75.10). Same positional assumption as SUBSTR_RESULT.
+  SITES_TEXT:
+    file: i2.xml
+    xpath: ".//section[@id='substrdet']/text[last()]"
+    type: str
+    optional: true
+    meaning: >
+      "The substructure has 2 atoms with occupancy of at least 25%, 4 in
+      total." (GammaXe 6, Sonnet 4; Haiku 4 "2 ..., 6 in total"). Compare
+      the strong sites with EXPECTED_SITES; the weak ones are usually noise.
+  EXPECTED_SITES:
+    file: program.xml
+    xpath: ".//exp_num_atoms"
+    type: int
+    meaning: >
+      Sites Crank2 expected (given, or estimated from the sequence and the
+      copies it assumed). GammaXe 6 2; Sonnet 4 2; Haiku 4 4 (2 per
+      wrongly assumed copy). The gamma-adaptin ear soaked in Xe has 2 sites.
+  PHASING_FOM_TEXT:
+    file: i2.xml
+    xpath: ".//section[@id='refatompick']/text[last()-1]"
+    type: str
+    optional: true
+    meaning: >
+      "Mean figure of merit  (all reflections) is 0.2955" after substructure
+      phasing (GammaXe 6, Sonnet 4; Haiku 4 0.2991). Crank2 grades it
+      (phas.py lines 74-81): < 0.15 weak or wrong, 0.15-0.3 "may be weaker
+      but could be still sufficient", > 0.3 reasonable, > 0.4 good. The
+      step does not record it as a number (no FOM in CrankSteps here).
+  HAND_RESULT:
+    file: i2.xml
+    xpath: ".//section[@id='handdet']/text[last()]"
+    type: str
+    optional: true
+    meaning: >
+      Fallback for jobs without HANDDET_STEP: "Hand N is chosen." then
+      " It is unlikely that the chosen hand would not be correct as there is
+      a good discrimination between the hands." (difference >= 15) or
+      " There is a small chance that the chosen hand is not correct."
+      (handdet.py lines 296-299, 322-325); "Hand was not chosen, ..." below
+      12. A space-group change inserts "  Spacegroup changed from X to Y."
+      after the first sentence, and the text then matches none of the
+      verdict's strings. All three runs: hand 2, good discrimination.
+  SPACEGROUP_CHANGE:
+    file: i2.xml
+    xpath: ".//section[@id='summary']/text/p"
+    type: str
+    optional: true
+    meaning: >
+      "Spacegroup set to: X" when the hand decision changed the space group
+      to its enantiomorph (process.py lines 1004-1005). Absent in all
+      evidence jobs (P212121 has no enantiomorph); from the code.
+  SIGNAL:
+    file: i2.xml
+    xpath: ".//section[@id='faest']/text[last()]"
+    type: str
+    optional: true
+    meaning: >
+      SHELXC's anomalous signal, graded from d''/sig by resolution
+      (faest.py lines 218-222): "very weak or not present at all", "weak",
+      "rather weak but possibly sufficient", "rather strong", "strong".
+      All three runs: "The anomalous signal for SAD appears to be rather
+      strong."
+  RESIDUES_MON:
+    file: program.xml
+    xpath: ".//sequence/residues_mon"
+    type: int
+    meaning: >
+      Residues per molecule Crank2 took from SEQIN. GammaXe 6 and Sonnet 4
+      134 (right); Haiku 4 and 3 66 (half the protein).
+  MONOMERS_ASYM:
+    file: program.xml
+    xpath: ".//sequence/monomers_asym"
+    type: int
+    meaning: >
+      Copies in the AU Crank2 assumed (Matthews unless given). GammaXe 6 and
+      Sonnet 4 1; Haiku 4 2 - the Matthews analysis made up for the short
+      sequence, so RESIDUES_MON x MONOMERS_ASYM (132) looked right.
+  SOLVENT_FRACTION:
+    file: program.xml
+    xpath: ".//sequence/solvent_content"
+    type: float
+    meaning: >
+      Solvent fraction assumed. GammaXe 6 and Sonnet 4 0.417; Haiku 4 0.425.
+  NEW_FREE_SET:
+    file: i2.xml
+    xpath: ".//section[@id='createfree']/name"
+    type: str
+    optional: true
+    meaning: >
+      "Definition of a free set of reflections" when Crank2 made its own
+      free set (FREE "new", the default): GammaXe 6 and Haiku 4. Absent
+      when an existing set was used (Sonnet 4).
+  FREE_SET:
+    file: params.xml
+    xpath: ".//inputData/FREE"
+    type: str
+    optional: true
+    meaning: >
+      "existing" when the job was given a free set (Sonnet 4); absent when
+      left at the default "new" (GammaXe 6, Haiku 4).
+  SITES_ADDED:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: added
+    type: int
+    optional: true
+    meaning: >
+      Substructure sites added to the built model in XYZOUT_COMPLETE (the
+      model to refine). 0 when every site is already a model atom (S-SAD
+      sulphurs; SeMet selenium, whose methionines become MSE). Absent for
+      jobs run before XYZOUT_COMPLETE existed, or with no model built.
+      HypF (Hg soak, 91 residues) 2; GammaXe 3 Xe.
+  SITES_CLASHING:
+    file: program.xml
+    xpath: ".//CompleteModel"
+    attribute: clashes
+    type: int
+    optional: true
+    meaning: >
+      Sites left out of XYZOUT_COMPLETE because a model atom of another
+      element lies within 1.5 A: a misplaced site, or a sulphur picked as
+      the soaked element (GammaXe: a "Xe" 0.86 A from Met57 SD). Each is
+      named in CompleteModel/clashes.
+  # FINDING (fixed in acb315505): the steps' figures were only in their own
+  #   sub-job parameters; program.xml now carries CrankSteps/Step[@name]
+  #   with CFOM, FOM, Hand1Score, Hand2Score, CC, RFactor, RFree, and the
+  #   job's PERFORMANCE (KPIs) is filled from them where empty. Jobs from
+  #   before it are judged on the report sentences (fallback rules).
+  # FINDING: still only in i2.xml prose or graph data: sites found (2 of 4
+  #   above 25% occupancy), phasing FOM (0.2955; the step saves none),
+  #   density-modification FOM (~0.56), residues built / UNK / chains.
+  #   Crank2's own verdict (verdict1 score, verdict3 sentence; manager.py
+  #   lines 868-900) is in plain-text files, and its per-step guesses
+  #   (substrdet/handdet/dmfull .guess) are in memory only.
+  # FINDING: Crank2 reports no map-model correlation.
+  # NOTE: all xpaths were read on GammaXe job 6 (docs-home2),
+  #   trial-gammaxe-sad-sonnet and -haiku job 4 and haiku job 3
+  #   (trial-home); the CrankSteps ones on copies of those jobs with
+  #   CrankSteps built from their sub-jobs' saved PERFORMANCE. The i2.xml
+  #   texts carry a leading em space and newlines; they read stripped.
+
+verdict:
+  - when: ERROR != null
+    outcome: failed
+    basis: >
+      The job reported an error and did not finish: Haiku job 3 (code 991,
+      no ATOM_TYPE). A job that stops in density modification or building
+      leaves a complete hand-determination record that would otherwise read
+      as "phased" (e.g. comb_phdmmb.py lines 815-818, "No residues could be
+      traced").
+  - when: >
+      (BUILD_R < 0.32 or (BUILD_R == null and RWORK < 0.32))
+      and RFREE < 0.35
+    outcome: built
+    basis: >
+      Crank2's own verdict (manager.py lines 875-882): score
+      1 - 7(R - 0.2)^2 on the R of the last building step's phased
+      refinement; above 0.9, i.e. R < 0.32, "The built model should be of a
+      good quality". Our runs: GammaXe 6 R 0.2446 (verdict1 0.9855), R-free
+      0.2736, 120 of 134 residues; Sonnet 4 0.2447 (0.9856), 0.2724, 127;
+      Haiku 4, built from half the sequence, 0.3426 (0.8491), 0.3897. The
+      R-free cross-check (0.35) is ours, from these runs only (one data set,
+      1.8 A); the help page's "under 40%" (crank2.rst lines 322-325,
+      335-337) does not separate them.
+  - when: BUILD_R < 0.467 or (BUILD_R == null and RWORK < 0.467)
+    outcome: phased
+    basis: >
+      Crank2's middle bands (manager.py lines 878-882): score above 0.8
+      (R < 0.369) "may be still possible to further improve ... by a
+      follow-up Crank2 job", above 0.5 (R < 0.467) "incomplete but the
+      solution looks promising". Phases good enough to build from, model not
+      finished: Haiku job 4 (R 0.3426, R-free 0.3897, right substructure and
+      hand, half the sequence missing, 43 residues UNK).
+  - when: BUILD_R != null or RWORK != null
+    outcome: ambiguous
+    basis: >
+      A model was built but Crank2's score is 0.5 or below (R >= 0.467):
+      it then judges from its substructure, hand and DM guesses whether the
+      substructure is promising or possibly wrong (manager.py lines
+      883-900). The substructure may still be right (weak phases, low
+      resolution, the wrong hand). No evidence job lands here.
+  - when: >
+      CFOM < 22.5
+      or SUBSTR_RESULT == "Judging just from the obtained scores, there is a large chance that substructure has not been correctly determined."
+    outcome: failed
+    basis: >
+      Crank2's lowest band for SHELXD SAD (best CFOM below half its weak
+      threshold of 45; substrdet.py lines 96-98, 703-704), with no model
+      built. No evidence job lands here.
+  - when: >
+      HANDDET_STEP != null
+      and (CFOM >= 45 or SUBSTRDET_STEP == null)
+      and ((HAND1 == null and HAND2 >= 15)
+           or (HAND2 == null and HAND1 >= 15)
+           or HAND2 - HAND1 >= 15
+           or HAND1 - HAND2 >= 15)
+    outcome: phased
+    basis: >
+      No model built (END_PIPELINE before building): the hands differ by 15
+      or more, Crank2's "good discrimination" (handdet.py lines 296-299;
+      all three runs 19.5 against 0), and the CFOM is at least Crank2's weak
+      threshold of 45 (substrdet.py lines 96-98) or the substructure was
+      given (no substrdet step). An absent hand score is 0 (not written when
+      0). Holds whatever the space group did. Crank2's criteria; checked on
+      a copy of GammaXe 6 cut back to hand determination.
+  - when: >
+      HANDDET_STEP == null
+      and (HAND_RESULT == "Hand 1 is chosen. It is unlikely that the chosen hand would not be correct as there is a good discrimination between the hands."
+           or HAND_RESULT == "Hand 2 is chosen. It is unlikely that the chosen hand would not be correct as there is a good discrimination between the hands.")
+      and (SUBSTR_RESULT == "Judging from the obtained scores, the substructure is likely to be correctly determined."
+           or SUBSTR_RESULT == "Judging from the obtained scores, there is a reasonable chance that the substructure has been correctly determined.")
+    outcome: phased
+    basis: >
+      The same criteria read from the report sentences, for jobs written
+      before CrankSteps. In such a job a space-group change, or a
+      substructure given rather than detected, makes the sentences miss and
+      the job falls to "ambiguous": read HAND_RESULT and SPACEGROUP_CHANGE
+      yourself - "Spacegroup changed" with good discrimination is the hand
+      decision working, i.e. phased.
+  - when: >
+      HANDDET_STEP != null or CFOM != null
+      or HAND_RESULT != null or SUBSTR_RESULT != null
+    outcome: ambiguous
+    basis: >
+      A substructure step ran but the CFOM was in Crank2's "unclear" band
+      (22.5-45) or the hands were separated by less than 15. The help page
+      recommends rerunning with the other hand when the scores are close
+      and both CLD values are near 0 (crank2.rst lines 281-286).
+  - when: true
+    outcome: failed
+    basis: >
+      Nothing to judge on: the pipeline stopped before substructure
+      detection gave a result.
+
+traps:
+  - >
+    "Finished" and "Majority of model should be successfully built!" do not
+    mean deposition-ready. trial-gammaxe-sad-haiku stopped after Crank2 and
+    called its model ready to deposit: R-free 0.39, 107 residues for a
+    134-residue protein, 43 of them UNK, unvalidated. (No run here has
+    waters: Crank2 tried to add them and the local Coot failed to load; on
+    a working installation it adds them.) Even a "built" job has only
+    Crank2's phase-restrained refinement behind it: refine (servalcat_pipe)
+    and validate before calling it done.
+  - >
+    A short sequence is silently made up for. Haiku's AU contents held 66
+    of 134 residues (PIR text pasted without its title line, so the first
+    sequence line became the title); Crank2's Matthews analysis then
+    assumed 2 copies at 0.425 solvent and 4 sites, and every step from
+    substructure to hand passed. Only the build showed it. Check
+    RESIDUES_MON against the protein length and MONOMERS_ASYM against what
+    you know, before trusting any result.
+  - >
+    WAVELENGTH, FPRIME/FDPRIME, NUMBER_SUBSTRUCTURE, MONOMERS_ASYM,
+    SOLVENT_CONTENT, RESIDUES_MON (and the advanced options with a USER_
+    twin) are used only when their USER_ flag is True; otherwise the value
+    is silently dropped and Crank2 uses its own (GammaXe job 6: f'/f''
+    and 2 sites set, none in crank.inp). Read EXPECTED_SITES, RESIDUES_MON
+    and MONOMERS_ASYM back from the job to see what Crank2 actually used.
+  - >
+    The free set is new unless FREE is "existing" with FREERFLAG set; a
+    FREERFLAG alone is ignored. Refine afterwards against the set Crank2
+    used (its FREEROUT when it made one), or every later R-free is against
+    reflections the model has seen.
+  - >
+    XYZOUT is the built model WITHOUT the anomalous scatterers (they are in
+    XYZOUT_SUBSTR); Crank2's own final refinement modelled both. Refine
+    XYZOUT_COMPLETE, which has them (or, for jobs before it existed, expect
+    the loss). How much it matters goes with how strongly they scatter:
+    held-out HypF (two Hg, 91 residues, Crank2 R-free 0.298), Servalcat on
+    XYZOUT went 0.403 to 0.437 and both trial models then rebuilt and
+    refined without ever recovering (0.394 to 0.451); on XYZOUT plus the two
+    Hg sites the same refinement went 0.287 to 0.295. Neither trial model
+    suspected the missing mercury: both blamed the lost phase restraints.
+    Those do cost something (Crank2's REFMAC is restrained by the
+    experimental phases, MLHL), but a few hundredths, not 0.14: Sonnet's
+    servalcat_pipe on the GammaXe model (Xe, weaker) gave 0.302 from
+    Crank2's 0.272. A refinement much above Crank2's R-free means a missing
+    piece of the model, not a worse one.
+  - >
+    ModelCraft rebuilds the protein through Buccaneer, which outputs protein
+    only, so the substructure is gone after its first cycle even when its
+    input model had it - and it traces chain into the heavy-atom peaks
+    (held-out HypF: Cys67 N 0.31 A and an UNK atom 0.13 A from the two Hg;
+    R-free 0.394-0.451 however long it refined). After ModelCraft, run
+    add_substructure (XYZIN the ModelCraft model, XYZIN_SUB
+    "crank2[-1].XYZOUT_SUBSTR"): it removes residues built into a heavy
+    atom and adds the sites (that model 0.409 -> 0.267, below Crank2's own
+    0.298). With a strong scatterer and a "built" result, refine
+    XYZOUT_COMPLETE rather than rebuild.
+  - >
+    The CFOM bands are not proof: the two correct GammaXe runs stopped on
+    the trial limit at CFOM 74.9, just under the 75 "likely" threshold,
+    while the run with the wrong sequence reached 75.1. Judge the
+    substructure by the hand discrimination and the build, not by which
+    side of 75 it fell.
+
+  - >
+    If the project also has native data isomorphous with this derivative
+    (same space group and indexing, cell within about 1%), build and refine
+    against the native: modelcraft with F_SIGF the native, PHASES
+    "crank2[-1].FPHOUT_HL", USE_MODEL_PHASES False, and one free set shared
+    by both datasets (made before this job and given to it with FREE
+    "existing"). The native has no heavy atoms to model, and is usually
+    the better data. The derivative is for the phases.
+next:
+  - when: outcome == "built" and FREE_SET == "existing"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "crank2[-1].XYZOUT_COMPLETE"
+      HKLIN: "crank2[-1].F_SIGFanom"
+      FREERFLAG: "crank2[-1].FREERFLAG"
+    advice: >
+      Refine the built model against the data and the free set Crank2 used
+      (Sonnet job 6), then validate_protein; ADD_WATERS True once the
+      protein is complete (Sonnet job 8: 0.275). If BUILT_RESIDUES falls
+      short of the AU contents, run modelcraft first (as for "phased").
+      If SPACEGROUP_CHANGE is set, give HKLIN "crank2[-1].F_SIGFanom_OUT"
+      (the data in the changed group) instead.
+  - when: outcome == "built" and NEW_FREE_SET != null
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "crank2[-1].XYZOUT_COMPLETE"
+      HKLIN: "crank2[-1].F_SIGFanom"
+      FREERFLAG: "crank2[-1].FREEROUT"
+    advice: >
+      As above, with the free set Crank2 made (FREEROUT) - the set its
+      model was refined against. Use FREEROUT for every later job of this
+      structure, or rerun Crank2 with FREE "existing" and the project's set.
+  - when: outcome == "phased" and FREE_SET == "existing"
+    task: modelcraft
+    inputs:
+      F_SIGF: "crank2[-1].F_SIGFanom"
+      FREERFLAG: "crank2[-1].FREERFLAG"
+      PHASES: "crank2[-1].FPHOUT_HL"
+      XYZIN: "crank2[-1].XYZOUT"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+      USE_MODEL_PHASES: "False"
+    advice: >
+      Build on Crank2's phases and partial model. FIRST check RESIDUES_MON
+      and MONOMERS_ASYM against the protein. ASUIN must be a correct
+      AU-contents file: if the reference finds no ProvideAsuContents job
+      (Haiku's project had only ProvideSequence), or the sequence was wrong,
+      make one with ProvideAsuContents first - never fall back to
+      "crank2[-1].SEQIN" when RESIDUES_MON disagrees with the protein's
+      length. USE_MODEL_PHASES False makes ModelCraft use PHASES (otherwise
+      they are ignored, modelcraft.py lines 71, 112). FPHOUT_HL are Crank2's
+      final combined phases, already model-influenced, so UNBIASED is not
+      set. With no model built (the no-building "phased" case) leave XYZIN
+      out. Then add_substructure on ModelCraft's model (XYZIN_SUB
+      "crank2[-1].XYZOUT_SUBSTR"), then servalcat_pipe on its XYZOUT.
+  - when: outcome == "phased" and NEW_FREE_SET != null
+    task: modelcraft
+    inputs:
+      F_SIGF: "crank2[-1].F_SIGFanom"
+      FREERFLAG: "crank2[-1].FREEROUT"
+      PHASES: "crank2[-1].FPHOUT_HL"
+      XYZIN: "crank2[-1].XYZOUT"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+      USE_MODEL_PHASES: "False"
+    advice: >
+      As above, with the free set Crank2 made. If the sequence was wrong,
+      rerunning Crank2 itself with the right SEQIN (and FREE "existing") is
+      the cleaner alternative: its building uses the experimental phases
+      throughout.
+  - when: outcome == "ambiguous"
+    advice: >
+      Read the report before rerunning. Weak or unclear CFOM: rerun crank2
+      with a substructure resolution cutoff (SUBSTRDET_HIGH_RES_CUTOFF with
+      its USER_ flag) where the anomalous signal fades, and more trials
+      (SUBSTRDET_NUM_TRIALS); check ATOM_TYPE, NUMBER_SUBSTRUCTURE (with
+      USER_NUMBER_SUBSTRUCTURE) and the sequence. Close hand scores: a
+      finished job does not register the other hand's map or model (only
+      the last step's outputs reach the job); to get them, rerun crank2
+      with END_PIPELINE "handdet" (its outputs then include FPHOUT_HAND2 and
+      XYZOUT_HAND2), build each hand with modelcraft, and keep the hand
+      whose R-free falls. Or try the shelx task (it builds both hands) or
+      phaser_ep_phil on the same data as a second route. A person can
+      compare the two hands' maps in Coot or Moorhen.
+  - when: outcome == "failed"
+    advice: >
+      If ERROR is set, read the job's error first (no ATOM_TYPE, mean data,
+      a missing program). Then check the inputs: anomalous pairs, ATOM_TYPE
+      set, the sequence whole, the SIGNAL text (no anomalous signal cannot
+      be phased). Then rerun with a resolution cutoff and more trials, or
+      try shelx or phaser_ep_phil; with a model available, MR
+      (phaser_simple_phil) instead.
+
+sources:
+  - docs/user/source/tasks/crank2/crank2.rst
+  - server/ccp4i2/pipelines/crank2/script/crank2_script.py
+  - server/ccp4i2/pipelines/crank2/script/crank2.def.xml
+  - server/ccp4i2/pipelines/crank2/crank2/ccp4i2crank.py (registered outputs, SummariseSteps / CrankSteps)
+  - server/ccp4i2/pipelines/crank2/crank2/manager.py (Verdict, lines 868-900)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/substrdet.py (CFOM thresholds and messages)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/handdet.py (hand thresholds and messages)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/phas.py (FOM grades)
+  - server/ccp4i2/pipelines/crank2/crank2/processes/comb_phdmmb.py (building sentence)
+  - server/ccp4i2/pipelines/crank2/crank2/process.py (job summary)
+  - server/ccp4i2/wrappers/modelcraft/script/modelcraft.py (USE_MODEL_PHASES)
+  - "run: GammaXe job 6 (docs home; Xe SAD, new free set; building R 0.2446, R-free 0.2736, 120 residues)"
+  - "run: trial-gammaxe-sad-sonnet job 4 (existing free set; R 0.2447, R-free 0.2724, 127 residues), jobs 6-8 (servalcat, modelcraft, servalcat + waters)"
+  - "run: trial-gammaxe-sad-haiku job 4 (66 of 134 residues in SEQIN; R 0.3426, R-free 0.3897, 43 UNK residues)"
+  - "run: trial-gammaxe-sad-haiku job 3 (failed: ATOM_TYPE not set)"

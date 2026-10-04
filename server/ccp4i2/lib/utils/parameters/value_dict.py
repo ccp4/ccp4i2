@@ -58,6 +58,13 @@ def value_dict_for_object(ccp4i2_object):
         # Fall back to generic CData handling
         return handle_cdata(ccp4i2_object)
 
+    # A gemmi.UnitCell (a model digest's cell): its six numbers, not its
+    # repr. Checked by shape so gemmi need not be imported here.
+    parameters = getattr(ccp4i2_object, "parameters", None)
+    if (type(ccp4i2_object).__name__ == "UnitCell" and isinstance(parameters, tuple)
+            and len(parameters) == 6):
+        return dict(zip(("a", "b", "c", "alpha", "beta", "gamma"), map(float, parameters)))
+
     # Handle other objects with __dict__ (e.g., CPdbDataComposition)
     if hasattr(ccp4i2_object, '__dict__'):
         return handle_plain_object(ccp4i2_object)

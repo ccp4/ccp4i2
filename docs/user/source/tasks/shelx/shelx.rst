@@ -115,8 +115,8 @@ Advanced Options
    detection was not successful, consider running different resolution
    cutoffs **(3.1)** and more trials **(3.2)** if the results indicate
    that there is an anomalous signal. For sulfur-SAD phasing, as
-   mentioned above, if your anomalous resolution is greater than 2.1,
-   adjust the minimum distance between atoms **(3.3)** to 1.5. Another
+   mentioned above, if your anomalous resolution is better than about
+   2.1 Å, adjust the minimum distance between atoms **(3.3)** to 1.5 Å. Another
    useful option that can improve results is increasing the number of
    cycles of model building in SHELXE\ **(3.4)** or adjusting the
    solvent content and inputting the correct NCS copies in the
@@ -198,7 +198,7 @@ Substructure detection
    is if the threshold (i.e. CFOM in the case of SHELXD) has been
    reached before the maximum number of cycles has been performed: the
    report summary for the Substructure detection step will state this. A
-   division of trials in the Distribution of CFOM (Figure 7) is also an
+   division of trials in the Distribution of CFOM (Figure 8) is also an
    encouraging indicator: the graph shows the separation of incorrect
    (lower CFOM) trials from correct (higher CFOM) solutions. This
    division can also be observed as clustering in a graph of CC against
@@ -223,7 +223,7 @@ Density modification and poly-alanine trace
    model building for both substructure enantiomorphs is presented. In
    the gamma-adaptin example in the figure both hands trace well, with
    correlation coefficients of 55.8 and 53.1, above the threshold of 40
-   at which SHELXE stops; it chooses hand 1, and 119 residues are traced
+   at which Crank2 stops SHELXE (SHELXE's own is 30); it chooses hand 1, and 119 residues are traced
    into its map. A
    significant difference in between both hands for the correlation
    coefficient in model building (Figure 9),

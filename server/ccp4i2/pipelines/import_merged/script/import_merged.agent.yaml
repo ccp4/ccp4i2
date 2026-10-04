@@ -1,0 +1,482 @@
+task: import_merged
+status: draft
+reviewed_by: []
+purpose: >
+  Brings a file of MERGED reflections (MTZ, PDB sf-mmCIF, Scalepack, SHELX
+  .hkl, merged XDS_ASCII) into the project as one observed-data object
+  (OBSOUT: anomalous or mean, intensities or amplitudes) and one free-R set
+  (FREEOUT: kept and completed from the file or from a given set, or newly
+  made), then runs Pointless/Aimless/Phaser/ctruncate on the imported data
+  for analysis only (nothing from that analysis changes the outputs).
+
+use_when:
+  - The data are already scaled and merged (a deposited sf-mmCIF or final
+    MTZ, a processing-pipeline MTZ, a .sca), and the project has no
+    reflection object for them yet.
+  - A second merged dataset of the same crystal form (derivative, ligand
+    soak, other wavelength) is to be brought in, with the free set of the
+    first given as FREERFLAG.
+
+not_when:
+  - text: The file is unmerged (images integrated but not scaled, XDS
+      INTEGRATE/unmerged XDS_ASCII, unmerged MTZ). validity() refuses it.
+    instead: aimless_pipe
+  - text: The data are already a reflection object in this project and only
+      a free-R set is missing or must be extended.
+    instead: freerflag
+  - text: Only one column group is to be pulled out of an MTZ, with no
+      analysis and no free-set handling (ImportFreeR, ImportMapCoeffs and
+      ImportPhases do the same for other kinds of column).
+    instead: ImportObs
+
+inputs:
+  - param: inputData.HKLIN
+    advice: >
+      The merged file. The format is detected from the content, not the
+      extension. For a PDB entry prefer the sf-mmCIF (it usually carries
+      intensities and the deposited free set); a PDB-REDO "final.mtz" works
+      too (LassoPeptide job 1, LckKinase job 1: FP/SIGFP plus the FREE
+      column were imported and the FREE set kept, 551 and 1692 free
+      reflections). A PDB-REDO or refinement MTZ also holds FC/FWT/DELFWT/
+      PHIC: those are not observations and are never offered.
+  - param: inputData.HKLIN_OBS_COLUMNS
+    advice: >
+      Which observation group to import, as comma-separated labels
+      ("Iplus,SIGIplus,Iminus,SIGIminus"); the content flag is then derived
+      from the file (import_merged.py:896-901) - do not set
+      HKLIN_OBS_CONTENT_FLAG. Left unset, the task picks the group with the
+      lowest content flag: anomalous I > anomalous F > mean I > mean F
+      (bestcolumns, import_merged.py:926-943). That default is the right one:
+      prefer intensities over amplitudes (amplitudes already went through
+      French-Wilson; the twinning/tNCS analysis is then on squared F and the
+      report says it "may be biased", import_merged_report.py:584-588), and
+      prefer anomalous pairs over means - nothing is lost, later tasks get
+      the mean converted on demand (Gamma job 1 OBSOUT_asIMEAN.mtz and
+      OBSOUT_asFMEAN.mtz were made for molrep/refinement from an I+/I-
+      import). Choose amplitudes only when the file has no intensities.
+      EXCEPT when the file holds more than one dataset (a native and its
+      derivatives, several wavelengths): the default looks at column types
+      only, not datasets, and takes the first anomalous group it finds,
+      which may be a derivative's. Held-out RNase Sa (NATIVE: FNAT,
+      SIGFNAT, FreeR_flag; DERIV_HG, DERIV_I, DERIV_PT each with F(+)/F(-)):
+      left unset, Haiku imported 3.1 A derivative data instead of the 2.5 A
+      native, read it as twinned (L-test 0.43) and refined against it;
+      Sonnet set "FNAT,SIGFNAT" and HKLIN_FREER_COLUMN "FreeR_flag" and
+      reached R-free 0.225. Read the file's datasets first (the import
+      report lists them; or open the file) and name the group you mean;
+      plain labels work.
+  - param: inputData.FREERFLAG
+    advice: >
+      The decision that matters most. If any model has already been refined
+      against data from this crystal form (this project, a parent structure
+      of a ligand series, a previous dataset), give THAT free set here, e.g.
+      "import_merged[<first>].FREEOUT". It overrides a set in the file and is
+      completed to these data. Without it a new set is made that is
+      unrelated to the old one: Gamma job 8 (Xe data, same crystal as Gamma
+      job 1) got a new set sharing 28 of ~576 free reflections with job 1's
+      set, i.e. chance level. If the given set fails Clipper's
+      cell-compatibility test (cells differ enough to mis-index a reflection
+      finer than the tolerance, default 1.0 A; CCP4XtalData.py clipperSameCell,
+      aimless_pipe_utils.py:372) it is NOT used and a new set is made
+      (outcome free_set_not_kept); for another crystal of the same form set
+      OVERRIDE_CELL_DIFFERENCE True, which lifts this check and the same
+      1.0 A test in freerflag's join (freerflag.py:110-112).
+  - param: controlParameters.SKIP_FREER
+    advice: >
+      For StarAniso output set SKIP_FREER True and STARANISO_DATA True: the
+      free set StarAniso wrote must be kept as it is. The web interface ticks
+      these when it detects StarAniso (import_merged.tsx:508-515); i2run and
+      an agent do not, so set them yourself. Despite the label "Do not copy
+      or generate", a free column in the file is still copied unchanged to
+      FREEOUT (import_merged.py:674-675); only completion and generation are
+      skipped. With no free column in the file there is then no FREEOUT at
+      all.
+  - param: controlParameters.FREER_FRACTION
+    advice: >
+      Unset means 5% (freerflag.py:192). Not checked here: for small data
+      sets (BetaBlip at 3.0 A: 435 free of 9130) a larger fraction is often
+      advised so the free set has enough reflections; the number usually
+      quoted (~500-1000 free reflections, Bruenger) is from memory.
+  - param: inputData.RESOLUTION_RANGE
+    advice: >
+      Leave unset. Do not cut to the estimate the analysis prints: Pointless
+      estimates a limit from Mn(I/sigI) of MERGED data ("High resolution
+      limit reset to 1.04" for LassoPeptide, whose data go to 0.865 A and
+      were refined there by PDB-REDO). Resolution choices belong to
+      refinement.
+  - param: inputData.SPACEGROUP
+    advice: >
+      Needed only for SHELX .hkl (with UNITCELL; validity() blocks without
+      them) and as an override for Scalepack. Leave it unset for MTZ, mmCIF
+      and XDS, which carry their own: the import keeps the file's space group
+      anyway, and when SPACEGROUP is set the analysis tells Pointless to
+      choose that group (import_merged.py:386-389), so its space-group check
+      only confirms what it was told and check_symmetry cannot fire.
+  - param: inputData.SHELX_IS_INTENSITY
+    advice: >
+      SHELX files do not say whether they hold intensities (HKLF 4) or
+      amplitudes (HKLF 3); default True. Take it from the .ins/.res. Wrong
+      here means every downstream likelihood is wrong, silently.
+  - param: inputData.MMCIF_SELECTED_BLOCK
+    advice: >
+      An sf-mmCIF may hold several reflection blocks (refinement data,
+      other wavelengths, unmerged). The block descriptions
+      (guiParameters.MMCIF_BLOCK_DETAILS) are filled by the web interface
+      only; from i2run read the file's data_ block headers yourself. Not
+      checked in these runs: which block PDB entries put first.
+
+results:
+  IORF:
+    file: program.xml
+    xpath: ./IMPORT_LOG/IorFtype
+    type: str
+    meaning: Intensity, Amplitude or Unknown, for every format. BetaBlip,
+      LassoPeptide, LckKinase "Amplitude"; Gamma 1 and 8, GammaXe 1
+      "Intensity".
+  DATATYPE:
+    file: program.xml
+    xpath: ./IMPORT_LOG/*/datatype
+    type: str
+    meaning: What was imported - "I+- anomalous" (Gamma 1, 8, GammaXe 1),
+      "Fmean" (BetaBlip, LassoPeptide, LckKinase); also Imean, F+-. In
+      X2MTZ for MTZ/SCA/SHELX/XDS and in MMCIF_CONVERT for mmCIF (by code,
+      mmcifconvert.py:704; no mmCIF job checked).
+  NREFLECTIONS:
+    file: program.xml
+    xpath: ./IMPORT_LOG/*/nrefoutput
+    type: int
+    meaning: Unique reflections written (BetaBlip 8830, GammaXe 12214,
+      LckKinase 33997).
+  NEW_FREER:
+    file: program.xml
+    xpath: ./IMPORT_LOG/newFreeR[last()]
+    type: str
+    meaning: '"True" if a new free set was made, "False" if one was kept and
+      completed. Use [last()]: after a failed completion the task writes
+      "False" then "True" (import_merged_report.py:212-215). BetaBlip, Gamma
+      1 and 8 "True"; GammaXe, LassoPeptide, LckKinase "False". Absent with
+      SKIP_FREER.'
+  FREER_SOURCE:
+    file: program.xml
+    xpath: ./IMPORT_LOG/freeRsource
+    type: str
+    meaning: Where the kept set came from - "Explicit" (FREERFLAG given;
+      GammaXe 1), "Input" (a column in the file; LassoPeptide, LckKinase),
+      "None" (SKIP_FREER). Absent when no set was offered (BetaBlip, Gamma 1
+      and 8).
+  FREER_FAILED:
+    file: program.xml
+    xpath: ./IMPORT_LOG/FreeRfailed[last()]
+    type: str
+    meaning: Present only if completing the offered set failed - "True"
+      (a new set was then made) or "Again" (the job fails). Absent in all six
+      evidence jobs.
+  SPACEGROUP_IN:
+    file: program.xml
+    xpath: .//POINTLESS/ReflectionFile/SpacegroupName
+    type: str
+    meaning: Space group of the imported file (P 32 2 1 BetaBlip, P 21 21 21
+      the rest).
+  SPACEGROUP_POINTLESS:
+    file: program.xml
+    xpath: .//POINTLESS/BestSolution/GroupName
+    type: str
+    meaning: Pointless's choice on the merged data; equal to SPACEGROUP_IN in
+      all six jobs (all run with SPACEGROUP unset). Equal by construction
+      when SPACEGROUP was set (see inputs).
+  RESOLUTION:
+    file: program.xml
+    xpath: .//AIMLESS/Result/Dataset/ResolutionHigh/Overall
+    type: float
+    meaning: High-resolution limit of the imported data (after any cut).
+      BetaBlip 3.00, Gamma 1 1.81, Gamma 8 / GammaXe 1.79, LassoPeptide
+      0.86, LckKinase 1.72.
+  COMPLETENESS:
+    file: program.xml
+    xpath: .//AIMLESS/Result/Dataset/Completeness/Overall
+    type: float
+    meaning: Overall completeness, %. 97.4-98.9 except LckKinase 88.7.
+  COMPLETENESS_OUTER:
+    file: program.xml
+    xpath: .//AIMLESS/Result/Dataset/Completeness/Outer
+    type: float
+    meaning: Outer-shell completeness, %. LckKinase 43.5, LassoPeptide 72.6,
+      Gamma 1 82.4, others 91.6-96.0.
+  TWINNED:
+    file: program.xml
+    xpath: .//CTRUNCATE/Twinning/L-test/Twinned
+    type: str
+    meaning: ctruncate's own L-test verdict, "No" in all six jobs.
+  L_TEST:
+    file: program.xml
+    xpath: .//CTRUNCATE/Twinning/L-test/Result
+    type: float
+    meaning: <|L|>; 0.500 untwinned, 0.440 for 10% twin, 0.375 perfect twin
+      (ctruncate's table, printed in the same element's Comment). Evidence
+      0.467 (LckKinase) to 0.513 (LassoPeptide).
+  TWIN_LAW:
+    file: program.xml
+    xpath: .//CTRUNCATE/Twinning/TwinOps/Operator/Description
+    type: str
+    meaning: First twin law the lattice and point group admit, if any
+      (BetaBlip "h+k,-k,-l", pseudo-merohedral; absent for the five
+      P 21 21 21 jobs). Says twinning is possible, not that it is present.
+  TNCS_PHASER:
+    file: program.xml
+    xpath: .//PHASER_ANALYSIS/Analysis/tNCS
+    attribute: tNCS
+    type: str
+    meaning: Phaser's tNCS detection, "True"/"False"; "False" in all six.
+      Absent (unknown) if Phaser's output matched neither pattern
+      (phaser_analysis_utils.py:300-331).
+  TNCS_CTRUNCATE:
+    file: program.xml
+    xpath: .//CTRUNCATE/translationalNCS/detected
+    type: str
+    meaning: ctruncate's Patterson-peak tNCS flag; "Yes" only for
+      LassoPeptide, where it is impossible (see traps). Not used in the
+      verdict.
+  ANISO_DELTAB:
+    file: program.xml
+    xpath: .//PHASER_ANALYSIS/Analysis/Anisotropy/deltaB
+    type: float
+    meaning: Range of the anisotropic B principal components (A^2), from
+      Phaser. BetaBlip 32.1, LckKinase 8.57, others 2.5-3.7.
+  ANOM_MEASURABLE_TO:
+    file: program.xml
+    xpath: ".//CTRUNCATE/AnomStatistics/ResolutionRange[@id='Measurability Limit']/max"
+    type: float
+    meaning: ctruncate's resolution limit of measurable anomalous signal,
+      from the merged I+/I- (the only anomalous measure that means anything
+      for merged input; Aimless's CC(anom) needs unmerged data). NaN (reads
+      as a number that compares false with everything) when there is none.
+      GammaXe 1 and Gamma 8 (Xe) 2.57; NaN for Gamma 1 (native I+/I-) and
+      for all mean-data imports.
+  # FINDING: Phaser's two twinning P-values (P(untwinned), P(twin fraction <
+  #   5%)) are one element, .//PHASER_ANALYSIS/Analysis/Twinning/Pvalues =
+  #   "8.55e-05  0.235" (LckKinase), so no result can compare the second; the
+  #   Phaser log states the rule ("P-value < 0.01 for < 5% twinned is
+  #   considered worth investigating", LckKinase job_1/job_2/job_3/log.txt
+  #   line 418). Split them into two elements in program.xml.
+  # FINDING: the fraction of the completed/new free set is not in
+  #   program.xml (FREERFLAGINFO has Fraction only for a new set, as the
+  #   requested value). Measured from FREEOUT.mtz: 4.8-5.1% in all six.
+  # NOTE: Aimless's statistics in this program.xml (CChalf, Rmerge,
+  #   Multiplicity, AnomalousCChalf, AnomalousStatus) are computed on merged
+  #   data and are not data-quality measures; none is used here (traps).
+  #   aimless_pipe's ANOM_LIMIT (Aimless CC(anom)) is 0.00 for merged input;
+  #   that is why this file uses ctruncate's limit under another name.
+  # NOTE: ./IMPORT_LOG/columnlabels is empty when the columns were chosen by
+  #   default (BetaBlip, Gamma, GammaXe); the labels actually imported are in
+  #   ./IMPORT_LOG/X2MTZ/inputcolumnames.
+
+verdict:
+  - when: FREER_SOURCE == "Explicit" and NEW_FREER == "True"
+    outcome: free_set_not_kept
+    basis: >
+      Code, not a threshold: FREERFLAG was given but a new set was made -
+      the cell-compatibility test failed without OVERRIDE_CELL_DIFFERENCE
+      (import_merged.py:245-254), or completion of the given set failed and
+      the task retried with a new one (import_merged.py:307-316). The report
+      shows a red warning (import_merged_report.py:304-317) but the job
+      still finishes as a success. No evidence job takes this path.
+  - when: FREER_FAILED == "True"
+    outcome: free_set_remade
+    basis: >
+      Code: completing the free set offered by the file failed and a new set
+      was made on the second attempt (import_merged.py:307-316); the
+      analysis then runs twice (no return after the retry). By reading, an
+      sf-mmCIF with no free flags imported from i2run lands here: HASFREER
+      defaults True and only the web interface sets it from the file
+      (import_merged.def.xml:100, import_merged.tsx:553-555, 643-645), and
+      convertmmcif sets a free-set path whether or not one was written
+      (import_merged.py:620). No evidence job takes this path.
+  - when: SPACEGROUP_POINTLESS != SPACEGROUP_IN
+    outcome: check_symmetry
+    basis: >
+      Pointless documentation (ccp4-20260702/html/pointless.html line 1015):
+      "A merged file can only be checked for under-merging ie for the true
+      Laue group being a higher symmetry than that used for merging". A
+      different choice means apparent higher symmetry or a screw-axis call
+      from absences that merging may have removed. Meaningful only when
+      SPACEGROUP was left unset: when it is set, Pointless is told to choose
+      it (import_merged.py:386-389) and agrees by construction. All six
+      evidence jobs (SPACEGROUP unset) agree with the file.
+  - when: TWINNED != "No"
+    outcome: twinning_suspected
+    basis: >
+      ctruncate's own L-test verdict; its program.xml table gives <|L|> 0.500
+      untwinned, 0.440 at twin fraction 0.1, 0.375 perfect. Evidence: all six
+      "No", <|L|> 0.467-0.513. The <|L|> at which ctruncate says "Yes" is
+      not stated in its output or ctruncate.html.
+  - when: TNCS_PHASER == "True"
+    outcome: tncs
+    basis: >
+      Phaser's own detection. Evidence: all six "False". Judged on Phaser,
+      not ctruncate: ctruncate's test takes the largest Patterson peak beyond
+      14 A as tNCS, which in a small cell can be an ordinary interatomic
+      vector - it said "Yes" for LassoPeptide (peak 0.225 of origin at
+      (0,0,1/2), chance probability 0.56), whose AU holds one 19-residue
+      peptide (LassoPeptide job 2; Vm 1.47 for one copy, 0.73 for two), so
+      tNCS is impossible there.
+  - when: RESOLUTION > 0
+    outcome: imported
+    basis: >
+      The analysis ran on the written OBSOUT. All six evidence jobs; their
+      outputs were used downstream (BetaBlip MR to R-free 0.343, Gamma
+      molrep to 0.253, GammaXe crank2 SAD to 0.274).
+  - when: true
+    outcome: failed
+    basis: No analysis result - the import or its analysis did not complete.
+
+traps:
+  - >
+    Aimless's numbers here are not data quality. On merged data its CC1/2,
+    Rmerge and multiplicity come from I+ vs I- (Gamma: CC1/2 0.997,
+    multiplicity 1.8) or are 0 (mean data), and it writes "There is no
+    anomalous information in the data" for every import - including GammaXe,
+    whose xenon anomalous signal then solved the structure (crank2 job 6,
+    R-free 0.274). For anomalous signal read ANOM_MEASURABLE_TO (ctruncate:
+    2.57 A for the Xe data, NaN for the native).
+  - >
+    A new free set is made silently whenever none is offered. Gamma job 8
+    imported a second dataset of the Gamma crystal and got a set that shares
+    28 of ~576 free reflections with job 1's - so refining job 1's model
+    against job 8's data with job 8's FREEOUT gives a biased R-free. Before
+    accepting NEW_FREER "True", check the project for an earlier FREEOUT of
+    the same crystal form and re-import with it as FREERFLAG.
+  - >
+    A free set that was kept or extended is not made twin-safe. When the
+    point group admits a twin law (TWIN_LAW present: trigonal, tetragonal,
+    hexagonal, cubic, or a pseudo-merohedral cell - BetaBlip's P 32 2 1
+    lists h+k,-k,-l), a NEW set from this task gives twin-related
+    reflections the same flag (freerflag.py assign_class_flags, twin laws
+    within 5 degrees obliquity, as the CCP4 binary's default). Completing a
+    set from the file or from FREERFLAG does not regroup it (COMPLETE
+    implies NOTWIN, ccp4-20260702/html/freerflag.html), so the old set's
+    twin mates may already sit in different sets. If the data turn out
+    twinned, R-free from such a set is biased low.
+  - >
+    The Phaser panel's twin warning is looser than Phaser. It says "Some
+    possibility that the data are twinned" when P(twin fraction < 5%) < 0.4
+    (phaser_analysis_report.py:175); Phaser's own log calls only < 0.01
+    worth investigating. Here it fired once in six: LckKinase, P(twin < 5%)
+    0.235 (P(untwinned) 8.6e-05 after anisotropy correction), a dataset
+    whose structure was never refined to a verdict. Judge twinning on
+    TWINNED and L_TEST.
+  - >
+    Merged data cannot settle the space group. Systematic absences are
+    usually gone after merging (Pointless warned "one or more zones have
+    data systematically missing" in all six jobs), so screw axes and
+    enantiomorphs (BetaBlip: "solutions are enantiomorphic", P 32 2 1 kept
+    because it matched the file) are not decided here. Let molecular
+    replacement test the alternatives in the point group; do not reindex on
+    this analysis.
+  - >
+    Amplitude-only imports (PDB-REDO final.mtz, old deposits) give twinning,
+    tNCS and Wilson statistics on F squared, which the report flags as
+    possibly biased; and the nominal resolution can overstate the data
+    (LckKinase: 88.7% complete overall, 43.5% in the 1.72 A outer shell,
+    anisotropy deltaB 8.6). Use intensities whenever the source has them.
+
+next:
+  - when: outcome == "imported" or outcome == "tncs" or outcome == "twinning_suspected" or outcome == "free_set_remade"
+    task: ProvideAsuContents
+    inputs:
+      HKLIN: "import_merged[-1].OBSOUT"
+    advice: >
+      Define the AU contents (sequence, copies); with HKLIN it also checks
+      the solvent content against this cell. Then MR below.
+  - when: outcome == "imported" or outcome == "tncs" or outcome == "twinning_suspected" or outcome == "free_set_remade"
+    task: phaser_simple_phil
+    inputs:
+      F_SIGF: "import_merged[-1].OBSOUT"
+      FREERFLAG: "import_merged[-1].FREEOUT"
+    advice: >
+      Molecular replacement when a search model exists (BetaBlip jobs 3-4
+      used job 1's OBSOUT and FREEOUT). Phaser corrects for tNCS and
+      anisotropy itself; with outcome tncs prefer it to molrep_pipe.
+  - when: outcome == "imported" or outcome == "twinning_suspected" or outcome == "free_set_remade"
+    task: prosmart_refmac
+    inputs:
+      F_SIGF: "import_merged[-1].OBSOUT"
+      FREERFLAG: "import_merged[-1].FREEOUT"
+    advice: >
+      Only when a model of THIS crystal form already exists (same space
+      group, near-identical cell); also give XYZIN. servalcat_pipe takes the
+      same files as HKLIN and FREERFLAG; i2Dimple as F_SIGF and FREERFLAG.
+      The free set must be the one that model was refined against (traps);
+      after free_set_remade it is not, unless no model existed.
+  - when: outcome == "imported" and ANOM_MEASURABLE_TO > 0
+    task: crank2
+    inputs:
+      F_SIGFanom: "import_merged[-1].OBSOUT"
+    advice: >
+      Measurable anomalous signal (GammaXe: 2.57 A, solved by crank2 job 6
+      to R-free 0.274 and shelx job 7 to 0.283). Needs the sequence (SEQIN)
+      and the substructure atom type. Only for an I+/I- or F+/F- import
+      (DATATYPE "I+- anomalous" or F+-).
+  - when: NEW_FREER == "False" and TWIN_LAW != ""
+    advice: >
+      A free set kept from the file or from FREERFLAG, in a point group that
+      admits a twin law (traps): completion does not group twin mates. If
+      twinning is found, keep the set for continuity with earlier models but
+      treat R-free with caution; for a new structure a fresh set from this
+      task (or freerflag) is twin-safe.
+  - when: outcome == "twinning_suspected"
+    advice: >
+      Proceed with MR, then refine with twin refinement and check the space
+      group of the solution (zanuda). Look at L_TEST (0.440 = 10% twin) and
+      at Phaser's P(twin < 5%) in the report - only below 0.01 by Phaser's
+      own rule. A new free set from this job is twin-safe; a kept or extended
+      one may not be (traps).
+  - when: outcome == "free_set_not_kept"
+    advice: >
+      Do not use this job's FREEOUT with a model refined against the set you
+      offered. If the offered set is from another crystal of the same form,
+      re-run with OVERRIDE_CELL_DIFFERENCE True; otherwise check that
+      FREERFLAG is the right file (space group and indexing must match).
+  - when: outcome == "free_set_remade"
+    advice: >
+      The free set offered by the file could not be completed (all flags
+      equal, or none at all - an sf-mmCIF without flags imported from i2run
+      lands here) and a new set was made. If the file's set mattered (a
+      model was refined against it), extract it with ImportFreeR and give it
+      as FREERFLAG in a new import; otherwise the new set is fine.
+  - when: FREER_SOURCE == "None"
+    advice: >
+      SKIP_FREER was set: FREEOUT exists only if the file carried a free
+      column. If it did not, run freerflag on import_merged[-1].OBSOUT before
+      any refinement.
+  - when: outcome == "check_symmetry"
+    advice: >
+      If unmerged data exist, re-process them (aimless_pipe) and let
+      Pointless decide on unmerged data. Otherwise carry on with the file's
+      space group and let MR test the alternatives.
+  - when: outcome == "imported" and NEW_FREER == "True"
+    advice: >
+      A new free set was made. Fine for a new structure; wrong if a model of
+      this crystal form was already refined with another set - re-import with
+      that set as FREERFLAG.
+  - when: outcome == "failed"
+    advice: >
+      Read the job's error report. Common causes: unmerged data (use
+      aimless_pipe), SHELX without cell/space group, an mmCIF with no block
+      chosen, column labels that match no observation group.
+
+sources:
+  - docs/user/source/tasks/import_merged/index.rst
+  - server/ccp4i2/pipelines/import_merged/script/import_merged.py
+  - server/ccp4i2/pipelines/import_merged/script/import_merged_report.py
+  - server/ccp4i2/wrappers/freerflag/script/freerflag.py
+  - server/ccp4i2/wrappers/ctruncate/script/ctruncate_report.py
+  - server/ccp4i2/wrappers/phaser_analysis/script/phaser_analysis_report.py
+  - client/renderer/components/task/task-interfaces/import_merged.tsx
+  - ccp4-20260702/html/pointless.html (merged-file checks, line 1015)
+  - ccp4-20260702/html/freerflag.html (twin laws, NOTWIN; COMPLETE)
+  - "run: BetaBlip job 1 (MTZ Fobs/Sigma, P 32 2 1, 3.0 A, new free set)"
+  - "run: Gamma job 1 (native I+/I-, new free set) and job 8 (Xe I+/I-, new, unrelated free set)"
+  - "run: GammaXe job 1 (Xe I+/I- with explicit freeR.mtz; anomalous signal to 2.57 A)"
+  - "run: LassoPeptide jobs 1-2 (PDB-REDO 3njw final.mtz, FP + FREE, 0.86 A; one-copy AU, ctruncate tNCS impossible)"
+  - "run: LckKinase job 1 (PDB-REDO 4c3f final.mtz, FP + FREE, 1.72 A, 43.5% outer completeness)"
+  - "Phaser log text: 'P-value < 0.01 for < 5% twinned is considered worth investigating' (LckKinase job_1/job_2/job_3/log.txt:418)"

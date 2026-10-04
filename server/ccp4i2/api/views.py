@@ -26,9 +26,53 @@ _TASK_LOOKUP = {key: {
 } for key, task in TASKS.items()}
 
 
+def _with_judgements():
+    """The lookup with hasJudgement for each task: whether a judgement
+    (<task>.agent.yaml) has been written, so an agent choosing a task can
+    prefer one whose use and results someone has written up. Worked out on
+    the first request, not at import."""
+    if "_judged" not in _TASK_LOOKUP_STATE:
+        from ..agent.judgement import judgement_path
+        for key, entry in _TASK_LOOKUP.items():
+            path = judgement_path(key)
+            entry["hasJudgement"] = bool(path is not None and path.is_file())
+        _TASK_LOOKUP_STATE["_judged"] = True
+    return _TASK_LOOKUP
+
+
+_TASK_LOOKUP_STATE = {}
+
+
 @api_view(["GET"])
 def task_lookup(request):
-    return JsonResponse(_TASK_LOOKUP)
+    return JsonResponse(_with_judgements())
+
+
+@api_view(["GET"])
+def agent_task(request, task_name):
+    """What an agent needs to know about a task before running it.
+
+    GET agent/tasks/phaser_simple_phil/ -> {task, title, description,
+    successor, interactive, judgement}. ``judgement`` is the task's
+    ``<task>.agent.yaml`` (docs/agentic-knowledge.md): when to use it, the
+    inputs needing judgement, how its results are read and judged, the traps
+    and the next steps; null for a task with none written yet. A job's
+    parameters come from the job (jobs/<id>/parameters/), once created.
+    """
+    from ..agent.judgement import load
+    from ..lib.response import api_error, api_success
+
+    task = TASKS.get(task_name)
+    if task is None:
+        return api_error(f"No task {task_name!r}", status=404)
+    return api_success({
+        "task": task_name,
+        "title": task.title,
+        "description": task.description,
+        "successor": task.successor,
+        "interactive": task.interactive,
+        "judgement": load(task_name),
+    })
 
 
 @api_view(["GET"])

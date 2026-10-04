@@ -1,4 +1,5 @@
 import re
+import gemmi
 from gemmi import read_mtz_file, read_pdb
 from .programs import requires_program
 from .utils import demoData, i2run
@@ -49,6 +50,16 @@ def test_gamma_sad():
         # job ran crank2's own route instead, and this test passed on that.
         log = (job / "log.txt").read_text(errors="replace")
         assert "Running shelxe with hand 1" in log, "SHELXE did not run"
+        # The model to refine carries the xenon (XYZOUT leaves it out), and
+        # carries each atom once
+        import xml.etree.ElementTree as ET
+        done = ET.parse(job / "program.xml").find("CompleteModel")
+        assert done is not None and done.get("error") is None, done.attrib if done is not None else None
+        complete = gemmi.read_structure(str(job / "XYZOUT_COMPLETE.pdb"))[0]
+        built = gemmi.read_structure(str(job / "n_part.pdb"))[0]
+        xenons = [a for ch in complete for r in ch for a in r if a.element.name == "Xe"]
+        assert len(xenons) == int(done.get("added")) >= 1
+        assert complete.count_atom_sites() == built.count_atom_sites() + len(xenons)
 
 
 @requires_program("shelxc", "shelxd", "shelxe")

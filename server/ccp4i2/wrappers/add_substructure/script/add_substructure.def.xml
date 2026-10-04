@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>add_substructure</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="add_substructure">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Model</guiLabel>
+                    <toolTip>The built model (from ModelCraft, Buccaneer, manual rebuilding or molecular replacement)</toolTip>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_SUB">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Anomalous substructure</guiLabel>
+                    <toolTip>The heavy-atom or anomalous-scatterer sites (Crank2 or SHELX XYZOUT_SUBSTR, Phaser EP sites, ShelxCD)</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="FIND_ORIGIN">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Find the sites' origin and hand if they do not fit the model as given</guiLabel>
+                    <toolTip>Sites from another job or program may be in another origin or the other hand. Needs at least 3 sites; sites on model atoms (S-SAD, SeMet) decide it best.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="REMOVE_CLASHING">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Remove residues built into a heavy atom's density</guiLabel>
+                    <toolTip>A heavy scatterer (not S or Se) with model atoms within 1.5 A: the model building traced chain into the heavy-atom peak. Those residues are removed and the site added. A site on an S or Se atom is never acted on.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ALL_MET_TO_MSE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Make every methionine selenomethionine</guiLabel>
+                    <toolTip>For a SeMet crystal refined against its own data: every MET becomes MSE, found as a site or not.</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType></default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

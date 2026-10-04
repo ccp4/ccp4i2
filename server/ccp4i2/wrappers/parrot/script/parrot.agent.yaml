@@ -1,0 +1,372 @@
+task: parrot
+status: draft
+reviewed_by: []
+purpose: >
+  Improves a set of phases by density modification with Parrot: solvent
+  flattening and histogram matching (with a solvent fraction estimated from
+  the AU contents), optionally NCS averaging with operators found from a
+  heavy-atom or partial model, and writes new phases (ABCDOUT, HL) and map
+  coefficients (FPHIOUT).
+
+use_when:
+  - >
+    Experimental phasing (SAD, SIRAS, MAD) has given phases and you want a
+    more interpretable map to look at, for each hand still in question.
+    phaser_ep_phil runs parrot on each hand it phases (GammaXe 3.2, 3.3).
+  - >
+    After molecular replacement or refinement of a partial model, to give a
+    person a less model-biased map to inspect for what the model lacks.
+    Expect little: CDK2_CyclinA 3 (phases from the two CDK2 copies, cyclin A
+    absent) gained 0.035 in correlation with the deposited structure over
+    cyclin A, lost 0.038 over CDK2, and the whole map was no better.
+  - >
+    The AU holds several copies, so NCS averaging is available (from the
+    heavy-atom sites or the placed model).
+
+not_when:
+  - text: >
+      The next step is automated building. ModelCraft runs Parrot itself
+      (cparrot, 5 cycles, on the first cycle and on every cycle unless basic;
+      its help page, docs/user/source/tasks/modelcraft/index.rst lines 39 and
+      74-75: "There is no need to run density modification first"). A
+      separate parrot job is not needed before the build.
+    instead: modelcraft
+  - text: >
+      The phases came from Crank2 or the SHELX pipeline, which run their own
+      density modification before building: take their output, not parrot.
+  - text: >
+      The model is complete, or nearly, and refines well: model phases are
+      better than anything density modification can give, and the map to
+      look at is the refinement's 2mFo-DFc map.
+    instead: prosmart_refmac
+
+inputs:
+  - param: inputData.ASUIN
+    advice: >
+      Sets the solvent content, the most important number Parrot uses.
+      Give every chain the AU holds with its real copy number (CDK2_CyclinA
+      3: two CDK2 and two cyclin A, solvent 0.579). The wrapper writes every
+      copy into seqin (parrot.py, PR #689); Parrot then still tests
+      multiples of that content by Matthews probability and keeps the most
+      probable, recorded as NMOLS_FROM_SEQ. Wrong copy numbers give a wrong
+      solvent fraction and a worse map, silently.
+  - param: inputData.ABCD
+    advice: >
+      The phases to improve, HL or PHI/FOM: from a phasing job (one hand
+      at a time; phaser_ep_phil's ABCDOUT holds the original hand first and
+      the inverted second) or from refinement of a placed model
+      (prosmart_refmac's ABCDOUT, as in CDK2_CyclinA 3).
+  - param: inputData.XYZIN_MODE
+    advice: >
+      "no" (default), "ha" (NCS from the heavy-atom sites, XYZIN_HA) or
+      "mr" (NCS from a placed or partial model, XYZIN_MR). Use NCS whenever
+      the AU holds two or more copies and a model shows them; with only one
+      copy there is nothing to average. CDK2_CyclinA 3 used "mr" with the
+      refined two-CDK2 model and found 2 operators (A->C and C->A).
+  - param: controlParameters.CYCLES
+    advice: >
+      Default 3 ("normal (no NCS)"). Raise it to 10 when NCS is used; it is
+      NOT raised automatically when XYZIN_MODE is set. Parrot's
+      documentation: "3 or 5 cycles are a good choice if there is no NCS,
+      with NCS more cycles can be used. Too many cycles lead to bias"
+      (ccp4 html/parrot.html, -cycles). CDK2_CyclinA 3 ran 10 with NCS.
+  - param: controlParameters.SOLVENT_CONTENT
+    advice: >
+      Leave unset when the AU contents are right. Set it (a fraction,
+      0.0-1.0) when Parrot picked a multiple of the contents you gave
+      (NMOLS_FROM_SEQ not 1) and you are sure of the copy number, or when
+      the solvent content is known from elsewhere.
+  - param: inputData.FREERFLAG
+    advice: >
+      Optional; the help page says it is not normally needed. Parrot writes
+      no free statistic either way (FreeFcorrel 0.000 in every cycle,
+      CDK2_CyclinA 3 with a free set given).
+  - param: controlParameters.F_SIGF_REF
+    advice: >
+      With ABCD_REF and XYZIN_REF, a reference structure in place of
+      Parrot's built-in one (1tqw). Leave all three empty for proteins: the
+      help page says the choice does not matter. Since commit d74ae2d74 a
+      reference given here reaches Parrot (own hklin_ref.mtz, mtzin-ref); in
+      jobs run before it, the reference never reached Parrot, so an old job
+      with these set ran on the built-in reference.
+
+results:
+  FOM_START:
+    file: program.xml
+    xpath: Cycles/Cycle[1]/MeanFOM
+    type: float
+    meaning: >
+      Mean figure of merit of the input phases (cycle 0, before any
+      modification). CDK2_CyclinA 3 0.534; GammaXe 3.2 and 3.3 0.399 (the
+      two hands have the same FOM).
+  FOM_FINAL:
+    file: program.xml
+    xpath: Final/MeanFOM
+    type: float
+    meaning: >
+      Mean FOM after the last cycle. A self-consistency measure that rises
+      almost by construction and is an overestimate (the report says so):
+      it cannot rank hands, and it is not comparable with a refinement's
+      FOM. It is also this job's project KPI "FOM", under the same name as
+      a phasing job's FOM. CDK2_CyclinA 3 0.735; GammaXe 3.2 (original,
+      right hand) 0.703; GammaXe 3.3 (inverted, wrong hand) 0.623.
+  FCORREL_START:
+    file: program.xml
+    xpath: Cycles/Cycle[1]/Fcorrel
+    type: float
+    meaning: >
+      Correlation of Fobs with the amplitudes of the map before
+      modification ("Fcorrel(work)"). CDK2_CyclinA 3 0.953; GammaXe 3.2 and
+      3.3 0.793.
+  FCORREL_FINAL:
+    file: program.xml
+    xpath: Final/Fcorrel
+    type: float
+    meaning: >
+      The same after the last cycle; self-consistency again, not agreement
+      with the true structure. Rises from experimental phases (GammaXe 3.2
+      0.920, 3.3 0.908) and can fall slightly from model phases
+      (CDK2_CyclinA 3 0.929). Does not separate the hands.
+  SOLVENT:
+    file: program.xml
+    xpath: SolventContent/SolventContent
+    type: float
+    meaning: >
+      Solvent fraction Parrot used. CDK2_CyclinA 3 0.5787; GammaXe 3.2 and
+      3.3 0.4170.
+  NMOLS_FROM_SEQ:
+    file: program.xml
+    xpath: SolventContent/NMolsFromSequence
+    type: int
+    meaning: >
+      How many times the AU contents Parrot assumed the AU holds, chosen by
+      Matthews probability. 1 in all three evidence jobs (CDK2_CyclinA 3:
+      probability 0.990 for 1, 0.005 for 2); the report states it as "N
+      times the asymmetric unit contents". Anything but 1 means the solvent
+      content does not match the AU contents given. Not seen in a job with
+      SOLVENT_CONTENT set.
+  NCS_OPERATORS:
+    file: program.xml
+    xpath: Nncs
+    type: int
+    meaning: >
+      NCS operators found from the model (an operator per ordered pair of
+      copies: 2 for two copies). CDK2_CyclinA 3 2; GammaXe 0 (no NCS model).
+  NCS_CORRELATION:
+    file: program.xml
+    xpath: Final/NCScormean
+    type: float
+    meaning: >
+      Mean NCS correlation (best 10 A sphere) at the end; 0.000 when NCS
+      was not used. CDK2_CyclinA 3 0.826 (operators 0.834 and 0.818).
+  NCS_MODE:
+    file: params.xml
+    xpath: .//inputData/XYZIN_MODE
+    type: str
+    optional: true
+    meaning: >
+      "mr" or "ha" when NCS was asked for; absent when left at the
+      default "no" (GammaXe 3.2, 3.3). CDK2_CyclinA 3 "mr".
+  PHASES_ANNOTATION:
+    file: params.xml
+    xpath: .//inputData/ABCD/annotation
+    type: str
+    optional: true
+    meaning: >
+      The input phases' annotation; in phaser_ep_phil's parrot sub-jobs it
+      names the hand ("Phase estimates - original hand" in GammaXe 3.2,
+      "... inverted hand" in 3.3). Present only when the input was set from
+      another job's output object, as the pipeline does: absent in
+      CDK2_CyclinA 3 (set by file), and possibly absent for a parrot run by
+      hand on a phaser_ep_phil ABCDOUT. The file's own annotation in the
+      database would be the reliable source.
+  # FINDING: Parrot (cparrot) writes FreeFcorrel and the free
+  #   log-likelihood as 0.000 in every cycle even with a Free R set given
+  #   (CDK2_CyclinA 3: colin-free FREERFLAG_FREER, flags 0-19, free = 0).
+  #   Inside cparrot, not the wrapper; no free statistic exists to judge on.
+  # FINDING: no number in program.xml says whether density modification
+  #   brought the map closer to the true structure. FOM and Fcorrel are
+  #   self-consistency measures; the per-cycle SigmaA tables are log text.
+  #   The map-model correlations quoted here were computed afterwards with
+  #   gemmi against a later or deposited model; Parrot does not compute them.
+  # NOTE: xpaths are relative to the root ParrotResult of a parrot job's
+  #   own program.xml; all were read from CDK2_CyclinA 3 and GammaXe 3.2,
+  #   3.3. In phaser_ep_phil's program.xml the same elements sit under
+  #   original/ParrotResult and inverted/ParrotResult.
+
+verdict:
+  - when: FOM_FINAL >= 0.40 and FOM_FINAL >= FOM_START
+    outcome: improved
+    basis: >
+      In-house thresholds, not Parrot's. Density modification ran and its
+      FOM did not fall and ended at or above 0.40, the lower edge of the
+      task's own report band "marginal for model building"
+      (parrot_report.py: > 0.6 good, > 0.4 marginal, below "too poor"; the
+      report adds that the FOM "can be seriously overestimated"). Every
+      evidence job is far above both lines: CDK2_CyclinA 3 0.534 -> 0.735;
+      GammaXe 3.2 0.399 -> 0.703; 3.3 0.399 -> 0.623. "improved" does NOT
+      say the hand or the solvent content is right: GammaXe 3.3 is the
+      wrong hand (its map correlates 0.03 with the built structure, and
+      ModelCraft from it reached R-free 0.563 against 0.379 for 3.2).
+  - when: FOM_FINAL != null
+    outcome: no_better
+    basis: >
+      In-house: Parrot finished but its FOM fell or ended below the
+      report's 0.40 ("too poor for model building"). No evidence job falls
+      here.
+  - when: true
+    outcome: failed
+    basis: No final FOM in program.xml; Parrot did not finish.
+
+traps:
+  - >
+    A higher FOM is not a right map. Parrot's FOM rises for the wrong hand
+    too: GammaXe 3.3 (inverted) went 0.399 -> 0.623, against 0.703 for the
+    right hand (3.2), and its map has no relation to the structure (CC 0.03
+    with the built model; 3.2 rose 0.32 -> 0.47). One parrot job cannot
+    decide the hand: the right hand ended higher in FOM and Fcorrel (by 0.08
+    and 0.012), but building decided it (ModelCraft R-free 0.379 right vs
+    0.563 wrong).
+  - >
+    The solvent content comes from the AU contents. Wrong copy numbers
+    silently give a wrong solvent fraction (before PR #689 the wrapper wrote
+    one copy of each sequence; on AHIR with 6 copies Parrot then chose 9).
+    Check NMOLS_FROM_SEQ is 1 (the report's "1.0 times the asymmetric unit
+    contents"); if not, fix the AU contents or set SOLVENT_CONTENT.
+  - >
+    After MR, density modification trades model bias for the missing parts;
+    it does not make the whole map better. CDK2_CyclinA 3 (phases from the
+    two CDK2 copies only): correlation with the deposited structure 1h1s
+    fell over CDK2 (0.860 -> 0.822) and rose over the absent cyclin A
+    (0.630 -> 0.665); the whole map went 0.673 -> 0.657, while the FOM went
+    0.534 -> 0.735. The build still starts from the model.
+  - >
+    Choosing NCS does not raise the number of cycles: it stays at 3 unless
+    CYCLES is set (10 with NCS). Without NCS keep 3-5; more cycles bias the
+    map toward its own modification (Parrot documentation).
+  - >
+    NCS_OPERATORS counts ordered pairs (2 for two copies), not molecules.
+    With NCS asked for and 0 operators found, no averaging was done. Jobs
+    run before commit d74ae2d74 never showed the report's warning for this
+    (a formatting error swallowed it): read NCS_OPERATORS, not the report.
+  - >
+    parrot[-1] counts parrot sub-jobs too, by creation: after phaser_ep_phil
+    it is the inverted hand's sub-job (GammaXe 3.3), whichever hand you
+    meant. Name a sub-job by its number ("[3.2].ABCDOUT") or go through the
+    pipeline's own outputs (phaser_ep_phil[-1].ABCDOUT[i]).
+
+next:
+  - when: >
+      outcome == "improved"
+      and (PHASES_ANNOTATION == "Phase estimates - original hand"
+           or PHASES_ANNOTATION == "Phase estimates - inverted hand")
+    task: modelcraft
+    inputs:
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[0]"
+      USE_MODEL_PHASES: "False"
+    advice: >
+      One hand's phases from phaser_ep_phil; parrot cannot decide the hand.
+      Build BOTH hands and keep the one whose ModelCraft R-free falls
+      (GammaXe: 0.379 original, 0.563 inverted). This entry builds the
+      original hand from the phasing phases (ABCDOUT[0]); the next builds
+      the inverted hand (ABCDOUT[1]). ModelCraft runs Parrot itself, so the
+      raw phases are the default; the pipeline's own choice, parrot's
+      phases, are ABCDOUT[2] (original) and ABCDOUT[3] (inverted). The two
+      routes have not been compared here. Leave UNBIASED unset if you give
+      parrot's phases. If HAND was "off" only one hand was phased (labelled
+      "original" whether right or not) and ABCDOUT[1] is not phases of the
+      other hand: run phaser_ep_phil with HAND "both" first. Omit FREERFLAG
+      if the pipeline had none.
+  - when: >
+      outcome == "improved"
+      and (PHASES_ANNOTATION == "Phase estimates - original hand"
+           or PHASES_ANNOTATION == "Phase estimates - inverted hand")
+    task: modelcraft
+    inputs:
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[1]"
+      USE_MODEL_PHASES: "False"
+    advice: >
+      The inverted hand, as above. Compare the two builds' R-free; the hand
+      whose R-free falls toward 0.40 or below is the right one.
+  - when: outcome == "improved" and NCS_MODE == "mr"
+    task: modelcraft
+    inputs:
+      XYZIN: "parrot[-1].XYZIN_MR"
+      F_SIGF: "parrot[-1].F_SIGF"
+      FREERFLAG: "parrot[-1].FREERFLAG"
+      ASUIN: "parrot[-1].ASUIN"
+      USE_MODEL_PHASES: "True"
+    advice: >
+      The phases came from a placed model (its NCS model is that model):
+      the parrot map is for a person to inspect for the parts the model
+      lacks (in Coot or Moorhen; not a task an agent can run). The build
+      starts from the model, with model phases, not this job's phases;
+      ModelCraft runs its own Parrot with the model present. If parrot was
+      run again since, or this is a sub-job, name it by number
+      ("[3].XYZIN_MR") instead of parrot[-1].
+  - when: outcome == "improved"
+    advice: >
+      Build next with modelcraft. Two situations: (1) after experimental
+      phasing, give PHASES and USE_MODEL_PHASES False; the default is the
+      raw phases this job consumed ("[<this job>].ABCD"), the alternative
+      the one phaser_ep_phil uses, this job's ABCDOUT; neither has been
+      shown better, and ModelCraft density-modifies either again. Build each
+      hand still in question and compare R-free. (2) After MR, build from the
+      model (XYZIN, USE_MODEL_PHASES True), not from these phases. Name this
+      job by its number: parrot[-1] may be another parrot job.
+  - when: NMOLS_FROM_SEQ != 1
+    advice: >
+      Parrot assumed the AU holds NMOLS_FROM_SEQ times the contents given,
+      so the solvent content does not match the AU contents. Check the copy
+      numbers against a Matthews analysis (or the MR solution / number of
+      sites); then either correct the AU contents or set SOLVENT_CONTENT to
+      the fraction those contents imply, and run parrot again. Not seen
+      with SOLVENT_CONTENT set: if it was, Parrot may report the sequence
+      estimate regardless; check SOLVENT against what you set.
+  - when: NCS_MODE == "mr" and NCS_OPERATORS == 0
+    advice: >
+      NCS was asked for but no operators were found from the model: no
+      averaging was done. Check the model holds two or more copies as
+      separate chains of the same sequence.
+  - when: NCS_MODE == "ha" and NCS_OPERATORS == 0
+    advice: >
+      NCS was asked for but no operators were found from the heavy-atom
+      sites: no averaging was done. Try the placed or partial model (mode
+      "mr") once one exists.
+  - when: NCS_OPERATORS > 0 and NCS_CORRELATION < 0.4
+    advice: >
+      The NCS operators are poorly supported by the density at the end
+      (the report's per-operator test is correlation > 0.4,
+      parrot_report.py). The NCS model or the starting phases are poor;
+      run again without NCS and compare.
+  - when: outcome == "no_better"
+    advice: >
+      Check the solvent content (NMOLS_FROM_SEQ, AU contents) and, after
+      experimental phasing, the hand and the substructure: density
+      modification cannot rescue phases with no signal. Go back to phasing
+      (phaser_ep_phil, crank2) rather than repeating parrot with more
+      cycles. After MR, build from the model with modelcraft regardless.
+  - when: outcome == "failed"
+    advice: >
+      Read the job's errors and log. Usual causes: phases not on the same
+      crystal as the reflections, or AU contents missing.
+
+sources:
+  - docs/user/source/tasks/parrot/index.rst
+  - docs/user/source/tasks/modelcraft/index.rst (ModelCraft runs Parrot)
+  - server/ccp4i2/wrappers/parrot/script/parrot.py
+  - server/ccp4i2/wrappers/parrot/script/parrot_report.py (FOM bands, NCS test)
+  - server/ccp4i2/pipelines/phaser_ep_phil/script/phaser_ep_phil.py (parrot per hand, then ModelCraft; output order)
+  - server/ccp4i2/lib/utils/files/file_use.py (task-qualified references count sub-jobs, by creation)
+  - "ModelCraft 6.1.1 (ccp4-20260702): modelcraftxray.py, jobs/parrot.py (its own cparrot, 5 cycles)"
+  - "CCP4 documentation: ccp4-20260702/html/parrot.html (-cycles)"
+  - "run: CDK2_CyclinA job 3 (parrot after refinement of two CDK2 copies; NCS from model; 10 cycles)"
+  - "run: GammaXe job 3.2 (parrot, original hand, right) and 3.3 (inverted hand, wrong), inside phaser_ep_phil"
+  - "run: GammaXe jobs 3.4 / 3.5 (ModelCraft from 3.2 / 3.3 parrot phases: R-free 0.379 / 0.563)"
+  - "computed: gemmi map-model correlations (notes)"

@@ -16,18 +16,34 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 FREER_SEED = 123456789
 
 
-def assign_class_flags(hkl, spacegroup, irfrac, seed=FREER_SEED):
+# freerflag's default obliquity for pseudo-merohedral twin laws (its OBL keyword)
+TWIN_OBLIQUITY = 5.0
+
+
+def assign_class_flags(hkl, spacegroup, irfrac, seed=FREER_SEED, cell=None,
+                       max_obliquity=TWIN_OBLIQUITY):
     """Free-R flags reproducing freerflag's semantics.
 
-    One random draw per symmetry/Friedel equivalence class (so equivalent
-    reflections share a flag), values in [0, irfrac-1] with the free set = 0,
-    reproducible for a fixed seed.
+    One random draw per equivalence class (so equivalent reflections share a
+    flag), values in [0, irfrac-1] with the free set = 0, reproducible for a
+    fixed seed. A class is the reflections related by the point group, by
+    Friedel's law and, given the cell, by the twin laws the lattice allows,
+    merohedral and pseudo-merohedral (within max_obliquity degrees): what
+    freerflag does by default, so that if the crystal is twinned no reflection
+    in the test set has its twin mate in the working set.
 
     Returns (flags array of length len(hkl), list of per-reflection class keys).
     """
     gops = spacegroup.operations()
     asu = gemmi.ReciprocalAsu(spacegroup)
-    keys = [tuple(asu.to_asu((int(h[0]), int(h[1]), int(h[2])), gops)[0]) for h in hkl]
+    twin_ops = gemmi.find_twin_laws(cell, spacegroup, max_obliquity, False) if cell is not None else []
+
+    def key(h):
+        h = (int(h[0]), int(h[1]), int(h[2]))
+        images = [h] + [tuple(op.apply_to_hkl(list(h))) for op in twin_ops]
+        return min(tuple(asu.to_asu(image, gops)[0]) for image in images)
+
+    keys = [key(h) for h in hkl]
     rng = np.random.default_rng(seed)
     class_flag = {k: int(rng.integers(0, irfrac)) for k in sorted(set(keys))}
     flags = np.array([class_flag[k] for k in keys], dtype=int)
@@ -229,7 +245,11 @@ class freerflag(CPluginScript):
           irfrac = self._irfrac()
           if uniqueify:
               hkl, data = self._complete_to_unique(mtz, data)
-          flags, _keys = assign_class_flags(hkl, spacegroup, irfrac, seed=FREER_SEED)
+          # As freerflag by default: twin-related reflections share a flag.
+          # Completing an existing set (above) does not, as freerflag's
+          # COMPLETE implies NOTWIN: the old set may already split them.
+          flags, _keys = assign_class_flags(hkl, spacegroup, irfrac, seed=FREER_SEED,
+                                            cell=mtz.cell)
           mtz.add_column('FreeR_flag', 'I')
           data = np.concatenate([data, flags.reshape(-1, 1).astype(np.float32)], axis=1)
           mtz.set_data(data)

@@ -45,6 +45,7 @@ _api_patterns = [
     path("health/", views.health_check, name="health_check"),
     path("version/", views.version_info, name="version_info"),
     path("task_lookup/", views.task_lookup, name="task_lookup"),
+    path("agent/tasks/<str:task_name>/", views.agent_task, name="agent_task"),
     path("repositories/<str:repository>/<str:entry>/", views.repository_entry, name="repository_entry"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
     path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),

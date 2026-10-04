@@ -85,13 +85,14 @@
         <className>CBoolean</className>
         <qualifiers>
           <default>True</default>
-          <toolTip>Run Phaser analysis after Aimless</toolTip>
+          <toolTip>Not used: has no effect (kept so that older jobs still load)</toolTip>
         </qualifiers>
       </content>
       <content id="HKLIN_IS_MERGED">
         <className>CBoolean</className>
         <qualifiers>
           <default>False</default>
+          <toolTip>Not used: has no effect (kept so that older jobs still load)</toolTip>
         </qualifiers>
       </content>
       <content id="NUMBER_OF_DATASETS">
@@ -683,7 +684,7 @@
       <content id="CCANOMMINIMUM">
         <className>CFloat</className>
         <qualifiers>
-          <default>0.10</default>
+          <default>0.15</default>
           <guiLabel>None</guiLabel>
           <toolTip>minimum CC(1/2) for anomalous resolution estimation</toolTip>
           <charWidth>6</charWidth>
@@ -692,7 +693,7 @@
       <content id="ISIGMINIMUM">
         <className>CFloat</className>
         <qualifiers>
-          <default>1.0</default>
+          <default>1.5</default>
           <guiLabel>None</guiLabel>
           <toolTip>minimum Mn(I/sd(I)) for resolution estimation</toolTip>
           <charWidth>6</charWidth>

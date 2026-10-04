@@ -125,7 +125,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           width="auto"
           after={
             <InlineField
-              label="Stop automatically if R-free does not improve in"
+              label="Stop automatically if R-work does not improve in"
               hint="cycles"
             >
               <CCP4i2TaskElement

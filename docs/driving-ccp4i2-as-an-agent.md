@@ -61,6 +61,29 @@ closes. Never paste it into a chat, a bug report, or a shared document.
 
 ---
 
+### Connecting an MCP agent
+
+The app serves CCP4i2's agent tools (MCP) at `/mcp` on the same port, with
+the same token. **Help → About** shows the address and a ready setup line:
+
+```bash
+claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
+    --header "Authorization: Bearer <token>"
+```
+
+Run that line, then start a new Claude Code session: the tools load at
+start-up. A JSON file of server settings left in a folder is not read
+unless it is that folder's `.mcp.json` or is passed with `--mcp-config`;
+an agent that finds no `ccp4i2` tools has not been connected, and should
+say so rather than script its own HTTP client around the problem.
+
+Other MCP clients take the same address and header. The tools carry their
+own instructions and each task's judgement (`describe_task`, `judge_job`);
+see [agentic-knowledge.md](agentic-knowledge.md). Port and token change at
+each launch, so set the agent up again after restarting the app.
+
+---
+
 ## 3. The core REST flow
 
 All paths below are under `BASE = http://localhost:<port>/api/ccp4i2`, all
@@ -159,11 +182,11 @@ Each gap gets a "now built" note here as it closes:
 
 | Anatomy faculty | Today | Will be closed by |
 |---|---|---|
-| Tools / actions | ✅ REST API + `i2run` | (add a curated **MCP facade** so any agent connects with no bespoke glue) |
+| Tools / actions | ✅ REST API + `i2run` | ✅ **now built (first version):** the MCP facade `i2-mcp` (`pip install ccp4i2[agent]`), see [agentic-knowledge.md](agentic-knowledge.md) §5 |
 | Memory & provenance | ✅ recorded & reproducible | (expose it as agent-readable *working* memory, not just a record) |
 | Safety & validation | ✅ strong input checks | — |
-| Expert knowledge | ◐ locked in pipelines | a **task/recipe catalogue** the agent can consult |
-| Perceive / Evaluate & critique | ○ metrics shown, not judged | result-critique helpers that turn KPIs/reports into pass-fail signals |
+| Expert knowledge | ◐ locked in pipelines | ◐ **now started:** per-task judgement files (`<task>.agent.yaml`), ten so far, served by `agent/tasks/<task>/` and `describe_task`; drafts until an expert reviews them |
+| Perceive / Evaluate & critique | ○ metrics shown, not judged | ◐ **now started:** `jobs/<id>/judgement/` (and `judge_job`) reads a job's deciding numbers and gives an outcome and next steps from its task's judgement |
 | Goal & planning | ○ absent | a `JobPlan` resolver (see `docs/NLP_JOB_CONSTRUCTION_DISCUSSION.md`) |
 
 When any row moves from ○/◐ to ✅, update §1, §6 and the relevant flow above so a

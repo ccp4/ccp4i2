@@ -62,11 +62,94 @@ def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False,
         filepath=OutFilesDirMatch(free,crank,filetype='mtz')
         getattr(ccp4i2crank.container.outputData,'FREEROUT').setOutputPath(projectId=ccp4i2crank.projectId(), relPath=ccp4i2crank.relPath())
         error = ccp4i2crank.splitHklout(['FREEROUT',], [free.GetLabel('free'),], infile=filepath)
+      SummariseSteps(ccp4i2crank, crank)
+      CompleteModel(ccp4i2crank)
     #crank.ccp4i2.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
   #else:
   #  shutil.rmtree(ccp4i2crank.workDirectory)
   os.chdir(cwd_saved)
   return crank
+
+STEP_FIGURES = ('CFOM', 'FOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree')
+
+
+def SummariseSteps(i2crank, crank):
+  """Each step's figures, gathered into the job itself.
+
+  The steps record their figures (SHELXD's CFOM, the phasing FOM, the hand
+  scores, SHELXE's trace CC, R factors) only in their own sub-job
+  parameters, which are not database jobs and whose numbering depends on the
+  route taken; the job's program.xml is a copy of the last step's. So
+  nothing reading the job (its KPIs, an agent's judgement) could find them.
+  They are written into program.xml as CrankSteps/Step[@name], and into the
+  job's own performance record where that is still empty.
+  """
+  from lxml import etree
+  summary = etree.Element('CrankSteps')
+  parent_perf = getattr(i2crank.container.outputData, 'PERFORMANCE', None)
+  for process in crank.processes:
+    job = getattr(process, 'ccp4i2job', None)
+    outputs = getattr(getattr(job, 'container', None), 'outputData', None)
+    perf = getattr(outputs, 'PERFORMANCE', None) if outputs is not None else None
+    step = etree.SubElement(summary, 'Step', name=str(process.nick))
+    if perf is None:
+      continue
+    for name in STEP_FIGURES:
+      item = getattr(perf, name, None)
+      try:
+        if item is None or not item.isSet():
+          continue
+        value = float(item)
+      except (TypeError, ValueError, AttributeError):
+        continue
+      etree.SubElement(step, name).text = str(value)
+      target = getattr(parent_perf, name, None) if parent_perf is not None else None
+      if target is not None and not target.isSet():
+        target.set(value)
+  path = os.path.join(str(i2crank.workDirectory), 'program.xml')
+  try:
+    root = etree.parse(path).getroot()
+  except (OSError, etree.XMLSyntaxError):
+    root = etree.Element('CrankResult')
+  for old in root.findall('CrankSteps'):
+    root.remove(old)
+  root.append(summary)
+  etree.ElementTree(root).write(path, pretty_print=True)
+
+
+def CompleteModel(i2crank):
+  """XYZOUT_COMPLETE: the built model with the substructure, as Crank2 refined it.
+
+  XYZOUT leaves the anomalous scatterers out (they are XYZOUT_SUBSTR), so
+  refining it alone loses them: for a mercury soak, R-free 0.29 became 0.44.
+  Sites the model already has (S-SAD sulphurs, SeMet selenium) are not added
+  twice; see complete_model. What was done goes into program.xml as
+  CompleteModel. Never fails the job: without it, XYZOUT is still there.
+  """
+  from lxml import etree
+  from ccp4i2.pipelines.crank2.script.complete_model import complete_model, report_element
+  out = i2crank.container.outputData
+  if not hasattr(out, 'XYZOUT_COMPLETE') or not out.XYZOUT.isSet() or not out.XYZOUT_SUBSTR.isSet():
+    return
+  try:
+    target = os.path.join(str(i2crank.workDirectory), 'XYZOUT_COMPLETE.pdb')
+    report = complete_model(str(out.XYZOUT.fullPath), str(out.XYZOUT_SUBSTR.fullPath), target)
+    out.XYZOUT_COMPLETE.setFullPath(target)
+    out.XYZOUT_COMPLETE.annotation.set('Model with the anomalous substructure (refine this)')
+    element = report_element(report)
+  except Exception as err:  # noqa: BLE001 - an extra output must not fail the job
+    element = etree.Element('CompleteModel')
+    element.set('error', '{}: {}'.format(type(err).__name__, err))
+  path = os.path.join(str(i2crank.workDirectory), 'program.xml')
+  try:
+    root = etree.parse(path).getroot()
+  except (OSError, etree.XMLSyntaxError):
+    root = etree.Element('CrankResult')
+  for old in root.findall('CompleteModel'):
+    root.remove(old)
+  root.append(element)
+  etree.ElementTree(root).write(path, pretty_print=True)
+
 
 def RegisterSubOutputAsMain(i2crank,crank,i2subjob,outd_name):
   if outd_name in i2crank.container.outputData._dataOrder:

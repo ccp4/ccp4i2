@@ -151,3 +151,35 @@ def test_a_cause_two_levels_down_still_arrives_flattened(tmp_path):
     names = [e['name'] for e in top.errorReport.entries()]
     assert any(n.startswith('job_1/job_2') for n in names), names
     assert all('\n' not in n for n in names), 'the path should be flat, not nested'
+
+
+class _ReportsItsOwnFinish(CPluginScript):
+    """As coot_find_waters and a dozen others: startProcess reports, then returns."""
+    TASKNAME = 'test_reports_its_own_finish'
+
+    def startProcess(self):
+        self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED
+
+
+def test_a_finish_is_reported_once(tmp_path):
+    # A pipeline listening for `finished` ran its next step twice: once for
+    # the wrapper's own report, once for process()'s.
+    plugin = _ReportsItsOwnFinish(workDirectory=str(tmp_path), name='once')
+    heard = []
+    plugin.finished.connect(lambda status: heard.append(status))
+    plugin.process()
+    assert len(heard) == 1
+    # A second run of the same object reports again
+    plugin.process()
+    assert len(heard) == 2
+
+
+def test_a_changed_status_is_still_reported(tmp_path):
+    plugin = _ReportsItsOwnFinish(workDirectory=str(tmp_path), name='change')
+    heard = []
+    plugin.finished.connect(lambda status: heard.append(status))
+    plugin._reported_status = None
+    plugin.reportStatus(CPluginScript.SUCCEEDED)
+    plugin.reportStatus(CPluginScript.FAILED)  # e.g. outputs found missing afterwards
+    assert len(heard) == 2

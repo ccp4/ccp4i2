@@ -1288,6 +1288,72 @@ class JobViewSet(ModelViewSet):
         methods=["get"],
         serializer_class=serializers.JobSerializer,
     )
+    def parameters(self, request, pk=None):
+        """The job's parameters, one line each: what an agent sets them from.
+
+        GET /api/jobs/123/parameters/?section=inputData&only_set=1&query=ncs
+        Each entry: path (for set_parameter, after "<task>.container."),
+        class, label, tip, set, value, required, choices, default, file_type.
+        The container endpoint has everything; this has what is needed.
+        """
+        from ..agent.parameters import SECTIONS, summarise
+
+        try:
+            the_job = models.Job.objects.get(id=pk)
+            plugin = get_job_plugin(the_job)  # held: the container dies with it
+            sections = request.GET.getlist("section") or SECTIONS
+            result = summarise(
+                plugin.container,
+                sections=tuple(sections),
+                only_set=request.GET.get("only_set") in ("1", "true", "True"),
+                query=request.GET.get("query") or None,
+            )
+            return api_success({"task_name": the_job.task_name, "parameters": result})
+        except models.Job.DoesNotExist:
+            return api_error("Job not found", status=404)
+        except Exception as err:
+            logger.exception("Failed to summarise parameters for job %s", pk, exc_info=err)
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def judgement(self, request, pk=None):
+        """The task's judgement applied to this job: did it work, and what next.
+
+        Reads the results the task's ``<task>.agent.yaml`` names from the
+        job's files and KPIs, and returns the first verdict that holds
+        (docs/agentic-knowledge.md). ``outcome`` is null when the task has no
+        judgement written; a draft judgement says so in ``note``.
+        """
+        from ..agent.judgement import judge
+
+        try:
+            the_job = models.Job.objects.get(id=pk)
+            kpis = {
+                item.key.name: item.value
+                for item in models.JobFloatValue.objects.filter(job=the_job).select_related("key")
+            }
+            kpis.update({
+                item.key.name: item.value
+                for item in models.JobCharValue.objects.filter(job=the_job).select_related("key")
+            })
+            verdict = judge(the_job.task_name, the_job.directory, kpis=kpis)
+            verdict["status"] = the_job.get_status_display()
+            return api_success(verdict)
+        except models.Job.DoesNotExist:
+            return api_error("Job not found", status=404)
+        except Exception as err:
+            logger.exception("Failed to judge job %s", pk, exc_info=err)
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobSerializer,
+    )
     def diagnostic_xml(self, request, pk=None):
         """
         Retrieve diagnostic information as XML.
