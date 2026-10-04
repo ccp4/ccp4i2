@@ -1,4 +1,4 @@
-"""The MCP facade served by the app at /mcp (ccp4i2/agent/http.py), and the
+"""The MCP facade served by the app at MCP_PATH (ccp4i2/agent/http.py), and the
 request-state codec that lets the MCP SDK run on CCP4's cryptography."""
 import asyncio
 import os

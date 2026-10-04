@@ -63,11 +63,11 @@ closes. Never paste it into a chat, a bug report, or a shared document.
 
 ### Connecting an MCP agent
 
-The app serves CCP4i2's agent tools (MCP) at `/mcp` on the same port, with
+The app serves CCP4i2's agent tools (MCP) at `/mcp/ccp4i2` on the same port, with
 the same token. **Help → About** shows the address and a ready setup line:
 
 ```bash
-claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
+claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp/ccp4i2 \
     --header "Authorization: Bearer <token>"
 ```
 

@@ -1,16 +1,16 @@
-"""The MCP facade served by the app itself, at /mcp beside the REST API.
+"""The MCP facade served by the app itself, beside the REST API.
 
 An agent connects with a URL and the same Bearer token as the REST API
 (the desktop app shows both in Help > About; they change at every launch):
 
-    claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \\
+    claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp/ccp4i2 \\
         --header "Authorization: Bearer <token>"
 
 Stateless HTTP, because the desktop app runs uvicorn with two workers and
 consecutive requests may reach either. Every tool call goes back to this
 server's REST API over loopback with the caller's own Authorization, so the
 API's authentication and validation decide everything, here as for the app.
-On the desktop (CCP4I2_LOCAL_SESSION_TOKEN set) /mcp also checks the token
+On the desktop (CCP4I2_LOCAL_SESSION_TOKEN set) the facade also checks the token
 itself, as the REST middleware does, before a session can even list tools.
 """
 import hmac
@@ -19,7 +19,14 @@ import os
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
-MCP_PATH = "/mcp"
+#: Where the MCP facade is mounted. Namespaced by default, because this is an
+#: ASGI prefix split rather than a Django route: a host application that
+#: composes ccp4i2 into a larger app -- as Materia does, with its own compounds
+#: and users domains -- cannot re-mount an ASGI prefix the way it can re-route
+#: a URLconf. A bare "/mcp" would claim the composed app's root namespace and
+#: leave the composer no lever at all, so ccp4i2 claims only its own corner and
+#: lets the host move it with CCP4I2_MCP_PATH if that corner is wrong.
+MCP_PATH = os.environ.get("CCP4I2_MCP_PATH", "/mcp/ccp4i2").rstrip("/") or "/mcp/ccp4i2"
 
 
 def _header(scope, name):
@@ -37,7 +44,7 @@ async def _refuse(send, status, text):
 
 
 def with_mcp(django_app):
-    """The ASGI application: /mcp to the MCP facade, the rest to Django.
+    """The ASGI application: MCP_PATH to the MCP facade, the rest to Django.
 
     If the MCP server cannot be built here, the app serves Django alone and
     says why in its log.

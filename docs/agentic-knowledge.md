@@ -145,16 +145,16 @@ building.
 A thin adapter over the REST API, so the server's validation still decides
 everything. Two ways in:
 
-- **HTTP, served by the app itself at `/mcp`** (`server/ccp4i2/agent/http.py`,
+- **HTTP, served by the app itself at `/mcp/ccp4i2`** (`server/ccp4i2/agent/http.py`,
   mounted in `config/asgi.py`): stateless, so either of the desktop's two
   uvicorn workers can answer; each tool call goes back to the same server's
   REST API with the caller's own `Authorization`, so whatever authentication
-  the deployment uses decides it. On the desktop `/mcp` also requires the
+  the deployment uses decides it. On the desktop the facade also requires the
   session token itself. Help > About shows the address and a setup line;
   both change at every launch, deliberately: an agent's access lasts as
   long as the session the person started.
 
-      claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
+      claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp/ccp4i2 \
           --header "Authorization: Bearer <token>"
 
 - **stdio**, `i2-mcp` (or `python -m ccp4i2.agent.mcp_server`), for clients
