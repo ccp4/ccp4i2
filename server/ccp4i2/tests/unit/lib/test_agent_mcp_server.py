@@ -97,6 +97,18 @@ def test_list_tasks_leaves_out_superseded_and_interactive(api):
     assert [t["task"] for t in mcp_server.list_tasks("phaser")["tasks"]] == ["phaser_simple_phil"]
 
 
+def test_list_tasks_says_which_tasks_are_judged(api):
+    # An agent choosing between a pipeline and its stages sees which have
+    # been written up (Haiku twice started SAD phasing with ShelxCD)
+    _, answers = api
+    answers[("GET", "task_lookup")] = {
+        "shelx": {"TASKTITLE": "SHELX pipeline", "hasJudgement": True},
+        "ShelxCD": {"TASKTITLE": "Find HA sites", "hasJudgement": False},
+    }
+    judged = {t["task"]: t["judged"] for t in mcp_server.list_tasks()["tasks"]}
+    assert judged == {"shelx": True, "ShelxCD": False}
+
+
 def test_wait_for_job_returns_when_the_job_ends(api, monkeypatch):
     _, answers = api
     answers[("GET", "jobs/7")] = {"id": 7, "number": "5", "task_name": "x", "status": 6, "project": 3}

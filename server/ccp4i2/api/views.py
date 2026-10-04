@@ -26,9 +26,26 @@ _TASK_LOOKUP = {key: {
 } for key, task in TASKS.items()}
 
 
+def _with_judgements():
+    """The lookup with hasJudgement for each task: whether a judgement
+    (<task>.agent.yaml) has been written, so an agent choosing a task can
+    prefer one whose use and results someone has written up. Worked out on
+    the first request, not at import."""
+    if "_judged" not in _TASK_LOOKUP_STATE:
+        from ..agent.judgement import judgement_path
+        for key, entry in _TASK_LOOKUP.items():
+            path = judgement_path(key)
+            entry["hasJudgement"] = bool(path is not None and path.is_file())
+        _TASK_LOOKUP_STATE["_judged"] = True
+    return _TASK_LOOKUP
+
+
+_TASK_LOOKUP_STATE = {}
+
+
 @api_view(["GET"])
 def task_lookup(request):
-    return JsonResponse(_TASK_LOOKUP)
+    return JsonResponse(_with_judgements())
 
 
 @api_view(["GET"])

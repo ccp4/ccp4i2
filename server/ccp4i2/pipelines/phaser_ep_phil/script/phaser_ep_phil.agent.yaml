@@ -479,6 +479,26 @@ next:
       CYCLES: "25"
     advice: >
       One hand phased and built: its model is XYZOUT[1] and its Phaser phases ABCDOUT[0].
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2
+    task: shelx
+    inputs:
+      F_SIGFanom: "phaser_ep_phil[-1].F_SIGF"
+      XYZIN_SUB: "phaser_ep_phil[-1].XYZOUT[0]"
+      START_PIPELINE: phdmmb
+      END_PIPELINE: phdmmb
+    advice: >
+      FIRST, the cheap hand test: SHELXE density-modifies and traces
+      poly-Ala in both hands from Phaser's completed sites, and records a
+      trace CC per hand (the shelx judgement's HAND1_CC / HAND2_CC; CrankSteps
+      phdmmb Hand1Score / Hand2Score). Set ATOM_TYPE, SEQIN and the free set
+      as for a full run. Phaser's own figures cannot tell the hands apart
+      (identical LLG and FOM), and density modification alone separates them
+      little. A clear trace-CC separation decides: build that hand only,
+      fully, with modelcraft. Close CCs do not decide: GammaXe, run this way
+      from Phaser's 7 sites, gave 52.8 (hand 1, the right one) against 50.9.
+      The SHELX trial separated 48.1 from 38.0. When close, use the two short
+      modelcraft builds below, then build the winner fully. Hand 1 is the
+      sites as given (XYZOUT[0], the original hand).
   - when: >
       outcome == "ambiguous" and HANDS_PHASED == 2
       and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
@@ -492,9 +512,10 @@ next:
       UNBIASED: "True"
       CYCLES: "5"
     advice: >
-      Build the ORIGINAL hand from its Phaser phases. Run this together
-      with the entry below for the inverted hand, and keep the hand whose
-      R-free is clearly lower (the separation rule in the verdict; GammaXe
+      Only if the SHELXE trace CCs above were close: a SHORT build of the
+      ORIGINAL hand from its Phaser phases (CYCLES 5). Run it together
+      with the entry below for the inverted hand, keep the hand whose
+      R-free is clearly lower, then build that hand fully with modelcraft (the separation rule in the verdict; GammaXe
       0.379 vs 0.563). If COMPLETION_CONVERGED is "False", rerun this task
       with more LLGC_CYCLES first. If a SHELX search ran, read the build
       sub-jobs (job_5, job_6) before building again. If both hands built

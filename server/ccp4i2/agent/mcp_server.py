@@ -42,7 +42,10 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 1. describe_task(task) before using a task: its judgement says when to use
    it, which inputs need thought, how its result is judged, its traps and
    what comes next. A task with no judgement is one nobody has written up:
-   be more careful with it.
+   be more careful with it. Prefer a pipeline to running its stages one by
+   one (e.g. shelx or crank2, not ShelxCD then the rest): the pipeline holds
+   the decisions between stages. Go stage by stage only as a fallback a
+   judgement points you to.
 2. create_job(project, task). A new job is filled in from the project's
    latest results, as in the app: read job_parameters(job, only_set=True)
    and check those are the files you mean.
@@ -204,7 +207,8 @@ def create_project(name: str) -> dict:
 def list_tasks(query: str = "") -> dict:
     """The tasks that can be run, optionally only those whose name, title or
     description contains ``query``. Superseded and interactive (in-app
-    window) tasks are left out."""
+    window) tasks are left out. ``judged`` says whether the task has a
+    judgement (describe_task gives it)."""
     query = query.lower()
     out = []
     for name, task in _get("task_lookup").items():
@@ -213,7 +217,8 @@ def list_tasks(query: str = "") -> dict:
         text = " ".join(str(task.get(k) or "") for k in ("TASKTITLE", "DESCRIPTION", "shortTitle"))
         if query and query not in f"{name} {text}".lower():
             continue
-        out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION")})
+        out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION"),
+                    "judged": bool(task.get("hasJudgement"))})
     return {"tasks": out}
 
 

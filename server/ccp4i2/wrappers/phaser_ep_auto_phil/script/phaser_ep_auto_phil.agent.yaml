@@ -1,0 +1,98 @@
+task: phaser_ep_auto_phil
+status: draft
+reviewed_by: []
+purpose: >
+  One step of Phaser SAD phasing on its own: substructure completion and
+  phasing, by default in one hand. No density modification, no building,
+  no hand choice by the build. phaser_ep_phil runs this step as its first
+  stage and then Parrot and ModelCraft in both hands, choosing the hand on
+  the built models' R-free; start with it. This step on its own belongs to
+  a stepwise fallback, when a pipeline struggled and you are taking the
+  stages one at a time for a stated reason.
+
+use_when:
+  - >
+    You want only Phaser's SAD phases or completed substructure: to compare
+    with another route's, or as phases for a step you will run yourself for
+    a stated reason.
+
+not_when:
+  - text: >
+      You want to solve the structure. phaser_ep_phil runs this step, then
+      density modification and building in both hands, and chooses the hand
+      on the built models. Doing those steps by hand repeats what it decides
+      for you.
+    instead: phaser_ep_phil
+  - text: >
+      No substructure yet and a weak signal: a pipeline that searches for the
+      substructure itself.
+    instead: crank2
+
+inputs:
+  - param: inputData.XYZIN_HA
+    advice: >
+      The sites to complete (ShelxCD, crank2 or shelx XYZOUT_SUBSTR). One
+      hand is phased by default; Phaser cannot tell the hands apart from SAD
+      phasing alone (GammaXe: identical LLG and FOM for both). Only building
+      decides, which this task does not do.
+
+results:
+  LLG:
+    file: program.xml
+    xpath: .//Hands/Hand/LLG
+    type: float
+    meaning: >
+      Log-likelihood gain after completion (GammaXe, this task as
+      phaser_ep_phil's first stage: 1060.8). Apart from LLG > 0, no SAD LLG
+      threshold is documented.
+  FOM:
+    file: program.xml
+    xpath: .//Overall/fom
+    type: float
+    meaning: Overall figure of merit (GammaXe 0.401 at 1.79 A).
+  N_SITES:
+    file: program.xml
+    xpath: .//Sites/Site[last()]/Number
+    type: int
+    meaning: Sites in the completed substructure (GammaXe 7 from 4 given).
+  COMPLETION_CONVERGED:
+    file: program.xml
+    xpath: .//Completion
+    attribute: converged
+    type: str
+    optional: true
+    meaning: '"True" if completion converged within its cycles (GammaXe: True, 6 cycles).'
+
+verdict:
+  - when: LLG > 0
+    outcome: phased
+    basis: >
+      Phaser phased the substructure (positive LLG). Phased is not solved:
+      the hand and the map's interpretability are decided only by density
+      modification and building.
+  - when: true
+    outcome: failed
+    basis: No positive LLG was read; read job_errors.
+
+traps:
+  - >
+    Phased in one hand is not a structure, and may be the wrong hand. Do not
+    stop here.
+
+next:
+  - when: outcome == "phased"
+    task: phaser_ep_phil
+    advice: >
+      The usual route is to run phaser_ep_phil from the start with the same
+      data and sites, which phases both hands. The hand is then decided as
+      its judgement says: SHELXE tracing in both hands from the completed
+      sites first, short ModelCraft builds of both only if the trace CCs
+      are close, then a full ModelCraft build of the chosen hand.
+  - when: outcome == "failed"
+    advice: >
+      Check the anomalous data, the scatterer and the sites given; or let
+      crank2 or shelx find the substructure.
+
+sources:
+  - server/ccp4i2/wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.def.xml
+  - server/ccp4i2/pipelines/phaser_ep_phil/script/phaser_ep_phil.agent.yaml

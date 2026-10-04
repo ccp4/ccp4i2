@@ -81,3 +81,12 @@ def test_judgement_is_read_from_the_job(client, project, tmp_path, monkeypatch):
     assert verdict["outcome"] == "good"
     assert verdict["next"] == [{"when": 'outcome == "good"', "task": "servalcat_pipe"}]
     assert verdict["note"] == judgement.DRAFT_NOTE
+
+
+def test_task_lookup_says_which_tasks_have_a_judgement(client):
+    # An agent choosing between a pipeline and its stages sees which tasks
+    # have been written up (Haiku twice started SAD phasing with ShelxCD)
+    lookup = client.get(f"{API}/task_lookup/").json()
+    assert lookup["shelx"]["hasJudgement"] is True
+    assert lookup["ShelxCD"]["hasJudgement"] is True
+    assert lookup["mrbump_basic"]["hasJudgement"] is False
