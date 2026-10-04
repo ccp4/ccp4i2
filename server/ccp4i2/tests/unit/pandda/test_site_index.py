@@ -175,3 +175,37 @@ def test_an_all_zero_table_centroid_is_no_position_at_all():
     grouped = index.group_events_by_site(
         [receipt("x0001", [event(1, 1)])], centroids={1: [0.0, 0.0, 0.0]})
     assert grouped["sites"][0]["centroid"] is None
+
+
+def test_a_dispersed_site_gets_no_centroid():
+    """PanDDA's clustering can sweep scattered weak events into one site. The
+    mean of that cloud is a confident-looking coordinate pointing at nothing,
+    so it is withheld and the spread is reported in its place."""
+    scattered = [dict(event(i, 1), centroid=[i * 20.0, 0.0, 0.0]) for i in range(1, 6)]
+    grouped = index.group_events_by_site(
+        [receipt("x0001", scattered)], centroids={})
+    site = grouped["sites"][0]
+    assert site["dispersed"] is True
+    assert site["centroid"] is None
+    assert site["spread"]["rms"] > index.SITE_DISPERSION_LIMIT
+
+
+def test_a_real_pocket_keeps_its_centroid_and_reports_a_small_spread():
+    tight = [dict(event(i, 1), centroid=[10.0 + i * 0.5, 2.0, 3.0]) for i in range(1, 5)]
+    site = index.group_events_by_site(
+        [receipt("x0001", tight)], centroids={})["sites"][0]
+    assert site["dispersed"] is False
+    assert site["centroid"] is not None
+    assert site["spread"]["rms"] < 2.0
+
+
+def test_the_rollup_says_what_a_site_is_made_of():
+    """A single 1.0 on top of a pile of noise read as a discovery. The median
+    and the count of convincing events are what distinguish the two."""
+    members = ([dict(event(1, 1), score=1.0)]
+               + [dict(event(i, 1), score=0.2) for i in range(2, 12)])
+    site = index.group_events_by_site(
+        [receipt("x0001", members)], centroids={})["sites"][0]
+    assert site["best_score"] == 1.0
+    assert site["median_score"] == 0.2
+    assert site["n_convincing"] == 1

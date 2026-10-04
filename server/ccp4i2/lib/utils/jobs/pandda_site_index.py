@@ -308,13 +308,41 @@ def group_events_by_site(receipts: List[dict], centroids: Dict[int, List[float]]
     return {"sites": ordered, "unsited": unsited}
 
 
+#: Above this RMS spread (A) a site's member events are not in one place, so
+#: their mean is not a position. Measured on a real run: a genuine pocket's
+#: events sat within a few A of each other, while PanDDA's clustering had also
+#: produced a site whose 285 events were spread over 42 A RMS and 74 A at the
+#: extreme -- the whole asymmetric unit. The mean of that cloud is a confident
+#: looking coordinate pointing at nothing, and it cost an afternoon.
+SITE_DISPERSION_LIMIT = 15.0
+
+
+def _dispersion(points: List[List[float]], centre: List[float]) -> dict:
+    """How far the member events sit from their own mean: ``{rms, max}``."""
+    if not points:
+        return {"rms": None, "max": None}
+    distances = [
+        sum((p[i] - centre[i]) ** 2 for i in range(3)) ** 0.5 for p in points
+    ]
+    rms = (sum(d * d for d in distances) / len(distances)) ** 0.5
+    return {"rms": rms, "max": max(distances)}
+
+
 def _site_centroid(site: dict) -> Optional[List[float]]:
-    """Where the site is, preferring the events to the run's own sites table.
+    """Where the site is -- or None when it is not anywhere.
 
     Design note section 9: derive a site centroid from its member events and
     not from the ``pandda_analyse_sites.csv`` column, which is frequently
     ``(0, 0, 0)``. The table value is kept as ``table_centroid`` so a caller
     can see the disagreement, but it is not what anything navigates by.
+
+    **A mean is only a position when the points are together.** PanDDA's site
+    clustering can sweep scattered weak events from across a whole structure
+    into one site, and averaging those gives a coordinate that looks like a
+    pocket and is an artefact of arithmetic. So the spread is measured, and
+    past ``SITE_DISPERSION_LIMIT`` this returns None rather than a number no
+    caller can tell is meaningless. ``spread`` is reported either way, so a
+    panel can show "events here" against "events everywhere".
 
     The mean is over centroids each stated in its own dataset's frame, which
     is only meaningful because a campaign's members are near-isomorphous --
@@ -324,7 +352,16 @@ def _site_centroid(site: dict) -> Optional[List[float]]:
     """
     points = [m["centroid"] for m in site["members"] if m.get("centroid")]
     if points:
-        return [sum(axis) / len(points) for axis in zip(*points)]
+        mean = [sum(axis) / len(points) for axis in zip(*points)]
+        spread = _dispersion(points, mean)
+        site["spread"] = spread
+        if spread["rms"] is not None and spread["rms"] > SITE_DISPERSION_LIMIT:
+            site["dispersed"] = True
+            return None
+        site["dispersed"] = False
+        return mean
+    site["spread"] = {"rms": None, "max": None}
+    site["dispersed"] = False
     table = site.get("table_centroid")
     if table and any(abs(v) > 1e-6 for v in table):
         return list(table)
@@ -335,11 +372,18 @@ def _site_rollup(members: List[dict]) -> dict:
     scores = [m["score"] for m in members if m.get("score") is not None]
     probabilities = [m["hit_probability"] for m in members
                      if m.get("hit_probability") is not None]
+    # The best score alone flatters a site: a cluster of 285 mostly-noise
+    # events whose single best scored 1.0 read exactly like a discovery. The
+    # median says what the site is typically made of, and the count above a
+    # threshold says how much of it is worth opening.
+    ordered = sorted(scores)
     return {
         "n_events": len(members),
         "n_datasets": len({m["dtag"] for m in members}),
         "n_poses": sum(1 for m in members if m.get("has_pose")),
         "best_score": max(scores) if scores else None,
+        "median_score": ordered[len(ordered) // 2] if ordered else None,
+        "n_convincing": sum(1 for s in scores if s >= 0.9),
         "best_hit_probability": max(probabilities) if probabilities else None,
     }
 
