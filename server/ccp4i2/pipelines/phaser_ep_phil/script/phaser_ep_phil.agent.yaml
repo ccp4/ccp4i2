@@ -54,6 +54,12 @@ inputs:
       (Se, Zn, ...), give the f' and f'' from a fluorescence scan on the
       Phaser parameters tab (phaser.keywords.scattering). A wrong wavelength
       gives a wrong f'' and a lower LLG, and nothing in the job flags it.
+  - param: controlParameters.RUNPARROT
+    advice: >
+      Keep it on (the default): solvent flattening with Parrot is the
+      minimum before deciding the hand, and gives the first hand signal
+      (PARROT_FOM_ORIG / PARROT_FOM_INV; GammaXe 0.703 vs 0.623) where
+      Phaser's LLG and FOM are identical in both hands. Needs ASUFILE.
   - param: inputData.SUBSTRUCTURE_BY
     advice: >
       SITES (default) with XYZIN_HA, or SEARCH to run SHELXC/D first
@@ -479,6 +485,26 @@ next:
       CYCLES: "25"
     advice: >
       One hand phased and built: its model is XYZOUT[1] and its Phaser phases ABCDOUT[0].
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
+    task: phaser_ep_phil
+    inputs:
+      RUNPARROT: "True"
+    advice: >
+      Parrot did not run (RUNPARROT off). Density modification is the
+      minimum before any hand call: rerun with RUNPARROT on (the default)
+      and ASUFILE set. Phaser's own figures cannot tell the hands apart
+      (GammaXe: identical LLG 1060.8 and FOM 0.401 in both).
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+    advice: >
+      FIRST, read what this job already has: Parrot's final FOM in each hand
+      (PARROT_FOM_ORIG, PARROT_FOM_INV). Solvent flattening separates the
+      hands where SAD phasing cannot: GammaXe 0.703 (the right hand) against
+      0.623. A DM FOM can be overestimated (Parrot says so), so a clear
+      difference points to a hand but the build confirms it: build that hand
+      fully with modelcraft from its Parrot phases (ABCDOUT[2] original,
+      ABCDOUT[3] inverted). If the two FOMs are close, go on to the SHELXE
+      trace below. No FOM threshold is documented here; GammaXe's 0.08 is one
+      case.
   - when: outcome == "ambiguous" and HANDS_PHASED == 2
     task: shelx
     inputs:
@@ -487,20 +513,57 @@ next:
       START_PIPELINE: phdmmb
       END_PIPELINE: phdmmb
     advice: >
-      FIRST, the cheap hand test: SHELXE density-modifies and traces
-      poly-Ala in both hands from Phaser's completed sites, and records a
-      trace CC per hand (the shelx judgement's HAND1_CC / HAND2_CC; CrankSteps
-      phdmmb Hand1Score / Hand2Score). Set ATOM_TYPE, SEQIN and the free set
-      as for a full run. Phaser's own figures cannot tell the hands apart
-      (identical LLG and FOM), and density modification alone separates them
-      little. A clear trace-CC separation decides: build that hand only,
-      fully, with modelcraft. Close CCs do not decide: GammaXe, run this way
-      from Phaser's 7 sites, gave 52.8 (hand 1, the right one) against 50.9.
-      The SHELX trial separated 48.1 from 38.0. When close, use the two short
-      modelcraft builds below, then build the winner fully. Hand 1 is the
-      sites as given (XYZOUT[0], the original hand).
+      Second test, when the Parrot FOMs are close: SHELXE's own density
+      modification and poly-Ala tracing in both hands from Phaser's
+      completed sites, with a trace CC per hand (the shelx judgement's
+      HAND1_CC / HAND2_CC; CrankSteps phdmmb Hand1Score / Hand2Score). It
+      starts again from the sites, so it is an independent check, not built
+      on Parrot's maps. Set ATOM_TYPE, SEQIN and the free set as for a full
+      run. GammaXe, run this way from Phaser's 7 sites: 52.8 for hand 1 (the
+      right one, the sites as given) against 50.9, close. The SHELX trial
+      separated 48.1 from 38.0. A clear separation decides; close CCs go to
+      the short builds below.
   - when: >
-      outcome == "ambiguous" and HANDS_PHASED == 2
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[2]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the ORIGINAL hand from its Parrot (density-modified) phases
+      (ABCDOUT[2]). Run it together with the entry for the inverted hand,
+      keep the hand whose R-free is clearly lower (the separation rule in
+      the verdict; GammaXe 0.379 vs 0.563), then build that hand fully with
+      modelcraft. If COMPLETION_CONVERGED is "False", rerun this task with
+      more LLGC_CYCLES first. If a SHELX search ran, read the build sub-jobs
+      (job_5, job_6) before building again. If both hands built below 0.45,
+      the substructure may be (pseudo-)centrosymmetric, in which case the
+      hands are equivalent: continue with the lower one.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[3]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the INVERTED hand from its Parrot (density-modified) phases
+      (ABCDOUT[3]). Compare with the original-hand build.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
       and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
     task: modelcraft
     inputs:
@@ -512,17 +575,18 @@ next:
       UNBIASED: "True"
       CYCLES: "5"
     advice: >
-      Only if the SHELXE trace CCs above were close: a SHORT build of the
-      ORIGINAL hand from its Phaser phases (CYCLES 5). Run it together
-      with the entry below for the inverted hand, keep the hand whose
-      R-free is clearly lower, then build that hand fully with modelcraft (the separation rule in the verdict; GammaXe
-      0.379 vs 0.563). If COMPLETION_CONVERGED is "False", rerun this task
-      with more LLGC_CYCLES first. If a SHELX search ran, read the build
-      sub-jobs (job_5, job_6) before building again. If both hands built
-      below 0.45, the substructure may be (pseudo-)centrosymmetric, in which
-      case the hands are equivalent: continue with the lower one.
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the ORIGINAL hand from its Phaser phases
+      (ABCDOUT[0]). Without Parrot's maps; prefer rerunning with RUNPARROT on (above). Run it together with the entry for the inverted hand,
+      keep the hand whose R-free is clearly lower (the separation rule in
+      the verdict; GammaXe 0.379 vs 0.563), then build that hand fully with
+      modelcraft. If COMPLETION_CONVERGED is "False", rerun this task with
+      more LLGC_CYCLES first. If a SHELX search ran, read the build sub-jobs
+      (job_5, job_6) before building again. If both hands built below 0.45,
+      the substructure may be (pseudo-)centrosymmetric, in which case the
+      hands are equivalent: continue with the lower one.
   - when: >
-      outcome == "ambiguous" and HANDS_PHASED == 2
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
       and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
     task: modelcraft
     inputs:
@@ -534,7 +598,9 @@ next:
       UNBIASED: "True"
       CYCLES: "5"
     advice: >
-      Build the INVERTED hand from its Phaser phases; compare with the original-hand build.
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the INVERTED hand from its Phaser phases
+      (ABCDOUT[1]). Compare with the original-hand build.
   - when: outcome == "ambiguous" and HANDS_PHASED == 1
     task: modelcraft
     inputs:

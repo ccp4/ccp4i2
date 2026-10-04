@@ -92,12 +92,13 @@ next:
       XYZIN_HA: "ShelxCD[-1].XYZOUT"
     advice: >
       The fallback route: Phaser completes these sites from its LLG maps
-      and phases both hands. Phaser cannot tell the hands apart, so the
-      hand comes next, cheapest test first (the phaser_ep_phil judgement's
-      "ambiguous" steps): SHELXE density modification and poly-Ala tracing
-      in both hands from Phaser's completed sites, then short ModelCraft
-      builds of both hands only if the trace CCs are close, then one full
-      ModelCraft build of the chosen hand.
+      and phases both hands, and Parrot (RUNPARROT, on by default; keep it
+      on, with ASUFILE) solvent-flattens each. Phaser cannot tell the hands
+      apart, so the hand comes next, cheapest test first (the phaser_ep_phil
+      judgement's "ambiguous" steps): Parrot's FOM in each hand; then SHELXE
+      density modification and poly-Ala tracing in both hands from Phaser's
+      completed sites; then short ModelCraft builds of both, only if those
+      are close; then one full ModelCraft build of the chosen hand.
   - when: outcome == "failed"
     advice: >
       Check the data have anomalous pairs and the scatterer is right; try a

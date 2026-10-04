@@ -84,10 +84,12 @@ next:
     task: phaser_ep_phil
     advice: >
       The usual route is to run phaser_ep_phil from the start with the same
-      data and sites, which phases both hands. The hand is then decided as
-      its judgement says: SHELXE tracing in both hands from the completed
-      sites first, short ModelCraft builds of both only if the trace CCs
-      are close, then a full ModelCraft build of the chosen hand.
+      data and sites, which phases both hands and solvent-flattens each with
+      Parrot (the minimum before a hand call). The hand is then decided as
+      its judgement says: Parrot's FOM per hand, then SHELXE tracing in both
+      hands, then short ModelCraft builds of both only if those are close,
+      then a full ModelCraft build of the chosen hand. Building on this job's
+      phases yourself, run parrot on each hand first.
   - when: outcome == "failed"
     advice: >
       Check the anomalous data, the scatterer and the sites given; or let
