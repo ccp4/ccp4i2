@@ -125,7 +125,7 @@ def resolve_fileuse(project, fileuse: str):
             if first_error is None:
                 first_error = err
             continue
-        logger.info("Resolved fileUse '%s' to %s", fileuse, file_dict["baseName"])
+        logger.debug("Resolved fileUse '%s' to %s", fileuse, file_dict["baseName"])
         return Result.ok(file_dict)
 
     return Result.fail(str(first_error))
