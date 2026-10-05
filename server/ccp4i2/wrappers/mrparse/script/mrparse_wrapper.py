@@ -11,7 +11,7 @@ from ccp4i2.lib.utils.logs.mrparse_log import search_program_failure
 class mrparse(CPluginScript):
     TASKNAME = 'mrparse'
     TASKCOMMAND = 'mrparse'
-    WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
+    WHATNEXT = ['phaser_simple_phil', 'phaser_pipeline_phil', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     ERROR_CODES = {
@@ -40,48 +40,29 @@ class mrparse(CPluginScript):
         af_json = os.path.join(self.getWorkDirectory(), "mrparse_0", "af_models.json")
         esm_json = os.path.join(self.getWorkDirectory(), "mrparse_0", "esm_models.json")
 
-        if os.path.exists(pdb_json):
-            with open(pdb_json, 'r') as f:
-                pdb_data = json.load(f)
-                if self.hklin:
-                    pdb_data = sorted(pdb_data, key=lambda k: k['ellg'], reverse=True)
-                else:
-                    pdb_data = sorted(pdb_data, key=lambda k: k['seq_ident'], reverse=True)
-                for i in pdb_data:
-                    if i['pdb_file'] is not None:
-                        xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", i['pdb_file'])
-                        xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(i['pdb_file']))
-                    if os.path.isfile(xyz_in):
-                        shutil.copy(xyz_in, xyz_out)
-                    self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
-                    self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
-                    self.container.outputData.XYZOUT[-1].annotation = "PDB hit: {}".format(i['name'])
+        # Each hit's model, best first. A hit without a model file is skipped:
+        # the loop used to carry the previous hit's paths over, registering a
+        # duplicate under the wrong name (or NameError on the first hit).
+        def register(json_path, label, key):
+            if not os.path.exists(json_path):
+                return
+            with open(json_path, 'r') as f:
+                hits = sorted(json.load(f), key=lambda k: k[key], reverse=True)
+            for hit in hits:
+                if not hit.get('pdb_file'):
+                    continue
+                xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", hit['pdb_file'])
+                if not os.path.isfile(xyz_in):
+                    continue
+                xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(hit['pdb_file']))
+                shutil.copy(xyz_in, xyz_out)
+                self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
+                self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
+                self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}".format(label, hit['name'])
 
-        if os.path.exists(af_json):
-            with open(af_json, 'r') as f:
-                pdb_data = json.load(f)
-                pdb_data = sorted(pdb_data, key=lambda k: k['seq_ident'], reverse=True)
-                for i in pdb_data:
-                    xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", i['pdb_file'])
-                    xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(i['pdb_file']))
-                    if os.path.isfile(xyz_in):
-                        shutil.copy(xyz_in, xyz_out)
-                    self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
-                    self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
-                    self.container.outputData.XYZOUT[-1].annotation = "AFDB hit: {}".format(i['name'])
-
-        if os.path.exists(esm_json):
-            with open(esm_json, 'r') as f:
-                pdb_data = json.load(f)
-                pdb_data = sorted(pdb_data, key=lambda k: k['seq_ident'], reverse=True)
-                for i in pdb_data:
-                    xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", i['pdb_file'])
-                    xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(i['pdb_file']))
-                    if os.path.isfile(xyz_in):
-                        shutil.copy(xyz_in, xyz_out)
-                    self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
-                    self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
-                    self.container.outputData.XYZOUT[-1].annotation = "ESM hit: {}".format(i['name'])
+        register(pdb_json, "PDB", 'ellg' if self.hklin else 'seq_ident')
+        register(af_json, "AFDB", 'seq_ident')
+        register(esm_json, "ESM", 'seq_ident')
 
         # MrParse logs a failed search program and then writes an empty report,
         # so an unrunnable binary looks exactly like an honest "nothing found".
@@ -114,7 +95,7 @@ class mrparse(CPluginScript):
         if self.container.options.DATABASE:
             self.appendCommandLine("--database")
             self.appendCommandLine((str(self.container.options.DATABASE)).lower())
-        if self.container.options.USEAPI == 'True':
+        if bool(self.container.options.USEAPI):  # a CBoolean never equals the string 'True'
             self.appendCommandLine("--use_api")
         if self.container.options.PDBLOCAL.isSet():
             self.appendCommandLine("--pdb_local")

@@ -214,12 +214,31 @@ class phaser_mr_auto_phil(phaser_phil):
             self._input_space_group = gemmi.read_mtz_file(self._obs_shim.hklin).spacegroup.hm
         except Exception:
             self._input_space_group = None
-        # Phaser reads PDB; a model given as mmCIF is converted alongside
-        for ensemble in self.container.inputData.ENSEMBLES:
-            for item in ensemble.pdbItemList:
+        return self._prepare_models()
+
+    def _prepare_models(self):
+        """Each search model as Phaser will read it: the selected atoms, or a
+        PDB written from an mmCIF, mapped in self._model_paths."""
+        # Phaser reads PDB, and only what it is given. A model with an atom
+        # selection (one chain of a downloaded file) is written out as just the
+        # selected atoms; before this every Phaser job searched with the whole
+        # file, whatever the selection said. Keyed by (ensemble, item) because
+        # one file may be chosen twice with different selections.
+        for e, ensemble in enumerate(self.container.inputData.ENSEMBLES):
+            for k, item in enumerate(ensemble.pdbItemList):
                 if not item.structure.isSet():
                     continue
                 src = str(item.structure.getFullPath())
+                if item.structure.isSelectionSet():
+                    dst = os.path.join(str(self.getWorkDirectory()), "{}_e{}_m{}_selected.pdb".format(
+                        os.path.splitext(os.path.basename(src))[0], e + 1, k + 1))
+                    if item.structure.getSelectedAtomsPdbFile(dst) != 0 or not os.path.isfile(dst):
+                        self.appendErrorReport(203, f"{src}: selection {item.structure.selection.text} wrote nothing",
+                                               severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                        return CPluginScript.FAILED
+                    self._model_paths[(e, k)] = dst
+                    continue
+                # a model given as mmCIF is converted alongside
                 if src.lower().endswith((".cif", ".mmcif")):
                     try:
                         import gemmi

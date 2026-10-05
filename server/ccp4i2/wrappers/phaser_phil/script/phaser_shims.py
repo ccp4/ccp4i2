@@ -84,11 +84,12 @@ class EnsembleListShim(PhilShim):
             fields = [("model_id", label)]
             if label in fixed:
                 fields.append(("solution_at_origin", True))
-            for item in ensemble.pdbItemList:
+            for k, item in enumerate(ensemble.pdbItemList):
                 if not item.structure.isSet():
                     continue
                 path = str(item.structure.getFullPath())
-                path = self.path_map.get(path, path)
+                # the selected atoms, written by the wrapper, else a converted file
+                path = self.path_map.get((i, k)) or self.path_map.get(path, path)
                 coords = [("pdb", path)]
                 if item.identity_to_target.isSet():
                     coords.append(("identity", float(item.identity_to_target)))

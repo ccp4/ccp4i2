@@ -1340,6 +1340,7 @@ class JobViewSet(ModelViewSet):
                 item.key.name: item.value
                 for item in models.JobCharValue.objects.filter(job=the_job).select_related("key")
             })
+            _render_report_if_judged_on_it(the_job)
             verdict = judge(the_job.task_name, the_job.directory, kpis=kpis)
             verdict["status"] = the_job.get_status_display()
             return api_success(verdict)
@@ -2565,3 +2566,24 @@ class JobViewSet(ModelViewSet):
             finished = value not in (False, "false", "False", 0, "0")
         return self._interactive(
             pk, lambda lib, job: lib.finish_session(job, finished=finished))
+
+
+def _render_report_if_judged_on_it(job):
+    """Some tasks record their results only in the report (MrBUMP's quick
+    mode writes no program.xml), and the report is rendered and cached the
+    first time someone opens it. So a job an agent ran itself and nobody had
+    looked at judged "unjudged". When the task's judgement reads
+    report_xml.xml and a finished job has none yet, render it first."""
+    from ..agent.judgement import load
+    from ..lib.utils.jobs.reports import get_job_report_xml
+
+    judgement = load(job.task_name) or {}
+    reads_report = any(isinstance(spec, dict) and spec.get("file") == "report_xml.xml"
+                       for spec in (judgement.get("results") or {}).values())
+    finished = job.status in (models.Job.Status.FINISHED, models.Job.Status.FAILED,
+                              models.Job.Status.UNSATISFACTORY, models.Job.Status.INTERRUPTED)
+    if reads_report and finished and not (Path(job.directory) / "report_xml.xml").exists():
+        try:
+            get_job_report_xml(job)
+        except Exception as err:  # noqa: BLE001 - the verdict then says what it could not read
+            logger.warning("Could not render the report of job %s for its judgement: %s", job.id, err)
