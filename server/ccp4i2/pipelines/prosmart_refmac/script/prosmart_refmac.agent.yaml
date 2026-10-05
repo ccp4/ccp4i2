@@ -502,7 +502,7 @@ next:
       upstream instead, cheapest check first:
         - Twinning: the data-reduction or import judgement's TWIN_LTEST,
           L_STATISTIC and SECOND_MOMENT. If twinned, refine with
-          prosmart_refmac USE_TWIN (servalcat_pipe has no twin option).
+          USE_TWIN (servalcat_pipe and prosmart_refmac both have it).
         - The space group: the data's may be too high (the data-reduction
           judgement's check_symmetry, a low Laue confidence) or Phaser may
           have changed it (its SPACEGROUP_CHANGE). Run zanuda on this model.

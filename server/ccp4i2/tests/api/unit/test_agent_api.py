@@ -103,3 +103,41 @@ def test_a_value_of_the_wrong_shape_is_refused_when_set(client, project):
         content_type="application/json")
     assert r.status_code >= 400, r.content
     assert "ASU_CONTENT[0].sequence takes a single value" in r.content.decode()
+
+
+def test_a_next_step_makes_its_job_and_says_what_it_set(client, project, monkeypatch):
+    # The judgement tab's "Rerun" and "Create job": the job is made, its
+    # inputs set, and left pending; an input that could not be set is said
+    import json as _json
+    from pathlib import Path
+    from ccp4i2.lib.utils.jobs import apply_next as module
+    job = _job(client, project)
+    steps = [
+        {"task": "ProvideAsuContents", "rerun": True, "advice": "  Two  copies. ",
+         "inputs": {"ASU_CONTENT": [{"name": "A", "sequence": "MKVLAAGIV", "nCopies": 2}]}},
+        {"task": "ProvideAsuContents", "inputs": {"NOT_A_PARAMETER": "x"}},
+        {"advice": "read the report"},
+    ]
+    monkeypatch.setattr(module, "next_steps", lambda j: steps)
+
+    def apply(index):
+        return client.post(f"{API}/jobs/{job.id}/apply_next/", data=_json.dumps({"index": index}),
+                           content_type="application/json")
+
+    r = apply(0)
+    assert r.status_code == 200, r.content
+    out = r.json()["data"]
+    assert out["rerun"] is True and out["advice"] == "Two copies."
+    assert out["inputs"] == [{"name": "ASU_CONTENT", "value": steps[0]["inputs"]["ASU_CONTENT"],
+                              "ok": True}]
+    clone = models.Job.objects.get(id=out["job"]["id"])
+    assert clone.id != job.id and clone.task_name == "ProvideAsuContents"
+    assert "MKVLAAGIV" in (Path(clone.directory) / "input_params.xml").read_text()
+
+    out = apply(1).json()["data"]
+    assert out["rerun"] is False and out["inputs"][0]["ok"] is False
+    assert out["inputs"][0]["error"]
+
+    r = apply(2)
+    assert r.status_code == 400 and "advice only" in r.content.decode()
+    assert apply(7).status_code == 400

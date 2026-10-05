@@ -191,3 +191,66 @@ def test_a_finished_job_is_judged_once_until_its_judgement_changes(tmp_path, mon
     again = J.judge_finished("t", job)
     assert again["judgement_version"] != first["judgement_version"]
     assert again["outcome"] == "good" and again["results"]["R"] == 0.5  # judged afresh
+
+
+# --- what the app draws: clauses, tone, meanings, reruns, pinned references --
+
+def test_clauses_give_each_comparison_its_value_and_threshold():
+    out = condition.clauses("TFZ >= 8 and RFREE < 0.55", {"TFZ": 12.7, "RFREE": 0.52})
+    assert [(c["name"], c["op"], c["threshold"], c["value"], c["holds"]) for c in out] == [
+        ("TFZ", ">=", 8.0, 12.7, True), ("RFREE", "<", 0.55, 0.52, True)]
+
+
+def test_a_clause_on_a_missing_result_is_unknown_and_arithmetic_has_no_gauge():
+    out = condition.clauses("RFREE_START - RFREE >= 0.02 or X == null", {"RFREE": 0.3})
+    assert out[0]["holds"] is None and "threshold" not in out[0]
+    assert out[1] == {"text": "X == null", "holds": True, "values": {"X": None}}
+
+
+def test_a_number_on_the_left_is_drawn_as_a_threshold_on_the_right():
+    (clause,) = condition.clauses("0.4 > RFREE", {"RFREE": 0.3})
+    assert (clause["name"], clause["op"], clause["threshold"]) == ("RFREE", "<", 0.4)
+
+
+def _rules(tmp_path, extra=""):
+    path = tmp_path / "t.agent.yaml"
+    path.write_text(
+        "task: t\nstatus: draft\nresults:\n  R:\n    file: program.xml\n    xpath: .//R\n"
+        "    type: float\n    meaning: >\n      R-free of the job.\n"
+        "verdict:\n  - when: R < 0.3\n    outcome: refined\n    basis: b\n"
+        "  - when: true\n    outcome: failed\n"
+        "next:\n  - when: outcome == \"refined\"\n    rerun: true\n"
+        "    inputs:\n      ADD_WATERS: \"True\"\n"
+        "  - when: outcome == \"refined\"\n    task: other\n"
+        "    inputs:\n      XYZIN: \"t[-1].XYZOUT\"\n      HKLIN: \"other[-1].X\"\n" + extra)
+    return path
+
+
+def test_a_verdict_carries_tone_meanings_clauses_and_reruns_name_the_task(tmp_path, monkeypatch):
+    monkeypatch.setattr(judgement, "judgement_path", lambda name: _rules(tmp_path))
+    job = tmp_path / "job"
+    job.mkdir()
+    (job / "program.xml").write_text("<x><R>0.2</R></x>")
+    v = judgement.judge("t", job)
+    assert v["tone"] == "good" and v["meanings"] == {"R": "R-free of the job."}
+    assert v["clauses"][0]["holds"] is True
+    assert v["next"][0]["task"] == "t" and v["next"][0]["rerun"] is True
+
+
+def test_only_this_tasks_latest_is_pinned_to_this_job():
+    steps = [{"task": "other", "inputs": {"XYZIN": "t[-1].XYZOUT", "HKLIN": "other[-1].X",
+                                          "N": 3}}]
+    pinned = judgement.pin_references(steps, "t", "5")
+    assert pinned[0]["inputs"] == {"XYZIN": "[5].XYZOUT", "HKLIN": "other[-1].X", "N": 3}
+    assert steps[0]["inputs"]["XYZIN"] == "t[-1].XYZOUT"  # the original is untouched
+
+
+def test_a_rerun_must_be_of_this_task_and_change_something(tmp_path):
+    import yaml
+    rules = yaml.safe_load(_rules(tmp_path).read_text())
+    assert judgement.problems(rules) == []
+    rules["next"][0]["task"] = "else"
+    rules["next"].append({"when": "true", "rerun": True})
+    found = judgement.problems(rules)
+    assert any("a rerun is of this task" in p for p in found)
+    assert any("a rerun with nothing changed" in p for p in found)

@@ -59,3 +59,25 @@ describe("visibleTabs", () => {
     Object.values(TAB).forEach((tab) => expect(visible.has(tab)).toBe(true));
   });
 });
+
+/**
+ * The Judgement tab: a job of a task with a judgement, once it has ended
+ * (the judgement reads what the job wrote, settled only then).
+ */
+describe("the judgement tab", () => {
+  it.each([JobStatus.FINISHED, JobStatus.FAILED, JobStatus.UNSATISFACTORY, JobStatus.INTERRUPTED])(
+    "is offered for a judged task at status %i",
+    (status) => {
+      expect(visibleTabs(status, false, true).has(TAB.JUDGEMENT)).toBe(true);
+    }
+  );
+
+  it.each([JobStatus.PENDING, JobStatus.RUNNING])("is not offered while status %i", (status) => {
+    expect(visibleTabs(status, false, true).has(TAB.JUDGEMENT)).toBe(false);
+  });
+
+  it("is not offered for a task without a judgement", () => {
+    expect(visibleTabs(JobStatus.FINISHED, false, false).has(TAB.JUDGEMENT)).toBe(false);
+    expect(visibleTabs(JobStatus.FINISHED, false).has(TAB.JUDGEMENT)).toBe(false);
+  });
+});

@@ -19,6 +19,47 @@ DRAFT_NOTE = ("A draft no crystallographer has reviewed, written from a handful 
               "two jobs, treat the verdict as a guide and weigh the numbers yourself.")
 
 
+# How an outcome reads at a glance, for the app: good (the job did what it
+# was for), caution (usable, but something to check or do next), bad (it did
+# not work), unknown (not judged). A verdict entry may set its own "tone".
+TONES = {
+    "good": {"acceptable", "added", "already_present", "analysed_merged", "built",
+             "imported", "improved", "models_found", "plausible", "refined",
+             "sites_found", "solved", "trimmed", "usable"},
+    "caution": {"ambiguous", "ambiguous_copies", "check_chains", "check_symmetry",
+                "free_set_not_kept", "free_set_remade", "low_solvent", "needs_attention",
+                "needs_building", "no_better", "no_better_than_input", "not_improving",
+                "nothing_to_add", "overpacked", "partial", "phased", "placed", "tncs",
+                "too_sparse", "twinning_suspected", "uncertain", "unchecked",
+                "unconverged"},
+    "bad": {"empty", "failed", "no_free_set", "none_found", "not_fitted", "poor",
+            "unusable"},
+}
+
+
+def tone(outcome, entry=None):
+    if entry and entry.get("tone"):
+        return entry["tone"]
+    for name, outcomes in TONES.items():
+        if outcome in outcomes:
+            return name
+    return "unknown"
+
+
+def pin_references(steps, task_name, number):
+    """Next steps with references to this task's latest job ("crank2[-1].X")
+    pinned to this job ("[5].X"). An agent working forward wants the latest
+    job; the app, showing an older job's judgement, means that job."""
+    import copy
+    latest = f"{task_name}[-1]"
+    pinned = copy.deepcopy(steps)
+    for step in pinned:
+        for key, value in (step.get("inputs") or {}).items():
+            if isinstance(value, str) and value.startswith(latest):
+                step["inputs"][key] = f"[{number}]" + value[len(latest):]
+    return pinned
+
+
 def judgement_path(task_name):
     def_xml = locate_def_xml(task_name)
     if def_xml is None:
@@ -128,6 +169,14 @@ def problems(judgement):
                 found.append(f"{section}[{i}]: unknown result {sorted(unknown)}")
             if section == "verdict" and tree != ("lit", True) and not entry.get("basis"):
                 found.append(f"verdict[{i}]: a threshold with no basis")
+            if section == "verdict" and entry.get("tone") and entry["tone"] not in (*TONES, "unknown"):
+                found.append(f"verdict[{i}]: tone {entry['tone']!r} is not one of "
+                             f"{sorted((*TONES, 'unknown'))}")
+            if section == "next" and entry.get("rerun") and entry.get("task") not in (
+                    None, judgement.get("task")):
+                found.append(f"next[{i}]: a rerun is of this task, not {entry['task']!r}")
+            if section == "next" and entry.get("rerun") and not entry.get("inputs"):
+                found.append(f"next[{i}]: a rerun with nothing changed")
     return found
 
 
@@ -141,14 +190,27 @@ def judge(task_name, job_dir, kpis=None, judgement=None):
     optional = {n for n, spec in (judgement.get("results") or {}).items() if spec.get("optional")}
     verdict = {"task": task_name, "results": values, "outcome": None,
                "missing": sorted(n for n, v in values.items() if v is None and n not in optional)}
+    fired = None
     for entry in judgement.get("verdict") or []:
         if condition.holds(_when(entry), values):
+            fired = entry
             verdict.update(outcome=entry.get("outcome"), because=_when(entry),
-                           basis=entry.get("basis"))
+                           basis=entry.get("basis"),
+                           clauses=condition.clauses(_when(entry), values))
             break
+    verdict["tone"] = tone(verdict["outcome"], fired)
+    verdict["meanings"] = {name: " ".join(str(spec.get("meaning") or "").split())
+                           for name, spec in (judgement.get("results") or {}).items()}
     with_outcome = dict(values, outcome=verdict["outcome"])
-    verdict["next"] = [entry for entry in judgement.get("next") or []
-                       if condition.holds(_when(entry), with_outcome)]
+    steps = []
+    for entry in judgement.get("next") or []:
+        if condition.holds(_when(entry), with_outcome):
+            step = dict(entry)
+            if step.get("rerun"):
+                # the same task again, as a clone with these inputs changed
+                step["task"] = task_name
+            steps.append(step)
+    verdict["next"] = steps
     if judgement.get("status") != "reviewed":
         verdict["note"] = DRAFT_NOTE
     return verdict

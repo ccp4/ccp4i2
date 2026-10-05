@@ -928,6 +928,35 @@ class JobViewSet(ModelViewSet):
         methods=["post"],
         serializer_class=serializers.JobSerializer,
     )
+    def apply_next(self, request, pk=None):
+        """Make the job one of this job's judgement next steps describes.
+
+        POST jobs/<id>/apply_next/ {"index": i}: a follow-on job of the
+        step's task, or for a rerun step a clone of this job, with the step's
+        inputs set (references to this job's task pinned to this job). The
+        new job is left pending, with what was and was not set.
+        """
+        from ..lib.utils.jobs.apply_next import ApplyNextError, apply_next
+
+        try:
+            the_job = models.Job.objects.get(id=pk)
+            body = json.loads(request.body.decode("utf-8") or "{}")
+            outcome = apply_next(the_job, int(body.get("index", -1)))
+            outcome["job"] = serializers.JobSerializer(outcome["job"]).data
+            return api_success(outcome)
+        except models.Job.DoesNotExist:
+            return api_error("Job not found", status=404)
+        except (ApplyNextError, ValueError) as err:
+            return api_error(str(err), status=400)
+        except Exception as err:
+            logger.exception("apply_next failed for job %s", pk, exc_info=err)
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["post"],
+        serializer_class=serializers.JobSerializer,
+    )
     def run(self, request, pk=None):
         """
         Execute a job using environment-appropriate backend.
@@ -1328,7 +1357,7 @@ class JobViewSet(ModelViewSet):
         (docs/agentic-knowledge.md). ``outcome`` is null when the task has no
         judgement written; a draft judgement says so in ``note``.
         """
-        from ..agent.judgement import judge, judge_finished
+        from ..agent.judgement import judge, judge_finished, pin_references
 
         try:
             the_job = models.Job.objects.get(id=pk)
@@ -1349,6 +1378,8 @@ class JobViewSet(ModelViewSet):
                 verdict = judge_finished(the_job.task_name, the_job.directory, kpis=kpis)
             else:
                 verdict = judge(the_job.task_name, the_job.directory, kpis=kpis)
+            verdict = dict(verdict, next=pin_references(verdict.get("next") or [],
+                                                        the_job.task_name, the_job.number))
             verdict["status"] = the_job.get_status_display()
             return api_success(verdict)
         except models.Job.DoesNotExist:
