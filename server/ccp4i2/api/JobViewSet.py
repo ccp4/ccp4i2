@@ -1328,7 +1328,7 @@ class JobViewSet(ModelViewSet):
         (docs/agentic-knowledge.md). ``outcome`` is null when the task has no
         judgement written; a draft judgement says so in ``note``.
         """
-        from ..agent.judgement import judge
+        from ..agent.judgement import judge, judge_finished
 
         try:
             the_job = models.Job.objects.get(id=pk)
@@ -1340,7 +1340,15 @@ class JobViewSet(ModelViewSet):
                 item.key.name: item.value
                 for item in models.JobCharValue.objects.filter(job=the_job).select_related("key")
             })
-            verdict = judge(the_job.task_name, the_job.directory, kpis=kpis)
+            finished = the_job.status in (models.Job.Status.FINISHED, models.Job.Status.FAILED,
+                                          models.Job.Status.UNSATISFACTORY,
+                                          models.Job.Status.INTERRUPTED)
+            if finished:
+                # judged once, kept in the job as judgement.json until the
+                # judgement itself changes
+                verdict = judge_finished(the_job.task_name, the_job.directory, kpis=kpis)
+            else:
+                verdict = judge(the_job.task_name, the_job.directory, kpis=kpis)
             verdict["status"] = the_job.get_status_display()
             return api_success(verdict)
         except models.Job.DoesNotExist:

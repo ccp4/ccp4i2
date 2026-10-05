@@ -631,6 +631,29 @@ next:
       again with WEIGHT_OPT MANUAL and WEIGHT below this run's final weight
       (./SERVALCAT_FIRST/cycle[last()]/weight). Keep the run whose R-free is
       no worse.
+  - when: outcome == "needs_building" or outcome == "not_improving" or outcome == "unconverged"
+    advice: >
+      STALLED, when R-free has stopped moving: the model already covers the
+      AU contents, it was refined to convergence (or with jelly-body
+      restraints for many cycles), and the last refinements moved R-free by
+      less than about 0.01. Building or refining more will not help; look
+      upstream instead, cheapest check first:
+        - Twinning: the data-reduction or import judgement's TWIN_LTEST,
+          L_STATISTIC and SECOND_MOMENT. If twinned, refine with
+          prosmart_refmac USE_TWIN (servalcat_pipe has no twin option).
+        - The space group: the data's may be too high (the data-reduction
+          judgement's check_symmetry, a low Laue confidence) or Phaser may
+          have changed it (its SPACEGROUP_CHANGE). Run zanuda on this model.
+        - Something missing from the model: another copy or a partner chain
+          (compare with the AU contents and the MR placement), a ligand,
+          metal or cofactor (positive difference density; coot_find_ligand).
+        - The data: high Rmeas or low completeness in the outer shells
+          (the data-reduction judgement); refinement may be better at a
+          lower resolution limit.
+      A held-out agent run met this case with a confident placement (high
+      TFZ) and R-free near 0.37 after 30 jelly-body cycles, and the advice
+      it had (build, add waters) did not apply. Report the stall and what
+      you checked rather than refining on.
   - when: outcome == "needs_building" and (RFREE < 0.35 or R1FREE < 0.35)
     task: servalcat_pipe
     inputs:

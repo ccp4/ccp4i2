@@ -564,6 +564,21 @@ next:
       CTRUNCATE saw an off-origin Patterson peak that Phaser did not
       (LassoPeptide 1.2, cell 19 x 21 x 30 A, not confirmed by its MR). Look
       at CTRUNCATE's peak list in the report; take no action on it.
+  - when: >
+      (outcome == "check_symmetry" or outcome == "twinning_suspected")
+      and (TWIN_LTEST != "No" and (OTHER_LAUE_ACCEPTED != "" or LAUE_CONFIDENCE < 0.5))
+    advice: >
+      Two warnings together: the space group is uncertain (a second Laue
+      group accepted, or a low Laue confidence) AND the L-test calls the data
+      twinned. Together these are the signature of a twinned crystal merged
+      in too high a symmetry, or of the wrong lattice. A held-out agent run
+      had Laue confidence 0.14 (against 0.999 in our evidence runs), an
+      accepted monoclinic alternative and an L-test "Yes", went on to MR
+      and building, and stalled. Run MR in the chosen group, but expect the
+      lower group: refine with twin refinement, and if R-free stays high
+      after a confident placement (high TFZ), go back to the data, not to
+      more building. Run zanuda on the refined model, or rerun aimless_pipe
+      in the lower Laue group (MODE CHOOSE, CHOOSE_MODE LAUEGROUP).
   - when: outcome == "check_symmetry"
     advice: >
       POINTLESS accepted a second Laue group (OTHER_LAUE_ACCEPTED). Run MR in

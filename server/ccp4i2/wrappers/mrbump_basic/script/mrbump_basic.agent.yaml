@@ -1,0 +1,375 @@
+task: mrbump_basic
+status: draft
+reviewed_by: []
+purpose: >
+  Automated molecular replacement from the sequence: MrBUMP finds homologues
+  of the AU contents (phmmer against the PDB, optionally the EBI AlphaFold
+  database, plus any coordinate files given), trims each with Chainsaw to the
+  aligned residues, runs a quick Phaser search with up to MRMAX of them,
+  then a full Phaser MR_AUTO search with the best model for each region of
+  the sequence, trying both hands of an enantiomorphic space group, and
+  refines that one solution with jelly-body REFMAC (NCYC cycles). The
+  refined model and map coefficients are the job's outputs, whatever the
+  quality of the solution.
+
+use_when:
+  - >
+    You have the sequence (as AU contents) and the reflections but no search
+    model, and want one quick, automated attempt: the program finds,
+    prepares, places and refines a model, and you judge the result. This is
+    the route to try before going outside CCP4i2 for a model.
+  - >
+    You have one or more candidate models (a homologue, a predicted model)
+    and are content to let MrBUMP trim them with Chainsaw and pick the one
+    that places best (modelParameters.XYZIN_LIST; with LOCALONLY True and
+    SEARCH_PDB and SEARCH_AFDB False to search with those alone).
+
+not_when:
+  - text: >
+      You want to see which models exist (identity, coverage, PDB or
+      predicted) and choose one, state its identity, set the number of
+      copies, or keep each step as a job you can inspect and repeat. Find
+      the models with mrparse, then place the chosen one with
+      phaser_simple_phil.
+    instead: mrparse
+  - text: >
+      You already have a search model you trust and only need it placed.
+    instead: phaser_simple_phil
+  - text: >
+      The AU holds several different molecules that must be searched
+      together, or one component is to be searched as an ensemble.
+      (MrBUMP's quick mode places at most one model per region of the
+      sequence; not checked for multi-component AUs here.)
+    instead: phaser_pipeline_phil
+  - text: >
+      You have no sequence at all; SIMBAD searches by the unit cell.
+    instead: SIMBAD
+  - text: >
+      The model was refined against this same crystal form; no search is
+      needed.
+    instead: prosmart_refmac
+
+inputs:
+  - param: inputData.ASUIN
+    advice: >
+      The AU contents from ProvideAsuContents. MrBUMP searches with these
+      sequences and estimates the copies in the AU from them and the cell by
+      a Matthews calculation (MDM2 job 113 log: "Estimated number of
+      molecules to search for in a.s.u.: 1", solvent 64.65%). That estimate,
+      not controlParameters.NMON, decides how many copies Phaser looks for:
+      the wrapper passes neither NMON nor NMASU to MrBUMP (see traps). With several
+      sequences, inputData.SELECTEDCHAINS restricts the search to some of
+      them.
+  - param: inputData.FREERFLAG
+    advice: >
+      Required (mrbump_basic.def.xml lines 18-21, allowUndefined False). The
+      R-free the verdict reads is computed against it, so it must be the set
+      the rest of the project refines against. MDM2 job 113 used the project's set (4.8% of
+      reflections, 1530, from the output model's REMARK 3).
+  - param: controlParameters.LOCALONLY
+    advice: >
+      Default False: the target sequence is sent to the EBI phmmer service
+      and matches are downloaded from the PDB (SEARCH_PDB, default True) and
+      the AlphaFold database (SEARCH_AFDB, default True). That is the point
+      of the task when you have no model, but it needs network access and
+      sends the sequence outside. True turns the phmmer and GESE searches off
+      (mrbump_basic.py lines 44-53); to search only the files in
+      modelParameters.XYZIN_LIST also set SEARCH_PDB and SEARCH_AFDB False,
+      as MDM2 job 113 ran, with one model. (modelParameters.LOCAL is a
+      display toggle: the wrapper never reads it, and every file in
+      XYZIN_LIST is used.)
+  - param: modelParameters.XYZIN_LIST
+    advice: >
+      Your own candidate models, each with an optional atom selection (MDM2
+      job 113: 3dab, selection "A/", which the wrapper turns into
+      "{A/} and {protein}"). Each is aligned to the target and trimmed by
+      Chainsaw before the search; give the whole chain, not a pre-trimmed
+      core.
+  - param: modelParameters.MRMAX
+    advice: >
+      How many prepared models the quick Phaser search tries (default 10;
+      5 in job 113). More models, longer run; only the best per region of
+      the sequence goes on to the final search.
+  - param: controlParameters.NCYC
+    advice: >
+      REFMAC cycles for the one refinement of the final solution (default 30;
+      10 in job 113). The verdict reads the R-free after these cycles; with
+      fewer cycles a correct but distant model ends higher.
+
+results:
+  RECORDED:
+    file: program.xml
+    xpath: .//FinalSolutions
+    attribute: solutions
+    type: int
+    optional: true
+    meaning: >
+      The number of rows of MrBUMP's final table (0 when it ended without a
+      solution), present when the wrapper recorded the table in
+      program.xml (from results.txt, recordFinalSolutions). Absent for a job
+      that has not finished, and for jobs run before this was recorded;
+      those can only be read from the report.
+  MODEL:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[1]/Model
+    type: str
+    meaning: >
+      Name of the (first) search model in the final solution, in MrBUMP's
+      format source_chain_preparation_identity_range: job 113
+      "loc0_ALL_selected_0_CH_s0.55_r12-100" (local file, Chainsaw model,
+      residues 12-100 of the target). The model file itself is under
+      search_mrbump_1/models/, not a project file.
+  MODEL_2:
+    optional: true
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[2]/Model
+    type: str
+    meaning: >
+      A second row of the final table: a second copy or a model for another
+      region of the sequence (one row per component placed,
+      phaserQuick.py lines 175-191). Absent in job 113 (one copy).
+  SEQID:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[1]/SeqID
+    type: float
+    optional: true
+    meaning: >
+      Sequence identity of the first model to the target, in percent (job
+      113 54.5). As a fraction it is phaser_simple_phil's
+      SEARCHSEQUENCEIDENTITY if you go on with Phaser.
+  SPACEGROUP:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[last()]/SpaceGroup
+    type: str
+    meaning: >
+      Space group of the final solution, without spaces (job 113 "P6522",
+      the same as the input data's "P6522", log line 103). XYZOUT carries
+      this group in its CRYST1.
+  TFZ:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[last()]/TFZ
+    type: float
+    meaning: >
+      Phaser's TFZ for the last component placed, AFTER refinement (the
+      "TFZ==" of the .sol file), not the search TFZ that Phaser's 8.0
+      cutoff is for. Job 113 12.7, where the search TFZ was 10.6
+      (search_mrbump_1/phaser/quicksearch-AUTO_ALL/phaserAUTO.sol: "TFZ=10.6
+      ... TFZ==12.7"). The same model placed by phaser_simple_phil (MDM2
+      job 25) had refined TFZ 12.72 from a search TFZ of 8.0.
+  LLG:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[last()]/LLG
+    type: float
+    meaning: >
+      Refined LLG of the final solution. Job 113 106.0 (MDM2 job 25,
+      phaser_simple_phil, 104.27).
+  RWORK:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[last()]/R
+    type: float
+    meaning: >
+      R after the jelly-body REFMAC refinement of the final solution, to two
+      decimals (the same value on every row). Job 113 0.51 (REMARK 3 of
+      output_mrbump_1.pdb: 0.50991).
+  RFREE:
+    file: program.xml
+    xpath: .//FinalSolutions/Solution[last()]/Rfree
+    type: float
+    meaning: >
+      R-free after that refinement, two decimals. Job 113 0.52 (REMARK 3:
+      0.51765, at 1.35 A, NCYC 10). Compare: MDM2 job 25 (phaser_simple_phil,
+      same 3dab model, 10 jelly-body cycles) 0.503.
+  # FINDING (fixed): MrBUMP's quick mode writes its MR numbers only to
+  #   results.txt (its own program.xml, when written after the phmmer search,
+  #   holds an empty results_dict: MRBUMP_master.py 374, 409-411;
+  #   makeXML.py 47). The wrapper now adds FinalSolutions to program.xml
+  #   from final_solutions(results.txt) (recordFinalSolutions, with a test);
+  #   these results read that. Jobs run before it judge "unjudged".
+  # FINDING: the SEARCH TFZ of the final solution (job 113: 10.6), the one
+  #   Phaser's 8.0 cutoff is for, is only in
+  #   search_mrbump_1/phaser/quicksearch-AUTO_ALL/phaserAUTO.sol.
+  # FINDING: the quick search's best result (job 113: refined TFZ 5.6, LLG
+  #   11.0, R/R-free 0.57/0.59, in P6122) is only in the <pre> text of
+  #   results.txt (and of the report), not in any element.
+  # FINDING: the R-free to more than two decimals (0.51765) and the
+  #   resolution (1.35 A) are only in output_mrbump_1.pdb REMARK 3.
+  # OPEN QUESTION: MrBUMP's final Phaser search was given "ENSEMBLE ...
+  #   IDEN 0.00" (job 113 phaserAUTO.key line 9) although it had aligned the
+  #   model at 54.5% (phaserQuick.py line 95 takes seqID[0]); whether Phaser
+  #   then estimates the error another way, and what it cost, was not
+  #   checked. The quick search used IDEN 1.000 (phaserTRA.key).
+  # NOTE: the xpaths were run against program.xml written by
+  #   recordFinalSolutions from MDM2 job 113's results.txt.
+
+verdict:
+  - when: RECORDED == null
+    outcome: unjudged
+    basis: >
+      program.xml has no FinalSolutions: the job has not finished, or it ran
+      before the wrapper recorded MrBUMP's final table (then the numbers are
+      in search_mrbump_1/results/results.txt and the job's report, not in a
+      file this judgement reads).
+  - when: TFZ >= 8 and RFREE > 0 and RFREE < 0.40
+    outcome: solved
+    basis: >
+      Our runs only, as for phaser_simple_phil: R-free below 0.40 after the
+      automatic refinement has come only from correct, near-complete models
+      (BetaBlip 4 0.343 at 3.0 A; Gamma molrep_pipe job 2 0.253; Thaumatin
+      17.4 0.281), and the one known wrong solution refined to 0.461
+      (Thaumatin 17.9). The i2run test test_mrbump.py asserts a best R-free
+      below 0.35 for MrBUMP on the Gamma data with a PDB search, and passed
+      in the ccp4-20260702 and ccp4-20260904 baselines (value not recorded).
+      Not a published threshold; resolution-dependent; an expert should set
+      it. RFREE > 0 guards against a 0.00 written when refinement did not
+      run (not seen). TFZ >= 8 (refined TFZ, lenient - see "placed") keeps
+      the rule in line with phaser_simple_phil's; an R-free below 0.40 with
+      a low TFZ falls to "ambiguous".
+  - when: TFZ >= 8 and RFREE < 0.55
+    outcome: placed
+    basis: >
+      Job 113 only. Its final solution is a correct placement of a
+      distant model: 75 of 85 C-alphas lie within 2 A of the refined MDM2
+      model (MDM2 job 3) under symmetry after the permitted origin shift
+      (0,0,1/2) of P6522 (5 of 85 without it), with refined TFZ 12.7 and
+      R-free 0.52. In the same job the quick search's best placement, in the
+      wrong hand (P6122), had refined TFZ 5.6 and R-free 0.59. The 8 is
+      Phaser's cutoff for the SEARCH TFZ ("Z-score cutoff for definite
+      solution (8.00)", BetaBlip job 3 log line 1379), applied here to the
+      refined TFZ, which runs higher (10.6 -> 12.7 here, 8.0 -> 12.72 in
+      MDM2 25): lenient on its own, hence the R-free bound. The 0.55 sits
+      between 0.52 and 0.59 from one job; an expert should set both.
+  - when: TFZ >= 8 or RFREE < 0.55
+    outcome: ambiguous
+    basis: >
+      One of the two signs of a placement above, not both: a refined TFZ of
+      8 or more with R-free at or above 0.55 (the refined TFZ is lenient,
+      above), or R-free below 0.55 with a low TFZ. No evidence job lands
+      here.
+  - when: true
+    outcome: failed
+    basis: >
+      No final solution (MrBUMP stops without one when Phaser's final
+      search writes no model, phaserQuick.py lines 113-121, and FinalSolutions
+      is then empty), or one like the wrong quick-search placement in job 113
+      (refined TFZ 5.6, R-free 0.59).
+
+traps:
+  - >
+    Read the "Final MR solution" table, not the first ones. MrBUMP's report
+    shows the quick search first; in job 113 that search (both hands tried
+    at 4.4 A) picked a wrong placement in P6122 with R/R-free 0.57/0.59,
+    and only the final search found the solution (P6522, TFZ 12.7, R-free
+    0.52). The results above read the final table.
+  - >
+    MrBUMP always refines and writes out its final solution, right or
+    wrong; the job finishing with XYZOUT says nothing about whether MR
+    worked. Judge by the final R-free and TFZ.
+  - >
+    The TFZ MrBUMP reports is Phaser's refined TFZ (TFZ==), always higher
+    than the search TFZ that Phaser's 8.0 cutoff is for (job 113: 12.7
+    reported, 10.6 in the search). Do not treat a reported TFZ of 8-10 as
+    a definite solution.
+  - >
+    The "number of monomers" on the input tab (controlParameters.NMON) does
+    nothing: mrbump_basic.py never passes it, nor the also-declared
+    controlParameters.NMASU (def.xml line 312), to MrBUMP. MrBUMP's own
+    keyword for it is NMASU (MRBUMP_initialise.py lines 1071-1076); without
+    it MrBUMP searches for the number of copies its Matthews estimate gives
+    (the help page's "set it if you know it" is wrong). If that estimate
+    is wrong (several copies, or a complex), the job can place too few
+    copies and still look like a distant model; compare the rows of the
+    final table (MODEL, MODEL_2) with the AU contents and a matthews job.
+  - >
+    If SPACEGROUP differs from the input data's, the model is in the other
+    group (the other hand, or other screw axes) while the reflections
+    in the project are still labelled with the old one; the task writes no
+    re-labelled F_SIGF/FREERFLAG. Refinement of XYZOUT against the
+    original files would then refine against the wrong symmetry. Not seen
+    here (job 113 kept P6522); how best to relabel the data in CCP4i2 was
+    not checked.
+  - >
+    XYZOUT keeps the search model's residue numbering, not the target's:
+    job 113's model runs Gln 13 - Val 97, the refined MDM2 model (job 3)
+    Gln 18 - Val 108 for the same residues. Compare models by position (and
+    by origin: P6522 allows a (0,0,1/2) shift), never by residue number,
+    and expect rebuilding to renumber.
+  - >
+    With the defaults (LOCALONLY False, SEARCH_PDB and SEARCH_AFDB True)
+    the sequence goes to EBI and models are downloaded: the job needs
+    network access. Offline, set LOCALONLY True, SEARCH_PDB and SEARCH_AFDB
+    False, and give models in XYZIN_LIST, or find them first with mrparse (which also needs the
+    network).
+
+next:
+  - when: outcome == "unjudged"
+    advice: >
+      If the job is still running, wait and judge again. A finished job run
+      before its results were recorded in program.xml can be read from
+      search_mrbump_1/results/results.txt ("Final MR solution from Phaser":
+      R and Rfree are the last two columns) or its report; otherwise treat
+      it as unproven and rerun, or go the mrparse + phaser_simple_phil
+      route.
+  - when: outcome == "solved"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "mrbump_basic[-1].XYZOUT"
+      HKLIN: "mrbump_basic[-1].F_SIGF"
+      FREERFLAG: "mrbump_basic[-1].FREERFLAG"
+    advice: >
+      Full refinement (prosmart_refmac with XYZIN, F_SIGF and FREERFLAG the
+      same is the alternative), then rebuild: modelcraft when the model is a
+      homologue to be rebuilt into the target sequence, or by hand in Coot.
+      F_SIGF and FREERFLAG resolve to the files this job consumed (it
+      produces none under those names). Check SPACEGROUP against the input
+      data first (traps).
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "mrbump_basic[-1].XYZOUT"
+      F_SIGF: "mrbump_basic[-1].F_SIGF"
+      FREERFLAG: "mrbump_basic[-1].FREERFLAG"
+      ASUIN: "mrbump_basic[-1].ASUIN"
+    advice: >
+      A right but distant or incomplete model (job 113: a 54.5%-identity
+      Chainsaw model of residues 12-100, R-free 0.52). Build it into the
+      target sequence and judge by modelcraft's R-free, not this one. More
+      refinement alone will not fix it. First compare the final table's
+      rows with the AU contents: if copies or components are missing (the
+      Matthews estimate may be wrong, see traps), place them before
+      building, with phaser_simple_phil (INPUT_FIXED True, XYZIN_FIXED
+      "mrbump_basic[-1].XYZOUT") or phaser_pipeline_phil.
+  - when: outcome == "ambiguous"
+    advice: >
+      Take control of the search: run mrparse (SEQIN the target sequence,
+      F_SIGF "mrbump_basic[-1].F_SIGF") to get the candidate models as
+      project files, then phaser_simple_phil with the best one
+      (XYZIN "mrparse[-1].XYZOUT[0]"), SEARCHSEQUENCEIDENTITY set to its
+      identity as a fraction (MrBUMP passed Phaser IDEN 0.00 in job 113
+      although it had computed 54.5%, see the note under results), NCOPIES from a matthews job and COMP_BY ASU, and judge that
+      job by its search TFZ. Or build on this placement with modelcraft and
+      keep it only if modelcraft's R-free falls well below this one.
+  - when: outcome == "failed"
+    task: mrparse
+    inputs:
+      F_SIGF: "mrbump_basic[-1].F_SIGF"
+    advice: >
+      Check the inputs first: the AU contents (all components, right
+      sequences), the copies MrBUMP assumed (log: "Estimated number of
+      molecules") against a matthews job, and that the model searches were
+      on (LOCALONLY False, or the right files in XYZIN_LIST). Then find the
+      models with mrparse (set SEQIN to the target sequence) and place them
+      yourself with phaser_simple_phil, or several at once as an ensemble
+      with phaser_pipeline_phil, where identity and copies are under your
+      control.
+
+sources:
+  - docs/user/source/tasks/mrbump_basic/index.rst
+  - server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic.py (keywords; NMON unused)
+  - server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic_report.py (final_solutions)
+  - server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic.def.xml
+  - server/ccp4i2/wrappers/mrbump_basic/script/mrbump_basic.py (recordFinalSolutions)
+  - server/ccp4i2/tests/i2run/test_mrbump.py (Gamma, R-free < 0.35)
+  - "ccp4-20260702 site-packages/mrbump: initialisation/MRBUMP_master.py 1210-1232 (PHAQ path), mr/phaserQuick.py 100-191 (final search, rows), mr/MRBUMP_MR.py 76-78 (XMLOUT only in full MR)"
+  - "run: MDM2 job 113 (mrbump_basic, one local model 3dab chain A, LOCALONLY; correct placement, R-free 0.52)"
+  - "run: MDM2 job 25 (phaser_simple_phil, same model; refined TFZ 12.72, R-free 0.503) via phaser_simple_phil.agent.yaml"
+  - "run: MDM2 job 3 (refined MDM2 model used to check the placement)"

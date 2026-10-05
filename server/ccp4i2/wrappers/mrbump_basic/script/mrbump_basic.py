@@ -212,4 +212,39 @@ class mrbump_basic(CPluginScript):
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 
+        self.recordFinalSolutions()
         return CPluginScript.SUCCEEDED
+
+    def recordFinalSolutions(self):
+        """MrBUMP's final table (model, copy, identity, Phaser's refined TFZ
+        and LLG, the space group it chose, Refmac's R and R-free) into
+        program.xml as FinalSolutions/Solution. Its quick mode writes these
+        only to results.txt (and, in default runs, a program.xml holding just
+        the sequence search), so nothing reading the job's XML could judge
+        it. Added to MrBUMP's program.xml when there is one."""
+        import os
+        from lxml import etree
+        from .mrbump_basic_report import final_solutions
+        results = os.path.join(self.getWorkDirectory(), "search_mrbump_1", "results", "results.txt")
+        if not os.path.isfile(results):
+            return
+        with open(results) as f:
+            rows = final_solutions(f.read())
+        path = self.makeFileName('PROGRAMXML')
+        try:
+            root = etree.parse(path).getroot()
+        except (OSError, etree.XMLSyntaxError):
+            root = etree.Element("MrBUMP")
+        for old in root.findall("FinalSolutions"):
+            root.remove(old)
+        table = etree.SubElement(root, "FinalSolutions")
+        table.set("solutions", str(len(rows)))
+        names = {'model': 'Model', 'copy': 'Copy', 'ellg': 'eLLG', 'seqid': 'SeqID',
+                 'cover': 'Cover', 'rfz': 'RFZ', 'tfz': 'TFZ', 'llg': 'LLG',
+                 'sg': 'SpaceGroup', 'r': 'R', 'rfree': 'Rfree'}
+        for row in rows:
+            solution = etree.SubElement(table, "Solution")
+            for key, tag in names.items():
+                if row.get(key) not in (None, '--'):
+                    etree.SubElement(solution, tag).text = row[key]
+        etree.ElementTree(root).write(path, pretty_print=True)

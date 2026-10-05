@@ -1,0 +1,394 @@
+task: mrparse
+status: draft
+reviewed_by: []
+purpose: >
+  Finds search models for molecular replacement from the target's sequence
+  alone: MrParse searches the sequences of the PDB (and of the AlphaFold
+  database) with phmmer, downloads each match, cuts it to the one chain and
+  the residue range that align with the sequence, and writes one model file
+  per match as an output (XYZOUT, a list). It does not place anything; it is
+  the step that turns "I only have a sequence" into search models inside the
+  project.
+
+use_when:
+  - >
+    You have the sequence of what was crystallised and no search model.
+    This is the entry point for molecular replacement from a sequence: use
+    it instead of fetching coordinates from the PDB or the AlphaFold
+    database by hand (curl, a browser). Models made here are project files
+    with a provenance an agent and a person can follow; a downloaded file is
+    not cut to the matching chain and range, and nothing records where it
+    came from.
+  - >
+    You want to see what models exist (identity, coverage of the sequence,
+    PDB or predicted) before choosing one to place yourself with Phaser.
+
+not_when:
+  - text: >
+      You have a sequence and reflections and want the models found,
+      prepared, placed and refined in one run, with the program choosing
+      (mrbump_basic takes the AU contents, ASUIN, rather than a sequence
+      file). Prefer mrparse when you want to choose the model and keep each
+      step in view; prefer mrbump_basic when you want every model tried.
+    instead: mrbump_basic
+  - text: >
+      You already have a search model (a homologue the user gave, a
+      predicted model, the same protein from another crystal form). Place
+      it directly.
+    instead: phaser_simple_phil
+  - text: >
+      You have no sequence at all (an unknown crystal, a suspected
+      contaminant): SIMBAD searches by the unit cell.
+    instead: SIMBAD
+
+inputs:
+  - param: inputData.SEQIN
+    advice: >
+      The sequence of what was crystallised, whole, as imported (tags
+      included are harmless: in Gamma job 32 the 134-residue sequence starts
+      with a 15-residue His-tag and thrombin site, MHHHHHHLVPRGSHM, and the
+      matches simply begin at residue 12-16). Do not cut it to a domain you
+      think will match; the search finds the regions. A file holding several
+      sequences is merged into one before the search (MrParse 0.4.3
+      mr_analyse.py line 77, merge_multiple_sequences), so the matches of
+      each component appear as separate regions; check that every component
+      of the AU has a match before going on. Repeated identical sequences
+      are dropped in the merge (mr_sequence.py lines 134-138): a homodimer
+      file is searched as one chain.
+  - param: inputData.F_SIGF
+    advice: >
+      Optional, and worth giving if the reflections exist. With them MrParse
+      runs Phaser's expected-LLG calculation for each PDB match (using a
+      Matthews estimate of the copies from the sequence and cell,
+      mr_hkl.py) and the wrapper orders the PDB models by eLLG instead of
+      by sequence identity (mrparse_wrapper.py line 63). eLLG predicts
+      whether a model will give an MR solution better than identity does
+      (help page). Without them every eLLG in homologs.json is 0.0 (Gamma
+      job 32: all five), which means "not computed", not "will fail".
+  - param: options.DATABASE
+    advice: >
+      All (the default) searches the PDB and the AlphaFold database; PDB
+      only the PDB (Gamma job 32); AFDB only the AlphaFold database. Through
+      CCP4i2 "All" means those two only: MrParse's BFVD and ESM searches
+      need --bfvd_seqdb / --esmfold_seqdb, which the wrapper cannot pass,
+      so they return nothing (see FINDING). Use All unless you have a
+      reason: predicted models cover regions no PDB entry does.
+  - param: options.MAXHITS
+    advice: >
+      Models prepared per database, 5 by default (Gamma job 32 made 5).
+      The cut is made on phmmer's ranking (E-value) over the WHOLE sequence
+      (mr_hit.py line 282), before any judgement of coverage: every kept hit
+      can cover the same domain while matches to another domain fall below
+      the cut (Gamma job 32 dropped phmmer ranks 6-8). For a multi-domain
+      target or a merged multi-sequence file raise it (20 or more) and check
+      that every region has a match.
+  - param: options.USEAPI
+    advice: >
+      Has no effect in the MrParse installed with ccp4-20260702 (0.4.3):
+      its --use_api defaults to True and nothing reads it (mr_args.py line
+      51). Setting it False is NOT a privacy control. The searches are
+      local phmmer runs against sequence files held with CCP4 (Gamma job 32
+      ran with use_api effectively True, and its log says "Running phmmer
+      pdb database search locally"); the matched entries are then
+      downloaded by identifier from the PDB / alphafold.ebi.ac.uk, which
+      sends their ids, not the sequence. A later MrParse may use it.
+  - param: options.DO_CLASSIFY
+    advice: >
+      This, not USEAPI, is what sends the sequence out: classification
+      submits it to the JPred server in Dundee (mr_jpred.py lines 169-178)
+      and to DeepTMHMM on the biolib cloud (mr_deeptmhmm.py line 27). Off
+      by default; keep it False if the sequence must stay on this machine.
+      Models are downloaded by id whatever is set; PDBLOCAL (a local PDB
+      mirror) avoids the PDB download.
+
+results:
+  TOP_MODEL:
+    file: params.xml
+    xpath: .//outputData/XYZOUT/CPdbDataFile/annotation
+    type: str
+    meaning: >
+      Annotation of XYZOUT[0], the wrapper's first choice: "PDB hit:
+      <entry>_<chain>" (or "AFDB hit:" / "ESM hit:"). Gamma job 32: "PDB
+      hit: 1gyu_A". It is the best PDB match by eLLG when reflections were
+      given, else by sequence identity; predicted models always come after
+      every PDB match, whatever their quality (mrparse_wrapper.py lines
+      44-65).
+  TOP_MODEL_FILE:
+    file: params.xml
+    xpath: .//outputData/XYZOUT/CPdbDataFile/baseName
+    type: str
+    meaning: >
+      File name of XYZOUT[0]: entry, chain and the ENTRY's residue range
+      (Gamma job 32: 1gyu_A_704-823.pdb; residues 704-822, which lie on
+      residues 15-134 of the target sequence).
+  SECOND_MODEL:
+    file: params.xml
+    xpath: .//outputData/XYZOUT/CPdbDataFile[2]/annotation
+    type: str
+    optional: true
+    meaning: >
+      Annotation of XYZOUT[1]; absent when only one model was made. Gamma
+      job 32: "PDB hit: 2a7b_A".
+  LAST_MODEL:
+    file: params.xml
+    xpath: .//outputData/XYZOUT/CPdbDataFile[last()]/annotation
+    type: str
+    meaning: >
+      Annotation of the last XYZOUT item. With DATABASE All this is an
+      "AFDB hit" when the AlphaFold search found anything (predicted models
+      are appended after the PDB ones). Gamma job 32 (PDB only): "PDB hit:
+      3zhf_A", the most distant match (45% identity).
+  DATABASE:
+    file: params.xml
+    xpath: .//options/DATABASE
+    type: str
+    optional: true
+    meaning: >
+      What was searched, when not the default (absent means All). Gamma
+      job 32: PDB.
+  REFLECTIONS:
+    file: params.xml
+    xpath: .//inputData/F_SIGF/baseName
+    type: str
+    optional: true
+    meaning: >
+      The reflection file given, if any; absent in Gamma job 32. Present
+      means the PDB models are ordered by eLLG, absent means by identity.
+  CODE_201:
+    file: diagnostic.xml
+    xpath: ".//errorReport[code='201']/class"
+    type: str
+    optional: true
+    meaning: >
+      Present ("mrparse") when the wrapper reported 201: a search program
+      could not run and nothing was found; the job fails
+      (mrparse_wrapper.py lines 17-23, 74-76). Each code is read by its own
+      predicate so one report cannot hide another. Absent in Gamma job 32,
+      whose diagnostic.xml is an empty errorReportList.
+  CODE_202:
+    file: diagnostic.xml
+    xpath: ".//errorReport[code='202']/class"
+    type: str
+    optional: true
+    meaning: >
+      Present when no model was registered and the log shows no failure to
+      RUN a program (mrparse_wrapper.py lines 79-82). That is wider than
+      "nothing matched": search_program_failure recognises only OSError,
+      FileNotFoundError, PermissionError, NotADirectoryError and
+      CalledProcessError (lib/utils/logs/mrparse_log.py lines 25-36), so
+      any other exception inside MrParse (logged as "SearchModelFinder
+      failed" or "HklInfo failed", mr_analyse.py lines 160-169; an eLLG /
+      Phaser failure when reflections were given, mr_homolog.py lines
+      223-280) also ends as 202.
+  CODE_203:
+    file: diagnostic.xml
+    xpath: ".//errorReport[code='203']/class"
+    type: str
+    optional: true
+    meaning: >
+      Present when a search program failed to run but models were still
+      made: the list may lack a database's models (mrparse_wrapper.py lines
+      77-78).
+  # FINDING: the numbers that rank the models -- sequence identity
+  #   (seq_ident), the target residues covered (query_start, query_stop,
+  #   range), eLLG (ellg), the entry's resolution, and for predicted models
+  #   avg_plddt / sum_plddt / h_score -- exist only in
+  #   mrparse_0/homologs.json and mrparse_0/af_models.json (and
+  #   esm_models.json). params.xml carries only the annotation "PDB hit:
+  #   <name>"; each model file carries the identity as a header remark
+  #   ("REMARK PHASER ENSEMBLE MODEL 1 ID 100.0", a percentage, over the
+  #   aligned region). Gamma job 32 homologs.json: 1gyu_A 1.0 15-134,
+  #   2a7b_A 1.0 15-134, 1iu1_B 0.99 16-134, 3zy7_B 0.88 15-134, 3zhf_A
+  #   0.45 12-134; ellg 0.0 for all (no reflections). Fix: have the wrapper
+  #   write identity, range, eLLG and pLDDT into the annotation and a
+  #   program.xml, so the verdict can judge the best model rather than only
+  #   whether one exists. mrparse_report.py reads none of it either: the
+  #   CCP4i2 report only links MrParse's own HTML page.
+  # FINDING: the wrapper never counts its outputs in a file; the number of
+  #   models is the number of XYZOUT/CPdbDataFile elements in params.xml
+  #   (Gamma job 32: 5), which the result language cannot count.
+  # FINDING (gap): MrParse 0.4.3's "all" also asks for BFVD and ESMFold
+  #   models, but those searches need --bfvd_seqdb / --esmfold_seqdb
+  #   sequence files, which the wrapper has no option to pass; without them
+  #   find_hits returns {} first (mr_hit.py lines 122-135), no
+  #   bfvd_models.json is written (mr_search_model.py lines 166-170) and
+  #   esm_models.json is always [] (Gamma job 32: "[]"). Through CCP4i2,
+  #   predicted models come from the AlphaFold database only.
+  # FINDING (code): MrParse's --use_api is store_true with default=True
+  #   (mr_args.py line 51) and is never read; the wrapper's USEAPI option
+  #   (now passed when true, mrparse_wrapper.py line 98) changes nothing.
+
+verdict:
+  - when: CODE_201 != null
+    outcome: failed
+    basis: >
+      The wrapper reports 201 when MrParse's log shows a search program
+      failed to run and no model was made, and fails the job
+      (mrparse_wrapper.py lines 74-76; lib/utils/logs/mrparse_log.py
+      search_program_failure). Not seen in a run here.
+  - when: TOP_MODEL != null
+    outcome: models_found
+    basis: >
+      The wrapper appends one XYZOUT item per match MrParse prepared
+      (mrparse_wrapper.py lines 44-65), so a first item means at least one
+      search model exists (a hit without a model file is skipped, lines
+      52-56). Gamma job 32: five PDB models, the first 1gyu_A
+      at 100% identity over residues 15-134 of 134. "Found" is not "good":
+      which to use is decided from the identity and coverage (see traps and
+      next), and only a placement decides whether it works.
+  - when: CODE_202 != null
+    outcome: none_found
+    basis: >
+      The wrapper reports 202 (a warning; the job finishes) when no model
+      was registered and the log shows no program that could not be run
+      (mrparse_wrapper.py lines 79-82). That includes a search that crashed
+      inside MrParse for any other reason (see CODE_202), so none_found
+      means "no models", not proven "no homologues": the next step checks
+      the log first. Not seen in a run here.
+  - when: true
+    outcome: failed
+    basis: >
+      No model and no wrapper report: the job stopped before the wrapper
+      checked its results (for example a sequence file MrParse could not
+      read). Read job_errors and the log.
+
+traps:
+  - >
+    XYZOUT[0] is the best PDB match, not the best model. Predicted (AFDB)
+    models are listed after every PDB match whatever their quality, and
+    without reflections the PDB order is by sequence identity alone, which
+    ignores coverage: a 100%-identity match of one domain ranks above a
+    60%-identity match of the whole chain. Before choosing, read
+    mrparse_0/homologs.json (seq_ident, query_start/query_stop, ellg) and
+    mrparse_0/af_models.json (seq_ident, range, avg_plddt) and compare the
+    covered range with the length of the sequence.
+  - >
+    MAXHITS cuts on phmmer's ranking over the whole sequence, so all the
+    models made can cover one domain (Gamma job 32 kept phmmer's top 5,
+    all over residues 12-134; ranks 6-8, 1na8_B, 2dwy_D and 1p4u_A at
+    E-values 2.6e-18 to 1.4e-16, were cut: mrparse_0/phmmerTblout_95.log). For a multi-domain target or a merged
+    multi-sequence file, raise MAXHITS and check every region of the
+    sequence has a match. Identical sequences in the file are merged to
+    one (mr_sequence.py lines 134-138): a homodimer is searched, and its
+    copies counted, as one chain.
+  - >
+    A multi-domain target or a complex: each match covers only the region
+    that aligned, and each model is ONE chain of its entry (prepare_pdb
+    selects the hit's chain and deletes the rest; the Gamma models have no
+    HETATM records). A bound partner, a second domain or the other subunit
+    of a homologous complex is not in the file. Count the regions against
+    the AU contents: a model that covers half the sequence is one component
+    to place, and the rest must be found (another match, another task)
+    before the AU is complete.
+  - >
+    Predicted models are already processed: MrParse removes residues with
+    pLDDT below 70 (plddt_cutoff default, mr_search_model.py line 28) and
+    turns pLDDT into B-factors (mr_alphafold.py convert_plddt_to_bfactor).
+    Do not run them through editbfac as if they were raw AlphaFold files.
+    A low avg_plddt or a large removed region means the remaining model may
+    be only a core; a long low-confidence linker between domains still
+    joins two domains whose relative placement may be wrong, and then the
+    domains are better searched separately.
+  - >
+    The identity in a model's header (REMARK PHASER ENSEMBLE MODEL 1 ID
+    100.0) is a percentage over the aligned region. phaser_simple_phil's
+    SEARCHSEQUENCEIDENTITY is a FRACTION over the model and defaults to
+    0.9: give 0.45 for 3zhf_A, not 45 and not the default. For an AFDB
+    model the identity is to the database entry (perhaps another species),
+    not a measure of the prediction's error.
+  - >
+    Homologue models keep their own side chains and loops (only the chain
+    and the residue range are cut). Near 100% identity that is right; for a
+    distant match (Gamma's 3zhf_A at 45%, and anything near or below ~30%)
+    trim it first with sculptor, which prunes side chains and poorly
+    aligned regions against the target sequence.
+
+next:
+  - when: outcome == "models_found"
+    task: phaser_simple_phil
+    inputs:
+      XYZIN: "mrparse[-1].XYZOUT[0]"
+    advice: >
+      The usual next step, for one kind of molecule in the AU. Choose the
+      model first (traps above): highest identity that covers most of the
+      sequence; with reflections given, the highest eLLG. Replace [0] by the
+      index of the chosen model (XYZOUT[i], in params.xml order). Set
+      SEARCHSEQUENCEIDENTITY to its identity as a fraction (from
+      homologs.json seq_ident; Gamma 1gyu_A 1.0), NCOPIES from a Matthews
+      analysis, COMP_BY ASU with ASUFILE from ProvideAsuContents, and
+      F_SIGF and FREERFLAG from the project's data. XYZIN's atom
+      selection is applied by Phaser, so a chain or residue range can be
+      selected there instead of making a new file. A model above ~30%
+      identity covering most of the chain is the case this task is for
+      (phaser_simple_phil judgement, use_when; sculptor help page: below
+      about 30% trimming helps) - a rule of thumb, not checked here.
+  - when: outcome == "models_found"
+    task: sculptor
+    inputs:
+      XYZIN: "mrparse[-1].XYZOUT[0]"
+    advice: >
+      Only for a distant match (identity below about 50%, and certainly near
+      30%; Gamma's 3zhf_A at 0.45): trim it before placing, then give
+      sculptor[-1].XYZOUT to phaser_simple_phil as XYZIN. Prefer ALIGNMENT
+      mode (ALIGNIN, with TARGETINDEX naming the target) for a distant
+      homologue: Sculptor's own alignment of a bare sequence is pairwise
+      (sculptor judgement). SEQUENCE mode (SEQUENCEIN "mrparse[-1].SEQIN")
+      needs CHAINIDS, which offers only A-F, while MrParse keeps the
+      entry's own chain id (the letter after the entry in the file name:
+      3zhf_A -> A, 1iu1_B -> B) and it can be any letter. Pointless for a
+      model at or near 100% identity. The 50% is ours, from no run; the
+      sculptor judgement gives ~50% as where the alignment stops mattering.
+  - when: outcome == "models_found"
+    task: phaser_pipeline_phil
+    advice: >
+      Instead of phaser_simple_phil when the AU holds several different
+      molecules (one ENSEMBLES entry per component, each with its chosen
+      XYZOUT[i]), or to search with several of these models of the SAME
+      molecule as one ensemble (they must be superposed first; Phaser does
+      not superpose them). Give each model's identity in identity_to_target
+      on its ENSEMBLES item, as a fraction (homologs.json seq_ident).
+  - when: outcome == "models_found" and CODE_203 != null
+    advice: >
+      One search program failed, so a database was not searched (read
+      job_errors for which). The models listed may not be the best there
+      are; if none of them covers the sequence well, fix the cause and run
+      again.
+  - when: outcome == "none_found" and DATABASE == "PDB"
+    task: mrparse
+    inputs:
+      SEQIN: "mrparse[-1].SEQIN"
+      DATABASE: All
+    advice: >
+      Only the PDB was searched; search the AlphaFold database too.
+  - when: outcome == "none_found"
+    advice: >
+      FIRST read mrparse_0/mrparse.log for "SearchModelFinder failed" or
+      "HklInfo failed" (and a traceback): code 202 also covers a search
+      that crashed. If it did, fix that (with reflections given, try again
+      without F_SIGF to rule out the eLLG step) and run again. Only a clean
+      log with no hits means nothing in the PDB or the AlphaFold database
+      matches the sequence closely enough for phmmer. Options then: a model predicted for this
+      sequence (AlphaFold / ColabFold, run by the user) imported and
+      processed with editbfac, then phaser_simple_phil; experimental phasing
+      if the data carry an anomalous signal (shelx, crank2); SIMBAD if the
+      sequence may not be what crystallised. Fetching structures from the
+      PDB by hand is not the next step: a manual search of the same
+      databases with a less sensitive method is unlikely to find what
+      phmmer missed; a profile search (HHpred) might, and its model would
+      be imported, not downloaded around the project.
+  - when: outcome == "failed"
+    advice: >
+      Read job_errors. A 201 names the search program that could not run
+      (a CCP4 installation problem, not the sequence); otherwise check the
+      sequence file is a protein sequence MrParse can read, and that the
+      machine can reach the PDB (models are downloaded) or give PDBLOCAL.
+
+sources:
+  - docs/user/source/tasks/mrparse/index.rst
+  - server/ccp4i2/wrappers/mrparse/script/mrparse_wrapper.py
+  - server/ccp4i2/wrappers/mrparse/script/mrparse.def.xml
+  - server/ccp4i2/lib/utils/logs/mrparse_log.py
+  - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.def.xml
+  - server/ccp4i2/wrappers/sculptor/script/sculptor.def.xml
+  - "MrParse 0.4.3 (ccp4-20260702 site-packages/mrparse): mr_args.py, mr_analyse.py, mr_search_model.py, mr_homolog.py, mr_alphafold.py, mr_sequence.py"
+  - "run: Gamma job 32 (mrparse, gamma sequence, DATABASE PDB, no reflections; 5 PDB models, 1gyu_A first)"

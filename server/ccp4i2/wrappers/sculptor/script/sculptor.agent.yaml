@@ -1,0 +1,298 @@
+task: sculptor
+status: draft
+reviewed_by: []
+purpose: >
+  Edits a homologous structure into a molecular-replacement search model
+  with Phenix's Sculptor (phaser.sculptor 0.3.3 in ccp4-20260702): every
+  chain that matches the target alignment is kept, loops and termini the
+  alignment marks as gaps are deleted, side chains of non-identical
+  residues are pruned, residues are renamed and renumbered to the target,
+  and everything else (waters, ligands, ions, chains of other proteins) is
+  discarded. It does not place the model; Phaser does that next.
+
+use_when:
+  - >
+    You have a homologue (a downloaded PDB entry, a gesamt/coordinate_selector
+    extract) and an alignment of its sequence with the target's, or the
+    target sequence, and want it prepared for Phaser with more control than
+    Chainsaw: deletion of poorly aligned regions, choice of side-chain pruning
+    (schwarzenbacher or similarity), B-factors raised where the model is least
+    reliable. The help page recommends this for difficult cases (identity
+    below about 30%, docs/user/source/tasks/sculptor/index.rst lines 5-7).
+  - >
+    Rule of thumb for preparing a homologue for Phaser, whichever task does
+    it. STRIP: waters, ligands, ions and any chain that is not a copy of the
+    molecule being searched for (Sculptor does all of these by default; it
+    keeps every copy that matches, see traps). DELETE: loops and termini the
+    alignment leaves unmatched (insertions in the model relative to the
+    target) - they cannot be right. TRIM side chains: at any identity where
+    the target differs, a non-conserved side chain is error, a truncated one
+    is none (chainsaw help page lines 5-7); Schwarzenbacher's mixed model (to
+    the gamma atom, identical residues whole) is the default of both Chainsaw
+    and Sculptor. USE AN ALIGNMENT rather than the bare target sequence when
+    the identity is low (below ~30%): Sculptor's own alignment of a sequence
+    is pairwise, and the help page points to HHpred, PROMALS3D or FFAS for a
+    better one (sculptor help lines 11-13); a misaligned stretch is trimmed in
+    the wrong place. That above ~50% identity the alignment hardly matters
+    and a sequence will do is recalled practice, not documented or checked
+    here.
+
+not_when:
+  - text: >
+      A quick, standard edit of a homologue of reasonable identity (~30% and
+      above, chainsaw help page lines 20-21). Chainsaw also records residues
+      kept/truncated/deleted in program.xml (NO_CONSERVED, NO_MUTATED,
+      NO_DELETED, SEQID), which Sculptor does not. MDM2 job 25 solved MDM2
+      with a Chainsaw model of the same MDMX chain and alignment Sculptor was
+      given in job 23.
+    instead: chainsaw
+  - text: >
+      The model is the same protein, or a very close homologue (identity
+      roughly 90% and above; a recalled rule, not checked here): give it to
+      Phaser as it is, with its atom selection dropping waters, ligands, other
+      chains and flexible termini (phaser_simple_phil help lines 33-37), and
+      the identity as a fraction. Phaser does not edit the model; the identity
+      only sets its expected error. Below that, trim first: Phaser's error
+      model does not remove side chains that are wrong.
+    instead: phaser_simple_phil
+  - text: >
+      You have no model yet, only the target sequence. mrparse finds
+      homologues and writes each as one chain trimmed to the aligned range
+      (mrparse help lines 5-9; mrparse/mr_homolog.py prepare_pdb keeps one
+      chain and only the hit_start..hit_stop range, so internal loops stay
+      and side chains are NOT pruned). Its models can go to Phaser directly,
+      or through Sculptor/Chainsaw when the identity is low. mrbump_basic
+      finds, Chainsaw-edits, places and refines in one go.
+    instead: mrparse
+  - text: >
+      You only need chains, ligands or waters removed, with no sequence
+      editing: coordinate_selector writes a subset by atom selection (e.g.
+      "A/" for one chain; its help page uses "(NUT)" to pick a ligand).
+      Phaser's XYZIN takes an atom selection too.
+    instead: coordinate_selector
+
+inputs:
+  - param: inputData.XYZIN
+    advice: >
+      The homologue. Use its atom selection to keep one copy (e.g. "A/")
+      when the file holds several: Sculptor keeps every chain that matches
+      the alignment. The selection is applied (selected atoms written as
+      XYZIN_selected.pdb; error 203 if it selects nothing). Jobs run before
+      that fix, such as MDM2 job 23, ignored it: asked for "A/" of 3dab, the
+      log shows "selection = all" and chains A, C, E and G all processed.
+  - param: inputData.ALIGNMENTORSEQUENCEIN
+    advice: >
+      ALIGNMENT (default) with ALIGNIN, or SEQUENCE with SEQUENCEIN and
+      CHAINIDS (the model chain to edit; only A-F offered). Prefer an
+      alignment for distant homologues (see use_when). The alignment's
+      model sequence must match the model's residues: Sculptor needs an exact
+      overlap of 6 residues (min_hssp_length) and a matching fraction of 0.4
+      to recognise a chain, and a chain it does not recognise is discarded.
+  - param: controlParameters.TARGETINDEX
+    advice: >
+      Which sequence in the alignment is the TARGET (the crystal's protein),
+      counting from 0; default 0, the first. Job 23's alignment was
+      "4HG7_A, MDMX" (target MDM2 first, model MDMX second), so the default
+      was right. Pointing it at the model's own sequence makes every residue
+      "identical" and nothing is trimmed (expected from the method, not run
+      here); IDENTITY near 100 is the sign.
+  - param: controlParameters.PRUNING
+    advice: >
+      Blank = Sculptor's default, schwarzenbacher (log of job 23: "use =
+      *schwarzenbacher", pruning_level 2): non-identical side chains cut to
+      the gamma atom. similarity keeps similar substitutions (Tyr/Phe) whole
+      and cuts low-similarity regions to the beta carbon (help page lines
+      36-43). That similarity is the better choice below ~30% identity is
+      recalled (Bunkoczi & Read 2011), not stated in the help page and not
+      checked here.
+  - param: controlParameters.BFACTOR
+    advice: >
+      Blank = original (job 23 log). similarity raises B where similarity
+      is low, so Phaser weights those parts down; asa raises it for exposed
+      atoms (help page lines 45-48). Worth setting for distant homologues;
+      original for close ones.
+
+results:
+  N_FILES:
+    file: program.xml
+    xpath: .//number_output_files
+    type: int
+    meaning: >
+      Edited models written (one per protocol; the GUI runs one). Job 23: 1.
+      0 means Sculptor wrote only empty files.
+  N_CHAINS:
+    file: program.xml
+    xpath: .//output[1]/chains
+    type: int
+    meaning: >
+      Chains with residues in the first output model (wrapper counts them
+      with gemmi). Absent in jobs run before the wrapper recorded it (job 23).
+  OUT_RESIDUES:
+    file: program.xml
+    xpath: .//output[1]/residues
+    type: int
+    meaning: >
+      Residues in the first output model, all chains. Absent in job 23 (old).
+  IDENTITY:
+    file: program.xml
+    xpath: .//identity
+    type: float
+    meaning: >
+      Sculptor's sequence identity of the first chain to the target, in
+      PERCENT (e.g. 54.55), from its log line "chain (id = 'A') -> 54.55%"
+      (job 23's log; one identity element per chain). Absent in job 23's
+      program.xml (old).
+  SELECTION_APPLIED:
+    file: program.xml
+    xpath: .//selection_applied
+    type: str
+    optional: true     # absent in jobs before the fix
+    meaning: >
+      "True" when XYZIN's atom selection was applied, "False" when none was
+      set. Absent in jobs run before the fix, whose selection was ignored.
+  N_RESIDUES:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/nResidues
+    type: int
+    meaning: >
+      Residues in the first output model, ALL chains together (also the KPI
+      nResidues). Job 23: 344 - four MDMX copies (chains A, C, E, G), not
+      one, because the "A/" selection was ignored before the fix.
+  N_ATOMS:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/nAtoms
+    type: int
+    meaning: >
+      Atoms in the first output model, all chains (KPI nAtoms). Job 23: 2427.
+  SELECTION:
+    file: params.xml
+    xpath: .//inputData/XYZIN/selection/text
+    type: str
+    optional: true     # absent when no selection was given: normal
+    meaning: >
+      The atom selection set on XYZIN. Job 23: "A/".
+  # FINDING: nothing records the INPUT size (residues/atoms/chains of
+  #   XYZIN), so "kept vs input" cannot be read from the job's files;
+  #   compare OUT_RESIDUES with the target length instead.
+  # FINDING: residues deleted / truncated (chainsaw's NO_DELETED,
+  #   NO_MUTATED) are not recorded; Sculptor's log gives only a count of
+  #   "modifications" per chain (job 23: 933 for chain A), not residues.
+  # NOTE: N_CHAINS, OUT_RESIDUES, IDENTITY and SELECTION_APPLIED were read
+  #   from the wrapper code (sculptor.py processOutputFiles), not from a job:
+  #   the only evidence job (MDM2 23) predates them. N_FILES, N_RESIDUES,
+  #   N_ATOMS and SELECTION were read from job 23.
+
+verdict:
+  - when: N_FILES == null or N_FILES < 1
+    outcome: failed
+    basis: >
+      No edited model: the wrapper returns FAILED when every output file is
+      shorter than 5 characters (sculptor.py processOutputFiles; "Beware
+      sculptor seems to create empty pdb files"), and FAILED with error 203
+      when the selection selects nothing. Not seen in a run.
+  - when: N_RESIDUES == null or N_RESIDUES < 1
+    outcome: failed
+    basis: >
+      A file was written but the PERFORMANCE count of residues is absent or
+      zero: no usable model. From the wrapper, not seen in a run.
+  - when: N_CHAINS > 1
+    outcome: check_chains
+    basis: >
+      The output holds several chains: copies of the molecule that all
+      matched the alignment (Sculptor keeps every matching chain;
+      phaser/sculptor.py), or more than one protein. Given to Phaser as one
+      model they are one rigid body. From the code; job 23 had four (log).
+  - when: N_CHAINS == 1
+    outcome: trimmed
+    basis: >
+      One edited chain: a search model of one copy. Its size against the
+      target is not checked here (findings).
+  - when: N_CHAINS == null and SELECTION != null and SELECTION_APPLIED == null
+    outcome: check_chains
+    basis: >
+      A job from before the selection fix: the selection was ignored and
+      the chain count was not recorded, so the output may hold more than was
+      asked for. MDM2 job 23: selection "A/", log "selection = all", chains
+      A, C, E, G processed, 344 residues.
+  - when: true
+    outcome: trimmed
+    basis: >
+      An older job with a model written and no selection asked for; the
+      chain count is not recorded: look at the model before using it.
+
+traps:
+  - >
+    Sculptor keeps every chain that matches the alignment. A file with
+    several copies gives several copies (job 23: four MDMX chains, 344
+    residues, against the 85 Chainsaw kept from chain A on its help page).
+    Given to Phaser as "one copy", a four-copy model is one rigid tetramer -
+    wrong unless the crystal holds that same tetramer. Select one chain on
+    XYZIN here, or in Phaser's XYZIN.
+  - >
+    Every chain the alignment does not match is discarded, protein or not
+    (phaser/sculptor.py: unmatched chains become "unknown" and go to a
+    Discarder that keeps nothing, since this wrapper never sets "hetero").
+    That strips partner chains and all ligands, waters and ions - usually
+    what you want - but also a chain of the right protein whose sequence in
+    the file differs from the alignment's (another construct, a different
+    isoform). If no chain matches, the output should be empty and the job
+    fail (from the code; not seen in a run). Make the alignment from the
+    model's own sequence (clustalw on the PDB chain).
+  - >
+    The output is renamed to the target's residues and renumbered to the
+    target (log: "rename = True", "renumber use = *target"); it looks like
+    the target but is still the homologue. Give Phaser IDENTITY (job 23 log:
+    54.55%, so 0.55), never 1.0.
+  - >
+    TARGETINDEX counts from 0 and names the crystal's protein in the
+    alignment, not the model. The wrapper adds 1 for Sculptor (job 23 log:
+    target_index = 1 for the default 0).
+  - >
+    Sculptor drops the CRYST1 record (keep_crystal_symmetry = False, job 23
+    log). Harmless for Phaser, which takes the cell from the data.
+
+next:
+  - when: outcome == "trimmed"
+    task: phaser_simple_phil
+    inputs:
+      XYZIN: "sculptor[-1].XYZOUT[0]"
+    advice: >
+      Set SEARCHSEQUENCEIDENTITY to IDENTITY / 100 (a FRACTION: 54.55 ->
+      0.55), NCOPIES to the copies of the molecule in the AU, and
+      COMP_BY/ASUFILE to the whole AU contents. For several different
+      components, or an ensemble of several edited models of the same
+      molecule, use phaser_pipeline_phil with this file in an ENSEMBLES
+      entry (identity_to_target, also a fraction).
+  - when: outcome == "check_chains"
+    task: phaser_simple_phil
+    inputs:
+      XYZIN: "sculptor[-1].XYZOUT[0]"
+    advice: >
+      The model holds several chains. Select ONE on phaser_simple_phil's
+      XYZIN (atom selection, e.g. A/; applied by Phaser) or cut it with
+      coordinate_selector first, and set NCOPIES to the copies in the AU.
+      Keep all chains only if the crystal is expected to hold the same
+      oligomer, and then count it as one copy. SEARCHSEQUENCEIDENTITY =
+      IDENTITY / 100 (for an old job without IDENTITY, the log line
+      "chain (id = 'A') -> NN.NN%").
+  - when: outcome == "failed"
+    advice: >
+      Read log.txt for "No sufficiently similar alignment sequences have
+      been found" on each chain: the alignment's model sequence does not
+      match the model. Re-make the alignment from the model's own chain
+      sequence (clustalw), check TARGETINDEX and the selection, or run
+      chainsaw instead.
+
+sources:
+  - server/ccp4i2/wrappers/sculptor/script/sculptor.py (selection applied; program.xml output/chains/residues/identity/selection_applied)
+  - server/ccp4i2/wrappers/sculptor/script/sculptor.def.xml
+  - server/ccp4i2/wrappers/chainsaw/script/chainsaw.py (records NO_* and SEQID)
+  - docs/user/source/tasks/sculptor/index.rst
+  - docs/user/source/tasks/chainsaw/index.rst
+  - docs/user/source/tasks/mrparse/index.rst
+  - docs/user/source/tasks/coordinate_selector/index.rst
+  - docs/user/source/tasks/phaser_simple_phil/index.rst
+  - "ccp4-20260702 site-packages/phaser/sculptor.py (hetero=None, Discarder, min_hssp_length 6, min_matching_fraction 0.4)"
+  - "ccp4-20260702 site-packages/mrparse/mr_homolog.py prepare_pdb (one chain, aligned range only)"
+  - "run: MDM2 job 23 (sculptor, before the selection fix; selection A/ ignored; 4 chains, 344 residues, 2427 atoms; identity 54.55% in log)"
+  - "literature, recalled not checked: Bunkoczi & Read (2011) Acta Cryst. D67, 303-312 (Sculptor)"

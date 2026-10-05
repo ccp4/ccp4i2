@@ -129,6 +129,16 @@ Rules:
   task. A check (`agent/check.py`) reads each one from the scenario jobs and
   fails on a path that finds nothing; a number that exists only in a log is a
   finding, fixed by adding it to the task's program.xml.
+- **Results come from what the job wrote**: program.xml, params.xml, the
+  KPIs and the job's own data files. Never from the rendered report
+  (report_xml.xml), which is a presentation of those, made only when someone
+  opens it. When a program records its numbers only in text (MrBUMP's quick
+  mode, results.txt), the wrapper adds them to program.xml.
+- **A finished job is judged once.** The verdict is kept in the job
+  directory as `judgement.json` with the version of the judgement (a hash of
+  its file and of the evaluating code) and reused until that changes. It
+  records which version of a judgement said what about the job; a job still
+  running is judged afresh each time.
 - **`status: draft` until an expert has read it.** The facade says so with
   every verdict it gives from a draft.
 

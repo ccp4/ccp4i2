@@ -36,7 +36,11 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 0. Reflection data from outside: import them first by running the TASK
    import_merged (create_job, upload_file, run_job; for unmerged data the
    task aimless_pipe), which checks them and makes or keeps the free-R set
-   every later job needs. Models and sequences can be uploaded where used.
+   every later job needs (inspect_file says which, before you start).
+   Models and sequences can be uploaded where used. With only a sequence
+   and no search model, run mrparse: it finds homologues and predicted
+   models and prepares them for MR (mrbump_basic does that and MR in one
+   automated run). Do not fetch structures from outside CCP4i2.
    Jobs are named by project and job NUMBER (as project_jobs lists them and
    [n].PARAM references use), in every tool.
 1. describe_task(task) before using a task: its judgement says when to use
@@ -55,17 +59,21 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    job_parameters lists them, e.g. inputData.XYZIN.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
-5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory; it
-   returns after max_seconds with waited_out true, so if your own tool calls
-   time out, give a max_seconds below that limit and call it again (jobs
-   can run for an hour). Then judge_job(job). "Finished" means it ran, not
-   that it worked: the judgement decides, and a draft judgement is a
-   guide, not a rule. Do not argue a verdict away with the numbers it
+5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory. It
+   returns after max_seconds (default 45, below most clients' limit on one
+   call) with waited_out true and the step running now; call it again.
+   Jobs can run for an hour. Then judge_job(job). "Finished" means it ran, not
+   that it worked: the judgement decides. Every judgement so far is a
+   draft calibrated on a few test projects: read the basis of the rule that
+   fired (judge_job's "because" and the judgement's basis text) to see how
+   much it rests on. Do not argue a verdict away with the numbers it
    already weighed (a low R-free does not excuse geometry the verdict
    faulted); act on its advice, or report that you stopped short and why.
 6. To change a finished job, clone_job it and edit the clone.
 7. When a job fails, or its judgement cannot read its numbers, job_errors
-   says what it recorded and shows its log. file_summary("[n].XYZOUT")
+   says what it recorded and shows its log. inspect_file(path) says what a
+   reflection file on disk is and which task imports it, before you start.
+   file_summary("[n].XYZOUT")
    says what a model holds (chains, residues built, UNK, ligands, heavy
    atoms) without downloading it.
 
@@ -474,10 +482,13 @@ TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
 
 
 @server.tool()
-def wait_for_job(project_id: int, job: str | int, max_seconds: int = 600) -> dict:
+def wait_for_job(project_id: int, job: str | int, max_seconds: int = 45) -> dict:
     """Wait until a job ends (Finished, Failed, Unsatisfactory, Interrupted)
-    or max_seconds pass (at most 1800), then give its status. Call again if
-    it is still running."""
+    or max_seconds pass, then give its status; call again while it runs.
+    Keep max_seconds below your client's own limit on one tool call (many
+    stop a call at about 60 s whatever this says; the default is 45). A job
+    still running comes back with ``progress``: the step running now and the
+    last lines of its log, so a long job (crank2, modelcraft) is not opaque."""
     job_id = _jid(project_id, job)
     import time
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
@@ -485,8 +496,39 @@ def wait_for_job(project_id: int, job: str | int, max_seconds: int = 600) -> dic
         status = job_status(project_id, job)
         if status["status"] in TERMINAL or time.monotonic() >= deadline:
             status["waited_out"] = status["status"] not in TERMINAL
+            if status["waited_out"]:
+                try:
+                    status["progress"] = _progress(project_id, str(job).strip())
+                except ApiError:
+                    pass  # progress is extra; the status stands
             return status
-        time.sleep(10)
+        time.sleep(min(10, max(1, deadline - time.monotonic())))
+
+
+def _progress(project_id, number, lines=3):
+    """The deepest step of a job that is running now, and its log's last lines."""
+    tree = _get(f"projects/{project_id}/job_tree")["job_tree"]
+
+    def find(entries, wanted):
+        for entry in entries:
+            if str(entry["number"]) == wanted:
+                return entry
+            found = find(entry.get("children") or [], wanted)
+            if found:
+                return found
+        return None
+
+    node = find(tree, number) or {}
+    while True:
+        running = [c for c in node.get("children") or [] if c.get("status") in (2, 3)]
+        if not running:
+            break
+        node = running[-1]
+    step = str(node.get("number", number))
+    directory = "/".join(f"job_{n}" for n in step.split("."))
+    log = _text(f"projects/{project_id}/files_by_path/CCP4_JOBS/{directory}/log.txt")
+    tail = [line for line in log.splitlines() if line.strip()][-lines:]
+    return {"step": step, "task": node.get("task_name"), "log_tail": "\n".join(tail)}
 
 
 @server.tool()
@@ -545,6 +587,55 @@ def what_next(project_id: int, job: str | int) -> dict:
     usual = _get(f"jobs/{job_id}/what_next").get("result", [])
     return {"from_judgement": verdict.get("next") or [],
             "usual_next_tasks": [t.get("taskName") for t in usual]}
+
+
+@server.tool()
+def inspect_file(path: str) -> dict:
+    """What a reflection file on disk is, before importing it: its format,
+    whether it is merged, whether it has anomalous pairs, cell, space group,
+    resolution, and for an MTZ its datasets and their columns (to choose
+    HKLIN_OBS_COLUMNS when it holds a native and derivatives). Says which
+    task imports it: aimless_pipe for unmerged data, import_merged for
+    merged. ``path`` is read where this server runs (the desktop: your own
+    disk)."""
+    import os
+    from ccp4i2.lib.utils.files.reflection_diagnosis import diagnose_reflection_file
+    path = os.path.expanduser(path)
+    if not os.path.isfile(path):
+        raise ApiError(f"{path}: no such file here")
+    diagnosis = diagnose_reflection_file(path)
+    if diagnosis.get("format") == "unknown":
+        return {"path": path, "format": "unknown",
+                "advice": "Not a reflection file this server recognises. Coordinates and "
+                          "sequences are uploaded where a task uses them (upload_file)."}
+    out = {"path": path, **{k: v for k, v in diagnosis.items() if v not in (None, [], "")}}
+    if diagnosis.get("format") == "mtz":
+        try:
+            import gemmi
+            mtz = gemmi.read_mtz_file(path)
+            out["datasets"] = [
+                {"name": f"{ds.project_name}/{ds.crystal_name}/{ds.dataset_name}",
+                 "columns": [c.label for c in mtz.columns if c.dataset_id == ds.id and c.type != "H"]}
+                for ds in mtz.datasets if any(c.dataset_id == ds.id and c.type != "H"
+                                              for c in mtz.columns)]
+        except Exception:  # noqa: BLE001 - the datasets are extra; the diagnosis stands
+            pass
+    merged = diagnosis.get("merged")
+    task = "aimless_pipe" if merged is False else "import_merged"
+    advice = [f"Import with {task}" + (" (scales and merges it)." if merged is False else ".")]
+    if len(out.get("datasets", [])) > 1:
+        advice.append("Several datasets: name the observation and free-R columns you mean "
+                      "(HKLIN_OBS_COLUMNS, HKLIN_FREER_COLUMN); left unset, import_merged may "
+                      "take a derivative's.")
+    if merged is False:
+        advice.append("Whether there is an anomalous signal is known after data reduction "
+                      "(its judgement reads CC_anom).")
+    elif diagnosis.get("anomalous"):
+        advice.append("It has anomalous pairs: experimental phasing is possible if the signal "
+                      "is real (the data-reduction or import judgement says).")
+    out["import_with"] = task
+    out["advice"] = " ".join(advice)
+    return out
 
 
 @server.tool()

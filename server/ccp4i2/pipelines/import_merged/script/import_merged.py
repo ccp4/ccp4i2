@@ -59,8 +59,8 @@ class import_merged(CPluginScript):
                     error.append(
                         klass=self.TASKNAME, code=202,
                         details='This looks like UNMERGED data. import_merged is '
-                                'for merged reflection data - scale and merge it '
-                                'first (e.g. the aimless data-reduction task).',
+                                'for merged reflection data: use the aimless_pipe '
+                                'task (data reduction), which scales and merges it.',
                         name=f'{self.TASKNAME}.container.inputData.HKLIN',
                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
 

@@ -15,7 +15,7 @@ EXPECTED_TOOLS = {
     "list_projects", "create_project", "list_tasks", "describe_task", "project_jobs",
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
-    "what_next", "job_errors", "file_summary",
+    "what_next", "job_errors", "file_summary", "inspect_file",
 }
 
 
@@ -237,3 +237,39 @@ def test_file_summary_of_nothing_says_so(api):
     answers[("GET", "projects/3/resolve_fileuse")] = {}
     with pytest.raises(ToolError, match="no file found"):
         mcp_server.file_summary(3, "[9].XYZOUT")
+
+
+def test_inspect_file_names_the_import_task(tmp_path, monkeypatch):
+    # An agent found import_merged refused unmerged data only after creating
+    # the job and uploading the file
+    from ccp4i2.lib.utils.files import reflection_diagnosis
+    path = tmp_path / "data.sca"
+    path.write_text("x")
+    monkeypatch.setattr(reflection_diagnosis, "diagnose_reflection_file",
+                        lambda p: {"format": "scalepack", "merged": False, "anomalous": None})
+    out = mcp_server.inspect_file(str(path))
+    assert out["import_with"] == "aimless_pipe" and "aimless_pipe" in out["advice"]
+    monkeypatch.setattr(reflection_diagnosis, "diagnose_reflection_file",
+                        lambda p: {"format": "scalepack", "merged": True, "anomalous": True})
+    assert mcp_server.inspect_file(str(path))["import_with"] == "import_merged"
+    with pytest.raises(ToolError):
+        mcp_server.inspect_file(str(tmp_path / "missing.mtz"))
+
+
+def test_a_job_still_running_comes_back_with_its_progress(api, monkeypatch):
+    # An agent's client cut off wait_for_job calls of 240-900 s; a short wait
+    # that says what the job is doing replaces the long one
+    calls, answers = api
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 7, "number": "5", "status": 3, "task_name": "crank2",
+         "children": [{"id": 8, "number": "5.1", "status": 6, "task_name": "crank2_faest", "children": []},
+                      {"id": 9, "number": "5.2", "status": 3, "task_name": "crank2_substrdet",
+                       "children": []}]}]}
+    answers[("GET", "jobs/7")] = {"id": 7, "number": "5", "task_name": "crank2", "status": 3, "project": 3}
+    monkeypatch.setattr("time.sleep", lambda s: None)
+    monkeypatch.setattr(mcp_server, "_text", lambda path: "start\nTry 12\nCFOM 41.2\n" if path.endswith(
+        "CCP4_JOBS/job_5/job_2/log.txt") else "")
+    out = mcp_server.wait_for_job(3, "5", max_seconds=0)
+    assert out["waited_out"] is True
+    assert out["progress"] == {"step": "5.2", "task": "crank2_substrdet",
+                               "log_tail": "start\nTry 12\nCFOM 41.2"}
