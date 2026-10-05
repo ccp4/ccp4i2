@@ -309,7 +309,11 @@ next:
     inputs:
       XYZIN: "mrparse[-1].XYZOUT[0]"
     advice: >
-      The usual next step, for one kind of molecule in the AU. Choose the
+      The next step ONLY when the AU holds one kind of molecule (one
+      sequence, any number of copies). With several (a complex: CDK4 and
+      cyclin D1), use phaser_pipeline_phil below, which places every
+      component in one run; never give a second component's model here as
+      the structure already placed (it is refused). Choose the
       model first (traps above): highest identity that covers most of the
       sequence; with reflections given, the highest eLLG. Replace [0] by the
       index of the chosen model (XYZOUT[i], in params.xml order). Set
@@ -342,8 +346,12 @@ next:
     task: phaser_pipeline_phil
     advice: >
       Instead of phaser_simple_phil when the AU holds several different
-      molecules (one ENSEMBLES entry per component, each with its chosen
-      XYZOUT[i]), or to search with several of these models of the SAME
+      molecules: one ENSEMBLES entry (CEnsemble) per component, labelled by
+      the molecule, number = its copies in the AU, its pdbItemList the
+      chosen XYZOUT[i] for that molecule (set the whole list in one
+      set_parameter); never two components as items of one ensemble. Hits
+      cut from one entry (6p8e_A, 6p8e_B) are that entry's complex, each
+      in its own ensemble here. Or to search with several of these models of the SAME
       molecule as one ensemble (they must be superposed first; Phaser does
       not superpose them). Give each model's identity in identity_to_target
       on its ENSEMBLES item, as a fraction (homologs.json seq_ident).

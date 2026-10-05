@@ -68,3 +68,40 @@ def test_a_structure_placed_in_this_crystal_is_accepted(tmp_path, data_cell):
 def test_a_file_left_set_without_input_fixed_is_ignored(tmp_path):
     fixed = _model(tmp_path / "AF.pdb", (1, 1, 1, 90, 90, 90), "P 1")
     assert not _blocking_on_fixed(_plugin(tmp_path, fixed, input_fixed=False).runTimeValidity())
+
+
+def _asu(path, names):
+    """An AU contents file of one copy of each named protein chain."""
+    items = "".join(
+        f"<CAsuContentSeq><sequence>MKV</sequence><nCopies>1</nCopies>"
+        f"<polymerType>PROTEIN</polymerType><name>{n}</name></CAsuContentSeq>" for n in names)
+    path.write_text(
+        '<?xml version="1.0"?><ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">'
+        "<ccp4i2_header><function>ASUCONTENT</function></ccp4i2_header>"
+        f"<ccp4i2_body><seqList>{items}</seqList></ccp4i2_body></ns0:ccp4i2>")
+    return path
+
+
+def _advice(error):
+    return [r for r in error._reports if r["code"] == 222]
+
+
+def test_contents_with_more_kinds_than_are_searched_for_get_advice(tmp_path, data_cell):
+    # Haiku's case: CDK4 and cyclin D1 in the contents, one searched for
+    plugin = _plugin(tmp_path, _model(tmp_path / "placed.pdb", data_cell, "P 32 2 1"),
+                     input_fixed=False)
+    plugin.container.inputData.ASUFILE.setFullPath(str(_asu(tmp_path / "two.asu.xml", ["BETA", "BLIP"])))
+    advice = _advice(plugin.runTimeValidity())
+    assert advice and advice[0]["severity"] == CCP4ErrorHandling.SEVERITY_WARNING
+    assert "BETA, BLIP" in advice[0]["details"] and "phaser_pipeline_phil" in advice[0]["details"]
+
+    # one searched for and one already placed (here, in this crystal) covers both
+    plugin.container.inputData.INPUT_FIXED.set(True)
+    assert not _advice(plugin.runTimeValidity())
+
+
+def test_contents_of_one_kind_get_no_advice(tmp_path, data_cell):
+    plugin = _plugin(tmp_path, _model(tmp_path / "placed.pdb", data_cell, "P 32 2 1"),
+                     input_fixed=False)
+    plugin.container.inputData.ASUFILE.setFullPath(str(_asu(tmp_path / "one.asu.xml", ["BLIP"])))
+    assert not _advice(plugin.runTimeValidity())

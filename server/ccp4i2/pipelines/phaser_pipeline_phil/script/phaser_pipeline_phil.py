@@ -50,6 +50,8 @@ class phaser_pipeline_phil(PhilPluginScript):
         220: {"description": "No free-R set: the refinement after MR will have no R-free",
               "severity": CCP4ErrorHandling.SEVERITY_WARNING},
         221: {"description": "The structure given as already placed has no crystal cell"},
+        222: {"description": "The AU contents hold more kinds of chain than are searched for",
+              "severity": CCP4ErrorHandling.SEVERITY_WARNING},
     }
 
     def get_phil_exclude_scopes(self):
@@ -80,6 +82,45 @@ class phaser_pipeline_phil(PhilPluginScript):
                          name=f"{self.TASKNAME}.container.inputData.FREERFLAG",
                          severity=CCP4ErrorHandling.SEVERITY_WARNING)
         return error
+
+    def runTimeValidity(self):
+        error = super().runTimeValidity()
+        self._check_components_searched(error)
+        return error
+
+    def _check_components_searched(self, error):
+        """Advice when the AU contents list more kinds of chain than the job
+        searches for or is given as placed. Haiku, with CDK4 and cyclin D1
+        in the contents, searched for CDK4 alone and gave the cyclin as a
+        structure already placed; one run can place both. Advice, not a
+        block: placing one component now and the next later is a route."""
+        inp = self.container.inputData
+        try:
+            solin = getattr(inp, "SOLIN", None)
+        except Exception:
+            solin = None
+        if not inp.ASUFILE.isSet() or (solin is not None and solin.isSet()):
+            return  # without contents nothing to compare; with SOLIN, more is placed already
+        try:
+            kinds = [str(s.name) for s in inp.ASUFILE.getFileContent().seqList
+                     if int(s.nCopies) > 0]
+        except Exception:
+            return
+        fixed = {str(label) for label in inp.FIXENSEMBLES}
+        covered = sum(1 for e in inp.ENSEMBLES
+                      if str(e.label) in fixed or (bool(e.use) and int(e.number or 0) > 0))
+        if len(kinds) <= covered:
+            return
+        error.append(
+            klass=self.TASKNAME, code=222,
+            name=f"{self.TASKNAME}.container.inputData.ENSEMBLES",
+            details=(f"The AU contents list {len(kinds)} kinds of chain ({', '.join(kinds)}) "
+                     f"but this job searches for or is given {covered}. phaser_pipeline_phil "
+                     "places them all in one run: one search model (an ENSEMBLES entry) per "
+                     "kind, its number the copies in the AU. Placing one now and the next "
+                     "later, with this job's XYZOUT as the structure already placed, also "
+                     "works; a model from mrparse or a database is never 'already placed'."),
+            severity=CCP4ErrorHandling.SEVERITY_WARNING)
 
     # -- the run -----------------------------------------------------------
     def process(self):
