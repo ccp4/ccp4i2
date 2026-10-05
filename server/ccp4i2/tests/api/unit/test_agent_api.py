@@ -89,4 +89,17 @@ def test_task_lookup_says_which_tasks_have_a_judgement(client):
     lookup = client.get(f"{API}/task_lookup/").json()
     assert lookup["shelx"]["hasJudgement"] is True
     assert lookup["ShelxCD"]["hasJudgement"] is True
-    assert lookup["mrbump_basic"]["hasJudgement"] is False
+    assert lookup["editbfac"]["hasJudgement"] is False
+
+
+def test_a_value_of_the_wrong_shape_is_refused_when_set(client, project):
+    # An agent's ASU_CONTENT sequence given as {"text": ...} was stored as the
+    # dict's repr and failed only at validation
+    import json as _json
+    job = _job(client, project)
+    r = client.post(f"{API}/jobs/{job.id}/set_parameter/", data=_json.dumps({
+        "object_path": "ProvideAsuContents.inputData.ASU_CONTENT",
+        "value": [{"name": "A", "sequence": {"text": "MKV"}, "nCopies": 1}]}),
+        content_type="application/json")
+    assert r.status_code >= 400, r.content
+    assert "ASU_CONTENT[0].sequence takes a single value" in r.content.decode()

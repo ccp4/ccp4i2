@@ -13,8 +13,10 @@ import yaml
 from ..core.tasks import locate_def_xml
 from . import condition
 
-DRAFT_NOTE = ("This judgement is a draft that no crystallographer has reviewed; "
-              "treat its thresholds as a guide, and check them.")
+DRAFT_NOTE = ("A draft no crystallographer has reviewed, written from a handful of runs "
+              "on CCP4i2's test projects (Gamma, MDM2, BetaBlip, Thaumatin and a few "
+              "more). Each threshold's basis says what it rests on: where that is one or "
+              "two jobs, treat the verdict as a guide and weigh the numbers yourself.")
 
 
 def judgement_path(task_name):

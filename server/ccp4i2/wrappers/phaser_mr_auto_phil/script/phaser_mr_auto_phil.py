@@ -318,6 +318,8 @@ class phaser_mr_auto_phil(phaser_phil):
             given = (self._input_space_group or "").strip()
             reindexed = bool(given) and _same_symbol(solved) != _same_symbol(given)
             out.dataReindexed.set(reindexed)
+            if given:
+                self.xmlroot.append(space_group_check(given, solved))
             if reindexed:
                 warnings = self.xmlroot.find("PhaserWarnings")
                 if warnings is None:
@@ -368,6 +370,31 @@ class phaser_mr_auto_phil(phaser_phil):
         os.replace(tmp, target)
         for responder in getattr(self, "xml_responders", ()):
             responder(xmlroot)
+
+
+def space_group_check(given, solved):
+    """<SpaceGroupCheck given solved change>: "none"; "setting", the same
+    space group in another setting or name (P 1 21 1 and P 21; P 21 21 2
+    and P 2 21 21, both No. 18); or "changed", another space group of the
+    point group (P 2 21 21, No. 18, to P 21 21 21, No. 19: a screw axis
+    where the data had a two-fold). An agent took such a change for a
+    setting difference; the space-group numbers decide."""
+    import gemmi
+    node = etree.Element("SpaceGroupCheck", given=given, solved=solved)
+    sg_given = gemmi.find_spacegroup_by_name(given)
+    sg_solved = gemmi.find_spacegroup_by_name(solved)
+    if _same_symbol(given) == _same_symbol(solved):
+        change = "none"
+    elif sg_given is not None and sg_solved is not None and sg_given.number == sg_solved.number:
+        change = "setting"
+    else:
+        change = "changed"
+    node.set("change", change)
+    if sg_given is not None:
+        node.set("given_number", str(sg_given.number))
+    if sg_solved is not None:
+        node.set("solved_number", str(sg_solved.number))
+    return node
 
 
 def _same_symbol(symbol):
