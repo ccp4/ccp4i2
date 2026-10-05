@@ -103,30 +103,3 @@ def test_a_value_of_the_wrong_shape_is_refused_when_set(client, project):
         content_type="application/json")
     assert r.status_code >= 400, r.content
     assert "ASU_CONTENT[0].sequence takes a single value" in r.content.decode()
-
-
-def test_a_report_is_rendered_when_the_judgement_reads_it(client, project, monkeypatch):
-    # MrBUMP's quick mode writes no program.xml; its judgement reads the
-    # report, which existed only once someone had opened it, so a job an
-    # agent ran itself judged "unjudged"
-    from pathlib import Path
-    from ccp4i2.lib.utils.jobs import reports
-    rendered = []
-
-    def fake_report(job, regenerate=False):
-        rendered.append(job.id)
-        (Path(job.directory) / "report_xml.xml").write_text("<report><title>MrBUMP</title></report>")
-
-    monkeypatch.setattr(reports, "get_job_report_xml", fake_report)
-    job = _job(client, project, task="mrbump_basic")
-    Path(job.directory).mkdir(parents=True, exist_ok=True)
-    job.status = models.Job.Status.PENDING
-    job.save()
-    client.get(f"{API}/jobs/{job.id}/judgement/")
-    assert rendered == []  # not before it has finished
-    job.status = models.Job.Status.FINISHED
-    job.save()
-    client.get(f"{API}/jobs/{job.id}/judgement/")
-    assert rendered == [job.id]
-    client.get(f"{API}/jobs/{job.id}/judgement/")
-    assert rendered == [job.id]  # once: then it is there

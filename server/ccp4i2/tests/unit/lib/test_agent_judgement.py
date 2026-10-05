@@ -162,3 +162,32 @@ def test_an_xpath_list_takes_the_first_that_reads(tmp_path):
         "<R><Before><RFree>0.282</RFree></Before><After><RFree>0.275</RFree></After></R>")
     assert judgement.read_result(spec, tmp_path) == 0.275
     assert judgement.problems({"results": {"X": {"xpath": [".//A", ".//B[@c!='d'"]}}})
+
+
+def test_a_finished_job_is_judged_once_until_its_judgement_changes(tmp_path, monkeypatch):
+    # Judged once and kept as judgement.json, with the judgement's version:
+    # a finished job's files do not change, but the draft judgements do
+    import json
+    from ccp4i2.agent import judgement as J
+    rules = tmp_path / "task.agent.yaml"
+    rules.write_text(
+        "task: t\nstatus: draft\nresults:\n  R:\n    file: program.xml\n    xpath: .//R\n"
+        "    type: float\nverdict:\n  - when: R < 0.3\n    outcome: good\n"
+        "  - when: true\n    outcome: bad\n")
+    monkeypatch.setattr(J, "judgement_path", lambda name: rules)
+    job = tmp_path / "job"
+    job.mkdir()
+    (job / "program.xml").write_text("<x><R>0.2</R></x>")
+
+    first = J.judge_finished("t", job)
+    assert first["outcome"] == "good" and first["judgement_version"]
+    kept = json.loads((job / J.CACHE_NAME).read_text())
+    assert kept["judgement_version"] == first["judgement_version"]
+
+    (job / "program.xml").write_text("<x><R>0.5</R></x>")  # files of a finished job do not change...
+    assert J.judge_finished("t", job)["outcome"] == "good"  # ...so the kept verdict stands
+
+    rules.write_text(rules.read_text().replace("R < 0.3", "R < 0.6"))  # the judgement is revised
+    again = J.judge_finished("t", job)
+    assert again["judgement_version"] != first["judgement_version"]
+    assert again["outcome"] == "good" and again["results"]["R"] == 0.5  # judged afresh

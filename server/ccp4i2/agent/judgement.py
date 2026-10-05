@@ -152,3 +152,54 @@ def judge(task_name, job_dir, kpis=None, judgement=None):
     if judgement.get("status") != "reviewed":
         verdict["note"] = DRAFT_NOTE
     return verdict
+
+
+CACHE_NAME = "judgement.json"
+
+
+def judgement_version(task_name):
+    """A short hash of the task's judgement file and of the code that
+    evaluates it (this module and the condition language), or None without
+    a judgement: the verdict on a finished job changes only when one of
+    those does."""
+    import hashlib
+    from pathlib import Path
+    path = judgement_path(task_name)
+    if path is None or not path.is_file():
+        return None
+    digest = hashlib.sha256(path.read_bytes())
+    for engine in (Path(__file__), Path(__file__).with_name("condition.py")):
+        digest.update(engine.read_bytes())
+    return digest.hexdigest()[:12]
+
+
+def judge_finished(task_name, job_dir, kpis=None):
+    """The verdict on a finished job, worked out once and kept in the job's
+    directory as judgement.json.
+
+    A finished job's files do not change, so its verdict changes only when
+    its judgement does; the cache records the judgement's version and is
+    used only while that is unchanged (the judgements are drafts, edited
+    often). It is also the record of which version of a judgement said what
+    about a job. A job still running is judged afresh each time, and not
+    kept.
+    """
+    import json
+    from pathlib import Path
+    version = judgement_version(task_name)
+    cache = Path(job_dir) / CACHE_NAME
+    try:
+        kept = json.loads(cache.read_text())
+        if kept.get("judgement_version") == version and version is not None:
+            return kept["verdict"]
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    verdict = judge(task_name, job_dir, kpis=kpis)
+    verdict["judgement_version"] = version
+    if version is not None:
+        try:
+            cache.write_text(json.dumps({"judgement_version": version, "verdict": verdict},
+                                        indent=1, default=str))
+        except OSError:
+            pass  # a read-only project still gets its verdict
+    return verdict

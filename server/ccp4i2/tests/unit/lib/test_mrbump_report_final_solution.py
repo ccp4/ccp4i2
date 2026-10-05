@@ -15,7 +15,8 @@ RESULTS = """
 
 def test_final_solution_row():
     assert final_solutions(RESULTS) == [{
-        "model": "loc0_ALL_selected_0_CH_s0.55_r12-100", "rfz": "3.4", "tfz": "12.7",
+        "model": "loc0_ALL_selected_0_CH_s0.55_r12-100", "copy": "1", "ellg": "2928.40",
+        "seqid": "54.5", "cover": "0.91", "rfz": "3.4", "tfz": "12.7",
         "llg": "106.0", "sg": "P6522", "r": "0.51", "rfree": "0.52"}]
 
 
