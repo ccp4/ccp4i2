@@ -330,7 +330,10 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
                   },
                 }}
               >
-                <CardActionArea onClick={() => handleOpenDialog(iElement)}>
+                <CardActionArea
+                  component="div"
+                  onClick={() => handleOpenDialog(iElement)}
+                >
                   <CardContent sx={{ py: 1.5, "&:last-child": { pb: 1.5 } }}>
                     <Stack spacing={1}>
                       {/* Top row: name, type, copies, delete */}

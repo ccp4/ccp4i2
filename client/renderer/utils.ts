@@ -737,6 +737,18 @@ export const useProjectJobs = (
   return { jobs, mutateJobs };
 };
 
+type JobRef = { id: number; number: string };
+
+/** Whether deleting these jobs (and so their sub-jobs) removes the viewed one. */
+export const deletesViewedJob = (
+  viewed: JobRef | undefined,
+  deleted: JobRef[]
+): boolean =>
+  !!viewed &&
+  deleted.some(
+    (job) => job.id === viewed.id || viewed.number.startsWith(`${job.number}.`)
+  );
+
 /**
  * Custom hook to fetch and manage project-related data.
  * Accepts undefined/null to skip fetching until projectId is available.
