@@ -95,6 +95,23 @@ def _base():
     return os.environ.get("CCP4I2_URL", "http://127.0.0.1:3421/api/ccp4i2").rstrip("/")
 
 
+def _auth_headers():
+    """Who the REST call is for. Over HTTP: the caller's own Authorization,
+    or none (the API then refuses), never the server's token; and the
+    caller's address as X-Forwarded-For, so the API does not see every agent
+    as 127.0.0.1. Over stdio: CCP4I2_TOKEN, the command line's own."""
+    caller = _caller.get()
+    headers = {}
+    if caller is not None:
+        if caller.get("authorization"):
+            headers["Authorization"] = caller["authorization"]
+        if caller.get("forwarded_for"):
+            headers["X-Forwarded-For"] = caller["forwarded_for"]
+    elif os.environ.get("CCP4I2_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    return headers
+
+
 def _request(method, path, body=None, query=None, content_type="application/json"):
     url = f"{_base()}/{path.strip('/')}/"
     if query:
@@ -104,12 +121,7 @@ def _request(method, path, body=None, query=None, content_type="application/json
     if body is not None:
         data = json.dumps(body).encode() if content_type == "application/json" else body
         headers["Content-Type"] = content_type
-    caller = _caller.get()
-    if caller is not None:
-        if caller.get("authorization"):
-            headers["Authorization"] = caller["authorization"]
-    elif os.environ.get("CCP4I2_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    headers.update(_auth_headers())
     req = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=300) as response:
@@ -130,12 +142,7 @@ def _request(method, path, body=None, query=None, content_type="application/json
 def _text(path):
     """A file the server serves as is (a log), as text; "" if there is none."""
     url = f"{_base()}/{path.lstrip('/')}"
-    headers = {}
-    caller = _caller.get()
-    if caller is not None and caller.get("authorization"):
-        headers["Authorization"] = caller["authorization"]
-    elif caller is None and os.environ.get("CCP4I2_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    headers = _auth_headers()
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
             return r.read().decode("utf-8", "replace")
