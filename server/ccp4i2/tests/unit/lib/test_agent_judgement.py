@@ -254,3 +254,26 @@ def test_a_rerun_must_be_of_this_task_and_change_something(tmp_path):
     found = judgement.problems(rules)
     assert any("a rerun is of this task" in p for p in found)
     assert any("a rerun with nothing changed" in p for p in found)
+
+
+@pytest.mark.parametrize("targets, first, absent", [
+    (2, "phaser_pipeline_phil", "phaser_simple_phil"),
+    (1, "phaser_simple_phil", None),
+])
+def test_mrparse_routes_a_complex_to_one_pipeline_run(tmp_path, targets, first, absent):
+    # Haiku, given CDK4 and cyclin D1, took phaser_simple_phil (the first
+    # step offered, for "one kind of molecule" in prose only) and gave the
+    # cyclin as already placed. The number of sequences now decides.
+    (tmp_path / "params.xml").write_text(
+        "<root><ccp4i2_body><outputData><XYZOUT><CPdbDataFile>"
+        "<baseName>6p8e_A_20-266.pdb</baseName><annotation>PDB hit: 6p8e_A</annotation>"
+        "</CPdbDataFile></XYZOUT></outputData></ccp4i2_body></root>")
+    names = "".join(f"<Target>t{i}</Target>" for i in range(targets))
+    (tmp_path / "program.xml").write_text(
+        f'<MrParse><Targets count="{targets}">{names}</Targets></MrParse>')
+    verdict = judgement.judge("mrparse", tmp_path)
+    assert verdict["outcome"] == "models_found" and verdict["results"]["TARGETS"] == targets
+    tasks = [step.get("task") for step in verdict["next"]]
+    assert tasks[0] == first
+    if absent:
+        assert absent not in tasks

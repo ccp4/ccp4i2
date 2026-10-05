@@ -296,3 +296,21 @@ def test_sequences_are_found_and_fetched_through_the_jobs_own_methods(api):
     answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "task_name": "phaser_simple_phil"}
     with pytest.raises(ToolError, match="ProvideSequence or ProvideAsuContents"):
         mcp_server.find_sequence(3, "5", "CDK4")
+
+
+def test_list_tasks_matches_any_word_best_first(api):
+    # Haiku searched "phaser molrep molecular replacement" as one phrase,
+    # matched nothing, and never saw phaser_pipeline_phil
+    _, answers = api
+    answers[("GET", "task_lookup")] = {
+        "molrep_pipe": {"TASKTITLE": "Molecular replacement - Molrep"},
+        "phaser_pipeline_phil": {"TASKTITLE": "Phaser molecular replacement",
+                                 "DESCRIPTION": "Places one or more components"},
+        "mrparse": {"TASKTITLE": "MrParse", "DESCRIPTION": "Find search models"},
+    }
+    found = [t["task"] for t in mcp_server.list_tasks("phaser molrep molecular replacement")["tasks"]]
+    assert sorted(found) == ["molrep_pipe", "phaser_pipeline_phil"]  # three words each
+    found = [t["task"] for t in mcp_server.list_tasks("phaser components")["tasks"]]
+    assert found == ["phaser_pipeline_phil"]
+    found = [t["task"] for t in mcp_server.list_tasks("molecular replacement phaser")["tasks"]]
+    assert found[0] == "phaser_pipeline_phil" and "mrparse" not in found

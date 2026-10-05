@@ -154,6 +154,16 @@ results:
     meaning: >
       The reflection file given, if any; absent in Gamma job 32. Present
       means the PDB models are ordered by eLLG, absent means by identity.
+  TARGETS:
+    file: program.xml
+    xpath: ./Targets
+    attribute: count
+    type: int
+    meaning: Number of sequences searched for (records in SEQIN), written by
+      the wrapper since 2026-10-05; absent in older jobs. 1 is one kind of
+      molecule (any number of copies); more is a complex, whose components
+      are placed together (Haiku's CDK4/cyclin D1, 2). The names are in
+      program.xml Targets/Target.
   CODE_201:
     file: diagnostic.xml
     xpath: ".//errorReport[code='201']/class"
@@ -304,16 +314,28 @@ traps:
     aligned regions against the target sequence.
 
 next:
-  - when: outcome == "models_found"
+  - when: outcome == "models_found" and TARGETS > 1
+    task: phaser_pipeline_phil
+    advice: >
+      A complex (TARGETS sequences, named in program.xml Targets/Target):
+      place every component in ONE run. One ENSEMBLES entry (CEnsemble) per
+      component, labelled by the molecule, number = its copies in the AU
+      (from ProvideAsuContents), its pdbItemList the chosen XYZOUT[i] for
+      that molecule with identity_to_target as a fraction (homologs.json
+      seq_ident); set the whole list in one set_parameter. Never two
+      components as items of one ensemble (items are alternatives for one
+      component), and never a component as the structure already placed
+      (refused unless it was placed in this crystal). Hits cut from one
+      entry (6p8e_A, 6p8e_B) are that entry's complex: each in its own
+      ensemble. COMP_BY ASU with ASUFILE, F_SIGF and FREERFLAG as for any
+      Phaser job. phaser_simple_phil searches for one model and is the
+      wrong task here.
+  - when: outcome == "models_found" and TARGETS == 1
     task: phaser_simple_phil
     inputs:
       XYZIN: "mrparse[-1].XYZOUT[0]"
     advice: >
-      The next step ONLY when the AU holds one kind of molecule (one
-      sequence, any number of copies). With several (a complex: CDK4 and
-      cyclin D1), use phaser_pipeline_phil below, which places every
-      component in one run; never give a second component's model here as
-      the structure already placed (it is refused). Choose the
+      One kind of molecule (TARGETS 1), any number of copies. Choose the
       model first (traps above): highest identity that covers most of the
       sequence; with reflections given, the highest eLLG. Replace [0] by the
       index of the chosen model (XYZOUT[i], in params.xml order). Set
@@ -333,7 +355,8 @@ next:
     advice: >
       Only for a distant match (identity below about 50%, and certainly near
       30%; Gamma's 3zhf_A at 0.45): trim it before placing, then give
-      sculptor[-1].XYZOUT to phaser_simple_phil as XYZIN. Prefer ALIGNMENT
+      sculptor[-1].XYZOUT to phaser_simple_phil as XYZIN (or, for a complex, as
+      that component's model in phaser_pipeline_phil). Prefer ALIGNMENT
       mode (ALIGNIN, with TARGETINDEX naming the target) for a distant
       homologue: Sculptor's own alignment of a bare sequence is pairwise
       (sculptor judgement). SEQUENCE mode (SEQUENCEIN "mrparse[-1].SEQIN")
@@ -342,19 +365,19 @@ next:
       3zhf_A -> A, 1iu1_B -> B) and it can be any letter. Pointless for a
       model at or near 100% identity. The 50% is ours, from no run; the
       sculptor judgement gives ~50% as where the alignment stops mattering.
-  - when: outcome == "models_found"
+  - when: outcome == "models_found" and TARGETS == 1
     task: phaser_pipeline_phil
     advice: >
-      Instead of phaser_simple_phil when the AU holds several different
-      molecules: one ENSEMBLES entry (CEnsemble) per component, labelled by
-      the molecule, number = its copies in the AU, its pdbItemList the
-      chosen XYZOUT[i] for that molecule (set the whole list in one
-      set_parameter); never two components as items of one ensemble. Hits
-      cut from one entry (6p8e_A, 6p8e_B) are that entry's complex, each
-      in its own ensemble here. Or to search with several of these models of the SAME
-      molecule as one ensemble (they must be superposed first; Phaser does
-      not superpose them). Give each model's identity in identity_to_target
-      on its ENSEMBLES item, as a fraction (homologs.json seq_ident).
+      Only to search with several of these models of the SAME molecule as
+      one ensemble (they must be superposed first; Phaser does not superpose
+      them): one ENSEMBLES entry whose pdbItemList holds them, each with its
+      identity_to_target as a fraction (homologs.json seq_ident).
+  - when: outcome == "models_found" and TARGETS == null
+    advice: >
+      A job from before the number of sequences was recorded. Count the
+      records in SEQIN: one is one kind of molecule (phaser_simple_phil);
+      several are a complex, placed in one phaser_pipeline_phil run with an
+      ENSEMBLES entry per component.
   - when: outcome == "models_found" and CODE_203 != null
     advice: >
       One search program failed, so a database was not searched (read

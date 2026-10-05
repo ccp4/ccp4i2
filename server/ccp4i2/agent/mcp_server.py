@@ -224,20 +224,27 @@ def create_project(name: str) -> dict:
 @server.tool()
 def list_tasks(query: str = "") -> dict:
     """The tasks that can be run, optionally only those whose name, title or
-    description contains ``query``. Superseded and interactive (in-app
-    window) tasks are left out. ``judged`` says whether the task has a
-    judgement (describe_task gives it)."""
-    query = query.lower()
-    out = []
-    for name, task in _get("task_lookup").items():
+    description contains any word of ``query`` ("phaser molecular
+    replacement"), those matching most words first. Superseded and
+    interactive (in-app window) tasks are left out. ``judged`` says whether
+    the task has a judgement (describe_task gives it)."""
+    # Word by word: the whole query as one phrase matched nothing for
+    # "phaser molrep molecular replacement", and Haiku never saw
+    # phaser_pipeline_phil
+    words = query.lower().split()
+    scored = []
+    for order, (name, task) in enumerate(_get("task_lookup").items()):
         if task.get("supersededBy") or task.get("interactive"):
             continue
         text = " ".join(str(task.get(k) or "") for k in ("TASKTITLE", "DESCRIPTION", "shortTitle"))
-        if query and query not in f"{name} {text}".lower():
+        haystack = f"{name} {text}".lower()
+        score = sum(1 for word in words if word in haystack)
+        if words and not score:
             continue
-        out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION"),
-                    "judged": bool(task.get("hasJudgement"))})
-    return {"tasks": out}
+        scored.append((-score, order, {"task": name, "title": task.get("TASKTITLE"),
+                                       "description": task.get("DESCRIPTION"),
+                                       "judged": bool(task.get("hasJudgement"))}))
+    return {"tasks": [entry for _, _, entry in sorted(scored, key=lambda s: s[:2])]}
 
 
 @server.tool()
