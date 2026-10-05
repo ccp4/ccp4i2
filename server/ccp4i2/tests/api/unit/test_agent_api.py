@@ -141,3 +141,60 @@ def test_a_next_step_makes_its_job_and_says_what_it_set(client, project, monkeyp
     r = apply(2)
     assert r.status_code == 400 and "advice only" in r.content.decode()
     assert apply(7).status_code == 400
+
+
+# --- UniProt into a pending job, through the object_method endpoint --------
+
+def _fake_fetch(accession, residue_range=None, opener=None):
+    from ccp4i2.lib.utils.sequences import uniprot
+    if accession != "P14635":
+        raise uniprot.UniProtError(f"{accession!r} is not a UniProt accession or entry name")
+    seq = "MALRVTRNSKINAENKAKINMAGAKRVPTAPAATSKPGLRPRTALGDIGNKVSEQLQAKMPMKKEAKPSATGKVIDKKLPKPLEKVPMLVPVPVSEPVPEPEPEPEPEPVKEEKLSPEPILVDTASPSPMETSGCAPAEEDLCQAFSDVILAVNDVDAEDGADPNLCSEYVKDIYAYLRQLEEEQAVRPKYLLGREVTGNMRAILIDWLVQVQMKFRLLQETMYMTVSIIDRFMQNNCVPKKMLQLVGVTAMFIASKYEEMYPPEIGDFAFVTDNTYTKHQIRQMEMKILRALNFGLGRPLPLHFLRRASKIGEVDVEQHTLAKYLMELTMLDYDMVHFPPSQIAAGAFCLALKILDNGEWTPTLQHYLSYTEESLLPVMQHLAKNVVMVNQGLTKHMTVKNKYATSKHAKISTLPQLNSALVQDLAKAVAKV"
+    cut = uniprot.parse_range(residue_range)
+    if cut:
+        seq = seq[cut[0] - 1:cut[1]]
+    return {"accession": "P14635", "entry_name": "CCNB1_HUMAN", "protein_name": "G2/mitotic-specific cyclin-B1",
+            "gene": "CCNB1", "organism": "Homo sapiens", "reviewed": True, "taxid": 9606,
+            "range": f"{cut[0]}-{cut[1]}" if cut else None, "sequence": seq,
+            "fasta": f">sp|P14635|CCNB1_HUMAN cyclin-B1 OS=Homo sapiens\n{seq}\n"}
+
+
+def _method(client, job, task, name, args):
+    import json as _json
+    r = client.post(f"{API}/jobs/{job.id}/object_method/", data=_json.dumps(
+        {"object_path": task, "method_name": name, "args": args}), content_type="application/json")
+    assert r.status_code == 200, r.content
+    return r.json()["data"]["result"]
+
+
+def test_a_sequence_is_fetched_into_a_pending_job_and_saved(client, project, monkeypatch):
+    from pathlib import Path
+    from ccp4i2.lib.utils.sequences import uniprot
+    monkeypatch.setattr(uniprot, "fetch", _fake_fetch)
+    job = _job(client, project, task="ProvideSequence")
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["P14635"])
+    assert out["success"] and out["added"]["gene"] == "CCNB1"
+    import xml.etree.ElementTree as ET
+    saved = ET.parse(Path(job.directory) / "input_params.xml").getroot().findtext(".//SEQUENCETEXT")
+    assert saved.startswith(">sp|P14635|CCNB1_HUMAN")  # the record, provenance in its header, saved
+
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["cyclin B1"])
+    assert out == {"success": False, "error": "'cyclin B1' is not a UniProt accession or entry name"}
+
+    job.status = models.Job.Status.FINISHED
+    job.save()
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["P14635"])
+    assert out["success"] is False and "only a pending job" in out["error"]
+
+
+def test_an_asu_entry_is_filled_from_uniprot_with_its_construct(client, project, monkeypatch):
+    from pathlib import Path
+    from ccp4i2.lib.utils.sequences import uniprot
+    monkeypatch.setattr(uniprot, "fetch", _fake_fetch)
+    job = _job(client, project, task="ProvideAsuContents")
+    out = _method(client, job, "ProvideAsuContents", "fetchUniProt", ["P14635", "175-432", None, 2])
+    assert out["success"] and out["added"]["length"] == 258 and out["added"]["range"] == "175-432"
+    saved = (Path(job.directory) / "input_params.xml").read_text()
+    assert "YAYLRQLEEE" in saved and "CCNB1" in saved
+    out = _method(client, job, "ProvideAsuContents", "fetchUniProt", ["nonsense"])
+    assert out["success"] is False

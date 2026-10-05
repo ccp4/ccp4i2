@@ -15,7 +15,8 @@ EXPECTED_TOOLS = {
     "list_projects", "create_project", "list_tasks", "describe_task", "project_jobs",
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
-    "what_next", "job_errors", "file_summary", "inspect_file",
+    "what_next", "job_errors", "file_summary", "inspect_file", "find_sequence",
+    "fetch_sequence",
 }
 
 
@@ -273,3 +274,25 @@ def test_a_job_still_running_comes_back_with_its_progress(api, monkeypatch):
     assert out["waited_out"] is True
     assert out["progress"] == {"step": "5.2", "task": "crank2_substrdet",
                                "log_tail": "start\nTry 12\nCFOM 41.2"}
+
+
+def test_sequences_are_found_and_fetched_through_the_jobs_own_methods(api):
+    # From a name to a sequence, for an agent told "CDK4/cyclin D" and given
+    # no sequences
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "task_name": "ProvideAsuContents"}
+    answers[("POST", "jobs/7/object_method")] = {"result": {"success": True, "index": 0}}
+    out = mcp_server.fetch_sequence(3, "5", "P14635", residue_range="175-432", n_copies=1)
+    assert out["success"]
+    method, path, body, _ = calls[-1]
+    assert body == {"object_path": "ProvideAsuContents", "method_name": "fetchUniProt",
+                    "args": ["P14635", "175-432", None, 1]}
+    answers[("POST", "jobs/7/object_method")] = {"result": {"read_as": {}, "candidates": []}}
+    mcp_server.find_sequence(3, "5", "cyclin D human")
+    assert calls[-1][2]["method_name"] == "uniprotCandidates"
+    answers[("POST", "jobs/7/object_method")] = {"result": {"success": False, "error": "nope"}}
+    with pytest.raises(ToolError, match="nope"):
+        mcp_server.fetch_sequence(3, "5", "XX")
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "task_name": "phaser_simple_phil"}
+    with pytest.raises(ToolError, match="ProvideSequence or ProvideAsuContents"):
+        mcp_server.find_sequence(3, "5", "CDK4")
