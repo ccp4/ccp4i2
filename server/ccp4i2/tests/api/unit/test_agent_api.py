@@ -57,17 +57,31 @@ def test_a_task_without_judgement_says_so(client, project):
     assert verdict["outcome"] is None and "No judgement" in verdict["note"]
 
 
+def test_a_job_that_has_not_run_is_not_judged(client, project):
+    # The rules would read the absent results as a result: a pending
+    # ProvideAsuContents was judged "empty", no sequence recorded
+    job = _job(client, project)
+    verdict = client.get(f"{API}/jobs/{job.id}/judgement/").json()["data"]
+    assert verdict["outcome"] is None and "has not run" in verdict["note"]
+    assert "results" not in verdict
+
+
 def test_judgement_is_read_from_the_job(client, project, tmp_path, monkeypatch):
     job = _job(client, project)
-    (job.directory / "program.xml").write_text("<R><Final><RFree>0.24</RFree></Final></R>")
+    job.status = models.Job.Status.FINISHED
+    job.save()
+    (job.directory / "program.xml").write_text(
+        "<R><Final><RFree>0.24</RFree></Final><Anom>NaN</Anom></R>")
     key, _ = models.JobValueKey.objects.get_or_create(name="RFactor", defaults={"description": "R"})
     models.JobFloatValue.objects.create(job=job, key=key, value=0.2)
     path = tmp_path / "ProvideAsuContents.agent.yaml"
     path.write_text(yaml.safe_dump({
         "task": "ProvideAsuContents", "status": "draft",
         "results": {"RFREE": {"xpath": ".//Final/RFree"},
-                    "R": {"file": "kpi", "kpi": "RFactor"}},
-        "verdict": [{"when": "RFREE < 0.3 and R < RFREE", "outcome": "good", "basis": "test"},
+                    "R": {"file": "kpi", "kpi": "RFactor"},
+                    "ANOM": {"xpath": ".//Anom"}},
+        "verdict": [{"when": "ANOM > 0", "outcome": "anomalous"},
+                    {"when": "RFREE < 0.3 and R < RFREE", "outcome": "good", "basis": "test"},
                     {"when": True, "outcome": "poor"}],
         "next": [{"when": 'outcome == "good"', "task": "servalcat_pipe"}],
     }))
@@ -77,7 +91,10 @@ def test_judgement_is_read_from_the_job(client, project, tmp_path, monkeypatch):
     assert described["judgement"]["results"]["RFREE"]["xpath"] == ".//Final/RFree"
 
     verdict = client.get(f"{API}/jobs/{job.id}/judgement/").json()["data"]
-    assert verdict["results"] == {"RFREE": 0.24, "R": 0.2}
+    # NaN (CTRUNCATE's "no anomalous limit") compares false in the rules and
+    # is served as null, which JSON can carry; it was there, so not missing
+    assert verdict["results"] == {"RFREE": 0.24, "R": 0.2, "ANOM": None}
+    assert verdict["missing"] == []
     assert verdict["outcome"] == "good"
     assert verdict["next"] == [{"when": 'outcome == "good"', "task": "servalcat_pipe"}]
     assert verdict["note"] == judgement.DRAFT_NOTE
