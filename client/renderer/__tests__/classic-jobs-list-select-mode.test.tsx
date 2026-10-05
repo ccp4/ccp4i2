@@ -22,6 +22,8 @@ const mocks = vi.hoisted(() => ({
   setJob: vi.fn(),
   post: vi.fn(() => Promise.resolve({})),
   mutate: vi.fn(() => Promise.resolve()),
+  params: {} as Record<string, string>,
+  tree: undefined as unknown,
 }));
 
 const CHILD = {
@@ -61,17 +63,31 @@ const TOP = {
 
 const TREE = { job_tree: [TOP], total_jobs: 2, total_files: 0 };
 
+const topLevel = (id: number, title: string) => ({
+  ...TOP,
+  id,
+  uuid: `job-${id}`,
+  number: String(id),
+  title,
+  children: [],
+});
+const FOUR_JOBS = {
+  job_tree: [topLevel(4, "Four"), topLevel(3, "Three"), topLevel(2, "Two"), topLevel(1, "One")],
+  total_jobs: 4,
+  total_files: 0,
+};
+
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: mocks.push }),
   usePathname: () => "/",
   useSearchParams: () => new URLSearchParams(),
-  useParams: () => ({}),
+  useParams: () => mocks.params,
 }));
 
 vi.mock("../api", () => ({
   useApi: () => ({
     get: () => ({ data: undefined }),
-    get_endpoint: () => ({ data: TREE, isLoading: false, mutate: mocks.mutate }),
+    get_endpoint: () => ({ data: mocks.tree, isLoading: false, mutate: mocks.mutate }),
     post: mocks.post,
   }),
 }));
@@ -125,6 +141,8 @@ function enterSelectMode() {
 
 beforeEach(() => {
   mocks.push.mockClear();
+  mocks.params = {};
+  mocks.tree = TREE;
   mocks.setJobMenuAnchorEl.mockClear();
   mocks.setJob.mockClear();
 });
@@ -225,5 +243,85 @@ describe("job list in select mode", () => {
     expect(container.querySelectorAll(TOGGLE)).toHaveLength(1);
     expect(screen.getAllByLabelText("Open job menu")).toHaveLength(1);
     expect(screen.queryByRole("checkbox")).toBeNull();
+  });
+});
+
+describe("job list highlight", () => {
+  const highlighted = () =>
+    screen
+      .getAllByRole("treeitem")
+      .filter((item) => item.getAttribute("aria-selected") === "true")
+      .map((item) => item.textContent);
+
+  it("follows the job in the route", () => {
+    mocks.tree = FOUR_JOBS;
+    mocks.params = { id: "7", jobid: "2" };
+    renderList();
+    expect(highlighted()).toEqual([expect.stringContaining("2: Two")]);
+  });
+
+  it("is empty when the route names no job", () => {
+    mocks.tree = FOUR_JOBS;
+    mocks.params = { id: "7" };
+    renderList();
+    expect(highlighted()).toEqual([]);
+  });
+});
+
+describe("selection shortcuts", () => {
+  const checked = () =>
+    screen
+      .getAllByRole("checkbox")
+      .filter((box) => (box as HTMLInputElement).checked)
+      .map((box) => box.closest("li")!.textContent);
+
+  beforeEach(() => {
+    mocks.tree = FOUR_JOBS;
+    mocks.params = { id: "7", jobid: "3" };
+  });
+
+  it("ctrl-click enters select mode with the open job and the clicked job ticked", () => {
+    renderList();
+    fireEvent.click(screen.getByText("1: One"), { ctrlKey: true });
+    expect(screen.getByText("2 jobs selected")).toBeInTheDocument();
+    expect(checked()).toEqual([
+      expect.stringContaining("3: Three"),
+      expect.stringContaining("1: One"),
+    ]);
+    expect(mocks.push).not.toHaveBeenCalled();
+  });
+
+  it("ctrl-click toggles within select mode", () => {
+    renderList();
+    fireEvent.click(screen.getByText("1: One"), { ctrlKey: true });
+    fireEvent.click(screen.getByText("1: One"), { ctrlKey: true });
+    expect(screen.getByText("1 job selected")).toBeInTheDocument();
+  });
+
+  it("shift-click ticks the range from the open job", () => {
+    renderList();
+    fireEvent.click(screen.getByText("1: One"), { shiftKey: true });
+    expect(screen.getByText("3 jobs selected")).toBeInTheDocument();
+    expect(checked()).not.toContainEqual(expect.stringContaining("4: Four"));
+  });
+
+  it("shift-click within select mode extends from the last toggled job", () => {
+    renderList();
+    enterSelectMode();
+    fireEvent.click(screen.getByText("4: Four"));
+    fireEvent.click(screen.getByText("2: Two"), { shiftKey: true });
+    expect(checked()).toEqual([
+      expect.stringContaining("4: Four"),
+      expect.stringContaining("3: Three"),
+      expect.stringContaining("2: Two"),
+    ]);
+  });
+
+  it("Escape leaves select mode", () => {
+    renderList();
+    fireEvent.click(screen.getByText("1: One"), { ctrlKey: true });
+    fireEvent.keyDown(screen.getByText("1: One"), { key: "Escape" });
+    expect(screen.queryByRole("checkbox")).toBeNull();
+    expect(screen.getByPlaceholderText("Search jobs…")).toBeInTheDocument();
   });
 });

@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { Job, File as DjangoFile, isTerminalJobStatus } from "../types/models";
 import { doDownload, useApi } from "../api";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useDeleteDialog } from "./delete-dialog";
 import {
   List,
@@ -43,7 +43,7 @@ import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
 import { useRunCheck } from "./run-check-provider";
 import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
-import { useJob, useProjectJobs } from "../utils";
+import { deletesViewedJob, useJob, useProjectJobs } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
 import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
 import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
@@ -133,6 +133,7 @@ export const JobMenu: React.FC = () => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const { jobs, mutateJobs } = useProjectJobs(job?.project);
+  const { jobid: viewedJobId } = (useParams() ?? {}) as { jobid?: string };
 
   const { data: dependentJobs } = api.get_endpoint<Job[]>({
     type: "jobs",
@@ -470,11 +471,16 @@ export const JobMenu: React.FC = () => {
           type: "show",
           what: `${job.number}: ${job.title}`,
           onDelete: async () => {
-            await api.delete(`jobs/${job.id}`);
-            mutateJobs();
             setJobMenuAnchorEl(null);
             setJob(null);
-            router.push(`/ccp4i2/project/${job.project}`);
+            // Leave the job page before the job goes, or its hooks refetch a
+            // job that no longer exists.
+            const viewed = jobs?.find((j) => j.id === Number(viewedJobId));
+            if (deletesViewedJob(viewed, [job, ...(dependentJobs ?? [])])) {
+              router.push(`/ccp4i2/project/${job.project}`);
+            }
+            await api.delete(`jobs/${job.id}`);
+            mutateJobs();
           },
           onCancel: () => {
             setJobMenuAnchorEl(null);
@@ -511,7 +517,7 @@ export const JobMenu: React.FC = () => {
           ),
         });
     },
-    [dependentJobs, job, mutateJobs]
+    [dependentJobs, job, jobs, viewedJobId, mutateJobs, router]
   );
 
   const handleExportJob = useCallback(

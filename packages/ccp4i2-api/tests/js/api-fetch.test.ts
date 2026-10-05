@@ -135,6 +135,19 @@ describe("responses with no body", () => {
       "Site not found in this campaign",
     );
   });
+
+  it("carries the HTTP status on the error", async () => {
+    setTokenGetter(async () => "fake-token");
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ error: "Job not found" }), { status: 404 }),
+    );
+
+    const fetcher = createApiFetch({ baseUrl: "/api/proxy/ccp4i2/" });
+    await expect(fetcher.apiGet("jobs/1/")).rejects.toMatchObject({
+      name: "ApiError",
+      status: 404,
+    });
+  });
 });
 
 describe("recovering from a 401", () => {

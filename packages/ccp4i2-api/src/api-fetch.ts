@@ -41,6 +41,17 @@ export interface AuthErrorDetail {
   message: string;
 }
 
+/** A non-2xx response, carrying its HTTP status for callers that branch on it. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
 function emitAuthError(detail: AuthErrorDetail): void {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent(AUTH_ERROR_EVENT, { detail }));
@@ -355,7 +366,7 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
           });
         }
 
-        throw new Error(errorMessage);
+        throw new ApiError(errorMessage, response.status);
       }
 
       return response;
