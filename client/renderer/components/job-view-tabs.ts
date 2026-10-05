@@ -30,6 +30,7 @@ export const TAB = {
   COMMENTS: 8,
   DIRECTORY: 9,
   LOGS: 10,
+  JUDGEMENT: 11,
 } as const;
 
 const DEV_ONLY_TABS = [
@@ -56,10 +57,23 @@ export const REPORT_STATUSES: JobStatus[] = [
   JobStatus.UNSATISFACTORY,
 ];
 
+/**
+ * Statuses at which a job can be judged: it has ended, one way or another.
+ * The judgement (server/ccp4i2/agent/) reads what the job wrote, so a job
+ * still running has nothing settled to judge.
+ */
+export const JUDGEMENT_STATUSES: JobStatus[] = [
+  JobStatus.FINISHED,
+  JobStatus.FAILED,
+  JobStatus.UNSATISFACTORY,
+  JobStatus.INTERRUPTED,
+];
+
 /** Which tabs exist for a job in this state. */
 export const visibleTabs = (
   status: JobStatus | undefined,
-  devMode: boolean
+  devMode: boolean,
+  hasJudgement: boolean = false
 ): Set<number> => {
   const visible = new Set<number>([
     TAB.TASK_INTERFACE,
@@ -72,6 +86,8 @@ export const visibleTabs = (
     visible.add(TAB.REPORT);
   if (devMode || status === JobStatus.FAILED) visible.add(TAB.DIAGNOSTICS);
   if (devMode || status === JobStatus.PENDING) visible.add(TAB.VALIDATION);
+  if (devMode || (hasJudgement && JUDGEMENT_STATUSES.includes(status as JobStatus)))
+    visible.add(TAB.JUDGEMENT);
   return visible;
 };
 
