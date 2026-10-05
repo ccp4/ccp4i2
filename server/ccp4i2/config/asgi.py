@@ -19,7 +19,10 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
 
-application = get_asgi_application()
+# The MCP facade at /mcp, everything else Django (docs/agentic-knowledge.md)
+from ccp4i2.agent.http import with_mcp  # noqa: E402
+
+application = with_mcp(get_asgi_application())
 
 # Under the desktop app, die with it if it dies without a chance to tell us
 # (crash, SIGKILL, a debugger stop): an orphaned uvicorn tree bound to a dead

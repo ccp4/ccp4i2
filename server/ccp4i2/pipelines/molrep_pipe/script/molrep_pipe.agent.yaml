@@ -1,0 +1,271 @@
+task: molrep_pipe
+status: draft
+reviewed_by: []
+purpose: >
+  Places one search model (NMON copies, optionally beside a fixed model) by
+  molecular replacement with MOLREP - a rotation function, then a
+  translation search scored by correlation and packing - optionally after
+  aligning the model to the target sequence and optionally in every space
+  group of the Laue group, then by default refines the best solution with
+  Sheetbend and restrained REFMAC (20 cycles).
+
+use_when:
+  - The AU holds one kind of molecule (or you place one component at a time,
+    the earlier one given as XYZIN_FIX) and you have a model of it.
+  - A quick search with a good model (high identity, or the same protein),
+    or a second opinion when Phaser finds nothing; it needs no composition.
+  - >
+    The space group is uncertain within its Laue group (screw axes, the
+    enantiomorph): SG_OPTIONS laue tries every group in the first search.
+
+not_when:
+  - text: >
+      Several different components to place together, ensembles of
+      models, or a distant model where likelihood weighting and TFZ/LLG
+      statistics are wanted.
+    instead: phaser_simple_phil
+  - text: >
+      The model was refined against this same crystal form; no search is
+      needed, only refinement.
+    instead: prosmart_refmac
+  - text: >
+      The data are a cryo-EM map, not reflections.
+    instead: molrep_map
+
+inputs:
+  - param: inputData.F_SIGF
+    advice: >
+      The reflections; intensities are accepted and converted (Gamma job 2
+      ran on merged intensities). Name it inputData.F_SIGF when setting it:
+      the task also has an outputData.F_SIGF (the reindexed data).
+  - param: inputData.FREERFLAG
+    advice: >
+      Optional to the interface (a warning only) but treat it as required:
+      the refinement whose R-free the verdict reads needs it, and the
+      pipeline hands it to Sheetbend and REFMAC without checking that it is
+      set. If the model was refined against these data, use that model's
+      free set (Gamma job 2 does).
+  - param: inputData.XYZIN
+    advice: >
+      One copy of the molecule (atom selection to drop termini, loops,
+      ligands and other chains). With a sequence given, MOLREP aligns it to
+      the FIRST chain only and prunes and renames to match, so a multimer
+      must be cut to one chain (chainsaw/sculptor) first (help page).
+  - param: inputData.ASUIN
+    advice: >
+      Optional. One sequence - the one matching the search model; with
+      several in the AU contents the task will not run until exactly one is
+      chosen. Triggers alignment and pruning (controlParameters.SEQ: y
+      always, d above 20% identity, n never).
+  - param: controlParameters.NMON
+    advice: >
+      Copies to search for; Auto lets MOLREP estimate it from the cell
+      (Gamma job 2 log: "expected number of models: 1"). Set it from the AU
+      contents when known. The results below read the first copy's search
+      only (RFpeaks0).
+  - param: controlParameters.SG_OPTIONS
+    advice: >
+      "no" (default) uses the input data's space group without question.
+      When the space group is one of an enantiomorphic pair (P41212/P43212,
+      P3121/P3221, P6122/P6522 ...) or its screw axes are uncertain, use
+      "laue": MOLREP tries each group of the Laue group, the pipeline keeps
+      the one with the highest score and reindexes the data. See the
+      Thaumatin trap for what "no" costs when the hand is wrong.
+  - param: inputData.REFMAC_NCYC
+    advice: >
+      Default 20. Do not set 0 if you want a verdict: it reads the R-free
+      before and after the refinement.
+
+results:
+  SCORE:
+    file: program.xml
+    xpath: .//MolrepSearch/RFpeaks0/RFpeak[last()]/for
+    type: float
+    meaning: >
+      Best MOLREP score so far, as at the last rotation peak tried
+      (the "(for)" column, a running maximum). Score = correlation x packing
+      (molrep documentation). Gamma job 2 0.7021, where the peaks that were
+      not the solution scored 0.33-0.35.
+  CONTRAST:
+    file: program.xml
+    xpath: .//MolrepSearch/RFpeaks0/RFpeak[last()]/Cntrst
+    type: float
+    meaning: >
+      The "Cntrst" column at the last peak tried (Gamma job 2 29.09;
+      0.00 on rows 1-7, i.e. not yet computed). NOT on the scale the molrep
+      documentation grades (>3 definitely a solution ... <1.3 probably not):
+      every run here is 20-55, the wrong-enantiomorph solution included
+      (Thaumatin 17.7, 21-27). Informational only; not used in the verdict.
+  RFREE_START:
+    file: program.xml
+    xpath: .//Refmac/Overall_stats/stats_vs_cycle/new_cycle/r_free
+    type: float
+    meaning: >
+      R-free at REFMAC cycle 0 (after Sheetbend). Gamma job 2 0.294.
+  RFREE:
+    file: program.xml
+    xpath: .//Refmac/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free
+    type: float
+    meaning: >
+      R-free after REFMAC (REFMAC_NCYC cycles, no jelly body); also
+      the job's KPI "RFree". Gamma job 2 0.253. Note the element is "Refmac"
+      here, "REFMAC" in the Phaser pipelines.
+  RWORK:
+    file: program.xml
+    xpath: .//Refmac/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor
+    type: float
+    meaning: >
+      R after refinement. Gamma job 2 0.237.
+  RESOLUTION:
+    file: program.xml
+    xpath: .//Refmac/Overall_stats/resolution_high
+    type: float
+    meaning: >
+      High-resolution limit of the refinement (A). Gamma job 2 1.814
+      (MOLREP itself searched to 1.90 A).
+  # FINDING: MOLREP's own result for the chosen solution - its final score
+  #   (mr_score: Gamma 0.7854; Thaumatin right hand 0.8146, wrong hand
+  #   0.6081), its TF/sig (mr_zscore: 18.94; 44.04; 22.13) and the copies
+  #   placed (n_solution) - is in each molrep_mr sub-job's molrep.xml but
+  #   NOT yet in program.xml: the wrapper wrote the constants n_solution 1
+  #   and mr_score 0.0000 there. Never read those placeholders from an
+  #   existing job. A fix in progress copies the real values to
+  #   .//MolrepSearch/MR_TF/mr_score, /mr_zscore and /n_solution; once jobs
+  #   carry them, add them here (and n_solution against NMON). molrep.xml
+  #   has no contrast, so the documented contrast scale still has nothing to
+  #   apply to.
+  # FINDING: in "laue" mode the chosen space group is written to
+  #   .//MolrepSpaceGroup/laue_group_alternatives/selected (molrep_pipe.py
+  #   fin1). Not tested: no laue-mode job among the runs read.
+  # NOTE: ".//MolrepSearch/" matters: in laue mode an earlier
+  #   MolrepSpaceGroup block also holds RFpeaks0 and MR_TF.
+  # NOTE: [last()] is ElementTree XPath outside the subset the format lists;
+  #   judgement.read_result supports it. All xpaths were run against Gamma
+  #   job 2's program.xml. REFMAC values carry whitespace.
+
+verdict:
+  - when: RFREE < 0.40 and RFREE < RFREE_START
+    outcome: solved
+    basis: >
+      Our runs only: correct solutions refined to R-free 0.253 (Gamma job 2,
+      1.81 A, 0.294 -> 0.253; the i2run test test_molrep.py asserts < 0.28
+      on these data), 0.281 (Thaumatin 17.4, MOLREP + Sheetbend + 10 REFMAC
+      cycles, right hand, 0.332 -> 0.281) and 0.343 (BetaBlip 4, Phaser,
+      3.0 A); the one known wrong solution refined to 0.461 (Thaumatin 17.9,
+      wrong enantiomorph). 0.40 sits between them; it is not a published
+      threshold, and at low resolution a correct solution may refine higher.
+  - when: SCORE >= 0.5 and RFREE < RFREE_START
+    outcome: placed
+    basis: >
+      The search picked out one peak (score at or above 0.5) and R-free fell
+      during refinement but stayed at or above 0.40: in our runs that is a
+      right placement of a distant or incomplete model (Phaser equivalents:
+      MDM2 job 25 0.543 -> 0.503, BetaBlip 3 0.453 -> 0.447), while the
+      wrong-hand solution did not fall at all (Thaumatin 17.9, 0.461 ->
+      0.461). Score 0.5: our runs only - solutions scored 0.596-0.759, the
+      peaks that were not solutions 0.33-0.46 (Gamma 2, Thaumatin 17.2 and
+      17.7); MOLREP documents no score threshold. No molrep_pipe evidence
+      job lands here, and a fall as small as BetaBlip's 0.006 is not a
+      reliable separator: an expert should judge.
+  - when: SCORE >= 0.5 or RFREE < RFREE_START
+    outcome: ambiguous
+    basis: >
+      Either the search found a peak scoring like a solution but refinement
+      did not confirm it - the case of the wrong enantiomorph (Thaumatin
+      17.7: score 0.596, TF/sig 22.13, MOLREP printed "Contrast and TF/sig
+      are good enough. Stop this run"; R-free 0.461 -> 0.461 in 17.9) - or
+      R-free fell from a placement MOLREP scored low. Also where no
+      refinement ran (REFMAC_NCYC 0, or Sheetbend wrote nothing).
+  - when: true
+    outcome: failed
+    basis: >
+      No peak scored like a solution (below 0.5; non-solution peaks here
+      0.33-0.46) and refinement did not improve the model.
+
+traps:
+  - >
+    A finished job is not a solution. MOLREP always writes its best peak as
+    the model, and in existing jobs the program.xml fields that look like a
+    summary (MR_TF/n_solution = 1, MR_TF/mr_score = 0.0000) are constants
+    written by the wrapper. Judge by SCORE against the other peaks and by
+    refinement.
+  - >
+    The wrong enantiomorph looks like a solution. Thaumatin (true group
+    P41212), same model and data: in P43212 MOLREP gave TF/sig 22.13,
+    Cntrst 21-27 and "Contrast and TF/sig are good enough. Stop this run"
+    (job 17.7) - yet refinement stalled at R-free 0.461 (job 17.9) against
+    0.281 in P41212 (job 17.4). Only the score separated them in the search
+    (0.596 vs 0.759). In an enantiomorphic space group, run with
+    SG_OPTIONS laue, or run both hands and compare; never accept a flat
+    R-free near 0.45 as "a distant model".
+  - >
+    The contrast grades in the molrep documentation (>3 definitely, 2-3
+    solution, <1.3 probably not) do not apply to the Cntrst column in
+    program.xml or the report, which is ~20-55 for right and wrong
+    solutions alike here.
+  - >
+    After a search that changed the space group (SG_OPTIONS laue or
+    specify), the refined model is in the new group; build and refine
+    against this job's output F_SIGF and FREERFLAG, not the original files.
+    The two names are both inputs and outputs of this task, and a reference
+    without a direction resolves to a produced file first, across jobs: if
+    an EARLIER molrep_pipe in the project reindexed, "molrep_pipe[-1].F_SIGF"
+    after a run that did not can resolve to that older job's reindexed
+    copy. Check the space group of what was resolved.
+  - >
+    R-free here (20 restrained REFMAC cycles) is not comparable with
+    phaser_simple_phil's (10 jelly-body cycles); compare tasks after the
+    same downstream refinement or model building.
+
+next:
+  - when: outcome == "solved"
+    task: prosmart_refmac
+    inputs:
+      XYZIN: "molrep_pipe[-1].XYZOUT"
+      F_SIGF: "molrep_pipe[-1].F_SIGF"
+      FREERFLAG: "molrep_pipe[-1].FREERFLAG"
+    advice: >
+      Full refinement and rebuilding when the model is already close (same
+      protein, as in Gamma job 2); modelcraft instead when it is a homologue
+      to be rebuilt into the target sequence. XYZOUT is the refined model;
+      XYZOUT_MOLREP the unrefined placement. F_SIGF and FREERFLAG resolve to
+      the reindexed copies when this job made them, otherwise to the files
+      it consumed - see the trap about older reindexed jobs.
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "molrep_pipe[-1].XYZOUT"
+      F_SIGF: "molrep_pipe[-1].F_SIGF"
+      FREERFLAG: "molrep_pipe[-1].FREERFLAG"
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      The model is placed but distant or incomplete: build it (or, if the
+      AU holds more than the model covers, place the rest first with
+      XYZIN_FIX "molrep_pipe[-1].XYZOUT" and the next model). If the space
+      group has an enantiomorph, first rule out the other hand (rerun with
+      SG_OPTIONS laue) - one case does not prove a falling R-free excludes
+      it.
+  - when: outcome == "ambiguous"
+    advice: >
+      If the space group has an enantiomorph or uncertain screw axes, rerun
+      molrep_pipe with controlParameters.SG_OPTIONS laue and keep the run
+      whose R-free falls. Otherwise run phaser_simple_phil with the same
+      model and data for likelihood statistics (TFZ), or modelcraft and
+      judge by its R-free.
+  - when: outcome == "failed"
+    advice: >
+      Check the space group (enantiomorph, screw axes) and the model (trim,
+      one chain, sequence alignment, NMON). Then try phaser_simple_phil
+      with the identity stated and the AU contents given, or other models
+      via mrbump_basic.
+
+sources:
+  - docs/user/source/tasks/molrep_pipe/index.rst
+  - server/ccp4i2/pipelines/molrep_pipe/script/molrep_pipe.py
+  - server/ccp4i2/wrappers/molrep_mr/script/molrep_mr.py (saveProgramXml)
+  - server/ccp4i2/tests/i2run/test_molrep.py
+  - ccp4-20260702/html/molrep.html lines ~340-349 (SCORE keyword: score definition, contrast grades)
+  - server/ccp4i2/lib/utils/files/file_use.py (produced before consumed; relative references skip jobs without the file)
+  - "run: Gamma job 2 (molrep_pipe; correct; R-free 0.253)"
+  - "run: Thaumatin job 17.2/17.4 (molrep_mr + refmac, P41212, right hand)"
+  - "run: Thaumatin job 17.7/17.9 (molrep_mr + refmac, P43212, wrong hand)"

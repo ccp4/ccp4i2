@@ -1,0 +1,654 @@
+task: phaser_ep_phil
+status: draft
+reviewed_by: []
+purpose: >
+  SAD phasing with Phaser (EP_AUTO) from a known substructure (given, or
+  found by SHELXC/D run inside the job), with log-likelihood-gradient
+  completion of the substructure. By default both hands are phased and each
+  is density-modified with Parrot. ModelCraft can then build a quick
+  first model into each hand (BASIC mode, MODELCRAFT_ITERATIONS cycles,
+  default 1; off by default). The pipeline never chooses the hand: it
+  outputs every hand it phased, and the agent decides.
+
+use_when:
+  - You have single-wavelength anomalous data (Friedel pairs, I+/I- or
+    F+/F-), the wavelength, and either the anomalous-scatterer sites from
+    an earlier job (SHELXD, crank2, shelx, an earlier Phaser run) or SHELX
+    installed for the task to find them (SUBSTRUCTURE_BY SEARCH).
+  - You want Phaser's likelihood phasing and completion, then maps (and
+    quick builds) of both hands to compare, in one job.
+
+not_when:
+  - text: >
+      You want the whole route from data to a refined model, with
+      substructure search, hand decision, density modification, building and
+      refinement in one job. On the same GammaXe data crank2 (job 6) and the
+      shelx pipeline (job 7) both finished with refined models at R-free
+      0.274 and 0.283. This task's three-cycle build reached 0.379.
+    instead: crank2
+  - text: >
+      You want only Phaser's phasing and completion (one hand by default),
+      to go on by hand. That task has no judgement file yet.
+    instead: phaser_ep_auto_phil
+  - text: >
+      You already have a model of the structure and want an anomalous
+      log-likelihood-gradient map to find or confirm metals, sulfurs or other
+      anomalous scatterers in it (GammaXe job 10).
+    instead: phaser_EP_LLG
+  - text: >
+      The data have no usable anomalous signal, or there is a search model:
+      phase by molecular replacement.
+    instead: phaser_simple_phil
+
+inputs:
+  - param: inputData.F_SIGF
+    advice: >
+      The anomalous data, as Friedel pairs (GammaXe: "Anomalous Is" from
+      import_merged). Merged data without the pairs have no SAD signal.
+  - param: inputData.WAVELENGTH
+    advice: >
+      Required. It fixes the scatterers' f' and f''. Phaser takes them from
+      tables and refines f'' only near an absorption edge (fixfdp EDGE). In
+      GammaXe, 1.542 A (Cu K-alpha) gave Xe f'' 7.36 and f' -0.79, with "XE
+      is not near an edge, fdp is fixed". For data collected at an edge
+      (Se, Zn, ...), give the f' and f'' from a fluorescence scan on the
+      Phaser parameters tab (phaser.keywords.scattering). A wrong wavelength
+      gives a wrong f'' and a lower LLG, and nothing in the job flags it.
+  - param: controlParameters.RUNPARROT
+    advice: >
+      Keep it on (the default): solvent flattening with Parrot is the
+      minimum before deciding the hand, and gives the first hand signal
+      (PARROT_FOM_ORIG / PARROT_FOM_INV; GammaXe 0.703 vs 0.623) where
+      Phaser's LLG and FOM are identical in both hands. Needs ASUFILE.
+  - param: inputData.SUBSTRUCTURE_BY
+    advice: >
+      SITES (default) with XYZIN_HA, or SEARCH to run SHELXC/D first
+      (SFAC, FIND, NTRY; needs SHELX, found through SHELXDIR). The sites'
+      hand does not matter when both hands are phased (HAND both). Sites
+      from a previous job: "<task>[-1].XYZOUT[0]" for this task's
+      original-hand sites.
+  - param: inputData.ELEMENTS
+    advice: >
+      Every anomalous scatterer completion should look for. Only what is
+      named is added from the LLG maps. GammaXe named only Xe, so the
+      protein's three methionine sulfurs came out as "Xe" sites of occupancy
+      0.06-0.09. These are program.xml Sites 5-7 (PDB atom serials 7-9 in
+      XYZOUT_1.pdb), and they lie 0.2-0.6 A from the SD of Met 57, 106 and
+      119 in the original-hand model. Add S at a home source or near the
+      sulfur edge, and Se for SeMet.
+  - param: inputData.LLGC_CYCLES
+    advice: >
+      The default is 1. GammaXe allowed 20 and completion converged at cycle
+      6 (LLG 806 for the given sites after refinement, 968 after cycle 1,
+      1060 at the end; from 4 sites given to 7). One cycle leaves an
+      incomplete substructure, and the report says "Substructure completion
+      did not converge" (COMPLETION_CONVERGED "False"). Give 10-20: the
+      Phaser step took seconds.
+  - param: inputData.ASUFILE
+    advice: >
+      Give the AU contents, whatever COMP_BY says. The pipeline passes the
+      contents to Parrot and ModelCraft only through ASUFILE, and both
+      refuse to run without them. With RUNPARROT on (the default) and no
+      ASUFILE, the job fails at density modification after Phaser has run
+      (from the code; every run and test here gave COMP_BY ASU with an
+      ASUFILE). An i2run job gets no contents from the project context, so
+      pass --ASUFILE. A validity error for RUNPARROT or RUNMODELCRAFT
+      without ASUFILE is being added to the pipeline.
+  - param: inputData.HAND
+    advice: >
+      Leave on both (default). With one scatterer type and no partial model,
+      Phaser cannot tell the hands apart (GammaXe: identical LLG 1060.8 and
+      FOM 0.401 for both). "off" phases only the sites as given and "on" only
+      their inverse. Choose one only when the hand is already known, from a
+      partial model or an earlier build.
+  - param: inputData.XYZIN_PARTIAL
+    advice: >
+      With PARTIAL_BY MODEL, a model already placed in this crystal's frame
+      (MR-SAD). Its quality (identity or RMS) cannot be set: the pipeline
+      excludes Phaser's partial scope, and Phaser's default deviation is
+      used. A placed model fixes the hand. Not seen in a run here.
+  - param: inputData.FREERFLAG
+    advice: >
+      Required when RUNMODELCRAFT is on. ModelCraft refuses to run without
+      it, so the job fails at the first build, after Phaser and Parrot have
+      run. That is from the code; the pipeline's validity() does not yet
+      catch it, and an error for it is being added. Phaser and Parrot do
+      not use it. Give the set the project will refine against.
+  - param: controlParameters.RUNMODELCRAFT
+    advice: >
+      Off by default, and ignored unless RUNPARROT is on. Turn it on, with
+      FREERFLAG and ASUFILE set and MODELCRAFT_ITERATIONS 3 or more (default
+      1; GammaXe used 3). The build is what decides the hand. Without it
+      the job ends with two maps and the verdict can only be "ambiguous".
+
+results:
+  LLG:
+    file: program.xml
+    xpath: .//Hands/Hand/LLG
+    type: float
+    meaning: >
+      Log-likelihood gain of the first hand after completion. GammaXe 3,
+      3.1 and 2: 1060.8. The second hand's is identical when there is one
+      scatterer type and no partial model. Rises with the anomalous signal
+      and the completeness of the substructure. Apart from LLG > 0, no SAD
+      LLG threshold is documented here.
+  FOM:
+    file: program.xml
+    xpath: .//Overall/fom
+    type: float
+    meaning: >
+      Phaser's overall figure of merit after SAD phasing (all reflections).
+      GammaXe 0.401 (acentric 0.451, centric 0.169) at 1.79 A. The help
+      page's "above about 0.3 ... is usually enough to go on" has no source
+      (the i2run test asserting > 0.3 is us citing ourselves). Not used in
+      the verdict.
+  FOM_ACENTRIC:
+    file: program.xml
+    xpath: .//Overall/acentric_fom
+    type: float
+    meaning: Figure of merit of the acentric reflections. GammaXe 0.451.
+  RESOLUTION:
+    file: program.xml
+    xpath: .//Overall/hires
+    type: float
+    meaning: High-resolution limit phased (A). GammaXe 1.792.
+  N_SITES:
+    file: program.xml
+    xpath: .//Sites/Site[last()]/Number
+    type: int
+    meaning: >
+      Sites in the final substructure. GammaXe 7, from 4 given: 2 of the
+      given sites were rejected in cycle 1 and 5 were added. In program.xml
+      numbering: Sites 1-2 are strong Xe (occupancy 0.72, 0.35), Site 3 a
+      weaker Xe (0.12), Site 4 (0.07) a shoulder 1.8 A from Site 1, and
+      Sites 5-7 (0.06-0.09) methionine sulfurs. Compare with the
+      scatterers you expect.
+  COMPLETION_CONVERGED:
+    file: program.xml
+    xpath: .//Completion
+    attribute: converged
+    type: str
+    meaning: >
+      "True" if substructure completion converged within LLGC_CYCLES
+      (GammaXe: True at cycle 6 of 20 allowed). "False" means more cycles
+      were needed.
+  COMPLETION_CYCLES:
+    file: program.xml
+    xpath: .//Completion/Cycle[last()]
+    attribute: cycle
+    type: int
+    meaning: Completion cycles run. GammaXe 6.
+  HANDS_PHASED:
+    file: program.xml
+    xpath: .//Hands/Hand[last()]/Number
+    type: int
+    meaning: >
+      Number of hands phased: 2 with HAND both (GammaXe 3 and 3.1), 1
+      otherwise (GammaXe 2, the standalone task's default).
+  PARROT_FOM_ORIG:
+    file: program.xml
+    xpath: .//original/ParrotResult/Final/MeanFOM
+    type: float
+    optional: true
+    meaning: >
+      Parrot's final mean FOM for the original hand (as the sites were
+      given). GammaXe 3: 0.703, from 0.399. Parrot warns that a DM FOM "can
+      be seriously overestimated" (parrot_report.py:73). Absent with
+      RUNPARROT off or HAND on.
+  PARROT_FOM_INV:
+    file: program.xml
+    xpath: .//inverted/ParrotResult/Final/MeanFOM
+    type: float
+    optional: true
+    meaning: >
+      The same for the inverted hand. GammaXe 3: 0.623 (wrong hand).
+      Absent with RUNPARROT off or HAND off.
+  SUB1_TASK:
+    file: job_1/params.xml
+    xpath: .//pluginName
+    type: str
+    optional: true
+    meaning: >
+      Task of the first sub-job: "phaser_ep_auto_phil" when the sites were
+      given (GammaXe 3), SHELXC/D when SUBSTRUCTURE_BY is SEARCH. With
+      SEARCH every later sub-job shifts by one, and the build results below
+      cannot be read here.
+  SUB3_TASK:
+    file: job_3/params.xml
+    xpath: .//pluginName
+    type: str
+    optional: true
+    meaning: >
+      "parrot" when both hands were density-modified (GammaXe 3). With
+      SUB1_TASK the Phaser task, "modelcraft" here means one hand was phased
+      and built.
+  SUB4_TASK:
+    file: job_4/params.xml
+    xpath: .//pluginName
+    type: str
+    optional: true
+    meaning: >
+      "modelcraft" when both hands were built and no SHELX step ran
+      (GammaXe 3). Parrot runs on every hand before ModelCraft runs on any
+      (phaser_ep_phil.py process), so job_4 is the original hand's build and
+      job_5 the inverted hand's.
+  SUB5_TASK:
+    file: job_5/params.xml
+    xpath: .//pluginName
+    type: str
+    optional: true
+    meaning: The inverted hand's build ("modelcraft", GammaXe 3).
+  RFREE_ORIG:
+    file: job_4/params.xml
+    xpath: .//outputData/PERFORMANCE/RFree
+    type: float
+    optional: true
+    meaning: >
+      R-free of ModelCraft's model in the original hand (sub-job KPI
+      RFree). Valid only under the SUB1/SUB4/SUB5 guard. GammaXe 3.4: 0.379
+      (R-work 0.342; 115 of 134 residues built, 3 BASIC cycles, 1.79 A).
+  RFREE_INV:
+    file: job_5/params.xml
+    xpath: .//outputData/PERFORMANCE/RFree
+    type: float
+    optional: true
+    meaning: >
+      The same for the inverted hand. GammaXe 3.5: 0.563 (R-work 0.546; 48
+      residues built).
+  RFREE_SINGLE:
+    file: job_3/params.xml
+    xpath: .//outputData/PERFORMANCE/RFree
+    type: float
+    optional: true
+    meaning: >
+      R-free of the build when only one hand was phased and built (sub-job
+      3 is then ModelCraft). Absent in GammaXe 3, whose sub-job 3 is
+      Parrot. Not seen in a run.
+  # FINDING: the pipeline's program.xml records each hand's ModelCraft run
+  #   only as its directory (<original>/<ModelCraft> text). R-free, R-work and
+  #   residues built are in the sub-job (params.xml PERFORMANCE, KPI RFree,
+  #   modelcraft/modelcraft.json). Hence the sub-job paths above, which assume
+  #   no SHELX step. After a SHELX search they read nothing, and a built job
+  #   is judged "ambiguous". Fix: copy ModelCraft's Final r_free, r_work,
+  #   residues and termination reason into <hand>/ModelCraft in
+  #   phaser_ep_phil.py runModelCraft (line 208), with a test. Then read them
+  #   from program.xml and drop the SUB*_TASK guard.
+  # FINDING: the LLG before completion is only in the SAD summary text inside
+  #   program.xml (Summaries/Summary): "Log-Likelihood = 370" for the 4 sites
+  #   given, 806 after their refinement. ep_cycles records each cycle's LLG
+  #   after that cycle's changes (cycle 1: 968). So the gain made by
+  #   completion (806 -> 1060) cannot be read.
+  # FINDING: the space group of each hand is not recorded. In an
+  #   enantiomorphic space group (P41/P43, P31/P32, ...) the inverted hand is
+  #   in the other one. Phaser says so only in the summary text ("Enantiomorph
+  #   change does not change spacegroup" for GammaXe's P212121).
+  # NOTE: every xpath above was run on GammaXe job 3, and the Phaser ones on
+  #   3.1 and 2, with the values quoted.
+
+verdict:
+  # Hands are SEPARATED by building when the worse hand's R-free is at
+  # least 0.45 and at least 0.05 above the better one's. In-house rule, not
+  # published. A wrong hand's map gives a near-random build; GammaXe's wrong
+  # hand built 48 residues to R-free 0.563. ModelCraft calls 0.40-0.50
+  # "substantially incomplete and may contain incorrect regions" and above
+  # 0.50 "very incomplete or wrong" (modelcraft_report.py:81-90), so 0.45 is
+  # the middle of the band where a wrong hand cannot do better. 0.05 is five
+  # times the cycle-to-cycle wander of R-free in a build going nowhere
+  # (Thaumatin 17.10, 0.455-0.463, modelcraft.agent.yaml). So 0.38 vs 0.45
+  # counts as separated. Two hands both below 0.45 are not: that points to
+  # a (pseudo-)centrosymmetric substructure, whose hands are equivalent, or
+  # to something else odd.
+  - when: >
+      SUB1_TASK == "phaser_ep_auto_phil" and SUB4_TASK == "modelcraft"
+      and SUB5_TASK == "modelcraft"
+      and ((RFREE_ORIG <= 0.35 and RFREE_INV >= 0.45 and RFREE_INV - RFREE_ORIG >= 0.05)
+           or (RFREE_INV <= 0.35 and RFREE_ORIG >= 0.45 and RFREE_ORIG - RFREE_INV >= 0.05))
+    outcome: built
+    basis: >
+      The hands are separated by building (rule above, in-house), and the
+      better hand's model is at or below 0.35, ModelCraft's "approaching
+      completion" band (modelcraft_report.py:89-90). It is ready for
+      refinement, not for further building. No evidence job reaches this
+      inside the pipeline: GammaXe 3's best was 0.379.
+  - when: >
+      SUB1_TASK == "phaser_ep_auto_phil" and SUB3_TASK == "modelcraft"
+      and RFREE_SINGLE <= 0.35
+    outcome: built
+    basis: >
+      One hand phased and built, to ModelCraft's "approaching completion"
+      band (0.35). There was no other hand to compare with; a wrong hand
+      reached 0.563 in GammaXe 3.5. No evidence job ran a single hand with
+      building.
+  - when: >
+      SUB1_TASK == "phaser_ep_auto_phil" and SUB4_TASK == "modelcraft"
+      and SUB5_TASK == "modelcraft"
+      and ((RFREE_ORIG <= 0.50 and RFREE_INV >= 0.45 and RFREE_INV - RFREE_ORIG >= 0.05)
+           or (RFREE_INV <= 0.50 and RFREE_ORIG >= 0.45 and RFREE_ORIG - RFREE_INV >= 0.05))
+    outcome: phased
+    basis: >
+      The hands are separated by building (in-house rule above), but the
+      better hand's model is still above 0.35: ModelCraft's 0.35-0.40 band
+      "requires further work", and 0.40-0.50 is "substantially incomplete"
+      (modelcraft_report.py:83-88). Hand decided; build next. Our run:
+      GammaXe 3, original hand 0.379 (115/134 residues, 3 BASIC cycles) vs
+      inverted 0.563. The original hand is confirmed independently: its three
+      weak sites sit on methionine SD atoms of the original-hand model, and
+      no site is within 6 A of a sulfur in the inverted-hand model.
+  - when: >
+      SUB1_TASK == "phaser_ep_auto_phil" and SUB3_TASK == "modelcraft"
+      and RFREE_SINGLE <= 0.45
+    outcome: phased
+    basis: >
+      One hand built to 0.35-0.45, below what a wrong hand reached here
+      (0.563, GammaXe 3.5). In-house band with no run behind it; an expert
+      should set it.
+  - when: >
+      (PARROT_FOM_ORIG < 0.40 and PARROT_FOM_INV < 0.40)
+      or (HANDS_PHASED == 1 and (PARROT_FOM_ORIG < 0.40 or PARROT_FOM_INV < 0.40))
+    outcome: failed
+    basis: >
+      Parrot's report calls a final FOM below 0.40 "too poor for model
+      building" (parrot_report.py:76-77), and here every hand density-
+      modified is below it. GammaXe's hands reached 0.703 and 0.623 from
+      Phaser's 0.399. No failed run was seen. A DM FOM is inflated, so a
+      failed map can sit above 0.40. A weak but solvable SAD at low
+      resolution might sit below it.
+  - when: LLG > 0
+    outcome: ambiguous
+    basis: >
+      Phaser phased the substructure, but nothing in the job decides the
+      hand. With one scatterer type both hands have the same LLG and FOM
+      (GammaXe 1060.8 and 0.401 each), and a DM FOM is not proof
+      (parrot_report.py:73; help page "Choosing the hand"). GammaXe 3.1 and 2
+      (Phaser alone) land here. So do builds that do not separate the hands,
+      and any build after a SHELX search (the sub-job finding). The floor
+      LLG > 0 is the definition of a gain: at or below 0 the sites explain
+      the anomalous differences no better than no sites at all. There is no
+      documented calibrated LLG or FOM floor for SAD (the CCP4 Phaser page
+      is a stub, the PHIL has no cutoff, and Phaser's SAD log prints no
+      verdict). An expert should say whether one belongs here.
+  - when: true
+    outcome: failed
+    basis: >
+      No positive LLG: Phaser (or SHELXC/D before it) did not phase, or the
+      sites give no gain. The job's errors 201/203 say which step.
+
+traps:
+  - >
+    Phaser does not choose the hand, and neither does this pipeline.
+    Both hands have identical LLG and FOM (GammaXe 1060.8 / 0.401) when
+    there is one scatterer type and no partial model. Taking XYZOUT[0] or
+    ABCDOUT[0] because it comes first is a coin toss. Decide by building:
+    the right hand's model reaches a far lower R-free (GammaXe 0.379 vs
+    0.563).
+  - >
+    "Finished" means phases and density-modified maps of each hand, plus at
+    most a quick BASIC build of each if RUNMODELCRAFT was on (off by
+    default; default 1 cycle). It is not a refined model. GammaXe's
+    three-cycle build had 115 of 134 residues at R-free 0.379 ("phased":
+    build next), while crank2 on the same data finished at 0.274. Never call
+    this job's output ready to deposit.
+  - >
+    Completion runs one cycle by default (LLGC_CYCLES 1) and only adds the
+    elements named in ELEMENTS. GammaXe needed 6 cycles to converge, and
+    named only Xe, so its three methionine sulfurs were modelled as "Xe" at
+    occupancy 0.06-0.09. Check COMPLETION_CONVERGED, and name every
+    anomalous scatterer.
+  - >
+    The build results are not in the pipeline's program.xml. They are in
+    its ModelCraft sub-jobs (KPI RFree): job_4 (original) and job_5
+    (inverted) when the sites were given. After a SHELX search they are
+    job_5 and job_6, and the verdict here cannot read them: it says
+    "ambiguous". Read the sub-jobs' RFree yourself and apply the same rules.
+  - >
+    The pipeline accepts inputs that fail it late. Missing ASUFILE (with
+    Parrot on) or FREERFLAG (with ModelCraft on) fails the job after Phaser
+    has run. A Parrot or ModelCraft failure on EITHER hand fails the whole
+    job (errors 206, 207), even when the other hand built well, for
+    example ModelCraft's "No residues built" on the wrong hand. Before
+    rerunning, look in the sub-jobs that succeeded: Phaser's phases and the
+    right hand's build are there.
+
+next:
+  - when: outcome == "built" and RFREE_ORIG < RFREE_INV
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[2]"
+      HKLIN: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+    advice: >
+      The original hand's model is near complete: refine it to convergence
+      (prosmart_refmac with XYZIN, F_SIGF, FREERFLAG is the alternative),
+      then run validate_protein. When both hands were built, XYZOUT[0] and
+      [1] are the sites and [2] and [3] the models (original, inverted).
+  - when: outcome == "built" and RFREE_INV < RFREE_ORIG
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[3]"
+      HKLIN: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+    advice: >
+      As above, for the inverted hand's model (XYZOUT[3]).
+  - when: outcome == "built" and RFREE_SINGLE != null
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[1]"
+      HKLIN: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+    advice: >
+      One hand was phased and built: XYZOUT[0] is its sites, XYZOUT[1] its model.
+  - when: outcome == "phased" and RFREE_ORIG < RFREE_INV
+    task: modelcraft
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[2]"
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[0]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      BASIC: "False"
+      CYCLES: "25"
+    advice: >
+      The original hand is right but the build is a quick one (GammaXe 3:
+      0.379, 115/134 residues after 3 BASIC cycles). Build properly from the
+      quick model and Phaser's own phases of that hand, marked unbiased.
+      ModelCraft refines the model, then takes the given phases for its
+      first Parrot and Buccaneer. It runs Parrot itself (its help page), so
+      give it Phaser's ABCDOUT[0], not the density-modified ABCDOUT[2].
+      Then judge it with modelcraft's own judgement file.
+  - when: outcome == "phased" and RFREE_INV < RFREE_ORIG
+    task: modelcraft
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[3]"
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[1]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      BASIC: "False"
+      CYCLES: "25"
+    advice: >
+      As above, for the inverted hand (model XYZOUT[3], phases ABCDOUT[1]).
+  - when: outcome == "phased" and RFREE_SINGLE != null
+    task: modelcraft
+    inputs:
+      XYZIN: "phaser_ep_phil[-1].XYZOUT[1]"
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[0]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      BASIC: "False"
+      CYCLES: "25"
+    advice: >
+      One hand phased and built: its model is XYZOUT[1] and its Phaser phases ABCDOUT[0].
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
+    task: phaser_ep_phil
+    inputs:
+      RUNPARROT: "True"
+    advice: >
+      Parrot did not run (RUNPARROT off). Density modification is the
+      minimum before any hand call: rerun with RUNPARROT on (the default)
+      and ASUFILE set. Phaser's own figures cannot tell the hands apart
+      (GammaXe: identical LLG 1060.8 and FOM 0.401 in both).
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+    advice: >
+      FIRST, read what this job already has: Parrot's final FOM in each hand
+      (PARROT_FOM_ORIG, PARROT_FOM_INV). Solvent flattening separates the
+      hands where SAD phasing cannot: GammaXe 0.703 (the right hand) against
+      0.623. A DM FOM can be overestimated (Parrot says so), so a clear
+      difference points to a hand but the build confirms it: build that hand
+      fully with modelcraft from its Parrot phases (ABCDOUT[2] original,
+      ABCDOUT[3] inverted). If the two FOMs are close, go on to the SHELXE
+      trace below. No FOM threshold is documented here; GammaXe's 0.08 is one
+      case.
+  - when: outcome == "ambiguous" and HANDS_PHASED == 2
+    task: shelx
+    inputs:
+      F_SIGFanom: "phaser_ep_phil[-1].F_SIGF"
+      XYZIN_SUB: "phaser_ep_phil[-1].XYZOUT[0]"
+      START_PIPELINE: phdmmb
+      END_PIPELINE: phdmmb
+    advice: >
+      Second test, when the Parrot FOMs are close: SHELXE's own density
+      modification and poly-Ala tracing in both hands from Phaser's
+      completed sites, with a trace CC per hand (the shelx judgement's
+      HAND1_CC / HAND2_CC; CrankSteps phdmmb Hand1Score / Hand2Score). It
+      starts again from the sites, so it is an independent check, not built
+      on Parrot's maps. Set ATOM_TYPE, SEQIN and the free set as for a full
+      run. GammaXe, run this way from Phaser's 7 sites: 52.8 for hand 1 (the
+      right one, the sites as given) against 50.9, close. The SHELX trial
+      separated 48.1 from 38.0. A clear separation decides; close CCs go to
+      the short builds below.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[2]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the ORIGINAL hand from its Parrot (density-modified) phases
+      (ABCDOUT[2]). Run it together with the entry for the inverted hand,
+      keep the hand whose R-free is clearly lower (the separation rule in
+      the verdict; GammaXe 0.379 vs 0.563), then build that hand fully with
+      modelcraft. If COMPLETION_CONVERGED is "False", rerun this task with
+      more LLGC_CYCLES first. If a SHELX search ran, read the build sub-jobs
+      (job_5, job_6) before building again. If both hands built below 0.45,
+      the substructure may be (pseudo-)centrosymmetric, in which case the
+      hands are equivalent: continue with the lower one.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG != null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[3]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the INVERTED hand from its Parrot (density-modified) phases
+      (ABCDOUT[3]). Compare with the original-hand build.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[0]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the ORIGINAL hand from its Phaser phases
+      (ABCDOUT[0]). Without Parrot's maps; prefer rerunning with RUNPARROT on (above). Run it together with the entry for the inverted hand,
+      keep the hand whose R-free is clearly lower (the separation rule in
+      the verdict; GammaXe 0.379 vs 0.563), then build that hand fully with
+      modelcraft. If COMPLETION_CONVERGED is "False", rerun this task with
+      more LLGC_CYCLES first. If a SHELX search ran, read the build sub-jobs
+      (job_5, job_6) before building again. If both hands built below 0.45,
+      the substructure may be (pseudo-)centrosymmetric, in which case the
+      hands are equivalent: continue with the lower one.
+  - when: >
+      outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
+      and (RFREE_ORIG == null or RFREE_ORIG <= 0.50 or RFREE_INV <= 0.50)
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[1]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Third test, only if the Parrot FOMs and the SHELXE trace CCs were both
+      close: a SHORT build of the INVERTED hand from its Phaser phases
+      (ABCDOUT[1]). Compare with the original-hand build.
+  - when: outcome == "ambiguous" and HANDS_PHASED == 1
+    task: modelcraft
+    inputs:
+      PHASES: "phaser_ep_phil[-1].ABCDOUT[0]"
+      F_SIGF: "phaser_ep_phil[-1].F_SIGF"
+      FREERFLAG: "phaser_ep_phil[-1].FREERFLAG"
+      ASUIN: "phaser_ep_phil[-1].ASUFILE"
+      USE_MODEL_PHASES: "False"
+      UNBIASED: "True"
+      CYCLES: "5"
+    advice: >
+      Only one hand was phased (HAND off or on); ABCDOUT[0] is that hand.
+      If its build stays above 0.50, rerun this task with HAND both, or
+      with the other hand.
+  - when: outcome == "ambiguous" and RFREE_ORIG > 0.50 and RFREE_INV > 0.50
+    advice: >
+      Both hands were built and neither reached 0.50: building more will
+      not help. Suspect the substructure or the inputs before anything else:
+      N_SITES against the scatterers expected, COMPLETION_CONVERGED, the
+      wavelength (f'' at an edge) and ELEMENTS. Then run a substructure
+      search (SUBSTRUCTURE_BY SEARCH) or crank2. With the default single
+      ModelCraft cycle at low resolution, a right hand can still sit above
+      0.50: if MODELCRAFT_ITERATIONS was 1, build both hands once more
+      (the entries above, CYCLES 5) before giving up on them.
+  - when: outcome == "failed"
+    advice: >
+      Check the inputs before anything else: anomalous pairs in F_SIGF, the
+      wavelength (and f'/f'' at an edge), ELEMENTS naming the real
+      scatterers, enough LLGC_CYCLES, ASUFILE given, and FREERFLAG if
+      building was asked for. Check the sites, which may be wrong or too
+      few: run a substructure search (SUBSTRUCTURE_BY SEARCH, with FIND set
+      to the expected number of sites), or let crank2 or shelx search,
+      decide the hand and build. If the anomalous signal is weak, phasing
+      may need better data, not another program.
+
+sources:
+  - docs/user/source/tasks/phaser_ep_phil/index.rst
+  - docs/user/source/tasks/phaser_ep_auto_phil/index.rst
+  - docs/user/source/tasks/modelcraft/index.rst (no need to density-modify first; UNBIASED)
+  - server/ccp4i2/pipelines/phaser_ep_phil/script/phaser_ep_phil.py (sub-job order, hands, ASUFILE, FREERFLAG, errors)
+  - server/ccp4i2/wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.py (hand names, outputs)
+  - server/ccp4i2/wrappers/phaser_phil/script/phaser_run.py (ep_results_xml, ep_cycles)
+  - server/ccp4i2/wrappers/phaser_phil/script/phaser_shims.py (LlgCompletionShim, PartialModelShim)
+  - server/ccp4i2/wrappers/parrot/script/parrot_report.py (FOM bands)
+  - server/ccp4i2/wrappers/modelcraft/script/modelcraft_report.py (R-free bands)
+  - server/ccp4i2/wrappers/modelcraft/script/modelcraft.py (PHASES and UNBIASED only with USE_MODEL_PHASES False)
+  - "Phaser master PHIL, ccp4-20260702 phaser/phenix_interface/__init__.params (hand default off; llgcompletion.complete default False; fixfdp EDGE)"
+  - "run: GammaXe job 3 (phaser_ep_phil, both hands, Parrot, ModelCraft 3 BASIC cycles; original hand right) and its sub-jobs 3.1-3.5"
+  - "run: GammaXe job 2 (phaser_ep_auto_phil, one hand)"
+  - "run: GammaXe jobs 6 and 7 (crank2, shelx: refined models at R-free 0.274, 0.283)"
+  - "review: Fable, 2026-10-03 (W1-W3, D1-D6, I1-I5 resolved)"

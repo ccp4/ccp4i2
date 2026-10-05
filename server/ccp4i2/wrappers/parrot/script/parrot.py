@@ -22,7 +22,13 @@ class parrot(CPluginScript):
       conPars = self.container.controlParameters
       if conPars.F_SIGF_REF.isSet() and conPars.ABCD_REF.isSet() and conPars.XYZIN_REF.isSet() and \
          conPars.F_SIGF_REF.exists() and conPars.ABCD_REF.exists() and conPars.XYZIN_REF.exists():
-        self.refHklin, error = self.makeHklInput([['F_SIGF_REF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD_REF'])
+        # Its own file: with the default name it overwrote the job's hklin.mtz
+        # Its own file (by default it overwrote the job's hklin.mtz), and the
+        # files themselves: by name they were "not found" (they are control
+        # parameters, not inputData), so the reference never reached parrot
+        self.refHklin, error = self.makeHklInput(
+            [[conPars.F_SIGF_REF, CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], conPars.ABCD_REF],
+            hklin='hklin_ref')
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
           self.refHklin = None
 
@@ -116,8 +122,11 @@ class parrot(CPluginScript):
 
       # REFERENCE DATA
       if self.refHklin is not None:
+        # The reference data were never given to parrot: no mtzin-ref line
+        self.appendCommandScript("mtzin-ref %s" % self.refHklin)
         self.appendCommandScript("colin-ref-fo F,SIGF")
-        if self.container.controlParameters.F_SIGF_REF.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
+        # The phases' kind is the phases file's, not the amplitudes'
+        if self.container.controlParameters.ABCD_REF.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
           self.appendCommandScript("colin-ref-hl HLA,HLB,HLC,HLD")
         else:
           self.appendCommandScript("colin-ref-phifom PHI,FOM")      

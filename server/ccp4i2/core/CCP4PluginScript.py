@@ -1005,6 +1005,7 @@ class CPluginScript(CData):
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
         """
+        self._reported_status = None  # this run has not reported its finish yet
         # Validate input data using runTimeValidity() which includes both the
         # cheap container checks (validity()) and any heavier pre-flight checks
         # that plugins may define (e.g. monomer dictionary coverage).
@@ -3186,6 +3187,17 @@ class CPluginScript(CData):
 
         logger.debug(f"[reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
+        # Once per run. Wrappers that report from their own startProcess()
+        # (coot_find_waters and a dozen others) were reported again by
+        # process(), so a pipeline listening for `finished` ran its next step
+        # twice (prosmart_refmac's post-water refinement and validation, each
+        # as two sub-jobs). The same status again is a no-op; a different one
+        # is a real change, and goes through.
+        if getattr(self, "_reported_status", None) == status:
+            logger.debug("[reportStatus] %s already reported for this run", status)
+            return status
+        self._reported_status = status
+
         # Save params.xml with the final container state (including output data)
         self.saveParams()
 
@@ -4454,7 +4466,7 @@ class CPluginScript(CData):
                         'rename': 'identity'  # Special value: use identity mapping
                     })
 
-                elif isinstance(item, (list, tuple)) and len(item) == 2:
+                elif isinstance(item, (list, tuple)) and len(item) == 2 and isinstance(item[0], str):
                     # [name, target_contentFlag] - use identity mapping
                     name, target_flag = item
                     file_objects.append({
@@ -4463,6 +4475,24 @@ class CPluginScript(CData):
                         'target_contentFlag': target_flag,
                         'rename': 'identity'  # Special value: use identity mapping
                     })
+
+                elif hasattr(item, 'objectName') or (
+                        isinstance(item, (list, tuple)) and len(item) == 2
+                        and hasattr(item[0], 'objectName')):
+                    # A file object itself (or [object, target_contentFlag]):
+                    # for files outside inputData/outputData, such as parrot's
+                    # reference data in controlParameters, which by name were
+                    # "not found" and so never reached the program.
+                    file_obj, target_flag = (item if isinstance(item, (list, tuple)) else (item, None))
+                    spec = {
+                        'name': file_obj.objectName(),
+                        'display_name': file_obj.objectName(),
+                        'file_obj': file_obj,
+                        'rename': 'identity',
+                    }
+                    if target_flag is not None:
+                        spec['target_contentFlag'] = target_flag
+                    file_objects.append(spec)
 
                 else:
                     error.append(

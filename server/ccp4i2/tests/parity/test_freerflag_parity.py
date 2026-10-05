@@ -217,3 +217,16 @@ def test_native_and_binary_complete_to_the_same_free_fraction(tmp_path):
     fb = float(np.mean(binary == 0))
     fn = float(np.mean(native == 0))
     assert abs(fn - fb) < 0.02, f"native {fn:.4f} vs binary {fb:.4f}"
+
+
+def test_twin_mates_share_a_flag_in_both():
+    # freerflag's default (no NOTWIN): twin-related reflections share a flag.
+    # The native port now does too; before, it grouped by space group only.
+    from ccp4i2.tests.unit.mtz.test_freerflag_native import TWINNABLE, twin_mates_share
+    m = gemmi.read_mtz_file(str(TWINNABLE))
+    hkl = np.array(m, copy=False)[:, :3].astype(int)
+    binary = _binary_flags(TWINNABLE)
+    native, _ = assign_class_flags(hkl, m.spacegroup, IRFRAC, cell=m.cell)
+    for flags in (binary, native):
+        checked, differ = twin_mates_share(flags, hkl, m)
+        assert checked > 1000 and differ == 0

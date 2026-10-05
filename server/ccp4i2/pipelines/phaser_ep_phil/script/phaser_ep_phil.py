@@ -75,6 +75,23 @@ class phaser_ep_phil(PhilPluginScript):
             error.append(klass=self.TASKNAME, code=113,
                          details="Composition by AsuContent file: choose the file.",
                          name=f"{name}.ASUFILE", severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        # The later steps' own requirements, said before anything runs: Parrot
+        # and ModelCraft take the AU contents only from ASUFILE, and ModelCraft
+        # needs the free set; without them the job failed after Phaser and
+        # both hands' density modification had run.
+        ctrl = self.container.controlParameters
+        run_parrot = bool(ctrl.RUNPARROT)
+        run_modelcraft = run_parrot and bool(ctrl.RUNMODELCRAFT)  # building follows Parrot
+        if (run_parrot or run_modelcraft) and not inp.ASUFILE.isSet():
+            error.append(klass=self.TASKNAME, code=115,
+                         details="Density modification and model building take the AU contents "
+                                 "from an AsuContent file: give one (COMP_BY ASU), or turn those steps off.",
+                         name=f"{name}.ASUFILE", severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        if run_modelcraft and not inp.FREERFLAG.isSet():
+            error.append(klass=self.TASKNAME, code=116,
+                         details="Model building (ModelCraft) needs the free-R set: give FREERFLAG, "
+                                 "or turn building off.",
+                         name=f"{name}.FREERFLAG", severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
 
     # -- the run -----------------------------------------------------------

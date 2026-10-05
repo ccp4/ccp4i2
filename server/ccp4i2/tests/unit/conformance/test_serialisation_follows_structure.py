@@ -121,3 +121,13 @@ def test_serialisation_does_not_change_as_values_are_set():
     after_annotation = sorted(value_dict_for_object(obj))
 
     assert fresh == after_path == after_annotation
+
+
+def test_a_gemmi_cell_serialises_as_its_six_numbers():
+    # A model digest carries a gemmi.UnitCell; it reached agents and the app
+    # as the string "<gemmi.UnitCell(58.351, ...)>", with a warning per call
+    gemmi = pytest.importorskip("gemmi")
+    from ccp4i2.lib.utils.parameters.value_dict import value_dict_for_object
+    cell = gemmi.UnitCell(58.351, 58.351, 155.876, 90, 90, 120)
+    assert value_dict_for_object({"cell": cell}) == {"cell": {
+        "a": 58.351, "b": 58.351, "c": 155.876, "alpha": 90.0, "beta": 90.0, "gamma": 120.0}}

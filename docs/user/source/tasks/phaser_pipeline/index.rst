@@ -86,13 +86,16 @@ Results
 
    Phaser's verdict comes first **(1)**, then the solutions **(2)**: the
    space group, the log-likelihood gain (LLG), the translation function
-   Z-score (TFZ) and its full-resolution equivalent, and clashes. A TFZ of
-   8 or more is usually a solution. Each solution can be opened to show
-   its placements, one per component copy.
+   Z-score (TFZ) and its full-resolution equivalent, and clashes. Each
+   solution can be opened to show its placements, one per component copy,
+   each with the TFZ of its own search. That search TFZ is the one Phaser's
+   rule of thumb is for: 8 or more is usually a solution. The solution's
+   TFZ, after refinement of all placements, is always higher, so a
+   borderline search can look clear-cut there.
 
-   Here beta-lactamase is placed first (TFZ 10.4) and BLIP second (TFZ
-   18.6), for an LLG of 1054: more than twice what beta-lactamase alone
-   gave. *Search strategy* **(3)** follows each component through the
+   Here beta-lactamase is placed first (search TFZ 10.4) and BLIP second
+   (18.6), for an LLG of 1054: more than twice the 474 beta-lactamase
+   reached when searched for on its own. *Search strategy* **(3)** follows each component through the
    search. After REFMAC the model has R 0.30 and R-free 0.34 at 3.0 Å: a
    good starting point for model building.
 

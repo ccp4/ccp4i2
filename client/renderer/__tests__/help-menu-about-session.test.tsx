@@ -93,6 +93,18 @@ describe("About dialog: this session", () => {
     expect(command).toContain("http://localhost:3101/api/ccp4i2/projects/");
   });
 
+  it("offers an AI agent the MCP address and a setup line for this launch", async () => {
+    installLocalSession(TOKEN);
+    installElectronApi({ UVICORN_PORT: 3101, NEXT_PORT: 3100 });
+    render(<HelpMenu />);
+    openAbout();
+
+    await waitFor(() => expect(fieldValue(/Agent \(MCP\) address/)).toBe("http://127.0.0.1:3101/mcp/ccp4i2"));
+    const setup = fieldValue(/Agent setup/);
+    expect(setup).toContain("--transport http ccp4i2 http://127.0.0.1:3101/mcp/ccp4i2");
+    expect(setup).toContain(`Authorization: Bearer ${TOKEN}`);
+  });
+
   it("copies a value to the clipboard when its button is pressed", async () => {
     const writeText = vi.fn(() => Promise.resolve());
     Object.assign(navigator, { clipboard: { writeText } });

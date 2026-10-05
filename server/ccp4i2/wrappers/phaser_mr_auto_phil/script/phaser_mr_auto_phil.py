@@ -336,6 +336,8 @@ class phaser_mr_auto_phil(phaser_phil):
             node = etree.SubElement(summaries, "Summary")
             node.set("module", name)
             node.text = text
+            if name == "EXPECTED LLG OF ENSEMBLES":
+                phaser_run.expected_llg_xml(text, self.xmlroot)
         if with_strategy:
             attempts, unparsed = phaser_run.strategy_attempts(blocks)
             strategy = etree.SubElement(self.xmlroot, "Strategy")

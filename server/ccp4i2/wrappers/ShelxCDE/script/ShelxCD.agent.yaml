@@ -1,0 +1,109 @@
+task: ShelxCD
+status: draft
+reviewed_by: []
+purpose: >
+  One step of SAD/MAD/SIR(AS) phasing on its own: SHELXC prepares FA values
+  and SHELXD searches for the anomalous substructure. Nothing more: no
+  phasing, no hand, no density modification, no model. To solve a structure
+  from anomalous data start with a pipeline (shelx, crank2, phaser_ep_phil),
+  which runs this step and every later one with the decisions between them
+  built in. Stepwise phasing starting here is the fallback when a pipeline
+  struggles: SHELXD's sites given to phaser_ep_phil get Phaser's
+  log-likelihood-gradient completion, which finds sites SHELXD missed
+  (GammaXe: 4 sites given, 7 after completion).
+
+use_when:
+  - >
+    You want only the substructure: the sites for another program (Phaser
+    MR-SAD, a metal or ion search on an MR model, add_substructure), or to
+    look at SHELXD's CFOM before committing to a full run.
+  - >
+    The fallback, after a pipeline struggled: an ambiguous or failed shelx
+    or crank2 run, or a build that never improves. Find the sites here
+    (with a resolution cutoff, more trials or another site count if the
+    pipeline's search was the weak step), then give them to phaser_ep_phil
+    for completion, phasing in both hands, density modification and
+    building.
+
+not_when:
+  - text: >
+      You want to solve the structure. The shelx task runs SHELXC/D, then
+      SHELXE in both hands, chooses the hand, and builds and refines; crank2
+      does the same with its own phasing and building. Running ShelxCD and
+      then the later steps by hand repeats what they decide for you, more
+      slowly and with more to get wrong. A Haiku trial started stepwise
+      twice when a pipeline would have done. Go stepwise only as the fallback
+      above.
+    instead: shelx
+  - text: >
+      Weak signal or poor resolution: Crank2's route is more robust than
+      SHELXE.
+    instead: crank2
+
+inputs:
+  - param: controlParameters.FIND
+    advice: >
+      Sites to look for, in the whole asymmetric unit. For soaks it is a
+      guess; SHELXD tolerates an overestimate (shelx judgement, GammaXe).
+
+results:
+  CFOM:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/CFOM
+    type: float
+    meaning: >
+      SHELXD's best combined figure of merit, CC(all) + CC(weak).
+      trial-gammaxe-sad-haiku job 5: 76.6 (a correct Xe substructure).
+  CC_ALL:
+    file: params.xml
+    xpath: .//outputData/PERFORMANCE/CC
+    type: float
+    meaning: >
+      SHELXD's CC(all) for that solution (GammaXe trial job 5: 48.3). Not
+      SHELXE's trace CC, which this task does not compute.
+
+verdict:
+  - when: CFOM >= 75
+    outcome: sites_found
+    basis: >
+      75 is the CFOM at which Crank2 stops SHELXD for SAD as a likely
+      solution (substrdet.py; see the shelx judgement). A score, not proof:
+      correct substructures have scored just below it.
+  - when: CFOM > 0
+    outcome: uncertain
+    basis: >
+      SHELXD found a best solution below Crank2's "likely" threshold. Only
+      phasing and building tell whether it is right.
+  - when: true
+    outcome: failed
+    basis: No CFOM was recorded; read job_errors.
+
+traps:
+  - >
+    These sites are not a phased structure. The hand is undecided, and the
+    phases, density modification and build are all still to come. Do not
+    stop here or report a substructure as a result.
+
+next:
+  - when: outcome == "sites_found" or outcome == "uncertain"
+    task: phaser_ep_phil
+    inputs:
+      SUBSTRUCTURE_BY: SITES
+      XYZIN_HA: "ShelxCD[-1].XYZOUT"
+    advice: >
+      The fallback route: Phaser completes these sites from its LLG maps
+      and phases both hands, and Parrot (RUNPARROT, on by default; keep it
+      on, with ASUFILE) solvent-flattens each. Phaser cannot tell the hands
+      apart, so the hand comes next, cheapest test first (the phaser_ep_phil
+      judgement's "ambiguous" steps): Parrot's FOM in each hand; then SHELXE
+      density modification and poly-Ala tracing in both hands from Phaser's
+      completed sites; then short ModelCraft builds of both, only if those
+      are close; then one full ModelCraft build of the chosen hand.
+  - when: outcome == "failed"
+    advice: >
+      Check the data have anomalous pairs and the scatterer is right; try a
+      resolution cutoff where the anomalous signal fades, or crank2.
+
+sources:
+  - server/ccp4i2/wrappers/ShelxCDE/script/ShelxCD.def.xml
+  - server/ccp4i2/pipelines/shelx/script/shelx.agent.yaml

@@ -212,7 +212,7 @@ Substructure detection
    is if the threshold (i.e. CFOM in the case of SHELXD) has been
    reached before the maximum number of cycles has been performed: the
    report summary for the Substructure detection step will state this. A
-   division of trials in the Distribution of CFOM (Figure 7) is also an
+   division of trials in the Distribution of CFOM (Figure 8) is also an
    encouraging indicator: the graph shows the separation of incorrect
    (lower CFOM) trials from correct (higher CFOM) solutions. This
    division can also be observed as clustering in a graph of CC against

@@ -203,6 +203,16 @@ export default function HelpMenu() {
       ? `curl -H "Authorization: Bearer ${session.token}" \\\n  http://localhost:${session.uvicornPort}/api/ccp4i2/projects/`
       : null;
 
+  // The MCP facade the server mounts at /mcp/ccp4i2 (server/ccp4i2/agent/http.py):
+  // what an AI agent connects to. Same port and token, so it changes with them.
+  const mcpUrl = session?.uvicornPort
+    ? `http://127.0.0.1:${session.uvicornPort}/mcp/ccp4i2`
+    : null;
+  const mcpSetup =
+    mcpUrl && session?.token
+      ? `claude mcp add --transport http ccp4i2 ${mcpUrl} \\\n  --header "Authorization: Bearer ${session.token}"`
+      : null;
+
   const showSession = Boolean(
     session && (session.uvicornPort || session.token)
   );
@@ -280,7 +290,8 @@ export default function HelpMenu() {
                 <Typography variant="body2" color="text.secondary">
                   Ports and the access token are chosen afresh each time the
                   app starts, and are gone when it quits. Copy them here to
-                  reach the backend from a terminal, a script or a notebook.
+                  reach the backend from a terminal, a script, a notebook or
+                  an AI agent (set it up again after each start).
                 </Typography>
 
                 {session?.uvicornPort && (
@@ -312,6 +323,18 @@ export default function HelpMenu() {
                   <CopyableField
                     label="Example request"
                     value={curlCommand}
+                  />
+                )}
+                {mcpUrl && (
+                  <CopyableField
+                    label="Agent (MCP) address"
+                    value={mcpUrl}
+                  />
+                )}
+                {mcpSetup && (
+                  <CopyableField
+                    label="Agent setup (Claude Code; other MCP clients take the same address and header)"
+                    value={mcpSetup}
                   />
                 )}
                 {session?.token && (

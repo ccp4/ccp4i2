@@ -1,0 +1,341 @@
+task: ProvideAsuContents
+status: draft
+reviewed_by: []
+purpose: >
+  Records what the asymmetric unit holds - each protein, DNA or RNA sequence,
+  its polymer type and its number of copies - as an AU contents file
+  (.asu.xml), and, if given the reflection data, runs a Matthews analysis:
+  for 1, 2, 3 ... multiples of those whole contents, the Matthews
+  coefficient Vm, the solvent content and a relative probability.
+
+use_when:
+  - Before molecular replacement (Phaser's COMP_BY ASU), density modification
+    (parrot ASUIN) or model building (modelcraft ASUIN), which all read the
+    composition from this file.
+  - To check that a guessed composition (copies of each chain) fits the cell
+    of the crystal; give HKLIN and read the solvent content.
+  - To correct contents found to be wrong later (after MR placed more or
+    fewer copies); clone the job and change the copy numbers.
+
+not_when:
+  - text: Only the number of copies is in question and an AU contents file
+      already exists; a Matthews analysis of the existing file is enough and
+      makes no new .asu.xml.
+    instead: matthews
+  - text: You need a single sequence file (for alignment, CHAINSAW, sequence
+      assignment) rather than the AU composition.
+    instead: ProvideSequence
+
+inputs:
+  - param: inputData.ASU_CONTENT
+    advice: >
+      One entry per distinct chain: the sequence actually crystallised (the
+      construct, not a precursor or a fusion partner that was cleaved off),
+      its polymerType (PROTEIN, DNA or RNA) and nCopies, the copies in the
+      ASYMMETRIC UNIT - not in the biological assembly and not in the unit
+      cell. Ligands, ions and waters are not entered (the analysis is of
+      polymer only). Set polymerType deliberately: a DNA sequence left as
+      PROTEIN passes the validity check (A, C, G, T are all amino-acid
+      letters, CCP4ModelData.py:3655), and is weighed as protein - about a
+      quarter of its true mass - with the protein solvent constant.
+  - param: inputData.HKLIN
+    advice: >
+      Give it whenever the project has merged data, which before MR it
+      always does. Without it the job records the contents and checks
+      nothing (no cell volume, no solvent content) and the verdict is
+      "unchecked" - a gap in the job, not in the contents. Any MTZ of this
+      crystal will do, only its cell and space group are used (e.g.
+      "import_merged[-1].OBSOUT" or "aimless_pipe[-1].HKLOUT[0]", whichever
+      the project has). Five of the six help-scenario jobs were run without
+      it.
+  - param: inputData.ASUCONTENTIN
+    advice: >
+      An existing .asu.xml. With ASU_CONTENT empty its sequences are recorded
+      as they are, and analysed if HKLIN is given (ProvideAsuContents.py:31-36);
+      when ASU_CONTENT has entries the file is ignored. To change copy
+      numbers, clone the earlier ProvideAsuContents job and edit
+      inputData.ASU_CONTENT[i].nCopies.
+
+results:
+  TOTAL_WEIGHT:
+    file: program.xml
+    xpath: .//totalWeight
+    type: float
+    meaning: Molecular weight in Da of the whole contents, every copy
+      included (each entry's weight is already multiplied by its nCopies).
+      BetaBlip 2 46449; CDK2/CyclinA 1 127859 (2 x CDK2 + 2 x CyclinA);
+      MDM2 9 11068; LassoPeptide 2 2057; LckKinase 2 30622; Thaumatin 16
+      22219. Present whenever ASU_CONTENT has an entry.
+  MODE:
+    file: program.xml
+    xpath: .//polymerMode
+    type: str
+    meaning: Polymer mode the Matthews analysis used - P protein, D nucleic
+      acid, C both (ProvideAsuContents.py:45-57, written at 73-74). It sets
+      the solvent constant and so the plausible solvent range. Missing in
+      jobs run before 2026-10-02 (all six evidence jobs) and when no entry
+      has a polymer type and copies > 0.
+  FIRST_COPIES:
+    file: program.xml
+    xpath: .//entries/entry/copies
+    type: int
+    meaning: nCopies of the FIRST entry only (2 in CDK2/CyclinA 1, 1 in the
+      other five). An AU of two or more entries cannot be judged from it;
+      read entries/entry (copies, polymerType) in program.xml or
+      seqList/CAsuContentSeq in ASUCONTENTFILE.asu.xml for all of them.
+  CELL_VOLUME:
+    file: program.xml
+    xpath: .//cellVolume
+    type: float
+    meaning: Unit-cell volume in A^3 from HKLIN. Present only when HKLIN was
+      given (BetaBlip 2 651312; absent in the other five evidence jobs). Its
+      presence is what tells "Matthews was run" from "not run".
+  SOLVENT_1:
+    file: program.xml
+    xpath: ".//matthewsCompositions/composition[nMolecules='1']/solventPercentage"
+    type: float
+    meaning: Solvent content in percent if the AU holds exactly the contents
+      as entered (one multiple). This is the number judged. BetaBlip 2 47.40.
+      Absent if HKLIN was not given, or if the contents do not fit the cell
+      at all (solvent would be <= 0, and the code lists no composition).
+  VM_1:
+    file: program.xml
+    xpath: ".//matthewsCompositions/composition[nMolecules='1']/matthewsCoeff"
+    type: float
+    meaning: Matthews coefficient Vm (A^3/Da) for the contents as entered.
+      BetaBlip 2 2.34.
+  PROB_1:
+    file: program.xml
+    xpath: ".//matthewsCompositions/composition[nMolecules='1']/matthewsProbability"
+    type: float
+    meaning: Probability of one multiple, NORMALISED over the multiples that
+      fit (they sum to 1), from the mode's density curve; no resolution
+      dependence. It is 1.00 whenever only one multiple fits (BetaBlip 2),
+      however typical or atypical that Vm is.
+  PROB_2:
+    optional: true     # absent is normal: not listed as missing
+    file: program.xml
+    xpath: ".//matthewsCompositions/composition[nMolecules='2']/matthewsProbability"
+    type: float
+    meaning: The same for twice the contents; absent when twice the contents
+      would leave no solvent (BetaBlip 2). MDM2's matthews job 10 (same
+      contents and cell as MDM2 9) gives 0.67 for one and 0.33 for two.
+  MAX_MULTIPLE:
+    file: program.xml
+    xpath: .//matthewsCompositions/composition[last()]/nMolecules
+    type: int
+    meaning: The largest multiple of the contents that leaves any solvent at
+      all (> 0%) - an upper bound, not a plausible count. BetaBlip 2 1.
+  # NOTE: the solvent content of n multiples is fixed by that of one:
+  #   S_n = 100 - n * (100 - S_1) (CCP4XtalData.py matthewsCoeff,
+  #   percent_solvent = 100*(1 - k/Vm), Vm proportional to 1/n).
+  # FINDING: the resolution-dependent probability of Kantardjieff & Rupp
+  #   (matthews_coef's P(reso)) is not computed. Phaser's log prints one
+  #   (LassoPeptide job 3 log.txt lines 174-235; MDM2 job 25 job_1/log.txt
+  #   lines 108-114), ProvideAsuContents does not.
+
+verdict:
+  - when: MODE == "P" and SOLVENT_1 < 26 and TOTAL_WEIGHT < 5000 and FIRST_COPIES == 1
+    outcome: low_solvent
+    basis: >
+      Our run only: LassoPeptide (PDB 3njw, one 19-residue peptide, 2057 Da,
+      P 21 21 21, 0.86 A). One copy - two cannot fit - gives 17.9% solvent
+      (Vm 1.50) by the task's arithmetic from the OBSOUT.mtz cell; Phaser's
+      own analysis gives Vm 1.53, 19.8% (job 3 log.txt line 179), with an
+      absolute probability of only 0.0066 (line 233). The composition is
+      right all the same (ACORN job 4 final CC 0.69). Neither program
+      supports the exemption; it is empirical from one structure, and the
+      5000 Da cut-off is mine (about 45 residues), not a published value.
+  - when: (MODE == "P" and SOLVENT_1 < 26) or (MODE == "D" and SOLVENT_1 < 50) or (MODE == "C" and SOLVENT_1 < 34)
+    outcome: overpacked
+    basis: >
+      $CCP4/html/matthews_coef.html (ccp4-20260702) lines 217-224: Matthews
+      found Vm between 1.66 and 4.0 A^3/Da for proteins; "If Vm falls outside
+      the range above then the number of molecules per asymmetric unit
+      assumed, is likely to be incorrect." Vm 1.66 converted with the task's
+      solvent constants (core/_matthews_data.py SOLVENT_K: P 1.22924,
+      D 0.83056, C 1.09753; percent_solvent = 100*(1 - k/Vm)) is 25.9% (P),
+      50.0% (D), 33.9% (C). The P bound is documented; the D and C bounds
+      are the protein Vm range carried over with the code's constants, from
+      code only - no nucleic-acid evidence job, not checked by an expert.
+  - when: (MODE == "P" and SOLVENT_1 > 69) or (MODE == "D" and SOLVENT_1 > 79) or (MODE == "C" and SOLVENT_1 > 73)
+    outcome: too_sparse
+    basis: >
+      Same source and conversion: Vm 4.0 is 69.3% (P), 79.2% (D), 72.6% (C);
+      D and C from code only, as above. The page adds that crystals with
+      higher solvent exist (Vm 12 for 90%), so this is "probably more
+      copies", not "wrong". For protein, past 69% twice the contents is
+      always inside the range (S_2 = 2*S_1 - 100 > 38) and the task's own
+      curve gives it P_2 >= 0.94 (computed from _matthews_data.DENSITY['P']
+      with the task's interpolation).
+  - when: PROB_2 >= 0.1 and (MODE == "P" or MODE == "D" or MODE == "C")
+    outcome: ambiguous_copies
+    basis: >
+      The task's own probability, which is mode-aware: from
+      _matthews_data.DENSITY['P'], P_2 is 0.07 at S_1 63%, 0.33 at 64.65%,
+      0.54 at 65.5% (the crossover), 0.81 at 67%. Run: MDM2 contents (one
+      copy, 97 residues, P 65 2 2, 1.35 A) give 64.65% / 29.31%, P 0.67 /
+      0.33 (matthews job 10). Phaser's resolution-aware analysis of the same
+      crystal says the opposite (Z=2 rel. freq. 1.000, Z=1 0.161; MDM2 job 25
+      job_1/log.txt lines 108-114), and the truth is one copy (job 25's
+      refined model has one chain). Two probability models disagree, so MR
+      decides. The 0.1 cut-off is mine.
+  - when: SOLVENT_1 > 0 and (MODE == "P" or MODE == "D" or MODE == "C")
+    outcome: plausible
+    basis: >
+      Inside the mode's range (above) with one multiple clearly preferred.
+      Runs, protein: BetaBlip 2 47.40% (Vm 2.34), contents complete (BetaBlip
+      job 4 placed BETA + BLIP, R-free 0.343) - judged before polymerMode was
+      written, so it reaches mode_unknown below. By the task's arithmetic
+      from each project's data cell, CDK2/CyclinA 1 (57.9%, P_2 0.01),
+      LckKinase 2 (51.7%) and Thaumatin 16 (56.4%) would also be plausible
+      had HKLIN been given.
+  - when: SOLVENT_1 > 0
+    outcome: mode_unknown
+    basis: >
+      Matthews was run but program.xml does not record the polymer mode
+      (a job from before 2026-10-02, or no entry with a type and copies), so
+      the solvent range cannot be chosen. No fallback to protein: the entries
+      of an old program.xml carry no polymerType, and an xpath cannot show
+      that none is DNA or RNA.
+  - when: CELL_VOLUME > 0
+    outcome: overpacked
+    basis: >
+      Matthews was run (cell volume recorded) but no composition was listed:
+      the code (core/CCP4XtalData.py, matthewsCoeff, the while loop) lists a
+      multiple only while its solvent is > 0, so even one multiple of the
+      contents is larger than the AU, in any mode. Not seen in our runs.
+  - when: TOTAL_WEIGHT > 0
+    outcome: unchecked
+    basis: >
+      Contents recorded but HKLIN not given, so no solvent content was
+      computed (ProvideAsuContents.py:76). CDK2/CyclinA 1, MDM2 9,
+      LassoPeptide 2, LckKinase 2 and Thaumatin 16 all end here.
+  - when: true
+    outcome: empty
+    basis: No sequence was recorded (no totalWeight in program.xml).
+
+traps:
+  - >
+    The Matthews table's "number of copies" counts multiples of the WHOLE
+    contents, not copies of one chain. With CDK2 x2 + CyclinA x2 entered,
+    "2" means four CDK2 and four cyclin. It cannot test 2 CDK2 + 1 cyclin;
+    for that, change nCopies per sequence and run again.
+  - >
+    A Matthews probability of 1.00 in a one-row table (BetaBlip 2) means
+    only that no other multiple fits, not that the composition is likely:
+    the probabilities are normalised over the rows. Judge the solvent
+    content against the mode's range; with two or more rows the relative
+    probability is the task's discriminator.
+  - >
+    The copies recorded here are not the copies Phaser looks for:
+    phaser_simple_phil's NCOPIES ("Copies to place", default 1) is set
+    separately. A correct AU file with NCOPIES left at 1 searches for one
+    copy of a dimer's subunit; the AU contents only scale the scattering.
+  - >
+    Wrong contents mislead later tasks silently. parrot writes every copy
+    into its sequence file and then guesses the multiple by Matthews
+    (parrot.py lines 30-34), so wrong copies give a wrong solvent mask
+    unless SOLVENT_CONTENT is set; modelcraft is given each chain's
+    stoichiometry with copies fixed at 1 (modelcraft.py lines 83-100), so it
+    takes the counts as true.
+  - >
+    Small peptides at atomic resolution can have well under 26% solvent and
+    be right (LassoPeptide: 17.9%, one copy, solved). Do not "fix" such
+    contents by removing copies when there is only one.
+  - >
+    A DNA sequence entered with polymerType PROTEIN is accepted without
+    error and weighed as protein (mode P), so the solvent comes out far too
+    high and is judged against the protein range. Check polymerType of
+    every nucleic-acid entry (entries/entry/polymerType in program.xml).
+
+next:
+  - when: outcome == "unchecked"
+    task: matthews
+    inputs:
+      ASUIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+      MODE: asu_components
+    advice: >
+      Give HKLIN the merged data of this crystal (any MTZ of it). The
+      matthews task makes no new .asu.xml; cloning this job with HKLIN set
+      works too, but makes a new ASUCONTENTFILE that later
+      "ProvideAsuContents[-1]" references pick up (harmless, same contents).
+      Skip this if a later job has already confirmed the contents (an MR
+      placement of every chain refined to a sensible R-free).
+  - when: outcome == "plausible" or outcome == "low_solvent"
+    task: phaser_simple_phil
+    inputs:
+      COMP_BY: ASU
+      ASUFILE: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      F_SIGF and FREERFLAG are the observed data and free set the project
+      refines against (import or data-reduction job). Set NCOPIES to the
+      copies of the search model's chain given here. The same file goes to
+      parrot and modelcraft as ASUIN; for parrot also set
+      controlParameters.SOLVENT_CONTENT to SOLVENT_1 / 100 (a fraction, 0-1,
+      parrot.def.xml) so it does not re-guess the multiple. For low_solvent,
+      first confirm the sequence is the crystallised construct (lasso and
+      other RiPP peptides are cut from a longer precursor) and the data are
+      atomic resolution (read it from the import job); an atomic-resolution
+      peptide may be better phased ab initio (LassoPeptide used
+      phaser_singleMR then acorn).
+  - when: outcome == "plausible" or outcome == "low_solvent"
+    task: crank2
+    inputs:
+      SEQIN: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      The route when there is no model to place and the data carry an
+      anomalous signal (the data-reduction judgement says so: CCANOM_LIMIT
+      or ANOM_LIMIT above 0, its next step crank2). This file is SEQIN, so
+      Crank2's copies, solvent and site count come from the contents given
+      here; F_SIGFanom is the anomalous data (I+/I-), ATOM_TYPE the
+      scatterer, and FREE "existing" with the project's FREERFLAG. Read
+      describe_task crank2 first.
+  - when: outcome == "ambiguous_copies"
+    task: phaser_simple_phil
+    inputs:
+      COMP_BY: ASU
+      ASUFILE: "ProvideAsuContents[-1].ASUCONTENTFILE"
+    advice: >
+      The cell holds either these contents (high solvent) or twice them.
+      Search for the copies given, and if Phaser places them all and
+      refinement stalls, search for more with the placed model fixed; if it
+      finds more, correct the contents (clone this job, double nCopies)
+      before density modification and building.
+  - when: outcome == "too_sparse"
+    task: ProvideAsuContents
+    advice: >
+      Clone this job, multiply every nCopies by the multiple with the highest
+      matthewsProbability (read the compositions in program.xml; for protein
+      past 69% that is almost always 2), and run again; expect plausible.
+      If you have reason to think the crystal really is high-solvent, keep
+      the contents and let MR decide.
+  - when: outcome == "overpacked"
+    task: ProvideAsuContents
+    advice: >
+      Do not proceed on these contents. Check, in order: nCopies counted per
+      AU, not per assembly or cell; the sequence is the crystallised
+      construct (no fused partner, no duplicated entry); polymerType of
+      nucleic-acid entries; the space group and cell of HKLIN. Then clone
+      this job, correct inputData.ASU_CONTENT[i], and run again.
+  - when: outcome == "mode_unknown"
+    advice: >
+      Read entries' polymerType in ASUCONTENTFILE.asu.xml
+      (seqList/CAsuContentSeq/polymerType). If every entry with copies is
+      PROTEIN, apply the protein range, 26-69% solvent, to SOLVENT_1 by hand;
+      otherwise clone the job and run it again so the mode is recorded.
+
+sources:
+  - docs/user/source/tasks/ProvideAsuContents/index.rst
+  - server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.py
+  - server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents_report.py
+  - server/ccp4i2/core/CCP4XtalData.py (CMtzData.matthewsCoeff)
+  - server/ccp4i2/core/CCP4ModelData.py (CAsuContentSeq.molecularWeight, validity)
+  - server/ccp4i2/core/_matthews_data.py (SOLVENT_K, DENSITY)
+  - server/ccp4i2/wrappers/parrot/script/parrot.py; wrappers/modelcraft/script/modelcraft.py
+  - "$CCP4/html/matthews_coef.html (ccp4-20260702), lines 217-224"
+  - "run: BetaBlip job 2 (with HKLIN; 47.40% solvent; contents confirmed by job 4)"
+  - "run: MDM2 job 9 (no HKLIN) and matthews job 10 (64.65% / 29.31%); one copy confirmed by job 25"
+  - "run: LassoPeptide job 2 (no HKLIN); one copy, 17.9% by arithmetic; solved by jobs 3-4"
+  - "runs: CDK2_CyclinA 1, LckKinase 2, Thaumatin 16 (no HKLIN); solvent by arithmetic from the data cells"
+  - "review: Fable 5.1, ProvideAsuContents.review.md (2026-10-02)"

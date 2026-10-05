@@ -4,6 +4,32 @@ import re
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
+# MOLREP's own summary of its translation-function search, in its molrep.xml.
+_MR_TF_FIELDS = ("err_level", "err_message", "n_solution", "mr_resmin", "mr_resmax",
+                 "mr_score", "mr_zscore")
+
+
+def mr_tf_element(molrep_xml_path):
+    """An MR_TF element holding what MOLREP reported in ``molrep.xml``.
+
+    The score and z-score (TF/sig) of the chosen solution and the number of
+    copies placed are what say whether the search worked; they are copied as
+    MOLREP wrote them. A field MOLREP did not write is left out: never a
+    placeholder, which a reader cannot tell from a result.
+    """
+    from lxml import etree
+
+    tf = etree.Element("MR_TF")
+    try:
+        source = etree.parse(str(molrep_xml_path)).getroot()
+    except (OSError, etree.XMLSyntaxError):
+        return tf
+    for name in _MR_TF_FIELDS:
+        node = source.find(name)
+        if node is not None and node.text and node.text.strip():
+            etree.SubElement(tf, name).text = node.text.strip()
+    return tf
+
 
 class molrep_mr(CPluginScript):
 
@@ -246,16 +272,7 @@ class molrep_mr(CPluginScript):
         rf = None
 
         results = etree.Element('MolrepResult')
-        tf = etree.Element('MR_TF')
-        results.append(tf)
-
-        for key, value in [['err_level', '0'],
-                           ['err_message', 'normal termination'],
-                           ['n_solution', '1'],
-                           ['mr_score', '0.0000']]:
-            e = etree.Element(key)
-            e.text = value
-            tf.append(e)
+        results.append(mr_tf_element(os.path.join(self.path_wrk, 'molrep.xml')))
 
         try:
             docfileText = CCP4Utils.readFile(docFileName)

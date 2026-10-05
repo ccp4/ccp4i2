@@ -246,17 +246,9 @@ class molrep_den(CPluginScript):
       titles = []
       status = 0
       from lxml import etree
+      from ccp4i2.wrappers.molrep_mr.script.molrep_mr import mr_tf_element
       results = etree.Element('MolrepResult')
-      tf = etree.Element('MR_TF')
-      results.append(tf)
-      for key,value in [ ['err_level','0'],
-                         ['err_message','normal termination'],
-                         ['n_solution','1'],
-                         ['mr_score','0.0000'] ]:
-          
-        e = etree.Element(key)
-        e.text = value
-        tf.append(e)
+      results.append(mr_tf_element(os.path.join(self.path_wrk, 'molrep.xml')))
 
       '''
       table = [ '<?xml version="1.0" encoding="ASCII" standalone="yes"?>' ]

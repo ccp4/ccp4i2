@@ -728,6 +728,12 @@
           <saveToDb>True</saveToDb>
         </qualifiers>
       </content>
+      <content id="XYZOUT_COMPLETE">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>{'subType': '1'}</default>
+        </qualifiers>
+      </content>
       <content id="XYZOUT_SUBSTR">
         <className>CPdbDataFile</className>
         <qualifiers>
