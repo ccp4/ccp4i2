@@ -49,6 +49,7 @@ class phaser_pipeline_phil(PhilPluginScript):
         211: {"description": "Copying a sub-job output failed"},
         220: {"description": "No free-R set: the refinement after MR will have no R-free",
               "severity": CCP4ErrorHandling.SEVERITY_WARNING},
+        221: {"description": "The structure given as already placed has no crystal cell"},
     }
 
     def get_phil_exclude_scopes(self):

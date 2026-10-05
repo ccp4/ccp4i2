@@ -18,6 +18,37 @@ class phaser_simple_phil(phaser_pipeline_phil):
         self.createEnsembleElements()
         return super().process()
 
+    def runTimeValidity(self):
+        # XYZIN_FIXED must have been placed in THIS crystal: its cell and
+        # point group are checked against the data's (sameCrystalAs in the
+        # def.xml), so a homologue straight from mrparse or a database, still
+        # in its own crystal's frame, is refused. Haiku once gave the cyclin
+        # chain of 6p8e (cell 62.4 67.5 187.3) as fixed for data of cell
+        # 57.8 64.7 186.1; Phaser held it there and placed CDK4 against it
+        # (LLG -892). A file left set while INPUT_FIXED is off is not used.
+        error = super().runTimeValidity()
+        inp = self.container.inputData
+        name = f"{self.TASKNAME}.container.inputData.XYZIN_FIXED"
+        if not bool(inp.INPUT_FIXED):
+            error._errors = [r for r in error._errors if str(r.get("name", "")) != name]
+        elif inp.XYZIN_FIXED.isSet():
+            # The cell check skips a file with no cell; for a structure said
+            # to be placed, having none is the finding (a predicted model's
+            # CRYST1 is 1 A in P 1, which reads as no cell)
+            try:
+                content = inp.XYZIN_FIXED.getFileContent()
+                cell = getattr(content, "cell", None) if content is not None else None
+            except Exception:
+                cell = None
+            if cell is None:
+                error.append(klass=self.TASKNAME, code=221, name=name,
+                             details=("The structure given as already placed has no crystal cell "
+                                      "(a predicted model, or one cut out of its entry), so it has "
+                                      "not been placed in this crystal. Search for it instead: as "
+                                      "the search model here, or with phaser_pipeline_phil."),
+                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        return error
+
     def checkInputData(self):
         invalid = super().checkInputData()
         if not self.container.inputData.INPUT_FIXED and "XYZIN_FIXED" in invalid:
