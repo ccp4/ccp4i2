@@ -38,6 +38,14 @@ inputs:
       PROTEIN passes the validity check (A, C, G, T are all amino-acid
       letters, CCP4ModelData.py:3655), and is weighed as protein - about a
       quarter of its true mass - with the protein solvent constant.
+      Given only a protein's name ("CDK4/cyclin D", "human CDK2"), create
+      this job and find the entries with the job's own methods (object_method
+      on the task: uniprotCandidates(text, organism) lists UniProt entries
+      best first, a family name giving every member; fetchUniProt(accession,
+      residue_range, index, nCopies) fills an entry and saves the pending
+      job; the MCP facade's find_sequence and fetch_sequence call them). Say
+      which entry you chose and why; for a family ("cyclin D") the name alone
+      does not decide, so ask or record the guess.
   - param: inputData.HKLIN
     advice: >
       Give it whenever the project has merged data, which before MR it
@@ -243,6 +251,14 @@ traps:
     Small peptides at atomic resolution can have well under 26% solvent and
     be right (LassoPeptide: 17.9%, one copy, solved). Do not "fix" such
     contents by removing copies when there is only one.
+  - >
+    A UniProt entry is the full-length protein, often not what was
+    crystallised: kinase domains, cyclin boxes and truncated constructs are
+    common. Full length overstates the weight, so the solvent comes out
+    low and the copies too few, and model building docks against residues
+    that are not there. Give residue_range when the construct is known (a
+    paper, a PDB entry of the same construct, the folder's notes); when it
+    is not, say the contents assume full length.
   - >
     A DNA sequence entered with polymerType PROTEIN is accepted without
     error and weighed as protein (mode P), so the solvent comes out far too

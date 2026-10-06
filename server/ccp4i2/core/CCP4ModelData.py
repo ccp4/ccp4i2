@@ -1106,6 +1106,41 @@ class CSequence(CData, CBioPythonSeqInterface):
         "CString",
         toolTip='Optional reference for sequence',
         guiLabel='Reference')
+    # -- UniProt: candidates for a name, and a sequence with its provenance --
+    # Search is read-only, so the app and agents reach it through the
+    # object_method endpoint on any sequence-bearing object; loading changes
+    # data, so the task's own plugin method decides when, and saves.
+
+    @staticmethod
+    def uniprotCandidates(text, organism=None, limit=10):
+        """UniProt entries for a name as typed ("Human CDK2", "CDK2 from
+        human", "cyclin D", an accession): how the text was read and the
+        candidates, best first. None is chosen. See lib/utils/sequences/uniprot.py."""
+        from ccp4i2.lib.utils.sequences import uniprot
+        try:
+            return uniprot.search(text, organism=organism, limit=int(limit))
+        except uniprot.UniProtError as err:
+            return {"read_as": None, "candidates": [], "error": str(err)}
+
+    def loadFromUniProt(self, accession, residue_range=None):
+        """This sequence from a UniProt entry (cut to ``residue_range``, e.g.
+        "175-432", for the crystallised construct), with where it came from:
+        identifier, name, description, referenceDb (sp or tr) and reference
+        (the accession). Returns the fetched entry's summary."""
+        from ccp4i2.lib.utils.sequences import uniprot
+        entry = uniprot.fetch(accession, residue_range)
+        self.sequence.set(entry["sequence"])
+        self.moleculeType.set("PROTEIN")
+        self.identifier.set(entry["entry_name"] or entry["accession"])
+        self.name.set(entry["gene"] or entry["entry_name"] or entry["accession"])
+        span = f", residues {entry['range']}" if entry["range"] else ""
+        self.description.set(f"{entry['protein_name'] or ''} ({entry['organism'] or ''}){span}")
+        self.referenceDb.set("sp" if entry["reviewed"] else "tr")
+        self.reference.set(entry["accession"])
+        return {k: entry[k] for k in ("accession", "entry_name", "protein_name", "gene",
+                                      "organism", "reviewed", "range")} | {
+            "length": len(entry["sequence"])}
+
     moleculeType = content(
         "CString",
         onlyEnumerators=True,
@@ -2521,6 +2556,11 @@ class CSeqDataFile(CDataFile):
             "subType": {'default': None},
             "contentFlag": {'min': 0, 'default': None},
         }
+    @staticmethod
+    def uniprotCandidates(text, organism=None, limit=10):
+        """UniProt candidates for a name; see CSequence.uniprotCandidates."""
+        return CSequence.uniprotCandidates(text, organism, limit)
+
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSeqDataFile.
@@ -3406,6 +3446,29 @@ class CAsuContentSeq(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
+    @staticmethod
+    def uniprotCandidates(text, organism=None, limit=10):
+        """UniProt candidates for a name; see CSequence.uniprotCandidates."""
+        return CSequence.uniprotCandidates(text, organism, limit)
+
+    def fillFromUniProt(self, accession, residue_range=None):
+        """This entry's sequence (and name, if unnamed) from UniProt, cut to
+        ``residue_range`` for the construct. Changes the item only: the
+        task's plugin method guards the job's status and saves."""
+        from ccp4i2.lib.utils.sequences import uniprot
+        return self.fillFromEntry(uniprot.fetch(accession, residue_range))
+
+    def fillFromEntry(self, entry):
+        """This entry's sequence (and name, if unnamed) from a fetched
+        UniProt entry (lib/utils/sequences/uniprot.fetch)."""
+        self.sequence.set(entry["sequence"])
+        self.polymerType.set("PROTEIN")
+        if not self.name.isSet() or not str(self.name).strip():
+            self.name.set(entry["gene"] or entry["entry_name"] or entry["accession"])
+        return {k: entry[k] for k in ("accession", "entry_name", "protein_name", "gene",
+                                      "organism", "reviewed", "range")} | {
+            "length": len(entry["sequence"])}
+
     sequence = content(
         "CSequenceString",
         allowUndefined=False,

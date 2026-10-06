@@ -60,6 +60,8 @@ class mrparse(CPluginScript):
                 self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
                 self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}".format(label, hit['name'])
 
+        self._write_targets()
+
         register(pdb_json, "PDB", 'ellg' if self.hklin else 'seq_ident')
         register(af_json, "AFDB", 'seq_ident')
         register(esm_json, "ESM", 'seq_ident')
@@ -82,6 +84,27 @@ class mrparse(CPluginScript):
             )
 
         return CPluginScript.SUCCEEDED
+
+    def _write_targets(self):
+        """Record in program.xml how many sequences were searched for: one
+        is one kind of molecule, several a complex. The judgement routes on
+        it (phaser_simple_phil for one, phaser_pipeline_phil with an
+        ensemble per component for several); Haiku, given a CDK4/cyclin D1
+        FASTA, took the one-model route and fixed the second component."""
+        from lxml import etree
+        names = []
+        try:
+            with open(str(self.container.inputData.SEQIN.getFullPath())) as stream:
+                names = [line[1:].strip() for line in stream if line.startswith(">")]
+        except OSError:
+            return
+        root = etree.Element("MrParse")
+        targets = etree.SubElement(root, "Targets")
+        targets.set("count", str(max(len(names), 1)))
+        for name in names:
+            etree.SubElement(targets, "Target").text = name
+        with open(self.makeFileName("PROGRAMXML"), "wb") as stream:
+            stream.write(etree.tostring(root, pretty_print=True))
 
     def makeCommandAndScript(self):
         self.appendCommandLine("--seqin")

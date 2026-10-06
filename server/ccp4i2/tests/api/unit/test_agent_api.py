@@ -57,17 +57,31 @@ def test_a_task_without_judgement_says_so(client, project):
     assert verdict["outcome"] is None and "No judgement" in verdict["note"]
 
 
+def test_a_job_that_has_not_run_is_not_judged(client, project):
+    # The rules would read the absent results as a result: a pending
+    # ProvideAsuContents was judged "empty", no sequence recorded
+    job = _job(client, project)
+    verdict = client.get(f"{API}/jobs/{job.id}/judgement/").json()["data"]
+    assert verdict["outcome"] is None and "has not run" in verdict["note"]
+    assert "results" not in verdict
+
+
 def test_judgement_is_read_from_the_job(client, project, tmp_path, monkeypatch):
     job = _job(client, project)
-    (job.directory / "program.xml").write_text("<R><Final><RFree>0.24</RFree></Final></R>")
+    job.status = models.Job.Status.FINISHED
+    job.save()
+    (job.directory / "program.xml").write_text(
+        "<R><Final><RFree>0.24</RFree></Final><Anom>NaN</Anom></R>")
     key, _ = models.JobValueKey.objects.get_or_create(name="RFactor", defaults={"description": "R"})
     models.JobFloatValue.objects.create(job=job, key=key, value=0.2)
     path = tmp_path / "ProvideAsuContents.agent.yaml"
     path.write_text(yaml.safe_dump({
         "task": "ProvideAsuContents", "status": "draft",
         "results": {"RFREE": {"xpath": ".//Final/RFree"},
-                    "R": {"file": "kpi", "kpi": "RFactor"}},
-        "verdict": [{"when": "RFREE < 0.3 and R < RFREE", "outcome": "good", "basis": "test"},
+                    "R": {"file": "kpi", "kpi": "RFactor"},
+                    "ANOM": {"xpath": ".//Anom"}},
+        "verdict": [{"when": "ANOM > 0", "outcome": "anomalous"},
+                    {"when": "RFREE < 0.3 and R < RFREE", "outcome": "good", "basis": "test"},
                     {"when": True, "outcome": "poor"}],
         "next": [{"when": 'outcome == "good"', "task": "servalcat_pipe"}],
     }))
@@ -77,7 +91,10 @@ def test_judgement_is_read_from_the_job(client, project, tmp_path, monkeypatch):
     assert described["judgement"]["results"]["RFREE"]["xpath"] == ".//Final/RFree"
 
     verdict = client.get(f"{API}/jobs/{job.id}/judgement/").json()["data"]
-    assert verdict["results"] == {"RFREE": 0.24, "R": 0.2}
+    # NaN (CTRUNCATE's "no anomalous limit") compares false in the rules and
+    # is served as null, which JSON can carry; it was there, so not missing
+    assert verdict["results"] == {"RFREE": 0.24, "R": 0.2, "ANOM": None}
+    assert verdict["missing"] == []
     assert verdict["outcome"] == "good"
     assert verdict["next"] == [{"when": 'outcome == "good"', "task": "servalcat_pipe"}]
     assert verdict["note"] == judgement.DRAFT_NOTE
@@ -141,3 +158,60 @@ def test_a_next_step_makes_its_job_and_says_what_it_set(client, project, monkeyp
     r = apply(2)
     assert r.status_code == 400 and "advice only" in r.content.decode()
     assert apply(7).status_code == 400
+
+
+# --- UniProt into a pending job, through the object_method endpoint --------
+
+def _fake_fetch(accession, residue_range=None, opener=None):
+    from ccp4i2.lib.utils.sequences import uniprot
+    if accession != "P14635":
+        raise uniprot.UniProtError(f"{accession!r} is not a UniProt accession or entry name")
+    seq = "MALRVTRNSKINAENKAKINMAGAKRVPTAPAATSKPGLRPRTALGDIGNKVSEQLQAKMPMKKEAKPSATGKVIDKKLPKPLEKVPMLVPVPVSEPVPEPEPEPEPEPVKEEKLSPEPILVDTASPSPMETSGCAPAEEDLCQAFSDVILAVNDVDAEDGADPNLCSEYVKDIYAYLRQLEEEQAVRPKYLLGREVTGNMRAILIDWLVQVQMKFRLLQETMYMTVSIIDRFMQNNCVPKKMLQLVGVTAMFIASKYEEMYPPEIGDFAFVTDNTYTKHQIRQMEMKILRALNFGLGRPLPLHFLRRASKIGEVDVEQHTLAKYLMELTMLDYDMVHFPPSQIAAGAFCLALKILDNGEWTPTLQHYLSYTEESLLPVMQHLAKNVVMVNQGLTKHMTVKNKYATSKHAKISTLPQLNSALVQDLAKAVAKV"
+    cut = uniprot.parse_range(residue_range)
+    if cut:
+        seq = seq[cut[0] - 1:cut[1]]
+    return {"accession": "P14635", "entry_name": "CCNB1_HUMAN", "protein_name": "G2/mitotic-specific cyclin-B1",
+            "gene": "CCNB1", "organism": "Homo sapiens", "reviewed": True, "taxid": 9606,
+            "range": f"{cut[0]}-{cut[1]}" if cut else None, "sequence": seq,
+            "fasta": f">sp|P14635|CCNB1_HUMAN cyclin-B1 OS=Homo sapiens\n{seq}\n"}
+
+
+def _method(client, job, task, name, args):
+    import json as _json
+    r = client.post(f"{API}/jobs/{job.id}/object_method/", data=_json.dumps(
+        {"object_path": task, "method_name": name, "args": args}), content_type="application/json")
+    assert r.status_code == 200, r.content
+    return r.json()["data"]["result"]
+
+
+def test_a_sequence_is_fetched_into_a_pending_job_and_saved(client, project, monkeypatch):
+    from pathlib import Path
+    from ccp4i2.lib.utils.sequences import uniprot
+    monkeypatch.setattr(uniprot, "fetch", _fake_fetch)
+    job = _job(client, project, task="ProvideSequence")
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["P14635"])
+    assert out["success"] and out["added"]["gene"] == "CCNB1"
+    import xml.etree.ElementTree as ET
+    saved = ET.parse(Path(job.directory) / "input_params.xml").getroot().findtext(".//SEQUENCETEXT")
+    assert saved.startswith(">sp|P14635|CCNB1_HUMAN")  # the record, provenance in its header, saved
+
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["cyclin B1"])
+    assert out == {"success": False, "error": "'cyclin B1' is not a UniProt accession or entry name"}
+
+    job.status = models.Job.Status.FINISHED
+    job.save()
+    out = _method(client, job, "ProvideSequence", "fetchUniProt", ["P14635"])
+    assert out["success"] is False and "only a pending job" in out["error"]
+
+
+def test_an_asu_entry_is_filled_from_uniprot_with_its_construct(client, project, monkeypatch):
+    from pathlib import Path
+    from ccp4i2.lib.utils.sequences import uniprot
+    monkeypatch.setattr(uniprot, "fetch", _fake_fetch)
+    job = _job(client, project, task="ProvideAsuContents")
+    out = _method(client, job, "ProvideAsuContents", "fetchUniProt", ["P14635", "175-432", None, 2])
+    assert out["success"] and out["added"]["length"] == 258 and out["added"]["range"] == "175-432"
+    saved = (Path(job.directory) / "input_params.xml").read_text()
+    assert "YAYLRQLEEE" in saved and "CCNB1" in saved
+    out = _method(client, job, "ProvideAsuContents", "fetchUniProt", ["nonsense"])
+    assert out["success"] is False

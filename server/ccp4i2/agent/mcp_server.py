@@ -37,7 +37,10 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    import_merged (create_job, upload_file, run_job; for unmerged data the
    task aimless_pipe), which checks them and makes or keeps the free-R set
    every later job needs (inspect_file says which, before you start).
-   Models and sequences can be uploaded where used. With only a sequence
+   Models and sequences can be uploaded where used. With only a protein's
+   name, create a ProvideAsuContents (or ProvideSequence) job, find_sequence
+   for the candidates, choose (say which, and why), and fetch_sequence it,
+   with the construct's residue range if known. With only a sequence
    and no search model, run mrparse: it finds homologues and predicted
    models and prepares them for MR (mrbump_basic does that and MR in one
    automated run). Do not fetch structures from outside CCP4i2.
@@ -221,20 +224,27 @@ def create_project(name: str) -> dict:
 @server.tool()
 def list_tasks(query: str = "") -> dict:
     """The tasks that can be run, optionally only those whose name, title or
-    description contains ``query``. Superseded and interactive (in-app
-    window) tasks are left out. ``judged`` says whether the task has a
-    judgement (describe_task gives it)."""
-    query = query.lower()
-    out = []
-    for name, task in _get("task_lookup").items():
+    description contains any word of ``query`` ("phaser molecular
+    replacement"), those matching most words first. Superseded and
+    interactive (in-app window) tasks are left out. ``judged`` says whether
+    the task has a judgement (describe_task gives it)."""
+    # Word by word: the whole query as one phrase matched nothing for
+    # "phaser molrep molecular replacement", and Haiku never saw
+    # phaser_pipeline_phil
+    words = query.lower().split()
+    scored = []
+    for order, (name, task) in enumerate(_get("task_lookup").items()):
         if task.get("supersededBy") or task.get("interactive"):
             continue
         text = " ".join(str(task.get(k) or "") for k in ("TASKTITLE", "DESCRIPTION", "shortTitle"))
-        if query and query not in f"{name} {text}".lower():
+        haystack = f"{name} {text}".lower()
+        score = sum(1 for word in words if word in haystack)
+        if words and not score:
             continue
-        out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION"),
-                    "judged": bool(task.get("hasJudgement"))})
-    return {"tasks": out}
+        scored.append((-score, order, {"task": name, "title": task.get("TASKTITLE"),
+                                       "description": task.get("DESCRIPTION"),
+                                       "judged": bool(task.get("hasJudgement"))}))
+    return {"tasks": [entry for _, _, entry in sorted(scored, key=lambda s: s[:2])]}
 
 
 @server.tool()
@@ -457,15 +467,24 @@ def validate(project_id: int, job: str | int) -> dict:
 @server.tool()
 def run_job(project_id: int, job: str | int) -> dict:
     """Start a pending job, then wait_for_job. As in the app, a job whose
-    validation has errors is not started: the errors come back instead."""
+    validation has errors is not started: the errors come back instead.
+    Warnings do not stop it; they come back with the status, to read."""
     job_id = _jid(project_id, job)
-    errors = validate(project_id, job)["errors"]
+    check = validate(project_id, job)
+    errors = check["errors"]
     if errors:
         raise ApiError("Not started: validation has errors. " + "; ".join(
             f"{e.get('objectPath') or e.get('name') or ''}: {e.get('description') or e.get('details') or ''}".strip(": ")
             for e in errors))
     _post(f"jobs/{job_id}/run")
-    return job_status(project_id, job)
+    status = job_status(project_id, job)
+    warnings = check["warnings"]
+    if warnings:
+        # Advice does not stop a run, but it was written for whoever starts one
+        status["warnings"] = [
+            f"{w.get('objectPath') or w.get('name') or ''}: {w.get('description') or w.get('details') or ''}".strip(": ")
+            for w in warnings]
+    return status
 
 
 @server.tool()
@@ -635,6 +654,53 @@ def inspect_file(path: str) -> dict:
                       "is real (the data-reduction or import judgement says).")
     out["import_with"] = task
     out["advice"] = " ".join(advice)
+    return out
+
+
+SEQUENCE_TASKS = ("ProvideSequence", "ProvideAsuContents")
+
+
+def _sequence_job(project_id, job):
+    job_id = _jid(project_id, job)
+    task = _job(job_id)["task_name"]
+    if task not in SEQUENCE_TASKS:
+        raise ApiError(f"job {job} is {task}; use a ProvideSequence or ProvideAsuContents job")
+    return job_id, task
+
+
+@server.tool()
+def find_sequence(project_id: int, job: str | int, text: str, organism: str = "") -> dict:
+    """UniProt entries for a protein named as a person would ("Human CDK2",
+    "CDK2 from human", "cyclin D", "cyclin dependent kinase 2", an accession
+    or entry name), searched from a pending ProvideSequence or
+    ProvideAsuContents job. Returns how the text was read (gene or name,
+    organism) and the candidates, best first (reviewed, exact name, the
+    organism asked for); none is chosen: a family name gives its members.
+    ``organism`` overrides one in the text. Only the text and organism go to
+    UniProt. Then fetch_sequence with the accession you choose."""
+    job_id, task = _sequence_job(project_id, job)
+    return _post(f"jobs/{job_id}/object_method", {
+        "object_path": task, "method_name": "uniprotCandidates",
+        "args": [text, organism or None]})["result"]
+
+
+@server.tool()
+def fetch_sequence(project_id: int, job: str | int, accession: str, residue_range: str = "",
+                   n_copies: int = 0) -> dict:
+    """Put a UniProt entry's sequence into a pending ProvideSequence job (as
+    a FASTA record naming its source) or ProvideAsuContents job (a new
+    contents entry, with ``n_copies`` if given), and save it.
+    ``residue_range`` ("175-432") cuts it to the crystallised construct: the
+    full-length sequence is often not what was crystallised, and it changes
+    the copies, the solvent content and model building's sequence docking."""
+    job_id, task = _sequence_job(project_id, job)
+    args = [accession, residue_range or None]
+    if task == "ProvideAsuContents":
+        args += [None, n_copies or None]
+    out = _post(f"jobs/{job_id}/object_method", {
+        "object_path": task, "method_name": "fetchUniProt", "args": args})["result"]
+    if not out.get("success"):
+        raise ApiError(out.get("error") or "the sequence could not be fetched")
     return out
 
 

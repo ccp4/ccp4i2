@@ -1357,7 +1357,7 @@ class JobViewSet(ModelViewSet):
         (docs/agentic-knowledge.md). ``outcome`` is null when the task has no
         judgement written; a draft judgement says so in ``note``.
         """
-        from ..agent.judgement import judge, judge_finished, pin_references
+        from ..agent.judgement import judge, judge_finished, load, pin_references
 
         try:
             the_job = models.Job.objects.get(id=pk)
@@ -1369,6 +1369,17 @@ class JobViewSet(ModelViewSet):
                 item.key.name: item.value
                 for item in models.JobCharValue.objects.filter(job=the_job).select_related("key")
             })
+            if (the_job.status in (models.Job.Status.UNKNOWN, models.Job.Status.PENDING)
+                    and load(the_job.task_name) is not None):
+                # Nothing has been written to judge, and the rules would read
+                # the absence as a result ("empty: no sequence was recorded").
+                # What a pending job lacks is its validation's to say.
+                return api_success({
+                    "task": the_job.task_name, "outcome": None,
+                    "status": the_job.get_status_display(),
+                    "note": (f"Job {the_job.number} has not run: a job is judged once it "
+                             "has ended. Until then its validation says what it lacks."),
+                })
             finished = the_job.status in (models.Job.Status.FINISHED, models.Job.Status.FAILED,
                                           models.Job.Status.UNSATISFACTORY,
                                           models.Job.Status.INTERRUPTED)

@@ -5,6 +5,7 @@ docs/agentic-knowledge.md, section 3). ``judge`` reads the results it names
 from a job's directory, and returns the first verdict whose condition holds.
 It reads files only: no server, no CCP4.
 """
+import math
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -180,6 +181,22 @@ def problems(judgement):
     return found
 
 
+def _finite(value):
+    """The verdict as JSON can carry it: a number a program wrote as NaN or
+    infinity (CTRUNCATE's anomalous limit when there is none) becomes null.
+    The rules see the NaN itself, which compares false with everything; only
+    the verdict handed out loses it. "missing" still lists only results that
+    were absent, so a null that is not listed there was there but not a
+    number."""
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    if isinstance(value, dict):
+        return {k: _finite(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_finite(v) for v in value]
+    return value
+
+
 def judge(task_name, job_dir, kpis=None, judgement=None):
     """The verdict on a job: its results, the outcome, and why."""
     judgement = judgement or load(task_name)
@@ -213,7 +230,7 @@ def judge(task_name, job_dir, kpis=None, judgement=None):
     verdict["next"] = steps
     if judgement.get("status") != "reviewed":
         verdict["note"] = DRAFT_NOTE
-    return verdict
+    return _finite(verdict)
 
 
 CACHE_NAME = "judgement.json"
