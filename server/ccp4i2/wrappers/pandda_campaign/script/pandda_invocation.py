@@ -61,7 +61,12 @@ MIN_DATASETS = 25
 #: crystal -- while 48 of its 50 datasets were better than 4 A.
 MAX_SHELL_DATASETS = 60
 
-#: PanDDA's ``--max_events_per_dataset`` default: events kept per dataset.
+#: PanDDA returns only this many events per dataset, the highest-scoring
+#: first, and autobuilds only those. Upstream hardcoded 3 and ignored its own
+#: --max_events_per_dataset; the fork honours the flag. Three is low for a
+#: campaign whose crystals carry recurring non-ligand features: a real binder
+#: ranked fourth is not reported and never built, which reads as a site with
+#: no hits rather than as a truncated list.
 MAX_EVENTS_PER_DATASET = 3
 
 
