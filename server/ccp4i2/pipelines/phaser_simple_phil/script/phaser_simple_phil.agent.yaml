@@ -83,6 +83,14 @@ inputs:
       earlier MR job on these data. It is not searched for, and the code
       gives it an identity of 0.9 whatever it is (optimistic for a placed
       homologue).
+      Never a model from mrparse, a database or a prediction: those are in
+      their own crystal's frame or none, and are SEARCHED for. The run is
+      refused when the structure's cell or point group differs from the
+      data's, or it has no cell (Haiku gave 6p8e's cyclin chain as fixed for
+      CDK4/cyclin D1 data; Phaser placed CDK4 against it at LLG -892). For a
+      second component, place the first, then run again with this job's
+      XYZOUT as XYZIN_FIXED, or use phaser_pipeline_phil with an ensemble
+      per component.
   - param: inputData.RUNREFMAC
     advice: >
       Leave on (with RUNSHEETBEND): the ten jelly-body cycles are a test of

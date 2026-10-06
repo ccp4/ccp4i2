@@ -6,6 +6,39 @@ from lxml import etree
 class ProvideAsuContents(CPluginScript):
     TASKNAME = 'ProvideAsuContents'
 
+    # -- UniProt (reached through the object_method endpoint) ---------------
+
+    def uniprotCandidates(self, text, organism=None, limit=10):
+        """UniProt entries for a protein as named; see CSequence.uniprotCandidates."""
+        from ccp4i2.core.CCP4ModelData import CSequence
+        return CSequence.uniprotCandidates(text, organism, limit)
+
+    def fetchUniProt(self, accession, residue_range=None, index=None, nCopies=None):
+        """Fill ASU_CONTENT item ``index`` (a new item when None) from a
+        UniProt entry, cut to ``residue_range`` for the construct, with
+        ``nCopies`` if given; and save. Only a pending job."""
+        from ccp4i2.lib.utils.jobs.editing import editable_job, save
+        from ccp4i2.lib.utils.sequences import uniprot
+        job, why = editable_job(self)
+        if job is None:
+            return {"success": False, "error": why}
+        items = self.container.inputData.ASU_CONTENT
+        if index is not None and not 0 <= int(index) < len(items):
+            return {"success": False, "error": f"there is no ASU_CONTENT[{index}]"}
+        try:  # fetched first, so a failure changes nothing
+            entry = uniprot.fetch(accession, residue_range)
+        except uniprot.UniProtError as err:
+            return {"success": False, "error": str(err)}
+        if index is None:
+            items.append(items.makeItem())
+            index = len(items) - 1
+        index = int(index)
+        added = items[index].fillFromEntry(entry)
+        if nCopies is not None:
+            items[index].nCopies.set(int(nCopies))
+        save(self, job)
+        return {"success": True, "index": index, "added": added}
+
     def validity(self):
       """The contents come from the list or, if it is empty, from a file.
 
