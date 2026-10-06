@@ -61,10 +61,14 @@ MIN_DATASETS = 25
 #: crystal -- while 48 of its 50 datasets were better than 4 A.
 MAX_SHELL_DATASETS = 60
 
+#: PanDDA's ``--max_events_per_dataset`` default: events kept per dataset.
+MAX_EVENTS_PER_DATASET = 3
+
 
 def build_argv(data_dirs, out_dir, local_cpus: int,
                min_characterisation_datasets: int = MIN_DATASETS,
-               max_shell_datasets: int = MAX_SHELL_DATASETS) -> List[str]:
+               max_shell_datasets: int = MAX_SHELL_DATASETS,
+               max_events_per_dataset: int = MAX_EVENTS_PER_DATASET) -> List[str]:
     """The contract's argv, argument for argument, both defensive literals
     included, plus the two statistical knobs a campaign needs. ``data_dirs``
     is the staged ``datasets/`` directory."""
@@ -80,6 +84,7 @@ def build_argv(data_dirs, out_dir, local_cpus: int,
         "--dataset_range", DATASET_RANGE,
         "--min_characterisation_datasets", str(int(min_characterisation_datasets)),
         "--max_shell_datasets", str(int(max_shell_datasets)),
+        "--max_events_per_dataset", str(int(max_events_per_dataset)),
     ]
 
 

@@ -335,7 +335,7 @@ class pandda_campaign(CPluginScript):
     def makeCommandAndScript(self):
         argv = contract.build_argv(self._staging_root / 'datasets', self._out_dir(),
                                    self._local_cpus(), self._min_datasets(),
-                                   self._max_shell_datasets())
+                                   self._max_shell_datasets(), self._max_events_per_dataset())
         self.commandLine = list(argv)
         self.container.outputData.PROVENANCE_ARGV.set(' '.join([contract.PROGRAM] + argv))
         if self._resolved:
@@ -531,6 +531,11 @@ class pandda_campaign(CPluginScript):
         par = self.container.controlParameters
         return (int(par.MAX_SHELL_DATASETS) if par.MAX_SHELL_DATASETS.isSet()
                 else contract.MAX_SHELL_DATASETS)
+
+    def _max_events_per_dataset(self) -> int:
+        par = self.container.controlParameters
+        return (int(par.MAX_EVENTS_PER_DATASET) if par.MAX_EVENTS_PER_DATASET.isSet()
+                else contract.MAX_EVENTS_PER_DATASET)
 
     def _dataset_headers(self):
         """``[(resolution_high, cell), ...]`` for each readable reflection

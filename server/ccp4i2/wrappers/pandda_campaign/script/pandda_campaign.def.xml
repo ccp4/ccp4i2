@@ -48,6 +48,15 @@
                     <toolTip>PanDDA's --max_shell_datasets, default 60. It is also the floor below which PanDDA takes comparator datasets REGARDLESS of resolution, and a dataset is processed at the worst resolution among its comparators. So on a campaign with fewer datasets than this, every dataset is a comparator and one bad crystal sets the resolution for the whole run. Set it below the number of good datasets to make the resolution filter bite.</toolTip>
                 </qualifiers>
             </content>
+            <content id="MAX_EVENTS_PER_DATASET">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>1</min>
+                    <default>3</default>
+                    <guiLabel>Maximum events per dataset</guiLabel>
+                    <toolTip>PanDDA's --max_events_per_dataset, default 3. Only the best-scoring events of each dataset are kept; raise it when a crystal has more than three binding sites or ligands worth inspecting.</toolTip>
+                </qualifiers>
+            </content>
             <content id="MIN_CHARACTERISATION_DATASETS">
                 <className>CInt</className>
                 <qualifiers>

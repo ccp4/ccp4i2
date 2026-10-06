@@ -27,6 +27,9 @@ def test_argv_carries_both_defensive_literals():
     assert small[small.index("--min_characterisation_datasets") + 1] == "4"
     assert small[small.index("--max_shell_datasets") + 1] == "30"
     assert argv[argv.index("--out_dir") + 1] == "/o/pandda2_out"
+    assert argv[argv.index("--max_events_per_dataset") + 1] == "3", "PanDDA's default, explicit"
+    seven = c.build_argv("/s", "/o", 1, 4, 30, 7)
+    assert seven[seven.index("--max_events_per_dataset") + 1] == "7"
 
 
 def test_environment_sets_scratch_and_strips_stray_pandda_switches():
