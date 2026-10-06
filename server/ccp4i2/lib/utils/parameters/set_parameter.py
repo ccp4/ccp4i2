@@ -103,6 +103,45 @@ def set_parameter(
         return ""
 
 
+def shape_errors(target, value, path):
+    """Where ``value`` does not have the shape ``target`` takes, as messages.
+
+    A single-value field (text, number, flag) given a dict or list stored
+    its Python repr as text and failed only later, at validation: an agent
+    set an ASU_CONTENT item's sequence to {"text": ...}. A list given
+    anything but a list is caught too. List items are checked against a
+    fresh item; files are left to the file handling, which takes several
+    forms.
+    """
+    from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CList, CString
+    if value is None or isinstance(target, (CDataFile, CCP4File.CDataFile)):
+        return []
+    if isinstance(target, (CString, CInt, CFloat, CBoolean)):
+        if isinstance(value, (dict, list)):
+            kind = "an object" if isinstance(value, dict) else "a list"
+            return [f"{path} takes a single value (text, number or true/false), not {kind}: "
+                    f"{json.dumps(value)[:80]}"]
+        return []
+    if isinstance(target, (CList, CCP4Data.CList)):
+        if not isinstance(value, list):
+            return [f"{path} is a list: give a list of items"]
+        make = getattr(target, "makeItem", None)
+        if make is None:
+            return []
+        errors = []
+        for i, item_value in enumerate(value):
+            errors += shape_errors(make(), item_value, f"{path}[{i}]")
+        return errors
+    if isinstance(value, dict):
+        errors = []
+        for key, item_value in value.items():
+            child = getattr(target, key, None)
+            if child is not None and hasattr(child, "objectName"):
+                errors += shape_errors(child, item_value, f"{path}.{key}")
+        return errors
+    return []
+
+
 def set_parameter_container(
     the_container: CContainer, object_path: str, value: Union[str, int, dict, None]
 ):
@@ -148,6 +187,10 @@ def set_parameter_container(
             exc_info=err,
         )
         raise
+
+    problems = shape_errors(object_element, value, object_path)
+    if problems:
+        raise ValueError("; ".join(problems))
 
     # e = object_element.getEtree()
     # print(ET.tostring(e).decode("utf-8"))

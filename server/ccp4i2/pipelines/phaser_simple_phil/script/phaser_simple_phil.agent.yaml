@@ -37,7 +37,9 @@ not_when:
 inputs:
   - param: inputData.XYZIN
     advice: >
-      One copy of the molecule, placed as one rigid body. Use the atom
+      No model yet, only a sequence: run mrparse first and give one of its
+      XYZOUT models here (its judgement says which); do not fetch one from
+      outside CCP4i2. One copy of the molecule, placed as one rigid body. Use the atom
       selection to remove what will not match the crystal (flexible termini
       and loops, ligands, other chains of the downloaded file), or give a
       Chainsaw/Sculptor model. A multi-chain file is one rigid body: either
@@ -81,6 +83,14 @@ inputs:
       earlier MR job on these data. It is not searched for, and the code
       gives it an identity of 0.9 whatever it is (optimistic for a placed
       homologue).
+      Never a model from mrparse, a database or a prediction: those are in
+      their own crystal's frame or none, and are SEARCHED for. The run is
+      refused when the structure's cell or point group differs from the
+      data's, or it has no cell (Haiku gave 6p8e's cyclin chain as fixed for
+      CDK4/cyclin D1 data; Phaser placed CDK4 against it at LLG -892). For a
+      second component, place the first, then run again with this job's
+      XYZOUT as XYZIN_FIXED, or use phaser_pipeline_phil with an ensemble
+      per component.
   - param: inputData.RUNREFMAC
     advice: >
       Leave on (with RUNSHEETBEND): the ten jelly-body cycles are a test of
@@ -162,6 +172,27 @@ results:
       Space group of the solution. If it differs from the input
       data's, the data were reindexed and F_SIGF_OUT / FREERFLAG_OUT are the
       files to use downstream.
+  SPACEGROUP_CHANGE:
+    file: program.xml
+    xpath: .//SpaceGroupCheck
+    attribute: change
+    type: str
+    optional: true
+    meaning: >
+      Whether the solution's space group differs from the input data's,
+      decided by space-group number: "none"; "setting", the same group in
+      another setting or name (P 1 21 1 and P 21); or "changed", another
+      space group of the point group, tried by Phaser and chosen (P 2 21 21,
+      No. 18, to P 21 21 21, No. 19: a screw axis where the data had a
+      two-fold). Absent for jobs before this was recorded; then compare
+      SPACEGROUP with the data's yourself, by number not by name.
+  SPACEGROUP_INPUT:
+    file: program.xml
+    xpath: .//SpaceGroupCheck
+    attribute: given
+    type: str
+    optional: true
+    meaning: The input data's space group, as Phaser was given it.
   RFREE_START:
     file: program.xml
     xpath: .//REFMAC/Overall_stats/stats_vs_cycle/new_cycle/r_free
@@ -202,9 +233,9 @@ results:
       summary): BetaBlip 3 0.610 (BLIP missing); MDM2 25 0.755 (a trimmed
       Chainsaw model of the whole AU); BetaBlip 4 0.982. Multiply by
       NCOPIES: 0.5 for one of two copies is complete.
-  # FINDING: dataReindexed (whether the data were reindexed to the solution's
-  #   space group) is an output parameter, not in program.xml; SPACEGROUP has
-  #   to be compared with the input data's instead.
+  # FINDING (fixed): whether the space group changed was only the output
+  #   parameter dataReindexed, by symbol; program.xml now carries
+  #   SpaceGroupCheck (given, solved, change by space-group number).
   # NOTE: [last()] is ElementTree XPath outside the subset the format lists;
   #   judgement.read_result supports it. All xpaths were run against MDM2
   #   job 25 and BetaBlip jobs 3 and 4. REFMAC values carry whitespace.
@@ -323,11 +354,16 @@ traps:
     model and the choice of search resolution.
   - >
     Phaser tries the other space groups of the point group and may change
-    the space group (MDM2 25 tested six P6x22 groups). When SPACEGROUP
-    differs from the input data's, build and refine against this job's
-    F_SIGF_OUT and FREERFLAG_OUT; a later job given the original data with
-    the reindexed model has an R-free near 0.5 and looks like a wrong
-    solution.
+    the space group (MDM2 25 tested six P6x22 groups). SPACEGROUP_CHANGE
+    says which: "changed" is a different space group, not a different name
+    for the same one. A held-out agent run saw P 2 21 21 (No. 18) become P
+    21 21 21 (No. 19), read it as a setting difference, and was unsure what
+    to carry on with. With "changed" (or "setting"), build and refine
+    against this job's F_SIGF_OUT and FREERFLAG_OUT, which carry the
+    solution's space group; a later job given the original data with this
+    model has an R-free near 0.5 and looks like a wrong solution. Report the
+    change. If the data's space group was itself doubtful (the
+    data-reduction judgement's check_symmetry), say so too.
   - >
     A model already at the origin (R-factor there below 40%) is placed
     without a search: no search TFZ, Strategy outcome "placed (model

@@ -214,12 +214,31 @@ class phaser_mr_auto_phil(phaser_phil):
             self._input_space_group = gemmi.read_mtz_file(self._obs_shim.hklin).spacegroup.hm
         except Exception:
             self._input_space_group = None
-        # Phaser reads PDB; a model given as mmCIF is converted alongside
-        for ensemble in self.container.inputData.ENSEMBLES:
-            for item in ensemble.pdbItemList:
+        return self._prepare_models()
+
+    def _prepare_models(self):
+        """Each search model as Phaser will read it: the selected atoms, or a
+        PDB written from an mmCIF, mapped in self._model_paths."""
+        # Phaser reads PDB, and only what it is given. A model with an atom
+        # selection (one chain of a downloaded file) is written out as just the
+        # selected atoms; before this every Phaser job searched with the whole
+        # file, whatever the selection said. Keyed by (ensemble, item) because
+        # one file may be chosen twice with different selections.
+        for e, ensemble in enumerate(self.container.inputData.ENSEMBLES):
+            for k, item in enumerate(ensemble.pdbItemList):
                 if not item.structure.isSet():
                     continue
                 src = str(item.structure.getFullPath())
+                if item.structure.isSelectionSet():
+                    dst = os.path.join(str(self.getWorkDirectory()), "{}_e{}_m{}_selected.pdb".format(
+                        os.path.splitext(os.path.basename(src))[0], e + 1, k + 1))
+                    if item.structure.getSelectedAtomsPdbFile(dst) != 0 or not os.path.isfile(dst):
+                        self.appendErrorReport(203, f"{src}: selection {item.structure.selection.text} wrote nothing",
+                                               severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                        return CPluginScript.FAILED
+                    self._model_paths[(e, k)] = dst
+                    continue
+                # a model given as mmCIF is converted alongside
                 if src.lower().endswith((".cif", ".mmcif")):
                     try:
                         import gemmi
@@ -318,6 +337,8 @@ class phaser_mr_auto_phil(phaser_phil):
             given = (self._input_space_group or "").strip()
             reindexed = bool(given) and _same_symbol(solved) != _same_symbol(given)
             out.dataReindexed.set(reindexed)
+            if given:
+                self.xmlroot.append(space_group_check(given, solved))
             if reindexed:
                 warnings = self.xmlroot.find("PhaserWarnings")
                 if warnings is None:
@@ -368,6 +389,31 @@ class phaser_mr_auto_phil(phaser_phil):
         os.replace(tmp, target)
         for responder in getattr(self, "xml_responders", ()):
             responder(xmlroot)
+
+
+def space_group_check(given, solved):
+    """<SpaceGroupCheck given solved change>: "none"; "setting", the same
+    space group in another setting or name (P 1 21 1 and P 21; P 21 21 2
+    and P 2 21 21, both No. 18); or "changed", another space group of the
+    point group (P 2 21 21, No. 18, to P 21 21 21, No. 19: a screw axis
+    where the data had a two-fold). An agent took such a change for a
+    setting difference; the space-group numbers decide."""
+    import gemmi
+    node = etree.Element("SpaceGroupCheck", given=given, solved=solved)
+    sg_given = gemmi.find_spacegroup_by_name(given)
+    sg_solved = gemmi.find_spacegroup_by_name(solved)
+    if _same_symbol(given) == _same_symbol(solved):
+        change = "none"
+    elif sg_given is not None and sg_solved is not None and sg_given.number == sg_solved.number:
+        change = "setting"
+    else:
+        change = "changed"
+    node.set("change", change)
+    if sg_given is not None:
+        node.set("given_number", str(sg_given.number))
+    if sg_solved is not None:
+        node.set("solved_number", str(sg_solved.number))
+    return node
 
 
 def _same_symbol(symbol):

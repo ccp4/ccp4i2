@@ -129,6 +129,16 @@ Rules:
   task. A check (`agent/check.py`) reads each one from the scenario jobs and
   fails on a path that finds nothing; a number that exists only in a log is a
   finding, fixed by adding it to the task's program.xml.
+- **Results come from what the job wrote**: program.xml, params.xml, the
+  KPIs and the job's own data files. Never from the rendered report
+  (report_xml.xml), which is a presentation of those, made only when someone
+  opens it. When a program records its numbers only in text (MrBUMP's quick
+  mode, results.txt), the wrapper adds them to program.xml.
+- **A finished job is judged once.** The verdict is kept in the job
+  directory as `judgement.json` with the version of the judgement (a hash of
+  its file and of the evaluating code) and reused until that changes. It
+  records which version of a judgement said what about the job; a job still
+  running is judged afresh each time.
 - **`status: draft` until an expert has read it.** The facade says so with
   every verdict it gives from a draft.
 
@@ -145,17 +155,27 @@ building.
 A thin adapter over the REST API, so the server's validation still decides
 everything. Two ways in:
 
-- **HTTP, served by the app itself at `/mcp`** (`server/ccp4i2/agent/http.py`,
-  mounted in `config/asgi.py`): stateless, so either of the desktop's two
-  uvicorn workers can answer; each tool call goes back to the same server's
-  REST API with the caller's own `Authorization`, so whatever authentication
-  the deployment uses decides it. On the desktop `/mcp` also requires the
-  session token itself. Help > About shows the address and a setup line;
-  both change at every launch, deliberately: an agent's access lasts as
-  long as the session the person started.
+- **HTTP, served by the app itself at `/mcp/ccp4i2`**
+  (`server/ccp4i2/agent/http.py`, mounted in `config/asgi.py`).
+  - **Path:** scoped like the REST API (`/api/ccp4i2`), so an application
+    serving CCP4i2 can serve MCP servers of its own beside it.
+  - **Where it is served:** on the desktop; in a deployment only with
+    `CCP4I2_MCP=1`, so a deployment opts in rather than gaining an endpoint
+    by updating CCP4i2. `CCP4I2_MCP=0` turns it off anywhere.
+  - **Stateless,** so either of the desktop's two uvicorn workers can
+    answer.
+  - **Authentication:** these requests skip Django's middleware, but each
+    tool call goes back to the same server's REST API with the caller's own
+    `Authorization`, so the deployment's authentication and permissions
+    decide everything. The caller's address goes with it as
+    `X-Forwarded-For`. `/mcp/ccp4i2` itself refuses a request with no
+    `Authorization`; on the desktop it checks the session token.
+  - **Connecting:** Help > About shows the address and a setup line. Both
+    change at every launch, deliberately: an agent's access lasts as long as
+    the session the person started.
 
-      claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
-          --header "Authorization: Bearer <token>"
+        claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp/ccp4i2 \
+            --header "Authorization: Bearer <token>"
 
 - **stdio**, `i2-mcp` (or `python -m ccp4i2.agent.mcp_server`), for clients
   that only speak stdio; `CCP4I2_URL` and `CCP4I2_TOKEN` say where the

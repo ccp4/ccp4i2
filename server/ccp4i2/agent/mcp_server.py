@@ -36,7 +36,14 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 0. Reflection data from outside: import them first by running the TASK
    import_merged (create_job, upload_file, run_job; for unmerged data the
    task aimless_pipe), which checks them and makes or keeps the free-R set
-   every later job needs. Models and sequences can be uploaded where used.
+   every later job needs (inspect_file says which, before you start).
+   Models and sequences can be uploaded where used. With only a protein's
+   name, create a ProvideAsuContents (or ProvideSequence) job, find_sequence
+   for the candidates, choose (say which, and why), and fetch_sequence it,
+   with the construct's residue range if known. With only a sequence
+   and no search model, run mrparse: it finds homologues and predicted
+   models and prepares them for MR (mrbump_basic does that and MR in one
+   automated run). Do not fetch structures from outside CCP4i2.
    Jobs are named by project and job NUMBER (as project_jobs lists them and
    [n].PARAM references use), in every tool.
 1. describe_task(task) before using a task: its judgement says when to use
@@ -55,17 +62,21 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    job_parameters lists them, e.g. inputData.XYZIN.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
-5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory; it
-   returns after max_seconds with waited_out true, so if your own tool calls
-   time out, give a max_seconds below that limit and call it again (jobs
-   can run for an hour). Then judge_job(job). "Finished" means it ran, not
-   that it worked: the judgement decides, and a draft judgement is a
-   guide, not a rule. Do not argue a verdict away with the numbers it
+5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory. It
+   returns after max_seconds (default 45, below most clients' limit on one
+   call) with waited_out true and the step running now; call it again.
+   Jobs can run for an hour. Then judge_job(job). "Finished" means it ran, not
+   that it worked: the judgement decides. Every judgement so far is a
+   draft calibrated on a few test projects: read the basis of the rule that
+   fired (judge_job's "because" and the judgement's basis text) to see how
+   much it rests on. Do not argue a verdict away with the numbers it
    already weighed (a low R-free does not excuse geometry the verdict
    faulted); act on its advice, or report that you stopped short and why.
 6. To change a finished job, clone_job it and edit the clone.
 7. When a job fails, or its judgement cannot read its numbers, job_errors
-   says what it recorded and shows its log. file_summary("[n].XYZOUT")
+   says what it recorded and shows its log. inspect_file(path) says what a
+   reflection file on disk is and which task imports it, before you start.
+   file_summary("[n].XYZOUT")
    says what a model holds (chains, residues built, UNK, ligands, heavy
    atoms) without downloading it.
 
@@ -95,6 +106,23 @@ def _base():
     return os.environ.get("CCP4I2_URL", "http://127.0.0.1:3421/api/ccp4i2").rstrip("/")
 
 
+def _auth_headers():
+    """Who the REST call is for. Over HTTP: the caller's own Authorization,
+    or none (the API then refuses), never the server's token; and the
+    caller's address as X-Forwarded-For, so the API does not see every agent
+    as 127.0.0.1. Over stdio: CCP4I2_TOKEN, the command line's own."""
+    caller = _caller.get()
+    headers = {}
+    if caller is not None:
+        if caller.get("authorization"):
+            headers["Authorization"] = caller["authorization"]
+        if caller.get("forwarded_for"):
+            headers["X-Forwarded-For"] = caller["forwarded_for"]
+    elif os.environ.get("CCP4I2_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    return headers
+
+
 def _request(method, path, body=None, query=None, content_type="application/json"):
     url = f"{_base()}/{path.strip('/')}/"
     if query:
@@ -104,12 +132,7 @@ def _request(method, path, body=None, query=None, content_type="application/json
     if body is not None:
         data = json.dumps(body).encode() if content_type == "application/json" else body
         headers["Content-Type"] = content_type
-    caller = _caller.get()
-    if caller is not None:
-        if caller.get("authorization"):
-            headers["Authorization"] = caller["authorization"]
-    elif os.environ.get("CCP4I2_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    headers.update(_auth_headers())
     req = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=300) as response:
@@ -130,12 +153,7 @@ def _request(method, path, body=None, query=None, content_type="application/json
 def _text(path):
     """A file the server serves as is (a log), as text; "" if there is none."""
     url = f"{_base()}/{path.lstrip('/')}"
-    headers = {}
-    caller = _caller.get()
-    if caller is not None and caller.get("authorization"):
-        headers["Authorization"] = caller["authorization"]
-    elif caller is None and os.environ.get("CCP4I2_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['CCP4I2_TOKEN']}"
+    headers = _auth_headers()
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
             return r.read().decode("utf-8", "replace")
@@ -206,20 +224,27 @@ def create_project(name: str) -> dict:
 @server.tool()
 def list_tasks(query: str = "") -> dict:
     """The tasks that can be run, optionally only those whose name, title or
-    description contains ``query``. Superseded and interactive (in-app
-    window) tasks are left out. ``judged`` says whether the task has a
-    judgement (describe_task gives it)."""
-    query = query.lower()
-    out = []
-    for name, task in _get("task_lookup").items():
+    description contains any word of ``query`` ("phaser molecular
+    replacement"), those matching most words first. Superseded and
+    interactive (in-app window) tasks are left out. ``judged`` says whether
+    the task has a judgement (describe_task gives it)."""
+    # Word by word: the whole query as one phrase matched nothing for
+    # "phaser molrep molecular replacement", and Haiku never saw
+    # phaser_pipeline_phil
+    words = query.lower().split()
+    scored = []
+    for order, (name, task) in enumerate(_get("task_lookup").items()):
         if task.get("supersededBy") or task.get("interactive"):
             continue
         text = " ".join(str(task.get(k) or "") for k in ("TASKTITLE", "DESCRIPTION", "shortTitle"))
-        if query and query not in f"{name} {text}".lower():
+        haystack = f"{name} {text}".lower()
+        score = sum(1 for word in words if word in haystack)
+        if words and not score:
             continue
-        out.append({"task": name, "title": task.get("TASKTITLE"), "description": task.get("DESCRIPTION"),
-                    "judged": bool(task.get("hasJudgement"))})
-    return {"tasks": out}
+        scored.append((-score, order, {"task": name, "title": task.get("TASKTITLE"),
+                                       "description": task.get("DESCRIPTION"),
+                                       "judged": bool(task.get("hasJudgement"))}))
+    return {"tasks": [entry for _, _, entry in sorted(scored, key=lambda s: s[:2])]}
 
 
 @server.tool()
@@ -442,15 +467,24 @@ def validate(project_id: int, job: str | int) -> dict:
 @server.tool()
 def run_job(project_id: int, job: str | int) -> dict:
     """Start a pending job, then wait_for_job. As in the app, a job whose
-    validation has errors is not started: the errors come back instead."""
+    validation has errors is not started: the errors come back instead.
+    Warnings do not stop it; they come back with the status, to read."""
     job_id = _jid(project_id, job)
-    errors = validate(project_id, job)["errors"]
+    check = validate(project_id, job)
+    errors = check["errors"]
     if errors:
         raise ApiError("Not started: validation has errors. " + "; ".join(
             f"{e.get('objectPath') or e.get('name') or ''}: {e.get('description') or e.get('details') or ''}".strip(": ")
             for e in errors))
     _post(f"jobs/{job_id}/run")
-    return job_status(project_id, job)
+    status = job_status(project_id, job)
+    warnings = check["warnings"]
+    if warnings:
+        # Advice does not stop a run, but it was written for whoever starts one
+        status["warnings"] = [
+            f"{w.get('objectPath') or w.get('name') or ''}: {w.get('description') or w.get('details') or ''}".strip(": ")
+            for w in warnings]
+    return status
 
 
 @server.tool()
@@ -467,10 +501,13 @@ TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
 
 
 @server.tool()
-def wait_for_job(project_id: int, job: str | int, max_seconds: int = 600) -> dict:
+def wait_for_job(project_id: int, job: str | int, max_seconds: int = 45) -> dict:
     """Wait until a job ends (Finished, Failed, Unsatisfactory, Interrupted)
-    or max_seconds pass (at most 1800), then give its status. Call again if
-    it is still running."""
+    or max_seconds pass, then give its status; call again while it runs.
+    Keep max_seconds below your client's own limit on one tool call (many
+    stop a call at about 60 s whatever this says; the default is 45). A job
+    still running comes back with ``progress``: the step running now and the
+    last lines of its log, so a long job (crank2, modelcraft) is not opaque."""
     job_id = _jid(project_id, job)
     import time
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
@@ -478,8 +515,39 @@ def wait_for_job(project_id: int, job: str | int, max_seconds: int = 600) -> dic
         status = job_status(project_id, job)
         if status["status"] in TERMINAL or time.monotonic() >= deadline:
             status["waited_out"] = status["status"] not in TERMINAL
+            if status["waited_out"]:
+                try:
+                    status["progress"] = _progress(project_id, str(job).strip())
+                except ApiError:
+                    pass  # progress is extra; the status stands
             return status
-        time.sleep(10)
+        time.sleep(min(10, max(1, deadline - time.monotonic())))
+
+
+def _progress(project_id, number, lines=3):
+    """The deepest step of a job that is running now, and its log's last lines."""
+    tree = _get(f"projects/{project_id}/job_tree")["job_tree"]
+
+    def find(entries, wanted):
+        for entry in entries:
+            if str(entry["number"]) == wanted:
+                return entry
+            found = find(entry.get("children") or [], wanted)
+            if found:
+                return found
+        return None
+
+    node = find(tree, number) or {}
+    while True:
+        running = [c for c in node.get("children") or [] if c.get("status") in (2, 3)]
+        if not running:
+            break
+        node = running[-1]
+    step = str(node.get("number", number))
+    directory = "/".join(f"job_{n}" for n in step.split("."))
+    log = _text(f"projects/{project_id}/files_by_path/CCP4_JOBS/{directory}/log.txt")
+    tail = [line for line in log.splitlines() if line.strip()][-lines:]
+    return {"step": step, "task": node.get("task_name"), "log_tail": "\n".join(tail)}
 
 
 @server.tool()
@@ -538,6 +606,102 @@ def what_next(project_id: int, job: str | int) -> dict:
     usual = _get(f"jobs/{job_id}/what_next").get("result", [])
     return {"from_judgement": verdict.get("next") or [],
             "usual_next_tasks": [t.get("taskName") for t in usual]}
+
+
+@server.tool()
+def inspect_file(path: str) -> dict:
+    """What a reflection file on disk is, before importing it: its format,
+    whether it is merged, whether it has anomalous pairs, cell, space group,
+    resolution, and for an MTZ its datasets and their columns (to choose
+    HKLIN_OBS_COLUMNS when it holds a native and derivatives). Says which
+    task imports it: aimless_pipe for unmerged data, import_merged for
+    merged. ``path`` is read where this server runs (the desktop: your own
+    disk)."""
+    import os
+    from ccp4i2.lib.utils.files.reflection_diagnosis import diagnose_reflection_file
+    path = os.path.expanduser(path)
+    if not os.path.isfile(path):
+        raise ApiError(f"{path}: no such file here")
+    diagnosis = diagnose_reflection_file(path)
+    if diagnosis.get("format") == "unknown":
+        return {"path": path, "format": "unknown",
+                "advice": "Not a reflection file this server recognises. Coordinates and "
+                          "sequences are uploaded where a task uses them (upload_file)."}
+    out = {"path": path, **{k: v for k, v in diagnosis.items() if v not in (None, [], "")}}
+    if diagnosis.get("format") == "mtz":
+        try:
+            import gemmi
+            mtz = gemmi.read_mtz_file(path)
+            out["datasets"] = [
+                {"name": f"{ds.project_name}/{ds.crystal_name}/{ds.dataset_name}",
+                 "columns": [c.label for c in mtz.columns if c.dataset_id == ds.id and c.type != "H"]}
+                for ds in mtz.datasets if any(c.dataset_id == ds.id and c.type != "H"
+                                              for c in mtz.columns)]
+        except Exception:  # noqa: BLE001 - the datasets are extra; the diagnosis stands
+            pass
+    merged = diagnosis.get("merged")
+    task = "aimless_pipe" if merged is False else "import_merged"
+    advice = [f"Import with {task}" + (" (scales and merges it)." if merged is False else ".")]
+    if len(out.get("datasets", [])) > 1:
+        advice.append("Several datasets: name the observation and free-R columns you mean "
+                      "(HKLIN_OBS_COLUMNS, HKLIN_FREER_COLUMN); left unset, import_merged may "
+                      "take a derivative's.")
+    if merged is False:
+        advice.append("Whether there is an anomalous signal is known after data reduction "
+                      "(its judgement reads CC_anom).")
+    elif diagnosis.get("anomalous"):
+        advice.append("It has anomalous pairs: experimental phasing is possible if the signal "
+                      "is real (the data-reduction or import judgement says).")
+    out["import_with"] = task
+    out["advice"] = " ".join(advice)
+    return out
+
+
+SEQUENCE_TASKS = ("ProvideSequence", "ProvideAsuContents")
+
+
+def _sequence_job(project_id, job):
+    job_id = _jid(project_id, job)
+    task = _job(job_id)["task_name"]
+    if task not in SEQUENCE_TASKS:
+        raise ApiError(f"job {job} is {task}; use a ProvideSequence or ProvideAsuContents job")
+    return job_id, task
+
+
+@server.tool()
+def find_sequence(project_id: int, job: str | int, text: str, organism: str = "") -> dict:
+    """UniProt entries for a protein named as a person would ("Human CDK2",
+    "CDK2 from human", "cyclin D", "cyclin dependent kinase 2", an accession
+    or entry name), searched from a pending ProvideSequence or
+    ProvideAsuContents job. Returns how the text was read (gene or name,
+    organism) and the candidates, best first (reviewed, exact name, the
+    organism asked for); none is chosen: a family name gives its members.
+    ``organism`` overrides one in the text. Only the text and organism go to
+    UniProt. Then fetch_sequence with the accession you choose."""
+    job_id, task = _sequence_job(project_id, job)
+    return _post(f"jobs/{job_id}/object_method", {
+        "object_path": task, "method_name": "uniprotCandidates",
+        "args": [text, organism or None]})["result"]
+
+
+@server.tool()
+def fetch_sequence(project_id: int, job: str | int, accession: str, residue_range: str = "",
+                   n_copies: int = 0) -> dict:
+    """Put a UniProt entry's sequence into a pending ProvideSequence job (as
+    a FASTA record naming its source) or ProvideAsuContents job (a new
+    contents entry, with ``n_copies`` if given), and save it.
+    ``residue_range`` ("175-432") cuts it to the crystallised construct: the
+    full-length sequence is often not what was crystallised, and it changes
+    the copies, the solvent content and model building's sequence docking."""
+    job_id, task = _sequence_job(project_id, job)
+    args = [accession, residue_range or None]
+    if task == "ProvideAsuContents":
+        args += [None, n_copies or None]
+    out = _post(f"jobs/{job_id}/object_method", {
+        "object_path": task, "method_name": "fetchUniProt", "args": args})["result"]
+    if not out.get("success"):
+        raise ApiError(out.get("error") or "the sequence could not be fetched")
+    return out
 
 
 @server.tool()

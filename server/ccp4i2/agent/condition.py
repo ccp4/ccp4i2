@@ -219,3 +219,60 @@ def evaluate(tree, values):
 def holds(text, values):
     """True only if the condition is known to hold."""
     return evaluate(parse(text), values) is True
+
+
+def render(tree):
+    """A parsed condition (or part of one) as text again."""
+    kind = tree[0]
+    if kind == "lit":
+        value = tree[1]
+        if isinstance(value, bool):
+            return "true" if value else "false"
+        return f'"{value}"' if isinstance(value, str) else f"{value:g}"
+    if kind == "null":
+        return "null"
+    if kind == "name":
+        return tree[1]
+    if kind == "not":
+        return f"not {render(tree[1])}"
+    if kind in ("and", "or"):
+        return f"({render(tree[1])} {kind} {render(tree[2])})"
+    return f"{render(tree[2])} {tree[1]} {render(tree[3])}"
+
+
+def clauses(text, values):
+    """Each comparison in a condition, in order, as the app draws it.
+
+    ``{"text", "holds": True/False/None, "values": {name: value}}``; a
+    comparison of one result with a number also carries ``name``, ``op``,
+    ``threshold`` and ``value``, which is a gauge (``R1FREE < 0.304``). None
+    for ``holds`` means unknown: a result it needs was not read.
+    """
+    out = []
+
+    def walk(tree):
+        kind = tree[0]
+        if kind == "cmp":
+            result = evaluate(tree, values)
+            clause = {"text": render(tree),
+                      "holds": None if result is MISSING else bool(result),
+                      "values": {n: values.get(n) for n in sorted(names(tree))}}
+            left, right = tree[2], tree[3]
+            if left[0] == "name" and right[0] == "lit" and isinstance(right[1], (int, float)) \
+                    and not isinstance(right[1], bool):
+                clause.update(name=left[1], op=tree[1], threshold=right[1],
+                              value=values.get(left[1]))
+            elif right[0] == "name" and left[0] == "lit" and isinstance(left[1], (int, float)) \
+                    and not isinstance(left[1], bool):
+                flipped = {"<": ">", ">": "<", "<=": ">=", ">=": "<="}.get(tree[1], tree[1])
+                clause.update(name=right[1], op=flipped, threshold=left[1],
+                              value=values.get(right[1]))
+            out.append(clause)
+        elif kind == "not":
+            walk(tree[1])
+        elif kind in ("and", "or"):
+            walk(tree[1])
+            walk(tree[2])
+
+    walk(parse(text))
+    return out

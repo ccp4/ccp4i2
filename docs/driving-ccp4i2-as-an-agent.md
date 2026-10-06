@@ -63,13 +63,17 @@ closes. Never paste it into a chat, a bug report, or a shared document.
 
 ### Connecting an MCP agent
 
-The app serves CCP4i2's agent tools (MCP) at `/mcp` on the same port, with
-the same token. **Help → About** shows the address and a ready setup line:
+The app serves CCP4i2's agent tools (MCP) at `/mcp/ccp4i2` on the same
+port, with the same token. **Help → About** shows the address and a ready
+setup line:
 
 ```bash
-claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp \
+claude mcp add --transport http ccp4i2 http://127.0.0.1:<port>/mcp/ccp4i2 \
     --header "Authorization: Bearer <token>"
 ```
+
+A server deployment does not serve it unless it sets `CCP4I2_MCP=1`. Agents
+there connect with the same credentials as the REST API.
 
 Run that line, then start a new Claude Code session: the tools load at
 start-up. A JSON file of server settings left in a folder is not read

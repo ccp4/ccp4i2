@@ -5,6 +5,7 @@ docs/agentic-knowledge.md, section 3). ``judge`` reads the results it names
 from a job's directory, and returns the first verdict whose condition holds.
 It reads files only: no server, no CCP4.
 """
+import math
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -13,8 +14,51 @@ import yaml
 from ..core.tasks import locate_def_xml
 from . import condition
 
-DRAFT_NOTE = ("This judgement is a draft that no crystallographer has reviewed; "
-              "treat its thresholds as a guide, and check them.")
+DRAFT_NOTE = ("A draft no crystallographer has reviewed, written from a handful of runs "
+              "on CCP4i2's test projects (Gamma, MDM2, BetaBlip, Thaumatin and a few "
+              "more). Each threshold's basis says what it rests on: where that is one or "
+              "two jobs, treat the verdict as a guide and weigh the numbers yourself.")
+
+
+# How an outcome reads at a glance, for the app: good (the job did what it
+# was for), caution (usable, but something to check or do next), bad (it did
+# not work), unknown (not judged). A verdict entry may set its own "tone".
+TONES = {
+    "good": {"acceptable", "added", "already_present", "analysed_merged", "built",
+             "imported", "improved", "models_found", "plausible", "refined",
+             "sites_found", "solved", "trimmed", "usable"},
+    "caution": {"ambiguous", "ambiguous_copies", "check_chains", "check_symmetry",
+                "free_set_not_kept", "free_set_remade", "low_solvent", "needs_attention",
+                "needs_building", "no_better", "no_better_than_input", "not_improving",
+                "nothing_to_add", "overpacked", "partial", "phased", "placed", "tncs",
+                "too_sparse", "twinning_suspected", "uncertain", "unchecked",
+                "unconverged"},
+    "bad": {"empty", "failed", "no_free_set", "none_found", "not_fitted", "poor",
+            "unusable"},
+}
+
+
+def tone(outcome, entry=None):
+    if entry and entry.get("tone"):
+        return entry["tone"]
+    for name, outcomes in TONES.items():
+        if outcome in outcomes:
+            return name
+    return "unknown"
+
+
+def pin_references(steps, task_name, number):
+    """Next steps with references to this task's latest job ("crank2[-1].X")
+    pinned to this job ("[5].X"). An agent working forward wants the latest
+    job; the app, showing an older job's judgement, means that job."""
+    import copy
+    latest = f"{task_name}[-1]"
+    pinned = copy.deepcopy(steps)
+    for step in pinned:
+        for key, value in (step.get("inputs") or {}).items():
+            if isinstance(value, str) and value.startswith(latest):
+                step["inputs"][key] = f"[{number}]" + value[len(latest):]
+    return pinned
 
 
 def judgement_path(task_name):
@@ -126,7 +170,31 @@ def problems(judgement):
                 found.append(f"{section}[{i}]: unknown result {sorted(unknown)}")
             if section == "verdict" and tree != ("lit", True) and not entry.get("basis"):
                 found.append(f"verdict[{i}]: a threshold with no basis")
+            if section == "verdict" and entry.get("tone") and entry["tone"] not in (*TONES, "unknown"):
+                found.append(f"verdict[{i}]: tone {entry['tone']!r} is not one of "
+                             f"{sorted((*TONES, 'unknown'))}")
+            if section == "next" and entry.get("rerun") and entry.get("task") not in (
+                    None, judgement.get("task")):
+                found.append(f"next[{i}]: a rerun is of this task, not {entry['task']!r}")
+            if section == "next" and entry.get("rerun") and not entry.get("inputs"):
+                found.append(f"next[{i}]: a rerun with nothing changed")
     return found
+
+
+def _finite(value):
+    """The verdict as JSON can carry it: a number a program wrote as NaN or
+    infinity (CTRUNCATE's anomalous limit when there is none) becomes null.
+    The rules see the NaN itself, which compares false with everything; only
+    the verdict handed out loses it. "missing" still lists only results that
+    were absent, so a null that is not listed there was there but not a
+    number."""
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    if isinstance(value, dict):
+        return {k: _finite(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_finite(v) for v in value]
+    return value
 
 
 def judge(task_name, job_dir, kpis=None, judgement=None):
@@ -139,14 +207,78 @@ def judge(task_name, job_dir, kpis=None, judgement=None):
     optional = {n for n, spec in (judgement.get("results") or {}).items() if spec.get("optional")}
     verdict = {"task": task_name, "results": values, "outcome": None,
                "missing": sorted(n for n, v in values.items() if v is None and n not in optional)}
+    fired = None
     for entry in judgement.get("verdict") or []:
         if condition.holds(_when(entry), values):
+            fired = entry
             verdict.update(outcome=entry.get("outcome"), because=_when(entry),
-                           basis=entry.get("basis"))
+                           basis=entry.get("basis"),
+                           clauses=condition.clauses(_when(entry), values))
             break
+    verdict["tone"] = tone(verdict["outcome"], fired)
+    verdict["meanings"] = {name: " ".join(str(spec.get("meaning") or "").split())
+                           for name, spec in (judgement.get("results") or {}).items()}
     with_outcome = dict(values, outcome=verdict["outcome"])
-    verdict["next"] = [entry for entry in judgement.get("next") or []
-                       if condition.holds(_when(entry), with_outcome)]
+    steps = []
+    for entry in judgement.get("next") or []:
+        if condition.holds(_when(entry), with_outcome):
+            step = dict(entry)
+            if step.get("rerun"):
+                # the same task again, as a clone with these inputs changed
+                step["task"] = task_name
+            steps.append(step)
+    verdict["next"] = steps
     if judgement.get("status") != "reviewed":
         verdict["note"] = DRAFT_NOTE
+    return _finite(verdict)
+
+
+CACHE_NAME = "judgement.json"
+
+
+def judgement_version(task_name):
+    """A short hash of the task's judgement file and of the code that
+    evaluates it (this module and the condition language), or None without
+    a judgement: the verdict on a finished job changes only when one of
+    those does."""
+    import hashlib
+    from pathlib import Path
+    path = judgement_path(task_name)
+    if path is None or not path.is_file():
+        return None
+    digest = hashlib.sha256(path.read_bytes())
+    for engine in (Path(__file__), Path(__file__).with_name("condition.py")):
+        digest.update(engine.read_bytes())
+    return digest.hexdigest()[:12]
+
+
+def judge_finished(task_name, job_dir, kpis=None):
+    """The verdict on a finished job, worked out once and kept in the job's
+    directory as judgement.json.
+
+    A finished job's files do not change, so its verdict changes only when
+    its judgement does; the cache records the judgement's version and is
+    used only while that is unchanged (the judgements are drafts, edited
+    often). It is also the record of which version of a judgement said what
+    about a job. A job still running is judged afresh each time, and not
+    kept.
+    """
+    import json
+    from pathlib import Path
+    version = judgement_version(task_name)
+    cache = Path(job_dir) / CACHE_NAME
+    try:
+        kept = json.loads(cache.read_text())
+        if kept.get("judgement_version") == version and version is not None:
+            return kept["verdict"]
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    verdict = judge(task_name, job_dir, kpis=kpis)
+    verdict["judgement_version"] = version
+    if version is not None:
+        try:
+            cache.write_text(json.dumps({"judgement_version": version, "verdict": verdict},
+                                        indent=1, default=str))
+        except OSError:
+            pass  # a read-only project still gets its verdict
     return verdict

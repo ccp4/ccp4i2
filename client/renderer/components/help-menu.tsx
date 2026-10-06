@@ -203,10 +203,10 @@ export default function HelpMenu() {
       ? `curl -H "Authorization: Bearer ${session.token}" \\\n  http://localhost:${session.uvicornPort}/api/ccp4i2/projects/`
       : null;
 
-  // The MCP facade the server mounts at /mcp (server/ccp4i2/agent/http.py):
+  // The MCP facade the server mounts at /mcp/ccp4i2 (server/ccp4i2/agent/http.py):
   // what an AI agent connects to. Same port and token, so it changes with them.
   const mcpUrl = session?.uvicornPort
-    ? `http://127.0.0.1:${session.uvicornPort}/mcp`
+    ? `http://127.0.0.1:${session.uvicornPort}/mcp/ccp4i2`
     : null;
   const mcpSetup =
     mcpUrl && session?.token

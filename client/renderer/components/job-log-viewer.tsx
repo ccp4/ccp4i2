@@ -2,7 +2,7 @@ import { useMemo, useEffect, useContext } from "react";
 import { Job, Project } from "../types/models";
 import { useJobDirectory } from "../utils";
 import { Box } from "@mui/material";
-import DirectoryBrowser from "./directory-browser";
+import DirectoryBrowser, { FileSystemItem } from "./directory-browser";
 import { FileSystemFileMenu } from "./file-system-file-menu";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
 import { useFilePreviewContext } from "../providers/file-preview-context";
@@ -18,35 +18,10 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
   const { closeMenu } = useFileSystemFileBrowser();
   const { setContentSpecification } = useFilePreviewContext();
 
-  const directoryData = useMemo(() => {
-    if (!directory || !job || !directory.container) {
-      return null;
-    }
-
-    let dirNode = directory.container.find(
-      (item: any) => item.name === "CCP4_JOBS"
-    );
-
-    if (!dirNode) {
-      return null;
-    }
-
-    const jobNumberElements = job.number.split(".").reverse();
-    while (jobNumberElements.length > 0) {
-      const jobNumber = jobNumberElements.pop();
-      dirNode = dirNode.contents?.find(
-        (item: any) => item.name === `job_${jobNumber}`
-      );
-      if (!dirNode) {
-        return null;
-      }
-      if (jobNumberElements.length === 0) {
-        return dirNode.contents || [];
-      }
-    }
-
-    return null;
-  }, [job, directory]);
+  const directoryData = useMemo(
+    () => (directory?.container as FileSystemItem[]) ?? null,
+    [directory]
+  );
 
   // Clean up virtual anchor when component unmounts
   useEffect(() => {

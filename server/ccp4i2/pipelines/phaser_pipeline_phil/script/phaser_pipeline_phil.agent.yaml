@@ -218,6 +218,27 @@ results:
       differs from the input data's, the pipeline reindexed them and refined
       against its own F_SIGF_OUT / FREERFLAG_OUT, which are the files to
       use downstream.
+  SPACEGROUP_CHANGE:
+    file: program.xml
+    xpath: .//SpaceGroupCheck
+    attribute: change
+    type: str
+    optional: true
+    meaning: >
+      Whether the solution's space group differs from the input data's,
+      decided by space-group number: "none"; "setting", the same group in
+      another setting or name (P 1 21 1 and P 21); or "changed", another
+      space group of the point group, tried by Phaser and chosen (P 2 21 21,
+      No. 18, to P 21 21 21, No. 19: a screw axis where the data had a
+      two-fold). Absent for jobs before this was recorded; then compare
+      SPACEGROUP with the data's yourself, by number not by name.
+  SPACEGROUP_INPUT:
+    file: program.xml
+    xpath: .//SpaceGroupCheck
+    attribute: given
+    type: str
+    optional: true
+    meaning: The input data's space group, as Phaser was given it.
   RFREE_START:
     file: program.xml
     xpath: .//REFMAC/Overall_stats/stats_vs_cycle/new_cycle/r_free
@@ -340,6 +361,12 @@ verdict:
 
 traps:
   - >
+    A space-group change is not always a renaming. SPACEGROUP_CHANGE
+    "changed" is another space group of the point group (P 2 21 21, No. 18,
+    to P 21 21 21, No. 19, in a held-out agent run that read it as a
+    setting difference). Carry on with this job's F_SIGF_OUT and
+    FREERFLAG_OUT, which are in the solution's group.
+  - >
     The report's solutions-table TFZ (Solution/TFZ, TFZ_REFINED) is after
     refinement of the whole solution: 30.22 in BetaBlip 4 against search
     TFZs of 10.4 and 18.6. Phaser's 8 applies to the search TFZ of each
@@ -427,8 +454,11 @@ next:
     advice: >
       Full restrained refinement, then rebuilding: by a person in Coot, or
       modelcraft when the components are homologues to be rebuilt into
-      their sequences. If SPACEGROUP differs from the input data's, use
-      phaser_pipeline_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT. Keep the task
+      their sequences. If SPACEGROUP_CHANGE is "changed" or "setting" (a
+      different space group, or the same in another setting; read it, do
+      not infer it from the names), use
+      phaser_pipeline_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT, and report
+      the change. Keep the task
       name in the reference: a bare [-1].F_SIGF_OUT skips back to an older
       job when this one has none.
   - when: outcome == "partial"

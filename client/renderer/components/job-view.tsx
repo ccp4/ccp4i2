@@ -36,6 +36,7 @@ import {
   visibleTabs,
 } from "./job-view-tabs";
 import { useTheme } from "../theme/theme-provider";
+import { JudgementPanel } from "./judgement/judgement-panel";
 import { useIsJobEffectivelyActive } from "../providers/recently-started-jobs-context";
 
 export interface JobViewProps {
@@ -61,6 +62,10 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   } = useJob(jobid);
 
   const { mode } = useTheme();
+  // Whether the task has a judgement (server/ccp4i2/agent/): the Judgement tab
+  // is offered for an ended job of such a task. SWR shares this fetch with the
+  // job list.
+  const { data: taskLookup } = api.get<any>(`task_lookup/`);
 
   // Status from job_tree (shared SWR key, polled by ClassicJobsList every 3-30s).
   // Fall back to useJob's status during initial load.
@@ -214,10 +219,13 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
 
   // Clamp synchronously so MUI never receives a value for a hidden tab
   const status = jobWithCurrentStatus?.status;
+  const hasJudgement = Boolean(
+    jobWithCurrentStatus?.task_name && taskLookup?.[jobWithCurrentStatus.task_name]?.hasJudgement
+  );
   const tabValue = useMemo(() => {
-    const visible = visibleTabs(status, devMode);
+    const visible = visibleTabs(status, devMode, hasJudgement);
     return visible.has(rawTabValue) ? rawTabValue : TAB.TASK_INTERFACE;
-  }, [devMode, status, rawTabValue]);
+  }, [devMode, status, rawTabValue, hasJudgement]);
 
   return !project || !jobs || !jobWithCurrentStatus ? (
     <LinearProgress />
@@ -245,6 +253,9 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             <Tab value={TAB.VALIDATION} label="Validation" />
           )}
           {devMode && <Tab value={TAB.JOB_CONTAINER} label="Job container" />}
+          {visibleTabs(jobWithCurrentStatus.status, devMode, hasJudgement).has(TAB.JUDGEMENT) && (
+            <Tab value={TAB.JUDGEMENT} label="Judgement" />
+          )}
           <Tab value={TAB.COMMENTS} label="Comments" />
           <Tab value={TAB.DIRECTORY} label="Directory" />
           <Tab value={TAB.LOGS} label="Logs" />
@@ -362,6 +373,9 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           )}
           {tabValue == 10 && project && (
             <JobLogViewer job={jobWithCurrentStatus} project={project} />
+          )}
+          {tabValue == TAB.JUDGEMENT && (
+            <JudgementPanel job={jobWithCurrentStatus} onJobCreated={mutateJobs} />
           )}
         </Box>
         {tabValue == 3 && jobid && <CCP4i2WhatNext />}

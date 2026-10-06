@@ -25,3 +25,10 @@ def test_mrbump():
                 except ValueError:
                     pass
         assert best_rfree < 0.35
+        # The final table is in program.xml, where the judgement reads it
+        from ccp4i2.agent.judgement import judge
+        import xml.etree.ElementTree as ET
+        table = ET.parse(job / "program.xml").getroot().find(".//FinalSolutions")
+        assert table is not None and int(table.get("solutions")) >= 1
+        verdict = judge("mrbump_basic", job)
+        assert verdict["outcome"] == "solved", verdict

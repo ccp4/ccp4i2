@@ -7,12 +7,15 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
+  List,
+  ListItemButton,
+  ListItemText,
   Radio,
   RadioGroup,
   TextField,
   Typography,
 } from "@mui/material";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { apiFetch, apiBlob, apiText, apiGet, apiPost } from "../../../api-fetch";
 import {
   describeEmdbFile,
@@ -92,6 +95,44 @@ function buildFasta(pdbId: string, chain: ChainSequenceInfo): string {
   return `>${pdbId.toUpperCase()}_${chain.chainId} ${chain.polymerType} ${chain.length} residues\n${chain.sequence}\n`;
 }
 
+// A UniProt accession or entry name: fetched as typed. Anything else is a
+// name to search for, and an entry must be chosen from what the search found.
+const UNIPROT_ID =
+  /^(?:[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9](?:[A-Z][A-Z0-9]{2}[0-9]){1,2})(?:-\d+)?$|^[A-Z0-9]{1,10}_[A-Z0-9]{1,5}$/;
+const isUniprotId = (text: string) => UNIPROT_ID.test(text.trim().toUpperCase());
+
+interface UniprotCandidate {
+  accession: string;
+  entry_name?: string;
+  protein_name?: string;
+  gene?: string;
+  organism?: string;
+  length?: number;
+  reviewed?: boolean;
+}
+interface UniprotSearch {
+  read_as?: { kind: string; term: string; organism?: { name: string } | null } | null;
+  candidates: UniprotCandidate[];
+  error?: string;
+}
+
+const readAsText = (r: UniprotSearch["read_as"]) =>
+  r
+    ? `Read as ${r.kind === "protein_name" ? "protein name" : r.kind.replace("_", " ")} "${r.term}"` +
+      (r.organism ? `, ${r.organism.name}` : ", any organism")
+    : "";
+
+/** Cut a FASTA record to residues first..last (1-based, inclusive), saying so
+ * in its header. Returns null when the range runs past the sequence. */
+const cutFasta = (fasta: string, first: number, last: number): string | null => {
+  const lines = fasta.trim().split(/\r?\n/);
+  const header = lines[0].startsWith(">") ? lines.shift()! : ">sequence";
+  const seq = lines.join("").replace(/\s/g, "");
+  if (first < 1 || last < first || last > seq.length) return null;
+  const cut = seq.slice(first - 1, last);
+  return `${header} residues ${first}-${last}\n${cut.match(/.{1,60}/g)!.join("\n")}\n`;
+};
+
 interface FetchFileForParamProps {
   open: boolean;
   onClose: () => void;
@@ -132,6 +173,9 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   useEffect(() => {
     if (open) {
       setIdentifier("");
+      setOrganism("");
+      setResidues("");
+      chosenRef.current = null;
       setEmdbEntry(null);
       setEmdbChoice(null);
     }
@@ -145,6 +189,70 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const [identifier, setIdentifier] = useState<string | null>(null);
   const [inFlight, setInFlight] = useState(false);
+
+  // UniProt: a name typed ("Human CDK4", "cyclin D") is searched on the
+  // server as it is typed; the person chooses an entry, optionally cut to the
+  // crystallised construct's residues.
+  const [organism, setOrganism] = useState("");
+  const [residues, setResidues] = useState("");
+  const [uniprotSearch, setUniprotSearch] = useState<UniprotSearch | null>(null);
+  const [searching, setSearching] = useState(false);
+  const chosenRef = useRef<string | null>(null);
+  const searchPath = useMemo(() => {
+    const task = job?.task_name;
+    if (task === "ProvideSequence" || task === "ProvideAsuContents") return task;
+    return (item?._objectPath || "").replace(".container.", ".");
+  }, [job?.task_name, item?._objectPath]);
+
+  useEffect(() => {
+    setUniprotSearch(null);
+    const text = (identifier || "").trim();
+    if (mode !== "uniprotFasta" || !job || text.length < 2 || !searchPath) return;
+    if (chosenRef.current === text) return;
+    if (isUniprotId(text) && !organism) return;
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      setSearching(true);
+      try {
+        const response: any = await apiPost(`jobs/${job.id}/object_method/`, {
+          object_path: searchPath,
+          method_name: "uniprotCandidates",
+          args: [text, organism.trim() || null],
+          kwargs: {},
+        });
+        if (!cancelled) {
+          const result = response?.data?.result;
+          setUniprotSearch(
+            result && Array.isArray(result.candidates)
+              ? result
+              : { candidates: [], error: response?.error || "UniProt search is not available here" }
+          );
+        }
+      } catch (err: any) {
+        if (!cancelled) setUniprotSearch({ candidates: [], error: err?.message || "UniProt search failed" });
+      } finally {
+        if (!cancelled) setSearching(false);
+      }
+    }, 400);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [identifier, organism, mode, job, searchPath]);
+
+  const residueRange = useMemo(() => {
+    const m = residues.trim().match(/^(\d+)\s*[-:]\s*(\d+)$/);
+    return m ? [parseInt(m[1]), parseInt(m[2])] as [number, number] : null;
+  }, [residues]);
+
+  // Why Fetch is not offered yet, for UniProt; null when it is.
+  const uniprotBlocker = useMemo(() => {
+    if (mode !== "uniprotFasta") return null;
+    if (identifier && !isUniprotId(identifier))
+      return "Choose an entry from the list, or type an accession";
+    if (residues.trim() && !residueRange) return "Residues as first-last, e.g. 175-432";
+    return null;
+  }, [mode, identifier, residues, residueRange]);
 
   // Chain picker state for multi-chain PDB → sequence disambiguation
   const [chainPickerOpen, setChainPickerOpen] = useState(false);
@@ -275,16 +383,27 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const handleUniprotFastaFetch = useCallback(async () => {
     if (identifier) {
-      setMessage(`Fetching FASTA file for ${identifier.toUpperCase()}`);
-      const data = await apiText(`/api/proxy/uniprot/uniprotkb/${identifier.toUpperCase()}.fasta`);
-      setMessage(`Fetched FASTA file for ${identifier.toUpperCase()}`);
+      const id = identifier.trim().toUpperCase();
+      setMessage(`Fetching FASTA file for ${id}`);
+      let data = await apiText(`/api/proxy/uniprot/uniprotkb/${id}.fasta`);
+      let name = `${id}.fasta`;
+      if (residueRange) {
+        const cut = cutFasta(data, residueRange[0], residueRange[1]);
+        if (!cut) {
+          setMessage(`Residues ${residueRange[0]}-${residueRange[1]} run past the end of ${id}`, "error");
+          return;
+        }
+        data = cut;
+        name = `${id}_${residueRange[0]}-${residueRange[1]}.fasta`;
+      }
+      setMessage(`Fetched FASTA file for ${id}`);
       const content = new Blob([data], {
         type: "text/plain",
       });
-      uploadFile(content, `${identifier.toUpperCase()}.fasta`);
+      uploadFile(content, name);
       onClose();
     }
-  }, [identifier, uploadFile, onClose, setMessage]);
+  }, [identifier, residueRange, uploadFile, onClose, setMessage]);
 
   const handleRcsbPdbFetch = useCallback(async () => {
     if (identifier) {
@@ -534,7 +653,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
               />
               <TextField
                 sx={{ width: "30rem", mt: 2 }}
-                label="Accession code"
+                label={mode === "uniprotFasta" ? "Accession, or a protein to search for" : "Accession code"}
                 placeholder={mode ? MODE_PLACEHOLDERS[mode] || "" : ""}
                 value={identifier || ""}
                 onChange={(event) => {
@@ -545,11 +664,71 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
                   }
                 }}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter" && identifier && !inFlight) {
+                  if (event.key === "Enter" && identifier && !inFlight && !uniprotBlocker) {
                     handleFetch();
                   }
                 }}
               />
+              {mode === "uniprotFasta" && (
+                <>
+                  <TextField
+                    sx={{ width: "30rem", mt: 2 }}
+                    label="Organism (optional)"
+                    placeholder="e.g. human, E. coli, 9606"
+                    value={organism}
+                    onChange={(event) => {
+                      chosenRef.current = null;
+                      setOrganism(event.target.value);
+                    }}
+                  />
+                  <TextField
+                    sx={{ width: "30rem", mt: 2 }}
+                    label="Residues (optional)"
+                    placeholder="the crystallised construct, e.g. 175-432"
+                    value={residues}
+                    error={Boolean(residues.trim()) && !residueRange}
+                    onChange={(event) => setResidues(event.target.value)}
+                  />
+                  {(searching || uniprotSearch) && (
+                    <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 1 }}>
+                      {searching
+                        ? "Searching UniProt..."
+                        : uniprotSearch?.error
+                          ? uniprotSearch.error
+                          : `${readAsText(uniprotSearch?.read_as)} — ${uniprotSearch?.candidates.length || "no"} match${uniprotSearch?.candidates.length === 1 ? "" : "es"}`}
+                    </Typography>
+                  )}
+                  {uniprotSearch && uniprotSearch.candidates.length > 0 && (
+                    <List dense sx={{ width: "30rem", maxHeight: "16rem", overflow: "auto" }}>
+                      {uniprotSearch.candidates.map((c) => (
+                        <ListItemButton
+                          key={c.accession}
+                          selected={identifier?.trim().toUpperCase() === c.accession}
+                          onClick={() => {
+                            chosenRef.current = c.accession;
+                            setIdentifier(c.accession);
+                          }}
+                        >
+                          <ListItemText
+                            primary={`${c.accession} ${c.entry_name || ""}${c.reviewed ? " (reviewed)" : ""}`}
+                            secondary={[
+                              c.protein_name,
+                              c.gene && `gene ${c.gene}`,
+                              c.organism,
+                              c.length && `${c.length} residues`,
+                            ].filter(Boolean).join(" · ")}
+                          />
+                        </ListItemButton>
+                      ))}
+                    </List>
+                  )}
+                  {uniprotBlocker && identifier && (
+                    <Typography variant="caption" color="text.secondary" display="block">
+                      {uniprotBlocker}
+                    </Typography>
+                  )}
+                </>
+              )}
               {mode === "emdb" && emdbEntry && (
                 <>
                   <Typography variant="body2" sx={{ mt: 2 }}>
@@ -592,7 +771,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
           <Button onClick={onClose} disabled={inFlight}>
             Cancel
           </Button>
-          <Button onClick={handleFetch} disabled={inFlight || !identifier}>
+          <Button onClick={handleFetch} disabled={inFlight || !identifier || Boolean(uniprotBlocker)}>
             {mode === "emdb" && !emdbEntry ? "Look up" : "Fetch"}
           </Button>
         </DialogActions>

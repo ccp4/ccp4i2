@@ -66,3 +66,37 @@ def test_gamma_sculptor(alignment_file):
         # sculptor outputs a list of PDB files; check at least one exists
         pdb_files = list(job.glob("*.pdb"))
         assert len(pdb_files) > 0, f"No PDB output: {list(job.iterdir())}"
+
+
+@fixture(scope="module")
+def two_copy_model(tmp_path_factory):
+    """gamma_model.pdb with a second copy, chain B, moved 40 A along x."""
+    st = gemmi.read_structure(demoData("gamma", "gamma_model.pdb"))
+    copy = st[0][0].clone()
+    copy.name = "B"
+    for residue in copy:
+        for atom in residue:
+            atom.pos = gemmi.Position(atom.pos.x + 40.0, atom.pos.y, atom.pos.z)
+    st[0].add_chain(copy)
+    st.setup_entities()
+    path = tmp_path_factory.mktemp("models") / "two_copies.pdb"
+    st.write_pdb(str(path))
+    return str(path)
+
+
+@mark.skipif(not _has_clustalw2(), reason="clustalw2 not available")
+def test_sculptor_trims_only_the_selected_chain(alignment_file, two_copy_model):
+    """The atom selection is applied: Sculptor was given the whole file
+    whatever it said (MDM2 job 23 asked for chain A of four copies and got
+    all four). program.xml says how many chains came out, and the identity."""
+    import xml.etree.ElementTree as ET
+    args = ["sculptor"]
+    args += ["--XYZIN", f"fullPath={two_copy_model}", "selection/text=A/"]
+    args += ["--ALIGNMENTORSEQUENCEIN", "ALIGNMENT"]
+    args += ["--ALIGNIN", alignment_file]
+    with i2run(args) as job:
+        root = ET.parse(job / "program.xml").getroot()
+        assert root.findtext("selection_applied") == "True"
+        assert [o.findtext("chains") for o in root.findall("output")] == ["1"]
+        identities = root.findall("identity")
+        assert len(identities) == 1 and float(identities[0].text) > 0

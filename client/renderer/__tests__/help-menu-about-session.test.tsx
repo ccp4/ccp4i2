@@ -99,9 +99,9 @@ describe("About dialog: this session", () => {
     render(<HelpMenu />);
     openAbout();
 
-    await waitFor(() => expect(fieldValue(/Agent \(MCP\) address/)).toBe("http://127.0.0.1:3101/mcp"));
+    await waitFor(() => expect(fieldValue(/Agent \(MCP\) address/)).toBe("http://127.0.0.1:3101/mcp/ccp4i2"));
     const setup = fieldValue(/Agent setup/);
-    expect(setup).toContain("--transport http ccp4i2 http://127.0.0.1:3101/mcp");
+    expect(setup).toContain("--transport http ccp4i2 http://127.0.0.1:3101/mcp/ccp4i2");
     expect(setup).toContain(`Authorization: Bearer ${TOKEN}`);
   });
 
