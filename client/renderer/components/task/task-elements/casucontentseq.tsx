@@ -12,7 +12,11 @@ import { apiGet } from "../../../api-fetch";
 import { useCallback, useState } from "react";
 import { Science } from "@mui/icons-material";
 import { ChainPickerDialog } from "./chain-picker-dialog";
-import type { ChainSequenceInfo } from "./mmcif-sequence-parser";
+import {
+  classifyChain,
+  polymerTypeFromMolecule,
+  type ChainSequenceInfo,
+} from "./mmcif-sequence-parser";
 
 /** Get color for polymer type */
 const getPolymerTypeColor = (
@@ -29,22 +33,6 @@ const getPolymerTypeColor = (
       return "warning";
   }
 };
-
-/** Classify chain type from composition lists */
-function classifyChain(
-  chainId: string,
-  composition: any
-): "PROTEIN" | "DNA" | "RNA" | "OTHER" {
-  if (composition.peptides?.includes(chainId)) return "PROTEIN";
-  if (composition.nucleics?.includes(chainId)) return "PROTEIN"; // nucleic → check chainDetails
-  // Use chainDetails if available for finer classification
-  const detail = composition.chainDetails?.find((d: any) => d.id === chainId);
-  if (detail) {
-    if (detail.type === "protein") return "PROTEIN";
-    if (detail.type === "nucleic") return "DNA"; // Could be RNA, but chainDetails doesn't distinguish
-  }
-  return "OTHER";
-}
 
 export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   props
@@ -116,7 +104,8 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
       if (seqinDigest?.moleculeType) {
         const { name, moleculeType, sequence } = seqinDigest || {};
         const sanitizedName = name.replace(/[^a-zA-Z0-9]/g, "_");
-        await setPolymerType(moleculeType);
+        // CSequence says PROTEIN/NUCLEIC; the row wants PROTEIN/DNA/RNA.
+        await setPolymerType(polymerTypeFromMolecule(moleculeType, sequence));
         await setName(sanitizedName);
         await setSequence(sequence);
         await setDescription(annotation);
@@ -143,14 +132,14 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         if (chainsWithSeq.length === 1) {
           // Single chain — apply directly
           const chainId = chainsWithSeq[0];
-          const polyType = classifyChain(chainId, composition);
+          const polyType = classifyChain(chainId, composition, sequences[chainId]);
           await applyChainSequence(chainId, polyType, sequences[chainId], annotation);
         } else {
           // Multiple chains — show picker dialog
           const chainInfos: ChainSequenceInfo[] = chainsWithSeq.map(
             (chainId: string) => {
               const seq = sequences[chainId] || "";
-              const polyType = classifyChain(chainId, composition);
+              const polyType = classifyChain(chainId, composition, seq);
               return {
                 chainId,
                 entityId: "",
