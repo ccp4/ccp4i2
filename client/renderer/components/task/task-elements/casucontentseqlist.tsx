@@ -21,7 +21,7 @@ import { useApi } from "../../../api";
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Add, Delete, Download, Science } from "@mui/icons-material";
-import { apiFetch, apiText } from "../../../api-fetch";
+import { apiFetch } from "../../../api-fetch";
 import { usePopcorn } from "../../../providers/popcorn-provider";
 import {
   parseMultiChainFasta,
@@ -217,13 +217,16 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
       let chains: ChainSequenceInfo[];
 
       if (importSource === "ebi") {
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${id}`;
+        // Same-origin proxy: apiFetch sends the user's bearer token, which a
+        // direct cross-origin call would leak and PDBe's CORS preflight rejects.
+        const url = `/api/proxy/pdbe/api/pdb/entry/molecules/${id}`;
         const result = await apiFetch(url);
         const data = await result.json();
         chains = parsePdbeMolecules(data, id);
       } else {
         const fastaUrl = `https://www.rcsb.org/fasta/entry/${id.toUpperCase()}`;
-        const fastaText = await apiText(fastaUrl);
+        // Plain fetch: no Authorization header for a third-party host.
+        const fastaText = await (await fetch(fastaUrl)).text();
         chains = parseMultiChainFasta(fastaText);
       }
 
