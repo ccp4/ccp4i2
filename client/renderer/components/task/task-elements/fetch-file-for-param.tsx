@@ -413,7 +413,8 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
       const fetchURL = `https://files.rcsb.org/download/${id}.cif`;
       setMessage(`Fetching coordinates from RCSB for ${id}`);
       try {
-        const content = await apiBlob(fetchURL);
+        // Plain fetch: no Authorization header for a third-party host.
+        const content = await (await fetch(fetchURL)).blob();
         setMessage(`Fetched coordinates from RCSB for ${id}`);
         uploadFile(content, `${id}.cif`);
         onClose();
@@ -504,7 +505,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
         // PDBe molecules API returns structured JSON with sequences per entity.
         // Use the host-preferred id; the response is keyed by the legacy id,
         // so parsePdbeMolecules resolves it tolerantly.
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${toFetchPdbId(identifier)}`;
+        const url = `/api/proxy/pdbe/api/pdb/entry/molecules/${toFetchPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
         chains = parsePdbeMolecules(data, identifier);
@@ -519,7 +520,8 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
           return;
         }
         const fastaUrl = `https://www.rcsb.org/fasta/entry/${shortId.toUpperCase()}`;
-        const fastaText = await apiText(fastaUrl);
+        // Plain fetch: no Authorization header for a third-party host.
+        const fastaText = await (await fetch(fastaUrl)).text();
         chains = parseMultiChainFasta(fastaText);
       }
 
