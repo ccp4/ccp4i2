@@ -217,7 +217,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1 }}>
             Each file adds its sequences to the table; one already there gains copies
             instead of a duplicate row. Files can be browsed for, picked from the project,
-            or fetched from the web with the buttons beside each slot.
+            or fetched from the web with the buttons beside each slot. For a whole PDB entry use the model slot.
           </Typography>
           <CCP4i2TaskElement
             {...props}
@@ -228,13 +228,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement
             {...props}
             itemName="XYZIN"
-            qualifiers={{ guiLabel: "A model (every polymer chain; PDB entries fetched from PDBe, RCSB or AlphaFold)" }}
+            qualifiers={{ guiLabel: "A model: every polymer chain is added (fetch a whole PDB entry here, from PDBe, RCSB or AlphaFold)" }}
             onChange={(updated: any) => fillFrom(updated, null)}
           />
           <CCP4i2TaskElement
             {...props}
             itemName="SEQIN"
-            qualifiers={{ guiLabel: "A sequence file (or fetched from UniProt or a PDB entry)" }}
+            qualifiers={{ guiLabel: "One sequence: a file, or fetched from UniProt (a PDB entry gives one chain; use the model slot for all of it)" }}
             onChange={(updated: any) => fillFrom(updated, null)}
           />
         </CCP4i2ContainerElement>
