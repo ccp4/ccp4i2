@@ -38,7 +38,10 @@ export const CCP4i2App = (props: PropsWithChildren) => {
   const [jobId, setJobId] = useState<number | null>(null);
   const [cootModule, setCootModule] = useState<any | null>(null);
   const [cootModuleError, setCootModuleError] = useState<Error | null>(null);
-  const [devMode, setDevMode] = useState<boolean>(true);
+  // Off until told otherwise: Electron answers get-config with the stored
+  // flag; the web app never does, so a default of true left every deployed
+  // browser in developer mode for good.
+  const [devMode, setDevMode] = useState<boolean>(false);
   const [activeDragItem, setActiveDragItem] = useState<Job | File | null>(null);
 
   // Memoize context value to prevent unnecessary re-renders of consumers

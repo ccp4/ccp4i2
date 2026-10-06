@@ -56,28 +56,35 @@ describe("visibleTabs", () => {
 
   it("shows everything in dev mode, whatever the status", () => {
     const visible = visibleTabs(JobStatus.PENDING, true);
-    Object.values(TAB).forEach((tab) => expect(visible.has(tab)).toBe(true));
+    Object.values(TAB)
+      .filter((tab) => tab !== TAB.JUDGEMENT) // needs a judged task that has ended
+      .forEach((tab) => expect(visible.has(tab)).toBe(true));
   });
 });
 
 /**
- * The Judgement tab: a job of a task with a judgement, once it has ended
- * (the judgement reads what the job wrote, settled only then).
+ * The Judgement tab: developer mode only for now, and then only for a job of
+ * a task with a judgement, once it has ended (the judgement reads what the
+ * job wrote, settled only then).
  */
 describe("the judgement tab", () => {
   it.each([JobStatus.FINISHED, JobStatus.FAILED, JobStatus.UNSATISFACTORY, JobStatus.INTERRUPTED])(
-    "is offered for a judged task at status %i",
+    "is offered in dev mode for a judged task at status %i",
     (status) => {
-      expect(visibleTabs(status, false, true).has(TAB.JUDGEMENT)).toBe(true);
+      expect(visibleTabs(status, true, true).has(TAB.JUDGEMENT)).toBe(true);
     }
   );
 
-  it.each([JobStatus.PENDING, JobStatus.RUNNING])("is not offered while status %i", (status) => {
+  it.each([JobStatus.FINISHED, JobStatus.FAILED])("is not offered outside dev mode, even at status %i", (status) => {
     expect(visibleTabs(status, false, true).has(TAB.JUDGEMENT)).toBe(false);
   });
 
+  it.each([JobStatus.PENDING, JobStatus.RUNNING])("is not offered while status %i", (status) => {
+    expect(visibleTabs(status, true, true).has(TAB.JUDGEMENT)).toBe(false);
+  });
+
   it("is not offered for a task without a judgement", () => {
-    expect(visibleTabs(JobStatus.FINISHED, false, false).has(TAB.JUDGEMENT)).toBe(false);
-    expect(visibleTabs(JobStatus.FINISHED, false).has(TAB.JUDGEMENT)).toBe(false);
+    expect(visibleTabs(JobStatus.FINISHED, true, false).has(TAB.JUDGEMENT)).toBe(false);
+    expect(visibleTabs(JobStatus.FINISHED, true).has(TAB.JUDGEMENT)).toBe(false);
   });
 });
