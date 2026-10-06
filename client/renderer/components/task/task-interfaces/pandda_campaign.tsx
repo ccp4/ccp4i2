@@ -135,6 +135,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   return (
     <CCP4i2Tabs {...props}>
       <CCP4i2Tab label="Datasets">
+        {/* The first decision, so first on the page: where PanDDA runs. The
+            details that depend on it (target, CPUs, scratch) stay on Run. */}
+        <Paper sx={{ p: 1, mb: 1 }}>
+          <CCP4i2TaskElement {...props} itemName="RUN_MODE" qualifiers={{ guiLabel: "Run mode" }} />
+          <CCP4i2TaskElement
+            {...props}
+            itemName="MAX_EVENTS_PER_DATASET"
+            qualifiers={{ guiLabel: "Maximum events per dataset (PanDDA default 3)" }}
+          />
+        </Paper>
         <Paper sx={{ p: 1, mb: 1 }}>
           <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
             <Tooltip title={disabledReason ?? `Add every member of ${campaignName} with a finished dimple job`}>
@@ -188,7 +198,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           containerHint="FolderLevel"
           initiallyOpen={true}
         >
-          <CCP4i2TaskElement {...props} itemName="RUN_MODE" qualifiers={{ guiLabel: "Run mode" }} />
           <CCP4i2TaskElement
             {...props}
             itemName="MIN_CHARACTERISATION_DATASETS"
