@@ -135,3 +135,102 @@ export function parseMultiChainFasta(fastaText: string): ChainSequenceInfo[] {
 
   return entries;
 }
+
+// ---------------------------------------------------------------------------
+// From a file digest to ASU rows. Two digest shapes carry sequences:
+//   a sequence file:   { name, moleculeType: "PROTEIN" | "NUCLEIC", sequence }
+//   a coordinate file: { composition: { peptides, nucleics, chainDetails },
+//                        sequences: { [chainId]: oneLetterSequence } }
+// (an ASU file's digest is already a list of rows and needs none of this).
+// ---------------------------------------------------------------------------
+
+export type PolymerType = ChainSequenceInfo["polymerType"];
+
+/** DNA or RNA, told apart by the alphabet: RNA has U, DNA has T. */
+function nucleicType(sequence: string): "DNA" | "RNA" {
+  return /U/i.test(sequence) ? "RNA" : "DNA";
+}
+
+/**
+ * CSequence says PROTEIN or NUCLEIC; a CAsuContentSeq row says PROTEIN, DNA or
+ * RNA. Resolve NUCLEIC from the sequence rather than guessing DNA.
+ */
+export function polymerTypeFromMolecule(moleculeType: string, sequence: string): PolymerType {
+  const upper = (moleculeType || "").toUpperCase();
+  if (upper === "PROTEIN" || upper === "DNA" || upper === "RNA") return upper;
+  if (upper === "NUCLEIC") return nucleicType(sequence);
+  return "OTHER";
+}
+
+/** Classify one chain of a coordinate-file digest from its composition lists. */
+export function classifyChain(chainId: string, composition: any, sequence = ""): PolymerType {
+  if (composition?.peptides?.includes(chainId)) return "PROTEIN";
+  const detail = composition?.chainDetails?.find((d: any) => d.id === chainId);
+  if (detail?.type === "protein") return "PROTEIN";
+  if (composition?.nucleics?.includes(chainId) || detail?.type === "nucleic") {
+    return nucleicType(sequence);
+  }
+  return "OTHER";
+}
+
+/**
+ * Every polymer chain a digest describes, in file order. `label` names the
+ * source for the row descriptions ("1cbs", "my_model.pdb").
+ */
+export function chainsFromDigest(digest: any, label: string): ChainSequenceInfo[] {
+  if (!digest) return [];
+  if (digest.moleculeType && digest.sequence) {
+    const sequence = String(digest.sequence).replace(/\s/g, "");
+    return [{
+      chainId: digest.name || label,
+      sequence,
+      polymerType: polymerTypeFromMolecule(digest.moleculeType, sequence),
+      length: sequence.length,
+      description: digest.description || label,
+    }];
+  }
+  if (digest.composition && digest.sequences) {
+    const ids: string[] = [
+      ...(digest.composition.peptides || []),
+      ...(digest.composition.nucleics || []),
+    ];
+    return ids
+      .filter((chainId) => digest.sequences[chainId])
+      .map((chainId) => {
+        const sequence = String(digest.sequences[chainId]);
+        return {
+          chainId,
+          sequence,
+          polymerType: classifyChain(chainId, digest.composition, sequence),
+          length: sequence.length,
+          description: `${label} chain ${chainId}`,
+        };
+      });
+  }
+  return [];
+}
+
+/**
+ * Append `incoming` to `existing`: a sequence already in the table (same
+ * polymer type and residues) adds its copies to that row instead of
+ * repeating it, so loading a second source never produces duplicates.
+ */
+export function mergeAsuEntries<T extends AsuSequenceEntry>(
+  existing: T[],
+  incoming: AsuSequenceEntry[],
+): (T | AsuSequenceEntry)[] {
+  const key = (e: AsuSequenceEntry) =>
+    `${String(e.polymerType).toUpperCase()}:${String(e.sequence).replace(/\s/g, "")}`;
+  const merged: (T | AsuSequenceEntry)[] = existing.map((e) => ({ ...e }));
+  const byKey = new Map(merged.map((e) => [key(e), e]));
+  for (const entry of incoming) {
+    const hit = byKey.get(key(entry));
+    if (hit) {
+      hit.nCopies = (Number(hit.nCopies) || 0) + entry.nCopies;
+    } else {
+      merged.push(entry);
+      byKey.set(key(entry), entry);
+    }
+  }
+  return merged;
+}

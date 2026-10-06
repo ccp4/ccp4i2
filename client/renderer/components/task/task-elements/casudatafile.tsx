@@ -91,6 +91,8 @@ const SequenceLabel: React.FC<{ seq: SequenceEntry }> = ({ seq }) => (
  *
  * If no file is selected, shows a "Create ASU Content" button that opens an
  * inline modal to configure and run ProvideAsuContents, then auto-selects the output.
+ * ProvideAsuContents' own page passes `qualifiers={{ allowCreate: false }}`: there
+ * the button would offer to launch the task from inside itself.
  */
 export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   props
@@ -130,6 +132,7 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     return { ...item?._qualifiers, ...qualifiers };
   }, [item, qualifiers]);
   const selectionMode = Number(overriddenQualifiers.selectionMode ?? 0);
+  const allowCreate = overriddenQualifiers.allowCreate !== false;
 
   // Local state for checkbox values (optimistic updates)
   const [localSelections, setLocalSelections] = useState<Record<string, boolean>>({});
@@ -228,13 +231,14 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   if (!isVisible) return null;
 
   // Determine if we should show the expanded panel (for create button when no files exist)
-  const shouldForceExpand = forceExpanded || (!hasFile && existingAsuFiles.length === 0);
+  const shouldForceExpand =
+    forceExpanded || (allowCreate && !hasFile && existingAsuFiles.length === 0);
 
   return (
     <>
       <CSimpleDataFileElement {...props} forceExpanded={shouldForceExpand}>
         {/* Create ASU Content action - shown when no file selected */}
-        {!hasFile && job.status === 1 && (
+        {!hasFile && job.status === 1 && allowCreate && (
           <Box sx={{ mb: hasSequences ? 2 : 0 }}>
             <Stack direction="row" spacing={1} alignItems="center">
               <Tooltip title="Create a new ASU content file using the ProvideAsuContents task">
