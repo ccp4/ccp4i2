@@ -83,14 +83,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     isAsuContentValid
   );
 
+  // The hook keeps its last result while switched off, so after Clear it
+  // would still report the weight of what was just removed. Only a valid
+  // table has a weight.
+  const molWeightValue: number | undefined = isAsuContentValid ? molWeight?.data?.result : undefined;
+
   /** Matthews analysis: needs the molecular weight and the reflection file's cell. */
   const { data: matthewsAnalysis, mutate: mutateMatthews } = api.objectMethod<any>(
     job.id,
     "ProvideAsuContents.inputData.HKLIN.fileContent",
     "matthewsCoeff",
-    { molWt: molWeight?.data?.result },
-    [molWeight?.data?.result, HKLINDigest],
-    !!(molWeight?.data?.result && HKLINDigest)
+    { molWt: molWeightValue },
+    [molWeightValue, HKLINDigest],
+    !!(molWeightValue && HKLINDigest)
   );
 
   const refreshDerived = useCallback(async () => {
@@ -156,12 +161,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   }, [asuContentInValue?.dbFileId, rowCount, asuContentInItem, fillFrom]);
 
   // Why the Matthews panel is empty, when it is.
-  const matthewsResults = matthewsAnalysis?.success ? matthewsAnalysis?.data?.result?.results : null;
+  const matthewsResults =
+    molWeightValue && matthewsAnalysis?.success ? matthewsAnalysis?.data?.result?.results : null;
   let matthewsReason: string | null = null;
   if (!hasHKLINFile) matthewsReason = "Choose a reflection file: its cell sets how many copies fit.";
   else if (rowCount === 0) matthewsReason = "Add at least one sequence to the table first.";
   else if (!isAsuContentValid) matthewsReason = "Fix the sequences flagged in the table first.";
-  else if (!molWeight?.data?.result || !HKLINDigest) matthewsReason = "Calculating…";
+  else if (!molWeightValue || !HKLINDigest) matthewsReason = "Calculating…";
   else if (!matthewsResults) matthewsReason = "No Matthews estimate for this cell and contents.";
 
   return (
@@ -184,8 +190,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <Stack direction="row" spacing={2} alignItems="center" sx={{ mt: 1 }}>
             <Typography variant="body2">
               Molecular weight:{" "}
-              {molWeight?.data?.result
-                ? `${molWeight.data.result.toFixed(0)} Da`
+              {molWeightValue
+                ? `${molWeightValue.toFixed(0)} Da`
                 : isAsuContentValid
                   ? "calculating…"
                   : rowCount === 0
