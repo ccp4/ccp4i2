@@ -2269,6 +2269,8 @@ class CPdbDataComposition:
 
     # Minimum atoms for a residue to be considered a "significant" ligand
     MIN_LIGAND_ATOMS = 5
+    # Residue names that are water when the file carries no entity information
+    WATER_NAMES = frozenset(('HOH', 'WAT', 'H2O', 'DOD', 'D2O'))
 
     def __init__(self, gemmi_structure):
         """
@@ -2299,7 +2301,12 @@ class CPdbDataComposition:
         self.containsHydrogen = False
         # Enhanced digest fields
         self.ligands = []           # [{chain, name, seqNum, atomCount}, ...]
-        self.chainDetails = []      # [{id, type, nResidues, nAtoms, firstRes, lastRes, ligandCount, hasAltConf}, ...]
+        # [{id, type, nResidues, nAtoms, firstRes, lastRes, ligandCount, hasAltConf,
+        #   nPolymer, polymerFirstRes, polymerLastRes, nWater, nOther}, ...]
+        # nResidues/firstRes/lastRes span the whole chain, waters and ligands
+        # included; the polymer* fields span its polymer residues only, which
+        # is the range a person means by "chain A is residues 3-298".
+        self.chainDetails = []
         self.residueNameCounts = {} # {resName: count, ...}
 
         all_resname_set = set()
@@ -2329,6 +2336,10 @@ class CPdbDataComposition:
                 last_resid = None
                 nres_solvent_chain = 0
                 natoms_chain = 0
+                npolymer = 0
+                polymer_first = None
+                polymer_last = None
+                nwater = 0
 
                 for residue in chain:
                     res_name = residue.name
@@ -2348,6 +2359,20 @@ class CPdbDataComposition:
                     # report EntityType.Unknown for every residue. Fall back
                     # to residue-name classification when that happens.
                     entity_type = residue.entity_type
+
+                    # Polymer / water / other split for the per-chain detail
+                    unknown = entity_type == gemmi.EntityType.Unknown
+                    if entity_type == gemmi.EntityType.Polymer or (
+                        unknown and (res_name in AMINO_ACIDS or res_name in NUCLEIC_ACIDS)
+                    ):
+                        npolymer += 1
+                        if polymer_first is None:
+                            polymer_first = resid_str
+                        polymer_last = resid_str
+                    elif entity_type == gemmi.EntityType.Water or (
+                        unknown and res_name in self.WATER_NAMES
+                    ):
+                        nwater += 1
 
                     if entity_type == gemmi.EntityType.Polymer:
                         # Classify by residue name for accurate protein vs nucleic
@@ -2442,6 +2467,11 @@ class CPdbDataComposition:
                     "lastRes": last_resid or '',
                     "ligandCount": ligand_count_chain,
                     "hasAltConf": has_altconf_chain,
+                    "nPolymer": npolymer,
+                    "polymerFirstRes": polymer_first or '',
+                    "polymerLastRes": polymer_last or '',
+                    "nWater": nwater,
+                    "nOther": nres - npolymer - nwater,
                 })
 
         # monomers now contains only significant ligands in chain:resname:seqnum format
