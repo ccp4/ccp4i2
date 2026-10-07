@@ -13,6 +13,7 @@ import pickle
 
 from lxml import etree
 
+from ccp4i2.lib.utils.formats.unknown_residues import ensemble_models, warn_unknown_residues
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.utils.phil_shims import FixedPhilShim
@@ -142,6 +143,7 @@ class phaser_mr_auto_phil(phaser_phil):
         if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
             return error
         inp = self.container.inputData
+        warn_unknown_residues(error, self.TASKNAME, ensemble_models(inp))
         solin = getattr(inp, self.SOLUTION_INPUT, None)
         if solin is not None and solin.isSet():
             name = f"{self.TASKNAME}.container.inputData.{self.SOLUTION_INPUT}"

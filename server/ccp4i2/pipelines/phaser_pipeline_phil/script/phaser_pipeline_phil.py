@@ -15,6 +15,7 @@ from pathlib import Path
 
 from lxml import etree
 
+from ccp4i2.lib.utils.formats.unknown_residues import ensemble_models, warn_unknown_residues
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
@@ -87,6 +88,7 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
     def runTimeValidity(self):
         error = super().runTimeValidity()
         self._check_components_searched(error)
+        warn_unknown_residues(error, self.TASKNAME, ensemble_models(self.container.inputData))
         return error
 
     def _check_components_searched(self, error):
