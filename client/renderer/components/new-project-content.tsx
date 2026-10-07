@@ -21,7 +21,8 @@ import {
   getDefaultProjectsDir,
   setDefaultProjectsDir,
 } from "../lib/default-projects-dir";
-import { Project } from "../types/models";
+import { JobStatus, Project, isTerminalJobStatus } from "../types/models";
+import { matthewsReflectionFile } from "../lib/matthews-reflections";
 import EditTags from "./edit-tags";
 import {
   DroppedFile,
@@ -163,9 +164,13 @@ export const NewProjectContent: React.FC = () => {
         (df) => df.detectedType !== "sequence"
       );
 
+      let reflectionsJobId: number | null = null;
       for (const df of otherFiles) {
         try {
-          await createImportJob(project.id, df);
+          const ranJobId = await createImportJob(project.id, df);
+          if (df.detectedType === "reflections" && reflectionsJobId === null) {
+            reflectionsJobId = ranJobId;
+          }
           // Small delay between jobs to avoid DB contention (SQLite)
           if (importableFiles.length > 1) {
             await new Promise((r) => setTimeout(r, 500));
@@ -177,7 +182,7 @@ export const NewProjectContent: React.FC = () => {
 
       if (sequenceFiles.length > 0) {
         try {
-          await createAsuContentJob(project.id, sequenceFiles);
+          await createAsuContentJob(project.id, sequenceFiles, reflectionsJobId);
         } catch (err) {
           console.error("Error building the AU-contents job:", err);
           alert(
@@ -196,10 +201,14 @@ export const NewProjectContent: React.FC = () => {
     }
   }
 
-  async function createImportJob(projectId: number, df: DroppedFile) {
+  /** Creates (and, for simple imports, runs) the job; its id if it ran. */
+  async function createImportJob(
+    projectId: number,
+    df: DroppedFile
+  ): Promise<number | null> {
     const taskName = TASK_FOR_TYPE[df.detectedType];
     const paramPath = PARAM_FOR_TYPE[df.detectedType];
-    if (!taskName || !paramPath) return;
+    if (!taskName || !paramPath) return null;
 
     // 1. Create the job
     const result = await apiPost<any>(`projects/${projectId}/create_task/`, {
@@ -268,7 +277,9 @@ export const NewProjectContent: React.FC = () => {
     //    for the user to review parameters before running
     if (AUTO_RUN_FOR_TYPE[df.detectedType]) {
       await apiPost(`jobs/${jobId}/run/`, {});
+      return jobId as number;
     }
+    return null;
   }
 
   /**
@@ -286,7 +297,8 @@ export const NewProjectContent: React.FC = () => {
    */
   async function createAsuContentJob(
     projectId: number,
-    seqFiles: DroppedFile[]
+    seqFiles: DroppedFile[],
+    reflectionsJobId: number | null = null
   ) {
     const taskName = "ProvideAsuContents";
     const result = await apiPost<any>(`projects/${projectId}/create_task/`, {
@@ -366,6 +378,10 @@ export const NewProjectContent: React.FC = () => {
       }
     }
 
+    if (reflectionsJobId !== null) {
+      await giveMatthewsTheData(jobId, reflectionsJobId);
+    }
+
     if (problems.length === 0) {
       await apiPost(`jobs/${jobId}/run/`, {});
     } else {
@@ -376,6 +392,34 @@ export const NewProjectContent: React.FC = () => {
           `\n\nOpen the job to fix or remove the entries, then run it. ` +
           `Copy numbers default to 1 - review the stoichiometry too.`
       );
+    }
+  }
+
+  /**
+   * Wait (up to a minute) for the dropped data's import to finish, then give
+   * its MTZ to the AU contents job, so its report has a Matthews analysis
+   * to judge the copy numbers by (#609). Best effort: without it the job
+   * still runs, as before.
+   */
+  async function giveMatthewsTheData(asuJobId: number, importJobId: number) {
+    try {
+      for (let waited = 0; waited < 60_000; waited += 2000) {
+        const job = await apiGet<any>(`jobs/${importJobId}/`);
+        const status = job?.data?.status ?? job?.status;
+        if (status === JobStatus.FINISHED) break;
+        if (isTerminalJobStatus(status)) return;
+        await new Promise((r) => setTimeout(r, 2000));
+      }
+      const listed = await apiGet<any>(`files/?job=${importJobId}`);
+      const files = Array.isArray(listed) ? listed : listed?.data ?? [];
+      const dbFileId = matthewsReflectionFile(files);
+      if (!dbFileId) return;
+      await apiPost(`jobs/${asuJobId}/set_parameter/`, {
+        object_path: "ProvideAsuContents.container.inputData.HKLIN",
+        value: { dbFileId },
+      });
+    } catch (err) {
+      console.error("Could not give the AU contents job the data:", err);
     }
   }
 
