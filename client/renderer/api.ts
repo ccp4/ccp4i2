@@ -359,9 +359,16 @@ export function useApi() {
      * Fetch validation endpoint, transform to error map
      */
     get_validation(ef: EndpointFetch | null) {
-      return useSWR<ValidationErrors>(getEndpointKey(ef), validationFetcher, {
-        revalidateOnFocus: false,
-      });
+      // Keyed apart from the URL alone: get_pretty_endpoint_xml fetches the
+      // same endpoint as a string, and SWR caches by key whatever fetcher ran
+      // first, so the validation viewer's XML view got this parsed object
+      // and the editor crashed on it (#613).
+      const key = getEndpointKey(ef);
+      return useSWR<ValidationErrors>(
+        key ? [key, "parsed-validation"] : null,
+        ([url]: [string, string]) => validationFetcher(url),
+        { revalidateOnFocus: false }
+      );
     },
 
     /**

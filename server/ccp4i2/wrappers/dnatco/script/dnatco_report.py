@@ -159,9 +159,9 @@ def _draw_naval(parent, models, compare):
     model = models[-1]
     if model["naval"] is None:
         return
-    for title, key, name_label, value_label, reference_label in [
-        ("Bond lengths", "lengths", "Bond", "Value (&#197;)", "Reference (&#197;)"),
-        ("Bond angles", "angles", "Angle", "Value (&#176;)", "Reference (&#176;)"),
+    for title, key, name_label, value_label, target_label in [
+        ("Bond lengths", "lengths", "Bond", "Value (&#197;)", "Target (&#197;)"),
+        ("Bond angles", "angles", "Angle", "Value (&#176;)", "Target (&#176;)"),
     ]:
         concerned = dnatco_data.concerned_items(model["naval"].get(key, []))
         concern_fold = body.addFold(label=f"{title} of concern{_suffix(model)}", initiallyOpen=True)
@@ -172,7 +172,7 @@ def _draw_naval(parent, models, compare):
             f"{len(concerned)} questionable {title.lower()} found."
             f" Up to {MAX_CONCERN_ROWS} are listed below, sorted by NAVAL tier and then by"
             " ProSco (probability score, lower is less likely).<br />"
-            "<i>Reference is the modal value over the PDB-NA-RS reference set,"
+            "<i>Target is the modal value over the PDB-NA-RS reference set,"
             " shown as - for a residue that set does not cover."
             " pGroup is the probability percentile group;"
             " a superscript (-1) marks an atom of the preceding nucleotide.</i>")
@@ -181,7 +181,7 @@ def _draw_naval(parent, models, compare):
         table.addData(title="Residue", data=[item["residue"] for item in concerned])
         table.addData(title=name_label, data=[item["name"] for item in concerned])
         table.addData(title=value_label, data=[_fmt(item["value"]) for item in concerned])
-        table.addData(title=reference_label, data=[_fmt(item["reference"]) for item in concerned])
+        table.addData(title=target_label, data=[_fmt(item["reference"]) for item in concerned])
         table.addData(title="NAVAL", data=[item["naval_tier"] for item in concerned])
         table.addData(title="ProSco", data=[_fmt(item["prosco"]) for item in concerned])
         table.addData(title="pGroup", data=[item["pGroup"] for item in concerned])

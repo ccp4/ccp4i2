@@ -707,7 +707,7 @@ export const BrowseProjectFilesDialog: React.FC<
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           Browse {fileTypeLabel} files from other projects
         </Typography>
-        <IconButton onClick={handleClose} size="small" edge="end">
+        <IconButton aria-label="Close" onClick={handleClose} size="small" edge="end">
           <Close fontSize="small" />
         </IconButton>
       </DialogTitle>

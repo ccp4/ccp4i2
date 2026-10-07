@@ -8,6 +8,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
+import { DialogTitleWithClose } from "./dialog-title-with-close";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
@@ -111,7 +112,7 @@ export const I2RunDialog: React.FC<I2RunDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-      <DialogTitle>i2run command</DialogTitle>
+      <DialogTitleWithClose onClose={onClose}>i2run command</DialogTitleWithClose>
       <DialogContent>
         <DialogContentText sx={{ mb: 2 }}>
           This runs the job as configured. The lines above the command put the

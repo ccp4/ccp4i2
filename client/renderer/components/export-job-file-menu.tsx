@@ -411,6 +411,7 @@ export const ExportJobMenu: React.FC<ExportJobMenuProps> = ({
             </Typography>
           </Box>
           <Button
+            aria-label="Close"
             onClick={handleClose}
             size="small"
             sx={{ minWidth: "auto", p: 1 }}

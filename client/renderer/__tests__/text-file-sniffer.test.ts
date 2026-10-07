@@ -12,7 +12,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import { describe, expect, it } from "vitest";
-import { classifyCifText, classifyXmlText } from "@/lib/text-file-sniffer";
+import { classifyCifText, classifyXmlText, looksBinary } from "@/lib/text-file-sniffer";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "../../..");
@@ -93,5 +93,37 @@ describe("demo_data corpus", () => {
         "unknown"
     );
     expect(unknown).toEqual([]);
+  });
+});
+
+describe("looksBinary", () => {
+  const bytesOf = (relativePath: string) =>
+    new Uint8Array(fs.readFileSync(path.join(REPO_ROOT, relativePath)));
+
+  it.each([
+    "server/ccp4i2/demo_data/gamma/gamma_native.mtz",
+    "server/ccp4i2/demo_data/gamma/Figure1.png",
+  ])("calls %s binary", (file) => {
+    expect(looksBinary(bytesOf(file))).toBe(true);
+  });
+
+  it.each([
+    "server/ccp4i2/demo_data/gamma/INFO.txt",
+    "server/ccp4i2/demo_data/gamma/gamma.asu.xml",
+    "server/ccp4i2/demo_data/gamma/gamma_model.pdb",
+  ])("calls %s text", (file) => {
+    expect(looksBinary(bytesOf(file))).toBe(false);
+  });
+
+  it("reads an ArrayBuffer as well as a Uint8Array", () => {
+    const text = new TextEncoder().encode("Refinement log\n");
+    expect(looksBinary(text.buffer)).toBe(false);
+    expect(looksBinary(new Uint8Array([0x4d, 0x54, 0x5a, 0x00]).buffer)).toBe(true);
+  });
+
+  it("does not take colour codes, tabs or accented text for binary", () => {
+    const log = "\u001b[1;32mOK\u001b[0m\tR-free 0.24 Ångström\r\n";
+    expect(looksBinary(new TextEncoder().encode(log))).toBe(false);
+    expect(looksBinary(new Uint8Array(0))).toBe(false);
   });
 });

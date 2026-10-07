@@ -12,6 +12,7 @@ import {
   CircularProgress,
   Stack,
 } from "@mui/material";
+import { DialogTitleWithClose } from "./dialog-title-with-close";
 import {
   MenuBook,
   ContentCopy,
@@ -176,12 +177,12 @@ export function BibliographyDialog({
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-      <DialogTitle>
+      <DialogTitleWithClose onClose={onClose}>
         <Stack direction="row" spacing={1} alignItems="center">
           <MenuBook fontSize="small" />
           <span>Bibliography ({scopeLabel})</span>
         </Stack>
-      </DialogTitle>
+      </DialogTitleWithClose>
       <DialogContent dividers>
         {isLoading ? (
           <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>

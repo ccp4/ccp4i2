@@ -19,6 +19,7 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
+import { DialogTitleWithClose } from "../components/dialog-title-with-close";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useApi } from "../api";
 import { apiJson, apiPost } from "../api-fetch";
@@ -116,7 +117,9 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
         fullWidth
         maxWidth="lg"
       >
-        <DialogTitle>Running Processes</DialogTitle>
+        <DialogTitleWithClose onClose={() => setJobsAndProcessesDialogOpen(false)}>
+          Running Processes
+        </DialogTitleWithClose>
         <DialogContent>
           {runningProcesses && (
             <Table>
