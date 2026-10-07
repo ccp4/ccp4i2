@@ -4,7 +4,7 @@
 //
 // The app must be running against a scratch home holding the page's scenario
 // project (see scenario_*.py). Each shot opens a job page in a fresh tab,
-// turns developer mode off, clicks through tabs, crops to one section of the
+// turns developer mode off (if on), clicks through tabs, crops to one section of the
 // interface and numbers the fields the page's text refers to, (1), (2)...
 //
 // Fields are found by their label as the user sees it. If a label changes the
@@ -274,7 +274,18 @@ async function shoot(shot) {
     }
   }
   await sleep(400);
-  await page.evaluate(() => __cap.click("Turn Dev Mode Off"));
+  // Developer mode is off by default since #753; turn it off only if a
+  // stored preference left it on (the menu then offers "Turn Dev Mode Off").
+  const wasOn = await page.evaluate(() => {
+    try { __cap.click("Turn Dev Mode Off"); return true; } catch (e) { return false; }
+  });
+  if (!wasOn) {
+    // Already off: close the View menu, or it covers the top of every shot.
+    for (const type of ["keyDown", "keyUp"]) {
+      await page.send("Input.dispatchKeyEvent",
+        { type, key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
+    }
+  }
   await sleep(1200);
   for (const tab of shot.tabs || []) {
     await page.evaluate((t) => __cap.click(t), tab);

@@ -15,10 +15,19 @@ Each was met for real; most cost an hour the first time.
   2026-09-30).
 - **Never send a scenario's data to an outside service.** The deposition
   task's "Use validation server" is on by default and uploads the structure
-  to wwPDB: scenarios pass `--SENDTOVALIDATIONSERVER False`. PDB-REDO and
-  BUSTER need accounts or licences: document them without running them.
+  to wwPDB: scenarios pass `--SENDTOVALIDATIONSERVER False`. BUSTER needs
+  a licence: document it without running it. PDB-REDO is the one exception,
+  agreed with Martin (2026-10-07): `scenario_pdb_redo.py` sends a deposited
+  entry (2d2k) with the runner's own token. Public data only, never a
+  scenario's own model.
 
 ## Scenarios
+
+- **Fetch models as mmCIF, not PDB format.** Robbie Joosten's review
+  (2026-10-07): a page that shows `.pdb` files teaches PDB format as the
+  norm, and PDB-REDO is dropping it (`<id>_final.pdb` URLs already 404).
+  Users bring both, so the task must accept both; the examples should not
+  favour the format on its way out.
 
 - **Make the scenario check its own story.** A run can succeed and show
   nothing: SubstituteLigand "fitted" no ligand because `not (NUT or HOH)`
