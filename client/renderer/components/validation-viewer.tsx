@@ -1,5 +1,6 @@
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useEffect, useMemo, useCallback, useState } from "react";
 import {
+  alpha,
   Box,
   Typography,
   Chip,
@@ -7,6 +8,7 @@ import {
   Stack,
   ToggleButton,
   ToggleButtonGroup,
+  useTheme as useMuiTheme,
 } from "@mui/material";
 import {
   ExpandLess,
@@ -43,13 +45,17 @@ interface SeverityGroup {
 
 type ViewMode = "formatted" | "xml";
 
-// Simplified severity configuration
+// Severities as the validation parser in api.ts assigns them: 2 for ERROR,
+// 1 for WARNING (and UNDEFINED_ERROR), 0 for anything else. This table used
+// to read 2/3/1/0 as Errors/Warnings/Info/Debug, so warnings were filed under
+// a collapsed "Info" group and the "Warnings" group could never appear.
+// Colours are palette keys, resolved against the active theme (#613).
 const SEVERITY_CONFIG = {
-  2: { label: "Errors", color: "#d32f2f", icon: "⚠️" },
-  3: { label: "Warnings", color: "#ed6c02", icon: "⚡" },
-  1: { label: "Info", color: "#0288d1", icon: "ℹ️" },
-  0: { label: "Debug", color: "#757575", icon: "🔍" },
+  2: { label: "Errors", palette: "error", icon: "⚠️" },
+  1: { label: "Warnings", palette: "warning", icon: "⚡" },
+  0: { label: "Other", palette: "info", icon: "ℹ️" },
 } as const;
+const SEVERITY_ORDER = [2, 1, 0] as const;
 
 // Lightweight helper functions
 const formatFieldName = (key: string): string => {
@@ -74,21 +80,32 @@ const cleanErrorMessage = (message: string): string => {
 export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   const { customColors } = useTheme();
   const { mode } = useTheme();
+  const muiTheme = useMuiTheme();
   const { validation } = useJob(job?.id);
   const { devMode } = useCCP4i2Window();
   const api = useApi();
 
   const [viewMode, setViewMode] = useState<ViewMode>("formatted");
   const [expandedGroups, setExpandedGroups] = useState<Set<number>>(
-    new Set([2, 3]) // Expand errors and warnings by default
+    new Set([2, 1]) // Expand errors and warnings by default
   );
 
   // Fetch raw XML for the XML view (with error handling)
-  const { data: validationXml, error: xmlError } = api.get_pretty_endpoint_xml({
+  const {
+    data: validationXml,
+    error: xmlError,
+    mutate: mutateValidationXml,
+  } = api.get_pretty_endpoint_xml({
     type: "jobs",
     id: job?.id,
     endpoint: "validation",
   });
+
+  // The XML is cached apart from the parsed validation (see get_validation),
+  // so refresh it whenever the parsed copy is re-fetched.
+  useEffect(() => {
+    mutateValidationXml();
+  }, [validation, mutateValidationXml]);
 
   const compiledErrors = useMemo(() => {
     return validation || {};
@@ -120,15 +137,14 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
 
     // Build groups only for severities that have errors
     const groups: SeverityGroup[] = [];
-    [2, 3, 1, 0].forEach((severity) => {
+    SEVERITY_ORDER.forEach((severity) => {
       const errors = errorsByseverity[severity];
       if (errors && errors.length > 0) {
-        const config =
-          SEVERITY_CONFIG[severity as keyof typeof SEVERITY_CONFIG];
+        const config = SEVERITY_CONFIG[severity];
         groups.push({
           severity,
           label: config.label,
-          color: config.color,
+          color: muiTheme.palette[config.palette].main,
           icon: config.icon,
           errors: errors.sort((a, b) =>
             a.displayName.localeCompare(b.displayName)
@@ -138,7 +154,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
     });
 
     return groups;
-  }, [compiledErrors]);
+  }, [compiledErrors, muiTheme]);
 
   const totalErrors = processedData.reduce(
     (total, group) => total + group.errors.length,
@@ -227,7 +243,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
     }
 
     return (
-      <Box>
+      <Box sx={{ p: 2 }}>
         <ViewToggle />
         <Box sx={{ height: "calc(100vh - 18rem)" }}>
           <Editor
@@ -253,7 +269,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   // Regular beautified view for non-dev mode
   if (totalErrors === 0) {
     return (
-      <Box>
+      <Box sx={{ p: 2 }}>
         <ViewToggle />
         <Box
           sx={{
@@ -264,11 +280,11 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
             textAlign: "center",
           }}
         >
-          <CheckCircle sx={{ color: "#4caf50", fontSize: 40, mb: 1 }} />
-          <Typography variant="h6" sx={{ color: "#4caf50", mb: 0.5 }}>
+          <CheckCircle sx={{ color: "success.main", fontSize: 40, mb: 1 }} />
+          <Typography variant="h6" sx={{ color: "success.main", mb: 0.5 }}>
             No Validation Issues
           </Typography>
-          <Typography variant="body2" sx={{ color: "#666" }}>
+          <Typography variant="body2" color="text.secondary">
             All required fields are properly configured.
           </Typography>
         </Box>
@@ -277,7 +293,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   }
 
   return (
-    <Box>
+    <Box sx={{ p: 2 }}>
       <ViewToggle />
       <Box sx={{ maxHeight: "70vh", overflow: "auto" }}>
         {/* Lightweight Summary */}
@@ -285,9 +301,9 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
           sx={{
             p: 2,
             mb: 2,
-            border: "1px solid #e0e0e0",
+            border: `1px solid ${customColors.ui.mediumGray}`,
             borderRadius: 1,
-            backgroundColor: "#fafafa",
+            backgroundColor: customColors.ui.veryLightGray,
           }}
         >
           <Stack
@@ -305,9 +321,9 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                 size="small"
                 label={`${group.errors.length} ${group.label.toLowerCase()}`}
                 sx={{
-                  backgroundColor: `${group.color}20`,
+                  backgroundColor: alpha(group.color, 0.12),
                   color: group.color,
-                  border: `1px solid ${group.color}40`,
+                  border: `1px solid ${alpha(group.color, 0.25)}`,
                 }}
               />
             ))}
@@ -330,7 +346,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
               onClick={() => toggleGroup(group.severity)}
               sx={{
                 p: 2,
-                backgroundColor: `${group.color}10`,
+                backgroundColor: alpha(group.color, 0.06),
                 borderBottom: expandedGroups.has(group.severity)
                   ? `1px solid ${customColors.ui.mediumGray}`
                   : "none",
@@ -339,7 +355,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 "&:hover": {
-                  backgroundColor: `${group.color}20`,
+                  backgroundColor: alpha(group.color, 0.12),
                 },
               }}
             >
@@ -353,7 +369,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                   label={group.errors.length}
                   sx={{
                     backgroundColor: group.color,
-                    color: "white",
+                    color: muiTheme.palette.getContrastText(group.color),
                     fontSize: "0.75rem",
                   }}
                 />
@@ -377,10 +393,10 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                       p: 2,
                       borderBottom:
                         index < group.errors.length - 1
-                          ? "1px solid #f0f0f0"
+                          ? `1px solid ${muiTheme.palette.divider}`
                           : "none",
                       "&:hover": {
-                        backgroundColor: "#f9f9f9",
+                        backgroundColor: "action.hover",
                       },
                     }}
                   >
@@ -392,7 +408,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                         <Typography
                           key={msgIndex}
                           variant="body2"
-                          sx={{ color: "#666", pl: 1 }}
+                          sx={{ color: "text.secondary", pl: 1 }}
                         >
                           • {message}
                         </Typography>
@@ -401,7 +417,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
                         variant="caption"
                         sx={{
                           fontFamily: "monospace",
-                          color: "#999",
+                          color: "text.disabled",
                           fontSize: "0.7rem",
                           pl: 1,
                         }}

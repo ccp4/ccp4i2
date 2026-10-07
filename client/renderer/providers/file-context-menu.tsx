@@ -305,7 +305,8 @@ export const FileMenu: React.FC = () => {
         setContentSpecification({
           url: `/api/proxy/ccp4i2/files/${file.id}/digest/`,
           title: file.name,
-          language: "json",
+          // A coordinate file's digest is shown as chain/ligand tables (#681)
+          language: file.type === "chemical/x-pdb" ? "coord-digest" : "json",
         });
         setFileMenuAnchorEl(null);
       }

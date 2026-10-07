@@ -210,6 +210,7 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
       <DialogTitle>
         Project Exports - {project ? project.name : "Loading..."}
         <IconButton
+          aria-label="Close"
           onClick={onClose}
           sx={{ position: "absolute", right: 8, top: 8 }}
         >

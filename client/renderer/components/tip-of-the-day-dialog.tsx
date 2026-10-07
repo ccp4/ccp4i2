@@ -10,6 +10,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { DialogTitleWithClose } from "./dialog-title-with-close";
 import { EmojiObjects, Refresh } from "@mui/icons-material";
 import React, { useCallback, useEffect, useState } from "react";
 import { apiGet } from "../api-fetch";
@@ -52,12 +53,12 @@ export function TipOfTheDayDialog({
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>
+      <DialogTitleWithClose onClose={onClose}>
         <Stack direction="row" spacing={1} alignItems="center">
           <EmojiObjects fontSize="small" color="warning" />
           <span>Tip of the day</span>
         </Stack>
-      </DialogTitle>
+      </DialogTitleWithClose>
       <DialogContent dividers>
         {loading || !tip ? (
           <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>

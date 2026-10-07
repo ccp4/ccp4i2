@@ -81,3 +81,33 @@ export async function sniffXmlFile(file: File): Promise<XmlFlavour> {
     return "unknown";
   }
 }
+
+/** How much of a file `looksBinary` inspects. */
+const BINARY_SNIFF_BYTES = 8 * 1024;
+
+/**
+ * Whether file content is binary rather than text, judged from its leading
+ * bytes rather than its name: a file in a job directory called `.log`,
+ * `.out` or `.txt` is not guaranteed to be text, and an MTZ or a map shown
+ * as text is a screen of mojibake.
+ *
+ * A NUL byte is decisive (text files never carry one). Otherwise a prefix
+ * more than a tenth control characters, other than whitespace, backspace
+ * and the escape that starts a terminal colour code, is taken as binary.
+ * Bytes above 0x7f are not counted, so a log in Latin-1 or UTF-8 reads as
+ * text either way.
+ */
+export function looksBinary(content: ArrayBuffer | Uint8Array): boolean {
+  const bytes =
+    content instanceof Uint8Array
+      ? content.subarray(0, BINARY_SNIFF_BYTES)
+      : new Uint8Array(content, 0, Math.min(content.byteLength, BINARY_SNIFF_BYTES));
+  if (bytes.length === 0) return false;
+  let control = 0;
+  for (const byte of bytes) {
+    if (byte === 0) return true;
+    const allowed = (byte >= 8 && byte <= 13) || byte === 27;
+    if ((byte < 32 && !allowed) || byte === 127) control++;
+  }
+  return control / bytes.length > 0.1;
+}

@@ -21,6 +21,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import { DialogTitleWithClose } from "../components/dialog-title-with-close";
 import { apiArrayBuffer, apiBlob, apiJson } from "../api-fetch";
 import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
@@ -31,6 +32,12 @@ import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { MolBlockView } from "../components/campaigns/molblock-view";
 import { useTheme } from "../theme/theme-provider";
+import { looksBinary } from "../lib/text-file-sniffer";
+import {
+  CoordinateDigest,
+  CoordinateDigestView,
+  isCoordinateDigest,
+} from "../components/coordinate-digest-view";
 
 // Register mmCIF language and themes with Monaco at module load time.
 // This runs once before any Editor component mounts.
@@ -146,6 +153,12 @@ const FilePreviewDialog: React.FC = () => {
   const [previewContent, setPreviewContent] = useState<string | null>("");
   const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
   const [dictDigest, setDictDigest] = useState<DictDigest | null>(null);
+  // Set when a file asked for as text turns out to be binary (#672): say so
+  // rather than fill the editor with mojibake.
+  const [isBinary, setIsBinary] = useState(false);
+  const [coordDigest, setCoordDigest] = useState<CoordinateDigest | null>(
+    null
+  );
   // Object URL minted for image previews; revoked when the dialog content changes.
   const objectUrlRef = useRef<string | null>(null);
   const { mode } = useTheme();
@@ -185,6 +198,7 @@ const FilePreviewDialog: React.FC = () => {
   };
 
   useEffect(() => {
+    setIsBinary(false);
     if (contentSpecification) {
       const asyncFunc = async () => {
         if (!contentSpecification.url) {
@@ -257,8 +271,33 @@ const FilePreviewDialog: React.FC = () => {
           return;
         }
 
+        // Coordinate file digest: chain and ligand tables; anything that is
+        // not a coordinate digest after all is shown as JSON, as before.
+        if (contentSpecification.language === "coord-digest") {
+          setCoordDigest(null);
+          setPreviewContent("");
+          try {
+            const response = await apiJson<any>(contentSpecification.url);
+            const data = response?.data ?? response;
+            if (isCoordinateDigest(data)) {
+              setCoordDigest(data);
+            } else {
+              setPreviewContent(JSON.stringify(response, null, 2));
+            }
+          } catch (error) {
+            console.error("Failed to fetch coordinate digest:", error);
+            setPreviewContent(String(error));
+          }
+          return;
+        }
+
         {
           const fileContent = await apiArrayBuffer(contentSpecification.url);
+          if (contentSpecification.language !== "mtz" && looksBinary(fileContent)) {
+            setPreviewContent(null);
+            setIsBinary(true);
+            return;
+          }
           var enc = new TextDecoder("utf-8");
           if (contentSpecification.language === "json") {
             const fileText = enc.decode(fileContent);
@@ -291,6 +330,13 @@ const FilePreviewDialog: React.FC = () => {
     };
   }, [contentSpecification]);
 
+  const handleClose = () => {
+    setContentSpecification(null);
+    setMtzData(null);
+    setDictDigest(null);
+    setCoordDigest(null);
+  };
+
   const handleDownload = () => {
     const url = contentSpecification?.url;
     if (!url) return;
@@ -314,6 +360,7 @@ const FilePreviewDialog: React.FC = () => {
       case "clustal":
         return "clustal";
       case "json":
+      case "coord-digest":
         return "json";
       case "xml":
         return "xml";
@@ -331,15 +378,19 @@ const FilePreviewDialog: React.FC = () => {
       fullWidth
       maxWidth="xl"
       open={Boolean(contentSpecification)}
-      onClose={() => {
-        setContentSpecification(null);
-        setMtzData(null);
-        setDictDigest(null);
-      }}
+      onClose={handleClose}
     >
-      <DialogTitle>{contentSpecification?.title}</DialogTitle>
+      <DialogTitleWithClose onClose={handleClose}>
+        {contentSpecification?.title}
+      </DialogTitleWithClose>
       <DialogContent>
-        {contentSpecification?.language === "image" ? (
+        {isBinary ? (
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+            <Typography color="text.secondary">
+              This is a binary file, so it cannot be shown as text. Export saves a copy of it.
+            </Typography>
+          </Box>
+        ) : contentSpecification?.language === "image" ? (
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
             {previewContent ? (
               <img
@@ -354,6 +405,15 @@ const FilePreviewDialog: React.FC = () => {
         ) : contentSpecification?.language === "dict-preview" ? (
           dictDigest ? (
             <DictPreview digest={dictDigest} />
+          ) : (
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+              <CircularProgress />
+            </Box>
+          )
+        ) : contentSpecification?.language === "coord-digest" &&
+          (coordDigest || !previewContent) ? (
+          coordDigest ? (
+            <CoordinateDigestView digest={coordDigest} />
           ) : (
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
               <CircularProgress />
@@ -396,7 +456,7 @@ const FilePreviewDialog: React.FC = () => {
           variant="contained"
           color="primary"
         >
-          Download File
+          Export
         </Button>
       </DialogActions>
     </Dialog>
