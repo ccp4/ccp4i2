@@ -1,11 +1,11 @@
 ############################################################
-Molecular replacement with Phaser, whole or in steps (PHIL)
+Molecular replacement with Phaser, whole or in steps
 ############################################################
 
 These five tasks run Phaser's molecular replacement through its own
 parameter interface (PHIL), all with the same input:
 
-- **Molecular Replacement - Phaser (PHIL)** runs the whole search: the
+- **Molecular Replacement - Phaser** runs the whole search: the
   rotation function, the translation function, the packing test and
   refinement, in one job.
 - **Rotation function**, **Translation function**, **Packing test** and

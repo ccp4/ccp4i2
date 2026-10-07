@@ -299,7 +299,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                           >
                             <Stack direction="row" justifyContent="space-between" alignItems="center">
                               <Typography variant="body2" fontWeight="medium">
-                                {result.nmol_in_asu} mol/ASU
+                                {result.nmol_in_asu} &times; these contents
                               </Typography>
                               <Typography variant="body2" fontWeight="bold">
                                 {(probability * 100).toFixed(0)}%

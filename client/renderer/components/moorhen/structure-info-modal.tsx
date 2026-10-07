@@ -471,7 +471,7 @@ export const StructureInfoModal: React.FC<StructureInfoModalProps> = ({
             )}
           </Stack>
         </Box>
-        <IconButton onClick={onClose} size="small">
+        <IconButton aria-label="Close" onClick={onClose} size="small">
           <CloseIcon />
         </IconButton>
       </DialogTitle>

@@ -1,11 +1,11 @@
 #############################################
-Rigid-body refinement (Phaser, PHIL)
+Rigid-body refinement (Phaser)
 #############################################
 
    This task refines a model that is already placed in the crystal by
    treating pieces of it as rigid bodies, using the rigid-body mode of
    `Phaser <https://www.phaser.cimr.cam.ac.uk>`__ (the task's name in the
-   chooser is *Rigid-body refinement - Phaser (PHIL)*). You cut the model
+   chooser is *Rigid-body refinement - Phaser*). You cut the model
    into bodies with atom selections, one per body; Phaser moves and rotates
    each body to maximise the log-likelihood gain (LLG), and the result can
    then be taken through shift-field refinement (Sheetbend) and REFMAC.

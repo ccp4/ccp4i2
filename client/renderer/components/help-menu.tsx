@@ -16,6 +16,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { DialogTitleWithClose } from "./dialog-title-with-close";
 import {
   Help,
   Info,
@@ -252,10 +253,13 @@ export default function HelpMenu() {
         maxWidth={showSession ? "sm" : "xs"}
         fullWidth
       >
-        <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <DialogTitleWithClose
+          onClose={() => setAboutOpen(false)}
+          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+        >
           <Help color="primary" />
           About CCP4i2
-        </DialogTitle>
+        </DialogTitleWithClose>
         <DialogContent>
           <Stack spacing={1.5} sx={{ pt: 1 }}>
             <Typography variant="body1">

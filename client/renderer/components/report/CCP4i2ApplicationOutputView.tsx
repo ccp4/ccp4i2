@@ -558,6 +558,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
         <DialogTitle>
           Edit Chart Properties
           <IconButton
+            aria-label="Close"
             onClick={() => setEditDialogOpen(false)}
             sx={{ position: 'absolute', right: 8, top: 8 }}
           >
