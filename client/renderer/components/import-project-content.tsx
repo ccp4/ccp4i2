@@ -17,13 +17,41 @@ import { Project } from "../types/models";
 import { ImportProjectDirectory } from "./import-project-directory";
 import { DropZone } from "./common/drop-zone";
 
+const ARRIVAL_POLL_MS = 1000;
+const ARRIVAL_TIMEOUT_MS = 120_000;
+
+const normaliseUuid = (uuid: string) => uuid.replace(/-/g, "").toLowerCase();
+
+interface ImportedProject {
+  file: string;
+  project_name: string | null;
+  project_uuid: string | null;
+  jobs: number;
+}
+
 export const ImportProjectContent: React.FC = () => {
   const api = useApi();
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState<UploadProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [waitingFor, setWaitingFor] = useState<string[] | null>(null);
+  const [notArrived, setNotArrived] = useState<string | null>(null);
   const { mutate: mutateProjects } = api.get<Project[]>("projects");
+
+  const waitForProjects = useCallback(
+    async (uuids: string[]) => {
+      const deadline = Date.now() + ARRIVAL_TIMEOUT_MS;
+      while (true) {
+        const projects = (await mutateProjects()) ?? [];
+        const present = new Set(projects.map((p) => normaliseUuid(String(p.uuid))));
+        if (uuids.every((uuid) => present.has(uuid))) return true;
+        if (Date.now() >= deadline) return false;
+        await new Promise((resolve) => setTimeout(resolve, ARRIVAL_POLL_MS));
+      }
+    },
+    [mutateProjects]
+  );
 
   const handleFileUpload = useCallback(
     async (selectedFiles: FileList | null) => {
@@ -43,6 +71,7 @@ export const ImportProjectContent: React.FC = () => {
       setUploading(true);
       setProgress(null);
       setError(null);
+      setNotArrived(null);
       try {
         const formData = new FormData();
         if (localPaths.length === files.length) {
@@ -87,16 +116,35 @@ export const ImportProjectContent: React.FC = () => {
           setError(response?.error ?? "The project could not be imported");
           return;
         }
-        mutateProjects();
-        router.push("/ccp4i2");
+        // The server unpacks each zip in a detached process and replies
+        // before the project exists, so wait for it to reach the list rather
+        // than returning to a list that does not show it yet.
+        const imported: ImportedProject[] = response?.data?.projects ?? [];
+        const names = imported.map((p) => p.project_name ?? p.file);
+        const expected = imported
+          .map((p) => p.project_uuid)
+          .filter((uuid): uuid is string => Boolean(uuid))
+          .map(normaliseUuid);
+        setProgress(null);
+        setWaitingFor(names);
+        if (await waitForProjects(expected)) {
+          router.push("/ccp4i2");
+        } else {
+          setNotArrived(
+            `${names.join(", ")} has not appeared in the project list yet. ` +
+              "A very large import may still be running; otherwise it failed, " +
+              "and the server log will say why."
+          );
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err));
       } finally {
         setUploading(false);
         setProgress(null);
+        setWaitingFor(null);
       }
     },
-    [mutateProjects, router]
+    [waitForProjects, router]
   );
 
   return (
@@ -121,6 +169,7 @@ export const ImportProjectContent: React.FC = () => {
         </Stack>
 
         {error && <Alert severity="error">{error}</Alert>}
+        {notArrived && <Alert severity="warning">{notArrived}</Alert>}
 
         <Paper variant="outlined" sx={{ padding: 2 }}>
           <Stack spacing={2}>
@@ -155,9 +204,11 @@ export const ImportProjectContent: React.FC = () => {
                   }
                 />
                 <Typography variant="caption" color="text.secondary">
-                  {progress?.fraction != null
-                    ? `Uploading — ${Math.round(progress.fraction * 100)}%`
-                    : "Uploading…"}
+                  {waitingFor
+                    ? `Importing ${waitingFor.join(", ")}…`
+                    : progress?.fraction != null
+                      ? `Uploading — ${Math.round(progress.fraction * 100)}%`
+                      : "Uploading…"}
                 </Typography>
               </Stack>
             )}

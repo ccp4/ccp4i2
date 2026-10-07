@@ -86,7 +86,10 @@ export const visibleTabs = (
     visible.add(TAB.REPORT);
   if (devMode || status === JobStatus.FAILED) visible.add(TAB.DIAGNOSTICS);
   if (devMode || status === JobStatus.PENDING) visible.add(TAB.VALIDATION);
-  if (devMode || (hasJudgement && JUDGEMENT_STATUSES.includes(status as JobStatus)))
+  // Developer mode only, for now: the judgement is an opinionated reading of
+  // the job that users have not been introduced to. Still only for a task
+  // that has one, and once the job has ended (it reads what the job wrote).
+  if (devMode && hasJudgement && JUDGEMENT_STATUSES.includes(status as JobStatus))
     visible.add(TAB.JUDGEMENT);
   return visible;
 };

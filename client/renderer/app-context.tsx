@@ -24,7 +24,7 @@ export const CCP4i2Context = createContext<CCP4i2Context>({
   setCootModule: () => {},
   cootModuleError: null,
   setCootModuleError: () => {},
-  devMode: true,
+  devMode: false,
   setDevMode: () => {},
   activeDragItem: null,
   setActiveDragItem: () => {},
