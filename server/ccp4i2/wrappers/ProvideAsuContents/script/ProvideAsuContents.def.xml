@@ -29,7 +29,7 @@
         <qualifiers>
           <allowUndefined>True</allowUndefined>
           <guiLabel>Sequence file</guiLabel>
-          <toolTip>A sequence file (or one fetched from UniProt or a PDB entry): its sequence is added to the table. The job itself works from the table (ASU_CONTENT).</toolTip>
+          <toolTip>One sequence: a sequence file, or one fetched from UniProt (a PDB entry fetched here gives a single chain; use the model slot for every chain). It is added to the table. The job itself works from the table (ASU_CONTENT).</toolTip>
         </qualifiers>
       </content>
       <content id="HKLIN">
