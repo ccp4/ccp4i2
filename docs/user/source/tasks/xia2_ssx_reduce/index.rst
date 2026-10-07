@@ -32,7 +32,7 @@ Input
 
    Figure 1: Where the integrated data come from
 
-The panel is headed "Search for xia2.ssx integrated files". Choose
+The panel (Figure 1) is headed "Search for xia2.ssx integrated files". Choose
 whether the files wanted are ``integrated.refl`` or ``scaled.refl``. A
 root directory **(1)** is offered, to search from, and the DIALS
 reflection files go in the list **(2)**; each ``.refl`` must have its
@@ -55,9 +55,9 @@ files in it has nothing to reduce.
 
    Figure 2: Basic parameters
 
-Two settings are in the basic panel. The resolution limit **(3)**, d\_min,
-is left blank to let the program decide. The reference **(4)** is a model
-(PDB or mmCIF) or a file of intensities (mmCIF or MTZ), used for scaling
+Two settings are in the basic panel (Figure 2). The resolution limit **(3)**,
+d\_min, is left blank to let the program decide. The reference **(4)** is a
+model (PDB or mmCIF) or a file of intensities (mmCIF or MTZ), used for scaling
 and to resolve the indexing ambiguity: when the crystal's symmetry is lower
 than its lattice's, the same pattern can be indexed in more than one way,
 and without a reference the program has to compare the crystals with each
@@ -76,21 +76,22 @@ choice of keeping anomalous pairs separate during scaling (shown when the
 workflow is scale and merge), and a separate resolution cutoff for
 dials.cosym, which reaches the program as a small parameter file of its own.
 
-*Workflow options* offer the lattice tolerance for deciding whether to
-assess mis-indexing (default 0.5), the workflow itself **(5)** (the steps to run: scale, merge; the
-interface shows it as the text "*scale *merge"), the batch size **(6)** (default 1000) and
-the number of processors (blank by default). Reduce the batch size and the
-number of processors if a job fails for memory: the wrapper
-reports error 226 for that case, a process of the pool being terminated
-abruptly, and says that overload of memory is the likely cause.
+*Workflow options* (Figure 3) offer the lattice tolerance for deciding whether
+to assess mis-indexing (default 0.5), the workflow itself **(5)** (the steps to
+run: scale, merge; the interface shows it as the text "*scale *merge"), the
+batch size **(6)** (default 1000) and the number of processors (blank by
+default). Reduce the batch size and the number of processors if a job fails for
+memory: the wrapper reports error 226 for that case, a process of the pool
+being terminated abruptly, and says that overload of memory is the likely
+cause.
 
 .. figure:: xia2_ssx_reduce_cell.png
    :alt: Figure 4: Unit cell filtering
 
    Figure 4: Unit cell filtering
 
-*Unit cell filtering* discards crystals whose cell differs from a central
-cell by more than a tolerance (the defaults shown are 1 degree and 1
+*Unit cell filtering* (Figure 4) discards crystals whose cell differs from a
+central cell by more than a tolerance (the defaults shown are 1 degree and 1
 Ångström), or selects a cluster by an Andrews-Bernstein distance threshold
 instead. The central cell is the median of the data unless you give your
 own values. The "Calculated median cell" **(7)** is a display field: the

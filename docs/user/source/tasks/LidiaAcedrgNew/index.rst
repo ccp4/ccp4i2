@@ -28,9 +28,9 @@ Input
 
    Figure 1: Make Ligand input
 
-The menu **(1)** chooses how the ligand is described: *a SMILES string*
-typed or pasted into the box that appears **(2)**; *a SMILES file*; *a MOL
-or SDF file*; *a MOL2 file*; or *a CIF dictionary*, to regenerate or
+In Figure 1 the menu **(1)** chooses how the ligand is described: *a SMILES
+string* typed or pasted into the box that appears **(2)**; *a SMILES file*; *a
+MOL or SDF file*; *a MOL2 file*; or *a CIF dictionary*, to regenerate or
 improve the restraints of an existing dictionary (for instance one from
 the PDB's Chemical Component Dictionary). A SMILES string is drawn below
 the box as soon as it is entered, so that a mistake in it (a missing
@@ -85,8 +85,8 @@ Results
 
    Figure 2: Make Ligand report
 
-The report is simple. It gives the SMILES string of the ligand as ACEDRG
-understood it **(6)** and a 2D drawing of it **(7)**: check both against
+The report (Figure 2) is simple. It gives the SMILES string of the ligand as
+ACEDRG understood it **(6)** and a 2D drawing of it **(7)**: check both against
 what was intended, especially the stereochemistry (the wedges) and the
 charges. The output data **(8)** are the MOL file from RDKit, the
 restraint dictionary, and the coordinates of the ligand in its optimised

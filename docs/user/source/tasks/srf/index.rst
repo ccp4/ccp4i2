@@ -33,8 +33,8 @@ Input
 
    Figure 1: Self-rotation input
 
-The reflections **(1)**, as amplitudes with their sigmas; this is the only
-input the calculation uses. The task shares its window with Molrep
+The reflections **(1)** (Figure 1), as amplitudes with their sigmas; this is
+the only input the calculation uses. The task shares its window with Molrep
 molecular replacement, so the same window also offers a search model, fixed
 model, map coefficients, sequence and asymmetric-unit contents. In this
 task they are not used: the model is never passed to Molrep for a
@@ -53,18 +53,19 @@ Results
 
    Figure 2: Self-rotation report
 
-The report opens with the anisotropy table **(2)**: the resolution range
-given, completeness, overall B, the optical resolution and the three
+The report (Figure 2) opens with the anisotropy table **(2)**: the resolution
+range given, completeness, overall B, the optical resolution and the three
 anisotropy ratios. Strong anisotropy (ratios far from 1) is worth knowing
 before reading anything into weak peaks; here they are 0.72, 1.00, 0.62.
 Next comes Molrep's conclusion on translational symmetry **(3)**, from the
 self-Patterson: a strong off-origin Patterson peak means pseudo-translation,
 which also makes the self-rotation hard to read. Here Molrep says
-"pseudo-translation was not detected" (the highest off-origin Patterson peak, 4.7 Å from the origin,
-is 4.5% of the origin peak, below Molrep's limit of 12.5%). The self-rotation plot
-**(4)** shows sections at chi = 180, 90, 120 and 60 degrees. Chi is the
-rotation angle, so chi = 180 sections show two-fold axes, 120 three-fold,
-90 four-fold and 60 six-fold; positions on a section give the axis direction.
+"pseudo-translation was not detected" (the highest off-origin Patterson peak,
+4.7 Å from the origin, is 4.5% of the origin peak, below Molrep's limit of
+12.5%). The self-rotation plot **(4)** shows sections at chi = 180, 90, 120 and
+60 degrees. Chi is the rotation angle, so chi = 180 sections show two-fold
+axes, 120 three-fold, 90 four-fold and 60 six-fold; positions on a section give
+the axis direction.
 
 Reading the plot
 ----------------

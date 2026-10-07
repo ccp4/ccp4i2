@@ -54,8 +54,8 @@ not run.
    Figure 1: ARP/wARP input data
 
 The task needs, at a minimum, the observed data as mean structure factors
-**(1)**, and then either phases or a model, according to the mode chosen
-under *Parameters* **(7)**:
+**(1)** (Figure 1), and then either phases or a model, according to the mode
+chosen under *Parameters* **(7)**:
 
 * **automated model building starting from experimental phases** (the
   default): the *Phases* **(4)** are the starting point, for example
@@ -88,8 +88,8 @@ coefficients* is chosen.
 
    Figure 2: ARP/wARP parameters
 
-The mode **(7)**, here *automated model building starting from existing
-model*. The phase information for refinements **(8)** is one of
+The mode **(7)** (Figure 2), here *automated model building starting from
+existing model*. The phase information for refinements **(8)** is one of
 *None* (the default), *Phases*, *HL coefficients* or *Anomalous data*;
 the wavelength, scattering atom and f' and f'' fields below it apply to
 *Anomalous data* (a wavelength, scan-derived values, or the Cu K-alpha

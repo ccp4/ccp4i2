@@ -35,7 +35,7 @@ Input
 
    Figure 1: Process Predicted Models input
 
-The model **(1)** will typically have been produced by AlphaFold or
+The model **(1)** in Figure 1 will typically have been produced by AlphaFold or
 RoseTTAFold; import it first. If a file holds several models, the first in
 the file (by convention the best estimate) is used.
 
@@ -68,10 +68,10 @@ Additional settings
 
    Figure 2: Additional settings
 
-These tune the removal of residues and the splitting: the maximum number of
-domains, the approximate size of a domain (in Angstroms) and its minimum
-length in residues, and the confidence limits for removing residues, the
-minimum LDDT **(5)** for pLDDT input and the maximum RMSD for RoseTTAFold
+These (Figure 2) tune the removal of residues and the splitting: the maximum
+number of domains, the approximate size of a domain (in Angstroms) and its
+minimum length in residues, and the confidence limits for removing residues,
+the minimum LDDT **(5)** for pLDDT input and the maximum RMSD for RoseTTAFold
 input. Short stretches shorter than the *Minimum domain length* **(6)** are
 discarded. Further down are boxes of settings used only when a PAE file
 (power, cutoff and graph resolution) or a distance model is given. The
@@ -86,9 +86,9 @@ Results
 
    Figure 3: Process Predicted Models report
 
-The report begins with how much of the model was kept **(7)**: here 179 of
-the 491 residues, in the ranges 26-111, 295-331 and 435-490. Below it is a
-table of the regions **(8)**, one row each, with its residue range and
+The report (Figure 3) begins with how much of the model was kept **(7)**: here
+179 of the 491 residues, in the ranges 26-111, 295-331 and 435-490. Below it is
+a table of the regions **(8)**, one row each, with its residue range and
 number of residues. The log from CCTBX is in a fold below it.
 
 The outputs are PDB files: the *processed model* (all the residues kept,

@@ -25,8 +25,8 @@ Input
 
    Figure 1: Generate a Free R set input
 
-To generate a Free-R set for a set of observations, all that is required
-is the reflection data object for those observations **(1)**.
+To generate a Free-R set for a set of observations (Figure 1), all that is
+required is the reflection data object for those observations **(1)**.
 
 Sometimes it is necessary to extend an existing set of Free-R flags to
 cover additional reflections, for example if a new set of observations is
@@ -48,6 +48,6 @@ Results
 
    Figure 2: Generate a Free R set report
 
-The report says what was done, and the new Free-R set is listed among the
-outputs with its space group, resolution and cell, which identify the
+The report (Figure 2) says what was done, and the new Free-R set is listed
+among the outputs with its space group, resolution and cell, which identify the
 data it belongs with.

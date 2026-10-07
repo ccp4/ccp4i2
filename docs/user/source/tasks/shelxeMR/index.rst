@@ -29,20 +29,20 @@ Input
 
    Figure 1: SHELXE-MR input
 
-The reflections **(1)** and their free set **(2)**, the placed model
-**(3)** (here job 25, Phaser's solution) and the fraction of solvent in
+In Figure 1, the reflections **(1)** and their free set **(2)**, the placed
+model **(3)** (here job 25, Phaser's solution) and the fraction of solvent in
 the asymmetric unit **(4)**, which SHELXE uses in density modification.
 The default is 0.45; if you know your crystal's solvent fraction (the
-task for the asymmetric unit contents estimates it), enter that. Beneath the model there is
-an atom selection, to pass only part of it to SHELXE.
+task for the asymmetric unit contents estimates it), enter that. Beneath the
+model there is an atom selection, to pass only part of it to SHELXE.
 
 .. figure:: shelxeMR_options.png
    :alt: Figure 2: SHELXE-MR run options
 
    Figure 2: SHELXE-MR run options
 
-The Run Options tab sets how SHELXE works. The number of tracing cycles
-**(5)**, 15 by default, is how many times SHELXE traces a chain and
+The Run Options tab (Figure 2) sets how SHELXE works. The number of tracing
+cycles **(5)**, 15 by default, is how many times SHELXE traces a chain and
 recalculates the map from it, and the number of density modification
 cycles **(6)**, 20 by default, is how many it runs per tracing cycle. The
 search for alpha helices **(7)** is on by default; searches for parallel
@@ -63,8 +63,8 @@ Results
 
    Figure 3: SHELXE-MR report
 
-The report opens with the best trace in numbers (its cycle, CC, residues
-and chains), then plots the correlation coefficient (CC) of the traced
+The report (Figure 3) opens with the best trace in numbers (its cycle, CC,
+residues and chains), then plots the correlation coefficient (CC) of the traced
 partial structure against the native data, cycle by cycle **(9)**; the
 menu above the plot switches it to the average chain length per cycle.
 The CC is the figure to watch: it measures how well the trace explains

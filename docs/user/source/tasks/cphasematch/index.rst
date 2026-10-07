@@ -25,9 +25,9 @@ Input
 
    Figure 1: cphasematch input
 
-A set of reflection data **(1)** and two sets of phases **(2)**: here the
-supplied phases, then the phases calculated from the refined model. The
-data are used for the map correlations.
+In Figure 1, a set of reflection data **(1)** and two sets of phases **(2)**:
+here the supplied phases, then the phases calculated from the refined model.
+The data are used for the map correlations.
 
 Results
 =======
@@ -37,9 +37,9 @@ Results
 
    Figure 2: cphasematch report
 
-The mean phase error between the two sets is reported first **(3)**, with
-weighted errors and map correlations. The unweighted error counts every
-reflection equally, including those whose phases carry no information;
+In Figure 2 the mean phase error between the two sets is reported first
+**(3)**, with weighted errors and map correlations. The unweighted error counts
+every reflection equally, including those whose phases carry no information;
 weighting by either set's figure of merit discounts them, and so also
 shows whether a figure of merit was meaningful. The map correlations
 weight by amplitude as well: the F-map correlation is dominated by the

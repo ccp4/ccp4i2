@@ -32,7 +32,7 @@ Input
 
    Figure 1: SIMBAD input
 
-The reflections **(1)**, and the search level **(2)**: *Lattice*,
+The reflections **(1)**, and the search level **(2)** (Figure 1): *Lattice*,
 *Contaminants* or *Lattice + contaminants* (the default). The organism **(3)**
 limits the contaminant search to contaminants from one organism, for example
 your expression host; it does not affect a lattice-only search. The number of
@@ -43,9 +43,9 @@ processors **(4)** is how many SIMBAD may use at once.
 
    Figure 2: SIMBAD advanced options
 
-The *Advanced options* tab chooses the program for the rotation search
-**(5)** and the program that does the molecular replacement **(6)**, both
-Phaser by default (AMoRe or MOLREP are the alternatives), and how many
+The *Advanced options* tab (Figure 2) chooses the program for the rotation
+search **(5)** and the program that does the molecular replacement **(6)**,
+both Phaser by default (AMoRe or MOLREP are the alternatives), and how many
 molecules to place **(7)**. The rotation search program is used only by the
 contaminant search, and the organism only limits the contaminant search: the
 job leaves both out of the command when the level is *Lattice*. *Process all
@@ -62,10 +62,10 @@ Results
 
    Figure 3: SIMBAD lattice search results
 
-The first table lists the structures whose cells best match yours, best
-first: the PDB code (linked to the entry at PDBe), the cell, and how far it is
-from yours (length and angle penalties, their total, and the difference in
-volume). The last column, the probability score, is wider than the table and
+The first table of Figure 3 lists the structures whose cells best match yours,
+best first: the PDB code (linked to the entry at PDBe), the cell, and how far
+it is from yours (length and angle penalties, their total, and the difference
+in volume). The last column, the probability score, is wider than the table and
 is reached by scrolling it sideways. The match is the cell only. The second
 table gives the molecular replacement for the best hits: Phaser's TFZ and LLG,
 and R and R-free after refinement.
@@ -87,9 +87,9 @@ cell, so a small penalty does not make them the same protein.
 
    Figure 4: SIMBAD summary
 
-The summary names the best model and its R and R-free, and says that an
-R-free below 0.45 indicates a solution. Treat that as the lowest bar: look at
-the map, as it says, before trusting it.
+The summary (Figure 4) names the best model and its R and R-free, and says that
+an R-free below 0.45 indicates a solution. Treat that as the lowest bar: look
+at the map, as it says, before trusting it.
 
 The refined model and map for the best hits are in the job's output files,
 named by rank and structure ("SIMBAD hit 1: 1gyu, placed and refined"), and

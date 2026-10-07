@@ -35,8 +35,8 @@ Input
 
    Figure 1: TLS input
 
-A model **(1)**, whose chains and residue ranges the task can offer, or an
-existing TLS file **(2)** to start from. The groups are edited as a table
+A model **(1)** (Figure 1), whose chains and residue ranges the task can offer,
+or an existing TLS file **(2)** to start from. The groups are edited as a table
 **(3)**, one row per residue range: rows with the same group ID form one
 group. **Suggest from coordinates** fills the table with one group per
 chain; the import buttons read groups from a TLS file or pasted text. The
@@ -50,9 +50,9 @@ Results
 
    Figure 2: TLS report
 
-The report shows the definitions written **(4)**, in Refmac's syntax: here
-one group, chain A residues 18 to 108. The TLS file is annotated with the
-number of groups it defines. To use it, choose *explicit TLS group
+The report (Figure 2) shows the definitions written **(4)**, in Refmac's
+syntax: here one group, chain A residues 18 to 108. The TLS file is annotated
+with the number of groups it defines. To use it, choose *explicit TLS group
 definitions* under TLS on the refinement task's Parameterisation tab, and
 pick the file there.
 

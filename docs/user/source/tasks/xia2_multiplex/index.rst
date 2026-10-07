@@ -31,9 +31,9 @@ Input
 
    Figure 1: xia2.multiplex input
 
-The data sets come from DIALS: each is a pair of files, the integrated
-reflections (``.refl``) and the experiment description (``.expt``) that goes
-with them. Give them in either of two ways.
+The data sets (Figure 1) come from DIALS: each is a pair of files, the
+integrated reflections (``.refl``) and the experiment description (``.expt``)
+that goes with them. Give them in either of two ways.
 
 - **Previous xia2 run directories.** The task takes the integrated DIALS
   files from the ``DataFiles`` folder of each earlier xia2 DIALS run
@@ -50,9 +50,9 @@ with them. Give them in either of two ways.
    Figure 2: xia2.multiplex basic parameters
 
 Everything else can be left blank and xia2.multiplex chooses. The ones you
-may want to set are the **Space group (3)**, if you know it (otherwise it is
-found with ``dials.symmetry``), the **resolution limits (4)**, and the
-**filtering method (5)**: *deltacchalf* removes data sets (or parts of
+may want to set (Figure 2) are the **Space group (3)**, if you know it
+(otherwise it is found with ``dials.symmetry``), the **resolution limits (4)**,
+and the **filtering method (5)**: *deltacchalf* removes data sets (or parts of
 them) whose presence lowers CC\ :sub:`1/2`; the default is *None*. The
 *Advanced parameters* tab holds the rest of the program's own parameters.
 
@@ -64,10 +64,10 @@ Results
 
    Figure 3: xia2.multiplex report
 
-The button **(6)** opens xia2.multiplex's own HTML report: the clustering,
-the symmetry analysis, the stereographic projections and the detailed
-merging statistics. The summary table **(7)** gives the space group, the
-unit cell and the merged statistics, overall with the outer shell in
+The button **(6)** in Figure 3 opens xia2.multiplex's own HTML report: the
+clustering, the symmetry analysis, the stereographic projections and the
+detailed merging statistics. The summary table **(7)** gives the space group,
+the unit cell and the merged statistics, overall with the outer shell in
 brackets. The merged and unmerged reflections **(8)** are the outputs: one
 set of each, named ``scaled.mtz`` and ``scaled_unmerged.mtz``, each
 annotated with which it is.

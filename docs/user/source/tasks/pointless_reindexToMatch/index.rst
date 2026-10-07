@@ -59,16 +59,16 @@ Input
 
    Figure 1: the reflections to reindex
 
-The observed data **(1)** are required; the Free-R set **(2)**, if you have
-one, is reindexed in step with them.
+The observed data **(1)** are required (Figure 1); the Free-R set **(2)**, if
+you have one, is reindexed in step with them.
 
 .. figure:: reindex_reference.png
    :alt: Figure 2: choosing the reference
 
    Figure 2: the reference, here a coordinate file
 
-The menu **(3)** says what to do. Choices that need a reference show a
-file selector for it; here the model **(4)**.
+The menu **(3)** in Figure 2 says what to do. Choices that need a reference
+show a file selector for it; here the model **(4)**.
 
 #. **Observed data reference**: another observed-data file. The input is
    reindexed to agree with it.
@@ -97,8 +97,8 @@ Results
 
    Figure 3: the report of the match to the model
 
-The report states the operator chosen **(8)** and its probability, and
-tabulates the match **(9)**: the operator, a confidence, a likelihood and
+The report (Figure 3) states the operator chosen **(8)** and its probability,
+and tabulates the match **(9)**: the operator, a confidence, a likelihood and
 the correlation coefficient (CC) between the observed intensities and those
 calculated from the reference. Below it, the fold *Alternative index
 scores* (closed in the picture) lists every possible operator with its own
@@ -138,15 +138,15 @@ Explicit space group and reindex
    Figure 4: giving the operator (this is the job that reindexed the data
    by -h,-k,l)
 
-Give a new space group **(5)** (in the same point group), a reindex operator
-**(6)** (tick *use reindex operator* **(7)**), or both. Pointless will try
-to generate the other, but it does not always work in complicated cases,
-and it checks the validity and consistency and reports warnings: read them.
-If the reindexing operator leads to non-integral *hkl* indices, these are
-removed, eg [h/2, k, l] will halve the cell in the a direction (**a drastic
-step, be careful that you know what you are doing!**): such operators
-change the space group, so check that you think it correct, and if
-necessary run "Just analyse data symmetry" on the output.
+In Figure 4, give a new space group **(5)** (in the same point group), a
+reindex operator **(6)** (tick *use reindex operator* **(7)**), or both.
+Pointless will try to generate the other, but it does not always work in
+complicated cases, and it checks the validity and consistency and reports
+warnings: read them. If the reindexing operator leads to non-integral *hkl*
+indices, these are removed, eg [h/2, k, l] will halve the cell in the a
+direction (**a drastic step, be careful that you know what you are doing!**):
+such operators change the space group, so check that you think it correct, and
+if necessary run "Just analyse data symmetry" on the output.
 
 Examples:
 

@@ -29,7 +29,7 @@ Input
 
    Figure 1: Input and options
 
-The task needs the model to analyse **(1)** and the two sets of map
+In Figure 1 the task needs the model to analyse **(1)** and the two sets of map
 coefficients from the same refinement **(2)**: the 2mFo-DFc
 (electron density) and mFo-DFc (difference density) maps. Following a
 refinement job, all three are filled in from it.
@@ -55,9 +55,9 @@ Results
 
    Figure 2: Per-residue metrics for chain A
 
-For each protein chain the report plots the metrics along the sequence:
-ZO as points (on the right-hand axis), ZD- and ZD+ as bars, for the main
-chain and, from the menu, the side chains. Below the plot the residues
+In Figure 2, for each protein chain the report plots the metrics along the
+sequence: ZO as points (on the right-hand axis), ZD- and ZD+ as bars, for the
+main chain and, from the menu, the side chains. Below the plot the residues
 outside the rejection limits are listed, main chain and side chains
 separately. For MDM2, no main-chain density is out of line; four side
 chains have negative difference density (ZD- below -3), which usually
@@ -70,9 +70,9 @@ alternative conformation.
 
    Figure 3: Ligands and other solutes
 
-Waters and ligands have folds of their own. The plot sets the accuracy of
-each (ZD- and ZD+ bars) against its precision (ZO), and the tables list
-those that may be incomplete or fit their density poorly (large ZD+), and
+Waters and ligands (Figure 3) have folds of their own. The plot sets the
+accuracy of each (ZD- and ZD+ bars) against its precision (ZO), and the tables
+list those that may be incomplete or fit their density poorly (large ZD+), and
 those that sit in weak density or next to noise peaks (large negative
 ZD-), which might be better removed. Here Nutlin-3a fits its density
 well, but the sulphate A202 has a great deal of unexplained positive

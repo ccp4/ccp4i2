@@ -37,8 +37,8 @@ Input
    Figure 1: The Sequence section, as it appears for a job that has
    been given a sequence
 
-Paste or type the sequence into **Sequence text (1)**. FASTA format is
-the usual choice, and one chain per record. PIR format and CLUSTALW
+Paste or type the sequence into **Sequence text (1)** (Figure 1). FASTA format
+is the usual choice, and one chain per record. PIR format and CLUSTALW
 alignments are also tried, in that order of fall-back; other sequence
 formats may be read correctly, but check the result. Below the box the
 interface shows the **format it detected, and a table of the sequences it
@@ -52,7 +52,7 @@ or description, is flagged there.
 
    Figure 2: The Input files section
 
-Instead of typing, you can fill the text box from a file. Choose a
+Instead of typing, you can fill the text box from a file (Figure 2). Choose a
 **sequence file (3)** and its contents are copied into the box, where
 you can still edit them. Choose a **coordinate file (4)** and the
 sequence of each of its chains is written into the box as a FASTA record
@@ -70,7 +70,7 @@ Results
 
    Figure 3: The report of the import
 
-The report says which format the text was read as, and tabulates the
+The report (Figure 3) says which format the text was read as, and tabulates the
 sequences it found (index, identifier, name and description), followed by
 them in FASTA format. The fold at the top, *Conversion commentary*, is
 closed when the job succeeds. It records each format that was tried and

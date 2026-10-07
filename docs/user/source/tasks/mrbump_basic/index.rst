@@ -41,10 +41,10 @@ Input
 
    Figure 1: MrBUMP target sequence
 
-The *AU contents* **(1)** carry the sequence of everything expected in the
-asymmetric unit; MrBUMP searches with those sequences. (When the contents
-list several sequences, a *Select chains* choice lets you leave some out.)
-The number of monomers to search for **(2)** can be left on *Auto*, when
+In Figure 1 the *AU contents* **(1)** carry the sequence of everything expected
+in the asymmetric unit; MrBUMP searches with those sequences. (When the
+contents list several sequences, a *Select chains* choice lets you leave some
+out.) The number of monomers to search for **(2)** can be left on *Auto*, when
 the program works it out, or set if you know it.
 
 .. figure:: mrbump_data.png
@@ -52,8 +52,8 @@ the program works it out, or set if you know it.
 
    Figure 2: MrBUMP experimental data
 
-The reflections **(3)** and the free R set **(4)**. The free set is what
-makes the final R-free of each solution meaningful.
+In Figure 2 the reflections **(3)** and the free R set **(4)**. The free set is
+what makes the final R-free of each solution meaningful.
 
 The second tab, *Search models*, says where the search models come from.
 
@@ -62,9 +62,9 @@ The second tab, *Search models*, says where the search models come from.
 
    Figure 3: MrBUMP search model sources
 
-*Search PDB* **(7)** and *Search EBI-AFDB* **(8)** send the sequence to
-those databases (the first with a non-redundancy level, the second with a
-pLDDT cut-off for the predicted residues). Here both are off. *Include
+In Figure 3, *Search PDB* **(7)** and *Search EBI-AFDB* **(8)** send the
+sequence to those databases (the first with a non-redundancy level, the second
+with a pLDDT cut-off for the predicted residues). Here both are off. *Include
 local files* **(5)** lets you supply your own models, and *Only use locally
 provided search models* **(6)** stops MrBUMP looking for more.
 
@@ -73,8 +73,8 @@ provided search models* **(6)** stops MrBUMP looking for more.
 
    Figure 4: MrBUMP local search models
 
-The models themselves are listed further down the tab **(9)**, each with an
-optional atom selection **(10)**: here chain A of 3dab, written ``A/``.
+The models themselves are listed further down the tab **(9)** (Figure 4), each
+with an optional atom selection **(10)**: here chain A of 3dab, written ``A/``.
 Every model in this list is searched; the list stays in view whenever it
 holds one. The maximum number of search models
 limits how many are tried in Phaser (here 5, though only one was supplied).
@@ -90,9 +90,9 @@ Results
 
    Figure 5: MrBUMP report
 
-The report opens with the final solution **(11)**: the search model, the
-space group Phaser placed it in **(12)**, its TFZ and LLG, and R and R-free
-after refinement. Below it, MrBUMP's own tables give every stage, which
+The report of Figure 5 opens with the final solution **(11)**: the search
+model, the space group Phaser placed it in **(12)**, its TFZ and LLG, and R and
+R-free after refinement. Below it, MrBUMP's own tables give every stage, which
 the rest of this section walks through.
 
 The search model was aligned to the target (54.5% identity, 0.91

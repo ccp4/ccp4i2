@@ -27,8 +27,8 @@ Input
 
    Figure 1: AUSPEX input
 
-The reflections **(1)** may be intensities, amplitudes or both. If the
-file holds intensities, AUSPEX plots intensities and amplitudes; if it
+In Figure 1 the reflections **(1)** may be intensities, amplitudes or both. If
+the file holds intensities, AUSPEX plots intensities and amplitudes; if it
 holds only amplitudes, it plots only those.
 
 The remaining options choose how the plots look:
@@ -60,15 +60,15 @@ F, σ(F) and F/σ(F). Each point is one reflection.
    Figure 2: the report: I, σ(I) and I/σ(I) against resolution (the
    amplitude plots follow in the same way)
 
-The grey vertical bands mark the resolution ranges where ice rings fall.
-Read the points inside each band against the points on either side: an
+The grey vertical bands in Figure 2 mark the resolution ranges where ice rings
+fall. Read the points inside each band against the points on either side: an
 ice ring is a band in which the reflections stand out from the trend
 of the plot, and AUSPEX (with *Flag suspected ice rings red* on) colours
 the ones it takes to be affected red. In these data nothing is flagged in
 any band, and the points run through them as they do outside, so the
 data show no ice-ring problem. A smooth fall of I/σ(I) with resolution,
-as in the lowest plot of Figure 2, is what clean data look like; I/σ(I) here is about 40 at
-low resolution and a few at the edge of the data.
+as in the lowest plot of Figure 2, is what clean data look like; I/σ(I) here is
+about 40 at low resolution and a few at the edge of the data.
 
 If a plot does show a flagged ring, the fix belongs upstream, in data
 reduction (:doc:`../aimless_pipe/aimless_pipe`): re-integrate the images

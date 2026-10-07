@@ -23,7 +23,8 @@ Input
 
    Figure 1: cpatterson input
 
-The only input is the reflection data **(1)**; mean amplitudes are used.
+The only input (Figure 1) is the reflection data **(1)**; mean amplitudes are
+used.
 
 Results
 =======

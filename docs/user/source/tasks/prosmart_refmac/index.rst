@@ -37,7 +37,7 @@ Input data
    Figure 1: Main inputs
 
 Minimally, the Refinement pipeline requires a model **(1.1)** and
-experimental data **(1.2)**.
+experimental data **(1.2)** (Figure 1).
 
 *Atomic model* **(1.1)** -- the model to be refined, in PDB or mmCIF
 format. A selection may be applied to it (here ``not (HOH)``, to rebuild
@@ -70,10 +70,10 @@ would. The atom names in the dictionary must match those in the model.
 
    Figure 2: Options
 
-*Refinement mode* **(1.6)** -- restrained refinement (the usual choice) or
-rigid body refinement, with the number of cycles for each. The number of
-restrained cycles should be enough for the refinement to converge: R and
-R-free should be stable over the last cycles. Around 10 is typical when a
+*Refinement mode* **(1.6)** (Figure 2) -- restrained refinement (the usual
+choice) or rigid body refinement, with the number of cycles for each. The
+number of restrained cycles should be enough for the refinement to converge: R
+and R-free should be stable over the last cycles. Around 10 is typical when a
 model is nearly complete, 30-40 at intermediate stages or with external
 or jelly-body restraints, and up to 200 with jelly-body restraints
 straight after molecular replacement.
@@ -107,8 +107,8 @@ Parameterisation
 
    Figure 3: Parameterisation
 
-*B-factors* **(3.1)** -- the atomic displacement model, which should match
-the ratio of observations to parameters, and so the resolution:
+*B-factors* **(3.1)** (Figure 3) -- the atomic displacement model, which should
+match the ratio of observations to parameters, and so the resolution:
 *isotropic* (one parameter per atom, the default), *anisotropic* (six per
 atom; usually only better than about 1.5 Å, so worth trying for this
 1.35 Å example), *overall*, or *mixed* (as specified per atom in the input
@@ -151,10 +151,10 @@ Restraints
 
    Figure 4: Restraints
 
-*Non-crystallographic symmetry (NCS)* **(4.1)** -- restrain NCS-related
-molecules to be similar. Generally recommended, especially at medium and
-low resolution and when R and R-free diverge. *Local* restraints (the
-default) keep corresponding local interatomic distances similar and so
+*Non-crystallographic symmetry (NCS)* **(4.1)** (Figure 4) -- restrain
+NCS-related molecules to be similar. Generally recommended, especially at
+medium and low resolution and when R and R-free diverge. *Local* restraints
+(the default) keep corresponding local interatomic distances similar and so
 allow global differences between the copies; *global* restraints hold the
 copies to the same overall structure.
 
@@ -194,8 +194,8 @@ Output
 
    Figure 5: Output options
 
-*Output calculated riding hydrogens to file* **(5.1)** -- include the
-riding hydrogens in the output model.
+*Output calculated riding hydrogens to file* **(5.1)** (Figure 5) -- include
+the riding hydrogens in the output model.
 
 *Map calculation* **(5.2)** -- anisotropic regularised map sharpening for
 the output maps, useful at lower resolution. It changes only how the maps
@@ -215,10 +215,10 @@ Advanced
 
    Figure 6: Advanced options
 
-*Experiment* **(6.1)** -- the kind of data: X-ray (the default), electron
-or neutron. Electron diffraction needs a form factor calculation method;
-neutron refinement has its own options for hydrogen and deuterium: their
-initial fractions, whether to refine them, and hydrogen positions and
+*Experiment* **(6.1)** (Figure 6) -- the kind of data: X-ray (the default),
+electron or neutron. Electron diffraction needs a form factor calculation
+method; neutron refinement has its own options for hydrogen and deuterium:
+their initial fractions, whether to refine them, and hydrogen positions and
 torsion restraints.
 
 *Resolution* **(6.2)** -- by default all the data are used. Custom limits
@@ -239,9 +239,9 @@ Results
 
    Figure 7: Refinement statistics
 
-The report opens with the statistics of the refinement: the resolution
-range, the numbers of reflections used and set aside, R-work and R-free
-**(7.1)**, and the RMS deviations of bonds and angles from their ideal
+The report opens with the statistics of the refinement (Figure 7): the
+resolution range, the numbers of reflections used and set aside, R-work and
+R-free **(7.1)**, and the RMS deviations of bonds and angles from their ideal
 values. R-free is the measure that matters: it is calculated from
 reflections never used in refinement, so it falls only if the model gets
 better. A gap between R-work and R-free that grows during refinement is a
@@ -273,8 +273,8 @@ places to look), and further graphs from the log.
    Figure 8: MolProbity analysis
 
 The validation that follows (IRIS, B-factor analysis, MolProbity and
-Ramachandran plots) points to the parts of the model that need attention.
-MolProbity's summary gives the clashscore and the rotamer and
+Ramachandran plots; Figure 8) points to the parts of the model that need
+attention. MolProbity's summary gives the clashscore and the rotamer and
 Ramachandran statistics, with percentiles against structures at similar
 resolution; the detailed breakdown lists the residues concerned. For the
 MDM2 model there are no Ramachandran or rotamer outliers and the
