@@ -396,7 +396,7 @@ const FilePreviewDialog: React.FC = () => {
           variant="contained"
           color="primary"
         >
-          Download File
+          Export
         </Button>
       </DialogActions>
     </Dialog>
