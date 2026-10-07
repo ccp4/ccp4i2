@@ -14,6 +14,25 @@ from ccp4i2.utils.phil_shims import PhilShim
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+class AsuCompositionFromContext:
+    """Take the composition from the ASU contents file the context supplied.
+
+    A follow-on job is given the project's ASU contents file, but COMP_BY
+    stayed at its default (an average solvent content), so the file was
+    ignored and hidden (#678). Called once the context has filled the inputs;
+    a composition anyone chose is left alone.
+    """
+
+    def contextApplied(self):
+        inp = self.container.inputData
+        comp_by = getattr(inp, "COMP_BY", None)
+        asu = getattr(inp, "ASUFILE", None)
+        if comp_by is None or asu is None or not asu.isSet():
+            return
+        if str(comp_by) == "DEFAULT":
+            comp_by.set("ASU")
+
+
 class ObsDataShim(PhilShim):
     """F_SIGF -> phaser.hklin and phaser.labin.
 
