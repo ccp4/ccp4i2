@@ -51,9 +51,9 @@ Importing from an MTZ file
 
    Figure 1: Import observations input
 
-The MTZ file **(1)** and, if it is needed, the columns to take **(2)**.
-Leave the columns blank and the task finds them itself when the file has
-only one group of the kind wanted. When it has several (a refinement
+In Figure 1 the MTZ file **(1)** and, if it is needed, the columns to take
+**(2)**. Leave the columns blank and the task finds them itself when the file
+has only one group of the kind wanted. When it has several (a refinement
 output has two sets of map coefficients, FWT/PHWT and DELFWT/PHDELWT),
 the job cannot be run until you choose: the field is marked in red, with
 the groups the file offers. Name the ones you want, as here: ``F,SIGF``.
@@ -63,9 +63,9 @@ the groups the file offers. Name the ones you want, as here: ``F,SIGF``.
 
    Figure 2: Import observations report
 
-The report lists the file read and the file made **(3)**. The new file is
-annotated with the columns it came from and the file they were in, so it
-can be told apart from other data in the project's file menus.
+The report (Figure 2) lists the file read and the file made **(3)**. The new
+file is annotated with the columns it came from and the file they were in, so
+it can be told apart from other data in the project's file menus.
 
 Importing a map
 ===============
@@ -75,8 +75,8 @@ Importing a map
 
    Figure 3: Import map input
 
-The map file **(4)** and what kind of map it is **(5)**: an ordinary
-electron density map, a difference map, an anomalous difference map, a
+In Figure 3 the map file **(4)** and what kind of map it is **(5)**: an
+ordinary electron density map, a difference map, an anomalous difference map, a
 mask, or one of a pair of half maps. The kind decides which tasks offer
 the map. Half maps, for example, are what cross-validated cryo-EM
 refinement and the cryo-EM placement task ask for.

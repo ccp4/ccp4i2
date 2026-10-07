@@ -32,8 +32,8 @@ Input
 
    Figure 1: Find Waters input
 
-The input is the atomic model **(1)** and map coefficients **(2)**. Use
-the model and the map coefficients from the same refinement. The map
+The input (Figure 1) is the atomic model **(1)** and map coefficients **(2)**.
+Use the model and the map coefficients from the same refinement. The map
 should be a normal rather than a difference map: weighted
 F\ :sub:`obs` coefficients from experimental phasing or density
 modification, or 2mF\ :sub:`o`-DF\ :sub:`c` coefficients from
@@ -48,8 +48,8 @@ Parameters
 
    Figure 2: Find Waters parameters
 
-The map threshold **(3)** is the lowest peak height accepted, in standard
-deviations of the map (default 1.75). Lower it to accept weaker peaks,
+In Figure 2 the map threshold **(3)** is the lowest peak height accepted, in
+standard deviations of the map (default 1.75). Lower it to accept weaker peaks,
 and expect more false waters. The minimum **(4)** and maximum **(5)**
 distances (defaults 2.4 and 3.4 Å) are the allowed distances between a
 new water and the existing model. They keep waters at hydrogen-bonding
@@ -64,8 +64,8 @@ Results
 
    Figure 3: Find Waters report
 
-The report gives the number of waters found **(6)** above the input files
-and the output model, which is named with the same count. In this run the
+The report (Figure 3) gives the number of waters found **(6)** above the input
+files and the output model, which is named with the same count. In this run the
 job added 48 waters, as residues named HOH in a new chain C, to the 699
 atoms of the input model.
 

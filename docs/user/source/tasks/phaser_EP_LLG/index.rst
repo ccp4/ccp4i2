@@ -31,13 +31,14 @@ Input
 
    Figure 1: Anomalous LLG map input
 
-The reflection data **(1)** must contain anomalous pairs: intensities or
-amplitudes kept as separate I(+) and I(-) (here, the Xe derivative data from the
-merging step). The partial model is given as coordinates, as a map, or not
-at all **(2)**; here it is the model built by Crank2 **(3)**. Choose
-*Coordinate data* or *Map coefficients* when you have phases from a model
-or a density-modified map. With *No partial model* there are no phases to
-compare against: use the Phaser EP task to find the substructure instead.
+The reflection data **(1)** (Figure 1) must contain anomalous pairs:
+intensities or amplitudes kept as separate I(+) and I(-) (here, the Xe
+derivative data from the merging step). The partial model is given as
+coordinates, as a map, or not at all **(2)**; here it is the model built by
+Crank2 **(3)**. Choose *Coordinate data* or *Map coefficients* when you have
+phases from a model or a density-modified map. With *No partial model* there
+are no phases to compare against: use the Phaser EP task to find the
+substructure instead.
 
 The **composition of the unit cell** **(4, 5)** tells Phaser how much
 scattering matter is not accounted for by the partial model, so that its
@@ -62,7 +63,7 @@ Results
 
    Figure 2: Anomalous LLG map report
 
-Phaser's report gives its warnings, the figure of merit against
+Phaser's report (Figure 2) gives its warnings, the figure of merit against
 resolution, and the files **(7, 8)**. The figure of merit for the SAD
 refinement against the partial model was 0.79 here. The report does not
 list peaks, and the task does not search the map for them: the result

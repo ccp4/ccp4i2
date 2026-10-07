@@ -29,11 +29,11 @@ Input
 
    Figure 1: NucleoFind input
 
-The only input is the map coefficients **(1)**: a file of an amplitude and a
-phase, the 2mFo-DFc map of a refinement for instance. Here, the FWT and PHWT
-columns of the PDB-REDO file. The task passes the columns to the program as
-``F`` and ``PHI``, so it takes the map-coefficient file as the program
-expects it, with those labels set when the file is imported.
+The only input (Figure 1) is the map coefficients **(1)**: a file of an
+amplitude and a phase, the 2mFo-DFc map of a refinement for instance. Here, the
+FWT and PHWT columns of the PDB-REDO file. The task passes the columns to the
+program as ``F`` and ``PHI``, so it takes the map-coefficient file as the
+program expects it, with those labels set when the file is imported.
 
 The task always runs the program's "core" model; the program's smaller "nano"
 model is not offered.
@@ -46,7 +46,7 @@ Parameters
 
    Figure 2: NucleoFind parameters
 
-The parameters:
+The parameters (Figure 2):
 
 * **Overlap between prediction boxes (2)**: the program predicts the map in overlapping boxes, and this
   is the amount of overlap used (128, 64, 32, 16 or 8; the default is 64).
@@ -72,10 +72,10 @@ Results
 
    Figure 3: NucleoFind report
 
-The task has no report of its own beyond the files it made **(5)**: three
-maps, *Predicted Phosphate Map*, *Predicted Sugar Map* and *Predicted Base
-Map*, and the literature reference. NucleoFind writes no summary or score, so
-the maps are the result and have to be judged by eye or against a model.
+The task has no report of its own beyond the files it made **(5)** (Figure 3):
+three maps, *Predicted Phosphate Map*, *Predicted Sugar Map* and *Predicted
+Base Map*, and the literature reference. NucleoFind writes no summary or score,
+so the maps are the result and have to be judged by eye or against a model.
 
 The values run from 0 to 1, high where the network thinks the atom type is
 present. How far to trust them was checked on this run against the deposited

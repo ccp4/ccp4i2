@@ -21,16 +21,16 @@ Input
 
    Figure 1: Input data
 
-Select reflection data in the form of intensities, mean or anomalous
-**(1)**.
+In Figure 1, select reflection data in the form of intensities, mean or
+anomalous **(1)**.
 
 .. figure:: ctruncate_options.png
    :alt: Figure 2: Options
 
    Figure 2: Options
 
-Knowing the contents of the asymmetric unit, as a sequence **(2)** or a
-number of residues **(3)**, improves the scaling of the intensities to an
+Knowing the contents of the asymmetric unit (Figure 2), as a sequence **(2)**
+or a number of residues **(3)**, improves the scaling of the intensities to an
 absolute scale. The correction for anisotropy can be turned off **(4)**.
 
 Results
@@ -41,9 +41,9 @@ Results
 
    Figure 3: Summary
 
-The report confirms the conversion **(5)** and summarises the analyses,
-with warnings in orange and red, each detailed in a fold below. Here the
-data came from *Aimless* as anomalous intensity pairs; CTRUNCATE finds no
+The report (Figure 3) confirms the conversion **(5)** and summarises the
+analyses, with warnings in orange and red, each detailed in a fold below. Here
+the data came from *Aimless* as anomalous intensity pairs; CTRUNCATE finds no
 anomalous signal in them **(6)**, as expected for a crystal without
 anomalous scatterers at this wavelength: the anomalous differences are
 noise. The ice-ring warning is the one to follow up:

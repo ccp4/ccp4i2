@@ -64,8 +64,8 @@ Input
 
    Figure 1: ACORN input
 
-Choose what to start from **(1)**: *known co-ordinate set*, an atomic
-model from which starting phases are calculated, or *initial phase set*,
+Choose what to start from **(1)** (Figure 1): *known co-ordinate set*, an
+atomic model from which starting phases are calculated, or *initial phase set*,
 phases you already have. The reflections are always required **(2)**.
 
 With *initial phase set*, give the phases **(3)**. These can be from
@@ -89,8 +89,8 @@ Advanced options
 
    Figure 2: ACORN advanced parameters
 
-The defaults are a reasonable start; most runs need none of these. The tab
-offers:
+The defaults are a reasonable start; most runs need none of these. The tab in
+Figure 2 offers:
 
 - the number of trials (1 to 10), and the option to define the number of
   cycles, the DDM type and the refinement for each trial;
@@ -110,9 +110,9 @@ Results
 
    Figure 3: ACORN report
 
-The plot **(4)** shows the correlation coefficient by cycle; the line above
-it states the first, the best and the last. Here it rose from 0.552 after
-the first cycle to 0.658, 0.682 and 0.690 (cycle 4, the best), then eased
+The plot **(4)** in Figure 3 shows the correlation coefficient by cycle; the
+line above it states the first, the best and the last. Here it rose from 0.552
+after the first cycle to 0.658, 0.682 and 0.690 (cycle 4, the best), then eased
 to 0.688 and 0.686 by cycle 6. This is the correlation for the medium set
 (here 5203 reflections, from the log's "Corr for medium E"), so it is the
 figure of merit described above, and well over 0.2. If the value goes up

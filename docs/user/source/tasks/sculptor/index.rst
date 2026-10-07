@@ -24,9 +24,9 @@ Input
 
    Figure 1: Sculptor input
 
-The model to edit **(1)**. Whether the target is given as an alignment
-(with the identifier of the target sequence in it) or as a sequence to be
-aligned **(2)**. The alignment and the target in it **(3)**.
+The model to edit **(1)** (Figure 1). Whether the target is given as an
+alignment (with the identifier of the target sequence in it) or as a sequence
+to be aligned **(2)**. The alignment and the target in it **(3)**.
 
 *Model modification* **(4)**: how side chains are pruned, and how the
 B-factors of the output are set. Left blank, each takes Sculptor's own

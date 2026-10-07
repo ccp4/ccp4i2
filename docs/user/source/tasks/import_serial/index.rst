@@ -41,8 +41,8 @@ The input
 
    Figure 1: Import Serial Data input
 
-**Merged data file (1).** Required. The ``.hkl`` file from CrystFEL, or the
-merged MTZ from xia2.ssx.
+**Merged data file (1).** Required (Figure 1). The ``.hkl`` file from CrystFEL,
+or the merged MTZ from xia2.ssx.
 
 **Merged half data set.** Two fields, for the two half data sets CrystFEL
 writes (usually ``.hkl1`` and ``.hkl2``). They are used only when both are

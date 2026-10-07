@@ -31,8 +31,8 @@ Input
 
    Figure 1: Phaser ensembler input
 
-The models to superpose **(1)**: two or more, adding one row per model with
-**+**. Each model's atom selection (the arrow at the end of its row)
+In Figure 1 the models to superpose **(1)**: two or more, adding one row per
+model with **+**. Each model's atom selection (the arrow at the end of its row)
 chooses the chains to use. The sequence identity **(2)** is written into
 the ensemble's header for Phaser, which uses it to estimate the model's
 error; give the identity of the models to the target. An alignment of the
@@ -47,7 +47,7 @@ Results
 
    Figure 2: Phaser ensembler log
 
-The report shows the program's log: the chains found and how they were
-superposed. The superposed ensemble is the output, for Phaser's expert
+The report (Figure 2) shows the program's log: the chains found and how they
+were superposed. The superposed ensemble is the output, for Phaser's expert
 molecular replacement (*Phaser pipeline*), which takes ensembles as
 search models.

@@ -34,10 +34,10 @@ Input
 
    Figure 1: RSR Morph input
 
-The atomic model **(1)** and the map coefficients **(2)**: amplitudes and
-phases of a 2mFo-DFc-type map. Here they were Phaser's own model and map
-for the placed solution (the map coefficients are read as the columns F and
-PHI). Take the map from the same job as the model, or from a refinement of
+Figure 1 has the atomic model **(1)** and the map coefficients **(2)**:
+amplitudes and phases of a 2mFo-DFc-type map. Here they were Phaser's own model
+and map for the placed solution (the map coefficients are read as the columns F
+and PHI). Take the map from the same job as the model, or from a refinement of
 it: a map calculated for a different placement would pull the model
 somewhere else.
 
@@ -46,8 +46,8 @@ somewhere else.
 
    Figure 2: RSR Morph options
 
-The defaults suit most uses. What the three options do, from the task's
-code and Coot's documentation:
+The defaults (Figure 2) suit most uses. What the three options do, from the
+task's code and Coot's documentation:
 
 * **Local radius** **(3)** (default 4.2, a choice of 4.2, 5, 6, 7): the
   distance within which atoms are restrained to each other, taken from the
@@ -76,7 +76,7 @@ Results
 
    Figure 3: RSR Morph report
 
-The report says how far the model moved **(6)**: the number of atoms
+The report (Figure 3) says how far the model moved **(6)**: the number of atoms
 matched between the input and the morphed model, their RMS, mean and
 largest shift, and the residues that moved most; the output model is named
 with the same figures. The output is the morphed model (an mmCIF file if
