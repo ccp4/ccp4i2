@@ -1202,8 +1202,14 @@ class servalcat_pipe(CPluginScript):
     def _appendPluginXml(self, plugin, tag=None):
         """Safely append sub-plugin XML to our xmlroot, replacing existing tag if present."""
         try:
-            pluginRoot = CCP4Utils.openFileToEtree(
-                plugin.makeFileName('PROGRAMXML'))
+            try:
+                pluginRoot = CCP4Utils.openFileToEtree(
+                    plugin.makeFileName('PROGRAMXML'))
+            except Exception:
+                # program.xml empty/unparsable: refined_stats.xml in the work
+                # directory holds the same <SERVALCAT> element.
+                pluginRoot = CCP4Utils.openFileToEtree(os.path.join(
+                    plugin.getWorkDirectory(), 'refined_stats.xml'))
             servalcatXML = pluginRoot.xpath("//SERVALCAT")
             if len(servalcatXML) == 1:
                 node = servalcatXML[0]

@@ -2,6 +2,7 @@ import json
 import os
 import pathlib
 import shutil
+import threading
 import traceback
 from xml.etree import ElementTree as ET
 
@@ -81,8 +82,12 @@ class servalcat(CPluginScript):
         if xmlRootName:
             xmlText = f"<{xmlRootName}>\n{xmlText}\n</{xmlRootName}>"
         if xmlFilePath:
-            with open(xmlFilePath, 'w') as programXmlFile:
+            # Atomic: the watcher thread and processOutputFiles both write this
+            # file, and the pipeline falls back to reading it.
+            tmpPath = f"{xmlFilePath}.{threading.get_ident()}.tmp"
+            with open(tmpPath, 'w') as programXmlFile:
                 programXmlFile.write(xmlText)
+            os.replace(tmpPath, xmlFilePath)
         return xmlText
 
     def processInputFiles(self):
@@ -326,7 +331,8 @@ class servalcat(CPluginScript):
                 self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath,
                                        xmlRootName="SERVALCAT")
-            self.xmlroot = ET.fromstring(xmlText)
+            finalRoot = ET.fromstring(xmlText)
+            self.xmlroot = finalRoot
             self.flushXml()
         except Exception as e:
             self.appendErrorReport(205,
@@ -336,8 +342,13 @@ class servalcat(CPluginScript):
         # Extract performance indicators from JSON
         self._extractPerformanceIndicators(jsonStats)
 
-        et = ET.ElementTree(self.xmlroot)
-        et.write(self.makeFileName('PROGRAMXML'))
+        # Write the root parsed above, not self.xmlroot, which a late
+        # handleJsonChanged may have replaced with a partial parse.
+        # Atomic (tmp + move): a direct write truncates program.xml first, so
+        # any failure or concurrent reader sees a zero-size file.
+        tmpPath = self.makeFileName('PROGRAMXML') + '_final_tmp'
+        ET.ElementTree(finalRoot).write(tmpPath)
+        shutil.move(tmpPath, self.makeFileName('PROGRAMXML'))
         return CPluginScript.SUCCEEDED
 
     def _extractPerformanceIndicators(self, jsonStats):
@@ -710,7 +721,9 @@ class servalcat(CPluginScript):
 
     def handleJsonChanged(self, jsonFilePath):
         """Parse servalcat's output JSON and update program.xml in real-time."""
-        self.xmlroot.clear()
+        # Never clear self.xmlroot here: this runs on the watcher thread and can
+        # fire for the final JSON write while processOutputFiles is writing
+        # program.xml, which then saw an emptied root (cycle-less report).
         if os.path.isfile(jsonFilePath):
             try:
                 with open(jsonFilePath, "r") as f:

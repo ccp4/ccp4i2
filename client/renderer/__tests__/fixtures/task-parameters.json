@@ -578,6 +578,8 @@
    "declared": {
     "inputData": [
      "ASUCONTENTIN",
+     "XYZIN",
+     "SEQIN",
      "HKLIN",
      "ASU_CONTENT"
     ]
@@ -959,6 +961,22 @@
    ],
    "qtExposed": [
     "XYZIN"
+   ]
+  },
+  "add_substructure": {
+   "declared": {
+    "controlParameters": [
+     "FIND_ORIGIN",
+     "REMOVE_CLASHING",
+     "ALL_MET_TO_MSE"
+    ],
+    "inputData": [
+     "XYZIN",
+     "XYZIN_SUB"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
    ]
   },
   "adding_stats_to_mmcif_i2": {
@@ -2365,6 +2383,7 @@
     "XYZOUT",
     "FPHOUT",
     "FPHOUT_2FOFC",
+    "XYZOUT_COMPLETE",
     "XYZOUT_SUBSTR",
     "XYZOUT_SUB_RES",
     "FPHOUT_HL",
@@ -3987,6 +4006,7 @@
      "RUN_MODE",
      "LOCAL_CPUS",
      "MAX_SHELL_DATASETS",
+     "MAX_EVENTS_PER_DATASET",
      "MIN_CHARACTERISATION_DATASETS",
      "SCRATCH_DIR",
      "DISPATCH_TARGET",
@@ -8256,6 +8276,7 @@
     "XYZOUT",
     "FPHOUT",
     "FPHOUT_2FOFC",
+    "XYZOUT_COMPLETE",
     "XYZOUT_SUBSTR",
     "XYZOUT_SUB_RES",
     "FPHOUT_HL",

@@ -9,7 +9,27 @@
      <content id="ASUCONTENTIN">
         <className>CAsuDataFile</className>
         <qualifiers>
-	  <saveToDb>True</saveToDb>
+          <allowUndefined>True</allowUndefined>
+          <saveToDb>True</saveToDb>
+          <guiLabel>ASU content file</guiLabel>
+          <toolTip>An existing ASU content file: its sequences are added to the table. The job itself works from the table (ASU_CONTENT).</toolTip>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <guiLabel>Model</guiLabel>
+          <toolTip>A coordinate file (or a PDB entry fetched into the project): each polymer chain is added to the table, identical chains as copies of one row. The job itself works from the table (ASU_CONTENT).</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SEQIN">
+        <className>CSeqDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <guiLabel>Sequence file</guiLabel>
+          <toolTip>One sequence: a sequence file, or one fetched from UniProt (a PDB entry fetched here gives a single chain; use the model slot for every chain). It is added to the table. The job itself works from the table (ASU_CONTENT).</toolTip>
         </qualifiers>
       </content>
       <content id="HKLIN">

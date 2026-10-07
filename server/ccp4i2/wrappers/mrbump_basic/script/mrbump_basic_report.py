@@ -21,7 +21,9 @@ def final_solutions(results_text):
         if len(groups) != 5 or not groups[0] or not groups[0][0].isdigit():
             continue
         try:
-            rows.append({'model': groups[0][1], 'rfz': groups[3][0], 'tfz': groups[3][1],
+            rows.append({'model': groups[0][1], 'copy': groups[0][2],
+                         'ellg': groups[1][0], 'seqid': groups[1][1], 'cover': groups[1][2],
+                         'rfz': groups[3][0], 'tfz': groups[3][1],
                          'llg': groups[3][2], 'sg': groups[3][3],
                          'r': groups[4][0], 'rfree': groups[4][1]})
         except IndexError:

@@ -302,6 +302,8 @@ class servalcat_report(Report):
 
     def addTablePerCycle(self, cycle_data, parent=None, initialFinalOnly=False):
         if parent is None: parent = self
+        if not cycle_data.get('cycle'):  # no <cycle> in the XML: refinement stopped before cycle 0
+            return
         clearingDiv = parent.addDiv(style="clear:both;")
         if initialFinalOnly:
             # Pick only data for the first and last cycle

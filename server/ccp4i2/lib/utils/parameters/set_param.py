@@ -124,6 +124,19 @@ def set_parameter(
             object_path, normalized_path, value, job.uuid, job.task_name
         )
 
+        # A value of the wrong shape (an object for a text field) was stored
+        # as its repr and failed only at validation; refuse it here, naming
+        # the field
+        from .set_parameter import shape_errors
+        try:
+            target = plugin.container.find_by_path(normalized_path, skip_first=True)
+        except AttributeError:
+            target = None  # the set below reports the bad path
+        if target is not None:
+            problems = shape_errors(target, value, object_path)
+            if problems:
+                return Result.fail("; ".join(problems))
+
         # Use modern CContainer.set_parameter() which auto-detects CPluginScript parent
         # and enables database synchronization when appropriate
         try:

@@ -9,10 +9,9 @@ import {
 } from "@mui/material";
 import { useJob, valueOfItem } from "../../../utils";
 import { apiGet } from "../../../api-fetch";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Science } from "@mui/icons-material";
-import { ChainPickerDialog } from "./chain-picker-dialog";
-import type { ChainSequenceInfo } from "./mmcif-sequence-parser";
+import { polymerTypeFromMolecule } from "./mmcif-sequence-parser";
 
 /** Get color for polymer type */
 const getPolymerTypeColor = (
@@ -30,22 +29,6 @@ const getPolymerTypeColor = (
   }
 };
 
-/** Classify chain type from composition lists */
-function classifyChain(
-  chainId: string,
-  composition: any
-): "PROTEIN" | "DNA" | "RNA" | "OTHER" {
-  if (composition.peptides?.includes(chainId)) return "PROTEIN";
-  if (composition.nucleics?.includes(chainId)) return "PROTEIN"; // nucleic → check chainDetails
-  // Use chainDetails if available for finer classification
-  const detail = composition.chainDetails?.find((d: any) => d.id === chainId);
-  if (detail) {
-    if (detail.type === "protein") return "PROTEIN";
-    if (detail.type === "nucleic") return "DNA"; // Could be RNA, but chainDetails doesn't distinguish
-  }
-  return "OTHER";
-}
-
 export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
@@ -61,43 +44,19 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   const { update: setDescription } = useTaskItem(
     `${item._objectPath}.description`
   );
-  const { update: setNCopies } = useTaskItem(`${item._objectPath}.nCopies`);
 
   // Get current values for display
   const polymerType = item?._value?.polymerType?._value || "";
   const sequenceValue = item?._value?.sequence?._value || "";
   const seqLength = sequenceValue.replace(/\s/g, "").length;
 
-  // Chain picker state for multi-chain coordinate file disambiguation
-  const [chainPickerOpen, setChainPickerOpen] = useState(false);
-  const [pendingChains, setPendingChains] = useState<ChainSequenceInfo[]>([]);
-  const [pendingPdbId, setPendingPdbId] = useState("");
-  const [pendingAnnotation, setPendingAnnotation] = useState("");
-
-  /** Apply a selected chain's sequence to the ASU content fields */
-  const applyChainSequence = useCallback(
-    async (
-      chainId: string,
-      moleculeType: string,
-      sequence: string,
-      annotation: string
-    ) => {
-      if (
-        !setSequence || !setName || !setPolymerType ||
-        !setDescription || !setNCopies || !item || job?.status != 1
-      ) return;
-
-      const sanitizedName = `Chain_${chainId}`.replace(/[^a-zA-Z0-9_]/g, "_");
-      await setPolymerType(moleculeType);
-      await setName(sanitizedName);
-      await setSequence(sequence);
-      await setDescription(annotation);
-      await setNCopies(1);
-      props.onChange?.({ name: sanitizedName, moleculeType, sequence });
-    },
-    [setSequence, setName, setPolymerType, setDescription, setNCopies, job, item, props]
-  );
-
+  /**
+   * A sequence file was chosen for THIS row: replace the row's sequence with
+   * it. The slot is a sequence-file slot, and a PDB entry fetched into it
+   * arrives already as a FASTA of one chain, so the digest is always
+   * { name, moleculeType, sequence }. Whole models and entries belong to the
+   * page's model slot, which adds every chain.
+   */
   const setSEQUENCEFromSEQIN = useCallback(
     async (seqinDigestResponse: any, annotation: string) => {
       const seqinDigest = seqinDigestResponse?.data;
@@ -106,98 +65,23 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         !setName ||
         !setPolymerType ||
         !setDescription ||
-        !setNCopies ||
         !item ||
-        !seqinDigest ||
+        !seqinDigest?.moleculeType ||
         job?.status != 1
       ) {
         return;
       }
-      if (seqinDigest?.moleculeType) {
-        const { name, moleculeType, sequence } = seqinDigest || {};
-        const sanitizedName = name.replace(/[^a-zA-Z0-9]/g, "_");
-        await setPolymerType(moleculeType);
-        await setName(sanitizedName);
-        await setSequence(sequence);
-        await setDescription(annotation);
-        await setNCopies(1);
-        // With local patching, each update patches the cache immediately
-        // No need to call mutateContainer or clear intents
-        props.onChange?.({ name, moleculeType, sequence });
-      } else if (seqinDigest?.composition && seqinDigest?.sequences) {
-        const { composition, sequences } = seqinDigest;
-
-        // Collect all polymer chains that have sequences
-        const allPolymerChains = [
-          ...(composition.peptides || []),
-          ...(composition.nucleics || []),
-        ];
-        const chainsWithSeq = allPolymerChains.filter(
-          (chainId: string) => sequences[chainId]
-        );
-
-        if (chainsWithSeq.length === 0) {
-          return;
-        }
-
-        if (chainsWithSeq.length === 1) {
-          // Single chain — apply directly
-          const chainId = chainsWithSeq[0];
-          const polyType = classifyChain(chainId, composition);
-          await applyChainSequence(chainId, polyType, sequences[chainId], annotation);
-        } else {
-          // Multiple chains — show picker dialog
-          const chainInfos: ChainSequenceInfo[] = chainsWithSeq.map(
-            (chainId: string) => {
-              const seq = sequences[chainId] || "";
-              const polyType = classifyChain(chainId, composition);
-              return {
-                chainId,
-                entityId: "",
-                sequence: seq,
-                polymerType: polyType,
-                length: seq.length,
-                description: `Chain ${chainId}`,
-              };
-            }
-          );
-          setPendingChains(chainInfos);
-          setPendingPdbId(annotation || "structure");
-          setPendingAnnotation(annotation);
-          setChainPickerOpen(true);
-        }
-      } else if (seqinDigest?.composition) {
-        // Legacy fallback: composition but no sequences dict (shouldn't happen with updated server)
-        const chainId = seqinDigest.composition.peptides?.[0];
-        if (chainId) {
-          await applyChainSequence(chainId, "PROTEIN", "", annotation);
-        }
-      }
+      const { name, moleculeType, sequence } = seqinDigest;
+      const sanitizedName = name.replace(/[^a-zA-Z0-9]/g, "_");
+      // CSequence says PROTEIN/NUCLEIC; the row wants PROTEIN/DNA/RNA.
+      await setPolymerType(polymerTypeFromMolecule(moleculeType, sequence));
+      await setName(sanitizedName);
+      await setSequence(sequence);
+      await setDescription(annotation);
+      // The number of copies is the user's to say, not the file's: keep it.
+      props.onChange?.({ name, moleculeType, sequence });
     },
-    [
-      setSequence,
-      setName,
-      setPolymerType,
-      setDescription,
-      setNCopies,
-      job,
-      item,
-      props,
-      applyChainSequence,
-    ]
-  );
-
-  /** Handle chain picker selection */
-  const handleChainSelected = useCallback(
-    (chain: ChainSequenceInfo) => {
-      applyChainSequence(
-        chain.chainId,
-        chain.polymerType,
-        chain.sequence,
-        pendingAnnotation
-      );
-    },
-    [applyChainSequence, pendingAnnotation]
+    [setSequence, setName, setPolymerType, setDescription, job, item, props]
   );
 
   const validationColor = getValidationColor(item);
@@ -328,16 +212,16 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
             {/* Source file */}
             <Box>
               <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-                Or import from file / fetch from UniProt or PDB
+                Replace this sequence from a file, or from UniProt (a residue range trims it to the crystallised construct). Whole models and PDB entries are added from the page, not here.
               </Typography>
               <CCP4i2TaskElement
                 {...props}
                 itemName={`${item._objectPath}.source`}
                 qualifiers={{
-                  guiLabel: "Source File",
+                  guiLabel: "Sequence file or UniProt",
                   guiMode: "multiLine",
                   mimeTypeName: "application/CCP4-seq",
-                  downloadModes: ["uniprotFasta", "ebiPdb", "rcsbPdb"],
+                  downloadModes: ["uniprotFasta"],
                 }}
                 onChange={async (updatedItem: any) => {
                   const { dbFileId, annotation } = valueOfItem(updatedItem);
@@ -351,13 +235,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         </Box>
       </Box>
 
-      <ChainPickerDialog
-        open={chainPickerOpen}
-        onClose={() => setChainPickerOpen(false)}
-        onSelect={handleChainSelected}
-        chains={pendingChains}
-        pdbId={pendingPdbId}
-      />
     </>
   );
 };

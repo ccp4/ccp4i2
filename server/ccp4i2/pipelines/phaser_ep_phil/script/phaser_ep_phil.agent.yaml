@@ -486,7 +486,7 @@ next:
     advice: >
       One hand phased and built: its model is XYZOUT[1] and its Phaser phases ABCDOUT[0].
   - when: outcome == "ambiguous" and HANDS_PHASED == 2 and PARROT_FOM_ORIG == null
-    task: phaser_ep_phil
+    rerun: true
     inputs:
       RUNPARROT: "True"
     advice: >

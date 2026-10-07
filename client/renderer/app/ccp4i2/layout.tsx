@@ -1,5 +1,7 @@
 "use client";
 import { PropsWithChildren } from "react";
+import { SWRConfig } from "swr";
+import { ApiError } from "@ccp4/ccp4i2-api";
 import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-provider";
 
 /**
@@ -19,8 +21,18 @@ import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-pr
  * The one thing that belongs at this level is what every /ccp4i2 route needs
  * regardless of auth: the back/forward keyboard shortcuts. Mounting them here
  * once (rather than per page) is what makes them work on every route — the
- * projects list, campaigns and graph viewer used to be missed.
+ * projects list, campaigns and graph viewer used to be missed. The SWR
+ * defaults belong here for the same reason.
  */
+// SWR retries failed fetches indefinitely by default. A 4xx (a deleted job,
+// a missing file) will fail the same way every time, so only retry the rest.
+const shouldRetryOnError = (error: Error) =>
+  !(error instanceof ApiError && error.status >= 400 && error.status < 500);
+
 export default function CCP4i2Layout(props: PropsWithChildren) {
-  return <NavigationShortcutsProvider>{props.children}</NavigationShortcutsProvider>;
+  return (
+    <SWRConfig value={{ shouldRetryOnError }}>
+      <NavigationShortcutsProvider>{props.children}</NavigationShortcutsProvider>
+    </SWRConfig>
+  );
 }

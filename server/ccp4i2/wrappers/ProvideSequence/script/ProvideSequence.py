@@ -57,6 +57,37 @@ class ProvideSequence(CPluginScript):
             "commentary": commentary.getvalue(),
         }
 
+    # -- UniProt (reached through the object_method endpoint) ---------------
+
+    def uniprotCandidates(self, text, organism=None, limit=10):
+        """UniProt entries for a protein as named ("Human CDK2", "cyclin D
+        from human", an accession): how the text was read and the candidates,
+        best first; none is chosen."""
+        return CCP4ModelData.CSequence.uniprotCandidates(text, organism, limit)
+
+    def fetchUniProt(self, accession, residue_range=None, append=True):
+        """Add a UniProt entry's sequence to SEQUENCETEXT as a FASTA record
+        (its header names the accession, organism and any residue range, so
+        the output sequence carries where it came from), cut to
+        ``residue_range`` ("175-432") for the crystallised construct; and
+        save. Only a pending job; ``append`` False replaces the text."""
+        from ccp4i2.lib.utils.jobs.editing import editable_job, save
+        from ccp4i2.lib.utils.sequences import uniprot
+        job, why = editable_job(self)
+        if job is None:
+            return {"success": False, "error": why}
+        try:
+            entry = uniprot.fetch(accession, residue_range)
+        except uniprot.UniProtError as err:
+            return {"success": False, "error": str(err)}
+        text = str(self.container.controlParameters.SEQUENCETEXT) if append else ""
+        text = (text.rstrip() + "\n" if text.strip() else "") + entry["fasta"]
+        self.container.controlParameters.SEQUENCETEXT.set(text)
+        save(self, job)
+        return {"success": True, "added": {k: entry[k] for k in (
+            "accession", "entry_name", "protein_name", "gene", "organism", "reviewed", "range")}
+            | {"length": len(entry["sequence"])}}
+
     def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         
