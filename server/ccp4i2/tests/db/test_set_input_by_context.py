@@ -355,13 +355,17 @@ class ListPopulationFromContextTestCase(TestCase):
     def test_coot1_follow_on_from_refinement_gets_model_and_maps(self):
         lists = self._coot_lists_after_follow_on("coot1")
 
-        self.assertIn("2_mdm2ccp4i2_xyzout_prosmart_refmac.pdb", lists["XYZIN_LIST"])
+        # One model, as mmCIF: refinement writes it twice, PDB format and
+        # mmCIF, and Coot was given both (#616).
+        self.assertEqual(lists["XYZIN_LIST"], ["2_mdm2ccp4i2_ciffile_prosmart_refmac.cif"])
         self.assertEqual(lists["FPHIIN_LIST"], ["2_mdm2ccp4i2_fphiout_prosmart_refmac.mtz"])
         self.assertEqual(lists["DELFPHIIN_LIST"], ["2_mdm2ccp4i2_diffphiout_prosmart_refmac.mtz"])
 
     def test_coot_rebuild_follow_on_from_refinement_gets_model_and_maps(self):
         lists = self._coot_lists_after_follow_on("coot_rebuild")
 
-        self.assertIn("2_mdm2ccp4i2_xyzout_prosmart_refmac.pdb", lists["XYZIN_LIST"])
+        # One model, as mmCIF: refinement writes it twice, PDB format and
+        # mmCIF, and Coot was given both (#616).
+        self.assertEqual(lists["XYZIN_LIST"], ["2_mdm2ccp4i2_ciffile_prosmart_refmac.cif"])
         self.assertEqual(lists["FPHIIN_LIST"], ["2_mdm2ccp4i2_fphiout_prosmart_refmac.mtz"])
         self.assertEqual(lists["DELFPHIIN_LIST"], ["2_mdm2ccp4i2_diffphiout_prosmart_refmac.mtz"])

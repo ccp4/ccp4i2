@@ -63,6 +63,34 @@ def get_file_by_job_context(
     return []
 
 
+# Coordinate content flags (CPdbDataFile.CONTENT_FLAG_PDB / _MMCIF).
+_PDB_FORMAT = 1
+_MMCIF_FORMAT = 2
+
+
+def _prefer_mmcif_twins(job_files):
+    """Drop a job's PDB-format model where it also wrote the same model as mmCIF.
+
+    Refinement writes its model twice, as PDB format and as mmCIF, both
+    coordinate files of the same subtype. Offered both, a list input such as
+    Coot's took two copies of one model (#616). Twins are told by job and
+    subtype, an mmCIF with no subtype matching any (refinement has recorded
+    its mmCIF without one); the mmCIF copy is kept.
+    """
+    mmcif = [f for f in job_files if f.content == _MMCIF_FORMAT]
+
+    def has_mmcif_twin(pdb_file):
+        return any(
+            f.job_id == pdb_file.job_id and f.sub_type in (pdb_file.sub_type, 0, None)
+            for f in mmcif
+        )
+
+    return [
+        f for f in job_files
+        if not (f.content == _PDB_FORMAT and has_mmcif_twin(f))
+    ]
+
+
 def _get_job_files(
     context_job: models.Job,
     fileType: str,
@@ -99,6 +127,7 @@ def _get_job_files(
                 jobFile.name, jobFile.uuid, context_job.number, jobFile.path
             )
 
+    existing_job_files = _prefer_mmcif_twins(existing_job_files)
     job_file_id_list = [str(jobFile.uuid) for jobFile in existing_job_files]
 
     file_imports = models.FileImport.objects.filter(file__uuid__in=job_file_id_list)

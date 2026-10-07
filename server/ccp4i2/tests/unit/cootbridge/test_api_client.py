@@ -371,3 +371,27 @@ def test_project_by_uuid_normalises_hyphens():
     client = api_client.CootBridgeClient(
         api_client.BridgeConfig({}), opener=opener)
     assert client.project_by_uuid("aabbccdd")["id"] == 1
+
+
+# ---------------------------------------------------------------------------
+# save_extension: a molecule saves in the format it was read in (#617)
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("name, content, expected", [
+    ("model.cif", "data_2d2k\n_cell.length_a 93.2\n", "cif"),
+    ("XYZOUT.pdb", "data_XYZOUT\n#\n_atom_site.id\n", "cif"),
+    ("model.cif", "CRYST1   93.200   93.200  126.360\nATOM      1  P\n", "pdb"),
+    ("model.pdb", "REMARK made by hand\nATOM      1  N\n", "pdb"),
+])
+def test_save_extension_follows_content_not_name(tmp_path, name, content, expected):
+    path = tmp_path / name
+    path.write_text(content)
+    assert api_client.save_extension(str(path)) == expected
+
+
+def test_save_extension_falls_back_to_the_name_then_mmcif():
+    assert api_client.save_extension("/nowhere/model.pdb") == "pdb"
+    assert api_client.save_extension("/nowhere/model.cif") == "cif"
+    assert api_client.save_extension("Molecule built in Coot") == "cif"
+    assert api_client.save_extension(None) == "cif"

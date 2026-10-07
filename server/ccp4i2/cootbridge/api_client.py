@@ -517,6 +517,34 @@ def next_output_number(drop_dir):
     return highest + 1
 
 
+def save_extension(molecule_name):
+    """"cif" or "pdb": the format to save a molecule in, as it came in.
+
+    Coot names a molecule by the path it was read from. The content of that
+    file decides, not its name: CCP4i2 has written mmCIF into files called
+    .pdb, and Coot writes whatever format the extension asks for, so a name
+    alone turned mmCIF back into PDB format (#617). Falls back to the name
+    when the file cannot be read, and to mmCIF when neither says.
+    """
+    name = molecule_name or ""
+    try:
+        with open(name, "r", errors="replace") as handle:
+            for _ in range(200):
+                line = handle.readline()
+                if not line:
+                    break
+                if line.lstrip().startswith("data_"):
+                    return "cif"
+                if line.startswith(("ATOM  ", "HETATM", "CRYST1", "HEADER",
+                                    "REMARK", "MODEL ", "SEQRES")):
+                    return "pdb"
+    except (OSError, ValueError):
+        pass
+    if name.lower().endswith((".pdb", ".ent", "(pdb)")):
+        return "pdb"
+    return "cif"
+
+
 def output_path(drop_dir, number, extension="pdb"):
     _ensure_dir(drop_dir)
     return os.path.join(

@@ -323,6 +323,17 @@ def set_input_by_context_job(
         if copied:
             logger.info("Inherited %s from context job %s", copied, context_job_id)
 
+    # The task's own say on inputs that depend on what the context supplied
+    # (Phaser takes its composition from an ASU contents file it was given).
+    if context_job_id is not None:
+        context_applied = getattr(the_job_plugin, "contextApplied", None)
+        if callable(context_applied):
+            try:
+                context_applied()
+            except Exception as err:
+                logger.warning("%s.contextApplied failed: %s",
+                               type(the_job_plugin).__name__, err)
+
     # Only save params if requested (caller may handle saving themselves)
     if save_params:
         save_params_for_job(the_job_plugin, the_job=the_job)
