@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -13,6 +13,17 @@ import { CCP4Icon } from "./General/CCP4i2Icons";
 import { useServerReady } from "@/hooks/use-server-ready";
 
 /**
+ * Whether the backend has answered once already in this window's session.
+ * The gate wraps the projects page, so without this every return to that
+ * page (a client-side navigation, which remounts the gate) showed
+ * "Starting CCP4i2..." again, as if the app were relaunching (#732). Module
+ * state lives as long as the renderer does and so resets with the app; it is
+ * deliberately not sessionStorage, which the server render cannot read and
+ * would make a reload's first render disagree with the server's.
+ */
+let serverReadyThisSession = false;
+
+/**
  * Waits for the backend to be reachable before rendering its children.
  *
  * This closes the gap where the app used to redirect to the projects list the
@@ -23,12 +34,18 @@ import { useServerReady } from "@/hooks/use-server-ready";
 export const LaunchGate: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const [alreadyReady] = useState(() => serverReadyThisSession);
   const { status, attempts, retry } = useServerReady({
     intervalMs: 1000,
     timeoutMs: 60_000,
+    enabled: !alreadyReady,
   });
 
-  if (status === "ready") {
+  useEffect(() => {
+    if (status === "ready") serverReadyThisSession = true;
+  }, [status]);
+
+  if (alreadyReady || status === "ready") {
     // A flex column, not a plain block. Every page inside this gate starts
     // its own height chain with flex: 1, and a flex item needs a flex
     // container to be one -- against a block parent it is inert, each child
