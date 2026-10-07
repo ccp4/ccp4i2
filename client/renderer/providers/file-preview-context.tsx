@@ -31,6 +31,7 @@ import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { MolBlockView } from "../components/campaigns/molblock-view";
 import { useTheme } from "../theme/theme-provider";
+import { looksBinary } from "../lib/text-file-sniffer";
 
 // Register mmCIF language and themes with Monaco at module load time.
 // This runs once before any Editor component mounts.
@@ -146,6 +147,9 @@ const FilePreviewDialog: React.FC = () => {
   const [previewContent, setPreviewContent] = useState<string | null>("");
   const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
   const [dictDigest, setDictDigest] = useState<DictDigest | null>(null);
+  // Set when a file asked for as text turns out to be binary (#672): say so
+  // rather than fill the editor with mojibake.
+  const [isBinary, setIsBinary] = useState(false);
   // Object URL minted for image previews; revoked when the dialog content changes.
   const objectUrlRef = useRef<string | null>(null);
   const { mode } = useTheme();
@@ -185,6 +189,7 @@ const FilePreviewDialog: React.FC = () => {
   };
 
   useEffect(() => {
+    setIsBinary(false);
     if (contentSpecification) {
       const asyncFunc = async () => {
         if (!contentSpecification.url) {
@@ -259,6 +264,11 @@ const FilePreviewDialog: React.FC = () => {
 
         {
           const fileContent = await apiArrayBuffer(contentSpecification.url);
+          if (contentSpecification.language !== "mtz" && looksBinary(fileContent)) {
+            setPreviewContent(null);
+            setIsBinary(true);
+            return;
+          }
           var enc = new TextDecoder("utf-8");
           if (contentSpecification.language === "json") {
             const fileText = enc.decode(fileContent);
@@ -339,7 +349,13 @@ const FilePreviewDialog: React.FC = () => {
     >
       <DialogTitle>{contentSpecification?.title}</DialogTitle>
       <DialogContent>
-        {contentSpecification?.language === "image" ? (
+        {isBinary ? (
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+            <Typography color="text.secondary">
+              This is a binary file, so it cannot be shown as text. Export saves a copy of it.
+            </Typography>
+          </Box>
+        ) : contentSpecification?.language === "image" ? (
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
             {previewContent ? (
               <img
