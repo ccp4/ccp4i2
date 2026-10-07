@@ -26,7 +26,7 @@ Input
 
    Figure 1: Privateer input
 
-The model **(1)** and the observed data **(2)**, needed for the omit
+The model **(1)** and the observed data **(2)** (Figure 1), needed for the omit
 density. The mask radius **(3)** sets how much density around each sugar
 counts in the correlation: smaller values (1.5 Å) forgive modelling
 errors, larger ones (2.5 Å) are stricter. A sugar not yet in the Chemical
@@ -41,7 +41,7 @@ Results
 
    Figure 2: Privateer report
 
-The conformational landscape **(4)** plots every pyranose by its
+The conformational landscape **(4)** of Figure 2 plots every pyranose by its
 Cremer-Pople angles, beside a key to the sphere they come from. Pyranoses
 nearly always sit in a chair: for D-sugars the ⁴C₁ chair, at the north
 pole (θ near 0°). Points coloured as higher-energy conformations deserve

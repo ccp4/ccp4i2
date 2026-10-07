@@ -29,26 +29,26 @@ Input
 
    Figure 1: xia2/dials input
 
-Give a minimum of one image from each dataset **(1)**: the first image of the
-sweep, and xia2 finds the rest from its numbered name. Set the range of images
-to use **(2)**; here 1 to 300, and if left blank all the images are used. To
-process several datasets, add another image with the plus button. Alternatively
-give a directory **(3)**, an absolute path on the machine running the job, and
-xia2 finds the sweeps under it. DIALS reads a wide range of image formats
-(see the DIALS web page).
+Give a minimum of one image from each dataset **(1)** (Figure 1): the first
+image of the sweep, and xia2 finds the rest from its numbered name. Set the
+range of images to use **(2)**; here 1 to 300, and if left blank all the images
+are used. To process several datasets, add another image with the plus button.
+Alternatively give a directory **(3)**, an absolute path on the machine running
+the job, and xia2 finds the sweeps under it. DIALS reads a wide range of image
+formats (see the DIALS web page).
 
 .. figure:: xia2_dials_settings.png
    :alt: Figure 2: xia2/dials settings
 
    Figure 2: xia2/dials settings
 
-The defaults are right for most datasets; the Basic parameters tab holds the
-DIALS settings (ice-ring filtering in spot finding, the indexing method) and
-xia2's own. Set the space group **(5)** (with the unit cell, which needs it)
-only if you know it: otherwise xia2 chooses it from the symmetry of the data.
-The high resolution cutoff **(6)** is empty by default: xia2 then picks the
-limit itself, and the next section is about why you should check it. Whether
-anomalous pairs are kept separate when merging **(4)** is Auto. The
+The defaults are right for most datasets; the Basic parameters tab (Figure 2)
+holds the DIALS settings (ice-ring filtering in spot finding, the indexing
+method) and xia2's own. Set the space group **(5)** (with the unit cell, which
+needs it) only if you know it: otherwise xia2 chooses it from the symmetry of
+the data. The high resolution cutoff **(6)** is empty by default: xia2 then
+picks the limit itself, and the next section is about why you should check it.
+Whether anomalous pairs are kept separate when merging **(4)** is Auto. The
 Advanced parameters tab carries the rest of xia2's options (masks, and the
 integration and spot-finding algorithms).
 
@@ -60,12 +60,12 @@ Results
 
    Figure 3: xia2/dials report
 
-The report opens with a button for xia2's own HTML report, then the xia2 summary,
-with overall values and, in brackets, those of the highest-resolution shell.
-It gives the space group xia2 chose **(7)** and the resolution limit **(8)**,
-with the completeness, multiplicity, I/σ(I), R-factors, CC\ :sub:`1/2` and
-numbers of observations and unique reflections. The unit cell
-here is 57.78, 57.78, 150.00 with 90 degree angles.
+The report (Figure 3) opens with a button for xia2's own HTML report, then the
+xia2 summary, with overall values and, in brackets, those of the
+highest-resolution shell. It gives the space group xia2 chose **(7)** and the
+resolution limit **(8)**, with the completeness, multiplicity, I/σ(I),
+R-factors, CC\ :sub:`1/2` and numbers of observations and unique reflections.
+The unit cell here is 57.78, 57.78, 150.00 with 90 degree angles.
 
 Read the shell statistics before trusting the limit. xia2 took 1.17 Å as
 the limit, where CC\ :sub:`1/2` is still above 0.3 in the highest shell. For these data:

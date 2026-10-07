@@ -27,9 +27,9 @@ Input
 
    Figure 1: Import XIA2 results input
 
-Choose the directory of the xia2 run **(1)**, with the folder button. It
-is the directory in which xia2 was run, the one holding ``DataFiles`` and
-``LogFiles``. The task finds the run or runs itself:
+Choose the directory of the xia2 run **(1)** (Figure 1), with the folder
+button. It is the directory in which xia2 was run, the one holding
+``DataFiles`` and ``LogFiles``. The task finds the run or runs itself:
 
 - if the directory holds xia2's ``DataFiles``, it is imported as one run;
 - otherwise each sub-directory that does is imported as a run, so a
@@ -62,7 +62,7 @@ Results
 
    Figure 2: Import XIA2 results report
 
-Each run gives three outputs, named after it (here, ``job_1``, the
+Each run gives three outputs (Figure 2), named after it (here, ``job_1``, the
 directory's name):
 
 - **xia2 run job_1: integrated, unmerged (...)** **(2)**: the unmerged

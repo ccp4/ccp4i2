@@ -34,10 +34,10 @@ Input
 
    Figure 1: MetalCoord input
 
-The atomic model **(1)**, and the monomer code **(2)** of the residue that
-contains the metal (here AF3, the aluminium fluoride itself). The metal's
-neighbours may belong to other residues: here two of the six oxygens come
-from a phosphate and a nucleotide, and one is a water.
+In Figure 1 the atomic model **(1)**, and the monomer code **(2)** of the
+residue that contains the metal (here AF3, the aluminium fluoride itself). The
+metal's neighbours may belong to other residues: here two of the six oxygens
+come from a phosphate and a nucleotide, and one is a water.
 
 The advanced parameters have workable defaults:
 
@@ -71,7 +71,7 @@ Results
 
    Figure 2: MetalCoord report
 
-The report has a section for each metal site found, named by chain,
+The report (Figure 2) has a section for each metal site found, named by chain,
 residue, number and atom (A/AF3 302/AL). Within it, one fold for each
 possible coordination class. When several are reported, the one with the
 lowest Procrustes distance comes first and is the one used for the

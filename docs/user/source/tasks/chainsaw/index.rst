@@ -33,8 +33,8 @@ Input
 
    Figure 1: Chainsaw input
 
-The structure to be edited **(1)**, as downloaded from the PDB; use the
-atom selection to keep one chain (here ``A/``), since Chainsaw edits the
+The structure to be edited **(1)** (Figure 1), as downloaded from the PDB; use
+the atom selection to keep one chain (here ``A/``), since Chainsaw edits the
 model as a whole and a search model is usually one copy. The alignment of
 its sequence with the target's **(2)**, and which sequence in it is the
 target **(3)** (the first, by default).
@@ -54,7 +54,8 @@ Results
 
    Figure 2: Chainsaw report
 
-The report counts the residues deleted, conserved and mutated **(5)**:
-here 48 residues are kept whole, 37 truncated and 2 deleted. The pruned model is the output. In this example it solves the
-MDM2 structure in the MDM2 data with Phaser at once: one solution, with an
-LLG of 104 and a TFZ of 12.7 (a TFZ above 8 is a clear solution).
+The report (Figure 2) counts the residues deleted, conserved and mutated
+**(5)**: here 48 residues are kept whole, 37 truncated and 2 deleted. The
+pruned model is the output. In this example it solves the MDM2 structure in the
+MDM2 data with Phaser at once: one solution, with an LLG of 104 and a TFZ of
+12.7 (a TFZ above 8 is a clear solution).

@@ -47,8 +47,8 @@ Input
 
    Figure 1: the input data
 
-**The data.** The *Input data type* menu **(1)** chooses what you have, and
-each choice shows its own fields:
+**The data.** In Figure 1 the *Input data type* menu **(1)** chooses what you
+have, and each choice shows its own fields:
 
 - *Unmerged data (aimless pipeline)*: one or more unmerged reflection files
   **(2)**, as in the :doc:`AIMLESS pipeline <../aimless_pipe/aimless_pipe>`.
@@ -65,8 +65,8 @@ each choice shows its own fields:
 
    Figure 2: the search model
 
-**The search model.** *Molecular replacement target source* **(3)** has
-three choices:
+**The search model.** In Figure 2, *Molecular replacement target source*
+**(3)** has three choices:
 
 - *a coordinate file*: the model you give **(4)**, from any source,
   including the output of another job. Use this when you already have a
@@ -87,11 +87,11 @@ three choices:
 
    Figure 3: the sequence, the options and the ligand
 
-**The sequence.** *AU contents* **(5)** is a "Define AU contents" job. If it
-holds several sequences, pick the one to search with (this is also the one
-given to MrBUMP or MrParse); ModelCraft is given the whole contents, so it can
-build every chain. *The number of monomers to search for* **(6)** is left at
-*Auto* unless you know it.
+**The sequence.** In Figure 3, *AU contents* **(5)** is a "Define AU contents"
+job. If it holds several sequences, pick the one to search with (this is also
+the one given to MrBUMP or MrParse); ModelCraft is given the whole contents, so
+it can build every chain. *The number of monomers to search for* **(6)** is
+left at *Auto* unless you know it.
 
 **Options.**
 
@@ -155,10 +155,10 @@ the hand the pipeline kept.
 
    Figure 4: the choice of space group, at the top of the report
 
-The two hands are easy to tell apart: in the right hand R-free falls and the
-model builds to a working structure, while in the wrong hand it never leaves
-0.46, a model that has not found the structure. The pipeline chooses by the R-free of the ModelCraft models, so it
-chose P 4\ :sub:`1`\ 2\ :sub:`1`\ 2.
+The two hands are easy to tell apart (Figure 4): in the right hand R-free falls
+and the model builds to a working structure, while in the wrong hand it never
+leaves 0.46, a model that has not found the structure. The pipeline chooses by
+the R-free of the ModelCraft models, so it chose P 4\ :sub:`1`\ 2\ :sub:`1`\ 2.
 
 **The outputs.** Everything for the chosen hand is marked BEST in its
 annotation: the observations and free-R set (*Observations in spacegroup

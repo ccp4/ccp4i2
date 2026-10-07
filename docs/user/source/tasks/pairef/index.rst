@@ -33,10 +33,10 @@ Input
 
    Figure 1: PAIREF input
 
-The reflections, to beyond the model's resolution **(1)**; their free set;
-the refined model **(2)**; and the restraint dictionary for any ligand,
-which must be the one the model was refined with **(3)**. Here that means
-none: the model was refined with the monomer library's Nutlin-3a, whose
+In Figure 1, the reflections, to beyond the model's resolution **(1)**; their
+free set; the refined model **(2)**; and the restraint dictionary for any
+ligand, which must be the one the model was refined with **(3)**. Here that
+means none: the model was refined with the monomer library's Nutlin-3a, whose
 atom names it carries, and a dictionary made afresh from SMILES names the
 same atoms differently, so Refmac would find no restraints for any of
 them.
@@ -46,9 +46,9 @@ them.
 
    Figure 2: PAIREF resolution shells
 
-The shells **(4)**: a number of shells of a given width, an explicit list
-of limits, or automatic 0.05 Å shells. The starting resolution **(5)**
-is normally read from the model; give it when the model does not record
+In Figure 2 the shells **(4)**: a number of shells of a given width, an
+explicit list of limits, or automatic 0.05 Å shells. The starting resolution
+**(5)** is normally read from the model; give it when the model does not record
 it. Here two shells of 0.05 Å took the data from 1.35 Å to 1.25 Å.
 
 Results
@@ -59,8 +59,8 @@ Results
 
    Figure 3: PAIREF report
 
-The suggested cutoff comes first **(6)**, then one row per added shell
-**(7)**: R and R-free of the model refined without the shell and with
+In Figure 3 the suggested cutoff comes first **(6)**, then one row per added
+shell **(7)**: R and R-free of the model refined without the shell and with
 it, both calculated at the previous resolution, and the change in R-free.
 PAIREF suggests keeping every shell whose change is negative.
 

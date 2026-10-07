@@ -25,10 +25,10 @@ Input
 
    Figure 1: ClustalW input
 
-Give the sequences either as a list of sequence files **(1)**, adding one
-row per sequence with **+**, or as one alignment file to realign. Put the
-target first: the tasks that use the alignment take its first sequence as
-the target unless told otherwise. The supported formats are described in
+Give the sequences either as a list of sequence files **(1)** (Figure 1),
+adding one row per sequence with **+**, or as one alignment file to realign.
+Put the target first: the tasks that use the alignment take its first sequence
+as the target unless told otherwise. The supported formats are described in
 the `Model data documentation <../../general/model_data.html>`__; CCP4i2
 converts imported alignments to Clustal format and sequences to FASTA.
 
@@ -40,8 +40,8 @@ Results
 
    Figure 2: ClustalW report
 
-The report shows the alignment **(2)**, coloured by residue, with a line
-marking each column as fully conserved (*), strongly similar (:) or weakly
+The report (Figure 2) shows the alignment **(2)**, coloured by residue, with a
+line marking each column as fully conserved (*), strongly similar (:) or weakly
 similar (.). Check it before using it: long runs of gaps in the homologue
 mean parts of the target it cannot model, and a region with no conserved
 columns is probably misaligned. Here the N-terminal tag of the MDM2

@@ -25,7 +25,7 @@ Input
 
    Figure 1: Add fractional coordinates input
 
-The model **(1)**. An atom selection writes only part of it.
+In Figure 1 the model **(1)**. An atom selection writes only part of it.
 
 Results
 =======
@@ -35,6 +35,6 @@ Results
 
    Figure 2: Add fractional coordinates report
 
-The output **(2)** is the mmCIF file, "mmCIF with fractional coordinates".
-The report has nothing else to show: open the file, or use it as the input
-to the next task.
+In Figure 2 the output **(2)** is the mmCIF file, "mmCIF with fractional
+coordinates". The report has nothing else to show: open the file, or use it as
+the input to the next task.

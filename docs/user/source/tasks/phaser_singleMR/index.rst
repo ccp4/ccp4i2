@@ -34,23 +34,23 @@ Input
 
    Figure 1: Input data
 
-The observed data **(1)** and the free-R set **(2)**; a resolution range can
-be set if you want to limit the data used. The contents of the asymmetric
-unit are given in the next section, *Composition*: here from an AU contents
-file (made with the *Define AU contents* task) holding the one peptide, or
-alternatively from molecular weights. Phaser needs to know what is in the
-cell to judge how many atoms there are to find.
+The observed data **(1)** and the free-R set **(2)** (Figure 1); a resolution
+range can be set if you want to limit the data used. The contents of the
+asymmetric unit are given in the next section, *Composition*: here from an AU
+contents file (made with the *Define AU contents* task) holding the one
+peptide, or alternatively from molecular weights. Phaser needs to know what is
+in the cell to judge how many atoms there are to find.
 
 .. figure:: singlemr_search.png
    :alt: Figure 2: Single atom MR search
 
    Figure 2: Define search
 
-The search **(3)** is for a number of atoms of one type: here 2 atoms of
-type S, the two cysteine sulfurs. Choose the heaviest type present, and the
-number you expect. Log-likelihood completion **(4)** is on by default: after
-the atoms are placed, Phaser adds atoms at peaks in LLG maps **(5)** until
-the structure is complete. The completion atoms are always placed as one
+The search **(3)** in Figure 2 is for a number of atoms of one type: here 2
+atoms of type S, the two cysteine sulfurs. Choose the heaviest type present,
+and the number you expect. Log-likelihood completion **(4)** is on by default:
+after the atoms are placed, Phaser adds atoms at peaks in LLG maps **(5)**
+until the structure is complete. The completion atoms are always placed as one
 element, N by default, whatever they really are; the carbons and oxygens in
 the output are N atoms at the right positions, and the element names are
 not to be trusted. The optional limits below set a sigma cutoff for new
@@ -66,8 +66,8 @@ Results
 
    Figure 3: Report
 
-The report begins with the result **(6)**. Phaser found six candidate
-placements of the two sulfurs and completed each one; it ranks its
+The report (Figure 3) begins with the result **(6)**. Phaser found six
+candidate placements of the two sulfurs and completed each one; it ranks its
 solutions by LLG, and CCP4i2 keeps solution 1, the best. Here that solution
 has 132 atoms (the 2 sulfurs and 130 N completion atoms), LLG 7347.56 and
 R-factor 22.3%. The table **(7)** gives the final LLG and R-factor of each

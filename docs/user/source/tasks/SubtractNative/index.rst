@@ -30,7 +30,7 @@ Input
 
    Figure 1: SubtractNative input
 
-The map coefficients **(1)**, the model whose density is subtracted
+The map coefficients **(1)** (Figure 1), the model whose density is subtracted
 **(2)**, and the fraction to subtract **(3)**: for an event map, one
 minus the occupancy of the bound state, so 0.8 for a ligand bound in a
 fifth of the crystal.
@@ -43,5 +43,5 @@ Results
 
    Figure 2: SubtractNative output
 
-The output is the map **(4)**, annotated with the fraction subtracted. The
-report shows nothing else; open the map in a viewer.
+The output (Figure 2) is the map **(4)**, annotated with the fraction
+subtracted. The report shows nothing else; open the map in a viewer.

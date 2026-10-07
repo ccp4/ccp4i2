@@ -36,8 +36,8 @@ Input
    Figure 1: Locating the data. The pictures are of a job set up on 300
    images of a thaumatin data set.
 
-You need, at a minimum, a set of diffraction images. There are two ways to
-say where they are:
+You need, at a minimum, a set of diffraction images (Figure 1). There are two
+ways to say where they are:
 
 * Choose one image **(1)** from each data set; xia2 finds the rest of the
   set itself. The image range **(2)** limits the images used (for example 1
@@ -53,8 +53,8 @@ One of the two must be given.
    Figure 2: Basic parameters (the picture is cut off after the resolution
    settings; more follow below them).
 
-The **Basic parameters** hold the options most often changed, and the
-**Advanced parameters** tab the rest (its selector sets how much is shown).
+The **Basic parameters** (Figure 2) hold the options most often changed, and
+the **Advanced parameters** tab the rest (its selector sets how much is shown).
 What is specific to this task:
 
 * **Main processing pipeline (4)** offers the four XDS pipelines, 3d, 3dd,

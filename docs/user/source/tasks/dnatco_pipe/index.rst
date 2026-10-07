@@ -38,9 +38,9 @@ Input
 
    Figure 1: DNATCO input
 
-The model to validate **(1)**. To set two models side by side, switch on
-*Compare with another structure model* **(2)**: the field for the second
-model **(3)** appears only then. Typically the second is the same
+The model to validate **(1)** (Figure 1). To set two models side by side,
+switch on *Compare with another structure model* **(2)**: the field for the
+second model **(3)** appears only then. Typically the second is the same
 structure after refinement or rebuilding, so the report shows what the
 refinement did.
 
@@ -62,7 +62,7 @@ DNATCO's report has two parts. The first folds open by default.
 
    Figure 2: Overall structure quality
 
-**Overall structure quality.** For each model: how many dinucleotide
+**Overall structure quality.** For each model (Figure 2): how many dinucleotide
 steps were assigned an NtC class, how many were left unassigned but were
 *close* (within 0.5 Å RMSD of a class, so likely to be improvable by
 refinement), how many were unassigned, and the steps binned by their RMSD
@@ -83,8 +83,8 @@ detailed analysis of a step.
 
    Figure 3: NAVAL bond lengths and angles
 
-**NAVAL bond lengths and angles.** Each bond length and bond angle is
-classed Preferred, Allowed or Of Concern against the NAVAL reference
+**NAVAL bond lengths and angles.** In Figure 3 each bond length and bond angle
+is classed Preferred, Allowed or Of Concern against the NAVAL reference
 distributions, with the counts and percentages per model. The terms of
 concern are listed below, up to 100 each of bond lengths and bond
 angles, sorted by tier and then by ProSco, a probability score for which

@@ -34,15 +34,15 @@ Input
 
    Figure 1: AREAIMOL input
 
-The model **(1)** and, for a comparison, the second model **(2)**.
+The model **(1)** and, for a comparison, the second model **(2)** (Figure 1).
 
 .. figure:: areaimol_options.png
    :alt: Figure 2: AREAIMOL parameters
 
    Figure 2: AREAIMOL parameters
 
-The kind of calculation **(3)** and what goes into the output model's
-B-factor column **(4)**: the area of each atom or of each residue.
+The kind of calculation **(3)** (Figure 2) and what goes into the output
+model's B-factor column **(4)**: the area of each atom or of each residue.
 
 Results
 =======
@@ -52,14 +52,14 @@ Results
 
    Figure 3: AREAIMOL report
 
-The report opens with the areas **(5)**: the total accessible area of each
-model and, over the atoms the two share, how much less the first model
+The report (Figure 3) opens with the areas **(5)**: the total accessible area
+of each model and, over the atoms the two share, how much less the first model
 exposes. Here Nutlin-3a covers 117.8 Å² of MDM2's surface. The table
 **(6)** lists the residues whose area changes, largest change first:
 Leu54, Gly58, Ile99, His96 and Met62 lead, then Val93, with His73,
-Tyr67, Phe91 and Gln72 barely touched. These line the pocket that p53's Phe19, Trp23 and Leu26 occupy,
-which is how Nutlin competes with p53. The sulphate beside the pocket
-loses 12.3 Å² too.
+Tyr67, Phe91 and Gln72 barely touched. These line the pocket that p53's Phe19,
+Trp23 and Leu26 occupy, which is how Nutlin competes with p53. The sulphate
+beside the pocket loses 12.3 Å² too.
 
 The program's own summary follows, closed; the plot of area by atom
 number is for a quick look at the exposed stretches of the chain.

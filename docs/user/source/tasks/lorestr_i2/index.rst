@@ -66,8 +66,8 @@ Input
 
    Figure 1: LORESTR input
 
-The model to refine **(1)**, the reflection data **(2)** and the free-R
-set **(3)** are required. Optional: TLS coefficients, a ligand
+In Figure 1 the model to refine **(1)**, the reflection data **(2)** and the
+free-R set **(3)** are required. Optional: TLS coefficients, a ligand
 description, and any number of homologous structures as the *Reference
 model* list **(4)**, to which more are added with the plus button. Models
 you supply are used alongside any fetched automatically, so you can offer
@@ -85,7 +85,7 @@ Options
 
    Figure 2: LORESTR options
 
-**Automatically fetch homologues from following databases (5):** the
+**Automatically fetch homologues from following databases (5)** (Figure 2): the
 choices are *PDB and AlphaFold*, *PDB only*, *AlphaFold only* and *None
 (do not fetch)*. When on, LORESTR sends the sequence of each chain to the
 chosen databases to search for homologues, and needs an internet
@@ -122,8 +122,8 @@ Results
 
    Figure 3: LORESTR report
 
-The report starts with the structure's starting parameters (twinning,
-scaling method, solvent parameters). *Description of refinement
+The report of Figure 3 starts with the structure's starting parameters
+(twinning, scaling method, solvent parameters). *Description of refinement
 protocols* **(7)** lists the protocols with, for each chain, the homologue
 chain used and its sequence identity and local and global RMSD to the
 model. Here there were four: 1, jelly body only; 2, restraints from the

@@ -33,11 +33,11 @@ Input
 
    Figure 1: FindMySequence input
 
-The task needs three files from the project, each chosen from the jobs that
-made them. The example is the MDM2 project: the observed data of the first
-job **(1)**, and the map coefficients **(2)** and the placed model **(3)**
-from the Phaser job that positioned a model of the related protein MDMX in
-the MDM2 data.
+The task (Figure 1) needs three files from the project, each chosen from the
+jobs that made them. The example is the MDM2 project: the observed data of the
+first job **(1)**, and the map coefficients **(2)** and the placed model
+**(3)** from the Phaser job that positioned a model of the related protein MDMX
+in the MDM2 data.
 
 * **Observed data (1).** The reflections, as intensities or as amplitudes.
   The task joins them with the map coefficients into one reflection file

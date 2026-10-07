@@ -25,8 +25,8 @@ Input
 
    Figure 1: Sheetbend input
 
-The data and free R set **(1)**, and the model to move **(2)**. The free R
-set is optional: at the low resolution Sheetbend starts from, very few
+The data and free R set **(1)**, and the model to move **(2)** (Figure 1). The
+free R set is optional: at the low resolution Sheetbend starts from, very few
 reflections are free, and their R factor is noisy.
 
 .. figure:: sheetbend_options.png
@@ -34,8 +34,8 @@ reflections are free, and their R factor is noisy.
 
    Figure 2: Sheetbend options
 
-What to refine **(3)**: coordinates by default; isotropic or anisotropic
-B-factors as well or instead. The number of cycles **(4)** and the
+What to refine **(3)** (Figure 2): coordinates by default; isotropic or
+anisotropic B-factors as well or instead. The number of cycles **(4)** and the
 resolution **(5)**: "6.0, 3.0" means the first cycle uses data to 6 Å and
 the last to 3 Å, stepping between them, so the large shifts are fitted
 first. The radius of each cycle's shift field is the resolution times the
@@ -49,8 +49,8 @@ Results
 
    Figure 3: Sheetbend report
 
-The report lists R and R-free at the start of each cycle **(6)**. They are
-calculated with that cycle's data only, so they can be compared only
+The report (Figure 3) lists R and R-free at the start of each cycle **(6)**.
+They are calculated with that cycle's data only, so they can be compared only
 between cycles at the same resolution: the numbers rise as the resolution
 extends, even while the model improves.
 

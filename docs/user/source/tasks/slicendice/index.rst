@@ -39,8 +39,8 @@ Input
    Figure 1: SliceNDice input
 
 The reflections, their free set and the contents of the asymmetric unit
-come first, with the number of copies to search for **(1)**. The atomic
-model **(2)** is the predicted model. **What its B-factor column holds
+come first (Figure 1), with the number of copies to search for **(1)**. The
+atomic model **(2)** is the predicted model. **What its B-factor column holds
 (3)** says what the numbers there are (here ``plddt``, AlphaFold's
 confidence), and the **pLDDT threshold (4)** is the confidence below which
 residues are removed (here 70). Leave the treatment on its default
@@ -54,7 +54,7 @@ The choices are the program's own codes: ``plddt``, ``rms``,
 
    Figure 2: SliceNDice options
 
-The slicing uses the `Birch clustering algorithm
+The slicing (Figure 2) uses the `Birch clustering algorithm
 <https://scikit-learn.org/stable/modules/clustering.html#birch>`_ on the Cα
 coordinates (or, for AlphaFold2 models, the predicted aligned error). The
 **minimum** and **maximum number of splits (5, 6)** are the fewest and the
@@ -76,9 +76,9 @@ Results
 
    Figure 3: SliceNDice report
 
-The report opens with a verdict **(7)**. Here it is "Partly solved": the
-placement refined to R 0.406 and R-free 0.427, which passes SliceNDice's own
-test of a solution (both below 0.45), but not every search model was
+The report (Figure 3) opens with a verdict **(7)**. Here it is "Partly solved":
+the placement refined to R 0.406 and R-free 0.427, which passes SliceNDice's
+own test of a solution (both below 0.45), but not every search model was
 placed. The table **(8)** gives, per split, the search models (residue
 ranges), Phaser's LLG and TFZ, and the R and R-free after refinement. Below
 it **(9)** each search model is listed with the TFZ, the LLG it added and

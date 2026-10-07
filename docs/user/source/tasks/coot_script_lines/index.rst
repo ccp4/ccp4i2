@@ -45,9 +45,9 @@ as Phaser and Refmac write them. The first model of Figure 1 is therefore
 
    Figure 2: The script
 
-*Start from* **(3)** puts a ready-made script in the script box **(4)**,
-replacing what is there; run it as it is or edit it first. The starting
-points are recipes for common jobs:
+In Figure 2, *Start from* **(3)** puts a ready-made script in the script box
+**(4)**, replacing what is there; run it as it is or edit it first. The
+starting points are recipes for common jobs:
 
 - **Fill partial residues**: complete side chains that are truncated, as
   they are after Chainsaw or Sculptor, fitting the missing atoms to the map.
@@ -84,8 +84,8 @@ Results
 
    Figure 3: Output
 
-The report lists the input files and the output models **(5)**, each named
-by the starting point used; it does not say what the script changed, so
+The report (Figure 3) lists the input files and the output models **(5)**, each
+named by the starting point used; it does not say what the script changed, so
 check the result yourself. Here
 ``fill_partial_residues`` took the 600 atoms of the morphed model to 699,
 the truncated side chains returned. Fitting a side chain to a map that
