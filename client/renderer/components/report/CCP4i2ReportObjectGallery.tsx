@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import $ from "jquery";
+import { galleryItemLabel } from "../../lib/report-gallery";
 import { Grid2, ListItem, Paper } from "@mui/material";
 
 import {
@@ -58,8 +59,7 @@ export const CCP4i2ReportObjectGallery: React.FC<CCP4i2ReportElementProps> = (
                     setSelected(iItem);
                   }}
                 >
-                  {/* Not the key: "Div_3" means nothing to a reader. */}
-                  {$(childItem).attr("title") || `Object ${iItem + 1}`}
+                  {galleryItemLabel(childItem, iItem)}
                 </ListItem>
               ))}
           </Paper>
