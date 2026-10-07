@@ -58,7 +58,9 @@ export default function AuthedLayout(props: PropsWithChildren) {
         {showAppBar ? (
           <Stack sx={{ height: "100svh", width: "100%", overflow: "hidden" }}>
             <CCP4i2AppBar />
-            <Stack sx={{ flex: 1, minHeight: 0 }}>{props.children}</Stack>
+            <Stack sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
+              {props.children}
+            </Stack>
           </Stack>
         ) : (
           props.children
