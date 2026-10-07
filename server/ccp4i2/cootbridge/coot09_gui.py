@@ -135,8 +135,7 @@ class _MenuController(object):
                 name = name_of(imol) or ""
         except Exception:
             pass
-        extension = "cif" if name.lower().endswith((".cif", "(cif)")) \
-            else "pdb"
+        extension = self.bridge.save_extension(name)
         number = self.bridge.next_output_number(drop_dir)
         path = self.bridge.output_path(drop_dir, number, extension)
         save(imol, path)
