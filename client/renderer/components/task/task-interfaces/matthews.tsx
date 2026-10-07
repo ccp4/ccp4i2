@@ -15,10 +15,18 @@ import { useApi } from "../../../api";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 
 /**
- * Renders a Matthews probability table showing nmol/ASU, solvent %, and
+ * Renders a Matthews probability table showing copies per ASU, solvent %, and
  * probability bars.  Reused from ProvideAsuContents.
+ *
+ * Each row counts copies of the unit Matthews was given (the ASU contents as
+ * entered, copies and all, or the stated MW / residue count), so it reads
+ * "N x <unit>", never "N mol/ASU": with 2 copies in the contents, "1 mol/ASU"
+ * read as one molecule and misled everyone (#673).
  */
-const MatthewsResultsBox: React.FC<{ results: any[] }> = ({ results }) => (
+const MatthewsResultsBox: React.FC<{ results: any[]; unit: string }> = ({
+  results,
+  unit,
+}) => (
   <Box
     sx={{
       p: 1.5,
@@ -33,7 +41,7 @@ const MatthewsResultsBox: React.FC<{ results: any[] }> = ({ results }) => (
       color="text.secondary"
       sx={{ mb: 1, display: "block" }}
     >
-      Matthews Analysis
+      Matthews analysis: copies of {unit} per ASU
     </Typography>
     <Stack spacing={1}>
       {results.map(
@@ -62,7 +70,7 @@ const MatthewsResultsBox: React.FC<{ results: any[] }> = ({ results }) => (
                 alignItems="center"
               >
                 <Typography variant="body2" fontWeight="medium">
-                  {result.nmol_in_asu} mol/ASU
+                  {result.nmol_in_asu} &times; {unit}
                 </Typography>
                 <Typography variant="body2" fontWeight="bold">
                   {(probability * 100).toFixed(0)}%
@@ -262,7 +270,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         </Grid2>
         <Grid2 size={{ xs: 12, sm: 8 }}>
           {matthewsResults?.length > 0 ? (
-            <MatthewsResultsBox results={matthewsResults} />
+            <MatthewsResultsBox
+              results={matthewsResults}
+              unit={
+                mode === "asu_components"
+                  ? "these contents"
+                  : mode === "nres"
+                    ? "these residues"
+                    : "this MW"
+              }
+            />
           ) : canFetchMatthews ? (
             <Typography variant="body2" color="text.secondary">
               Calculating...
