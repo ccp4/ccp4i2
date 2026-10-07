@@ -21,6 +21,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import { DialogTitleWithClose } from "../components/dialog-title-with-close";
 import { apiArrayBuffer, apiBlob, apiJson } from "../api-fetch";
 import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
@@ -301,6 +302,12 @@ const FilePreviewDialog: React.FC = () => {
     };
   }, [contentSpecification]);
 
+  const handleClose = () => {
+    setContentSpecification(null);
+    setMtzData(null);
+    setDictDigest(null);
+  };
+
   const handleDownload = () => {
     const url = contentSpecification?.url;
     if (!url) return;
@@ -341,13 +348,11 @@ const FilePreviewDialog: React.FC = () => {
       fullWidth
       maxWidth="xl"
       open={Boolean(contentSpecification)}
-      onClose={() => {
-        setContentSpecification(null);
-        setMtzData(null);
-        setDictDigest(null);
-      }}
+      onClose={handleClose}
     >
-      <DialogTitle>{contentSpecification?.title}</DialogTitle>
+      <DialogTitleWithClose onClose={handleClose}>
+        {contentSpecification?.title}
+      </DialogTitleWithClose>
       <DialogContent>
         {isBinary ? (
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
