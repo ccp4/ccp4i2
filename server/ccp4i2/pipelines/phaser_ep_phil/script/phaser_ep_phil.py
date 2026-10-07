@@ -20,12 +20,13 @@ from ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil import (
     hand_names,
     phaser_ep_auto_phil,
 )
+from ccp4i2.wrappers.phaser_phil.script.phaser_shims import AsuCompositionFromContext
 
 EP_INPUTS = ("F_SIGF", "WAVELENGTH", "XYZIN_HA", "PARTIAL_BY", "XYZIN_PARTIAL", "ELEMENTS",
              "LLGC_CYCLES", "PURE_ANOMALOUS", "COMP_BY", "ASUFILE", "SEQUENCES", "SOLVENT_FRACTION")
 
 
-class phaser_ep_phil(PhilPluginScript):
+class phaser_ep_phil(AsuCompositionFromContext, PhilPluginScript):
 
     TASKNAME = "phaser_ep_phil"
     TASKCOMMAND = None

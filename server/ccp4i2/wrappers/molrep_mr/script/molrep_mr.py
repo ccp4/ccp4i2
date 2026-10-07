@@ -1,6 +1,7 @@
 import os
 import re
 
+from ccp4i2.lib.utils.formats.unknown_residues import warn_unknown_residues
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -54,6 +55,13 @@ class molrep_mr(CPluginScript):
         115: {'severity': SEVERITY_WARNING, 'description': 'Failed to save program XML'},
         116: {'severity': SEVERITY_WARNING, 'description': 'Failed to extract Laue data from log'},
     }
+
+    def runTimeValidity(self):
+        error = super().runTimeValidity()
+        inp = self.container.inputData
+        warn_unknown_residues(error, self.TASKNAME,
+                              [("inputData.XYZIN", inp.XYZIN), ("inputData.XYZIN_2", inp.XYZIN_2)])
+        return error
 
     def processInputFiles(self):
         # Ensure the obs data is in form of F_SIGF

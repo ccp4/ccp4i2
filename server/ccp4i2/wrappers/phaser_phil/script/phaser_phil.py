@@ -1,7 +1,8 @@
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
+from ccp4i2.wrappers.phaser_phil.script.phaser_shims import AsuCompositionFromContext
 
 
-class phaser_phil(PhilPluginScript):
+class phaser_phil(AsuCompositionFromContext, PhilPluginScript):
     """Phaser, driven through its PHIL interface.
 
     The parameters come from the phaser installation's own

@@ -127,7 +127,7 @@ def _save_molecule(imol):
         name = coot.molecule_name(imol) or ""
     except Exception:
         pass
-    extension = "cif" if name.lower().endswith((".cif", "(cif)")) else "pdb"
+    extension = api_client.save_extension(name)
     number = api_client.next_output_number(drop_dir)
     path = api_client.output_path(drop_dir, number, extension)
     coot.save_coordinates(imol, path)
