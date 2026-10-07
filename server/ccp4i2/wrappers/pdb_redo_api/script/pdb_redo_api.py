@@ -15,6 +15,28 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 from . import test_api
 
+# PDB-REDO names its two models <id>_final and <id>_besttls. It is dropping
+# PDB-format output, and many runs already write mmCIF only, so the mmCIF
+# file is taken when both are there and the PDB-format one is a fallback.
+MODEL_OUTPUTS = (('_final', 'XYZOUT_FINAL'), ('_besttls', 'XYZOUT_BESTTLS'))
+MODEL_EXTENSIONS = ('.cif', '.pdb')
+
+
+def choose_models(names):
+    """Map each output model to the zip member to take it from.
+
+    Returns {output name: member name} for the models present, preferring
+    mmCIF over PDB format for each.
+    """
+    chosen = {}
+    for stem, output in MODEL_OUTPUTS:
+        for ext in MODEL_EXTENSIONS:
+            member = next((n for n in names if n.endswith(stem + ext)), None)
+            if member is not None:
+                chosen[output] = member
+                break
+    return chosen
+
 # Object path the missing-credential error is reported against. The CREDENTIAL_
 # prefix is a contract with the frontend: the run dialog's quick-action table
 # keys on it to offer a "Set PDB-REDO token..." button beside the message, so the
@@ -279,10 +301,27 @@ class pdb_redo_api(CPluginScript):
         redoDir = None
         finalRefmacLog = None
         pdbRedoLog = None
+        j = {}
 
         with zipfile.ZipFile(output_zip) as myzip:
             outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
             infolist = myzip.infolist()
+            models = choose_models([finfo.filename for finfo in infolist])
+            if not models:
+                print("ERROR: PDB-REDO run {} returned no model (no _final or "
+                      "_besttls .cif or .pdb file). The results contained: {}".format(
+                          self.pdb_redo_job_id,
+                          ", ".join(finfo.filename for finfo in infolist)))
+                return CPluginScript.FAILED
+            for output, member in models.items():
+                print("Extracting", member); sys.stdout.flush()
+                myzip.extract(member, self.getWorkDirectory())
+                extracted = os.path.normpath(os.path.join(self.getWorkDirectory(), member))
+                outputFilePath = os.path.normpath(os.path.join(
+                    self.getWorkDirectory(), os.path.basename(member)))
+                if extracted != outputFilePath:
+                    shutil.copyfile(extracted, outputFilePath)
+                getattr(self.container.outputData, output).setFullPath(outputFilePath)
             for finfo in infolist:
                 if finfo.filename.endswith("_besttls.mtz"):
                     outputFiles = ['FPHIOUT_BESTTLS','DIFFPHIOUT_BESTTLS']
@@ -304,22 +343,6 @@ class pdb_redo_api(CPluginScript):
                     print("Splitting..."); sys.stdout.flush()
                     self.splitHklout(outputFiles,outputColumns,infile=hkloutFile)
                     print("Split",finfo.filename); sys.stdout.flush()
-                if finfo.filename.endswith("_besttls.pdb"):
-                    print("Extracting",finfo.filename); sys.stdout.flush()
-                    myzip.extract(finfo,self.getWorkDirectory())
-                    print("Extracted",finfo.filename); sys.stdout.flush()
-                    outputPDB      = os.path.normpath(os.path.join(self.getWorkDirectory(),finfo.filename))
-                    outputFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),os.path.basename(finfo.filename)))
-                    shutil.copyfile(outputPDB, outputFilePath)
-                    self.container.outputData.XYZOUT_BESTTLS.setFullPath(outputFilePath)
-                if finfo.filename.endswith("_final.pdb"):
-                    print("Extracting",finfo.filename); sys.stdout.flush()
-                    myzip.extract(finfo,self.getWorkDirectory())
-                    print("Extracted",finfo.filename); sys.stdout.flush()
-                    outputPDB      = os.path.normpath(os.path.join(self.getWorkDirectory(),finfo.filename))
-                    outputFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),os.path.basename(finfo.filename)))
-                    shutil.copyfile(outputPDB, outputFilePath)
-                    self.container.outputData.XYZOUT_FINAL.setFullPath(outputFilePath)
                 if finfo.filename.endswith("_final.log"):
                     print("Extracting",finfo.filename); sys.stdout.flush()
                     myzip.extract(finfo,self.getWorkDirectory())

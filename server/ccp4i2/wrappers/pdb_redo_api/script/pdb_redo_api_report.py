@@ -5,6 +5,47 @@ from ccp4i2.core import CCP4Modules
 from ccp4i2.report import Report
 
 
+# PDB-REDO's own measures of the run (its data.json, copied into program.xml
+# by the wrapper): (label, before, after). A row shows only when the run
+# reports both, so a protein's rotamers or an RNA's base pairs appear only
+# where they apply.
+REFINEMENT = (
+    ("R", "RCAL", "RFIN"),
+    ("R-free", "RFCAL", "RFFIN"),
+    ("Bond length RMS Z-score", "OBRMSZ", "FBRMSZ"),
+    ("Bond angle RMS Z-score", "OARMSZ", "FARMSZ"),
+    ("Clashscore", "OCLASH", "FCLASH"),
+)
+PERCENTILES = (
+    ("Ramachandran plot appearance", "TOZRAMA", "TFZRAMA"),
+    ("Rotamer normality", "TOCHI12", "TFCHI12"),
+    ("Coarse packing", "TOZPAK1", "TFZPAK1"),
+    ("Fine packing", "TOZPAK2", "TFZPAK2"),
+    ("Bump severity", "TOWBMPS", "TFWBMPS"),
+    ("Hydrogen bond satisfaction", "TOHBSAT", "TFHBSAT"),
+    ("Clashscore", "TOCLASH", "TFCLASH"),
+    ("Dinucleotide conformation (CONFAL)", "TOCONFAL", "TFCONFAL"),
+    ("Base pair conformation", "TOBPGRMSZ", "TFBPGRMSZ"),
+)
+CHANGES = (
+    ("Rotamers changed", "NDROTA"),
+    ("Side chains flipped", "HBFLIP"),
+    ("Peptides flipped", "NBBFLIP"),
+    ("Waters deleted", "NWATDEL"),
+    ("Chiralities fixed", "NCHIRFX"),
+    ("Residues fitting density better", "RSCCB"),
+    ("Residues fitting density worse", "RSCCW"),
+)
+
+
+def metric(xmlnode, tag):
+    """A PDB-REDO measure as text, or None when the run did not report it."""
+    found = xmlnode.find('.//' + tag)
+    if found is None or found.text in (None, '', 'None'):
+        return None
+    return found.text
+
+
 class pdb_redo_api_report(Report):
     TASKNAME = 'pdb_redo_api'
     RUNNING = True
@@ -47,143 +88,8 @@ class pdb_redo_api_report(Report):
             self.append("<p>You can see a report for this job, including plots comparing these results with results for structures with similar resolutions, on the PDB-REDO website for 21 days.</p>".format(jobNo))
 
         clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-        """
-        summaryfold = self.addFold(label='Validation metrics from PDB-REDO', brief='Metrics', initiallyOpen=True)
+        self.addMetrics(xmlnode)
 
-        tableDiv = summaryfold.addDiv(style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
-        selectString = ".//
-
-        title_data = []
-        input_data = []
-        pdb_redo_data = []
-
-        if len(xmlnode.findall('.//RCAL'))>0 and len(xmlnode.findall('.//RFIN'))>0:
-            input_data.append(xmlnode.findall('.//RCAL')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//RFIN')[0].text)
-            title_data.append("R<sub>Work</sub>")
-
-        if len(xmlnode.findall('.//RFCAL'))>0 and len(xmlnode.findall('.//RFFIN'))>0:
-            input_data.append(xmlnode.findall('.//RFCAL')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//RFFIN')[0].text)
-            title_data.append("R<sub>Free</sub>")
-
-        if len(xmlnode.findall('.//OBRMSZ'))>0 and len(xmlnode.findall('.//FBRMSZ'))>0:
-            input_data.append(xmlnode.findall('.//OBRMSZ')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//FBRMSZ')[0].text)
-            title_data.append("Bond length RMS Z-score")
-
-        if len(xmlnode.findall('.//OARMSZ'))>0 and len(xmlnode.findall('.//FARMSZ'))>0:
-            input_data.append(xmlnode.findall('.//OARMSZ')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//FARMSZ')[0].text)
-            title_data.append("Bond angle RMS Z-score")
-
-        crystRefinementTable = tableDiv.addTable(transpose=False,select=selectString)
-        crystRefinementTable.addData(title='Crystallographic refinement',data=title_data)
-        crystRefinementTable.addData(title='Input',data=input_data)
-        crystRefinementTable.addData(title='PDB-REDO',data=pdb_redo_data)
-
-        title_data = []
-        input_data = []
-        pdb_redo_data = []
-
-        if len(xmlnode.findall('.//TOZRAMA'))>0 and len(xmlnode.findall('.//TFZRAMA'))>0:
-            input_data.append(xmlnode.findall('.//TOZRAMA')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFZRAMA')[0].text)
-            title_data.append("Ramachandran plot appearance")
-
-        if len(xmlnode.findall('.//TOCHI12'))>0 and len(xmlnode.findall('.//TFCHI12'))>0:
-            input_data.append(xmlnode.findall('.//TOCHI12')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFCHI12')[0].text)
-            title_data.append("Rotamer normality")
-
-        if len(xmlnode.findall('.//TOZPAK1'))>0 and len(xmlnode.findall('.//TFZPAK1'))>0:
-            input_data.append(xmlnode.findall('.//TOZPAK1')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFZPAK1')[0].text)
-            title_data.append("Coarse packing")
-
-        if len(xmlnode.findall('.//TOZPAK2'))>0 and len(xmlnode.findall('.//TFZPAK2'))>0:
-            input_data.append(xmlnode.findall('.//TOZPAK2')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFZPAK2')[0].text)
-            title_data.append("Fine packing")
-
-        if len(xmlnode.findall('.//TOCONFAL'))>0 and len(xmlnode.findall('.//TFCONFAL'))>0:
-            TOCONFAL = xmlnode.findall('.//TOCONFAL')[0].text
-            TFCONFAL = xmlnode.findall('.//TFCONFAL')[0].text
-            if TOCONFAL != "None" and TFCONFAL != "None":
-                input_data.append(TOCONFAL)
-                pdb_redo_data.append(TFCONFAL)
-                title_data.append("Dinucleotide conformation (CONFAL)")
-
-        if len(xmlnode.findall('.//TOBPGRMSZ'))>0 and len(xmlnode.findall('.//TFBPGRMSZ'))>0:
-            TOBPGRMSZ = xmlnode.findall('.//TOBPGRMSZ')[0].text
-            TFBPGRMSZ = xmlnode.findall('.//TFBPGRMSZ')[0].text
-            if TOBPGRMSZ != "None" and TFBPGRMSZ != "None":
-                input_data.append(TOBPGRMSZ)
-                pdb_redo_data.append(TFBPGRMSZ)
-                title_data.append("Base pair conformation")
-
-        if len(xmlnode.findall('.//TOWBMPS'))>0 and len(xmlnode.findall('.//TFWBMPS'))>0:
-            input_data.append(xmlnode.findall('.//TOWBMPS')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFWBMPS')[0].text)
-            title_data.append("Bump severity")
-
-        if len(xmlnode.findall('.//TOHBSAT'))>0 and len(xmlnode.findall('.//TFHBSAT'))>0:
-            input_data.append(xmlnode.findall('.//TOHBSAT')[0].text)
-            pdb_redo_data.append(xmlnode.findall('.//TFHBSAT')[0].text)
-            title_data.append("Hydrogen bond satisfaction")
-
-        modelQualityTable = tableDiv.addTable(transpose=False,select=selectString)
-        title_data.append("WHAT_CHECK")
-        input_data.append('<a href="{0}">Report</a>'.format(watchCheckOriginalUrl))
-        pdb_redo_data.append('<a href="{0}">Report</a>'.format(watchCheckFinalUrl))
-        modelQualityTable.addData(title='Model quality percentile',data=title_data)
-        modelQualityTable.addData(title='Input',data=input_data)
-        modelQualityTable.addData(title='PDB-REDO',data=pdb_redo_data)
-
-        clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-
-        changesFold = self.addFold(label='Significant model changes', brief='Model changes', initiallyOpen=True)
-
-        tableChangesDiv = changesFold.addDiv(style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
-        changesTable = tableChangesDiv.addTable(transpose=False,select=selectString)
-
-        title_data = []
-        changes_data = []
-
-        if len(xmlnode.findall('.//NDROTA'))>0:
-            changes_data.append(xmlnode.findall('.//NDROTA')[0].text)
-            title_data.append("Rotamers changed")
-
-        if len(xmlnode.findall('.//HBFLIP'))>0:
-            changes_data.append(xmlnode.findall('.//HBFLIP')[0].text)
-            title_data.append("Side chains flipped")
-
-        if len(xmlnode.findall('.//NWATDEL'))>0:
-            changes_data.append(xmlnode.findall('.//NWATDEL')[0].text)
-            title_data.append("Waters deleted")
-
-        if len(xmlnode.findall('.//NBBFLIP'))>0:
-            changes_data.append(xmlnode.findall('.//NBBFLIP')[0].text)
-            title_data.append("Peptides flipped")
-
-        if len(xmlnode.findall('.//NCHIRFX'))>0:
-            changes_data.append(xmlnode.findall('.//NCHIRFX')[0].text)
-            title_data.append("Chiralities fixed")
-
-        if len(xmlnode.findall('.//RSCCB'))>0:
-            changes_data.append(xmlnode.findall('.//RSCCB')[0].text)
-            title_data.append("Residues fitting density better")
-
-        if len(xmlnode.findall('.//RSCCW'))>0:
-            changes_data.append(xmlnode.findall('.//RSCCW')[0].text)
-            title_data.append("Residues fitting density worse")
-
-        changesTable.addData(title='Description',data=title_data)
-        changesTable.addData(title='Count',data=changes_data)
-
-        clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-
-        """
         jobDir = self.jobInfo.get("fileroot", None)
 
         logFilesFold = self.addFold(label='Log files', brief='Log Files', initiallyOpen=True)
@@ -203,3 +109,26 @@ class pdb_redo_api_report(Report):
                 logText = f.read()
                 refmacLogDiv = refmacFilesFold.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
                 refmacLogDiv.addPre(text = logText)
+
+
+    def addMetrics(self, xmlnode):
+        """Before and after, as PDB-REDO measured them; nothing if it reported none."""
+        tables = []
+        for heading, rows in (("Refinement", REFINEMENT),
+                              ("Model quality percentile", PERCENTILES)):
+            shown = [(label, metric(xmlnode, before), metric(xmlnode, after))
+                     for label, before, after in rows]
+            shown = [row for row in shown if row[1] is not None and row[2] is not None]
+            if shown:
+                tables.append(((heading, 'Input', 'PDB-REDO'), shown))
+        shown = [(label, metric(xmlnode, tag)) for label, tag in CHANGES]
+        shown = [row for row in shown if row[1] is not None]
+        if shown:
+            tables.append((('Model changes', 'Count'), shown))
+        if not tables:
+            return
+        fold = self.addFold(label='What PDB-REDO changed', brief='Metrics', initiallyOpen=True)
+        for titles, rows in tables:
+            table = fold.addTable()
+            for column, title in enumerate(titles):
+                table.addData(title=title, data=[row[column] for row in rows])

@@ -1,26 +1,89 @@
 {
-  "scenario": "../../../tools/scenario_refine_tail.py",
-  "project": "CDK2_CyclinA",
-  "viewport": [1400, 1800],
+  "scenario": "../../../tools/scenario_pdb_redo.py",
+  "project": "PDB_REDO_2d2k",
+  "viewport": [
+    1400,
+    1800
+  ],
   "settle": 25000,
-  "draft": true,
   "shots": [
-    {"out": "pdb_redo_input.png", "job": 14, "tabs": ["Task interface", "Input Data"],
-     "callouts": [
-       {"field": "Atomic model", "badge": "1"},
-       {"field": "Observed data", "badge": "2"},
-       {"field": "Free R set", "badge": "3"},
-       {"field": "Sequence", "badge": "4"},
-       {"field": "Geometry dictionary", "badge": "5"},
-       {"text": "Perform paired refinement", "badge": "6"}
-     ]},
-    {"out": "pdb_redo_advanced.png", "job": 14, "tabs": ["Task interface", "Advanced Options"]}
+    {
+      "out": "pdb_redo_input.png",
+      "job": 3,
+      "tabs": [
+        "Task interface",
+        "Input Data"
+      ],
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Observed data",
+          "badge": "2"
+        },
+        {
+          "field": "Free R set",
+          "badge": "3"
+        },
+        {
+          "field": "Sequence",
+          "badge": "4"
+        },
+        {
+          "field": "Geometry dictionary",
+          "badge": "5"
+        },
+        {
+          "text": "Perform paired refinement",
+          "badge": "6"
+        }
+      ]
+    },
+    {
+      "out": "pdb_redo_advanced.png",
+      "job": 3,
+      "tabs": [
+        "Task interface",
+        "Advanced Options"
+      ]
+    },
+    {
+      "out": "pdb_redo_report.png",
+      "job": 2,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Results for PDB-REDO job",
+        "scroll": true
+      },
+      "until": "Log files",
+      "callouts": [
+        {
+          "text": "Refinement",
+          "closest": "table",
+          "badge": "7"
+        },
+        {
+          "text": "Model quality percentile",
+          "closest": "table",
+          "badge": "8"
+        },
+        {
+          "text": "Model changes",
+          "closest": "table",
+          "badge": "9"
+        }
+      ]
+    }
   ],
   "sources": {
     "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api.def.xml": "c6c320fb96f21a28ed6df823cab31b5b896d574e",
-    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api.py": "757a5ae707f48506e1c3d2016bf36033495ac133",
-    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api_report.py": "1ca9db0b194c4d7cdb70f93f903c34d108aebe23",
+    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api.py": "61be6edd09560247bee2d142c22d2ac3436eab3f",
+    "server/ccp4i2/wrappers/pdb_redo_api/script/pdb_redo_api_report.py": "b56b295422a2499fb81d5a4c079bbc695aa9983e",
     "client/renderer/components/task/task-interfaces/pdb_redo_api.tsx": "4623164d6647c0cf7226c8c55445f3077e87459d",
-    "docs/user/tools/scenario_refine_tail.py": "07ae3f72bded217db03821202668b1c9b58ce527"
+    "docs/user/tools/scenario_pdb_redo.py": "5ed26720abfc5f0aa49a3d0fb88d18423c72aa6f"
   }
 }
