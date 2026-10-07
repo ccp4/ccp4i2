@@ -31,7 +31,25 @@ import os
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
-MCP_PATH = "/mcp/ccp4i2"
+DEFAULT_MCP_PATH = "/mcp/ccp4i2"
+
+
+def mcp_path(setting):
+    """The mount point: CCP4I2_MCP_PATH if given, else the default.
+
+    This is an ASGI prefix split, not a Django route, so a host that composes
+    CCP4i2 into a larger application (as Materia does) cannot re-route it the
+    way it can a URLconf; this setting is its lever. A trailing slash is
+    dropped, and an empty or bare "/" value falls back to the default, so a
+    misconfigured setting cannot mount the facade over the host's root.
+    """
+    path = (setting or "").strip().rstrip("/")
+    if not path:
+        return DEFAULT_MCP_PATH
+    return path if path.startswith("/") else "/" + path
+
+
+MCP_PATH = mcp_path(os.environ.get("CCP4I2_MCP_PATH"))
 
 _ON = ("1", "true", "yes", "on")
 _OFF = ("0", "false", "no", "off")
@@ -72,7 +90,7 @@ def _forwarded_for(scope):
 
 
 def with_mcp(django_app):
-    """The ASGI application: /mcp/ccp4i2 to the MCP facade, the rest to Django.
+    """The ASGI application: MCP_PATH to the MCP facade, the rest to Django.
 
     Django alone when MCP is not enabled here (mcp_enabled), or when the MCP
     server cannot be built, which is said in the log.

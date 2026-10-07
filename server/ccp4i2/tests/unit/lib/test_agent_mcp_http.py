@@ -9,7 +9,7 @@ pytest.importorskip("mcp", reason="needs the mcp package")
 
 from ccp4i2.agent import request_state  # noqa: E402
 from ccp4i2.agent import http, mcp_server  # noqa: E402
-from ccp4i2.agent.http import MCP_PATH, with_mcp  # noqa: E402
+from ccp4i2.agent.http import MCP_PATH, mcp_path, with_mcp  # noqa: E402
 
 
 # --- the codec --------------------------------------------------------------
@@ -156,3 +156,15 @@ def test_on_the_desktop_mcp_needs_the_session_token(monkeypatch):
         sent = _call(app, _http(MCP_PATH, auth))
         assert sent[0]["status"] == 401
     assert not django.scopes  # never reached Django either
+
+
+@pytest.mark.parametrize("setting, expected", [
+    (None, "/mcp/ccp4i2"),
+    ("", "/mcp/ccp4i2"),
+    ("/", "/mcp/ccp4i2"),
+    ("  ", "/mcp/ccp4i2"),
+    ("/tools/ccp4i2/", "/tools/ccp4i2"),
+    ("tools/ccp4i2", "/tools/ccp4i2"),
+])
+def test_a_host_can_move_the_mount_but_never_onto_its_root(setting, expected):
+    assert mcp_path(setting) == expected

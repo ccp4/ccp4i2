@@ -158,7 +158,9 @@ everything. Two ways in:
 - **HTTP, served by the app itself at `/mcp/ccp4i2`**
   (`server/ccp4i2/agent/http.py`, mounted in `config/asgi.py`).
   - **Path:** scoped like the REST API (`/api/ccp4i2`), so an application
-    serving CCP4i2 can serve MCP servers of its own beside it.
+    serving CCP4i2 can serve MCP servers of its own beside it. This is an
+    ASGI prefix, which a host cannot re-route as it can a URLconf, so
+    `CCP4I2_MCP_PATH` moves it; an empty or `/` value keeps the default.
   - **Where it is served:** on the desktop; in a deployment only with
     `CCP4I2_MCP=1`, so a deployment opts in rather than gaining an endpoint
     by updating CCP4i2. `CCP4I2_MCP=0` turns it off anywhere.
