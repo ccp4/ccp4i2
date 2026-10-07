@@ -6,6 +6,7 @@ from collections import Counter
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.smartie import smartie
+from ccp4i2.wrappers.phaser_phil.script.phaser_shims import AsuCompositionFromContext
 
 
 
@@ -35,7 +36,7 @@ def summarise(log_text, xyz_path=None):
     return summary
 
 
-class phaser_singleMR(CPluginScript):
+class phaser_singleMR(AsuCompositionFromContext, CPluginScript):
     TASKNAME = 'phaser_singleMR'
     TASKCOMMAND = 'phaser'
     PERFORMANCECLASS = 'CExpPhasPerformance'
