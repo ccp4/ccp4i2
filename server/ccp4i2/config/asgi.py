@@ -19,7 +19,8 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
 
-# The MCP facade at /mcp, everything else Django (docs/agentic-knowledge.md)
+# The MCP facade at CCP4I2_MCP_PATH (default /mcp/ccp4i2), everything else
+# Django (docs/agentic-knowledge.md)
 from ccp4i2.agent.http import with_mcp  # noqa: E402
 
 application = with_mcp(get_asgi_application())
