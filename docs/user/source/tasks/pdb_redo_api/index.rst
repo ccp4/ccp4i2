@@ -146,12 +146,15 @@ fit the density better and none worse. Nothing was rebuilt, since loops,
 peptide flips and side chains are protein features. With a trustworthy free
 set, a drop in R-free well beyond its uncertainty is what to look for.
 
-**Compare like with like.** PDB-REDO's R and R-free are on amplitudes
-(the task uploads mean amplitudes) and use every reflection. A
-:doc:`../servalcat_pipe/index` job refined against intensities reports R1
-and R1-free instead, calculated only for reflections with I/σ(I) > 2, so its
-numbers are not the same measure and are usually lower. To compare R
-factors with a local refinement, refine locally against amplitudes too.
+**Do not compare R factors across programs.** An R factor depends on the
+program's scaling and bulk-solvent model as much as on the model: the same
+2d2k model and data give R-free 0.270 in the deposition and 0.2495 in
+PDB-REDO's recalculation. A :doc:`../servalcat_pipe/index` job refined
+against intensities differs again: it reports R1 and R1-free, calculated
+only for reflections with I/σ(I) > 2. To choose between your model and
+PDB-REDO's, put both through the same program (one local refinement or
+validation run each), and weigh geometry and the maps over a small
+difference in R-free.
 
 Which model to take is for you to judge: the fully optimised model has
 had the most rebuilding; the conservatively optimised one the least change.
