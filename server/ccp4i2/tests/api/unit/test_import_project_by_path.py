@@ -26,7 +26,7 @@ def _stub_import(monkeypatch):
     calls = []
     monkeypatch.setattr(
         "ccp4i2.db.import_i2xml.inspect_ccp4_project_zip",
-        lambda zip_path: {"project_name": "staged_proj", "jobs": []},
+        lambda zip_path: {"project_name": "staged_proj", "project_uuid": None, "jobs": []},
     )
     monkeypatch.setattr(
         "ccp4i2.api.ProjectViewSet.call_command",
