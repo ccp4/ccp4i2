@@ -52,6 +52,26 @@ _SERVER_PATH_REFUSAL = (
 )
 
 
+def _project_clash(summary: dict) -> str | None:
+    """Why a project zip cannot be imported alongside the existing projects.
+
+    Re-importing the same project (same uuid) updates it in place, so only a
+    different project holding the name or the directory counts as a clash.
+    """
+    others = models.Project.objects.all()
+    if summary.get("project_uuid"):
+        others = others.exclude(uuid=summary["project_uuid"])
+    name = summary.get("project_name")
+    if name and others.filter(name=name).exists():
+        return f"A project named '{name}' already exists"
+    recorded = summary.get("recorded_directory")
+    if recorded:
+        directory = pathlib.Path(settings.CCP4I2_PROJECTS_DIR) / pathlib.Path(recorded).name
+        if others.filter(directory=str(directory)).exists():
+            return f"Another project already uses the directory {directory}"
+    return None
+
+
 class ProjectViewSet(ModelViewSet):
     """
     ProjectViewSet
@@ -260,21 +280,30 @@ class ProjectViewSet(ModelViewSet):
                         destination.write(chunk)
                 sources.append((uploaded_file.name, file_path, None))
 
-        imported = []
-        for name, file_path, staged_row in sources:
+        # Check every archive before dispatching any, so a rejected one does not
+        # leave the others in the request half-imported.
+        summaries = []
+        for name, file_path, _ in sources:
             if not str(file_path).endswith(".zip"):
                 return api_error("Invalid file type", status=400)
 
-            # Look inside before dispatching. The import itself runs detached,
-            # so anything not caught here fails in a subprocess with nobody
-            # watching and the upload still reports success -- which is exactly
-            # how a wrongly-rolled zip came to look like a working import.
+            # The import itself runs detached, so anything not caught here fails
+            # in a subprocess with nobody watching and the upload still reports
+            # success -- which is exactly how a wrongly-rolled zip came to look
+            # like a working import.
             try:
                 summary = inspect_ccp4_project_zip(file_path)
             except ProjectArchiveError as err:
                 logger.warning("Rejected %s: %s", name, err)
                 return api_error(f"{name}: {err}", status=400)
+            clash = _project_clash(summary)
+            if clash is not None:
+                logger.warning("Rejected %s: %s", name, clash)
+                return api_error(f"{name}: {clash}", status=409)
+            summaries.append(summary)
 
+        imported = []
+        for (name, file_path, staged_row), summary in zip(sources, summaries):
             try:
                 call_command("import_ccp4_project_zip", str(file_path), "--detach")
             except Exception as e:
@@ -291,6 +320,7 @@ class ProjectViewSet(ModelViewSet):
                 {
                     "file": name,
                     "project_name": summary["project_name"],
+                    "project_uuid": summary["project_uuid"],
                     "jobs": summary["jobs"],
                 }
             )
