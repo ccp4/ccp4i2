@@ -42,8 +42,8 @@ Input
 
    Figure 1: BUSTER input
 
-The observed data **(1)**, either amplitudes or intensities; the free R
-set **(2)**; the atomic model **(3)**; and, for any ligand the monomer
+The observed data **(1)** (Figure 1), either amplitudes or intensities; the
+free R set **(2)**; the atomic model **(3)**; and, for any ligand the monomer
 library does not describe, a restraint dictionary **(4)**, which should be
 the one the model was refined with. Here the data, free set and model come
 from the refinement (job 2) of the CDK2 project, with no dictionary.

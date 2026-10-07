@@ -32,7 +32,7 @@ Input
 
    Figure 1: Input data and protocol
 
-The essential inputs are the reflection data **(1)**, the free R set
+The essential inputs (Figure 1) are the reflection data **(1)**, the free R set
 **(2)** and the search model **(3)**. The arrow at the end of the model's
 row opens an atom selection, to use only part of it: only the protein, a
 single chain, or a span of residues. Here the free set is the one the
@@ -64,8 +64,8 @@ default).
 
    Figure 2: Basic options
 
-Space group **(8)**: where there is ambiguity (enantiomorphic pairs, or
-screw axes not determined by the data), MOLREP can try the first search
+Space group **(8)** (Figure 2): where there is ambiguity (enantiomorphic pairs,
+or screw axes not determined by the data), MOLREP can try the first search
 in more than one space group, and uses the most likely for the rest.
 Resolution range **(9)**: MOLREP uses data to the limit given; the
 refinement that follows uses all the data. *Modify search model* **(10)**
@@ -82,9 +82,9 @@ Results
 
    Figure 3: Rotation and translation function peaks
 
-For each rotation function peak MOLREP tries, the report plots the score
-of the best translation function peak it gave. A solution stands out: here
-the first two rotation peaks give scores near 0.7 (TF/sigma 18-19), the
+For each rotation function peak MOLREP tries, the report (Figure 3) plots the
+score of the best translation function peak it gave. A solution stands out:
+here the first two rotation peaks give scores near 0.7 (TF/sigma 18-19), the
 rest 0.34 (about 3), and MOLREP stops early because the contrast is
 clear. *Show details* lists the scores for every peak.
 
@@ -93,8 +93,8 @@ clear. *Show details* lists the scores for every peak.
 
    Figure 4: Refinement of the solution
 
-The placed model is then refined, and the summary gives the result: here
-R 0.237 and R-free 0.253 at 1.81 Å. The graphs of the cycles show R-free
+The placed model is then refined (Figure 4), and the summary gives the result:
+here R 0.237 and R-free 0.253 at 1.81 Å. The graphs of the cycles show R-free
 rising slightly over the last ten while R still falls: fewer cycles would
 have done as well. The output model is ready for rebuilding and further
 refinement.

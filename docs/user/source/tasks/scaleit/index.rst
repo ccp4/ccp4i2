@@ -22,10 +22,10 @@ Input
 
    Figure 1: SCALEIT input
 
-The datasets **(1)**: the first is treated as the native, and each of the
-others is compared with it. Intensities are converted to mean amplitudes.
-A resolution limit **(2)** can exclude weak high-resolution data from the
-comparison.
+The datasets **(1)** (Figure 1): the first is treated as the native, and each
+of the others is compared with it. Intensities are converted to mean
+amplitudes. A resolution limit **(2)** can exclude weak high-resolution data
+from the comparison.
 
 Results
 =======
@@ -35,7 +35,7 @@ Results
 
    Figure 2: SCALEIT report
 
-The report gives each derivative's scale and anisotropic B-factors
+The report (Figure 2) gives each derivative's scale and anisotropic B-factors
 relative to the native **(3)**, then the differences overall and by
 resolution **(4)**: the R-factor between the scaled datasets (here 0.17)
 and a weighted R, with the mean and largest isomorphous differences. For a

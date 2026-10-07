@@ -43,9 +43,9 @@ Input
 
    Figure 1: ARCIMBOLDO_LITE input
 
-Which program, and where **(1)**: "this machine", or a local or remote grid
-(for which a grid configuration is then asked for). *Run in coil coiled mode*
-is described below.
+Which program, and where **(1)** (Figure 1): "this machine", or a local or
+remote grid (for which a grid configuration is then asked for). *Run in coil
+coiled mode* is described below.
 
 The reflections **(2)**, as amplitudes (FP, SIGFP here) or intensities, and
 the contents of the asymmetric unit **(3)**: the number of components and the
@@ -167,7 +167,7 @@ Results
 
    Figure 2: ARCIMBOLDO report
 
-The report says whether the job has finished **(7)**, with a link to
+The report (Figure 2) says whether the job has finished **(7)**, with a link to
 ARCIMBOLDO's own results page; a green message appears here when the final
 CC is 30% or more. Below are the data's summary (space group, unit cell,
 resolution, number of unique reflections) **(8)** and the time at which each

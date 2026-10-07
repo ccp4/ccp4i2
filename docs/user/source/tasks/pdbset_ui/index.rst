@@ -35,8 +35,8 @@ Input
 
    Figure 1: Pdbset input
 
-The model **(1)** and the keywords **(2)**, one per line, applied in the
-order Pdbset documents (chains are renamed before residues are
+In Figure 1 the model **(1)** and the keywords **(2)**, one per line, applied
+in the order Pdbset documents (chains are renamed before residues are
 renumbered, for example).
 
 Results
@@ -47,7 +47,7 @@ Results
 
    Figure 2: Pdbset output
 
-The edited model **(3)** is annotated with the keywords that made it.
-The report lists only the files: open the model, or Pdbset's log, to see
+In Figure 2 the edited model **(3)** is annotated with the keywords that made
+it. The report lists only the files: open the model, or Pdbset's log, to see
 the result. Here every residue keeps only its main chain and Cβ, the
 ligand, sulphates and waters are gone, and chain A has become chain M.

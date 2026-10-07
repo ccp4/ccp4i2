@@ -21,9 +21,9 @@ Input
 
    Figure 1: cmapcoeff input
 
-Choose the kind of map **(1)**. For an anomalous difference map the first
-dataset **(2)** must be anomalous pairs (intensities or amplitudes), with
-phases; the second **(3)** is used only for a difference between two
+In Figure 1, choose the kind of map **(1)**. For an anomalous difference map
+the first dataset **(2)** must be anomalous pairs (intensities or amplitudes),
+with phases; the second **(3)** is used only for a difference between two
 datasets.
 
 The coefficients can be sharpened (a negative B-factor) or blurred (a

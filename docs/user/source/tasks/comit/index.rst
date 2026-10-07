@@ -39,8 +39,8 @@ Input
 
    Figure 1: comit input data
 
-The task has two tabs, *Input Data* and *Options*. On the first you give
-the observed reflections **(1)** and the map coefficients to be made
+The task has two tabs, *Input Data* and *Options*. On the first (Figure 1) you
+give the observed reflections **(1)** and the map coefficients to be made
 unbiased **(2)**. The map coefficients must be an ordinary (2mFo-DFc type)
 map from the solution's refinement, not a difference map, and from the same
 crystal as the reflections. Here they are the weighted map from the
@@ -55,9 +55,10 @@ to amplitudes on the way in.
 
    Figure 2: comit options
 
-The options are the number of omit spheres **(3)** (default 20, at least
-8) and the padding radius at their edge **(4)** (default 3.0 Å). The defaults are the ones to use unless you have a reason; the run
-here took them and finished in about seven seconds.
+The options (Figure 2) are the number of omit spheres **(3)** (default 20, at
+least 8) and the padding radius at their edge **(4)** (default 3.0 Å). The
+defaults are the ones to use unless you have a reason; the run here took them
+and finished in about seven seconds.
 
 Results
 =======
@@ -67,8 +68,8 @@ Results
 
    Figure 3: comit report
 
-The report lists the inputs and the one output **(5)**, a file of map
-coefficients labelled "Composite omit map (comit)", the name later tasks
+The report (Figure 3) lists the inputs and the one output **(5)**, a file of
+map coefficients labelled "Composite omit map (comit)", the name later tasks
 offer it under.
 comit writes no statistics and the report has no graphs or tables of
 results: there is no number to read, and nothing to say the map is

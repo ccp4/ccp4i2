@@ -22,9 +22,9 @@ Input
 
    Figure 1: Estimate AU content input
 
-The task needs experimental data **(1)**, from which it reads the cell and
-space group (shown below the data, with the resolution) and so the cell
-volume. The expected contents can be given **(2)** as an *AU contents*
+In Figure 1 the task needs experimental data **(1)**, from which it reads the
+cell and space group (shown below the data, with the resolution) and so the
+cell volume. The expected contents can be given **(2)** as an *AU contents*
 object, the list of sequences made by *Define AU contents* **(3)**, or as
 a number of amino acid residues, or as a molecular weight.
 
@@ -36,8 +36,8 @@ Results
 
    Figure 2: Matthews coefficient analysis
 
-The report gives the cell volume and, for each number of copies that fits
-in the cell, the solvent content, the Matthews coefficient and its
+The report (Figure 2) gives the cell volume and, for each number of copies that
+fits in the cell, the solvent content, the Matthews coefficient and its
 probability, and names the most likely. For MDM2, one copy of the
 97-residue construct gives 65% solvent (probability 0.67) and two give
 29% (0.33). One copy is what the structure has: a high solvent content is

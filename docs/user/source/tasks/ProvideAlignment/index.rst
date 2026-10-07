@@ -42,8 +42,8 @@ Input
 
    Figure 1: Import alignment input
 
-Choose how the alignment comes in **(1)**: paste an alignment, read it
-from a file, or read HHpred or Blast results. Here it is read from a file,
+Choose how the alignment comes in **(1)** (Figure 1): paste an alignment, read
+it from a file, or read HHpred or Blast results. Here it is read from a file,
 and the file is chosen in the field below **(2)**. For "Paste an
 alignment" a text box takes its place, to paste the alignment into. For an
 HHpred or Blast file, the search hits are listed once the file is chosen
@@ -62,8 +62,8 @@ Results
 
    Figure 2: Import alignment report
 
-The report names the format it recognised, lists the sequences by index
-and identifier, and shows the alignment as it was stored **(4)**. Read it
+The report of Figure 2 names the format it recognised, lists the sequences by
+index and identifier, and shows the alignment as it was stored **(4)**. Read it
 before going on: check that the sequences are the ones you meant and that
 the gaps fall where you expect. The "Conversion commentary" fold shows,
 format by format, what the task tried before it succeeded: here the

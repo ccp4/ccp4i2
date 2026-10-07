@@ -19,8 +19,8 @@ Input
 
    Figure 1: density calculator input
 
-The model **(1)**. The kind of scattering **(2)**: X-ray, electron or
-neutron. The resolution limit **(3)**, which sets how much detail the map
+The model **(1)** (Figure 1). The kind of scattering **(2)**: X-ray, electron
+or neutron. The resolution limit **(3)**, which sets how much detail the map
 has; a map at the resolution of the data it will be compared with is the
 fair comparison.
 

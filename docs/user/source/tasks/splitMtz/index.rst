@@ -77,9 +77,9 @@ Results
 
    Figure 2: Import and split MTZ report
 
-The report names the file read **(4)** and each file written **(5)**: here
-three, one per selected group. Each is annotated with what it is, the
-columns it came from and the file they were in, for example *Mean
+The report (Figure 2) names the file read **(4)** and each file written
+**(5)**: here three, one per selected group. Each is annotated with what it is,
+the columns it came from and the file they were in, for example *Mean
 structure factors columns F,SIGF from refined_gamma.mtz (crystal)*. That
 annotation is what tells the files apart in the file menus of later tasks,
 so you can pick the right one, and not the other set of map coefficients,

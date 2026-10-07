@@ -30,11 +30,11 @@ Input
 
    Figure 1: MrParse input
 
-All you need is the sequence **(1)**. Reflections **(2)** are optional, but
-give them if you have them: with reflections MrParse estimates the expected
-log-likelihood gain (eLLG) of each PDB match as a search model, and the
-wrapper then orders the models by eLLG instead of by sequence identity. eLLG
-predicts whether a model will work in MR better than identity does.
+In Figure 1 all you need is the sequence **(1)**. Reflections **(2)** are
+optional, but give them if you have them: with reflections MrParse estimates
+the expected log-likelihood gain (eLLG) of each PDB match as a search model,
+and the wrapper then orders the models by eLLG instead of by sequence identity.
+eLLG predicts whether a model will work in MR better than identity does.
 
 *Most search models to prepare* **(3)** is how many models to prepare from each database (5 by
 default). *Where to look for search models* **(4)** chooses what to search: *PDB*, *AFDB* (the
@@ -78,12 +78,13 @@ Results
 
    Figure 2: MrParse report
 
-The job page lists one model file per match under *Output Data* **(7)**,
-named for the entry and chain ("PDB hit: 1gyu_A"), and a button **(6)** that
-opens MrParse's own report in the browser. That report has sections for the
-reflection data (when given), the sequence-based predictions, the PDB
-matches, and the AlphaFold, Big Fantastic Virus Database and ESMFold Atlas
-matches, each with a picture of where along your sequence the matches lie.
+The job page (Figure 2) lists one model file per match under *Output Data*
+**(7)**, named for the entry and chain ("PDB hit: 1gyu_A"), and a button
+**(6)** that opens MrParse's own report in the browser. That report has
+sections for the reflection data (when given), the sequence-based predictions,
+the PDB matches, and the AlphaFold, Big Fantastic Virus Database and ESMFold
+Atlas matches, each with a picture of where along your sequence the matches
+lie.
 
 For the gamma sequence MrParse found five PDB matches:
 

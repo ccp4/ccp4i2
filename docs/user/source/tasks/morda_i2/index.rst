@@ -40,8 +40,8 @@ The pictures come from an unrun MoRDa job in the MDM2 project.
 
    Figure 1: Reflection data
 
-The observed data **(1)** and the free R set **(2)**. The task joins the
-two into one reflection file for MoRDa, using the mean structure
+In Figure 1 the observed data **(1)** and the free R set **(2)**. The task
+joins the two into one reflection file for MoRDa, using the mean structure
 amplitudes, so give it data in that form (the same data you would give
 Refmac). Reuse the free set the data already has rather than making a new
 one. **(3)** Check alternative space groups, on by default, lets MoRDa
@@ -54,9 +54,9 @@ sure of the space group.
 
    Figure 2: Model preparation
 
-The contents of the asymmetric unit **(4)** are required: their sequences
-are what MoRDa uses to find homologous search models. Define them first
-with the task for the asymmetric unit contents. **(5)** is the number of
+In Figure 2 the contents of the asymmetric unit **(4)** are required: their
+sequences are what MoRDa uses to find homologous search models. Define them
+first with the task for the asymmetric unit contents. **(5)** is the number of
 homologous structures to try (3 by default). Below it, *Number of CPUs to
 use* (1 by default) says how many processors MoRDa may use.
 

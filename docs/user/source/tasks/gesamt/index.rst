@@ -25,8 +25,8 @@ Input
 
    Figure 1: Gesamt input
 
-For a pairwise superposition, the first model **(1)** is the one to be
-moved: it is rotated and translated onto the second, fixed, model
+For a pairwise superposition (Figure 1), the first model **(1)** is the one to
+be moved: it is rotated and translated onto the second, fixed, model
 **(2)**. In each case a coordinate selection may be given (the arrow at
 the end of the model's row) to use part of a model.
 
@@ -44,7 +44,7 @@ Results
 
    Figure 2: Gesamt report
 
-The report opens with the result **(4)**: the number of residues
+The report of Figure 2 opens with the result **(4)**: the number of residues
 superposed, their sequence identity, the RMS deviation and the Q-score (1
 for identical structures), and the rotation as polar and Euler angles and
 the translation. The transformation matrix follows **(5)**, and a graph of

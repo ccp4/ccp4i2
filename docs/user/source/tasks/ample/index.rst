@@ -55,7 +55,7 @@ Input
    Figure 1: AMPLE input
 
 The **sequence** **(1)** and the **reflections** **(2)** are always needed.
-The picture is of a job set up for helical ensembles but not run.
+The picture (Figure 1) is of a job set up for helical ensembles but not run.
 
 The question **"Do you have existing models?"** **(3)** decides what else
 is asked. It starts on *Yes*; the picture shows *No*:
@@ -82,8 +82,8 @@ processor on the machine.
 
    Figure 2: AMPLE advanced options
 
-On the Advanced Options tab, **Run SHELXE after MR** **(6)** is on by
-default: SHELXE's density modification and tracing is often what turns a
+On the Advanced Options tab (Figure 2), **Run SHELXE after MR** **(6)** is on
+by default: SHELXE's density modification and tracing is often what turns a
 weak, partial MR solution into one you can recognise. Two rebuilding options
 (of the REFMAC-refined MR result, and of the SHELXE traces) are off.
 **Better but slower ensembling** **(7)** changes the clustering method to

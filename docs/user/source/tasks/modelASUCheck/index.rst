@@ -20,7 +20,7 @@ Input
 
    Figure 1: Model check input
 
-The model **(1)** and the AU contents **(2)**.
+In Figure 1 the model **(1)** and the AU contents **(2)**.
 
 Results
 =======
@@ -30,8 +30,8 @@ Results
 
    Figure 2: Model check report
 
-One bar per chain **(3)**: the identity of the built residues to the
-sequence they aligned with, and how much of that sequence is built. Here
+In Figure 2, one bar per chain **(3)**: the identity of the built residues to
+the sequence they aligned with, and how much of that sequence is built. Here
 chain A is 100% identical over 91 of the 97 residues. The detail fold
 below shows the alignment itself: the six residues not built are the
 N-terminal GPLGS left from the expression tag, and Ser17, the first MDM2

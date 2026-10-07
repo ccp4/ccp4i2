@@ -23,8 +23,8 @@ Input
 
    Figure 1: The two monomers, the bond, and the model
 
-Each of the two monomers **(1, 3)** is given by its residue name, from the
-CCP4 monomer library, or from a dictionary file (for a ligand made by
+In Figure 1 each of the two monomers **(1, 3)** is given by its residue name,
+from the CCP4 monomer library, or from a dictionary file (for a ligand made by
 *Make Ligand*, say, with its residue name chosen from those in the file).
 Once a monomer is known, its structure is drawn, with the dictionary's
 atom names, and the drawing is where the link is described.
@@ -69,9 +69,9 @@ Results
 
    Figure 2: Make Covalent Link outputs
 
-The outputs are the link dictionary; the model with the link applied (the
-report says how many links were made; one, here); the dictionary of the
-two linked monomers as a single molecule, which AceDRG regularises to
+The outputs, in Figure 2, are the link dictionary; the model with the link
+applied (the report says how many links were made; one, here); the dictionary
+of the two linked monomers as a single molecule, which AceDRG regularises to
 check the link; and the instruction file AceDRG was given, which records
 exactly what was asked of it. If AceDRG refuses a link, the report gives
 its reason in its own words.

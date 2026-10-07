@@ -20,7 +20,7 @@ Input
 
    Figure 1: Csymmatch input
 
-The first model **(1)** is the one to be moved. It is broken into
+The first model **(1)** of Figure 1 is the one to be moved. It is broken into
 connected fragments, and each fragment is moved by the crystal symmetry to
 overlap the second model best. The second model **(2)** is the fixed
 reference; it is not moved or altered.
@@ -43,8 +43,8 @@ Results
 
    Figure 2: Csymmatch report
 
-The report says whether an origin shift **(5)** or a change of hand was
-applied, and how many fragments the model was divided into. Check for a
+The report (Figure 2) says whether an origin shift **(5)** or a change of hand
+was applied, and how many fragments the model was divided into. Check for a
 change of hand: for anything but a substructure it usually means the
 models could not be matched. Check too that an origin shift is one the
 space group allows. The fragments' symmetry operators and scores follow

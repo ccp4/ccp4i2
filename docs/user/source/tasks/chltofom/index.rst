@@ -21,8 +21,8 @@ Input
 
    Figure 1: chltofom input
 
-The input is a set of phases. HL coefficients are converted to phase and
-FOM; a phase and FOM are converted to HL coefficients.
+The input (Figure 1) is a set of phases. HL coefficients are converted to phase
+and FOM; a phase and FOM are converted to HL coefficients.
 
 Results
 =======
@@ -32,4 +32,4 @@ Results
 
    Figure 2: chltofom report
 
-The report lists the converted phases among the outputs **(2)**.
+The report (Figure 2) lists the converted phases among the outputs **(2)**.

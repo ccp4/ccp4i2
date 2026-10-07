@@ -18,11 +18,11 @@ Input
 
    Figure 1: Input
 
-Choose the coordinates **(1)**. The arrow at the end of the row opens the
-atom selection (it is open already once a selection is set): type it there, here ``(NUT)``, the ligand by
-its residue name. The selection language is explained
-`here <../../general/atom_selection.html>`__. The menu beside the model
-gives views of its contents.
+In Figure 1, choose the coordinates **(1)**. The arrow at the end of the row
+opens the atom selection (it is open already once a selection is set): type it
+there, here ``(NUT)``, the ligand by its residue name. The selection language
+is explained `here <../../general/atom_selection.html>`__. The menu beside the
+model gives views of its contents.
 
 The coordinates can be marked as a model, a homologue, a fragment of the
 structure or heavy atoms **(2)**, so that the new file is offered only
@@ -36,7 +36,7 @@ Results
 
    Figure 2: Report
 
-The report summarises what was selected, chain by chain **(3)**: polymers,
-ligands, metals and waters (with the ligands listed in a fold of their
-own). Here one ligand, NUT in chain A. The selected coordinates are the
+The report (Figure 2) summarises what was selected, chain by chain **(3)**:
+polymers, ligands, metals and waters (with the ligands listed in a fold of
+their own). Here one ligand, NUT in chain A. The selected coordinates are the
 output **(4)**, named after the selection and the file it came from.
