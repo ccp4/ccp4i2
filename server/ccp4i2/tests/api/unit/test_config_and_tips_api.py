@@ -34,7 +34,12 @@ def test_discover_programs_default_is_registry_derived(client):
     assert "ctruncate" in by_name["ctruncate"]["tasks"]
     # ...and core interpreters / abs-path commands are excluded from the default.
     assert "ccp4-python" not in by_name
-    assert all("/" not in name for name in by_name)
+    assert all("/" not in name and "\\" not in name for name in by_name)
+    # Tasks that find their own program are named, not offered (#402).
+    located = {t["task"]: t for t in resp.json()["data"]["self_located"]}
+    assert "arp_warp_classic" in located
+    assert located["arp_warp_classic"]["how"]
+    assert located["arp_warp_classic"]["title"]
 
 
 def test_program_preferences_desktop_roundtrip(client, monkeypatch, tmp_path):

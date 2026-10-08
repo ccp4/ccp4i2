@@ -20,6 +20,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Import using Django's registered app name to avoid app registry errors
 from ccp4i2.db import models
+from ccp4i2.lib.kpi_labels import kpi_label
 from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 logger = logging.getLogger(__name__)
@@ -637,7 +638,7 @@ class AsyncDatabaseHandler:
                 # Get or create key
                 job_value_key, _ = models.JobValueKey.objects.get_or_create(
                     name=key,
-                    defaults={"description": description or key}
+                    defaults={"description": description or kpi_label(key)}
                 )
 
                 # Create or update value
@@ -673,7 +674,7 @@ class AsyncDatabaseHandler:
                 # Get or create key
                 job_value_key, _ = models.JobValueKey.objects.get_or_create(
                     name=key,
-                    defaults={"description": description or key}
+                    defaults={"description": description or kpi_label(key)}
                 )
 
                 # Create or update value

@@ -8,6 +8,8 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4PluginScript, CCP4XtalData
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'
     TASKCOMMAND = sys.executable
+    # Runs `python -m morda`: the program is a package in this interpreter.
+    PROGRAM_LOCATED_BY = 'the morda Python package in CCP4'
     PERFORMANCECLASS = 'CRefinementPerformance'
     
     def processInputFiles(self):

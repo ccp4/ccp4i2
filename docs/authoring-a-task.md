@@ -138,7 +138,16 @@ Declaring them buys two things:
   Where the job is queued for a remote worker, or this is the CCP4-free API
   server, it stays advisory: "not found here" says nothing about the run host.
 - They appear on the Preferences → Program locations page, so a user can point
-  CCP4i2 at their own copy.
+  CCP4i2 at their own copy --- and that setting reaches the job: each declared
+  program a preference resolves is linked into a directory put in front of the
+  job's `PATH`, so a driver that runs it by bare name finds the user's copy.
+
+The page offers only programs whose setting takes effect. If your task finds
+its program by its own means --- a path computed from `$CCP4`, a vendor setup
+script, an interpreter running a Python package --- say how with
+`PROGRAM_LOCATED_BY = "..."`: the `TASKCOMMAND` is then left off the page,
+which names the task as one it cannot relocate (`arp_warp_classic`,
+`clustalw`). A `TASKCOMMAND` given as a path is never offered.
 
 **Resolve paths, never hardcode them.** If you write a program path into a
 config file, get it from `resolve_program()` so the user's `SHELXDIR` /

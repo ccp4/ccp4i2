@@ -435,24 +435,29 @@ def discover_programs_view(request):
 
     Response: {"success": true, "data": {"programs": [
         {"name", "path"|null, "source": ..., "tasks": [task_name, ...]}
-    ]}}
+    ], "self_located": [{"task", "title", "how"}]}}
+
+    By default only programs whose location setting takes effect are listed
+    (see the program_discovery module docstring); ``self_located`` names the
+    tasks that find their program themselves, which no setting here reaches.
     Never runs a program; just resolves paths against preferences + PATH.
     """
-    from ..config.program_discovery import discover_program
-    from ..core.tasks import task_commands
+    from ..config.program_discovery import discover_program, names_a_path
+    from ..core.tasks import get_task_title, self_located_tasks, task_commands
 
     names_param = request.query_params.get("names")
     cmd_map = task_commands()
     if names_param:
         names = [n.strip() for n in names_param.split(",") if n.strip()]
     else:
-        # Registry-derived defaults: real executable names, minus core/noise and
-        # anything that is an absolute path or a dotted sub-tool wrapper we can't
-        # meaningfully "relocate" (kept if a plain command name).
+        # Registry-derived defaults: real executable names, minus core/noise.
+        # task_commands() already lists only programs a location setting
+        # reaches; a path is excluded again here so no host's spelling of one
+        # can be offered as relocatable.
         names = [
             cmd
             for cmd in cmd_map
-            if cmd not in _DISCOVERY_EXCLUDE and "/" not in cmd
+            if cmd not in _DISCOVERY_EXCLUDE and not names_a_path(cmd)
         ]
 
     programs = []
@@ -460,7 +465,14 @@ def discover_programs_view(request):
         entry = discover_program(name)
         entry["tasks"] = cmd_map.get(name, [])
         programs.append(entry)
-    return JsonResponse({"success": True, "data": {"programs": programs}})
+    # Tasks that find their program by their own means: the page names them so
+    # it does not imply a setting there would reach them.
+    self_located = [
+        {"task": task, "title": get_task_title(task) or task, "how": how}
+        for task, how in self_located_tasks().items()
+    ]
+    return JsonResponse({"success": True, "data": {
+        "programs": programs, "self_located": self_located}})
 
 
 @api_view(["GET"])
