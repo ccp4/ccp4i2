@@ -198,6 +198,33 @@ class pandda_events(CPluginScript):
     def processOutputFiles(self):
         return CPluginScript.SUCCEEDED
 
+    # -- for the viewer (called through the generic object_method) ----------
+
+    def eventEvidence(self, event_idx):
+        """The evidence for one of this receipt's events, for a viewer to
+        load: the event map (to be drawn at ``contour``, in absolute map
+        units, coloured ``colour``), the autobuilt pose, and the dictionary
+        the pose was built with, each as its ``File`` row (``id``, ``uuid``,
+        ``name``, ``type``, ``annotation``) or None when this receipt has
+        none. ``event_idx`` is PanDDA's event number, not the list position.
+
+        Returns ``{"success": True, "data": {...}}``, or ``{"success": False,
+        "error": ...}`` when the job or the event cannot be found.
+        """
+        from ccp4i2.db import models
+        from ccp4i2.lib.utils.jobs.pandda_site_index import event_evidence
+        job_id = self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None
+        job = models.Job.objects.filter(uuid=job_id).first() if job_id else None
+        if job is None:
+            return {"success": False, "error": "this job is not in the database"}
+        evidence = event_evidence(job, event_idx)
+        if evidence is None:
+            return {"success": False,
+                    "error": f"this receipt has no event {event_idx}"}
+        evidence["colour"] = pandda_scene.EVENT_MAP_COLOUR
+        evidence["radius"] = pandda_scene.MAP_RADIUS
+        return {"success": True, "data": evidence}
+
     # -- helpers ------------------------------------------------------------
 
     def _write_scenes(self, dataset, scene_events, out):
