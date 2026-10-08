@@ -60,11 +60,11 @@ class mrparse(CPluginScript):
                 self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
                 self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}".format(label, hit['name'])
 
-        self._write_targets()
-
         register(pdb_json, "PDB", 'ellg' if self.hklin else 'seq_ident')
         register(af_json, "AFDB", 'seq_ident')
         register(esm_json, "ESM", 'seq_ident')
+        complexes = self._register_complexes(pdb_json)
+        self._write_program_xml(complexes)
 
         # MrParse logs a failed search program and then writes an empty report,
         # so an unrunnable binary looks exactly like an honest "nothing found".
@@ -85,24 +85,68 @@ class mrparse(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def _write_targets(self):
-        """Record in program.xml how many sequences were searched for: one
-        is one kind of molecule, several a complex. The judgement routes on
-        it (phaser_simple_phil for one, phaser_pipeline_phil with an
-        ensemble per component for several); Haiku, given a CDK4/cyclin D1
-        FASTA, took the one-model route and fixed the second component."""
-        from lxml import etree
-        names = []
+    def _targets(self):
+        """[(name, sequence)] searched for, as MrParse merged SEQIN: one is
+        one kind of molecule, several a complex."""
+        from ccp4i2.lib.utils.formats.mrparse_complexes import read_targets
         try:
-            with open(str(self.container.inputData.SEQIN.getFullPath())) as stream:
-                names = [line[1:].strip() for line in stream if line.startswith(">")]
+            return read_targets(str(self.container.inputData.SEQIN.getFullPath()))
         except OSError:
-            return
+            return []
+
+    def _register_complexes(self, pdb_json):
+        """A PDB entry whose hits match more than one target is a template for
+        the complex (docs/multi-component-mr.md, route A): its matching chains
+        are written as one more model, after the single-chain hits, to be
+        placed as one rigid body. CDK4/cyclin D1 was solved with such a file
+        and nothing here offered it. Returns [(entry record, XYZOUT index)]."""
+        from ccp4i2.lib.utils.formats.mrparse_complexes import (
+            describe, find_complexes, write_complex)
+        targets = self._targets()
+        if len(targets) < 2 or not os.path.exists(pdb_json):
+            return []
+        with open(pdb_json) as stream:
+            hits = json.load(stream)
+        cut_dir = os.path.join(self.getWorkDirectory(), "mrparse_0", "homologs")
+        registered = []
+        for entry in find_complexes(hits, targets):
+            path = write_complex(entry, cut_dir, self.getWorkDirectory())
+            if path is None:
+                continue
+            out = self.container.outputData.XYZOUT
+            out.append(out.makeItem())
+            out[-1].setFullPath(path)
+            out[-1].annotation = "PDB complex template: " + describe(entry)
+            registered.append((entry, len(out) - 1))
+        return registered
+
+    def _write_program_xml(self, complexes):
+        """program.xml: how many sequences were searched for, and the complex
+        templates found. The judgement routes on both: one target is one kind
+        of molecule (phaser_simple_phil); several, with a template, is that
+        template as one search model; several without is one ensemble per
+        component (phaser_pipeline_phil). Haiku, given a CDK4/cyclin D1 FASTA,
+        took the one-model route and fixed the second component."""
+        from lxml import etree
+        targets = self._targets()
         root = etree.Element("MrParse")
-        targets = etree.SubElement(root, "Targets")
-        targets.set("count", str(max(len(names), 1)))
-        for name in names:
-            etree.SubElement(targets, "Target").text = name
+        node = etree.SubElement(root, "Targets")
+        node.set("count", str(max(len(targets), 1)))
+        for name, _seq in targets:
+            etree.SubElement(node, "Target").text = name
+        node = etree.SubElement(root, "Complexes")
+        node.set("count", str(len(complexes)))
+        for entry, index in complexes:
+            element = etree.SubElement(node, "Complex")
+            element.set("entry", entry["entry"])
+            element.set("index", str(index))
+            element.set("file", os.path.basename(str(self.container.outputData.XYZOUT[index])))
+            for chain in entry["chains"]:
+                component = etree.SubElement(element, "Component")
+                component.set("chain", str(chain["chain"]))
+                component.set("target", str(chain["target"]))
+                component.set("identity", f"{chain['identity']:.2f}")
+                component.set("hit", str(chain["hit"]))
         with open(self.makeFileName("PROGRAMXML"), "wb") as stream:
             stream.write(etree.tostring(root, pretty_print=True))
 

@@ -52,7 +52,7 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
         220: {"description": "No free-R set: the refinement after MR will have no R-free",
               "severity": CCP4ErrorHandling.SEVERITY_WARNING},
         221: {"description": "The structure given as already placed has no crystal cell"},
-        222: {"description": "The AU contents hold more kinds of chain than are searched for",
+        222: {"description": "The AU contents hold a kind of chain no search model, fixed structure or earlier solution accounts for",
               "severity": CCP4ErrorHandling.SEVERITY_WARNING},
     }
 
@@ -92,11 +92,18 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
         return error
 
     def _check_components_searched(self, error):
-        """Advice when the AU contents list more kinds of chain than the job
-        searches for or is given as placed. Haiku, with CDK4 and cyclin D1
-        in the contents, searched for CDK4 alone and gave the cyclin as a
-        structure already placed; one run can place both. Advice, not a
-        block: placing one component now and the next later is a route."""
+        """Advice when the AU contents hold a kind of chain no search model,
+        fixed structure or earlier solution accounts for. By what the models
+        COVER, not how many there are (lib/utils/formats/model_coverage.py):
+        CDK4/cyclin D1 was solved with one model holding both chains, and a
+        count told that correct job it had searched for one kind of two.
+        Haiku, with both in the contents, searched for CDK4 alone and gave
+        the cyclin as a structure already placed; this says what is missing
+        and names the three routes (docs/multi-component-mr.md). Advice,
+        not a block: placing one component now and the next later is one of
+        them."""
+        from ccp4i2.lib.utils.formats.model_coverage import (
+            asu_kinds, describe_coverage, search_model_coverage)
         inp = self.container.inputData
         try:
             solin = getattr(inp, "SOLIN", None)
@@ -105,24 +112,44 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
         if not inp.ASUFILE.isSet() or (solin is not None and solin.isSet()):
             return  # without contents nothing to compare; with SOLIN, more is placed already
         try:
-            kinds = [str(s.name) for s in inp.ASUFILE.getFileContent().seqList
-                     if int(s.nCopies) > 0]
+            kinds = asu_kinds(inp.ASUFILE)
         except Exception:
             return
-        fixed = {str(label) for label in inp.FIXENSEMBLES}
-        covered = sum(1 for e in inp.ENSEMBLES
-                      if str(e.label) in fixed or (bool(e.use) and int(e.number or 0) > 0))
-        if len(kinds) <= covered:
+        if not kinds:
             return
+        fixed = {str(label) for label in inp.FIXENSEMBLES}
+        covered = set()
+        described = []
+        for i, ensemble in enumerate(inp.ENSEMBLES):
+            placed = str(ensemble.label) in fixed
+            searched = bool(ensemble.use) and int(ensemble.number or 0) > 0
+            if not (placed or searched):
+                continue
+            found = {}
+            for item in ensemble.pdbItemList:
+                try:
+                    for name, identity in search_model_coverage(item.structure, kinds).items():
+                        found[name] = max(identity, found.get(name, -1.0))
+                except Exception:
+                    continue
+            covered.update(found)
+            what = "the structure already placed" if placed else f"search model {i + 1}"
+            described.append(describe_coverage(what, found))
+        missing = [k["name"] for k in kinds if k["name"] not in covered]
+        if not missing:
+            return
+        names = ", ".join(k["name"] for k in kinds)
         error.append(
             klass=self.TASKNAME, code=222,
             name=f"{self.TASKNAME}.container.inputData.ENSEMBLES",
-            details=(f"The AU contents list {len(kinds)} kinds of chain ({', '.join(kinds)}) "
-                     f"but this job searches for or is given {covered}. phaser_pipeline_phil "
-                     "places them all in one run: one search model (an ENSEMBLES entry) per "
-                     "kind, its number the copies in the AU. Placing one now and the next "
-                     "later, with this job's XYZOUT as the structure already placed, also "
-                     "works; a model from mrparse or a database is never 'already placed'."),
+            details=(f"The AU contents hold {len(kinds)} kinds of chain ({names}); "
+                     f"{'; '.join(described) or 'no model is searched for'}; nothing accounts "
+                     f"for {', '.join(missing)}. To place a complex: one model holding every "
+                     "component, searched as one rigid body (copies = copies of the complex); "
+                     "or one search model per kind, placed together in this task; or the "
+                     "components in turn, the placed ones fixed. Only a structure placed in "
+                     "THIS crystal is ever 'already placed': a model from mrparse, a database "
+                     "or a prediction is searched for."),
             severity=CCP4ErrorHandling.SEVERITY_WARNING)
 
     # -- the run -----------------------------------------------------------

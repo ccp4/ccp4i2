@@ -52,6 +52,11 @@ Supporting references:
   amendment against it.
 - [Error Handling Patterns](../mddocs/pipeline/ERROR_HANDLING_PATTERNS.md)
 - [Validity Patterns](../mddocs/pipeline/VALIDITY_PATTERNS.md)
+- [Molecular replacement of a complex](multi-component-mr.md) — the three
+  routes (one complex template; one model per component; the components in
+  turn), what "already placed" means, and which validity checks and
+  judgement files express each. Read before touching the Phaser tasks'
+  validity or the mrparse/MrBUMP/Phaser judgement files.
 
 ### …use the REST API or CLI
 - [API Overview](../mddocs/api/API_OVERVIEW.md)

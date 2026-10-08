@@ -39,7 +39,10 @@ not_when:
       The AU holds several different molecules that must be searched
       together, or one component is to be searched as an ensemble.
       (MrBUMP's quick mode places at most one model per region of the
-      sequence; not checked for multi-component AUs here.)
+      sequence; not checked for multi-component AUs here.) The three
+      routes for a complex are in docs/multi-component-mr.md: with an
+      entry of the complex, mrparse's complex template placed as one
+      search model by phaser_simple_phil comes first.
     instead: phaser_pipeline_phil
   - text: >
       You have no sequence at all; SIMBAD searches by the unit cell.
