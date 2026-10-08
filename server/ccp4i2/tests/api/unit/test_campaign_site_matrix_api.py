@@ -170,7 +170,9 @@ def test_member_projects_carries_a_cell_for_every_site(
     assert set(drg["site_cells"]) == {str(s1.uuid), str(s2.uuid), str(s3.uuid)}
     assert drg["site_cells"][str(s1.uuid)] == {
         "event": {"event_idx": 1, "hit_probability": 0.5, "distance": 0.0,
-                  "has_pose": True},
+                  "has_pose": True,
+                  # Which receipt: a click opens that receipt's evidence.
+                  "receipt_job_id": _receipt_job("frag_drg").id},
         "verdict": "hit",
     }
     # S2's radius is 3 A and the event is 1 A from its origin.
@@ -213,7 +215,7 @@ def test_a_newer_run_supersedes_the_older_one(
         bypass_api_permissions, test_project_path):
     group = _campaign_with_a_run(test_project_path)
     s1, s2, _ = _sites(group)
-    _receipt(_project("frag_drg"), "x0001",
+    newer = _receipt(_project("frag_drg"), "x0001",
              [{"idx": 7, "site": 3, "score": 0.9, "probability": 0.95,
                "centroid": (5.5, 5.0, 5.0)}],
              run_uuid="99999999-8888-7777-6666-555555555555", number="3")
@@ -221,7 +223,8 @@ def test_a_newer_run_supersedes_the_older_one(
 
     cells = _member_rows(group)["frag_drg"]["site_cells"]
     assert cells[str(s1.uuid)]["event"] == {
-        "event_idx": 7, "hit_probability": 0.95, "distance": 0.5, "has_pose": True}
+        "event_idx": 7, "hit_probability": 0.95, "distance": 0.5, "has_pose": True,
+        "receipt_job_id": newer.id}
     assert cells[str(s2.uuid)]["event"] is None    # the old run's event 2
 
 

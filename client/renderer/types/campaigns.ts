@@ -200,6 +200,11 @@ export interface SiteCellEvent {
   /** Distance of the event from the site's origin, in Angstrom. */
   distance: number;
   has_pose: boolean;
+  /**
+   * The `pandda_events` receipt job the event comes from, whose
+   * `eventEvidence` gives its event map and pose. Absent from an older server.
+   */
+  receipt_job_id?: number | null;
 }
 
 /** What one dataset holds at one campaign site. */

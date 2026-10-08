@@ -385,6 +385,12 @@ def site_matrix(group, sites: List[models.CampaignSite],
             site_dicts,
             mismatch=mismatch,
         )
+        # Every event here is from the one receipt, so a matched cell can say
+        # which: a click on the box opens that receipt's evidence for it.
+        receipt_id = latest.get(project_id)
+        for cell in matched.values():
+            if cell is not None:
+                cell["receipt_job_id"] = receipt_id
         out[project_id] = {
             "site_cells": {
                 str(site.uuid): {

@@ -141,7 +141,7 @@ export function SiteMatrixCellContent({
 }: SiteMatrixCellContentProps) {
   const cell = cellFor(project, site);
   const kind: SiteCellKind = siteCellKind(cell, project.frame_mismatch);
-  const url = siteCellUrl(campaignId, project.current_model_job, site);
+  const url = siteCellUrl(campaignId, project.current_model_job, site, cell);
   const lines = siteCellTooltip(
     site.name,
     cell,

@@ -6,6 +6,7 @@ import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
 import type { MoorhenScene } from "@/types/moorhen-scene";
+import { parseEventParam } from "@/lib/event-evidence";
 import type {
   NewCampaignSite,
   SiteEvaluation,
@@ -21,6 +22,9 @@ function CampaignPageContent() {
   const jobParam = searchParams?.get("job"); // Optional: specific job to load
   const summaryMode = searchParams?.get("summary") === "1"; // Campaign overview
   const siteParam = searchParams?.get("site"); // Optional: site to open on
+  // Optional: a PanDDA event whose evidence to load (a filled matrix box)
+  const eventParam = searchParams?.get("event");
+  const initialEvent = useMemo(() => parseEventParam(eventParam), [eventParam]);
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
 
@@ -318,6 +322,7 @@ function CampaignPageContent() {
         summaryScene={summaryMode ? summaryScene : null}
         viewParam={viewParam}
         initialSiteId={siteParam ? parseInt(siteParam) : null}
+        initialEvent={initialEvent}
         sites={sites || []}
         onAddSite={handleAddSite}
         onUpdateSite={handleUpdateSite}
