@@ -22,22 +22,26 @@ For merged reflection data in any of the usual formats, with a free R set
 checked or made at the same time, use :doc:`../import_merged/index`
 instead. For the contents of the asymmetric unit, use
 :doc:`../ProvideAsuContents/index` to define them from sequences, or
-import an existing definition here.
+import an existing definition here. To import only part of a model,
+chosen by an atom selection, use :doc:`../coordinate_selector/index`; to
+paste sequences, fetch them from UniProt or read them from a model, use
+:doc:`../ProvideSequence/index`. The tasks here take one whole file each,
+which is what a script building a project wants.
 
-=====================  ==============================  =========================
-Task                   Takes                           Makes
-=====================  ==============================  =========================
-Import coordinates     PDB or mmCIF model              a model
-Import sequence        FASTA, PIR or plain sequence    a sequence
-Import ASU contents    an ``.asu.xml`` definition      AU contents
-Import dictionary      a restraint dictionary (CIF)    a dictionary
-Import unmerged        MTZ, XDS, Scalepack or mmCIF    unmerged data
-Import observations    columns of an MTZ file          observed data
-Import free-R          a column of an MTZ file         a free R set
-Import map coeffs.     columns of an MTZ file          map coefficients
-Import phases          columns of an MTZ file          phases (HL or φ/FOM)
-Import map             a CCP4 or MRC map               a map, of a stated kind
-=====================  ==============================  =========================
+========================  ==============================  =========================
+Task                      Takes                           Makes
+========================  ==============================  =========================
+Import a coordinate file  PDB or mmCIF model              a model
+Import a sequence file    FASTA, PIR or plain sequence    a sequence
+Import ASU contents       an ``.asu.xml`` definition      AU contents
+Import dictionary         a restraint dictionary (CIF)    a dictionary
+Import unmerged           MTZ, XDS, Scalepack or mmCIF    unmerged data
+Import observations       columns of an MTZ file          observed data
+Import free-R             a column of an MTZ file         a free R set
+Import map coeffs.        columns of an MTZ file          map coefficients
+Import phases             columns of an MTZ file          phases (HL or φ/FOM)
+Import map                a CCP4 or MRC map               a map, of a stated kind
+========================  ==============================  =========================
 
 The pictures on this page come from a project built with the gamma demo
 data that comes with CCP4i2, and a full MTZ file: the complete output of a

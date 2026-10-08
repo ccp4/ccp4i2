@@ -130,7 +130,13 @@ class i2Dimple(CPluginScript):
                             reindexCommandPath = os.path.join(self.getWorkDirectory(),"reindex.txt")
                             with open(reindexCommandPath,"w") as reindexCommandFile:
                                 reindexCommandFile.write("reindex {}".format(bestReindex[0]))
-                            reindexExecutablePath = os.path.join(os.environ["CBIN"],"reindex")
+                            # Through program discovery, like TASKCOMMAND, so
+                            # the program-location preferences apply here too;
+                            # $CBIN is the fallback it always was.
+                            from ccp4i2.config.program_discovery import resolve_program
+                            reindexExecutablePath = (
+                                resolve_program("reindex")
+                                or os.path.join(os.environ["CBIN"], "reindex"))
                             import subprocess
 
                             initialPath = self.container.inputData.F_SIGF.fullPath.__str__()

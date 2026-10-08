@@ -25,32 +25,46 @@ can supply them as plain env vars. Pure stdlib — no Django, no CCP4 import —
 it is safe to call from the CCP4-free server (the probe endpoint) and from the
 ccp4-python job environment (``CCP4PluginScript``) alike.
 
-Which tasks this actually governs
----------------------------------
+Which programs this actually governs
+------------------------------------
 
-``CPluginScript`` resolves ``TASKCOMMAND`` through here, both when launching a
-job and in the pre-run check, so the order above holds for every plain wrapper.
-A handful of tasks find their program some other way, and the Preferences page
-cannot relocate those:
+The Preferences -> Program locations page offers a program only if setting its
+location takes effect. That holds by construction for the programs a task
+*declares* (``CPluginScript.declaredPrograms``):
 
-* ``clustalw`` computes ``TASKCOMMAND`` at import time from ``$CCP4/libexec``.
-  Bundled with CCP4, so there is nothing to relocate — but a preference would
-  not override it.
-* ``arp_warp_classic`` sets ``TASKCOMMAND = sys.executable`` and drives ARP/wARP
-  through its own scripts; it is excluded from the probed list (absolute path).
-* ``i2Dimple`` shells out to ``$CBIN/reindex`` directly for one step.
-* ``crank2`` declares no single ``TASKCOMMAND`` — it drives many programs and
-  passes explicit ``binary::`` paths. It reads ``SHELXDIR`` from the *same*
-  preferences store, so that preference does take effect; ``exePaths`` does not.
-* ``buster`` checks for ``refine`` itself before running, and sources
-  ``$BUSTERDIR/setup.sh`` when it is not on ``PATH``. It now performs that check
-  with :func:`resolve_program` so the two agree.
+* ``TASKCOMMAND`` is resolved through here when the job is launched and in the
+  pre-run check;
+* ``AUXILIARY_PROGRAMS`` and ``OPTIONAL_PROGRAMS`` -- programs the task runs
+  from inside itself, by bare name on ``PATH`` -- reach the job through the
+  shim directory :func:`program_search_path` puts in front of its ``PATH``,
+  which links every declared program a preference resolves (not only those
+  with a dedicated ``{PROG}_EXECUTABLE`` / ``{SUITE}DIR`` preference).
+
+A task that finds its program by its own means says so with
+``PROGRAM_LOCATED_BY`` (a few words on how); its ``TASKCOMMAND`` is then left
+off the page, which names the task as one it cannot relocate instead. A
+``TASKCOMMAND`` given as a path is never offered either. Today:
+
+* ``clustalw`` -- ``$CCP4/libexec/clustalw2``, computed at import. Bundled
+  with CCP4, so there is nothing a user would relocate.
+* ``arp_warp_classic`` -- runs the interpreter on pyrvapi_ext, which starts
+  ``auto_tracing.sh``; that needs the environment of ARP/wARP's own setup
+  script (``$warpbin``), which a link on ``PATH`` cannot supply.
+* ``morda_i2`` -- runs the interpreter on the ``morda`` Python package.
+* ``Lidia`` -- a Qt-era desktop launch, found next to Coot or in ``$CCP4``.
+
+Tasks that call a program by hand rather than through ``TASKCOMMAND`` resolve
+it here themselves, so the same settings apply: ``buster`` (``refine``),
+``arcimboldo`` (its helpers' paths in setup.bor), ``ShelxCD`` (``getCommand``),
+the ``phasertng_*`` tasks, and ``i2Dimple``'s reindexing step. ``crank2`` runs
+in-process and puts the shim directory on its own ``PATH``; it also passes
+``SHELXDIR`` to its SHELX steps as explicit ``binary::`` paths.
 """
 
 import os
 import shutil
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, List, Optional
 
 from ccp4i2.config.preferences import user_preference
 
@@ -169,16 +183,34 @@ def discover_program(name: str) -> Dict[str, Optional[str]]:
     return {"name": name, "path": None, "source": SOURCE_MISSING}
 
 
-def preference_resolved_programs() -> Dict[str, str]:
+def names_a_path(command: str) -> bool:
+    """True if ``command`` is a path rather than a program name.
+
+    A task that names its program by path (``$CCP4/libexec/clustalw2``, the
+    running interpreter) has fixed it already; no preference can relocate it.
+    Checks both separators, so a Windows path is caught on any host.
+    """
+    return os.path.isabs(command) or "/" in command or "\\" in command
+
+
+def preference_resolved_programs(names: Iterable[str] = ()) -> Dict[str, str]:
     """The programs the user has deliberately pointed CCP4i2 at.
 
-    Every name this module knows how to resolve, that resolves through a
-    *preference* rather than through ``PATH`` -- so a program already on ``PATH``
-    is left exactly as it is.
+    Every name this module has a dedicated preference for, plus ``names`` (the
+    programs the running task declares), that resolves through a *preference*
+    rather than through ``PATH`` -- so a program already on ``PATH`` is left
+    exactly as it is.
+
+    ``names`` is what lets ``exePaths`` reach a program a task runs *itself*:
+    crank2 finds prasa and cparrot on ``PATH``, arcimboldo's helpers likewise.
+    Without it, a directory in ``exePaths`` satisfied the pre-run check for
+    those programs but was never seen by the job that ran them.
     """
     from_preferences = (SOURCE_EXECUTABLE_PREF, SOURCE_SUITE_DIR, SOURCE_EXE_PATHS)
     resolved: Dict[str, str] = {}
-    for name in list(_EXECUTABLE_PREF) + list(_SUITE_DIR_PREF):
+    candidates = list(_EXECUTABLE_PREF) + list(_SUITE_DIR_PREF) + [
+        str(n) for n in names if n and not names_a_path(str(n))]
+    for name in candidates:
         if name in resolved:
             continue
         found = discover_program(name)
@@ -187,7 +219,7 @@ def preference_resolved_programs() -> Dict[str, str]:
     return resolved
 
 
-def make_program_shims(directory) -> Optional[str]:
+def make_program_shims(directory, names: Iterable[str] = ()) -> Optional[str]:
     """Build a directory of links to preference-resolved programs; return it.
 
     Returns None when the user has configured nothing, in which case there is
@@ -206,7 +238,7 @@ def make_program_shims(directory) -> Optional[str]:
 
     A preference that names SHELX must supply SHELX and nothing else.
     """
-    resolved = preference_resolved_programs()
+    resolved = preference_resolved_programs(names)
     if not resolved:
         return None
 
@@ -233,8 +265,13 @@ def make_program_shims(directory) -> Optional[str]:
     return str(shim_dir) if made else None
 
 
-def program_search_path(directory, base: Optional[str] = None) -> str:
+def program_search_path(directory, base: Optional[str] = None,
+                        names: Iterable[str] = ()) -> str:
     """*base* (default the current ``PATH``) with a shim directory in front.
+
+    ``names`` are the programs the task declares (``declaredPrograms()``); each
+    that a preference resolves gets a link, as do the programs with dedicated
+    preferences.
 
     A task resolves its own ``TASKCOMMAND`` through :func:`discover_program`, so
     it runs whatever the user pointed CCP4i2 at. Programs the task then invokes
@@ -247,7 +284,7 @@ def program_search_path(directory, base: Optional[str] = None) -> str:
     """
     if base is None:
         base = os.environ.get("PATH", "")
-    shim = make_program_shims(directory)
+    shim = make_program_shims(directory, names)
     if not shim:
         return base
     return os.pathsep.join([shim] + ([base] if base else []))

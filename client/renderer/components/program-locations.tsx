@@ -29,6 +29,13 @@ interface ProgramStatus {
   tasks?: string[];
 }
 
+/** A task that finds its program itself, which no setting here reaches. */
+export interface SelfLocatedTask {
+  task: string;
+  title: string;
+  how: string;
+}
+
 // Explicit path fields shown as their own inputs (the rest go via exePaths).
 // `browse` picks the native-picker mode: "file" for a single executable,
 // "directory" for a suite install dir.
@@ -86,6 +93,7 @@ export function ProgramLocations() {
   const [prefs, setPrefs] = useState<Record<string, any>>({});
   const [exePaths, setExePaths] = useState<string[]>([]);
   const [statuses, setStatuses] = useState<ProgramStatus[]>([]);
+  const [selfLocated, setSelfLocated] = useState<SelfLocatedTask[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [newPath, setNewPath] = useState("");
@@ -103,6 +111,7 @@ export function ProgramLocations() {
     const resp = await apiGet<any>("config/discover-programs/");
     const data = resp?.data ?? resp;
     setStatuses(data?.programs ?? []);
+    setSelfLocated(data?.self_located ?? []);
   }, []);
 
   useEffect(() => {
@@ -289,7 +298,7 @@ export function ProgramLocations() {
           {saving && <CircularProgress size={16} />}
         </Stack>
         <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-          The external programs each task runs (from the task registry). Hover for
+          The programs these settings reach, from the task registry. Hover for
           the resolved path and which tasks use it.
         </Typography>
         <Paper variant="outlined" sx={{ p: 1.5 }}>
@@ -333,7 +342,34 @@ export function ProgramLocations() {
               })}
           </Box>
         </Paper>
+        <SelfLocatedNote tasks={selfLocated} />
       </Box>
     </Stack>
+  );
+}
+
+/**
+ * Names the tasks that find their program by their own means, so the page
+ * does not imply that a setting above would reach them. Renders nothing when
+ * there are none.
+ */
+export function SelfLocatedNote({ tasks }: { tasks: SelfLocatedTask[] }) {
+  if (!tasks.length) return null;
+  return (
+    <Typography
+      variant="caption"
+      color="text.secondary"
+      sx={{ mt: 1, display: "block" }}
+      data-testid="self-located-note"
+    >
+      Not configurable here, because these tasks find their program themselves:{" "}
+      {tasks.map((t, i) => (
+        <React.Fragment key={t.task}>
+          {i > 0 && "; "}
+          {t.title} ({t.how})
+        </React.Fragment>
+      ))}
+      .
+    </Typography>
   );
 }

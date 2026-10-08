@@ -25,7 +25,11 @@ interface DeleteDialogState {
 }
 
 interface DeleteDialogAction {
-  type: "show" | "hide";
+  /**
+   * "update" changes whether Delete is enabled while the dialog is open: the
+   * dialog's own content may hold a choice that decides it.
+   */
+  type: "show" | "hide" | "update";
   what?: string;
   children?: React.ReactNode[];
   deleteDisabled?: boolean;
@@ -54,8 +58,9 @@ export function DeleteDialogProvider(props: DeleteDialogProviderProps) {
     dispatch({ type: "hide" });
   }
 
+  // The dialog sits inside the provider so that its content can reach it.
   return (
-    <>
+    <DeleteDialogContext.Provider value={dispatch}>
       <Dialog open={state.open}>
         <DialogTitle>{`Delete ${state.what}?`}</DialogTitle>
         <DialogContent>
@@ -78,10 +83,8 @@ export function DeleteDialogProvider(props: DeleteDialogProviderProps) {
           </Button>
         </DialogActions>
       </Dialog>
-      <DeleteDialogContext.Provider value={dispatch}>
-        {props.children}
-      </DeleteDialogContext.Provider>
-    </>
+      {props.children}
+    </DeleteDialogContext.Provider>
   );
 }
 
@@ -89,7 +92,7 @@ export function useDeleteDialog() {
   return useContext(DeleteDialogContext);
 }
 
-function deleteDialogReducer(
+export function deleteDialogReducer(
   state: DeleteDialogState,
   action: DeleteDialogAction
 ): DeleteDialogState {
@@ -103,6 +106,10 @@ function deleteDialogReducer(
         onDelete: action.onDelete,
         onCancel: action.onCancel,
       };
+    case "update":
+      return state.open
+        ? { ...state, deleteDisabled: action.deleteDisabled }
+        : state;
     case "hide":
       return { open: false };
   }

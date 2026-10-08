@@ -70,6 +70,7 @@ from ..lib.utils.navigation.dependencies import (
     delete_multiple_jobs_and_dependents,
     find_bulk_dependent_jobs,
     find_dependent_jobs,
+    imported_files_at_stake,
 )
 from ..lib.utils.navigation.what_next import get_what_next
 from ..lib.utils.parameters.load_xml import load_nested_xml
@@ -79,6 +80,16 @@ from . import serializers
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
+
+def _delete_imported_files_flag(value) -> bool:
+    """Whether a delete should take the job's imported files with it.
+
+    Absent means no: like Qt-i2, deleting a job keeps the files it imported
+    unless the user asks otherwise (issue #587).
+    """
+    if isinstance(value, bool):
+        return value
+    return str(value or "").lower() in ("1", "true", "yes")
 
 
 #: Statuses a job may be started from. Anything else -- running, queued,
@@ -252,13 +263,20 @@ class JobViewSet(ModelViewSet):
 
         Example:
             DELETE /api/jobs/123/
+            DELETE /api/jobs/123/?delete_imported_files=true
 
             - Ensures proper cleanup of container-based job artifacts
+            - Files the job imported are kept (the job stays as a file
+              holder) unless ``delete_imported_files`` is true, in which case
+              they go too, with every job that used them.
         """
+        delete_imported_files = _delete_imported_files_flag(
+            request.query_params.get("delete_imported_files")
+        )
         try:
             instance = self.get_object()
             logger.warning("Deleting job %s", instance)
-            delete_job_and_dependents(instance)
+            delete_job_and_dependents(instance, delete_imported_files)
             # Note: Adding response body to prevent JavaScript network error
             # when response has no body content
             return api_success({"deleted": True})
@@ -789,10 +807,19 @@ class JobViewSet(ModelViewSet):
 
         Example:
             GET /api/jobs/123/dependent_jobs/
+            GET /api/jobs/123/dependent_jobs/?delete_imported_files=true
+
+        Jobs that only used a file this job imported count only with
+        ``delete_imported_files``, matching what DELETE would remove.
         """
+        follow_imports = _delete_imported_files_flag(
+            request.query_params.get("delete_imported_files")
+        )
         try:
             the_job = models.Job.objects.get(id=pk)
-            dependent_jobs = find_dependent_jobs(the_job)
+            dependent_jobs = find_dependent_jobs(
+                the_job, follow_imported_files=follow_imports
+            )
             # Re-fetch through the prefetched queryset so JobSerializer's
             # float_values / char_values don't N+1 over the dependency chain.
             dep_ids = [j.id for j in dependent_jobs]
@@ -815,14 +842,17 @@ class JobViewSet(ModelViewSet):
         that aren't in the selection (jobs that would additionally be deleted).
 
         POST /api/jobs/bulk_dependent_jobs/
-        Body: {"job_ids": [1, 2, 3]}
+        Body: {"job_ids": [1, 2, 3], "delete_imported_files": false}
         """
         job_ids = request.data.get("job_ids", [])
         if not job_ids:
             return api_error("No job IDs provided", status=400)
+        delete_imported_files = _delete_imported_files_flag(
+            request.data.get("delete_imported_files")
+        )
 
         try:
-            bulk_info = find_bulk_dependent_jobs(job_ids)
+            bulk_info = find_bulk_dependent_jobs(job_ids, delete_imported_files)
             # Re-fetch through prefetched queryset so JobSerializer's
             # float_values / char_values don't N+1 across the bulk set.
             all_ids = (
@@ -851,20 +881,87 @@ class JobViewSet(ModelViewSet):
         Delete multiple jobs and all their dependents.
 
         POST /api/jobs/bulk_delete/
+        Body: {"job_ids": [1, 2, 3], "delete_imported_files": false}
+
+        Files the jobs imported are kept unless ``delete_imported_files``.
+        """
+        job_ids = request.data.get("job_ids", [])
+        if not job_ids:
+            return api_error("No job IDs provided", status=400)
+        delete_imported_files = _delete_imported_files_flag(
+            request.data.get("delete_imported_files")
+        )
+
+        try:
+            jobs_before = models.Job.objects.count()
+            delete_multiple_jobs_and_dependents(job_ids, delete_imported_files)
+            jobs_after = models.Job.objects.count()
+            deleted_count = jobs_before - jobs_after
+            return api_success({"deleted": True, "count": deleted_count})
+        except Exception as err:
+            logger.exception("Error during bulk delete")
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=False,
+        methods=["post"],
+    )
+    def delete_preview(self, request):
+        """
+        What deleting some jobs would remove, both ways the user can choose.
+
+        POST /api/jobs/delete_preview/
         Body: {"job_ids": [1, 2, 3]}
+
+        Response data:
+            selected_jobs: the jobs asked for
+            imported_files: files those jobs (or the jobs that would go with
+                them) imported, each with the jobs outside the selection
+                that used it. Empty means there is no choice to offer.
+            keep_imported_files / delete_imported_files: for each choice,
+                {additional_dependents, total_to_delete,
+                 has_active_dependents}. Keeping spares the jobs that only
+                used an imported file.
         """
         job_ids = request.data.get("job_ids", [])
         if not job_ids:
             return api_error("No job IDs provided", status=400)
 
         try:
-            jobs_before = models.Job.objects.count()
-            delete_multiple_jobs_and_dependents(job_ids)
-            jobs_after = models.Job.objects.count()
-            deleted_count = jobs_before - jobs_after
-            return api_success({"deleted": True, "count": deleted_count})
+            plans = {
+                flag: find_bulk_dependent_jobs(job_ids, flag)
+                for flag in (False, True)
+            }
+            all_ids = {
+                j.id
+                for plan in plans.values()
+                for j in plan["all_jobs_to_delete"]
+            }
+            qs_map = {j.id: j for j in self.get_queryset().filter(id__in=all_ids)}
+
+            def serialise(jobs):
+                return serializers.JobSerializer(
+                    [qs_map[j.id] for j in jobs if j.id in qs_map], many=True
+                ).data
+
+            def choice(plan):
+                return {
+                    "additional_dependents": serialise(plan["additional_dependents"]),
+                    "total_to_delete": len(plan["all_jobs_to_delete"]),
+                    "has_active_dependents": plan["has_active_dependents"],
+                }
+
+            return api_success({
+                "selected_jobs": serialise(plans[True]["selected_jobs"]),
+                "imported_files": imported_files_at_stake(
+                    plans[True]["all_jobs_to_delete"],
+                    plans[True]["selected_jobs"],
+                ),
+                "keep_imported_files": choice(plans[False]),
+                "delete_imported_files": choice(plans[True]),
+            })
         except Exception as err:
-            logger.exception("Error during bulk delete")
+            logger.exception("Error computing delete preview")
             return api_error(str(err), status=500)
 
     @action(

@@ -68,6 +68,14 @@ class TestEndpointsThatEmbedKPIs:
         assert kpis["float_values"] == {"RFactor": 0.21}
         assert kpis["char_values"] == {"spaceGroup": "P 21 21 21"}
 
+    def test_job_tree_labels_each_kpi_it_serves(self, project_with_a_bad_kpi):
+        # The keys are field names; the labels are what is shown (#596).
+        project = project_with_a_bad_kpi["project"]
+        response = self.client.get(f"{API_PREFIX}/projects/{project.id}/job_tree/")
+
+        labels = response.json()["job_tree"][0]["kpis"]["labels"]
+        assert labels == {"RFactor": "R", "spaceGroup": "Space group"}
+
     def test_job_tree_omits_the_bad_kpi_rather_than_nulling_it(
         self, project_with_a_bad_kpi
     ):
