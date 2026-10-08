@@ -37,26 +37,17 @@ from typing import Optional
 import gemmi
 
 from ..db import models
-from . import pandda_export, superposition
+from . import campaign_events, pandda_export, superposition
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
-# Refinement tasks whose latest finished job carries the ligand-bound
-# coordinates. Fragment campaigns here refine with servalcat (via
-# servalcat_pipe), so that must come first / be present — otherwise the
-# latest finished job falls back to an early apo refmac/dimple model and the
-# soaked ligand is missed. order doesn't affect selection (we take the
-# highest-id finished job among these), but servalcat_pipe is the canonical
-# campaign refinement and its XYZOUT is the final ligand-bound model.
-REFINE_TASK_NAMES = (
-    "servalcat_pipe",
-    "prosmart_refmac",
-    "refmac",
-    "i2Refmac",
-    "i2Dimple",
-    "dimple",
-)
+# Which job carries a member's ligand-bound coordinates is the campaign's one
+# definition of a dataset's current model -- campaign_matrix.REFINEMENT_TASKS
+# and choose_current_model, shared with the overview's site matrix -- so the
+# scene and the overview cannot disagree about which model a dataset has.
+# (This used to be its own REFINE_TASK_NAMES list, taking the highest-id
+# finished job of refinement and dimple tasks alike at any level.)
 
 # Crystallisation additives, cryoprotectants and ions that commonly appear
 # as HET residues but are NOT a fragment hit. A refmac LIBOUT can also carry
@@ -437,7 +428,7 @@ def _resolve_hit(project, used_names: set):
     camera goes -- never in how a hit is resolved, so that a fix to the hit
     rule cannot land in one and not the other.
     """
-    refine_job = pandda_export._latest_finished_job(project, REFINE_TASK_NAMES)
+    refine_job = campaign_events.current_model_job(project)
     if not refine_job:
         return None, "no finished refinement job"
 

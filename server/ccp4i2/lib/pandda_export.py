@@ -24,6 +24,7 @@ from typing import Optional
 import gemmi
 
 from ..db import models
+from .campaign_matrix import DIMPLE_TASKS
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -39,7 +40,11 @@ COMMON_FREER_LABELS = (
     "free",
 )
 
-DIMPLE_TASK_NAMES = ("i2Dimple", "dimple")
+# The dimple run whose outputs PanDDA takes as a dataset's input: the
+# latest finished one at any level (on the SubstituteLigand route it is a
+# subjob). Deliberately not campaign_matrix.choose_current_model, which
+# prefers a refinement -- PanDDA wants the dimple model, not the best one.
+DIMPLE_TASK_NAMES = DIMPLE_TASKS
 ACEDRG_TASK_NAMES = ("LidiaAcedrgNew", "acedrg")
 DICT_CIF_CANDIDATES = ("LIG.cif", "DRG.cif")
 
