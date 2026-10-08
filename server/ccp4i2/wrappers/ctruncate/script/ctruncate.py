@@ -30,7 +30,11 @@ class ctruncate(CPluginScript):
           inp.ISIGI.set( { 'I' : 'I', 'SIGI' : 'SIGI' } )
         elif  int(inp.OBSIN.contentFlag) == 4:
           inp.FSIGF.set( { 'F': 'F' , 'SIGF' : 'SIGF' } )
-        
+        if not par.OUTPUTMINIMTZ.isSet(allowDefault=False):
+          par.OUTPUTMINIMTZ = True
+          if not par.OUTPUTMINIMTZCONTENTFLAG.isSet(allowDefault=False):
+            par.OUTPUTMINIMTZCONTENTFLAG = 2 if int(inp.OBSIN.contentFlag) == 1 else 4
+
       ### files
       self.appendCommandLine(['-hklin',inp.HKLIN.fullPath])
       if inp.SEQIN.isSet():
