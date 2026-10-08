@@ -141,10 +141,15 @@ class CampaignSite(Model):
     also replaced on every edit, so two people editing sites concurrently lost
     one another's work with no conflict and no error.
 
-    ``origin`` is the centre of the site in the campaign's reference frame
-    (that of the parent project), which is what makes it meaningful across
-    datasets; ``quat`` and ``zoom`` are the saved camera, used only for
-    navigation.
+    ``origin`` is NOT the centre of the site. It is Moorhen's view origin as
+    the viewer saved it, which is the *negation* of the point at the centre of
+    the screen; the save/restore path stores and hands it back raw, so the
+    camera round-trips. The centre, in the campaign's reference frame (that of
+    the parent project), is ``position``: anything that measures, selects
+    atoms or matches events must use that (``campaign_scene.site_position``
+    records how this was found; the dataset x site matrix once measured events
+    against the reflection of every site). ``quat`` and ``zoom`` are the saved
+    camera, used only for navigation.
 
     ``uuid`` is what an evaluation, an event record or another installation's
     snapshot refers to. The primary key is meaningless after a database
@@ -170,6 +175,11 @@ class CampaignSite(Model):
     zoom = FloatField(null=True, blank=True)
     # Display order, so the UI list is stable without depending on insertion id.
     order = IntegerField(default=0)
+    # How far from ``origin`` (A) a PanDDA event may lie and still count as
+    # "at this site" in the campaign's dataset x site matrix
+    # (lib/campaign_matrix.match_events_to_sites). Per site, because pockets
+    # differ in size; radii of neighbouring sites may overlap.
+    radius = FloatField(default=8.0)
 
     class Meta:
         unique_together = ["group", "name"]
@@ -180,7 +190,13 @@ class CampaignSite(Model):
 
     @property
     def origin(self):
+        """Moorhen's view origin, as saved: the NEGATED centre."""
         return [self.origin_x, self.origin_y, self.origin_z]
+
+    @property
+    def position(self):
+        """The site's centre in real space (the parent's frame)."""
+        return [-self.origin_x, -self.origin_y, -self.origin_z]
 
 
 class SiteEvaluation(Model):
@@ -227,6 +243,90 @@ class SiteEvaluation(Model):
 
     def __str__(self):
         return f"{self.project} at {self.site}: {self.verdict}"
+
+
+class CampaignEvent(Model):
+    """One PanDDA event, as one receipt job recorded it: a projection, not a source.
+
+    Every field is derived from a finished ``pandda_events`` receipt's
+    ``params.xml`` (``outputData.EVENTS``), which stays the record
+    (docs/pandda-campaign-design.md, section 10.2). This table exists so
+    campaign-wide questions -- which datasets have an event near site X --
+    are a query rather than a parse of every receipt in the campaign. So:
+
+    * it is a cache: ``manage.py backfill_campaign_events`` rebuilds it from
+      the receipts, and that is also the path after a project restore;
+    * it is written when a receipt's outputs are recorded (a receipt job
+      reaching FINISHED or UNSATISFACTORY; ``lib/campaign_events``), and
+      re-recording a receipt replaces its rows wholesale;
+    * it is never snapshotted, because nothing in it is user-authored.
+
+    Keyed ``(receipt, site_idx, event_idx)`` as section 10.2 plans. Both
+    numbers are PanDDA's per-run ordinals: they identify an event within its
+    run and nowhere else (section 7.4), which is why a row hangs off the
+    receipt that recorded it and never off a ``CampaignSite``. Which curated
+    site an event is "at" is computed per request from the centroid
+    (``campaign_matrix.match_events_to_sites``), because a site's origin and
+    radius are editable and a stored match would go stale.
+
+    Centroids are in the dataset's own frame (section 9.1). ``cell_*`` is the
+    dataset's unit cell, read from the receipt's apo model when the row is
+    written and repeated on each of the receipt's rows, so the overview can
+    tell a dataset that is not near-isomorphous with the parent without
+    opening a file per request. A receipt with no events has no rows and so
+    no recorded cell -- and nothing to match either.
+    """
+
+    receipt = ForeignKey("Job", CASCADE, related_name="campaign_events")
+    project = ForeignKey(Project, CASCADE, related_name="campaign_events")
+    # The campaign the receipt was made for, when that can be told: the one
+    # whose parent ran the PanDDA job and which has this project as a member,
+    # else the project's only campaign. Null when ambiguous; readers select
+    # by member project and receipt, never by this column alone.
+    group = ForeignKey(
+        ProjectGroup, SET_NULL, null=True, blank=True, related_name="events"
+    )
+    # The receipt's RUN_JOB_UUID; null for a run fanned out from a tree
+    # produced elsewhere, which has no run job.
+    run_job_uuid = UUIDField(null=True, blank=True)
+    dtag = CharField(max_length=255, blank=True, default="")
+    event_idx = IntegerField()
+    site_idx = IntegerField(null=True, blank=True)
+    centroid_x = FloatField(null=True, blank=True)
+    centroid_y = FloatField(null=True, blank=True)
+    centroid_z = FloatField(null=True, blank=True)
+    hit_probability = FloatField(null=True, blank=True)
+    has_pose = BooleanField(default=False)
+    has_map = BooleanField(default=False)
+    cell_a = FloatField(null=True, blank=True)
+    cell_b = FloatField(null=True, blank=True)
+    cell_c = FloatField(null=True, blank=True)
+    cell_alpha = FloatField(null=True, blank=True)
+    cell_beta = FloatField(null=True, blank=True)
+    cell_gamma = FloatField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=["receipt", "site_idx", "event_idx"],
+                name="campaign_event_per_receipt",
+            )
+        ]
+
+    def __str__(self):
+        return f"event {self.event_idx} of {self.dtag or self.project} (job {self.receipt_id})"
+
+    @property
+    def centroid(self):
+        if None in (self.centroid_x, self.centroid_y, self.centroid_z):
+            return None
+        return [self.centroid_x, self.centroid_y, self.centroid_z]
+
+    @property
+    def cell(self):
+        values = [self.cell_a, self.cell_b, self.cell_c,
+                  self.cell_alpha, self.cell_beta, self.cell_gamma]
+        return None if None in values else values
 
 
 class ProjectTag(Model):

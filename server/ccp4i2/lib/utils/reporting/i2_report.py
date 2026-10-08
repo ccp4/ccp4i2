@@ -615,6 +615,14 @@ def generate_job_report(job: Job) -> ET.Element:
     # output files / job details sections, as Qt-i2 did.
     report_class = get_report_class(task_name)
 
+    # A file holder is what is left of a deleted job whose imported files were
+    # kept: no program output, only the files it holds. The generic sections
+    # say exactly that, where the task's own report would fail on the missing
+    # program XML.
+    is_file_holder = job.status == Job.Status.FILE_HOLDER
+    if is_file_holder:
+        report_class = GenericReport
+
     if report_class is None:
         logger.info(
             "No report class registered for task '%s' - using GenericReport",
@@ -625,7 +633,7 @@ def generate_job_report(job: Job) -> ET.Element:
     logger.debug("Using report class: %s", report_class.__name__)
 
     # Step 2: Check for watched file (for running job reports)
-    watch_file = get_watched_file(task_name)
+    watch_file = None if is_file_holder else get_watched_file(task_name)
     supports_running = supports_running_report(task_name)
     logger.debug(
         "Report metadata - WATCHED_FILE: %s, RUNNING: %s", watch_file, supports_running

@@ -151,6 +151,67 @@ def read_receipt(job) -> Optional[dict]:
     }
 
 
+def _file_ref(job, param_name: str) -> Optional[dict]:
+    """The ``File`` row a job recorded for one of its parameters, as the
+    client needs it to download the file, or None when there is none."""
+    row = (models.File.objects.filter(job=job, job_param_name=param_name)
+           .select_related("type").order_by("-id").first())
+    if row is None:
+        return None
+    return {"id": row.id, "uuid": str(row.uuid), "name": row.name,
+            "type": row.type.name if row.type_id else None,
+            "annotation": row.annotation or ""}
+
+
+def event_evidence(job, event_idx: int) -> Optional[dict]:
+    """What a viewer needs to show one event of one receipt: its event map,
+    its autobuilt pose and the dictionary the pose was built with, as
+    ``File`` rows, and where and how to look.
+
+    The files are found by the qualified parameter name the glean recorded,
+    ``EVENTS[k].EVENT_MAP``, where ``k`` is the event's *position* in the
+    receipt's list -- found here by matching ``EVENT_IDX``, never assumed
+    equal to it. ``contour`` is the display contour, falling back to the
+    optimal one (both absolute map units, not sigma), else None.
+
+    None when the receipt cannot be read or has no event of that number.
+    """
+    receipt = read_receipt(job)
+    if receipt is None:
+        return None
+    try:
+        event_idx = int(event_idx)
+    except (TypeError, ValueError):
+        return None
+    event = next((e for e in receipt["events"] if e.get("event_idx") == event_idx), None)
+    if event is None:
+        return None
+    prefix = f"EVENTS[{event['position']}]"
+    event_map = _file_ref(job, f"{prefix}.EVENT_MAP")
+    pose = _file_ref(job, f"{prefix}.POSE")
+    dictionary = _file_ref(job, "DICT")
+    contour = event.get("display_contour")
+    if contour is None:
+        contour = event.get("optimal_contour")
+    return {
+        "receipt_job_id": job.id,
+        "dtag": receipt["dtag"],
+        "event_idx": event_idx,
+        "position": event["position"],
+        "site_idx": event.get("site_idx"),
+        "centroid": event.get("centroid"),
+        "ligand_id": event.get("ligand_id"),
+        "display_contour": event.get("display_contour"),
+        "optimal_contour": event.get("optimal_contour"),
+        "contour": contour,
+        "event_map": event_map,
+        "pose": pose,
+        "dictionary": dictionary,
+        "has_map": event_map is not None,
+        "has_pose": pose is not None,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Reading every receipt of a campaign
 # ---------------------------------------------------------------------------

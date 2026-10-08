@@ -80,9 +80,9 @@ function getFileDisplayLabel(file: CCP4File): string {
   return file.name;
 }
 
-// Refinement tasks whose finished jobs carry ligand-bound coordinates.
-// Mirrors REFINE_TASK_NAMES in server/ccp4i2/lib/campaign_scene.py and the
-// auto-select set in the campaign Moorhen page.
+// Fallback for a server that sends no current_model_job: the tasks whose
+// finished jobs carry a model to show. The server's rule (latest refinement,
+// else DIMPLE) is lib/campaign_matrix.py choose_current_model.
 const REFINEMENT_TASK_NAMES = ["refmac", "i2Refmac", "i2Dimple", "dimple"];
 
 interface CampaignDetailPageProps {
@@ -107,6 +107,8 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
     isLoading: membersLoading,
     mutate: mutateMemberProjects,
   } = campaignsApi.useMemberProjects(campaignId, 5000);
+  // The sites give the overview table its per-site columns.
+  const { data: sites } = campaignsApi.useSites(campaignId, 5000);
 
   // Extract reg_ids from member project names for SMILES lookup
   const regIds =
@@ -229,7 +231,9 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
 
   return (
     <Box sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
-      <Container sx={{ my: 3 }}>
+      {/* The full window width, not the "lg" cap: a campaign with a dozen
+          annotated sites needs a column for each beside the dataset's own. */}
+      <Container maxWidth={false} sx={{ my: 3 }}>
         <Stack spacing={3}>
           {/* Header with actions and collapsible campaign info */}
           <Paper sx={{ p: 2 }}>
@@ -496,9 +500,11 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                     );
                   }}
                   disabled={!memberProjects?.some(p =>
-                    p.jobs?.some(j =>
-                      REFINEMENT_TASK_NAMES.includes(j.task_name) && j.status === 6
-                    )
+                    p.current_model_job !== undefined
+                      ? p.current_model_job !== null
+                      : p.jobs?.some(j =>
+                          REFINEMENT_TASK_NAMES.includes(j.task_name) && j.status === 6
+                        )
                   )}
                 >
                   Summary View
@@ -547,7 +553,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 onRefresh={mutateMemberProjects}
                 onDelete={setDeleteProject}
                 onProjectClick={handleProjectClick}
-                maxHeight={500}
+                sites={sites}
               />
             )}
           </Paper>

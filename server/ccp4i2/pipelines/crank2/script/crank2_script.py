@@ -514,10 +514,13 @@ class crank2(CPluginScript):
       # _prepareProcessExecution() gets the user's program-location
       # preferences put in front of PATH for it; an in-process pipeline has to
       # do the same for itself, or a correctly configured SHELXDIR works for
-      # some tasks and not for others.
+      # some tasks and not for others. Naming the declared programs lets an
+      # exePaths entry reach prasa and cparrot too, not only SHELX.
       try:
         from ccp4i2.config.program_discovery import program_search_path
-        os.environ['PATH'] = program_search_path(self.workDirectory, os.environ.get('PATH'))
+        os.environ['PATH'] = program_search_path(
+          self.workDirectory, os.environ.get('PATH'),
+          names=self.declaredPrograms())
       except Exception:
         pass  # never let discovery stop a job from running
       try:

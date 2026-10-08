@@ -394,6 +394,16 @@ class CPluginScript(CData):
     # case could be expressed at all.
     OPTIONAL_PROGRAMS = ()
 
+    # Set when the task finds its own program by means the program-location
+    # preferences do not reach: a path computed from $CCP4, a vendor's own
+    # setup script, an interpreter running the program's Python package. Say
+    # how, in a few words a user can read ("ARP/wARP's own setup"). The
+    # Preferences -> Program locations page offers only programs whose setting
+    # takes effect, so TASKCOMMAND is then left off it and the task is named
+    # as one the page cannot relocate. AUXILIARY_ and OPTIONAL_PROGRAMS are
+    # unaffected: those are resolved through the preferences whatever this says.
+    PROGRAM_LOCATED_BY = ''
+
     # Declarative log scanning -- mechanism M2 of
     # docs/error-handling-remediation.md. A great many CCP4 programs exit 0
     # while writing a fatal message to their log, so a clean exit code is not
@@ -1409,6 +1419,30 @@ class CPluginScript(CData):
         self._checkProgramAvailable(error)
         return error
 
+    @classmethod
+    def declaredPrograms(cls) -> list:
+        """The programs this task declares it runs, by bare name.
+
+        TASKCOMMAND, AUXILIARY_PROGRAMS and OPTIONAL_PROGRAMS, in that order,
+        without duplicates. TASKCOMMAND is left out when the task locates its
+        program itself (PROGRAM_LOCATED_BY) or names it by a path rather than
+        a name, since no preference can relocate either. This is the set the
+        Preferences -> Program locations page offers for the task, and the set
+        the job's PATH carries preference-resolved links for, so the two agree.
+        """
+        from ccp4i2.config.program_discovery import names_a_path
+
+        names = []
+        taskcommand = getattr(cls, 'TASKCOMMAND', None)
+        if (taskcommand and not getattr(cls, 'PROGRAM_LOCATED_BY', '')
+                and not names_a_path(str(taskcommand))):
+            names.append(str(taskcommand))
+        for name in list(getattr(cls, 'AUXILIARY_PROGRAMS', ()) or ()) + \
+                list(getattr(cls, 'OPTIONAL_PROGRAMS', ()) or ()):
+            if name and str(name) not in names:
+                names.append(str(name))
+        return names
+
     def _checkProgramAvailable(self, error: CErrorReport) -> None:
         """Pre-flight check that the task's programs can be found.
 
@@ -2268,7 +2302,9 @@ class CPluginScript(CData):
         env = os.environ.copy()
         try:
             from ccp4i2.config.program_discovery import program_search_path
-            env['PATH'] = program_search_path(self.workDirectory, env.get('PATH'))
+            env['PATH'] = program_search_path(
+                self.workDirectory, env.get('PATH'),
+                names=self.declaredPrograms())
         except Exception:
             pass  # never let discovery stop a job from running
 

@@ -18,6 +18,8 @@ import {
   removeMap,
   setActiveMap,
   setContourLevel,
+  setMapColours,
+  setMapRadius,
   setTheme,
   setBackgroundColor,
   setOrigin,
@@ -93,6 +95,13 @@ import {
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
 import { candidateLigandCodes, placeLigand } from "../../lib/ligand-codes";
+import {
+  evidenceLoadPlan,
+  fetchEventEvidence,
+  fileDownloadUrl,
+  hexToRgb01,
+  type EventRef,
+} from "../../lib/event-evidence";
 import type {
   MaskMap,
   MoorhenScene,
@@ -121,6 +130,10 @@ export interface CampaignMoorhenWrapperProps {
   /** A site to move to once the scene is up — the `site` URL parameter, which
    *  is how a verdict chip in the campaign overview opens its site. */
   initialSiteId?: number | null;
+  /** A PanDDA event whose evidence (event map, autobuilt pose) to load over
+   *  the dataset's model once it is in view -- the `event` URL parameter,
+   *  which is how a filled box in the campaign's site matrix opens. */
+  initialEvent?: EventRef | null;
   sites: CampaignSite[];
   onAddSite: (site: NewCampaignSite) => Promise<void>;
   onUpdateSite: (
@@ -144,6 +157,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   summaryScene,
   viewParam,
   initialSiteId,
+  initialEvent,
   sites,
   onAddSite,
   onUpdateSite,
@@ -938,9 +952,20 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMapFile = async (
     url: string,
     mapName: string,
-    opts: { isMask?: boolean; description?: string } = {}
-  ) => {
-    if (!commandCentre.current) return;
+    opts: {
+      isMask?: boolean;
+      description?: string;
+      /** The map's row label in the control panel, where its type would mislead
+       *  (a PanDDA event map is neither 2Fo-Fc nor Fo-Fc). */
+      shortLabel?: string;
+      /** Absolute map units (a PanDDA event map's display contour). */
+      contourLevel?: number | null;
+      /** "#rrggbb" */
+      colour?: string;
+      radius?: number;
+    } = {}
+  ): Promise<moorhen.Map | undefined> => {
+    if (!commandCentre.current) return undefined;
     let newMap: moorhen.Map | undefined;
     try {
       // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
@@ -959,6 +984,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
       if (opts.description) (newMap as any).ccp4i2Description = opts.description;
+      if (opts.shortLabel) (newMap as any).ccp4i2ShortLabel = opts.shortLabel;
       if (opts.isMask) {
         markMaskMap(newMap);
       }
@@ -966,9 +992,23 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       if (opts.isMask) {
         await applyMaskDefaults(dispatch, newMap as any);
       }
+      const molNo = newMap.molNo;
+      if (opts.radius != null) {
+        dispatch(setMapRadius({ molNo, radius: opts.radius } as never));
+      }
+      const rgb = opts.colour ? hexToRgb01(opts.colour) : null;
+      if (rgb) dispatch(setMapColours({ molNo, rgb } as never));
+      if (opts.contourLevel != null && !Number.isNaN(opts.contourLevel)) {
+        dispatch(setContourLevel({ molNo, contourLevel: opts.contourLevel } as never));
+        newMap.drawMapContour().catch((err: Error) => {
+          console.error("Failed to redraw map contour at the requested level:", err);
+        });
+      }
+      return newMap;
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch map file from ${url}`);
+      return undefined;
     }
   };
 
@@ -1019,6 +1059,50 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     appliedInitialSite.current = true;
     handleGoToSite(site);
   }, [initialSiteId, cootInitialized, contentReady, sites, handleGoToSite]);
+
+  // Load the evidence for the event named in the URL: its event map at the
+  // receipt's display contour, and its autobuilt pose with the dictionary
+  // PanDDA built it from, attached to the pose alone. Over the dataset's own
+  // model, once that is in view, without moving the camera (the site effect
+  // above has put it where the event is). Fires once per page load, and only
+  // for the job the page opened on: switching dataset clears the view, and
+  // the event belongs to the first one. What the receipt lacks is simply not
+  // loaded -- the model is already there to look at.
+  const appliedInitialEvent = useRef(false);
+  useEffect(() => {
+    if (appliedInitialEvent.current) return;
+    if (!initialEvent || !cootInitialized || !contentReady) return;
+    if (fileSource.type !== "job") return;
+    appliedInitialEvent.current = true;
+    const token = loadToken.current;
+    const stillCurrent = () => loadToken.current === token;
+    (async () => {
+      const evidence = await fetchEventEvidence(initialEvent);
+      if (!evidence || !stillCurrent()) return;
+      const plan = evidenceLoadPlan(evidence);
+      if (plan.map) {
+        await fetchMapFile(fileDownloadUrl(plan.map.fileId), plan.map.name, {
+          description: evidence.event_map?.annotation || plan.map.name,
+          shortLabel: `Event ${evidence.event_idx}`,
+          contourLevel: plan.map.contourLevel,
+          colour: plan.map.colour,
+          radius: plan.map.radius,
+        });
+      }
+      if (plan.pose && stillCurrent()) {
+        const dictionaries = evidence.dictionary
+          ? await fetchDictionaryTexts([evidence.dictionary])
+          : [];
+        await fetchMolecule(fileDownloadUrl(plan.pose.fileId), plan.pose.name, dictionaries, {
+          centre: false,
+        });
+      }
+      dispatch(setRequestDrawScene(true));
+    })().catch((err) => console.warn("[event evidence] could not load:", err));
+    // fetchMapFile and fetchMolecule are closures over refs, and the guard
+    // makes this run once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialEvent, cootInitialized, contentReady, fileSource, dispatch]);
 
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(

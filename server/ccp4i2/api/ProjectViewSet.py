@@ -27,6 +27,7 @@ from ccp4i2_api.file_grants import grant_ttl, mint_grant
 from ..db import models
 from ..db.delete_project_directory import remove_project_directory
 from ..lib.async_create_job import create_job_async
+from ..lib.kpi_labels import kpi_labels
 from ..lib.kpi_values import kpi_map
 from ..lib.response import api_error, api_success
 from ..lib.utils.files.preview import preview_file
@@ -523,9 +524,12 @@ class ProjectViewSet(ModelViewSet):
                 if float_vals or char_vals:
                     logger.debug(f"Job {job.number} KPIs: float={float_vals}, char={char_vals}")
 
+                # labels: what each key is called on screen (#596). The keys
+                # are field names and stay so; the client shows these.
                 job_data["kpis"] = {
                     "float_values": float_vals,
                     "char_values": char_vals,
+                    "labels": kpi_labels([*char_vals, *float_vals]),
                 }
 
                 # Recursively build children

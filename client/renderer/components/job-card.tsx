@@ -1,4 +1,4 @@
-import { formatKpiValue } from "../lib/format-kpi";
+import { formatKpiValue, kpiLabel } from "../lib/format-kpi";
 import { useApi } from "../api";
 import {
   Button,
@@ -9,13 +9,9 @@ import {
   Chip,
   Collapse,
   Grid2,
-  List,
-  ListItem,
   Menu,
   MenuItem,
-  Paper,
   styled,
-  Toolbar,
 } from "@mui/material";
 import { Job, isTerminalJobStatus } from "../types/models";
 import { useCallback, useMemo, useState } from "react";
@@ -32,7 +28,7 @@ import {
 import { useRouter } from "next/navigation";
 import { JobHeader } from "./job-header";
 import { useDeleteDialog } from "../providers/delete-dialog";
-import { CCP4i2JobAvatar } from "./job-avatar";
+import { confirmJobDeletion } from "./job-deletion-details";
 import { useProject } from "../utils";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
@@ -49,6 +45,7 @@ const MyCard = styled(Card)(({ theme }) => ({
 interface EmbeddedKPIs {
   float_values: Record<string, number>;
   char_values: Record<string, string>;
+  labels?: Record<string, string>;
 }
 
 interface JobCardProps {
@@ -88,15 +85,6 @@ export const JobCard: React.FC<JobCardProps> = ({
     return files?.filter((aFile) => aFile.job === job.id);
   }, [files, job]);
 
-  const dependentJobs = useMemo(() => {
-    if (jobs && job) {
-      return jobs.filter(
-        (possible_child: Job) => possible_child.parent == job.id,
-        []
-      );
-    }
-  }, [jobs]);
-
   const kpiContent = useMemo(() => {
     if (!kpis) return null;
 
@@ -104,7 +92,7 @@ export const JobCard: React.FC<JobCardProps> = ({
       ([key, value]) => (
         <Chip
           key={`char_${key}`}
-          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          avatar={<div style={{ width: "5rem" }}>{kpiLabel(key, kpis.labels)}</div>}
           label={value}
         />
       )
@@ -115,7 +103,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         <Chip
           key={`float_${key}`}
           sx={{ backgroundColor: "#DFD" }}
-          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          avatar={<div style={{ width: "5rem" }}>{kpiLabel(key, kpis.labels)}</div>}
           label={formatKpiValue(value)}
         />
       )
@@ -190,44 +178,27 @@ export const JobCard: React.FC<JobCardProps> = ({
   };
 
   const handleDelete = useCallback(() => {
-    if (deleteDialog)
-      deleteDialog({
-        type: "show",
-        what: `${job.number}: ${job.title}`,
-        onDelete: () => {
-          api.delete(`jobs/${job.id}`).then(() => {
+    confirmJobDeletion({
+      api,
+      deleteDialog,
+      jobIds: [job.id],
+      what: `${job.number}: ${job.title}`,
+      isBlocked: (plan) =>
+        plan.additional_dependents.some(
+          (dependentJob: Job) => !isTerminalJobStatus(dependentJob.status)
+        ),
+      onDelete: (deleteImportedFiles) => {
+        api
+          .delete(`jobs/${job.id}?delete_imported_files=${deleteImportedFiles}`)
+          .then(() => {
             mutateJobs();
             if (setJobId && jobId === job.id) setJobId(null);
           });
-        },
-        children: [
-          <Paper sx={{ maxHeight: "10rem", overflowY: "auto" }}>
-            {dependentJobs && dependentJobs?.length > 0 && (
-              <>
-                The following {dependentJobs.length} dependent jobs would be
-                deleted
-                <List dense>
-                  {dependentJobs &&
-                    dependentJobs.map((dependentJob: Job) => {
-                      return (
-                        <ListItem key={dependentJob.uuid}>
-                          <Toolbar>
-                            <CCP4i2JobAvatar job={dependentJob} />
-                            {`${dependentJob.number}: ${dependentJob.title}`}
-                          </Toolbar>
-                        </ListItem>
-                      );
-                    })}
-                </List>
-              </>
-            )}
-          </Paper>,
-        ],
-        deleteDisabled: !!dependentJobs?.some(
-          (dependentJob: Job) => !isTerminalJobStatus(dependentJob.status)
-        ),
-      });
-  }, [dependentJobs, mutateJobs]);
+      },
+    }).catch((error) =>
+      console.error("Failed to fetch what deleting the job would remove:", error)
+    );
+  }, [api, deleteDialog, job, jobId, setJobId, mutateJobs]);
 
   const renderMenu = (
     <Menu

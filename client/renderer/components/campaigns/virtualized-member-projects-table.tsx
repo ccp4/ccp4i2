@@ -33,17 +33,33 @@ import {
   Science as MoorhenIcon,
   Close as CloseIcon,
   Info as InfoIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { apiPost, apiDelete } from "../../api-fetch";
 import {
+  CampaignSite,
   MemberProjectWithSummary,
   CampaignJobInfo,
   parseDatasetFilename,
 } from "../../types/campaigns";
 import { SmilesView } from "./smiles-view";
+import { estimateRowHeight, hasSmiles } from "../../lib/campaign-row-height";
 import { ProjectTagChips } from "../project-tag-chips";
 import { SiteVerdictChips } from "./site-verdict-chips";
+import {
+  SITE_COLUMN_WIDTH,
+  SiteColumnHeaderContent,
+  SiteMatrixCellContent,
+  SiteMatrixLegend,
+} from "./site-matrix";
+import {
+  canShowMatrix,
+  evaluatedCount,
+  matrixSites,
+} from "../../lib/site-matrix";
+import { evaluationNote } from "../../lib/site-verdicts";
 
 // Status ID to color mapping (matching legacy CCP4i2)
 
@@ -58,10 +74,30 @@ interface VirtualizedMemberProjectsTableProps {
   onDelete: (project: MemberProjectWithSummary) => void;
   onProjectClick: (project: MemberProjectWithSummary) => void;
   /** Maximum height of the table container (default: 500) */
-  maxHeight?: number;
+  maxHeight?: number | string;
+  /**
+   * The campaign's sites. With them, and a server that sends per-site cells,
+   * the table has one column per site; otherwise a single Sites chips column.
+   */
+  sites?: CampaignSite[];
 }
 
+/** Columns that are always there: actions, name, ligand, three KPIs, jobs. */
+const FIXED_COLUMN_COUNT = 7;
+/** Width of the evaluated-count column that accompanies the site columns. */
+const EVALUATED_COLUMN_WIDTH = 56;
+/**
+ * The narrowest the table may be without its site columns. The project name
+ * and jobs columns have no fixed width, so without a floor a wide matrix
+ * would squeeze them to nothing instead of scrolling.
+ */
+const BASE_MIN_WIDTH = 60 + 180 + 120 + 3 * 96 + 180;
+
 const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
+/** Whether this viewer folded the Jobs column (localStorage). */
+const JOBS_COLLAPSED_KEY = "campaign-jobs-column-collapsed";
+/** The folded Jobs column: a count and the unfold button. */
+const JOBS_COLLAPSED_WIDTH = 72;
 
 export function VirtualizedMemberProjectsTable({
   projects,
@@ -72,7 +108,8 @@ export function VirtualizedMemberProjectsTable({
   onRefresh,
   onDelete,
   onProjectClick,
-  maxHeight = 500,
+  maxHeight = "max(420px, calc(100vh - 320px))",
+  sites,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const [showHint, setShowHint] = useState(false);
@@ -90,15 +127,57 @@ export function VirtualizedMemberProjectsTable({
     localStorage.setItem(HINT_DISMISSED_KEY, "true");
   }, []);
 
+  // The Jobs column can be folded to a count, leaving the width to the site
+  // columns; remembered per viewer.
+  const [jobsCollapsed, setJobsCollapsed] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(JOBS_COLLAPSED_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
+  const toggleJobs = useCallback(() => {
+    setJobsCollapsed((was) => {
+      try {
+        localStorage.setItem(JOBS_COLLAPSED_KEY, String(!was));
+      } catch {
+        /* a private window: not remembered, still works */
+      }
+      return !was;
+    });
+  }, []);
   // Set up virtualizer for windowed rendering
   const rowVirtualizer = useVirtualizer({
     count: projects.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 85, // Estimated row height (accounts for SMILES and tags)
+    // A guess per row from what it will show, so the space kept for rows not
+    // yet drawn is close to the truth: a flat 85 px left gaps (or overlaps)
+    // that jumped as rows were measured, folded rows being ~56 px and a row
+    // of fifteen jobs three lines tall.
+    estimateSize: (index) =>
+      estimateRowHeight(projects[index], {
+        jobsCollapsed,
+        showSubJobs,
+        hasSmiles: hasSmiles(projects[index], smilesMap),
+      }),
     overscan: 5, // Render 5 extra rows above/below viewport
   });
 
   const virtualItems = rowVirtualizer.getVirtualItems();
+
+  // Row heights change with the jobs shown; measure them again.
+  useEffect(() => {
+    rowVirtualizer.measure();
+  }, [jobsCollapsed, rowVirtualizer]);
+
+  // One column per site when the server sends per-site cells; the chips
+  // column otherwise (an older server).
+  const siteColumns = useMemo(
+    () => (canShowMatrix(sites, projects) ? matrixSites(sites) : null),
+    [sites, projects]
+  );
+  const columnCount =
+    FIXED_COLUMN_COUNT + (siteColumns ? 1 + siteColumns.length : 1);
 
   if (projects.length === 0) {
     return (
@@ -135,6 +214,7 @@ export function VirtualizedMemberProjectsTable({
           </Typography>
         </Alert>
       </Collapse>
+      {siteColumns && <SiteMatrixLegend />}
       <TableContainer
       ref={parentRef}
       sx={{
@@ -142,17 +222,71 @@ export function VirtualizedMemberProjectsTable({
         overflow: "auto",
       }}
     >
-      <Table stickyHeader size="small" sx={{ tableLayout: "fixed" }}>
+      <Table
+        stickyHeader
+        size="small"
+        sx={{
+          tableLayout: "fixed",
+          // Wide matrices scroll inside the container rather than squeezing
+          // the name and jobs columns or widening the page.
+          minWidth: siteColumns
+            ? BASE_MIN_WIDTH +
+              EVALUATED_COLUMN_WIDTH +
+              siteColumns.length * SITE_COLUMN_WIDTH
+            : undefined,
+        }}
+      >
         <TableHead>
           <TableRow>
             <TableCell width={60}>Actions</TableCell>
             <TableCell>Project Name</TableCell>
             <TableCell width={120}>Ligand</TableCell>
-            <TableCell align="center" width={80}>Resolution</TableCell>
-            <TableCell align="center" width={80}>R-Factor</TableCell>
-            <TableCell align="center" width={80}>R-Free</TableCell>
-            <TableCell width={190}>Sites</TableCell>
-            <TableCell>Jobs</TableCell>
+            <TableCell align="center" width={96}>Resolution</TableCell>
+            <TableCell align="center" width={96}>R-Factor</TableCell>
+            <TableCell align="center" width={96}>R-Free</TableCell>
+            {siteColumns ? (
+              <>
+                <TableCell
+                  align="center"
+                  width={EVALUATED_COLUMN_WIDTH}
+                  sx={{ verticalAlign: "bottom", px: 0.5 }}
+                >
+                  <Tooltip title="Sites with a verdict in this dataset, of the campaign's sites">
+                    <span>Eval.</span>
+                  </Tooltip>
+                </TableCell>
+                {siteColumns.map((site) => (
+                  <TableCell
+                    key={site.id}
+                    align="center"
+                    width={SITE_COLUMN_WIDTH}
+                    sx={{ verticalAlign: "bottom", px: 0, py: 0.5 }}
+                  >
+                    <SiteColumnHeaderContent site={site} />
+                  </TableCell>
+                ))}
+              </>
+            ) : (
+              <TableCell width={190}>Sites</TableCell>
+            )}
+            <TableCell width={jobsCollapsed ? JOBS_COLLAPSED_WIDTH : undefined}>
+              <Stack direction="row" alignItems="center" spacing={0.25}>
+                <span>Jobs</span>
+                <Tooltip title={jobsCollapsed ? "Show the jobs" : "Fold the jobs to a count"}>
+                  <IconButton
+                    size="small"
+                    aria-label={jobsCollapsed ? "Show the jobs" : "Fold the jobs column"}
+                    onClick={toggleJobs}
+                  >
+                    {jobsCollapsed ? (
+                      <ChevronRightIcon fontSize="small" />
+                    ) : (
+                      <ChevronLeftIcon fontSize="small" />
+                    )}
+                  </IconButton>
+                </Tooltip>
+              </Stack>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -160,7 +294,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && virtualItems[0].start > 0 && (
             <TableRow>
               <TableCell
-                colSpan={8}
+                colSpan={columnCount}
                 sx={{
                   height: virtualItems[0].start,
                   padding: 0,
@@ -186,6 +320,8 @@ export function VirtualizedMemberProjectsTable({
                 onProjectClick={() => onProjectClick(project)}
                 virtualIndex={virtualRow.index}
                 measureElement={rowVirtualizer.measureElement}
+                siteColumns={siteColumns}
+                jobsCollapsed={jobsCollapsed}
               />
             );
           })}
@@ -194,7 +330,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && (
             <TableRow>
               <TableCell
-                colSpan={8}
+                colSpan={columnCount}
                 sx={{
                   height:
                     rowVirtualizer.getTotalSize() -
@@ -224,6 +360,10 @@ interface MemberProjectRowProps {
   onProjectClick: () => void;
   virtualIndex: number;
   measureElement: (element: HTMLElement | null) => void;
+  /** The site columns, or null when the chips column is shown instead. */
+  siteColumns: CampaignSite[] | null;
+  /** Show the job count instead of the job icons. */
+  jobsCollapsed: boolean;
 }
 
 function MemberProjectRow({
@@ -237,6 +377,8 @@ function MemberProjectRow({
   onProjectClick,
   virtualIndex,
   measureElement,
+  siteColumns,
+  jobsCollapsed,
 }: MemberProjectRowProps) {
   const router = useRouter();
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
@@ -501,69 +643,99 @@ function MemberProjectRow({
         />
       </TableCell>
 
-      {/* Sites - where something was found in this dataset */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
-        <SiteVerdictChips project={project} campaignId={campaignId} />
-      </TableCell>
+      {siteColumns ? (
+        <>
+          <EvaluatedCountCell project={project} sites={siteColumns} />
+          {siteColumns.map((site) => (
+            <TableCell
+              key={site.id}
+              align="center"
+              sx={{ px: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SiteMatrixCellContent
+                project={project}
+                site={site}
+                campaignId={campaignId}
+              />
+            </TableCell>
+          ))}
+        </>
+      ) : (
+        /* Sites - where something was found in this dataset */
+        <TableCell onClick={(e) => e.stopPropagation()}>
+          <SiteVerdictChips project={project} campaignId={campaignId} />
+        </TableCell>
+      )}
 
-      {/* Jobs - clickable icons matching legacy style */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
-        <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-          {visibleJobs.map((job) => (
-            <Tooltip
-              key={job.id}
-              title={
-                <Box>
-                  <Typography variant="body2" fontWeight="bold">
-                    {job.task_name}
-                  </Typography>
-                  <Typography variant="caption" display="block">
-                    Job {job.number}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ mt: 0.5, display: "block", color: "grey.400" }}
+      {/* Jobs - clickable icons matching legacy style, or folded to a count */}
+      {jobsCollapsed ? (
+        <TableCell>
+          <Tooltip title={`${visibleJobs.length} job(s); unfold the Jobs column to see them`}>
+            <Typography variant="body2" color="text.secondary">
+              {visibleJobs.length}
+            </Typography>
+          </Tooltip>
+        </TableCell>
+      ) : (
+        <TableCell onClick={(e) => e.stopPropagation()}>
+          <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
+            {visibleJobs.map((job) => (
+              <Tooltip
+                key={job.id}
+                title={
+                  <Box>
+                    <Typography variant="body2" fontWeight="bold">
+                      {job.task_name}
+                    </Typography>
+                    <Typography variant="caption" display="block">
+                      Job {job.number}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ mt: 0.5, display: "block", color: "grey.400" }}
+                    >
+                      Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
+                    </Typography>
+                  </Box>
+                }
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    "&:hover": { opacity: 0.8 },
+                  }}
+                  onClick={(e) => handleJobClick(job, e)}
+                  onContextMenu={(e) => handleJobContextMenu(e, job)}
+                >
+                  <Avatar
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      bgcolor: getStatusColour(job.status),
+                      border: "1px solid rgba(0,0,0,0.1)",
+                    }}
+                    src={`/svgicons/${job.task_name}.svg`}
                   >
-                    Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
+                    {job.task_name?.[0]?.toUpperCase()}
+                  </Avatar>
+                  <Typography variant="caption" sx={{ fontSize: "0.65rem" }}>
+                    {job.number}
                   </Typography>
                 </Box>
-              }
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  "&:hover": { opacity: 0.8 },
-                }}
-                onClick={(e) => handleJobClick(job, e)}
-                onContextMenu={(e) => handleJobContextMenu(e, job)}
-              >
-                <Avatar
-                  sx={{
-                    width: 32,
-                    height: 32,
-                    bgcolor: getStatusColour(job.status),
-                    border: "1px solid rgba(0,0,0,0.1)",
-                  }}
-                  src={`/svgicons/${job.task_name}.svg`}
-                >
-                  {job.task_name?.[0]?.toUpperCase()}
-                </Avatar>
-                <Typography variant="caption" sx={{ fontSize: "0.65rem" }}>
-                  {job.number}
-                </Typography>
-              </Box>
-            </Tooltip>
-          ))}
-          {visibleJobs.length === 0 && (
-            <Typography color="text.secondary" variant="body2">
-              No jobs
-            </Typography>
-          )}
-        </Stack>
-      </TableCell>
+              </Tooltip>
+            ))}
+            {visibleJobs.length === 0 && (
+              <Typography color="text.secondary" variant="body2">
+                No jobs
+              </Typography>
+            )}
+          </Stack>
+        </TableCell>
+      )}
 
       {/* Job context menu (right-click) */}
       <Menu
@@ -597,5 +769,35 @@ function MemberProjectRow({
         </MenuItem>
       </Menu>
     </TableRow>
+  );
+}
+
+/**
+ * How far through this dataset the evaluation has got, beside its site boxes.
+ * The boxes show which sites have verdicts; this says how many, so a row
+ * nobody has opened stands out without counting colours.
+ */
+function EvaluatedCountCell({
+  project,
+  sites,
+}: {
+  project: MemberProjectWithSummary;
+  sites: CampaignSite[];
+}) {
+  const { done, total, findings } = evaluatedCount(project, sites);
+  const note = evaluationNote(done, total, findings > 0);
+  const detail =
+    note?.detail ?? `All ${total} sites evaluated in this dataset.`;
+  return (
+    <TableCell align="center" sx={{ px: 0.5 }}>
+      <Tooltip title={detail}>
+        <Typography
+          variant="caption"
+          color={done === 0 ? "text.disabled" : "text.secondary"}
+        >
+          {done}/{total}
+        </Typography>
+      </Tooltip>
+    </TableCell>
   );
 }

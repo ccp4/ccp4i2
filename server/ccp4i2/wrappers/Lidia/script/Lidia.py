@@ -12,6 +12,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class Lidia(CPluginScript):
     TASKNAME = 'Lidia'
     TASKCOMMAND = 'lidia'
+    # startProcess() never launches TASKCOMMAND: _lidiaPath() looks beside the
+    # Coot executable and in $CCP4/coot_py2, so the page cannot relocate it.
+    PROGRAM_LOCATED_BY = 'its own lookup beside Coot'
     ASYNCHRONOUS = True
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},

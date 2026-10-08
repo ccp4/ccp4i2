@@ -218,3 +218,43 @@ def evaluation_changed(sender, instance, **kwargs):
         schedule_snapshot(instance.project)
     except Project.DoesNotExist:
         pass
+
+
+# ---------------------------------------------------------------------------
+# The CampaignEvent projection. Not a snapshot concern -- the rows are a cache
+# of what a receipt's params.xml says (docs/pandda-campaign-design.md, section
+# 10.2) -- but driven from here for the same reason the snapshots are: every
+# path that finishes a job (track_job, run_subjob, the legacy
+# updateJobStatus, an import that creates a finished job) saves the Job row.
+# ---------------------------------------------------------------------------
+
+#: Spelled out rather than imported, so this module keeps importing nothing
+#: beyond the models at load time. Must equal pandda_site_index.RECEIPT_TASK.
+_RECEIPT_TASK = "pandda_events"
+
+
+@receiver(post_save, sender=Job)
+def receipt_saved(sender, instance, created, **kwargs):
+    """Record a pandda_events receipt's events once its outputs are recorded.
+
+    By the time a job's status is saved as FINISHED or UNSATISFACTORY, the
+    runner has gleaned its files and written params.xml, so the record is
+    complete. Leaving those statuses (a rerun, deletion) drops the rows.
+    Fires only on creation or when the status changed, so routine saves of a
+    receipt cost nothing. A failure is logged and never reaches the save that
+    triggered it: the projection can always be rebuilt with
+    ``manage.py backfill_campaign_events``.
+    """
+    if instance.task_name != _RECEIPT_TASK:
+        return
+    if not created and "status" not in getattr(instance, _CHANGED, ()):
+        return
+    from ..lib.campaign_events import RECORDED_STATUSES, record_receipt
+
+    if created and instance.status not in RECORDED_STATUSES:
+        return
+    try:
+        record_receipt(instance)
+    except Exception:      # noqa: BLE001 - a cache must never fail a job
+        logger.exception("Could not record the events of receipt job %s",
+                         instance.number)

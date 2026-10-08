@@ -226,3 +226,51 @@ def test_every_explicit_executable_preference_is_settable_and_offered():
 
     for program, key in _EXECUTABLE_PREF.items():
         assert key in _PROGRAM_PREF_KEYS, f'{key} (for {program}) is not accepted by the preferences endpoint'
+
+
+# --- the Program locations page lists only what a setting reaches (#402) ----
+
+class _LocatesItsOwnProgram(CPluginScript):
+    TASKNAME = 'locatesitself'
+    TASKCOMMAND = 'vendor-driver-xyzzy'
+    PROGRAM_LOCATED_BY = "the vendor's own setup script"
+    OPTIONAL_PROGRAMS = ('helper-xyzzy',)
+
+
+class _NamesItsProgramByPath(CPluginScript):
+    TASKNAME = 'namesapath'
+    TASKCOMMAND = '/opt/somewhere/bin/prog'
+
+
+def test_declared_programs_lists_taskcommand_then_helpers():
+    assert _NeedsHelpers.declaredPrograms() == [
+        'no-such-program-xyzzy', 'no-such-helper-xyzzy']
+
+
+def test_a_self_located_taskcommand_is_not_offered():
+    """A setting cannot reach a program the task finds itself, so the page
+    must not offer it; helpers it runs on PATH are still reachable."""
+    assert _LocatesItsOwnProgram.declaredPrograms() == ['helper-xyzzy']
+
+
+def test_a_taskcommand_given_as_a_path_is_not_offered():
+    assert _NamesItsProgramByPath.declaredPrograms() == []
+
+
+def test_registry_offers_no_program_a_setting_cannot_reach():
+    from ccp4i2.config.program_discovery import names_a_path
+    from ccp4i2.core.tasks import self_located_tasks, task_commands
+
+    declared = task_commands()
+    assert not [n for n in declared if names_a_path(n)], \
+        'a program named by path can never be relocated'
+    located = self_located_tasks()
+    self_locating = {'clustalw', 'arp_warp_classic', 'morda_i2'}
+    for task in self_locating:
+        assert located.get(task), f'{task} finds its own program; say how'
+    for program, tasks in declared.items():
+        assert not set(tasks) & self_locating, \
+            f'{program} is offered for a task that locates its own program'
+    # Programs that a task reaches through the preferences stay listed.
+    assert 'i2Dimple' in declared.get('dimple', [])
+    assert 'phasertng_picard' in declared.get('phasertng.picard', [])

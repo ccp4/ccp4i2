@@ -34,6 +34,10 @@ class clustalw(CPluginScript):
         shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
         if "CCP4" in os.environ else "clustalw2"
     )
+    # Bundled with CCP4 and found there, so the Program locations page has
+    # nothing to offer for it (and on the slim server, where the bare name
+    # above would otherwise appear, a setting would never reach the worker).
+    PROGRAM_LOCATED_BY = 'CCP4 (libexec/clustalw2)'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}
     
