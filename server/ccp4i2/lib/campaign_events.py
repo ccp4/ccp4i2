@@ -369,7 +369,8 @@ def site_matrix(group, sites: List[models.CampaignSite],
 
     reference_cell = parent_cell(group) if events_by_receipt else None
 
-    site_dicts = [{"uuid": str(s.uuid), "origin": s.origin, "radius": s.radius}
+    # position, not origin: origin is Moorhen's (negated) view origin.
+    site_dicts = [{"uuid": str(s.uuid), "position": s.position, "radius": s.radius}
                   for s in sites]
     reach = site_reach(site_dicts)
     out: Dict[int, dict] = {}

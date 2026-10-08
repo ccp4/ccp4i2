@@ -25,7 +25,7 @@ CELL = [60.0, 60.0, 60.0, 90.0, 90.0, 90.0]
 
 
 def site(uuid, origin, radius=8.0):
-    return {"uuid": uuid, "origin": list(origin), "radius": radius}
+    return {"uuid": uuid, "position": list(origin), "radius": radius}
 
 
 def event(idx, centroid, probability=0.5, pose=True):
@@ -68,7 +68,7 @@ def test_radius_is_per_site():
 
 def test_a_site_without_a_radius_uses_the_default():
     cells = match_events_to_sites([event(1, (7.9, 0, 0))],
-                                  [{"uuid": "a", "origin": [0, 0, 0], "radius": None}])
+                                  [{"uuid": "a", "position": [0, 0, 0], "radius": None}])
     assert cells["a"]["event_idx"] == 1
     assert matrix.DEFAULT_SITE_RADIUS == 8.0
 
@@ -235,7 +235,7 @@ BAZ2B_5E9L = [80.919, 96.38, 57.81, 90.0, 90.0, 90.0]
 
 
 def test_a_small_cell_difference_near_the_origin_is_compared_directly():
-    reach = site_reach([{"origin": (-25.7, -9.3, 0.3)}])
+    reach = site_reach([{"position": (-25.7, -9.3, 0.3)}])
     assert 27 < reach < 28
     assert frame_mismatch(BAZ2B_5E9L, BAZ2B_PARENT, reach) is None
 
