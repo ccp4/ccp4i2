@@ -116,8 +116,13 @@ function CampaignPageContent() {
       const memberProject = memberProjects?.find(
         (p) => p.id === selectedMemberProjectId
       );
+      // The server names the dataset's current model when it can; that is
+      // what the overview's site boxes open, so a plain selection agrees.
+      if (memberProject?.current_model_job) {
+        return { type: "job" as const, jobId: memberProject.current_model_job.id };
+      }
       if (memberProject?.jobs) {
-        // Find the most recent finished refmac or dimple job
+        // Older server: the most recent finished refmac or dimple job
         const latestJob = [...memberProject.jobs]
           .filter((j) => j.status === 6) // FINISHED
           .filter((j) =>
