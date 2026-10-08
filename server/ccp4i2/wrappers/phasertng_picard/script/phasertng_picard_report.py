@@ -90,6 +90,10 @@ class phasertng_picard_report(Report):
 
         # Parse output files
         result = self._parse_result_cards(db_dir)
+        if not result:
+            # This phasertng writes result.json, not result.cards: take the
+            # same facts from there (lib/utils/formats/phasertng_cards.py)
+            result = self._result_from_json(db_dir)
         solutions = self._parse_dag_cards(db_dir)
         dag_dot = self._parse_dag_html_tree(db_dir)
 
@@ -125,6 +129,24 @@ class phasertng_picard_report(Report):
     # ------------------------------------------------------------------
     # Parsers
     # ------------------------------------------------------------------
+
+    def _result_from_json(self, db_dir):
+        from ccp4i2.lib.utils.formats.phasertng_cards import last_result_json, read_result_json
+        path = last_result_json(db_dir)
+        run = read_result_json(path) if path else {}
+        result = {}
+        if run.get("resolution"):
+            result["data resolution_available"] = str(run["resolution"])
+        if run.get("wilson_b") is not None:
+            result["anisotropy wilson_bfactor"] = str(run["wilson_b"])
+        if run.get("matthews_z") is not None:
+            result["matthews"] = (f"vm  {run.get('matthews_vm') or 0:.2f} probability  "
+                                  f"{run.get('matthews_probability') or 0:.2f} z  {int(run['matthews_z'])}")
+        if run.get("twinning_indicated") is not None:
+            result["twinning indicated"] = str(run["twinning_indicated"]).lower()
+        if run.get("wall_seconds") is not None:
+            result["time cumulative wall"] = str(run["wall_seconds"])
+        return result
 
     def _parse_result_cards(self, db_dir):
         """Parse result.cards from the highest-numbered rfac subdirectory.
@@ -430,6 +452,19 @@ class phasertng_picard_report(Report):
             tfz = float(tfz_str)
         except ValueError:
             return
+
+        # The whole-solution TFZ is the last pose's, placed in the context of
+        # the earlier ones, and vouches for nothing before it (CDK4: 14.9
+        # with the first component searched at 5). Judge on the weakest
+        # component's search TFZ, from Picard's narration.
+        from ccp4i2.lib.utils.formats.phasertng_cards import annotation_components
+        searched = [c["tfz"] for c in annotation_components(best.get("annotation", ""))
+                    if c.get("tfz") is not None]
+        if searched:
+            tfz = min(searched)
+            if len(searched) > 1:
+                parent.append("<p>Search TFZ per component, in the order placed: "
+                              + ", ".join(f"{z:.0f}" for z in searched) + ".</p>")
 
         if rfac > 60:
             # R-factor > 60% means the solution is likely wrong or incomplete
