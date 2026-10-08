@@ -306,6 +306,42 @@ def _job_ref(job) -> Optional[dict]:
             "task_name": job.task_name}
 
 
+#: The receipt KPI that says how many events PanDDA found for the dataset.
+EXPECTED_EVENTS_KPI = "nEventsExpected"
+
+
+def heal_receipts(receipt_ids: List[int], jobs_by_id: Dict[int, models.Job]) -> List[int]:
+    """Record the receipts that expect events but have no rows; their ids.
+
+    The rows are a projection the post_save receiver keeps, and a receipt can
+    be without them: a campaign from before the table existed, or a project
+    imported before its files were on disk. Each receipt records how many
+    events it expects (its nEventsExpected KPI), so a receipt that expects
+    some and has none is a gap, filled here, on the page that needs it. One
+    query when there are candidates; a receipt that expects none costs
+    nothing. Rerunnable: recording replaces, so a receipt whose files are
+    still missing is simply tried again next time.
+    """
+    if not receipt_ids:
+        return []
+    expecting = models.JobFloatValue.objects.filter(
+        job_id__in=receipt_ids, key_id=EXPECTED_EVENTS_KPI, value__gt=0,
+    ).values_list("job_id", flat=True)
+    healed = []
+    for job_id in expecting:
+        job = jobs_by_id.get(job_id)
+        if job is None:
+            continue
+        try:
+            if record_receipt(job):
+                healed.append(job_id)
+        except Exception:      # noqa: BLE001 - never fail the page over a cache
+            logger.exception("Could not record the events of receipt job %s", job.number)
+    if healed:
+        logger.info("Recorded the events of %d receipt(s) that had none", len(healed))
+    return healed
+
+
 def site_matrix(group, sites: List[models.CampaignSite],
                 jobs_by_project: Dict[int, list],
                 verdicts: Dict[tuple, str]) -> Dict[int, dict]:
@@ -324,6 +360,12 @@ def site_matrix(group, sites: List[models.CampaignSite],
         for event in models.CampaignEvent.objects.filter(
                 receipt_id__in=list(latest.values())):
             events_by_receipt.setdefault(event.receipt_id, []).append(event)
+        healed = heal_receipts(
+            [rid for rid in latest.values() if rid not in events_by_receipt],
+            {j.id: j for jobs in jobs_by_project.values() for j in jobs})
+        if healed:
+            for event in models.CampaignEvent.objects.filter(receipt_id__in=healed):
+                events_by_receipt.setdefault(event.receipt_id, []).append(event)
 
     reference_cell = parent_cell(group) if events_by_receipt else None
 

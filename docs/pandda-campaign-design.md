@@ -1157,6 +1157,14 @@ would go stale.
   is idempotent and is also the path after a restore or an import that
   bypasses `save()`. There is no data migration: the command is the decided
   route.
+* **Healed** by the page that reads it, so nobody has to remember the
+  command: `site_matrix` records any member's latest receipt that expects
+  events (its `nEventsExpected` KPI is above zero) but has no rows
+  (`campaign_events.heal_receipts`). That covers a campaign from before the
+  table (its first view fills it in, one receipt file read per dataset with
+  events) and a project imported before its files were on disk. One extra
+  query when some receipt has no rows; a receipt that expects none costs
+  nothing; healed rows are not recorded again.
 * **Not snapshotted**: nothing in it is user-authored.
 
 ### 10.3 A typed event-set `CDataFile` — **OPEN, default no**

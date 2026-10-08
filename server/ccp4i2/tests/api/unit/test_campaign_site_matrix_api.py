@@ -335,3 +335,39 @@ def test_site_radius_defaults_is_served_and_is_editable(
 
     listed = {s["name"]: s for s in client.get(base).json()}
     assert listed["P"]["radius"] == 4.5 and listed["Q"]["radius"] == 12.0
+
+
+# --------------------------------------------------------------------------
+# Self-healing: a receipt that expects events but has no rows is recorded by
+# the page that needs it (a campaign from before the table, a project
+# imported before its files were on disk).
+# --------------------------------------------------------------------------
+
+def _expect_events(receipt, count):
+    key, _ = models.JobValueKey.objects.get_or_create(
+        name=campaign_events.EXPECTED_EVENTS_KPI,
+        defaults={"description": "Events expected"})
+    models.JobFloatValue.objects.update_or_create(
+        job=receipt, key=key, defaults={"value": count})
+
+
+def test_the_page_records_a_receipt_that_expects_events_and_has_none(
+        bypass_api_permissions, test_project_path):
+    group = _campaign_with_a_run(test_project_path)
+    s1, _, _ = _sites(group)
+    drg, lig = _receipt_job("frag_drg"), _receipt_job("frag_lig")
+    _expect_events(drg, 2)
+    _expect_events(lig, 0)   # claims none: left alone, though it has events
+    models.CampaignEvent.objects.all().delete()
+
+    rows = _member_rows(group)
+
+    assert models.CampaignEvent.objects.filter(receipt=drg).count() == 2
+    assert rows["frag_drg"]["site_cells"][str(s1.uuid)]["event"]["event_idx"] == 1
+    assert not models.CampaignEvent.objects.filter(receipt=lig).exists()
+    assert rows["frag_lig"]["site_cells"][str(s1.uuid)]["event"] is None
+
+    # Healed once: the next load finds the rows and records nothing again.
+    with CaptureQueriesContext(connection) as again:
+        _member_rows(group)
+    assert not any("INSERT" in q["sql"] for q in again.captured_queries)
