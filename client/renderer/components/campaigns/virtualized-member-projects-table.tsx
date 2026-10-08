@@ -33,6 +33,8 @@ import {
   Science as MoorhenIcon,
   Close as CloseIcon,
   Info as InfoIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { apiPost, apiDelete } from "../../api-fetch";
@@ -88,9 +90,13 @@ const EVALUATED_COLUMN_WIDTH = 56;
  * and jobs columns have no fixed width, so without a floor a wide matrix
  * would squeeze them to nothing instead of scrolling.
  */
-const BASE_MIN_WIDTH = 60 + 180 + 120 + 3 * 80 + 180;
+const BASE_MIN_WIDTH = 60 + 180 + 120 + 3 * 96 + 180;
 
 const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
+/** Whether this viewer folded the Jobs column (localStorage). */
+const JOBS_COLLAPSED_KEY = "campaign-jobs-column-collapsed";
+/** The folded Jobs column: a count and the unfold button. */
+const JOBS_COLLAPSED_WIDTH = 72;
 
 export function VirtualizedMemberProjectsTable({
   projects,
@@ -129,6 +135,30 @@ export function VirtualizedMemberProjectsTable({
   });
 
   const virtualItems = rowVirtualizer.getVirtualItems();
+
+  // The Jobs column can be folded to a count, leaving the width to the site
+  // columns; remembered per viewer.
+  const [jobsCollapsed, setJobsCollapsed] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(JOBS_COLLAPSED_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
+  const toggleJobs = useCallback(() => {
+    setJobsCollapsed((was) => {
+      try {
+        localStorage.setItem(JOBS_COLLAPSED_KEY, String(!was));
+      } catch {
+        /* a private window: not remembered, still works */
+      }
+      return !was;
+    });
+  }, []);
+  // Row heights change with the jobs shown; measure them again.
+  useEffect(() => {
+    rowVirtualizer.measure();
+  }, [jobsCollapsed, rowVirtualizer]);
 
   // One column per site when the server sends per-site cells; the chips
   // column otherwise (an older server).
@@ -201,9 +231,9 @@ export function VirtualizedMemberProjectsTable({
             <TableCell width={60}>Actions</TableCell>
             <TableCell>Project Name</TableCell>
             <TableCell width={120}>Ligand</TableCell>
-            <TableCell align="center" width={80}>Resolution</TableCell>
-            <TableCell align="center" width={80}>R-Factor</TableCell>
-            <TableCell align="center" width={80}>R-Free</TableCell>
+            <TableCell align="center" width={96}>Resolution</TableCell>
+            <TableCell align="center" width={96}>R-Factor</TableCell>
+            <TableCell align="center" width={96}>R-Free</TableCell>
             {siteColumns ? (
               <>
                 <TableCell
@@ -229,7 +259,24 @@ export function VirtualizedMemberProjectsTable({
             ) : (
               <TableCell width={190}>Sites</TableCell>
             )}
-            <TableCell>Jobs</TableCell>
+            <TableCell width={jobsCollapsed ? JOBS_COLLAPSED_WIDTH : undefined}>
+              <Stack direction="row" alignItems="center" spacing={0.25}>
+                <span>Jobs</span>
+                <Tooltip title={jobsCollapsed ? "Show the jobs" : "Fold the jobs to a count"}>
+                  <IconButton
+                    size="small"
+                    aria-label={jobsCollapsed ? "Show the jobs" : "Fold the jobs column"}
+                    onClick={toggleJobs}
+                  >
+                    {jobsCollapsed ? (
+                      <ChevronRightIcon fontSize="small" />
+                    ) : (
+                      <ChevronLeftIcon fontSize="small" />
+                    )}
+                  </IconButton>
+                </Tooltip>
+              </Stack>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -264,6 +311,7 @@ export function VirtualizedMemberProjectsTable({
                 virtualIndex={virtualRow.index}
                 measureElement={rowVirtualizer.measureElement}
                 siteColumns={siteColumns}
+                jobsCollapsed={jobsCollapsed}
               />
             );
           })}
@@ -304,6 +352,8 @@ interface MemberProjectRowProps {
   measureElement: (element: HTMLElement | null) => void;
   /** The site columns, or null when the chips column is shown instead. */
   siteColumns: CampaignSite[] | null;
+  /** Show the job count instead of the job icons. */
+  jobsCollapsed: boolean;
 }
 
 function MemberProjectRow({
@@ -318,6 +368,7 @@ function MemberProjectRow({
   virtualIndex,
   measureElement,
   siteColumns,
+  jobsCollapsed,
 }: MemberProjectRowProps) {
   const router = useRouter();
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
@@ -607,64 +658,74 @@ function MemberProjectRow({
         </TableCell>
       )}
 
-      {/* Jobs - clickable icons matching legacy style */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
-        <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-          {visibleJobs.map((job) => (
-            <Tooltip
-              key={job.id}
-              title={
-                <Box>
-                  <Typography variant="body2" fontWeight="bold">
-                    {job.task_name}
-                  </Typography>
-                  <Typography variant="caption" display="block">
-                    Job {job.number}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ mt: 0.5, display: "block", color: "grey.400" }}
+      {/* Jobs - clickable icons matching legacy style, or folded to a count */}
+      {jobsCollapsed ? (
+        <TableCell>
+          <Tooltip title={`${visibleJobs.length} job(s); unfold the Jobs column to see them`}>
+            <Typography variant="body2" color="text.secondary">
+              {visibleJobs.length}
+            </Typography>
+          </Tooltip>
+        </TableCell>
+      ) : (
+        <TableCell onClick={(e) => e.stopPropagation()}>
+          <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
+            {visibleJobs.map((job) => (
+              <Tooltip
+                key={job.id}
+                title={
+                  <Box>
+                    <Typography variant="body2" fontWeight="bold">
+                      {job.task_name}
+                    </Typography>
+                    <Typography variant="caption" display="block">
+                      Job {job.number}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ mt: 0.5, display: "block", color: "grey.400" }}
+                    >
+                      Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
+                    </Typography>
+                  </Box>
+                }
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    "&:hover": { opacity: 0.8 },
+                  }}
+                  onClick={(e) => handleJobClick(job, e)}
+                  onContextMenu={(e) => handleJobContextMenu(e, job)}
+                >
+                  <Avatar
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      bgcolor: getStatusColour(job.status),
+                      border: "1px solid rgba(0,0,0,0.1)",
+                    }}
+                    src={`/svgicons/${job.task_name}.svg`}
                   >
-                    Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
+                    {job.task_name?.[0]?.toUpperCase()}
+                  </Avatar>
+                  <Typography variant="caption" sx={{ fontSize: "0.65rem" }}>
+                    {job.number}
                   </Typography>
                 </Box>
-              }
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  "&:hover": { opacity: 0.8 },
-                }}
-                onClick={(e) => handleJobClick(job, e)}
-                onContextMenu={(e) => handleJobContextMenu(e, job)}
-              >
-                <Avatar
-                  sx={{
-                    width: 32,
-                    height: 32,
-                    bgcolor: getStatusColour(job.status),
-                    border: "1px solid rgba(0,0,0,0.1)",
-                  }}
-                  src={`/svgicons/${job.task_name}.svg`}
-                >
-                  {job.task_name?.[0]?.toUpperCase()}
-                </Avatar>
-                <Typography variant="caption" sx={{ fontSize: "0.65rem" }}>
-                  {job.number}
-                </Typography>
-              </Box>
-            </Tooltip>
-          ))}
-          {visibleJobs.length === 0 && (
-            <Typography color="text.secondary" variant="body2">
-              No jobs
-            </Typography>
-          )}
-        </Stack>
-      </TableCell>
+              </Tooltip>
+            ))}
+            {visibleJobs.length === 0 && (
+              <Typography color="text.secondary" variant="body2">
+                No jobs
+              </Typography>
+            )}
+          </Stack>
+        </TableCell>
+      )}
 
       {/* Job context menu (right-click) */}
       <Menu

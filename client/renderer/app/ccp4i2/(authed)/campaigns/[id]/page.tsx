@@ -231,7 +231,9 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
 
   return (
     <Box sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
-      <Container sx={{ my: 3 }}>
+      {/* The full window width, not the "lg" cap: a campaign with a dozen
+          annotated sites needs a column for each beside the dataset's own. */}
+      <Container maxWidth={false} sx={{ my: 3 }}>
         <Stack spacing={3}>
           {/* Header with actions and collapsible campaign info */}
           <Paper sx={{ p: 2 }}>
