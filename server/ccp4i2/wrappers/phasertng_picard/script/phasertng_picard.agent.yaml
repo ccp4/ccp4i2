@@ -1,0 +1,557 @@
+task: phasertng_picard
+status: draft
+reviewed_by: []
+purpose: >
+  Automated likelihood molecular replacement with PhaserTNG's Picard: given
+  the reflections, the AU contents and one or more search models (each file
+  a separate component, or one file holding a whole complex), it decides the
+  number of copies from its own Matthews analysis, the order of search, the
+  space group within the point group and the model errors itself, places the
+  components one after another, and ends with a short coordinate refinement
+  of the best solution at its search resolution. No restrained refinement
+  follows inside the task.
+
+use_when:
+  - >
+    The AU holds several different molecules, you have one model of each
+    (one XYZIN file per component), and you want the program, not you, to
+    choose the search order, copies and space group: route B of
+    docs/multi-component-mr.md in its "let the program decide" form.
+    BetaBlip job 4 placed beta-lactamase then BLIP (search TFZs 22, 25) in
+    29 s.
+  - >
+    You have a complex template (one PDB file holding every component as
+    found in a homologous complex): give it as the ONE search model (route
+    A). CDK4/cyclin D1 job 2 placed the 6p8e template at search TFZ 20 in
+    the reference space group in 35 s, where the two chains given separately
+    (job 1) took 1119 s and placed the first at noise.
+  - >
+    One model of one kind of molecule and a quick, automatic placement with
+    the space group of the point group explored (Gamma job 1: TFZ 47.7 in
+    13 s).
+
+not_when:
+  - text: >
+      You want to choose the order, the copies of each component, or give
+      several superposed models of ONE component as an ensemble, or keep
+      each placement as a step you can inspect; or you want the placement
+      tested by Sheetbend and ten jelly-body REFMAC cycles in the same job.
+      (Picard sought each XYZIN file as a separate component in every run
+      here; what it does with two models of one molecule was not checked.)
+    instead: phaser_pipeline_phil
+  - text: >
+      One kind of molecule, one model whose identity you can state, and you
+      want the verdict to rest on a refinement R-free (the simple task
+      refines its placement; Picard does not).
+    instead: phaser_simple_phil
+  - text: >
+      No search model yet, only a sequence: find and prepare models first
+      (mrparse also writes a complex template when one PDB entry matches
+      several of your sequences).
+    instead: mrparse
+  - text: >
+      You want models found, trimmed, placed and refined for you from the
+      AU contents in one run, every candidate tried. Not for a complex to be
+      searched together.
+    instead: mrbump_basic
+  - text: >
+      The model was refined against this same crystal form (isomorphous);
+      no search is needed, only refinement.
+    instead: prosmart_refmac
+  - text: The data are a cryo-EM map, not reflections.
+    instead: molrep_map
+
+inputs:
+  - param: inputData.XYZIN
+    advice: >
+      A list; each file is one component, searched as one rigid body. For a
+      complex, a complex template as ONE file is the first choice when one
+      exists (route A; CDK4/cyclin D1: job 2 with 6p8e_BA_complex.pdb found
+      search TFZ 20 and the reference space group; job 1 with the two chains
+      as separate files placed CDK4 first at TFZ 5, Picard's own "Failure to
+      place, low tfz", and chose another space group). Otherwise one file
+      per kind of chain. Trim what will not match (flexible termini and
+      loops, ligands, chains of other molecules) with the atom selection:
+      the wrapper writes only the selected atoms (phasertng_picard.py
+      _prepare_model). There is no identity or RMS input: Picard estimates
+      each model's error itself.
+  - param: inputData.ASUIN
+    advice: >
+      Optional to the interface, but give the AU contents from
+      ProvideAsuContents: it is how Picard learns the sequences. The wrapper
+      does NOT pass copy numbers: it divides every kind's copies by their
+      greatest common divisor and writes that many records to
+      sequences.fasta (utils/phil_shims.py AsuContentShim), so contents of 2
+      CDK4 + 2 cyclin reach Picard as 1 + 1, and Picard picks the number of
+      copies of that unit (Composition z) from its own Matthews analysis.
+      For CDK4/cyclin D1 it chose z 1 (56% solvent; z 2 would be 12%), which
+      is right; the 2 + 2 contents given were wrong. A ratio (2 CDK4 : 1
+      cyclin) is kept. Read MATTHEWS_Z and check it against what you expect.
+  - param: inputData.HKLIN
+    advice: >
+      Merged intensities or amplitudes, in the space group from data
+      reduction; Picard tries every space group of the point group (CDK4: 8
+      alternatives). There is no free-R input: Picard reports "Free R flag
+      column not found" in all four runs here and computes its R-free on a
+      set of its own, so give the project's free set to the refinement
+      that follows, not to this task.
+
+results:
+  SOLUTIONS:
+    file: program.xml
+    xpath: .//Solutions
+    attribute: count
+    type: int
+    meaning: >
+      Number of solutions in best.1.dag.cards. 1 in all four evidence jobs.
+  COMPONENTS_SOUGHT:
+    file: program.xml
+    xpath: .//Solutions
+    attribute: components_sought
+    type: int
+    meaning: >
+      Poses Picard set out to place (seek_components): search models times
+      the copies IT chose, not the AU contents' count of chains. Gamma 1,
+      BetaBlip 4 2, CDK4 1 (two chains) 2, CDK4 2 (template) 1.
+  COMPLETE:
+    file: program.xml
+    xpath: .//Solutions
+    attribute: complete
+    type: str
+    meaning: >
+      "true" when Picard placed every pose it sought (seek_complete). It
+      says nothing about whether the placements are right: CDK4 job 1 is
+      "true" with its first component at search TFZ 5. "true" in all four
+      evidence jobs; "false" not seen.
+  COMPONENTS_PLACED:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]/Components
+    attribute: count
+    type: int
+    meaning: Poses in the best solution.
+  SPACEGROUP:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: spacegroup
+    type: str
+    meaning: >
+      Space group of the best solution, with spaces ("P 21 21 21"). Gamma
+      P 21 21 21, BetaBlip P 32 2 1, CDK4 job 1 P 2 21 21, CDK4 job 2
+      P 21 21 21.
+  DATA_SPACEGROUP:
+    optional: true
+    file: program.xml
+    xpath: .//Data
+    attribute: spacegroup
+    type: str
+    meaning: >
+      Space group of the data as Picard read them, WITHOUT spaces ("P22121"),
+      copied by the wrapper from Picard's own pathway file
+      (phasertng_picard/graph_report.xml, Space_Groups@info). The four
+      evidence jobs match the input MTZ (Gamma P212121, BetaBlip P3221, CDK4
+      P22121 twice). Absent in jobs before 2026-10-09.
+  SPACEGROUP_CHANGED:
+    optional: true
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: spacegroup_changed
+    type: str
+    meaning: >
+      "true" when the solution's space group is not the data's, compared by
+      symbol with spaces removed (phasertng_cards.same_spacegroup): CDK4 job
+      2 (P 21 21 21 from P22121) "true"; Gamma, BetaBlip and CDK4 job 1
+      "false". Picard writes no reflections in the new group (HKLOUT is set
+      in none of the four jobs), so "true" means the data must be changed
+      before refinement (first next step). Absent when the data's group
+      could not be read.
+  TFZ:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: tfz
+    type: float
+    meaning: >
+      TFZ of the WHOLE solution (zscore), which equals the LAST pose's TFZ,
+      placed in the context of the earlier ones: BetaBlip 31.29 (= blip's
+      pose), CDK4 job 1 14.92 (the second chain's, while the first had 5).
+      Not the per-search TFZ Phaser's cutoff is for; the report's "strong
+      solution" message uses it. Not used by the verdict.
+  LLG:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: llg
+    type: float
+    meaning: >
+      LLG after Picard's final refinement, at its seek resolution: Gamma
+      970.0, BetaBlip 148.1, CDK4 134.6 and 145.9. Not comparable with a
+      classic Phaser LLG at full resolution (BetaBlip classic job 4: 1054).
+  RFACTOR:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: rfactor
+    type: float
+    meaning: >
+      Picard's R-work in PERCENT after its coordinate refinement at DMIN:
+      Gamma 23.87, BetaBlip 38.79, CDK4 47.01 and 45.96.
+  RFREE:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: rfree
+    type: float
+    meaning: >
+      Picard's R-free in PERCENT (from the log's "Best Solution:" line), on
+      a free set of Picard's own, not the project's: Gamma 26.85, BetaBlip
+      46.79, CDK4 46.68 and 46.69. A correct, complete BetaBlip solution
+      reads 46.79 here and 0.343 after classic Phaser's Sheetbend + ten
+      REFMAC cycles: this is not a refinement R-free.
+  DMIN:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: dmin
+    type: float
+    meaning: >
+      Resolution of Picard's R-factor calculation: 2.80 (Gamma, data to
+      1.79; CDK4, data to 2.28), 3.00 (BetaBlip).
+  PACKS:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: packs
+    type: str
+    meaning: >
+      Picard's packing flag: Y packs; X clashes; Z a high-TFZ solution
+      kept despite clashes; O high-TFZ overlap; U unknown (legend in each
+      log, "P Y/X/Z/O/U Packs/Clashes/High-Tfz-Clash/High-Tfz-Overlap/
+      Unknown"; Gamma log line 3823). Gamma and BetaBlip Y; both CDK4 jobs
+      Z, worst clash 5.1% and 5.4% against a 5% check (best.1.dag.cards
+      clash_worst, not in program.xml). Not used by the verdict.
+  SEARCH_TFZ_FIRST:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]/Components/Component[1]
+    attribute: search_tfz
+    type: float
+    meaning: >
+      Search TFZ of the FIRST component placed, from Picard's narration of
+      the translation search (TF=.../<z>z), which Picard prints as a whole
+      number, so 7.6 reads 7 and the bands below are coarse by one. Gamma 46,
+      BetaBlip 22 (beta), CDK4 job 1 5 (CDK4), CDK4 job 2 20 (template).
+  SEARCH_TFZ_SECOND:
+    optional: true
+    file: program.xml
+    xpath: .//Solutions/Solution[1]/Components/Component[2]
+    attribute: search_tfz
+    type: float
+    meaning: >
+      Search TFZ of the second component placed; absent with one. BetaBlip
+      25 (blip), CDK4 job 1 12 (cyclin).
+  SEARCH_TFZ_LAST:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]/Components/Component[last()]
+    attribute: search_tfz
+    type: float
+    meaning: >
+      Search TFZ of the last component placed (the same element as FIRST
+      with one component). With FIRST and SECOND it covers every component
+      of a solution of up to three; a fourth or later middle one is not
+      read. Two copies of ONE model are recorded wrongly (both get the
+      later copy's search: phasertng_cards.py keys the narration by tag).
+  FIRST_COMPONENT:
+    file: program.xml
+    xpath: .//Solutions/Solution[1]/Components/Component[1]
+    attribute: tag
+    type: str
+    meaning: >
+      Which model Picard placed first (its file name stem): CDK4 job 1
+      "6p8e_B_19-297" (CDK4), BetaBlip "beta".
+  MATTHEWS_Z:
+    file: program.xml
+    xpath: .//Composition
+    attribute: z
+    type: float
+    meaning: >
+      Copies of the AU-contents unit (the sequences as written, copies
+      divided by their common divisor) Picard chose: 1.0 in all four jobs.
+  MATTHEWS_PROBABILITY:
+    file: program.xml
+    xpath: .//Composition
+    attribute: probability
+    type: float
+    meaning: >
+      Picard's probability for that z: Gamma 0.97, BetaBlip 0.98, CDK4 0.43
+      (both). How it is normalised was not checked; the CDK4 log's table
+      gives z 2 only 12% solvent, so 0.43 is not doubt between 1 and 2.
+  TWINNING:
+    file: program.xml
+    xpath: .//Twinning
+    attribute: indicated
+    type: str
+    meaning: >
+      "true" when Picard's twin test indicates twinning (it then quadruples
+      its eLLG target, 225 to 900: CDK4 log line 2966). CDK4 "true",
+      Gamma and BetaBlip "false".
+  TNCS:
+    file: program.xml
+    xpath: .//TNCS
+    attribute: indicated
+    type: str
+    meaning: '"true" when Picard finds translational NCS. "false" in all four jobs.'
+  RESOLUTION:
+    file: program.xml
+    xpath: .//Data
+    attribute: resolution
+    type: float
+    meaning: High-resolution limit of the data. Gamma 1.79, BetaBlip 3.00, CDK4 2.28.
+  SCATTERING_FRACTION:
+    optional: true
+    file: program.xml
+    xpath: .//Solutions/Solution[1]
+    attribute: scattering_fraction
+    type: float
+    meaning: >
+      The fs of the solution's "full" line: Gamma 0.856 (one model, the
+      whole AU), BetaBlip 0.784 (both components), CDK4 0.897 (both).
+      Meaning not checked: Gamma's deposited model of the whole AU reads
+      0.856, so it is not coverage of the AU. Not used.
+
+# FINDING: Picard's per-placement verdict, "Failure to place, low tfz
+#   (TFZ=5.14)" for CDK4 job 1's first component (log.txt line 6514) and
+#   "Partial placement, high tfz (TFZ=...)" otherwise, is only in log.txt;
+#   the threshold behind it (8 for a non-polar group or once something is
+#   placed, 7 for the first component in a polar group, 5 in P1, 11
+#   "certain": phasertng/scripts/picard_jiffies.py lines 52-55, 64-85) is
+#   not recorded. The wrapper should write each placement's outcome and the
+#   threshold used into program.xml.
+# FINDING: the data's space group as given, and whether Picard changed it,
+#   are not in program.xml (only Picard's graph_report.xml has the first,
+#   without spaces). The wrapper should record both, and write the
+#   reflections in the solution's group (HKLOUT was set in none of the four
+#   jobs: reflections_and_models/ held no MTZ).
+# FINDING: the Model eLLG table (eeLLG per component and order, target 225,
+#   900 when twinned) is only in log.txt ("Table: Model eLLG", e.g.
+#   BetaBlip job 4 lines 2939-2950, CDK4 job 1 3046-3057).
+# FINDING: clash_worst (best.1.dag.cards) is not in program.xml.
+
+verdict:
+  - when: COMPLETE == "false" and SEARCH_TFZ_FIRST >= 8 and SEARCH_TFZ_LAST >= 8
+    outcome: partial
+    basis: >
+      Picard did not place every pose it sought (seek_complete false,
+      best.1.dag.cards, read by lib/utils/formats/phasertng_cards.py line
+      206), while what it did place passes the cutoff 8 (basis under
+      "placed"). From the code only: no evidence job is incomplete.
+  - when: COMPLETE == "false" and SEARCH_TFZ_FIRST >= 6
+    outcome: partial
+    basis: >
+      As above, with the placed part weaker (search TFZ 6-8, the
+      "ambiguous" band). Judge the placed part by refinement before building
+      on it. From the code only.
+  - when: >
+      SEARCH_TFZ_FIRST >= 8 and SEARCH_TFZ_LAST >= 8
+      and (SEARCH_TFZ_SECOND == null or SEARCH_TFZ_SECOND >= 8)
+      and RFREE < 40
+    outcome: solved
+    basis: >
+      Every component's search TFZ at least 8: Phaser's cutoff for a
+      definite solution (phaser_simple_phil and phaser_pipeline_phil
+      judgements; Phaser log "Z-score cutoff for definite solution (8.00)"),
+      and Picard's own "reached tfz" for a non-polar space group or any
+      component after the first (picard_jiffies.py line 52, solved_tfz lines
+      64-75). R-free below 40% (Picard's numbers are percent): the 0.40 of
+      the sibling MR judgements, here applied to Picard's short
+      coordinate refinement on its own free set, which is a stricter test:
+      only Gamma job 1 passes (26.85, the deposited model refined against
+      these data, so not an independent R-free), while the correct, complete
+      BetaBlip job 4 reads 46.79. Ours, not published; an expert should set
+      it.
+  - when: >
+      SEARCH_TFZ_FIRST >= 8 and SEARCH_TFZ_LAST >= 8
+      and (SEARCH_TFZ_SECOND == null or SEARCH_TFZ_SECOND >= 8)
+    outcome: placed
+    basis: >
+      Every component placed above the cutoff 8 (basis above), not yet
+      confirmed by refinement: Picard runs none worth the name. BetaBlip
+      job 4 (beta 22, blip 25; R-free 46.79) is right and complete: the
+      same data and models gave R-free 0.343 after classic Phaser's
+      Sheetbend + ten REFMAC cycles (phaser_pipeline_phil judgement).
+      CDK4 job 2 (template, 20; R-free 46.69) agrees in space group with
+      the classic reference (~/.ccp4i2x CDK4_CyclinD1 job 3, TFZ 27.5,
+      R-free 0.404 after ten jelly-body cycles).
+  - when: SEARCH_TFZ_FIRST < 6 and SEARCH_TFZ_LAST >= 8
+    outcome: ambiguous
+    basis: >
+      A later component placed with signal on top of a first one at noise.
+      CDK4 job 1: CDK4 first at search TFZ 5 (Picard's own log: "Failure to
+      place, low tfz (TFZ=5.14)", line 6514, kept in the solution anyway),
+      every space group of the point group scoring about 5 in that search
+      (log lines 4237-4396), then cyclin at 12 in the group the noise chose
+      (P 2 21 21, not the reference P 21 21 21); whole-solution TFZ 14.92,
+      R-free 46.68. Whether the cyclin is right was not checked. The 6 is
+      the lower bound of the "ambiguous" band below.
+  - when: SEARCH_TFZ_FIRST >= 8 and SEARCH_TFZ_LAST < 6
+    outcome: partial
+    basis: >
+      The first component passes the cutoff 8 but the last was kept at
+      noise (Picard keeps such poses and still calls the search complete,
+      as CDK4 job 1 shows for a first component). Treated as the placed
+      part plus a missing component, as Phaser's partial solutions are in
+      the sibling judgements. No evidence job; by analogy.
+  - when: >
+      SEARCH_TFZ_FIRST >= 6 and SEARCH_TFZ_LAST >= 6
+      and (SEARCH_TFZ_SECOND == null or SEARCH_TFZ_SECOND >= 6)
+    outcome: ambiguous
+    basis: >
+      Some component searched at TFZ 6-8. The 6 is the "possibly solved"
+      bound recalled from Phaser's guide (6-7 possibly, 7-8 probably), the
+      same unverified bound as phaser_simple_phil and phaser_pipeline_phil;
+      Picard's own threshold is 7 for the first component in a POLAR space
+      group (picard_jiffies.py line 53), so a first search TFZ of 7-8 there
+      counts as found by Picard but not by this file. No evidence job here.
+  - when: true
+    outcome: failed
+    basis: No solution, or a component searched below TFZ 6.
+
+traps:
+  - >
+    The whole-solution TFZ (TFZ; the report's "strong molecular replacement
+    solution" message rests on it) is the LAST pose's TFZ in the context of
+    the earlier ones, and vouches for nothing before it: CDK4 job 1 reads
+    14.92 with its first component searched at 5. Judge each component's
+    search TFZ (SEARCH_TFZ_FIRST, _SECOND, _LAST).
+  - >
+    Picard may change the space group and writes no reflections in the new
+    one (HKLOUT was set in none of the four runs). CDK4 job 2 moved from
+    the data's P 2 21 21 to P 21 21 21, as classic Phaser did (and
+    reindexed, ~/.ccp4i2x CDK4_CyclinD1 job 3); its maps were made by
+    servalcat in the model's group with a "space group mismatch" warning
+    (sigmaa.log). Compare SPACEGROUP with DATA_SPACEGROUP before refining,
+    and change the data's space group first (next steps). When the first
+    component has no signal, the group was chosen on noise (CDK4 job 1).
+  - >
+    COMPLETE "true" means Picard placed what IT sought, after choosing the
+    copies itself from a Matthews analysis of the AU contents reduced to a
+    ratio; it is not a check against your AU contents and not a check that
+    the placements are right (CDK4 job 1: "true", first component at TFZ
+    5). Read MATTHEWS_Z and COMPONENTS_PLACED against what you expect.
+  - >
+    Picard's R-factor and R-free are after a short coordinate refinement at
+    DMIN (2.8-3.0 A here) on a free set of its own: a right and complete
+    placement reads 46-47% (BetaBlip 4, CDK4 2). Do not reject a placement
+    on them, and do not compare them with another task's refinement
+    R-free. For a model already refined against these data (Gamma's
+    gamma_model.pdb), the R-free is not free at all.
+  - >
+    For a complex, the template beats separate chains: CDK4 job 2 (one file)
+    35 s, search TFZ 20, the reference space group; job 1 (two files) 1119
+    s, first at noise, another space group. Run mrparse first and use its
+    complex template when it writes one.
+  - >
+    Log narration is not a verdict: "Base components not found with high
+    TFZ" ends BetaBlip job 4 (log line 10093) although both components were
+    placed at 22 and 25 (it reports one later loop), and "Terminate on
+    R-factor below 25" is printed in every run although termination on R
+    is off (working.phil picard.control.terminate_on_rfactor = False;
+    phasertng voyager/picard.py line 546 prints it before "Continue
+    search").
+
+next:
+  - when: SPACEGROUP_CHANGED == "true"
+    advice: >
+      The solution is in SPACEGROUP, not the data's DATA_SPACEGROUP, and
+      this job wrote no reflections in it: put the reflections in the
+      solution's group before any refinement or building, with pointless_reindexToMatch:
+      F_SIGF "phasertng_picard[-1].HKLIN", FREERFLAG the project's free set,
+      REFERENCE "SPECIFY", CHOOSE_SPACEGROUP the value of SPACEGROUP, and
+      then its F_SIGF_OUT and FREERFLAG_OUT in place of HKLIN and the free
+      set below. A change between groups of one point group in the same
+      setting (P 2 21 21 to P 21 21 21) needs no reindexing operator
+      (USE_REINDEX False); that this route works was not run here.
+  - when: outcome == "solved"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phasertng_picard[-1].XYZOUT"
+      HKLIN: "phasertng_picard[-1].HKLIN"
+    advice: >
+      Restrained refinement to convergence, then rebuilding (modelcraft, or
+      a person in Coot). FREERFLAG: the free set the project refines against
+      (Picard took none); if the model was refined against these data
+      before, that model's own set. prosmart_refmac (XYZIN, F_SIGF,
+      FREERFLAG) is the alternative.
+  - when: outcome == "placed"
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phasertng_picard[-1].XYZOUT"
+      HKLIN: "phasertng_picard[-1].HKLIN"
+    advice: >
+      Refine first: Picard's R-free does not say whether the placement is
+      right. FREERFLAG: the project's free set. Its verdict decides: R-free
+      falling below 0.40 confirms the placement; falling but staying above
+      means a right but distant or partial model, build next (modelcraft);
+      not falling means something upstream is wrong. If TWINNING is "true",
+      consider USE_TWIN only once R-free is below 0.40 (servalcat_pipe
+      judgement).
+  - when: outcome == "placed"
+    task: modelcraft
+    inputs:
+      XYZIN: "phasertng_picard[-1].XYZOUT"
+      F_SIGF: "phasertng_picard[-1].HKLIN"
+      ASUIN: "phasertng_picard[-1].ASUIN"
+    advice: >
+      The alternative when the models are distant homologues to be rebuilt
+      into their sequences: build and judge by modelcraft's R-free.
+      FREERFLAG: the project's free set. ASUIN exists only when the job was
+      given one.
+  - when: outcome == "partial"
+    task: phaser_simple_phil
+    inputs:
+      XYZIN_FIXED: "phasertng_picard[-1].XYZOUT"
+      F_SIGF: "phasertng_picard[-1].HKLIN"
+      ASUFILE: "phasertng_picard[-1].ASUIN"
+    advice: >
+      Route C: search for the missing component with what Picard placed
+      held fixed (INPUT_FIXED True; XYZIN the missing component's model;
+      COMP_BY ASU; FREERFLAG the project's). Picard's XYZOUT is placed in
+      THIS crystal, so it may be the fixed structure; check first that the
+      space group was not changed (first next step). Check also that the
+      missing component was really expected: Picard chose the copies
+      (MATTHEWS_Z). phasertng_riker (PhaserTNG's own "refine and continue")
+      exists but has no judgement yet.
+  - when: outcome == "ambiguous"
+    advice: >
+      Do not build on it yet. For a complex, if mrparse offered a complex
+      template, run this task (or phaser_simple_phil) again with the
+      template as the only search model (route A; CDK4 job 2 against job
+      1). Otherwise place the strongest component alone with
+      phaser_simple_phil and judge it by its refinement, then the rest
+      (route C), or run phaser_pipeline_phil with an identity per model.
+      Check the space group the solution chose against the data's, and
+      read TWINNING.
+  - when: outcome == "ambiguous" and SEARCH_TFZ_FIRST >= 6
+    task: servalcat_pipe
+    inputs:
+      XYZIN: "phasertng_picard[-1].XYZOUT"
+      HKLIN: "phasertng_picard[-1].HKLIN"
+    advice: >
+      A test refinement (FREERFLAG the project's): a wrong placement does
+      not improve. Same space-group caveat as above.
+  - when: outcome == "failed"
+    advice: >
+      Check the inputs first: a complex template if one exists, models
+      trimmed to their cores, the AU contents (and MATTHEWS_Z against what
+      you expect), the space group. Then find better models (mrparse;
+      mrbump_basic for one kind of molecule), or place components one at a
+      time with phaser_simple_phil or phaser_pipeline_phil.
+
+sources:
+  - docs/multi-component-mr.md (the three routes for a complex; Picard is route B's "let the program decide")
+  - server/ccp4i2/wrappers/phasertng_picard/script/phasertng_picard.py
+  - server/ccp4i2/wrappers/phasertng_picard/script/phasertng_picard.def.xml
+  - server/ccp4i2/wrappers/phasertng_picard/script/phasertng_picard_report.py (_add_quality_message)
+  - server/ccp4i2/lib/utils/formats/phasertng_cards.py (program.xml layout)
+  - server/ccp4i2/utils/phil_shims.py (AsuContentShim: copies divided by their GCD)
+  - phasertng/scripts/picard_jiffies.py in ccp4-20260702 (tfzscore thresholds, termination)
+  - phasertng/voyager/picard.py in ccp4-20260702 (loop narration)
+  - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.agent.yaml (shared TFZ and R-free bases)
+  - server/ccp4i2/pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.agent.yaml
+  - "run: Gamma job 1 (tng-home; deposited model, one copy)"
+  - "run: BetaBlip job 4 (tng-home; beta + BLIP, two files)"
+  - "run: CDK4 job 1 (tng-home-cdk4; 6p8e chains A and B as two files)"
+  - "run: CDK4 job 2 (tng-home-cdk4; 6p8e_BA complex template, one file)"
+  - "run: ~/.ccp4i2x CDK4_CyclinD1 job 3 (classic phaser_simple_phil reference: P 21 21 21, TFZ 27.5, R-free 0.404)"

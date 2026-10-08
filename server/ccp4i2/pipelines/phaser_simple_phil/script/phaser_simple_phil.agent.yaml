@@ -13,14 +13,25 @@ use_when:
     component at a time, and you have one model of it - a homologue, a
     predicted model, or the same protein from another crystal form - whose
     sequence identity or expected RMS deviation you can state.
+  - >
+    The asymmetric unit holds a complex and ONE model holds every
+    component: a complex template, the matching chains of an entry of a
+    homologous complex kept as they sit there (mrparse writes one, "PDB
+    complex template", when hits from one entry match several of its
+    sequences). It is searched as one rigid body; NCOPIES is copies of the
+    complex. Route A of docs/multi-component-mr.md, and how CDK4/cyclin D1
+    was solved (jobs 3 and 9, TFZ 27.5; two copies, 22.1 and 32.0).
   - You have merged reflections (intensities or amplitudes), the AU
     contents, and the Free R set the project will refine against.
 
 not_when:
   - text: >
-      The AU holds several different molecules to be searched together,
-      or one component is to be searched with an ensemble of several models,
-      or you want the search as separate steps you can inspect.
+      The AU holds several different molecules with a model EACH (no entry
+      holds the whole complex, or the subunits may sit differently here),
+      to be searched together in one run (route B of
+      docs/multi-component-mr.md); or one component is to be searched with
+      an ensemble of several models; or you want the search as separate
+      steps you can inspect.
     instead: phaser_pipeline_phil
   - text: >
       You have no model yet and need one found and prepared from the
@@ -45,7 +56,12 @@ inputs:
       Chainsaw/Sculptor model. A multi-chain file is one rigid body: either
       select one chain and set NCOPIES to the number in the AU, or keep the
       oligomer and count it as one copy - NCOPIES counts copies of what is in
-      this file. MDM2 job 25 placed a Chainsaw model at 57% identity and the
+      this file. For a complex, that is the point: mrparse's "PDB complex
+      template" (XYZOUT[COMPLEX_INDEX] of its judgement) holds one chain per
+      component of the AU, and goes here whole, with NCOPIES the copies of
+      the complex. At run time the task aligns the model's chains to the AU
+      sequences and warns (code 222) only for a kind of chain nothing
+      accounts for; a template covering every kind gets no warning. MDM2 job 25 placed a Chainsaw model at 57% identity and the
       solution came only from Phaser's deeper search (the 23rd rotation peak);
       a poorer model than that may need phaser_pipeline_phil.
   - param: inputData.SEARCHSEQUENCEIDENTITY
@@ -61,8 +77,11 @@ inputs:
   - param: inputData.NCOPIES
     advice: >
       Copies of the search model in the AU, from the AU contents and a
-      Matthews analysis. Phaser reports a solution with fewer copies placed
-      than asked: count the Placement elements in program.xml.
+      Matthews analysis: copies of what XYZIN holds, so for a complex
+      template the copies of the complex (CDK4_CyclinD1 job 9: 2, for 2x
+      CDK4 and 2x cyclin in the contents). Phaser reports a solution with
+      fewer copies placed than asked: count the Placement elements in
+      program.xml.
   - param: inputData.COMP_BY
     advice: >
       Give the WHOLE AU contents (ASU, with ASUFILE from Define AU contents)
@@ -89,8 +108,12 @@ inputs:
       data's, or it has no cell (Haiku gave 6p8e's cyclin chain as fixed for
       CDK4/cyclin D1 data; Phaser placed CDK4 against it at LLG -892). For a
       second component, place the first, then run again with this job's
-      XYZOUT as XYZIN_FIXED, or use phaser_pipeline_phil with an ensemble
-      per component.
+      XYZOUT as XYZIN_FIXED (route C of docs/multi-component-mr.md), or use
+      phaser_pipeline_phil with an ensemble per component (route B). The
+      slot is never filled from a previous job (fromPreviousJob False since
+      2026-10-09): following on from mrparse used to put hit 1 in XYZIN and
+      hit 2 here by itself, which is how Haiku's misuse was set up. A file
+      here is a decision, and INPUT_FIXED says it was made.
   - param: inputData.RUNREFMAC
     advice: >
       Leave on (with RUNSHEETBEND): the ten jelly-body cycles are a test of
@@ -332,6 +355,13 @@ verdict:
 
 traps:
   - >
+    Warning 222 at run time ("nothing accounts for <kind>") is about what
+    the models COVER: each model's chains are aligned to the AU sequences
+    (lib/utils/formats/model_coverage.py). A complex template covering every
+    kind gets none; a single-chain model with a second kind in the contents
+    gets one naming the three routes. It is advice, not a block: BetaBlip
+    job 3 (beta alone, BLIP in the contents) is a correct, incomplete job.
+  - >
     The TFZ in the solutions table and in program.xml's Solution/TFZ
     (TFZ_REFINED) is after refinement and far higher than the search TFZ
     (MDM2 25 12.72 vs 8.0; BetaBlip 3 24.40 vs 10.4). Judging Phaser's 8
@@ -499,6 +529,9 @@ next:
       phaser_pipeline_phil.
 
 sources:
+  - docs/multi-component-mr.md (the three routes for a complex; what "already placed" means)
+  - server/ccp4i2/lib/utils/formats/model_coverage.py (which AU kinds a model covers; warning 222)
+  - "run: CDK4_CyclinD1 jobs 3 and 9 (phaser_simple_phil, complex template cdk4_cycd1_ab.pdb, 1 and 2 copies; TFZ 27.5; 22.1 and 32.0; R-free 0.404)"
   - docs/user/source/tasks/phaser_simple_phil/index.rst
   - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.py
   - server/ccp4i2/pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.py

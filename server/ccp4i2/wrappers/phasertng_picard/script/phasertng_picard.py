@@ -12,6 +12,7 @@ This wrapper uses PhilPluginScript for native PHIL support:
 """
 
 import os
+from xml.etree import ElementTree as ET
 import shutil
 import subprocess
 import logging
@@ -29,6 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class phasertng_picard(PhilPluginScript):
+    PERFORMANCECLASS = "CRefinementPerformance"
     TASKNAME = "phasertng_picard"
     TASKCOMMAND = "phasertng.picard"
     WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft", "phasertng_riker"]
@@ -313,7 +315,36 @@ class phasertng_picard(PhilPluginScript):
         # Generate sigma-A weighted map coefficients from the MR solution
         self._run_sigmaa(work_dir, out)
 
+        self._record_results(db_dir, work_dir, out)
         return PhilPluginScript.SUCCEEDED
+
+    def _record_results(self, db_dir, work_dir, out):
+        """program.xml and the job's KPIs from what Picard wrote.
+
+        Picard keeps its numbers in best.1.dag.cards (TFZ, LLG, R-factor,
+        components placed), the run log's "Best Solution:" line (R-free) and
+        the last node's result.json (data, Matthews, twinning, tNCS). A
+        judgement reads program.xml, never a log, so the wrapper records
+        them (lib/utils/formats/phasertng_cards.py). Best effort: a job
+        with a solution never fails for want of its summary.
+        """
+        from ccp4i2.lib.utils.formats.phasertng_cards import picard_record, program_xml
+        try:
+            record = picard_record(db_dir, os.path.join(work_dir, "log.txt"))
+            root = program_xml(record)
+            with open(self.makeFileName("PROGRAMXML"), "wb") as stream:
+                stream.write(ET.tostring(root, encoding="utf-8"))
+            best = record.get("best") or {}
+            solutions = record.get("solutions") or []
+            rfactor = best.get("rwork")
+            if rfactor is None and solutions:
+                rfactor = float(solutions[0].get("rfactor"))
+            if rfactor is not None:
+                out.PERFORMANCE.RFactor.set(round(rfactor / 100.0, 4))
+            if best.get("rfree") is not None:
+                out.PERFORMANCE.RFree.set(round(best["rfree"] / 100.0, 4))
+        except Exception as err:  # noqa: BLE001 - a summary must not fail the job
+            logger.warning("Could not record Picard's results: %s", err)
 
     def _run_sigmaa(self, work_dir, out):
         """Run servalcat sigmaa to produce map coefficients from the MR solution."""

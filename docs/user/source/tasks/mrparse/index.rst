@@ -126,3 +126,21 @@ Take the best model or models to :doc:`Phaser
 <../phaser_simple_phil/index>`, giving the sequence identity if the task
 asks for it, or hand the sequence to :doc:`MrBUMP <../mrbump_basic/index>`
 to try them all.
+
+A complex
+---------
+
+Give MrParse one file holding the sequences of every component, and it
+searches them as one; the matches of each component appear as separate
+regions, and each is cut to one chain. When hits from one PDB entry match
+more than one of the sequences, that entry is a template for the complex:
+MrParse's job writes its matching chains, kept as they sit in the entry,
+as one more model ("PDB complex template: 6p8e chains B (CDK4 92%), A
+(CyclinD1 100%)"), and the report lists it under *Complex templates*.
+Place it with :doc:`Phaser <../phaser_simple_phil/index>` as one search
+model, the number of copies being the number of copies of the complex.
+Without a template, or when the subunits may sit differently in your
+crystal, give the single-chain models to :doc:`Expert molecular
+replacement <../phaser_pipeline/index>`, one search model per component.
+Neither single-chain model is a structure "already placed": each is in its
+own entry's frame and must be searched for.

@@ -56,6 +56,19 @@ Search models
    otherwise. To continue from an earlier run, for example with part of the
    complex already placed, give its solution **(4)**.
 
+   A complex can be placed three ways. As one search model holding every
+   component (a *complex template*: the matching chains of an entry of a
+   homologous complex, searched as one rigid body; MrParse writes one when
+   hits from one entry match several of the sequences it was given), which
+   needs only the basic task. As one search model per component, placed
+   together here, when no such entry exists or the subunits may sit
+   differently in your crystal. Or one component at a time, each run's
+   solution given to the next, when a component cannot be found in the
+   context of the others. At run time the task says which components of
+   the AU contents no search model accounts for, by aligning the models'
+   chains to the sequences, and does not stop you: placing one now and the
+   next later is a route.
+
 Composition
 -----------
 

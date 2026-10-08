@@ -35,6 +35,7 @@ class mrparse_report(Report):
         basepath = self.jobInfo['fileroot']
         mrparse_rep = os.path.join(basepath, "mrparse_0", 'mrparse.html')
 
+        self.complexTemplates(parent)
         ResultsI2Folder = parent.addFold(label='MrParse Reports', initiallyOpen=True)
         if not os.path.exists(mrparse_rep):
             ResultsI2Folder.append('<p>MrParse report not found</p>')
@@ -72,46 +73,33 @@ class mrparse_report(Report):
             fileType='html',
         )
 
-#FIXME - XML PICTURE
-        return
-        mrparse_xml = os.path.join(basepath, 'params.xml')
-        with open(mrparse_xml) as f:
-            t = f.read()
-            tree = parse_from_unicode(t)
-            pdbs = tree.findall(".//ccp4i2_body/outputData/XYZOUT/CPdbDataFile")
-            pictureFold = self.addFold(label='Picture', initiallyOpen=False)
-            pictureFold.addText(text='View of the models')
-
-            pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
-            pdbidx = 1
-            for pdb in pdbs:
-                scene = """<?xml version='1.0'?>
-<scene>
-    <data>"""
-                baseName = pdb.findall("baseName")[0].text
-                scene += "<MolData id='id{0}'>\n".format(pdbidx)
-                scene += '<filename>{0}</filename>\n'.format(os.path.join(basepath,baseName))
-                scene += "</MolData>\n"
-                scene += """</data>
-  <View>
-     <scale_auto>1</scale_auto>
-     <slab_enabled>0</slab_enabled>
-     <centre_MolData>id1</centre_MolData>
-     <centre_selection>all</centre_selection>
-     <!-- <scale_auto_contacts>1</scale_auto_contacts> -->
-     <orientation_auto>
-       <selection>all</selection>
-       <molData>id1</molData>
-     </orientation_auto>
-     <slab_enabled>0</slab_enabled>
-  </View>
-  <wizard><template>Ribbons:colour chains</template>
-    <parameters>"""
-                scene += "<MolData{0}>id{0}</MolData{0}>\n".format(pdbidx)
-                pdbidx += 1
-                scene += """</parameters>
-  </wizard>
-</scene>"""
-                pic = pictureGallery.addPicture(label=baseName, scene=scene)
-
-        return
+    def complexTemplates(self, parent):
+        """The entries whose hits match more than one of the sequences
+        searched for: each written as one model holding those chains, to be
+        placed as a single rigid body (docs/multi-component-mr.md)."""
+        try:
+            found = self.xmlnode.findall('.//Complexes/Complex')
+        except Exception:
+            found = []
+        if not found:
+            return
+        fold = parent.addFold(label='Complex templates', initiallyOpen=True)
+        fold.append('<p>Hits from one PDB entry match more than one of the sequences '
+                    'searched for. Each entry below is also written as one model holding '
+                    'those chains, in the entry\'s own frame, to be placed as a single '
+                    'rigid body: the number of copies is then the number of copies of the '
+                    'complex. Use it when the subunits are expected to sit as they do in '
+                    'the entry; otherwise search for the single-chain models as separate '
+                    'components in Expert molecular replacement.</p>')
+        table = fold.addTable()
+        entries, files, components = [], [], []
+        for element in found:
+            entries.append(element.get('entry', ''))
+            files.append(element.get('file', ''))
+            components.append('; '.join(
+                f"chain {c.get('chain')}: {c.get('target')} "
+                f"({100 * float(c.get('identity') or 0):.0f}% identity, hit {c.get('hit')})"
+                for c in element.findall('Component')))
+        table.addData(title='Entry', data=entries)
+        table.addData(title='Model', data=files)
+        table.addData(title='Chains and the sequences they match', data=components)
