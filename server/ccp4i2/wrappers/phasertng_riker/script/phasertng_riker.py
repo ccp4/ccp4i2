@@ -20,6 +20,7 @@ import shutil
 import subprocess
 import logging
 
+from ccp4i2.config.program_discovery import resolve_program
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
 from ccp4i2.utils.phil_shims import (
     MtzFileShim,
@@ -172,7 +173,7 @@ class phasertng_riker(PhilPluginScript):
 
     def get_command_target(self):
         """Return the phasertng.riker entry point."""
-        cmd = shutil.which("phasertng.riker")
+        cmd = resolve_program("phasertng.riker")
         if cmd:
             return cmd
         try:
@@ -239,7 +240,7 @@ class phasertng_riker(PhilPluginScript):
         """Build working.phil and construct the command line."""
         phil_path = self.build_working_phil()
 
-        cmd = shutil.which("phasertng.riker")
+        cmd = resolve_program("phasertng.riker")
         if cmd:
             self.TASKCOMMAND = cmd
             self.appendCommandLine([phil_path])

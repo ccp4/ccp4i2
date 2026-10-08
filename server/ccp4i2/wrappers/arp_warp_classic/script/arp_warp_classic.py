@@ -11,6 +11,11 @@ class arp_warp_classic(CPluginScript):
 
     TASKHOME = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers', 'arp_warp_classic')
     TASKCOMMAND = sys.executable
+    # Runs pyrvapi_ext.parsers.arpwarp, which starts auto_tracing.sh. That
+    # script needs the environment ARP/wARP's own setup script creates
+    # ($warpbin and friends); a link on PATH cannot supply it, so no
+    # program-location preference can point this task at an installation.
+    PROGRAM_LOCATED_BY = "ARP/wARP's own setup script (arpwarp_setup)"
     PERFORMANCECLASS = 'CModelBuildPerformance'
 
     @staticmethod

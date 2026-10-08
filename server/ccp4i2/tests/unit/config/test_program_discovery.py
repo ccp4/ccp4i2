@@ -230,3 +230,60 @@ def test_a_program_already_on_path_is_not_shimmed(monkeypatch, tmp_path):
     work = tmp_path / "job"
     work.mkdir()
     assert program_discovery.program_search_path(work, "/usr/bin:/bin") == "/usr/bin:/bin"
+
+
+# --- a declared program reached through exePaths (#402) ----------------------
+
+def _exe_paths_dir_with(tmp_path, *names):
+    d = tmp_path / "extra-bin"
+    d.mkdir()
+    for n in names:
+        _make_exe(d / n)
+    _write_prefs(tmp_path, {"exePaths": [str(d)]})
+    return d
+
+
+def test_declared_program_found_in_exe_paths_is_shimmed(monkeypatch, tmp_path):
+    """crank2 runs prasa and cparrot itself, by bare name on PATH. An exePaths
+    entry used to satisfy the pre-run check for them and then never reach the
+    job, because only programs with a dedicated preference got a link."""
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    d = _exe_paths_dir_with(tmp_path, "prasa", "bystander")
+    work = tmp_path / "job"
+    work.mkdir()
+
+    path = program_discovery.program_search_path(
+        work, "/usr/bin:/bin", names=["prasa"])
+    shim = Path(path.split(os.pathsep)[0])
+    assert (shim / "prasa").resolve() == (d / "prasa").resolve()
+    assert not (shim / "bystander").exists(), \
+        "only declared programs are linked, not the whole directory"
+
+
+def test_undeclared_exe_paths_program_is_not_shimmed(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    _exe_paths_dir_with(tmp_path, "prasa")
+    work = tmp_path / "job"
+    work.mkdir()
+    assert program_discovery.program_search_path(work, "/usr/bin:/bin") \
+        == "/usr/bin:/bin"
+
+
+def test_a_path_is_never_shimmed(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    d = _exe_paths_dir_with(tmp_path, "prasa")
+    resolved = program_discovery.preference_resolved_programs(
+        [str(d / "prasa"), "prasa"])
+    assert list(resolved) == ["prasa"]
+
+
+@pytest.mark.parametrize("command,is_path", [
+    ("cparrot", False),
+    ("phaser.sculptor", False),
+    ("auto_tracing.sh", False),
+    ("/opt/ccp4/libexec/clustalw2", True),
+    ("C:\\CCP4\\bin\\python.exe", True),
+    ("bin/thing", True),
+])
+def test_names_a_path(command, is_path):
+    assert program_discovery.names_a_path(command) is is_path

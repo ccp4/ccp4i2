@@ -1863,25 +1863,42 @@ def task_commands() -> dict[str, list[str]]:
             cls = get_plugin_class(task_name)
         except Exception:
             continue
-        names = []
-        taskcommand = getattr(cls, "TASKCOMMAND", None)
-        if taskcommand:
-            names.append(str(taskcommand))
-        # Binaries the task drives from *inside* TASKCOMMAND (arcimboldo runs
-        # phaser and shelxe itself). They are just as relocatable, so they
-        # belong on the Preferences -> Program locations page too.
+        # TASKCOMMAND, plus the binaries the task drives from *inside* it
+        # (arcimboldo runs phaser and shelxe itself), plus OPTIONAL_PROGRAMS: a
+        # user needs to be able to point at a SHELX installation for crank2
+        # even though crank2 will not always use it. Being listed is about
+        # relocatability, not requirement --- whether a missing one blocks is
+        # decided by which tuple it is in, not by whether it appears here.
         #
-        # OPTIONAL_PROGRAMS as well: a user needs to be able to point at a
-        # SHELX installation for crank2 even though crank2 will not always
-        # use it. Being listed here is about relocatability, not requirement
-        # --- whether a missing one blocks is decided by which tuple it is in,
-        # not by whether it appears on this page.
-        for aux in list(getattr(cls, "AUXILIARY_PROGRAMS", ()) or ()) + \
-                list(getattr(cls, "OPTIONAL_PROGRAMS", ()) or ()):
-            if aux and str(aux) not in names:
-                names.append(str(aux))
+        # declaredPrograms() leaves out a TASKCOMMAND the task locates itself
+        # (PROGRAM_LOCATED_BY) or names by path: the page offers a program only
+        # if setting its location takes effect. Those tasks are reported by
+        # self_located_tasks() instead.
+        declared = getattr(cls, "declaredPrograms", None)
+        names = list(declared()) if callable(declared) else []
         for name in names:
             tasks = commands.setdefault(name, [])
             if task_name not in tasks:
                 tasks.append(task_name)
     return {cmd: sorted(tasks) for cmd, tasks in sorted(commands.items())}
+
+
+@cache
+def self_located_tasks() -> dict[str, str]:
+    """Tasks whose program the Program locations page cannot relocate.
+
+    ``{task_name: how it finds its program}``, from each plugin's declared
+    ``PROGRAM_LOCATED_BY``. These are the tasks :func:`task_commands` leaves
+    the TASKCOMMAND of off the page, so the page can say so rather than
+    implying a setting there would reach them. Cached, like task_commands.
+    """
+    located: dict[str, str] = {}
+    for task_name in TASKS:
+        try:
+            cls = get_plugin_class(task_name)
+        except Exception:
+            continue
+        how = getattr(cls, "PROGRAM_LOCATED_BY", "") if cls is not None else ""
+        if how:
+            located[task_name] = str(how)
+    return dict(sorted(located.items()))
