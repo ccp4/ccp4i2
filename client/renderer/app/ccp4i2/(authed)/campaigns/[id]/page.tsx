@@ -553,7 +553,6 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 onRefresh={mutateMemberProjects}
                 onDelete={setDeleteProject}
                 onProjectClick={handleProjectClick}
-                maxHeight={500}
                 sites={sites}
               />
             )}
