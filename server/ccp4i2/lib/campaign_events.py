@@ -31,6 +31,7 @@ from .campaign_matrix import (
     REFINEMENT_TASKS,
     choose_current_model,
     frame_mismatch,
+    site_reach,
     match_events_to_sites,
     read_model_cell,
 )
@@ -328,11 +329,12 @@ def site_matrix(group, sites: List[models.CampaignSite],
 
     site_dicts = [{"uuid": str(s.uuid), "origin": s.origin, "radius": s.radius}
                   for s in sites]
+    reach = site_reach(site_dicts)
     out: Dict[int, dict] = {}
     for project_id, jobs in jobs_by_project.items():
         events = events_by_receipt.get(latest.get(project_id), [])
         cell = next((e.cell for e in events if e.cell), None)
-        mismatch = frame_mismatch(cell, reference_cell) if events else None
+        mismatch = frame_mismatch(cell, reference_cell, reach) if events else None
         matched = match_events_to_sites(
             ({"event_idx": e.event_idx, "centroid": e.centroid,
               "hit_probability": e.hit_probability, "has_pose": e.has_pose}

@@ -98,20 +98,34 @@ def choose_current_model(jobs: Iterable) -> Optional[object]:
 #: compared directly with a site placed in the parent's frame.
 CELL_EDGE_TOLERANCE = 0.02
 CELL_ANGLE_TOLERANCE = 2.0
+#: How far (A) a cell difference may move a point at the farthest site
+#: before the dataset is not compared directly. A cell edge off by a fraction
+#: d moves a point at distance r from the origin by about d * r: BAZ2B's
+#: 5e9l, 2.5% off the parent in a, moves its pocket ~27 A out by 0.7 A, well
+#: inside an 8 A radius, and a 2% edge rule wrongly hid its event.
+POSITION_TOLERANCE = 1.5
+#: A cell edge off by more than this is another crystal form or setting,
+#: whatever the sites' distance from the origin.
+CELL_EDGE_LIMIT = 0.10
 
 _EDGES = ("a", "b", "c")
 _ANGLES = ("alpha", "beta", "gamma")
 
 
 def frame_mismatch(dataset_cell: Optional[Sequence[float]],
-                   parent_cell: Optional[Sequence[float]]) -> Optional[str]:
+                   parent_cell: Optional[Sequence[float]],
+                   reach: Optional[float] = None) -> Optional[str]:
     """A short reason the dataset is not in the parent's frame, or None.
 
     Event centroids are stated in each dataset's own frame and site origins
     in the parent's. Comparing them directly is right only because a
-    campaign's members are near-isomorphous; a dataset whose cell is off by
-    more than the tolerances above was indexed differently, or is a
-    different crystal form, and a distance from it to a site means nothing.
+    campaign's members are near-isomorphous. What matters is how far a cell
+    difference moves a point where the sites are: *reach* is the farthest
+    site's distance (A) from the origin, and an edge off by a fraction d
+    moves such a point by about d * reach, allowed up to POSITION_TOLERANCE.
+    An edge off by more than CELL_EDGE_LIMIT, or an angle by more than
+    CELL_ANGLE_TOLERANCE, is another form or setting regardless. Without a
+    reach, an edge is held to CELL_EDGE_TOLERANCE.
 
     When either cell is unknown nothing can be said, and None is returned:
     the caller compares directly, as it would for a matching cell.
@@ -124,14 +138,25 @@ def frame_mismatch(dataset_cell: Optional[Sequence[float]],
         mine, ref = float(dataset_cell[i]), float(parent_cell[i])
         if ref <= 0:
             return None
-        if abs(mine - ref) / ref > CELL_EDGE_TOLERANCE:
+        off = abs(mine - ref) / ref
+        too_far = (off * reach > POSITION_TOLERANCE if reach is not None
+                   else off > CELL_EDGE_TOLERANCE)
+        if off > CELL_EDGE_LIMIT or too_far:
+            shift = f", ~{off * reach:.1f} A at the sites" if reach is not None else ""
             return (f"cell {name} {mine:.2f} A vs parent {ref:.2f} A "
-                    f"({100.0 * abs(mine - ref) / ref:.1f}% off)")
+                    f"({100.0 * off:.1f}% off{shift})")
     for i, name in enumerate(_ANGLES):
         mine, ref = float(dataset_cell[3 + i]), float(parent_cell[3 + i])
         if abs(mine - ref) > CELL_ANGLE_TOLERANCE:
             return f"cell {name} {mine:.1f} vs parent {ref:.1f} degrees"
     return None
+
+
+def site_reach(sites) -> Optional[float]:
+    """The farthest site origin's distance (A) from the frame origin."""
+    distances = [math.sqrt(sum(float(c) ** 2 for c in s["origin"]))
+                 for s in sites if s.get("origin") is not None]
+    return max(distances) if distances else None
 
 
 # ---------------------------------------------------------------------------

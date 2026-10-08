@@ -1058,11 +1058,16 @@ The rule (`lib/campaign_matrix.match_events_to_sites`, pure and unit-tested):
 dataset's frame and site origins in the parent's (the hazard section 9.1
 records). For near-isomorphous members that is close enough to say which
 pocket an event is in, so v2 compares them directly rather than fitting a
-transform per dataset. The guard: a dataset whose unit cell differs from the
-parent's by more than 2% on any edge, or 2 degrees on any angle
-(`campaign_matrix.frame_mismatch`), gets **no matches** and a
-`frame_mismatch` reason instead, because a distance across two frames is not
-a distance. The dataset's cell is read from the receipt's apo model
+transform per dataset. The guard (`campaign_matrix.frame_mismatch`) asks how
+far the cell difference moves a point where the sites are: an edge off by a
+fraction d moves a point r from the origin by about d * r, and r is taken as
+the farthest site's distance from the origin. A dataset whose difference moves
+the sites by more than 1.5 A, or whose cell is off by more than 10% on any
+edge or 2 degrees on any angle (another form or setting), gets **no matches**
+and a `frame_mismatch` reason instead, because a distance across two frames is
+not a distance. A flat 2% edge rule was tried first and was wrong: BAZ2B's
+5e9l, 2.5% off the parent in a, had its event 5.3 A from the acetyl-lysine
+site hidden, though the difference moves that pocket by only 0.7 A. The dataset's cell is read from the receipt's apo model
 (`XYZIN_APO`, the `-pandda-input.pdb`, in the dataset's frame) once, when the
 receipt is recorded, and stored on its `CampaignEvent` rows; the parent's is
 the header of the reference model campaign_scene draws, read once and cached

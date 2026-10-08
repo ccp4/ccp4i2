@@ -16,6 +16,7 @@ from ....lib.campaign_matrix import (
     REFINEMENT_TASKS,
     choose_current_model,
     frame_mismatch,
+    site_reach,
     match_events_to_sites,
     read_model_cell,
 )
@@ -224,3 +225,26 @@ def test_no_cell_and_placeholder_cells_read_as_none(tmp_path: Path):
     unit.write_text("CRYST1    1.000    1.000    1.000  90.00  90.00  90.00 P 1\n")
     assert read_model_cell(unit) is None
     assert read_model_cell(tmp_path / "missing.pdb") is None
+
+
+# The frame check measures how far a cell difference moves the sites. BAZ2B's
+# 5e9l (a = 80.92 against the parent's 83.03, 2.5% off) was hidden by a flat
+# 2% rule, though its pocket ~27 A from the origin moves by only ~0.7 A.
+BAZ2B_PARENT = [83.03, 96.38, 57.81, 90.0, 90.0, 90.0]
+BAZ2B_5E9L = [80.919, 96.38, 57.81, 90.0, 90.0, 90.0]
+
+
+def test_a_small_cell_difference_near_the_origin_is_compared_directly():
+    reach = site_reach([{"origin": (-25.7, -9.3, 0.3)}])
+    assert 27 < reach < 28
+    assert frame_mismatch(BAZ2B_5E9L, BAZ2B_PARENT, reach) is None
+
+
+def test_the_same_difference_far_from_the_origin_is_flagged():
+    reason = frame_mismatch(BAZ2B_5E9L, BAZ2B_PARENT, 80.0)
+    assert reason is not None and "at the sites" in reason
+
+
+def test_another_crystal_form_is_flagged_whatever_the_reach():
+    other = [70.0, 96.38, 57.81, 90.0, 90.0, 90.0]  # 16% off
+    assert frame_mismatch(other, BAZ2B_PARENT, 1.0) is not None

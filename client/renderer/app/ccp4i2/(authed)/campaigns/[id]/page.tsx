@@ -80,9 +80,9 @@ function getFileDisplayLabel(file: CCP4File): string {
   return file.name;
 }
 
-// Refinement tasks whose finished jobs carry ligand-bound coordinates.
-// Mirrors REFINE_TASK_NAMES in server/ccp4i2/lib/campaign_scene.py and the
-// auto-select set in the campaign Moorhen page.
+// Fallback for a server that sends no current_model_job: the tasks whose
+// finished jobs carry a model to show. The server's rule (latest refinement,
+// else DIMPLE) is lib/campaign_matrix.py choose_current_model.
 const REFINEMENT_TASK_NAMES = ["refmac", "i2Refmac", "i2Dimple", "dimple"];
 
 interface CampaignDetailPageProps {
@@ -498,9 +498,11 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                     );
                   }}
                   disabled={!memberProjects?.some(p =>
-                    p.jobs?.some(j =>
-                      REFINEMENT_TASK_NAMES.includes(j.task_name) && j.status === 6
-                    )
+                    p.current_model_job !== undefined
+                      ? p.current_model_job !== null
+                      : p.jobs?.some(j =>
+                          REFINEMENT_TASK_NAMES.includes(j.task_name) && j.status === 6
+                        )
                   )}
                 >
                   Summary View
