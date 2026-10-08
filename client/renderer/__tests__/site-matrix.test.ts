@@ -141,6 +141,26 @@ describe("siteCellUrl", () => {
   it("is not a link without a model job or a campaign", () => {
     expect(siteCellUrl(7, null, site(5, "u5"))).toBeNull();
     expect(siteCellUrl(undefined, model, site(5, "u5"))).toBeNull();
+    const cell = { event: { ...event, receipt_job_id: 99 }, verdict: null };
+    expect(siteCellUrl(7, null, site(5, "u5"), cell)).toBeNull();
+  });
+
+  it("names a filled box's event, by its receipt and event number", () => {
+    const cell = { event: { ...event, receipt_job_id: 99 }, verdict: null };
+    expect(siteCellUrl(7, model, site(5, "u5"), cell)).toBe(
+      "/ccp4i2/moorhen-page/campaign/7?job=42&site=5&event=99:2"
+    );
+  });
+
+  it("leaves an outlined box, or an event with no receipt, as before", () => {
+    const outlined = { event: null, verdict: "hit" as const };
+    expect(siteCellUrl(7, model, site(5, "u5"), outlined)).toBe(
+      "/ccp4i2/moorhen-page/campaign/7?job=42&site=5"
+    );
+    // An older server sends no receipt_job_id.
+    expect(siteCellUrl(7, model, site(5, "u5"), { event, verdict: null })).toBe(
+      "/ccp4i2/moorhen-page/campaign/7?job=42&site=5"
+    );
   });
 });
 

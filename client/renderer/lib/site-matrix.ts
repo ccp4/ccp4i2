@@ -28,6 +28,7 @@ import {
   SiteVerdict,
 } from "../types/campaigns";
 import { siteViewUrl } from "./site-verdicts";
+import { eventParam } from "./event-evidence";
 
 /** How a dataset's box at one site is drawn. */
 export type SiteCellKind =
@@ -167,13 +168,22 @@ export function siteCellTooltip(
  * current model, at this site (by the site's numeric id, which is what the
  * Moorhen page's `site` parameter takes). Null when there is no model to
  * open, or no campaign.
+ *
+ * A filled box also names its event (`event=<receipt job>:<event idx>`), so
+ * the view loads the event's own evidence -- its event map and autobuilt
+ * pose -- over the model. An outlined box has no event and opens as before.
  */
 export function siteCellUrl(
   campaignId: number | undefined,
   modelJob: CurrentModelJob | null | undefined,
-  site: CampaignSite
+  site: CampaignSite,
+  cell?: SiteCell | null
 ): string | null {
-  return siteViewUrl(campaignId, modelJob?.id, site.id);
+  const url = siteViewUrl(campaignId, modelJob?.id, site.id);
+  if (!url) return null;
+  const event = cell?.event;
+  const param = event ? eventParam(event.receipt_job_id, event.event_idx) : null;
+  return param ? `${url}&event=${param}` : url;
 }
 
 /**
