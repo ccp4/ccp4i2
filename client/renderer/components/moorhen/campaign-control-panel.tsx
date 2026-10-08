@@ -509,14 +509,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
             const sliderPosition = valueToSlider(level);
             // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom), 4=mask (Mask)
-            const shortName = mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
+            const ownLabel = (map as any).ccp4i2ShortLabel as string | undefined;
+            const shortName = ownLabel ?? (mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc");
             // The row is labelled by map type, which is what you want while
             // scanning contour sliders and useless for telling apart the two
             // identically-labelled rows a second loaded dataset brings. The
             // hover says which map this actually is: the type spelled out,
             // and the file's own annotation underneath.
-            const fullType =
-              mapSubType === 4
+            const fullType = ownLabel
+              ? "PanDDA event map"
+              : mapSubType === 4
                 ? "Mask"
                 : mapSubType === 3
                 ? "Anomalous difference map"

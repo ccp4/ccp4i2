@@ -955,6 +955,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     opts: {
       isMask?: boolean;
       description?: string;
+      /** The map's row label in the control panel, where its type would mislead
+       *  (a PanDDA event map is neither 2Fo-Fc nor Fo-Fc). */
+      shortLabel?: string;
       /** Absolute map units (a PanDDA event map's display contour). */
       contourLevel?: number | null;
       /** "#rrggbb" */
@@ -981,6 +984,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
       if (opts.description) (newMap as any).ccp4i2Description = opts.description;
+      if (opts.shortLabel) (newMap as any).ccp4i2ShortLabel = opts.shortLabel;
       if (opts.isMask) {
         markMaskMap(newMap);
       }
@@ -1079,6 +1083,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       if (plan.map) {
         await fetchMapFile(fileDownloadUrl(plan.map.fileId), plan.map.name, {
           description: evidence.event_map?.annotation || plan.map.name,
+          shortLabel: `Event ${evidence.event_idx}`,
           contourLevel: plan.map.contourLevel,
           colour: plan.map.colour,
           radius: plan.map.radius,
