@@ -315,3 +315,13 @@ change so that plain assignment rebinds.
 7. **`member-project-row.tsx` is dead code** — exported from the campaigns
    index but rendered nowhere; the virtualized table has its own row. It did
    not get the Sites column. Delete it, or wire it up.
+8. **The dataset x site matrix (server half built 2026-10-08).**
+   `member_projects` now carries, per row, `site_cells` (for every site: the
+   nearest PanDDA event within the site's new `radius`, and the verdict),
+   `frame_mismatch` and `current_model_job`; events come from the new
+   `CampaignEvent` projection, filled as receipts finish and by
+   `manage.py backfill_campaign_events`. The rules and their reasons are in
+   [pandda-campaign-design.md](pandda-campaign-design.md) §9.3 and §10.2. The
+   client still picks its own job to open (newest refmac/i2Refmac/i2Dimple/
+   dimple at any level); it should switch to `current_model_job`, which is
+   the definition the server's site scene now uses too.

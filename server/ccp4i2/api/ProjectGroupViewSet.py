@@ -7,6 +7,7 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
+import math
 from django.db.models import Count, Q
 from django.http import FileResponse
 from django.conf import settings
@@ -23,6 +24,7 @@ from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
+from ..lib import campaign_events
 from ..lib.utils.jobs import pandda_site_index
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -132,39 +134,82 @@ class ProjectGroupViewSet(ModelViewSet):
         - Aggregated job status counts
         - Full list of jobs with status for icon display
         - KPIs from the most recent finished job
+        - The dataset x site matrix: ``site_cells`` (one entry per campaign
+          site: the nearest PanDDA event within the site's radius, and the
+          verdict), ``frame_mismatch`` and ``current_model_job``
+
+        A fixed number of queries for the whole page, whatever the number of
+        members: every member's jobs, KPI values, verdicts and events are
+        fetched once each and grouped here, and no file is opened per row
+        (the dataset's cell rides on its CampaignEvent rows; the parent's is
+        one header read, cached).
 
         Returns:
             Response: List of member projects with job data.
         """
         try:
             group = self.get_object()
-            member_memberships = group.memberships.filter(
-                type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project").prefetch_related(
-                "project__tags", "project__site_evaluations__site"
+            member_memberships = list(
+                group.memberships.filter(
+                    type=models.ProjectGroupMembership.MembershipType.MEMBER
+                ).select_related("project").prefetch_related("project__tags")
             )
+            project_ids = [m.project_id for m in member_memberships]
 
             # Every site of this campaign, so a row can say how much of its
-            # evaluation is outstanding. The denominator is the campaign's
-            # current site count, which keeps the fraction comparable down the
-            # column rather than varying per dataset.
-            site_total = group.site_set.count()
+            # evaluation is outstanding and carry one cell per site. The
+            # denominator is the campaign's current site count, which keeps
+            # the fraction comparable down the column rather than varying per
+            # dataset.
+            sites = list(group.site_set.all())
+            site_total = len(sites)
+
+            # Every verdict at this campaign's sites for these datasets: one
+            # query, restricted to this campaign, because a project can belong
+            # to more than one.
+            evaluations_by_project = {}
+            verdicts = {}
+            for evaluation in models.SiteEvaluation.objects.filter(
+                site__group=group, project_id__in=project_ids
+            ).select_related("site"):
+                evaluations_by_project.setdefault(
+                    evaluation.project_id, []).append(evaluation)
+                verdicts[(evaluation.project_id, evaluation.site_id)] = (
+                    evaluation.verdict)
+
+            # Every job of every member, and their KPI values, in three
+            # queries. The values are selected by project rather than
+            # prefetched by job id, so the parameter count is bounded by the
+            # number of members rather than of jobs.
+            jobs_by_project = {pid: [] for pid in project_ids}
+            for job in models.Job.objects.filter(
+                project_id__in=project_ids
+            ).order_by("number"):
+                jobs_by_project[job.project_id].append(job)
+            floats_by_job = {}
+            for value in models.JobFloatValue.objects.filter(
+                job__project_id__in=project_ids
+            ):
+                floats_by_job.setdefault(value.job_id, []).append(value)
+            chars_by_job = {}
+            for value in models.JobCharValue.objects.filter(
+                job__project_id__in=project_ids
+            ):
+                chars_by_job.setdefault(value.job_id, []).append(value)
+
+            matrix = campaign_events.site_matrix(
+                group, sites, jobs_by_project, verdicts
+            )
 
             result = []
             for membership in member_memberships:
                 project = membership.project
                 project_data = serializers.ProjectSerializer(project).data
-
-                # Get all jobs for this project with prefetched key values
-                jobs = (
-                    models.Job.objects.filter(project=project)
-                    .prefetch_related("float_values", "char_values")
-                    .order_by("number")
-                )
+                jobs = jobs_by_project[project.id]
 
                 # Job summary counts
                 job_summary = {
-                    "total": jobs.count(),
+                    "total": len(jobs),
                     "finished": sum(1 for j in jobs if j.status == models.Job.Status.FINISHED),
                     "failed": sum(1 for j in jobs if j.status == models.Job.Status.FAILED),
                     "running": sum(1 for j in jobs if j.status == models.Job.Status.RUNNING),
@@ -188,18 +233,15 @@ class ProjectGroupViewSet(ModelViewSet):
                 # kpi_map drops values JSON cannot carry, so one NaN R-factor
                 # cannot take the whole campaign overview down with it.
                 kpis = {}
-                for job in reversed(list(jobs)):  # Most recent first
+                for job in reversed(jobs):  # Most recent first
                     context = f"job {job.number} of {project.name}"
-                    for key, value in kpi_map(job.float_values.all(), context).items():
+                    for key, value in kpi_map(floats_by_job.get(job.id, ()), context).items():
                         kpis.setdefault(key, value)
-                    for key, value in kpi_map(job.char_values.all(), context).items():
+                    for key, value in kpi_map(chars_by_job.get(job.id, ()), context).items():
                         kpis.setdefault(key, value)
 
                 # What was found at each site, and how much is still unlooked
-                # at. Carried in THIS payload rather than fetched per row: the
-                # overview renders one row per dataset and a separate request
-                # each would be N round trips for data the table already has
-                # the shape for.
+                # at, as chips. Kept for compatibility alongside site_cells.
                 #
                 # Only hit and unclear are listed. A rich campaign has 30-40
                 # sites and most are empty for most datasets, so sending every
@@ -208,10 +250,7 @@ class ProjectGroupViewSet(ModelViewSet):
                 # evaluated count, and the per-dataset view has the detail.
                 evaluations = []
                 evaluated = 0
-                for evaluation in project.site_evaluations.all():
-                    if evaluation.site.group_id != group.id:
-                        # A project can belong to more than one campaign.
-                        continue
+                for evaluation in evaluations_by_project.get(project.id, ()):
                     evaluated += 1
                     if evaluation.verdict in ("hit", "unclear"):
                         evaluations.append({
@@ -232,6 +271,12 @@ class ProjectGroupViewSet(ModelViewSet):
                 project_data["site_evaluations"] = evaluations
                 project_data["sites_evaluated"] = evaluated
                 project_data["sites_total"] = site_total
+                # The dataset x site matrix (lib/campaign_events.site_matrix):
+                # one cell per site, keyed by site uuid -- the nearest PanDDA
+                # event within the site's radius, or null, and the verdict, or
+                # null for "nobody has looked" -- plus frame_mismatch and
+                # current_model_job.
+                project_data.update(matrix[project.id])
                 result.append(project_data)
 
             return Response(result)
@@ -787,6 +832,8 @@ class ProjectGroupViewSet(ModelViewSet):
             "name": site.name,
             "origin": [site.origin_x, site.origin_y, site.origin_z],
             "order": site.order,
+            # How close (A) a PanDDA event must be to count as at this site.
+            "radius": site.radius,
         }
         # Present only where the caller annotated it (the list view). Deleting
         # a site deletes every verdict recorded there, across every dataset,
@@ -828,14 +875,31 @@ class ProjectGroupViewSet(ModelViewSet):
             except (TypeError, ValueError):
                 return None, f"Site {index} 'zoom' must be a number"
 
-        return {
+        fields = {
             "name": str(data["name"])[:100],
             "origin_x": x,
             "origin_y": y,
             "origin_z": z,
             "quat": quat,
             "zoom": zoom,
-        }, None
+        }
+        if data.get("radius") is not None:
+            radius, error = ProjectGroupViewSet._parse_radius(data["radius"])
+            if error:
+                return None, f"Site {index} {error}"
+            fields["radius"] = radius
+        return fields, None
+
+    @staticmethod
+    def _parse_radius(value):
+        """A site radius: a positive, finite number of Angstroms. (value, error)."""
+        try:
+            radius = float(value)
+        except (TypeError, ValueError):
+            return None, "'radius' must be a number"
+        if not math.isfinite(radius) or radius <= 0:
+            return None, "'radius' must be a positive number of Angstroms"
+        return radius, None
 
     @action(detail=True, methods=["get", "post"])
     def sites(self, request, pk=None):
@@ -1084,6 +1148,12 @@ class ProjectGroupViewSet(ModelViewSet):
                     site.order = int(data["order"])
                 except (TypeError, ValueError):
                     return api_error("'order' must be an integer", status=400)
+
+            if "radius" in data:
+                radius, error = self._parse_radius(data["radius"])
+                if error:
+                    return api_error(error, status=400)
+                site.radius = radius
 
             site.save()
             return Response(self._site_payload(site))

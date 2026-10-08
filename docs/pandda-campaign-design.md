@@ -1025,6 +1025,75 @@ embed the project browser or carry an affordance that launches it as a modal.
 The Moorhen page is full-window, so a panel that shows only its own subject
 strands the user with no way back into the project.
 
+### 9.3 The dataset x site matrix: events near curated sites, as built
+
+Built 2026-10-08. The campaign overview's per-dataset table gains one column
+per `CampaignSite`. A cell carries two independent facts, and the server
+sends both for every site of every row (`member_projects`, `site_cells`):
+
+* **an event**: the PanDDA event, from the dataset's latest recorded receipt,
+  nearest to the site's origin *within the site's radius* -- or none;
+* **a verdict**: the dataset's `SiteEvaluation` at that site -- or none, which
+  is "nobody has looked".
+
+The client draws a box when there is an event, coloured by the verdict
+(unevaluated / empty / unclear / hit), and an outlined box for a verdict given
+where PanDDA found nothing. **The event never sets the verdict**: invariant 1
+of section 9.1 holds, and nothing automated writes a `SiteEvaluation`.
+
+The rule (`lib/campaign_matrix.match_events_to_sites`, pure and unit-tested):
+
+* `CampaignSite.radius` (A, default 8.0, editable through the site `PATCH`)
+  says how close an event's centroid must be to the site's origin, the
+  boundary included. Per site, because pockets differ in size.
+* The nearest qualifying event wins; a tie goes to the higher hit
+  probability, then the lower event number, so input order never decides.
+* One event may count for several sites when radii overlap. Which pocket an
+  event "really" belongs to is a person's call, not the matcher's.
+* A cell reports `event_idx`, `hit_probability`, `has_pose` and the
+  `distance`. The run's own `site_idx` plays no part: it is renumbered every
+  run (section 9.2), while a curated site is a place.
+
+**Frames: compared directly, with a guard.** Event centroids are in the
+dataset's frame and site origins in the parent's (the hazard section 9.1
+records). For near-isomorphous members that is close enough to say which
+pocket an event is in, so v2 compares them directly rather than fitting a
+transform per dataset. The guard (`campaign_matrix.frame_mismatch`) asks how
+far the cell difference moves a point where the sites are: an edge off by a
+fraction d moves a point r from the origin by about d * r, and r is taken as
+the farthest site's distance from the origin. A dataset whose difference moves
+the sites by more than 1.5 A, or whose cell is off by more than 10% on any
+edge or 2 degrees on any angle (another form or setting), gets **no matches**
+and a `frame_mismatch` reason instead, because a distance across two frames is
+not a distance. A flat 2% edge rule was tried first and was wrong: BAZ2B's
+5e9l, 2.5% off the parent in a, had its event 5.3 A from the acetyl-lysine
+site hidden, though the difference moves that pocket by only 0.7 A. The dataset's cell is read from the receipt's apo model
+(`XYZIN_APO`, the `-pandda-input.pdb`, in the dataset's frame) once, when the
+receipt is recorded, and stored on its `CampaignEvent` rows; the parent's is
+the header of the reference model campaign_scene draws, read once and cached
+on its mtime. So the overview opens no file per dataset. When either cell is
+unknown nothing is flagged and the comparison is direct. A per-dataset fit
+(`lib/superposition.py`) remains the remedy if a campaign ever needs matching
+across non-isomorphous members.
+
+**The model a click opens** is the dataset's *current model*, defined once
+(`campaign_matrix.choose_current_model`) and shared with the curated site
+scene (`campaign_scene`): the latest finished **top-level** job of a
+refinement task (`REFINEMENT_TASKS`: servalcat_pipe, servalcat,
+prosmart_refmac, refmac, i2Refmac, buster, lorestr_i2, pdb_redo_api and
+`SubstituteLigand`, which is the campaign's own route to a refined,
+ligand-bound model and publishes it as its own output), else the latest
+finished DIMPLE run at any level (`DIMPLE_TASKS`; on the merged route DIMPLE
+is a SubstituteLigand subjob), else none. A refinement beats a newer DIMPLE
+run, because DIMPLE re-fits the reference model. PanDDA's own input choice
+(`pandda_export.DIMPLE_TASK_NAMES`) is deliberately *not* this rule: PanDDA
+wants the DIMPLE model, not the best one.
+
+The overview costs a fixed number of queries whatever the number of members
+(twelve when written): memberships, sites, verdicts, every member's jobs and
+KPI values, the events of each member's latest receipt, and the parent's
+reference file, each fetched once and grouped in Python.
+
 ---
 
 ## 10. Everything gleanable is also backed by a persistent artefact
@@ -1046,7 +1115,7 @@ association*, and recovery would have to decide which wins when they disagree.
 The association being structural — the `CDataFile` sits inside the event record
 — is what stops that question arising.
 
-### 10.2 `CampaignEvent` is a projection, not a source of truth — **v2, decided**
+### 10.2 `CampaignEvent` is a projection, not a source of truth — **v2, built 2026-10-08**
 
 Campaign-wide questions ("every dataset with an unbuilt event above 0.5 at site
 3") cannot be answered from `params.xml`, and KPIs are per-job, not per-event.
@@ -1062,6 +1131,41 @@ grounds that nothing queried it. §5.6 names the thing that does: the
 cross-dataset triage queue that lets the campaign views replace a separate
 review application. Still not v1 — v1 has no schema footprint — but it is the
 first thing v2 builds, not the last.
+
+**As built** (migration 0027, `db/models.py: CampaignEvent`,
+`lib/campaign_events.py`). One row per event per receipt job, unique on
+`(receipt, site_idx, event_idx)` as planned: the receipt, the member
+`project`, the `group` (the campaign whose parent ran the PanDDA job and has
+this project as a member, else the project's only campaign; null when
+ambiguous, and nothing reads by it alone), `run_job_uuid`, `dtag`,
+`event_idx`, `site_idx`, the centroid, `hit_probability`, `has_pose`,
+`has_map`, and -- not in the plan above -- the dataset's unit cell, repeated
+on each of the receipt's rows, for the frame check of section 9.3. Rows never
+point at a `CampaignSite`: which curated site an event is at is computed per
+request, because a site's origin and radius are editable and a stored match
+would go stale.
+
+* **Written** by a `post_save` receiver on `Job` (`db/signals.py:
+  receipt_saved`) when a `pandda_events` job is created in, or changes status
+  to, FINISHED or UNSATISFACTORY -- by then the runner has gleaned and
+  written `params.xml` -- and **dropped** when it leaves those statuses
+  (rerun, marked for deletion). Re-recording replaces the receipt's rows
+  wholesale, inside one savepoint, and a failure is logged without failing
+  the job. Hooking the save rather than one glean path covers track_job,
+  run_subjob, the legacy updateJobStatus and imports alike.
+* **Rebuilt** by `manage.py backfill_campaign_events [--group <uuid>]`, which
+  is idempotent and is also the path after a restore or an import that
+  bypasses `save()`. There is no data migration: the command is the decided
+  route.
+* **Healed** by the page that reads it, so nobody has to remember the
+  command: `site_matrix` records any member's latest receipt that expects
+  events (its `nEventsExpected` KPI is above zero) but has no rows
+  (`campaign_events.heal_receipts`). That covers a campaign from before the
+  table (its first view fills it in, one receipt file read per dataset with
+  events) and a project imported before its files were on disk. One extra
+  query when some receipt has no rows; a receipt that expects none costs
+  nothing; healed rows are not recorded again.
+* **Not snapshotted**: nothing in it is user-authored.
 
 ### 10.3 A typed event-set `CDataFile` — **OPEN, default no**
 
@@ -1468,7 +1572,7 @@ files nested inside a composed list item are registered under their
 | # | Work | Gated on |
 |---|---|---|
 | 8 | Site matching: PanDDA sites → `CampaignSite` by centroid with the moved-peak guard (§9); events gain a site reference | §14.0 |
-| 9 | `CampaignEvent` projection + rebuild command (§10.2) | §14.0, item 8 |
+| 9 | `CampaignEvent` projection + rebuild command (§10.2) — **built 2026-10-08**, with the dataset x site matrix (§9.3) as its first reader | §14.0, item 8 |
 | 10 | **Campaign triage view**: every event across the campaign, ranked, stepped through in the existing campaign Moorhen page; *accept this pose* as the generalisation of place-ligand (§5.6) | items 9, 11 |
 | 11 | Scene recipes (§11) — the triage view's per-event scene is the first consumer | — |
 | 12 | Fan-in as a campaign-aware endpoint; `pandda_fanout` gains an API wrapper (the command remains the implementation) | — |
