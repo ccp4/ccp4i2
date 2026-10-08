@@ -45,6 +45,7 @@ import {
   parseDatasetFilename,
 } from "../../types/campaigns";
 import { SmilesView } from "./smiles-view";
+import { estimateRowHeight, hasSmiles } from "../../lib/campaign-row-height";
 import { ProjectTagChips } from "../project-tag-chips";
 import { SiteVerdictChips } from "./site-verdict-chips";
 import {
@@ -73,7 +74,7 @@ interface VirtualizedMemberProjectsTableProps {
   onDelete: (project: MemberProjectWithSummary) => void;
   onProjectClick: (project: MemberProjectWithSummary) => void;
   /** Maximum height of the table container (default: 500) */
-  maxHeight?: number;
+  maxHeight?: number | string;
   /**
    * The campaign's sites. With them, and a server that sends per-site cells,
    * the table has one column per site; otherwise a single Sites chips column.
@@ -107,7 +108,7 @@ export function VirtualizedMemberProjectsTable({
   onRefresh,
   onDelete,
   onProjectClick,
-  maxHeight = 500,
+  maxHeight = "max(420px, calc(100vh - 320px))",
   sites,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -125,16 +126,6 @@ export function VirtualizedMemberProjectsTable({
     setShowHint(false);
     localStorage.setItem(HINT_DISMISSED_KEY, "true");
   }, []);
-
-  // Set up virtualizer for windowed rendering
-  const rowVirtualizer = useVirtualizer({
-    count: projects.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 85, // Estimated row height (accounts for SMILES and tags)
-    overscan: 5, // Render 5 extra rows above/below viewport
-  });
-
-  const virtualItems = rowVirtualizer.getVirtualItems();
 
   // The Jobs column can be folded to a count, leaving the width to the site
   // columns; remembered per viewer.
@@ -155,6 +146,25 @@ export function VirtualizedMemberProjectsTable({
       return !was;
     });
   }, []);
+  // Set up virtualizer for windowed rendering
+  const rowVirtualizer = useVirtualizer({
+    count: projects.length,
+    getScrollElement: () => parentRef.current,
+    // A guess per row from what it will show, so the space kept for rows not
+    // yet drawn is close to the truth: a flat 85 px left gaps (or overlaps)
+    // that jumped as rows were measured, folded rows being ~56 px and a row
+    // of fifteen jobs three lines tall.
+    estimateSize: (index) =>
+      estimateRowHeight(projects[index], {
+        jobsCollapsed,
+        showSubJobs,
+        hasSmiles: hasSmiles(projects[index], smilesMap),
+      }),
+    overscan: 5, // Render 5 extra rows above/below viewport
+  });
+
+  const virtualItems = rowVirtualizer.getVirtualItems();
+
   // Row heights change with the jobs shown; measure them again.
   useEffect(() => {
     rowVirtualizer.measure();
