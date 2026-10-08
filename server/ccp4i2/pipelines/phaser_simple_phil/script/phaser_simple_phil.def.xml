@@ -92,7 +92,10 @@
           <sameCrystalSeverity>error</sameCrystalSeverity>
           <mustExist>True</mustExist>
           <allowUndefined>True</allowUndefined>
-          <fromPreviousJob>True</fromPreviousJob>
+          <!-- Never filled from the context: that something is already placed is
+               a decision. With True, following on from mrparse put hit 1 in XYZIN
+               and hit 2 here, and an agent then only had to tick INPUT_FIXED. -->
+          <fromPreviousJob>False</fromPreviousJob>
         </qualifiers>
       </content>
       <content id="FIXENSEMBLES">

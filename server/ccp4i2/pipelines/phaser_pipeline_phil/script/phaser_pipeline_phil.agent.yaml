@@ -14,7 +14,9 @@ purpose: >
 use_when:
   - The asymmetric unit holds several different molecules (a complex) to be
     placed in one run, each with its own model - as BetaBlip job 4 placed
-    beta-lactamase and BLIP.
+    beta-lactamase and BLIP (route B of docs/multi-component-mr.md). With
+    one model holding the whole complex (a complex template, route A), the
+    simple task does the same with less to set.
   - One component is best described by several superposed models (an
     ensemble), e.g. several homologues or an NMR bundle.
   - Part of the AU was placed by an earlier Phaser job and the rest is to be
@@ -47,7 +49,13 @@ inputs:
       beforehand (Phaser does not superpose them, and refuses them if their
       scattering differs by more than 20%); different molecules go in
       different entries. Copies counts copies of what one entry's file
-      holds: a dimer file counted once is one copy. Copies 0 (or Use
+      holds: a dimer file counted once is one copy, and a complex template
+      (one file holding every component, from mrparse's "PDB complex
+      template" or an entry of the complex) is ONE entry whose copies are
+      copies of the complex. At run time the task aligns each model's
+      chains to the AU sequences and warns (code 222) only for a kind of
+      chain no model, fixed structure or SOLIN accounts for, naming the
+      three routes (docs/multi-component-mr.md). Copies 0 (or Use
       unticked) means "do not search for this one" - the way to carry an
       ensemble already placed in SOLIN. For each model give identity_to_target
       as a FRACTION (0.57, not 57) OR rms_to_target, never both (blocking
@@ -517,6 +525,8 @@ next:
       (mrbump_basic finds them), or molrep_pipe.
 
 sources:
+  - docs/multi-component-mr.md (the three routes for a complex; what "already placed" means)
+  - server/ccp4i2/lib/utils/formats/model_coverage.py (which AU kinds a model covers; warning 222)
   - docs/user/source/tasks/phaser_pipeline/index.rst
   - server/ccp4i2/pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.py
   - server/ccp4i2/pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.def.xml

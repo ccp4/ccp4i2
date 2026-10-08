@@ -164,6 +164,40 @@ results:
       molecule (any number of copies); more is a complex, whose components
       are placed together (Haiku's CDK4/cyclin D1, 2). The names are in
       program.xml Targets/Target.
+  COMPLEX_TEMPLATES:
+    file: program.xml
+    xpath: ./Complexes
+    attribute: count
+    type: int
+    optional: true
+    meaning: >
+      How many PDB entries had hits matching more than one of the sequences
+      searched for, each written as one more model holding those chains in
+      the entry's frame (lib/utils/formats/mrparse_complexes.py; written by
+      the wrapper since 2026-10-09, absent in older jobs). Such a template
+      is route A of docs/multi-component-mr.md: one search model for the
+      whole complex. Haiku's CDK4/cyclin D1 mrparse job, re-read with this
+      wrapper: 1 (6p8e, chains B and A at 92% and 100%), the file CDK4/cyclin
+      D1 was in fact solved with. Each entry is listed under
+      Complexes/Complex (entry, index, file, Component chain/target/identity).
+  COMPLEX_INDEX:
+    file: program.xml
+    xpath: ./Complexes/Complex[1]
+    attribute: index
+    type: int
+    optional: true
+    meaning: >
+      Index of the first complex template in XYZOUT (templates are appended
+      after every single-chain model, so the index is the number of those):
+      the item to give phaser_simple_phil as XYZIN. Haiku's job re-read: 10.
+  COMPLEX_FILE:
+    file: program.xml
+    xpath: ./Complexes/Complex[1]
+    attribute: file
+    type: str
+    optional: true
+    meaning: >
+      File name of that template, entry and chains ("6p8e_BA_complex.pdb").
   CODE_201:
     file: diagnostic.xml
     xpath: ".//errorReport[code='201']/class"
@@ -314,11 +348,32 @@ traps:
     aligned regions against the target sequence.
 
 next:
+  - when: outcome == "models_found" and TARGETS > 1 and COMPLEX_TEMPLATES > 0
+    task: phaser_simple_phil
+    advice: >
+      A complex (TARGETS sequences) for which an entry of the complex was
+      found: route A of docs/multi-component-mr.md. Give the complex
+      template, XYZOUT[COMPLEX_INDEX] (COMPLEX_FILE; with several
+      templates, the others are listed under program.xml Complexes/Complex
+      with their index), as XYZIN, searched as ONE rigid body; NCOPIES is
+      the number of copies of the COMPLEX in the AU (one copy of each
+      component in the template, so with CDK4 twice and cyclin twice that
+      is 2); SEARCHSEQUENCEIDENTITY the lower of the components' identities
+      as a fraction (Complexes/Complex/Component identity); COMP_BY ASU with
+      ASUFILE; F_SIGF and FREERFLAG from the project's data. CDK4/cyclin D1
+      was solved so (TFZ 27.5 for one copy; 22.1 and 32.0 for two). If the
+      subunits may sit differently in this crystal, or the template's
+      components match the targets unequally well, search for the
+      single-chain models separately instead (the next entry). A kind of
+      chain the AU holds more copies of than the template is searched for
+      afterwards, with this job's solution fixed (route C).
   - when: outcome == "models_found" and TARGETS > 1
     task: phaser_pipeline_phil
     advice: >
-      A complex (TARGETS sequences, named in program.xml Targets/Target):
-      place every component in ONE run. One ENSEMBLES entry (CEnsemble) per
+      A complex (TARGETS sequences, named in program.xml Targets/Target)
+      with no entry holding the whole complex (COMPLEX_TEMPLATES 0 or
+      absent), or whose subunits may sit differently here: route B of
+      docs/multi-component-mr.md, place every component in ONE run. One ENSEMBLES entry (CEnsemble) per
       component, labelled by the molecule, number = its copies in the AU
       (from ProvideAsuContents), its pdbItemList the chosen XYZOUT[i] for
       that molecule with identity_to_target as a fraction (homologs.json
@@ -327,7 +382,8 @@ next:
       component), and never a component as the structure already placed
       (refused unless it was placed in this crystal). Hits cut from one
       entry (6p8e_A, 6p8e_B) are that entry's complex: each in its own
-      ensemble. COMP_BY ASU with ASUFILE, F_SIGF and FREERFLAG as for any
+      ensemble here, or the entry's complex template (the entry above) as
+      one search model. COMP_BY ASU with ASUFILE, F_SIGF and FREERFLAG as for any
       Phaser job. phaser_simple_phil searches for one model and is the
       wrong task here.
   - when: outcome == "models_found" and TARGETS == 1
@@ -415,6 +471,9 @@ next:
       machine can reach the PDB (models are downloaded) or give PDBLOCAL.
 
 sources:
+  - docs/multi-component-mr.md (the three routes for a complex)
+  - server/ccp4i2/lib/utils/formats/mrparse_complexes.py (complex templates: one entry matching several targets)
+  - "run: Haiku2_CDK4_CyclinD1 job 3 (mrparse, CDK4 + cyclin D1 FASTA, reflections; 5 PDB + 5 AFDB models), re-read with the 2026-10-09 wrapper: template 6p8e_BA_complex.pdb at index 10"
   - docs/user/source/tasks/mrparse/index.rst
   - server/ccp4i2/wrappers/mrparse/script/mrparse_wrapper.py
   - server/ccp4i2/wrappers/mrparse/script/mrparse.def.xml

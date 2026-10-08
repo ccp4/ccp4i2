@@ -6,9 +6,13 @@ Basic molecular replacement (Phaser)
    for, in the crystal by molecular replacement with `Phaser
    <https://www.phaser.cimr.cam.ac.uk>`__, then refines the solution. It
    is the quickest route when the asymmetric unit holds one kind of
-   molecule and you have a model of it. For a complex of different
-   molecules, for ensembles of several models, or to search in steps, use
-   *Expert Molecular Replacement - Phaser*.
+   molecule and you have a model of it, or when one model holds the whole
+   complex (a *complex template*: the matching chains of an entry of a
+   homologous complex, kept as they sit in that entry, searched as one
+   rigid body). To search for the components of a complex separately, for
+   ensembles of several models, or to search in steps, use
+   *Expert Molecular Replacement - Phaser*. The three ways of placing a
+   complex are compared in the Expert task's page.
 
    The pictures on this page come from the demo data that ships with
    CCP4i2: the beta-lactamase / BLIP complex, searched here with
@@ -38,9 +42,18 @@ Input
    file you downloaded. Say how many copies to place **(4)**. Phaser needs
    to know how similar the model is to your molecule **(5)**, as sequence
    identity or as an expected RMS deviation: a homologous model at 40%
-   identity is placed differently from a model of the same protein. If a
-   structure already placed is to be kept, give it too; it is not
-   searched for.
+   identity is placed differently from a model of the same protein. For a
+   complex template, the copies are copies of the complex, and MrParse
+   writes such a template when hits from one entry match more than one of
+   the sequences it was given.
+
+   If a structure already placed is to be kept, give it too; it is not
+   searched for. "Already placed" means placed in *this* crystal: the
+   output of an earlier molecular-replacement job on these data. A model
+   from MrParse, from a database or from a prediction is in its own frame
+   and is searched for, never fixed; the task refuses a fixed structure
+   whose cell differs from the data's. The slot is never filled in from a
+   previous job: choose the file yourself.
 
    Phaser works best when it knows how much the crystal scatters: say
    what the asymmetric unit contains **(6)**. The AU contents from *Define

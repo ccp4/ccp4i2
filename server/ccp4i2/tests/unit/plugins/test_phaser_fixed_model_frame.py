@@ -70,10 +70,15 @@ def test_a_file_left_set_without_input_fixed_is_ignored(tmp_path):
     assert not _blocking_on_fixed(_plugin(tmp_path, fixed, input_fixed=False).runTimeValidity())
 
 
+def _seq(name):
+    return "".join(l.strip() for l in (DEMO / f"{name}.seq").read_text().splitlines()
+                   if not l.startswith(">"))
+
+
 def _asu(path, names):
-    """An AU contents file of one copy of each named protein chain."""
+    """An AU contents file of one copy of each named demo protein (BETA, BLIP)."""
     items = "".join(
-        f"<CAsuContentSeq><sequence>MKV</sequence><nCopies>1</nCopies>"
+        f"<CAsuContentSeq><sequence>{_seq(n.lower())}</sequence><nCopies>1</nCopies>"
         f"<polymerType>PROTEIN</polymerType><name>{n}</name></CAsuContentSeq>" for n in names)
     path.write_text(
         '<?xml version="1.0"?><ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">'
@@ -82,21 +87,50 @@ def _asu(path, names):
     return path
 
 
+def _complex(path):
+    """beta-lactamase and BLIP as chains A and B of one file: a complex
+    template, searched as one rigid body (CDK4/cyclin D1 was solved so)."""
+    out = gemmi.Structure()
+    model = gemmi.Model("1")
+    for name, chain_id in (("beta", "A"), ("blip", "B")):
+        chain = gemmi.read_structure(str(DEMO / f"{name}.pdb"))[0][0]
+        chain.name = chain_id
+        model.add_chain(chain)
+    out.add_model(model)
+    out.setup_entities()
+    out.write_pdb(str(path))
+    return path
+
+
 def _advice(error):
     return [r for r in error._reports if r["code"] == 222]
 
 
-def test_contents_with_more_kinds_than_are_searched_for_get_advice(tmp_path, data_cell):
-    # Haiku's case: CDK4 and cyclin D1 in the contents, one searched for
+def test_a_kind_no_model_accounts_for_gets_advice(tmp_path, data_cell):
+    # Haiku's case: CDK4 and cyclin D1 in the contents, one searched for.
+    # Here BLIP is searched for and beta-lactamase is in the contents too.
     plugin = _plugin(tmp_path, _model(tmp_path / "placed.pdb", data_cell, "P 32 2 1"),
                      input_fixed=False)
     plugin.container.inputData.ASUFILE.setFullPath(str(_asu(tmp_path / "two.asu.xml", ["BETA", "BLIP"])))
     advice = _advice(plugin.runTimeValidity())
     assert advice and advice[0]["severity"] == CCP4ErrorHandling.SEVERITY_WARNING
-    assert "BETA, BLIP" in advice[0]["details"] and "phaser_pipeline_phil" in advice[0]["details"]
+    details = advice[0]["details"]
+    assert "search model 1 covers BLIP (100%)" in details
+    assert "nothing accounts for BETA" in details
+    assert "one rigid body" in details and "in turn" in details
 
     # one searched for and one already placed (here, in this crystal) covers both
     plugin.container.inputData.INPUT_FIXED.set(True)
+    assert not _advice(plugin.runTimeValidity())
+
+
+def test_a_complex_template_accounts_for_every_kind_it_holds(tmp_path, data_cell):
+    # CDK4/cyclin D1 jobs 3 and 9: one search model holding both chains. The
+    # earlier count of models told that correct job it searched for one of two.
+    plugin = _plugin(tmp_path, _model(tmp_path / "unused.pdb", data_cell, "P 32 2 1"),
+                     input_fixed=False)
+    plugin.container.inputData.XYZIN.setFullPath(str(_complex(tmp_path / "beta_blip.pdb")))
+    plugin.container.inputData.ASUFILE.setFullPath(str(_asu(tmp_path / "two.asu.xml", ["BETA", "BLIP"])))
     assert not _advice(plugin.runTimeValidity())
 
 
@@ -105,3 +139,14 @@ def test_contents_of_one_kind_get_no_advice(tmp_path, data_cell):
                      input_fixed=False)
     plugin.container.inputData.ASUFILE.setFullPath(str(_asu(tmp_path / "one.asu.xml", ["BLIP"])))
     assert not _advice(plugin.runTimeValidity())
+
+
+def test_the_fixed_structure_is_never_filled_from_the_context(tmp_path, data_cell):
+    # Following on from mrparse put hit 1 in XYZIN and hit 2 in XYZIN_FIXED by
+    # itself, and the agent then only had to tick INPUT_FIXED. That something
+    # is already placed is a decision, so the slot stays empty until made.
+    # keep the plugin: a container outlives its plugin only until collection
+    plugin = _plugin(tmp_path, _model(tmp_path / "placed.pdb", data_cell, "P 32 2 1"))
+    inp = plugin.container.inputData
+    assert inp.XYZIN.qualifiers("fromPreviousJob") is True
+    assert inp.XYZIN_FIXED.qualifiers("fromPreviousJob") is False
