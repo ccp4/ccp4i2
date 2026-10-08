@@ -90,6 +90,10 @@ class phasertng_picard_report(Report):
 
         # Parse output files
         result = self._parse_result_cards(db_dir)
+        if not result:
+            # This phasertng writes result.json, not result.cards: take the
+            # same facts from there (lib/utils/formats/phasertng_cards.py)
+            result = self._result_from_json(db_dir)
         solutions = self._parse_dag_cards(db_dir)
         dag_dot = self._parse_dag_html_tree(db_dir)
 
@@ -125,6 +129,24 @@ class phasertng_picard_report(Report):
     # ------------------------------------------------------------------
     # Parsers
     # ------------------------------------------------------------------
+
+    def _result_from_json(self, db_dir):
+        from ccp4i2.lib.utils.formats.phasertng_cards import last_result_json, read_result_json
+        path = last_result_json(db_dir)
+        run = read_result_json(path) if path else {}
+        result = {}
+        if run.get("resolution"):
+            result["data resolution_available"] = str(run["resolution"])
+        if run.get("wilson_b") is not None:
+            result["anisotropy wilson_bfactor"] = str(run["wilson_b"])
+        if run.get("matthews_z") is not None:
+            result["matthews"] = (f"vm  {run.get('matthews_vm') or 0:.2f} probability  "
+                                  f"{run.get('matthews_probability') or 0:.2f} z  {int(run['matthews_z'])}")
+        if run.get("twinning_indicated") is not None:
+            result["twinning indicated"] = str(run["twinning_indicated"]).lower()
+        if run.get("wall_seconds") is not None:
+            result["time cumulative wall"] = str(run["wall_seconds"])
+        return result
 
     def _parse_result_cards(self, db_dir):
         """Parse result.cards from the highest-numbered rfac subdirectory.
