@@ -141,10 +141,15 @@ class CampaignSite(Model):
     also replaced on every edit, so two people editing sites concurrently lost
     one another's work with no conflict and no error.
 
-    ``origin`` is the centre of the site in the campaign's reference frame
-    (that of the parent project), which is what makes it meaningful across
-    datasets; ``quat`` and ``zoom`` are the saved camera, used only for
-    navigation.
+    ``origin`` is NOT the centre of the site. It is Moorhen's view origin as
+    the viewer saved it, which is the *negation* of the point at the centre of
+    the screen; the save/restore path stores and hands it back raw, so the
+    camera round-trips. The centre, in the campaign's reference frame (that of
+    the parent project), is ``position``: anything that measures, selects
+    atoms or matches events must use that (``campaign_scene.site_position``
+    records how this was found; the dataset x site matrix once measured events
+    against the reflection of every site). ``quat`` and ``zoom`` are the saved
+    camera, used only for navigation.
 
     ``uuid`` is what an evaluation, an event record or another installation's
     snapshot refers to. The primary key is meaningless after a database
@@ -185,7 +190,13 @@ class CampaignSite(Model):
 
     @property
     def origin(self):
+        """Moorhen's view origin, as saved: the NEGATED centre."""
         return [self.origin_x, self.origin_y, self.origin_z]
+
+    @property
+    def position(self):
+        """The site's centre in real space (the parent's frame)."""
+        return [-self.origin_x, -self.origin_y, -self.origin_z]
 
 
 class SiteEvaluation(Model):

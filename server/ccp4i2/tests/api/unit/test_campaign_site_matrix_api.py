@@ -44,18 +44,21 @@ def _member_rows(group):
     return {row["name"]: row for row in response.json()}
 
 
+def _site(group, name, position, order, **kw):
+    """A site saved as the viewer saves one: ``origin`` is Moorhen's view
+    origin, the NEGATED position."""
+    x, y, z = position
+    return models.CampaignSite.objects.create(
+        group=group, name=name, origin_x=-x, origin_y=-y, origin_z=-z,
+        order=order, **kw)
+
+
 def _sites(group):
     """S1 on the run's site 1, S2 tight round frag_drg's second event, S3 far
     from every event."""
-    s1 = models.CampaignSite.objects.create(
-        group=group, name="S1", origin_x=SITE_POSITION[0],
-        origin_y=SITE_POSITION[1], origin_z=SITE_POSITION[2], order=0)
-    s2 = models.CampaignSite.objects.create(
-        group=group, name="S2", origin_x=21.0, origin_y=20.0, origin_z=20.0,
-        radius=3.0, order=1)
-    s3 = models.CampaignSite.objects.create(
-        group=group, name="S3", origin_x=40.0, origin_y=40.0, origin_z=40.0,
-        order=2)
+    s1 = _site(group, "S1", SITE_POSITION, 0)
+    s2 = _site(group, "S2", (21.0, 20.0, 20.0), 1, radius=3.0)
+    s3 = _site(group, "S3", (40.0, 40.0, 40.0), 2)
     return s1, s2, s3
 
 
@@ -371,3 +374,23 @@ def test_the_page_records_a_receipt_that_expects_events_and_has_none(
     with CaptureQueriesContext(connection) as again:
         _member_rows(group)
     assert not any("INSERT" in q["sql"] for q in again.captured_queries)
+
+
+def test_a_site_is_matched_at_its_position_not_its_saved_view_origin(
+        bypass_api_permissions, test_project_path):
+    """Moorhen's view origin is the negated centre. Matching against the
+    stored value measured every event against the site's reflection through
+    the molecule origin, and a real campaign showed no events at all."""
+    group = _campaign_with_a_run(test_project_path)
+    at_site = _site(group, "At the events", SITE_POSITION, 0)
+    # A site whose stored origin equals the events' position is at their
+    # reflection, so nothing may match it.
+    reflected = models.CampaignSite.objects.create(
+        group=group, name="Reflection", origin_x=SITE_POSITION[0],
+        origin_y=SITE_POSITION[1], origin_z=SITE_POSITION[2], order=1)
+    campaign_events.backfill(group)
+
+    drg = _member_rows(group)["frag_drg"]["site_cells"]
+    assert drg[str(at_site.uuid)]["event"]["event_idx"] == 1
+    assert drg[str(reflected.uuid)]["event"] is None
+    assert at_site.position == [float(c) for c in SITE_POSITION]

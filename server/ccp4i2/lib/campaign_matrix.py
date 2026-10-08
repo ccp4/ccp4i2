@@ -153,9 +153,9 @@ def frame_mismatch(dataset_cell: Optional[Sequence[float]],
 
 
 def site_reach(sites) -> Optional[float]:
-    """The farthest site origin's distance (A) from the frame origin."""
-    distances = [math.sqrt(sum(float(c) ** 2 for c in s["origin"]))
-                 for s in sites if s.get("origin") is not None]
+    """The farthest site's distance (A) from the frame origin."""
+    distances = [math.sqrt(sum(float(c) ** 2 for c in s["position"]))
+                 for s in sites if s.get("position") is not None]
     return max(distances) if distances else None
 
 
@@ -177,11 +177,12 @@ def match_events_to_sites(events: Iterable[dict], sites: Iterable[dict],
 
     ``events`` are dicts with ``event_idx``, ``centroid`` (``[x, y, z]`` or
     None), ``hit_probability`` and ``has_pose``. ``sites`` are dicts with
-    ``uuid``, ``origin`` (``[x, y, z]``) and ``radius``. The result has one
+    ``uuid``, ``position`` (the centre in real space, ``[x, y, z]`` -- never
+    ``CampaignSite.origin``, which is its negation) and ``radius``. The result has one
     key per site uuid, always, so a caller can render every column.
 
     * An event counts for a site when its centroid is within the site's
-      radius of the site's origin, the boundary included.
+      radius of the site's position, the boundary included.
     * An event may count for more than one site: radii are per site and may
       overlap, and which pocket an event "really" belongs to is a judgement
       this function does not make.
@@ -198,13 +199,13 @@ def match_events_to_sites(events: Iterable[dict], sites: Iterable[dict],
         return cells
     events = [e for e in events if e.get("centroid") is not None]
     for site in sites:
-        origin = site["origin"]
+        position = site["position"]
         radius = site.get("radius")
         radius = DEFAULT_SITE_RADIUS if radius is None else float(radius)
         best = None
         best_key = None
         for event in events:
-            d = _distance(event["centroid"], origin)
+            d = _distance(event["centroid"], position)
             if d > radius:
                 continue
             probability = event.get("hit_probability")
