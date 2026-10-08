@@ -10,6 +10,7 @@ import {
   Radio,
   RadioGroup,
   TextField,
+  Typography,
 } from "@mui/material";
 
 import { CCP4i2CSimpleElementProps } from "./csimple";
@@ -173,7 +174,7 @@ export const CSimpleAutocompleteElement: React.FC<
           sx={calculatedSx}
           name={`radio-group-${itemName}`}
         >
-          <FormControlLabel control={<></>} label={guiLabel} sx={{ mr: 2 }} />
+          <Typography sx={{ mr: 2, alignSelf: "center" }}>{guiLabel}</Typography>
           {enumerators.map((enumerator, index) => (
             <FormControlLabel
               key={`${enumerator}-${index}`}
