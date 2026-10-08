@@ -37,6 +37,11 @@ export interface CampaignSite {
    * one orphaned every reference to it.
    */
   id: number;
+  /**
+   * The site's uuid. The overview's per-dataset `site_cells` are keyed by
+   * this rather than by `id`; optional because an older server omits it.
+   */
+  uuid?: string;
   /** Display name for the site */
   name: string;
   /** View origin coordinates [x, y, z] */
@@ -53,10 +58,15 @@ export interface CampaignSite {
    * say what deleting the site would actually destroy.
    */
   evaluation_count?: number;
+  /**
+   * How far from the site's origin (in Angstrom) a PanDDA event still counts
+   * as being at this site. The server defaults it to 8.
+   */
+  radius?: number;
 }
 
 /** A site's fields as supplied when creating one — the id comes back. */
-export type NewCampaignSite = Omit<CampaignSite, "id" | "order">;
+export type NewCampaignSite = Omit<CampaignSite, "id" | "order" | "uuid">;
 
 /**
  * What was found at one site in one dataset.
@@ -167,6 +177,44 @@ export interface MemberProjectWithSummary extends Omit<Project, "jobs"> {
   sites_evaluated?: number;
   /** The campaign's current site count — the same denominator for every row. */
   sites_total?: number;
+  /**
+   * One entry for every campaign site, keyed by the site's uuid: the PanDDA
+   * event found there in this dataset (if any) and the verdict recorded there
+   * (if any). Absent from an older server, in which case the overview falls
+   * back to the verdict chips.
+   */
+  site_cells?: Record<string, SiteCell>;
+  /**
+   * Why this dataset's PanDDA events cannot be placed against the campaign's
+   * sites (its model is in a different frame), or null when they can.
+   */
+  frame_mismatch?: string | null;
+  /** The job whose model is this dataset's current refined result. */
+  current_model_job?: CurrentModelJob | null;
+}
+
+/** A PanDDA event found at a campaign site in one dataset. */
+export interface SiteCellEvent {
+  event_idx: number;
+  hit_probability: number | null;
+  /** Distance of the event from the site's origin, in Angstrom. */
+  distance: number;
+  has_pose: boolean;
+}
+
+/** What one dataset holds at one campaign site. */
+export interface SiteCell {
+  event: SiteCellEvent | null;
+  /** null when nobody has given a verdict at this site in this dataset. */
+  verdict: SiteVerdict | null;
+}
+
+/** The job whose model the campaign views should open for a dataset. */
+export interface CurrentModelJob {
+  id: number;
+  uuid: string;
+  number: string;
+  task_name: string;
 }
 
 /**

@@ -107,6 +107,8 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
     isLoading: membersLoading,
     mutate: mutateMemberProjects,
   } = campaignsApi.useMemberProjects(campaignId, 5000);
+  // The sites give the overview table its per-site columns.
+  const { data: sites } = campaignsApi.useSites(campaignId, 5000);
 
   // Extract reg_ids from member project names for SMILES lookup
   const regIds =
@@ -548,6 +550,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 onDelete={setDeleteProject}
                 onProjectClick={handleProjectClick}
                 maxHeight={500}
+                sites={sites}
               />
             )}
           </Paper>

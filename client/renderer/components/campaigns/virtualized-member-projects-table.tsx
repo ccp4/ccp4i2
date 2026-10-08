@@ -37,6 +37,7 @@ import {
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { apiPost, apiDelete } from "../../api-fetch";
 import {
+  CampaignSite,
   MemberProjectWithSummary,
   CampaignJobInfo,
   parseDatasetFilename,
@@ -44,6 +45,18 @@ import {
 import { SmilesView } from "./smiles-view";
 import { ProjectTagChips } from "../project-tag-chips";
 import { SiteVerdictChips } from "./site-verdict-chips";
+import {
+  SITE_COLUMN_WIDTH,
+  SiteColumnHeaderContent,
+  SiteMatrixCellContent,
+  SiteMatrixLegend,
+} from "./site-matrix";
+import {
+  canShowMatrix,
+  evaluatedCount,
+  matrixSites,
+} from "../../lib/site-matrix";
+import { evaluationNote } from "../../lib/site-verdicts";
 
 // Status ID to color mapping (matching legacy CCP4i2)
 
@@ -59,7 +72,23 @@ interface VirtualizedMemberProjectsTableProps {
   onProjectClick: (project: MemberProjectWithSummary) => void;
   /** Maximum height of the table container (default: 500) */
   maxHeight?: number;
+  /**
+   * The campaign's sites. With them, and a server that sends per-site cells,
+   * the table has one column per site; otherwise a single Sites chips column.
+   */
+  sites?: CampaignSite[];
 }
+
+/** Columns that are always there: actions, name, ligand, three KPIs, jobs. */
+const FIXED_COLUMN_COUNT = 7;
+/** Width of the evaluated-count column that accompanies the site columns. */
+const EVALUATED_COLUMN_WIDTH = 56;
+/**
+ * The narrowest the table may be without its site columns. The project name
+ * and jobs columns have no fixed width, so without a floor a wide matrix
+ * would squeeze them to nothing instead of scrolling.
+ */
+const BASE_MIN_WIDTH = 60 + 180 + 120 + 3 * 80 + 180;
 
 const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
 
@@ -73,6 +102,7 @@ export function VirtualizedMemberProjectsTable({
   onDelete,
   onProjectClick,
   maxHeight = 500,
+  sites,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const [showHint, setShowHint] = useState(false);
@@ -99,6 +129,15 @@ export function VirtualizedMemberProjectsTable({
   });
 
   const virtualItems = rowVirtualizer.getVirtualItems();
+
+  // One column per site when the server sends per-site cells; the chips
+  // column otherwise (an older server).
+  const siteColumns = useMemo(
+    () => (canShowMatrix(sites, projects) ? matrixSites(sites) : null),
+    [sites, projects]
+  );
+  const columnCount =
+    FIXED_COLUMN_COUNT + (siteColumns ? 1 + siteColumns.length : 1);
 
   if (projects.length === 0) {
     return (
@@ -135,6 +174,7 @@ export function VirtualizedMemberProjectsTable({
           </Typography>
         </Alert>
       </Collapse>
+      {siteColumns && <SiteMatrixLegend />}
       <TableContainer
       ref={parentRef}
       sx={{
@@ -142,7 +182,20 @@ export function VirtualizedMemberProjectsTable({
         overflow: "auto",
       }}
     >
-      <Table stickyHeader size="small" sx={{ tableLayout: "fixed" }}>
+      <Table
+        stickyHeader
+        size="small"
+        sx={{
+          tableLayout: "fixed",
+          // Wide matrices scroll inside the container rather than squeezing
+          // the name and jobs columns or widening the page.
+          minWidth: siteColumns
+            ? BASE_MIN_WIDTH +
+              EVALUATED_COLUMN_WIDTH +
+              siteColumns.length * SITE_COLUMN_WIDTH
+            : undefined,
+        }}
+      >
         <TableHead>
           <TableRow>
             <TableCell width={60}>Actions</TableCell>
@@ -151,7 +204,31 @@ export function VirtualizedMemberProjectsTable({
             <TableCell align="center" width={80}>Resolution</TableCell>
             <TableCell align="center" width={80}>R-Factor</TableCell>
             <TableCell align="center" width={80}>R-Free</TableCell>
-            <TableCell width={190}>Sites</TableCell>
+            {siteColumns ? (
+              <>
+                <TableCell
+                  align="center"
+                  width={EVALUATED_COLUMN_WIDTH}
+                  sx={{ verticalAlign: "bottom", px: 0.5 }}
+                >
+                  <Tooltip title="Sites with a verdict in this dataset, of the campaign's sites">
+                    <span>Eval.</span>
+                  </Tooltip>
+                </TableCell>
+                {siteColumns.map((site) => (
+                  <TableCell
+                    key={site.id}
+                    align="center"
+                    width={SITE_COLUMN_WIDTH}
+                    sx={{ verticalAlign: "bottom", px: 0, py: 0.5 }}
+                  >
+                    <SiteColumnHeaderContent site={site} />
+                  </TableCell>
+                ))}
+              </>
+            ) : (
+              <TableCell width={190}>Sites</TableCell>
+            )}
             <TableCell>Jobs</TableCell>
           </TableRow>
         </TableHead>
@@ -160,7 +237,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && virtualItems[0].start > 0 && (
             <TableRow>
               <TableCell
-                colSpan={8}
+                colSpan={columnCount}
                 sx={{
                   height: virtualItems[0].start,
                   padding: 0,
@@ -186,6 +263,7 @@ export function VirtualizedMemberProjectsTable({
                 onProjectClick={() => onProjectClick(project)}
                 virtualIndex={virtualRow.index}
                 measureElement={rowVirtualizer.measureElement}
+                siteColumns={siteColumns}
               />
             );
           })}
@@ -194,7 +272,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && (
             <TableRow>
               <TableCell
-                colSpan={8}
+                colSpan={columnCount}
                 sx={{
                   height:
                     rowVirtualizer.getTotalSize() -
@@ -224,6 +302,8 @@ interface MemberProjectRowProps {
   onProjectClick: () => void;
   virtualIndex: number;
   measureElement: (element: HTMLElement | null) => void;
+  /** The site columns, or null when the chips column is shown instead. */
+  siteColumns: CampaignSite[] | null;
 }
 
 function MemberProjectRow({
@@ -237,6 +317,7 @@ function MemberProjectRow({
   onProjectClick,
   virtualIndex,
   measureElement,
+  siteColumns,
 }: MemberProjectRowProps) {
   const router = useRouter();
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
@@ -501,10 +582,30 @@ function MemberProjectRow({
         />
       </TableCell>
 
-      {/* Sites - where something was found in this dataset */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
-        <SiteVerdictChips project={project} campaignId={campaignId} />
-      </TableCell>
+      {siteColumns ? (
+        <>
+          <EvaluatedCountCell project={project} sites={siteColumns} />
+          {siteColumns.map((site) => (
+            <TableCell
+              key={site.id}
+              align="center"
+              sx={{ px: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SiteMatrixCellContent
+                project={project}
+                site={site}
+                campaignId={campaignId}
+              />
+            </TableCell>
+          ))}
+        </>
+      ) : (
+        /* Sites - where something was found in this dataset */
+        <TableCell onClick={(e) => e.stopPropagation()}>
+          <SiteVerdictChips project={project} campaignId={campaignId} />
+        </TableCell>
+      )}
 
       {/* Jobs - clickable icons matching legacy style */}
       <TableCell onClick={(e) => e.stopPropagation()}>
@@ -597,5 +698,35 @@ function MemberProjectRow({
         </MenuItem>
       </Menu>
     </TableRow>
+  );
+}
+
+/**
+ * How far through this dataset the evaluation has got, beside its site boxes.
+ * The boxes show which sites have verdicts; this says how many, so a row
+ * nobody has opened stands out without counting colours.
+ */
+function EvaluatedCountCell({
+  project,
+  sites,
+}: {
+  project: MemberProjectWithSummary;
+  sites: CampaignSite[];
+}) {
+  const { done, total, findings } = evaluatedCount(project, sites);
+  const note = evaluationNote(done, total, findings > 0);
+  const detail =
+    note?.detail ?? `All ${total} sites evaluated in this dataset.`;
+  return (
+    <TableCell align="center" sx={{ px: 0.5 }}>
+      <Tooltip title={detail}>
+        <Typography
+          variant="caption"
+          color={done === 0 ? "text.disabled" : "text.secondary"}
+        >
+          {done}/{total}
+        </Typography>
+      </Tooltip>
+    </TableCell>
   );
 }
