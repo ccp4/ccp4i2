@@ -231,6 +231,8 @@ export interface JobTreeNode extends Omit<Job, 'files'> {
   kpis: {
     float_values: Record<string, number>;
     char_values: Record<string, string>;
+    /** On-screen label for each key above; keys are field names (#596). */
+    labels?: Record<string, string>;
   };
   children: JobTreeNode[];
 }

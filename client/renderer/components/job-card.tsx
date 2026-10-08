@@ -1,4 +1,4 @@
-import { formatKpiValue } from "../lib/format-kpi";
+import { formatKpiValue, kpiLabel } from "../lib/format-kpi";
 import { useApi } from "../api";
 import {
   Button,
@@ -49,6 +49,7 @@ const MyCard = styled(Card)(({ theme }) => ({
 interface EmbeddedKPIs {
   float_values: Record<string, number>;
   char_values: Record<string, string>;
+  labels?: Record<string, string>;
 }
 
 interface JobCardProps {
@@ -104,7 +105,7 @@ export const JobCard: React.FC<JobCardProps> = ({
       ([key, value]) => (
         <Chip
           key={`char_${key}`}
-          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          avatar={<div style={{ width: "5rem" }}>{kpiLabel(key, kpis.labels)}</div>}
           label={value}
         />
       )
@@ -115,7 +116,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         <Chip
           key={`float_${key}`}
           sx={{ backgroundColor: "#DFD" }}
-          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          avatar={<div style={{ width: "5rem" }}>{kpiLabel(key, kpis.labels)}</div>}
           label={formatKpiValue(value)}
         />
       )

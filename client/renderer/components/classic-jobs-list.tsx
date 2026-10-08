@@ -1,4 +1,4 @@
-import { formatKpiValue } from "../lib/format-kpi";
+import { formatKpiValue, kpiLabel } from "../lib/format-kpi";
 import React, {
   forwardRef,
   useCallback,
@@ -789,7 +789,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
       const charChips = Object.entries(kpis.char_values || {}).map(
         ([key, value]) => (
-          <Chip key={`char_${key}`} label={`${key}: ${value}`} size="small" />
+          <Chip key={`char_${key}`} label={`${kpiLabel(key, kpis.labels)}: ${value}`} size="small" />
         )
       );
 
@@ -797,7 +797,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
         ([key, value]) => (
           <Chip
             key={`float_${key}`}
-            label={`${key}: ${formatFloatValue(value)}`}
+            label={`${kpiLabel(key, kpis.labels)}: ${formatFloatValue(value)}`}
             size="small"
           />
         )

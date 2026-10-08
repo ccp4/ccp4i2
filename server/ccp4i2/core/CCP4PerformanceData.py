@@ -137,7 +137,7 @@ class CDataReductionPerformance(CPerformanceIndicator):
     highResLimit = content(
         "CFloat",
         min=0.0,
-        guiLabel='High resolution',
+        guiLabel='High resolution (Å)',
         toolTip='High resolution limit of the reduced data, in Angstroms')
     rMeas = content(
         "CFloat",
@@ -177,7 +177,7 @@ class CPairefPerformance(CPerformanceIndicator):
     cutoff = content(
         "CFloat",
         min=0.0,
-        guiLabel='Resolution cutoff',
+        guiLabel='Resolution cutoff (Å)',
         toolTip='Resolution at which paired refinement stopped improving, in Angstroms')
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -217,11 +217,11 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
     highResLimit = content(
         "CFloat",
         min=0.0,
-        guiLabel='High resolution',
+        guiLabel='High resolution (Å)',
         toolTip='High resolution limit of the reduced data, in Angstroms')
     ccHalf = content(
         "CFloat",
-        guiLabel='CC half',
+        guiLabel='CC1/2',
         toolTip='Correlation between two half-datasets, the usual resolution criterion')
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -257,32 +257,32 @@ class CServalcatPerformance(CPerformanceIndicator):
     RFactor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R factor',
+        guiLabel='R',
         toolTip='R factor against the working set')
     RFree = content(
         "CFloat",
         min=0.0,
-        guiLabel='R free',
+        guiLabel='R-free',
         toolTip='R factor against the free set, the unbiased measure of fit')
     R = content(
         "CFloat",
         min=0.0,
-        guiLabel='R',
+        guiLabel='R (all)',
         toolTip='R factor over all reflections')
     R1Factor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R1 factor',
+        guiLabel='R1',
         toolTip='R1 factor against the working set')
     R1Free = content(
         "CFloat",
         min=0.0,
-        guiLabel='R1 free',
+        guiLabel='R1-free',
         toolTip='R1 factor against the free set')
     R1 = content(
         "CFloat",
         min=0.0,
-        guiLabel='R1',
+        guiLabel='R1 (all)',
         toolTip='R1 factor over all reflections')
     FSCaverage = content(
         "CFloat",
@@ -376,12 +376,12 @@ class CExpPhasPerformance(CPerformanceIndicator):
     RFactor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R factor',
+        guiLabel='R',
         toolTip='R factor of the phasing model against the data')
     RFree = content(
         "CFloat",
         min=0.0,
-        guiLabel='R free',
+        guiLabel='R-free',
         toolTip='R factor against the free set')
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -499,7 +499,7 @@ class CModelBuildPerformance(CPerformanceIndicator):
     RFactor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R factor',
+        guiLabel='R',
         toolTip='R factor of the built model against the data')
     completeness = content(
         "CFloat",
@@ -540,22 +540,22 @@ class CRefinementPerformance(CPerformanceIndicator):
     RFactor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R factor',
+        guiLabel='R',
         toolTip='R factor against the working set')
     RFree = content(
         "CFloat",
         min=0.0,
-        guiLabel='R free',
+        guiLabel='R-free',
         toolTip='R factor against the free set, the unbiased measure of fit')
     RMSBond = content(
         "CFloat",
         min=0.0,
-        guiLabel='RMS bond',
+        guiLabel='RMS bond (Å)',
         toolTip='Root-mean-square deviation of bond lengths from ideal, in Angstroms')
     RMSAngle = content(
         "CFloat",
         min=0.0,
-        guiLabel='RMS angle',
+        guiLabel='RMS angle (°)',
         toolTip='Root-mean-square deviation of bond angles from ideal, in degrees')
     weightUsed = content(
         "CFloat",
@@ -594,7 +594,7 @@ class CSuperposePerformance(CPerformanceIndicator):
         contents_order = ['RMSxyz', 'nResidues']
     RMSxyz = content(
         "CFloat",
-        guiLabel='RMS deviation',
+        guiLabel='RMS deviation (Å)',
         toolTip='Root-mean-square distance between superposed atoms, in Angstroms')
     nResidues = content(
         "CInt",
@@ -641,7 +641,7 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
     highResLimit = content(
         "CFloat",
         min=0.0,
-        guiLabel='High resolution',
+        guiLabel='High resolution (Å)',
         toolTip='High resolution limit of the data, in Angstroms')
     rMeas = content(
         "CFloat",
@@ -650,12 +650,12 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
     RFactor = content(
         "CFloat",
         min=0.0,
-        guiLabel='R factor',
+        guiLabel='R',
         toolTip='R factor against the working set after refinement')
     RFree = content(
         "CFloat",
         min=0.0,
-        guiLabel='R free',
+        guiLabel='R-free',
         toolTip='R factor against the free set after refinement')
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -690,12 +690,12 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
     phaseError = content(
         "CFloat",
         min=0.0,
-        guiLabel='Phase error',
+        guiLabel='Phase error (°)',
         toolTip='Mean difference between calculated and reference phases, in degrees')
     weightedPhaseError = content(
         "CFloat",
         min=0.0,
-        guiLabel='Weighted phase error',
+        guiLabel='Weighted phase error (°)',
         toolTip='Phase error weighted by structure factor amplitude, in degrees')
     reflectionCorrelation = content(
         "CFloat",
