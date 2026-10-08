@@ -145,6 +145,21 @@ results:
       "OriginalRejected"), which the first version of this rule took for a
       second group. Absent in every evidence job (Thaumatin 17.1, gamma,
       betablip, HypF); absent with MODE MATCH, which skips the search.
+      Read with TOP_LAUE_STATUS, because when a lower group was imposed (MODE
+      CHOOSE, CHOOSE_MODE LAUEGROUP) the first entry is the rejected higher
+      group, marked "NotAccepted", and the second entry IS the chosen group
+      (Haiku's CDK4/cyclin D1 job 2, 2026-10-08, P m m m "NotAccepted",
+      then P 1 2/m 1 "Original", the group chosen), not an alternative.
+  TOP_LAUE_STATUS:
+    file: program.xml
+    xpath: ./POINTLESS/LaueGroupScoreList/LaueGroupScore[1]/LaueGroupScoreAccept
+    type: str
+    meaning: POINTLESS's mark on the best-scoring Laue group, "Accepted" or
+      "Original" when it is the chosen group, "NotAccepted" (or
+      "OriginalRejected") when the choice was imposed below it; then the
+      second entry is the chosen group and OTHER_LAUE_ACCEPTED names no
+      alternative. CDK4/cyclin D1 job 1 (free choice) "Accepted"; job 2
+      (CHOOSE_LAUEGROUP P 1 2/m 1) "NotAccepted". Absent with MODE MATCH.
   SOLUTION_WARNING:
     file: program.xml
     xpath: ./POINTLESS/SolutionWarning
@@ -402,15 +417,23 @@ verdict:
       is incompatible with the new data" (aimless_pipe_report.py
       addFreerReports). Checked before the symmetry and twinning outcomes,
       which it would hide; fix the free set first. Not seen in our runs.
-  - when: OTHER_LAUE_ACCEPTED != ""
+  - when: OTHER_LAUE_ACCEPTED != "" and TOP_LAUE_STATUS != "NotAccepted" and TOP_LAUE_STATUS != "OriginalRejected"
     outcome: check_symmetry
     basis: >
       POINTLESS itself considered a second Laue group worth testing: its
       likelihood exceeded AcceptanceLimit x the best, default ACCEPT 0.2
       ($CCP4/html/pointless.html lines 484-487, 779-782), and POINTLESS
       marks it "Accepted". It still chose the top group; this says the
-      choice was not clear-cut. Not triggered in any of our runs (Thaumatin
-      17.1: 0.999 vs 0.000); absent with MODE MATCH.
+      choice was not clear-cut. Not triggered in any of our evidence runs
+      (Thaumatin 17.1: 0.999 vs 0.000); absent with MODE MATCH. Seen in
+      Haiku's CDK4/cyclin D1 run (2026-10-08): job 1 chose P 2 21 21 (P m
+      m m likelihood 0.395 against P 1 2/m 1 0.359, cell 1.6 degrees off
+      orthorhombic, Rmeas 0.345, L-test "Yes"); job 2, rerun with
+      CHOOSE_LAUEGROUP P 1 2/m 1, gave P 1 21 1 at confidence 0.841, Rmeas
+      0.171, no twinning call, and MR placed two copies of the complex
+      (LLG 1062). The TOP_LAUE_STATUS clauses keep that second run from
+      being told to check its symmetry again: with the lower group imposed
+      the chosen group is the list's second entry, not an alternative to it.
   - when: TWIN_LTEST != "No"
     outcome: twinning_suspected
     basis: >
@@ -584,8 +607,13 @@ next:
       POINTLESS accepted a second Laue group (OTHER_LAUE_ACCEPTED). Run MR in
       the chosen group (above); if it fails, rerun aimless_pipe with MODE
       CHOOSE, CHOOSE_MODE LAUEGROUP and CHOOSE_LAUEGROUP set to
-      OTHER_LAUE_ACCEPTED, and repeat MR. After a model is refined, zanuda
-      (F_SIGF, FREERFLAG, XYZIN) checks whether the true symmetry is lower.
+      OTHER_LAUE_ACCEPTED, and repeat MR. When the alternative is the LOWER
+      group and the L-test also says twinned, rerun in the lower group
+      first and compare the two merges: the right group has the lower
+      Rmeas (CDK4/cyclin D1: 0.345 in P m m m, 0.171 in P 1 2/m 1, with
+      the cell 1.6 degrees from orthogonal). After a model is refined,
+      zanuda (F_SIGF, FREERFLAG, XYZIN) checks whether the true symmetry
+      is lower.
   - when: outcome == "twinning_suspected"
     advice: >
       Proceed to MR (above), but treat the point group as possibly too high

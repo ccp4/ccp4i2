@@ -277,3 +277,27 @@ def test_mrparse_routes_a_complex_to_one_pipeline_run(tmp_path, targets, first, 
     assert tasks[0] == first
     if absent:
         assert absent not in tasks
+
+
+@pytest.mark.parametrize("top_status, outcome", [
+    ("Accepted", "check_symmetry"),   # POINTLESS chose the first entry; the second is an alternative
+    ("NotAccepted", "usable"),        # a lower group imposed: the second entry IS the chosen group
+])
+def test_an_imposed_lower_laue_group_is_not_a_second_accepted_group(tmp_path, top_status, outcome):
+    # Haiku's CDK4/cyclin D1 (2026-10-08): job 1 chose P 2 21 21 with P 1 2/m 1
+    # accepted too (check_symmetry, rightly); job 2, rerun with
+    # CHOOSE_LAUEGROUP P 1 2/m 1, listed P m m m "NotAccepted" first and the
+    # chosen monoclinic group second, and was told to check its symmetry again.
+    def entry(name, status):
+        return (f"<LaueGroupScore><LaueGroupName>{name}</LaueGroupName>"
+                f"<LaueGroupScoreAccept>{status}</LaueGroupScoreAccept></LaueGroupScore>")
+    (tmp_path / "program.xml").write_text(
+        "<aimless_pipe><POINTLESS><LaueGroupScoreList>"
+        + entry("P m m m", top_status) + entry("P 1 2/m 1", "Original")
+        + "</LaueGroupScoreList></POINTLESS>"
+        "<AIMLESS><Result><Dataset><ResolutionHigh><Overall>2.31</Overall></ResolutionHigh>"
+        "</Dataset></Result></AIMLESS></aimless_pipe>")
+    verdict = judgement.judge("aimless_pipe", tmp_path)
+    assert verdict["results"]["OTHER_LAUE_ACCEPTED"] == "P 1 2/m 1"
+    assert verdict["results"]["TOP_LAUE_STATUS"] == top_status
+    assert verdict["outcome"] == outcome
