@@ -13,12 +13,9 @@ import {
   Checkbox,
   Chip,
   IconButton,
-  List,
-  ListItem,
   Paper,
   Skeleton,
   Stack,
-  Toolbar,
   Tooltip,
   Typography,
   Box,
@@ -55,6 +52,7 @@ import { useJobMenu } from "../providers/job-context-menu";
 import { useFileMenu } from "../providers/file-context-menu";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { useDeleteDialog } from "../providers/delete-dialog";
+import { confirmJobDeletion } from "./job-deletion-details";
 import { useSet } from "../hooks";
 import { deletesViewedJob } from "../utils";
 
@@ -566,62 +564,28 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     if (jobIds.length === 0) return;
 
     try {
-      const response: any = await api.post("jobs/bulk_dependent_jobs/", {
-        job_ids: jobIds,
+      await confirmJobDeletion({
+        api,
+        deleteDialog,
+        jobIds,
+        what: `${jobIds.length} selected job${jobIds.length !== 1 ? "s" : ""}`,
+        isBlocked: (plan) => plan.has_active_dependents,
+        onDelete: async (deleteImportedFiles, plan) => {
+          exitSelectMode();
+          const deleted = [
+            ...jobIds.map((id) => lookups.jobsById.get(id)!),
+            ...plan.additional_dependents,
+          ];
+          if (deletesViewedJob(lookups.jobsById.get(Number(jobid)), deleted)) {
+            navigate.push(`/ccp4i2/project/${projectId}`);
+          }
+          await api.post("jobs/bulk_delete/", {
+            job_ids: jobIds,
+            delete_imported_files: deleteImportedFiles,
+          });
+          mutateJobTree();
+        },
       });
-      const { additional_dependents, total_to_delete, has_active_dependents } =
-        response.data;
-
-      // Filter to top-level dependents for display
-      const topLevelDependents = (additional_dependents || []).filter(
-        (job: Job) => job.parent === null
-      );
-
-      if (deleteDialog) {
-        deleteDialog({
-          type: "show",
-          what: `${jobIds.length} selected job${jobIds.length !== 1 ? "s" : ""}`,
-          onDelete: async () => {
-            exitSelectMode();
-            const deleted = [
-              ...jobIds.map((id) => lookups.jobsById.get(id)!),
-              ...(additional_dependents || []),
-            ];
-            if (deletesViewedJob(lookups.jobsById.get(Number(jobid)), deleted)) {
-              navigate.push(`/ccp4i2/project/${projectId}`);
-            }
-            await api.post("jobs/bulk_delete/", { job_ids: jobIds });
-            mutateJobTree();
-          },
-          onCancel: () => {},
-          children:
-            topLevelDependents.length > 0
-              ? [
-                  <Paper
-                    key="dependentJobs"
-                    sx={{ maxHeight: "10rem", overflowY: "auto" }}
-                  >
-                    <Typography variant="body2" sx={{ mb: 1 }}>
-                      The following {topLevelDependents.length} dependent job
-                      {topLevelDependents.length !== 1 ? "s" : ""} would also be
-                      deleted:
-                    </Typography>
-                    <List dense>
-                      {topLevelDependents.map((dependentJob: Job) => (
-                        <ListItem key={dependentJob.uuid}>
-                          <Toolbar>
-                            <CCP4i2JobAvatar job={dependentJob} />
-                            {`${dependentJob.number}: ${dependentJob.title}`}
-                          </Toolbar>
-                        </ListItem>
-                      ))}
-                    </List>
-                  </Paper>,
-                ]
-              : undefined,
-          deleteDisabled: has_active_dependents,
-        });
-      }
     } catch (error) {
       console.error("Failed to fetch bulk dependencies:", error);
     }
