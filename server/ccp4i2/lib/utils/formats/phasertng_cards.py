@@ -149,10 +149,34 @@ def last_result_json(db_dir) -> Optional[Path]:
     return None
 
 
+def data_spacegroup(db_dir) -> Optional[str]:
+    """The data's space group, as Picard's graph_report.xml records it
+    (``<Space_Groups info="P22121">``, no spaces). Picard may solve in
+    another group of the point group and writes no reflections in it, so a
+    job must say which group its solution is in relative to the data's."""
+    path = Path(db_dir) / "graph_report.xml"
+    if not path.is_file():
+        return None
+    try:
+        node = ET.parse(path).getroot().find(".//Space_Groups")
+    except (ET.ParseError, OSError):
+        return None
+    info = node.get("info") if node is not None else None
+    return info.strip() or None if info else None
+
+
+def same_spacegroup(a: Optional[str], b: Optional[str]) -> Optional[bool]:
+    """Whether two space-group names, with or without spaces, name one group
+    (by symbol only: P 2 21 21 and P22121 agree; P 21 21 21 does not)."""
+    if not a or not b:
+        return None
+    return a.replace(" ", "").upper() == b.replace(" ", "").upper()
+
+
 def picard_record(db_dir, log_path=None) -> Dict:
     """Everything above, from a Picard database directory and the job log."""
     db_dir = Path(db_dir)
-    record: Dict = {"solutions": [], "best": None, "run": {}}
+    record: Dict = {"solutions": [], "best": None, "run": {}, "data_spacegroup": data_spacegroup(db_dir)}
     cards = sorted(db_dir.glob("best.*.dag.cards"))
     if cards:
         record["solutions"] = parse_dag_cards(cards[0].read_text(encoding="utf-8", errors="replace"))
@@ -186,6 +210,7 @@ def program_xml(record: Dict) -> ET.Element:
     root = ET.Element("phasertng_picard")
     run = record.get("run") or {}
     data = ET.SubElement(root, "Data")
+    _set(data, "spacegroup", record.get("data_spacegroup"))
     _set(data, "resolution", run.get("resolution"), 2)
     _set(data, "anomalous", run.get("anomalous"))
     _set(data, "wilson_b", run.get("wilson_b"), 1)
@@ -208,6 +233,9 @@ def program_xml(record: Dict) -> ET.Element:
         element = ET.SubElement(node, "Solution")
         element.set("rank", str(rank))
         _set(element, "spacegroup", sol.get("hermann_mauguin"))
+        same = same_spacegroup(sol.get("hermann_mauguin"), record.get("data_spacegroup"))
+        if same is not None:
+            _set(element, "spacegroup_changed", not same)
         _set(element, "cell", " ".join(sol.get("unitcell", "").split()))
         _set(element, "tfz", sol.get("zscore"), 2)
         _set(element, "llg", sol.get("llg"), 1)
@@ -222,12 +250,18 @@ def program_xml(record: Dict) -> ET.Element:
         components = ET.SubElement(element, "Components")
         poses = sol.get("poses") or []
         components.set("count", str(len(poses)))
-        searched = {c["tag"]: c for c in sol.get("components") or []}
+        # The narration's FIND records come in placement order, as the poses
+        # do, so the i-th pose takes the i-th record of its tag: two copies
+        # of one model keep their own search TFZs (keyed by tag they would
+        # both have read the last).
+        unused = list(sol.get("components") or [])
         for pose in poses:
             component = ET.SubElement(components, "Component")
             _set(component, "tag", pose.get("tag"))
             _set(component, "tfz", pose.get("tfz"), 2)
-            search = searched.get(pose.get("tag"))
+            search = next((c for c in unused if c.get("tag") == pose.get("tag")), None)
+            if search is not None:
+                unused.remove(search)
             if search:
                 _set(component, "rfz", search.get("rfz"), 1)
                 _set(component, "search_tfz", search.get("tfz"), 1)

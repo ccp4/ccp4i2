@@ -453,6 +453,19 @@ class phasertng_picard_report(Report):
         except ValueError:
             return
 
+        # The whole-solution TFZ is the last pose's, placed in the context of
+        # the earlier ones, and vouches for nothing before it (CDK4: 14.9
+        # with the first component searched at 5). Judge on the weakest
+        # component's search TFZ, from Picard's narration.
+        from ccp4i2.lib.utils.formats.phasertng_cards import annotation_components
+        searched = [c["tfz"] for c in annotation_components(best.get("annotation", ""))
+                    if c.get("tfz") is not None]
+        if searched:
+            tfz = min(searched)
+            if len(searched) > 1:
+                parent.append("<p>Search TFZ per component, in the order placed: "
+                              + ", ".join(f"{z:.0f}" for z in searched) + ".</p>")
+
         if rfac > 60:
             # R-factor > 60% means the solution is likely wrong or incomplete
             return

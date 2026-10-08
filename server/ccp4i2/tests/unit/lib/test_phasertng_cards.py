@@ -8,7 +8,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from ccp4i2.lib.utils.formats.phasertng_cards import (
-    annotation_components, parse_best_solution, parse_dag_cards, program_xml,
+    annotation_components, parse_best_solution, parse_dag_cards, program_xml, same_spacegroup,
 )
 
 FIX = Path(__file__).resolve().parent / "fixtures" / "phasertng"
@@ -72,3 +72,29 @@ def test_program_xml_holds_what_a_verdict_reads():
     assert root.find(".//Solutions/Solution[1]/Components/Component[last()]").get("tfz") == "31.29"
     assert root.find(".//Solutions/Solution[1]/Components/Component[1]").get("tfz") == "22.08"
     ET.tostring(root)  # serialises
+
+
+def test_two_copies_of_one_model_keep_their_own_search_records():
+    cards = (FIX / "gamma_best.1.dag.cards").read_text()
+    # a second copy of gamma_model, placed second at a lower search TFZ
+    two = cards.replace('phaserdag node annotation " FIND=gamma_model RF=100%/32z',
+                        'phaserdag node annotation " FIND=gamma_model RF=100%/32z RFR=616/100%/32z GYRE=272 '
+                        'TF=100%/46z/Y FIND=gamma_model RF=100%/9z RFR=1/100%/9z GYRE=1 TF=100%/11z/Y '
+                        'POSE=1 PAK=0%/Y RBR=1 XX=1 YY=2 ZZ=3 Z0=0 Z1=1 Z2=2 ZQ=')
+    pose = next(l for l in cards.splitlines() if l.startswith("phaserdag node pose"))
+    two = two.replace(pose, pose + "\n" + pose.replace("tfz 47.733035", "tfz 11.5"))
+    root = program_xml({"solutions": parse_dag_cards(two), "best": None, "run": {}})
+    tags = [(c.get("tag"), c.get("tfz"), c.get("search_tfz")) for c in root.find(".//Components")]
+    assert tags == [("gamma_model", "47.73", "46.0"), ("gamma_model", "11.50", "11.0")]
+
+
+def test_the_data_space_group_and_whether_the_solution_changed_it():
+    assert same_spacegroup("P 2 21 21", "P22121") is True
+    assert same_spacegroup("P 21 21 21", "P22121") is False
+    assert same_spacegroup("P 1", None) is None
+    sols = parse_dag_cards((FIX / "gamma_best.1.dag.cards").read_text())
+    root = program_xml({"solutions": sols, "best": None, "run": {}, "data_spacegroup": "P22121"})
+    assert root.find("Data").get("spacegroup") == "P22121"
+    assert root.find(".//Solution").get("spacegroup_changed") == "true"
+    root = program_xml({"solutions": sols, "best": None, "run": {}, "data_spacegroup": "P212121"})
+    assert root.find(".//Solution").get("spacegroup_changed") == "false"

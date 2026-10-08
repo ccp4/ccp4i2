@@ -35,9 +35,14 @@ template: 6p8e chains B (CDK4 92%), A (CyclinD1 100%)").
 model (or ensemble) per kind of chain, each with its own number of copies;
 Phaser places them in the order of their expected signal, each in the
 context of those already placed. In CCP4i2: `phaser_pipeline_phil`, one
-`ENSEMBLES` entry per kind; or `phasertng_picard`, which takes the models
-and the AU contents and chooses its own strategy (registered, runnable,
-not yet judged: no judgement file, not in the chooser). The route when no
+`ENSEMBLES` entry per kind; or `phasertng_picard` (PhaserTNG Picard),
+which takes the models and the AU contents and chooses its own strategy:
+the order of search, the copies (from its own Matthews analysis; the AU
+contents reach it as a ratio), the space group. It has a judgement file
+and a place in the chooser since 2026-10-09; on CDK4/cyclin D1 it placed
+the complex template in 35 s (search TFZ 20, the reference space group),
+and the two separate chains in 19 minutes with the first at TFZ 5 in
+another space group. The route when no
 entry holds the complex, or the subunits may be arranged differently in
 this crystal. BetaBlip job 4 (beta-lactamase and BLIP) is the worked
 example: search TFZs 10.4 then 18.6, R-free 0.343.
@@ -101,9 +106,10 @@ whose signal alone is weak.
 
 ## Open
 
-- A judgement for `phasertng_picard`, from evidence runs on BetaBlip and
-  CDK4/cyclin D1, and its place in the chooser: the route-B variant that
-  needs no decision about the search order.
+- `phasertng_picard` writes no reflections in the space group it solved in
+  (`HKLOUT` is never set), so a solution in another group of the point
+  group needs `pointless_reindexToMatch` before refinement; its judgement
+  says so. `phasertng_riker` (refine and continue) has no judgement yet.
 - Route A when the AU holds *more* copies of one component than of
   another (CDK4 twice, cyclin once): the template covers one copy of each,
   and the extra copy is a route-B or route-C search afterwards.
