@@ -69,6 +69,28 @@ def best_solution(results):
     return split, solved
 
 
+def space_group(path):
+    """The space group (gemmi) of an MTZ or coordinate file, or None."""
+    try:
+        import gemmi
+        path = str(path)
+        if path.lower().endswith(".mtz"):
+            return gemmi.read_mtz_file(path).spacegroup
+        return gemmi.find_spacegroup_by_name(gemmi.read_structure(path).spacegroup_hm)
+    except Exception:
+        return None
+
+
+def relabel_mtz(source, destination, group):
+    """Copy an MTZ with its space group set to ``group`` (a gemmi
+    SpaceGroup), indices untouched: what Phaser's choice of another group
+    of the point group means for the data, since it never reindexes."""
+    import gemmi
+    mtz = gemmi.read_mtz_file(str(source))
+    mtz.spacegroup = group
+    mtz.write_to_file(str(destination))
+
+
 class slicendice(CPluginScript):
     TASKNAME = "slicendice"
     TASKCOMMAND = "slicendice"
@@ -105,6 +127,11 @@ class slicendice(CPluginScript):
             self.appendCommandLine(["--rms_threshold", mod.RMS_THRESHOLD])
         self.appendCommandLine(["--min_splits", mod.MIN_SPLITS])
         self.appendCommandLine(["--max_splits", mod.MAX_SPLITS])
+        # Phaser tests the point group's space groups unless told not to:
+        # pinned to the data's group (SliceNDice's default, none), the
+        # BAD1330 lobes reached TFZ 8.5 and 7.5 with 28 clashes in P 21 2 21,
+        # POINTLESS's choice at confidence 0.23, and 15.8 and 17.6 in P 21 21 21.
+        self.appendCommandLine(["--sgalternative", mod.SGALTERNATIVE if mod.SGALTERNATIVE.isSet() else "all"])
         self.appendCommandLine(["--nproc", par.NPROC])
         self.appendCommandLine(["--ncyc_refmac", par.NCYC])
         self.appendCommandLine(["--no_mols", par.NO_MOLS])
@@ -131,6 +158,31 @@ class slicendice(CPluginScript):
             return CPluginScript.FAILED
         xyz = Path(jdd["dice"][best_split]["xyzout"]).resolve()
         hkl = Path(jdd["dice"][best_split]["hklout"]).resolve()
+        # Phaser may solve in another space group of the point group
+        # (SGALTERNATIVE all). SliceNDice 0.1.3 then reindexes the data for
+        # REFMAC with an operator that permutes the axes while Phaser's
+        # model stays in the data's setting (BAD1330 merged as P 21 2 21,
+        # solved in P 21 21 21: refinement of mismatched frames, R-free
+        # 0.562, and an XYZOUT whose CRYST1 no longer matches its
+        # coordinates). Phaser itself never reindexes: its model and maps
+        # are in the data's setting with the new label, so those are the
+        # outputs, with the project's reflections relabelled to match.
+        log = jdd["dice"][best_split].get("phaser_logfile")
+        phaser_xyz = Path(log).with_suffix(".pdb") if log else None
+        phaser_mtz = Path(log).parent / "phaser_mr_output.1.mtz" if log else None
+        sg_in = space_group(self.hklin) if getattr(self, "hklin", None) else None
+        sg_out = space_group(phaser_xyz) if phaser_xyz and phaser_xyz.is_file() else None
+        changed = bool(sg_in and sg_out and sg_in.number != sg_out.number)
+        if changed and phaser_xyz.is_file() and phaser_mtz.is_file():
+            xyz, hkl = phaser_xyz, phaser_mtz
+            inp = self.container.inputData
+            for item, output in ((inp.F_SIGF, out.F_SIGF_OUT), (inp.FREERFLAG, out.FREERFLAG_OUT)):
+                if item.isSet() and Path(str(item.fullPath)).is_file():
+                    target = self.workDirectory / ("%s_%s.mtz" % (output.objectName(), sg_out.short_name()))
+                    relabel_mtz(str(item.fullPath), target, sg_out)
+                    output.setFullPath(str(target))
+                    output.annotation = "%s relabelled %s, Phaser's choice (indices unchanged)" % (
+                        item.objectName(), sg_out.hm)
         xyzout = self.workDirectory / xyz.name
         hklout = self.workDirectory / hkl.name
 
@@ -147,7 +199,7 @@ class slicendice(CPluginScript):
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
         outputFiles = ["FPHIOUT", "DIFFPHIOUT"]
-        outputColumns = ["FWT,PHWT", "DELFWT,PHDELWT"]
+        outputColumns = ["FWT,PHWT", "DELFWT,PHDELWT"]  # REFMAC's, or Phaser's after a group change
         errorReport = self.splitHklout(outputFiles, outputColumns, infile=hklout)
         if errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             return errorReport
@@ -160,12 +212,35 @@ class slicendice(CPluginScript):
         best_log = jdd["dice"][best_split].get("phaser_logfile")
         best_parts = (phaser_components(Path(best_log).read_text(encoding="utf-8", errors="replace"))
                       if best_log and Path(best_log).is_file() else [])
-        partial = solved and any(t and float(t) < 8 for _, t, _, _ in best_parts)
-        what = ("SliceNDice partial solution" if partial else
-                "SliceNDice solution" if solved else "SliceNDice, no solution")
-        out.XYZOUT.annotation = "%s: %s split%s, R-free %s" % (
-            what, n_splits, "" if n_splits == "1" else "s", rfree_text)
-        out.HKLOUT.annotation = "%s: refined data and map coefficients" % what
+        # Each piece judged by its own search TFZ (Phaser's clear placement,
+        # 8), whatever the refinement said: BAD1330's two lobes placed at
+        # 15.8 and 17.6 and were the structure (built to R-free 0.253), yet
+        # R-free after ten cycles was 0.509 and the 0.45 rule called it no
+        # solution; Lck passed the rule with its N-lobe at 6.0, 19 clashes.
+        tfzs = [float(t) for _, t, _, _ in best_parts if t]
+        placed = bool(tfzs) and all(t >= 8 for t in tfzs)
+        partial = bool(tfzs) and any(t < 8 for t in tfzs) and any(t >= 8 for t in tfzs)
+        what = ("SliceNDice partial solution" if solved and partial else
+                "SliceNDice solution" if solved else
+                "SliceNDice placement, not yet a solution" if placed else
+                "SliceNDice partial placement" if partial else
+                "SliceNDice, no solution")
+        pieces = ", ".join("%.1f" % t for t in tfzs)
+        if changed:
+            # The refinement was of mismatched frames: its R-free says nothing
+            solved = False
+            what = ("SliceNDice placement in %s, not the data's group" % sg_out.hm if placed else
+                    "SliceNDice partial placement in %s" % sg_out.hm if partial else
+                    "SliceNDice, no solution (searched %s)" % sg_out.hm)
+            out.XYZOUT.annotation = "%s: %s split%s, %s; Phaser's model, refine against F_SIGF_OUT" % (
+                what, n_splits, "" if n_splits == "1" else "s",
+                "piece TFZ %s" % pieces if pieces else "no piece placed")
+        else:
+            out.XYZOUT.annotation = "%s: %s split%s, %s, R-free %s" % (
+                what, n_splits, "" if n_splits == "1" else "s",
+                "piece TFZ %s" % pieces if pieces else "no piece placed", rfree_text)
+        out.HKLOUT.annotation = "%s: %s" % (
+            what, "Phaser's data and map coefficients" if changed else "refined data and map coefficients")
         out.FPHIOUT.annotation = "%s: 2Fo-Fc map coefficients" % what
         out.DIFFPHIOUT.annotation = "%s: Fo-Fc map coefficients" % what
 
@@ -173,8 +248,9 @@ class slicendice(CPluginScript):
         bid = str(best_split.split("_")[-1])
         rwork = str(jdd["dice"][best_split]["final_r_fact"])
         rfree = str(jdd["dice"][best_split]["final_r_free"])
-        out.PERFORMANCEINDICATOR.RFactor = rwork
-        out.PERFORMANCEINDICATOR.RFree = rfree
+        if not changed:  # after a group change the refinement numbers mean nothing
+            out.PERFORMANCEINDICATOR.RFactor = rwork
+            out.PERFORMANCEINDICATOR.RFree = rfree
 
         # xml info
         rootNode = etree.Element("SliceNDice")
@@ -184,7 +260,14 @@ class slicendice(CPluginScript):
         etree.SubElement(xmlbcyc, "R").text = rwork
         etree.SubElement(xmlbcyc, "RFree").text = rfree
         etree.SubElement(xmlbcyc, "Solved").text = str(solved)
+        etree.SubElement(xmlbcyc, "Placed").text = str(placed)
         etree.SubElement(xmlbcyc, "Partial").text = str(partial)
+        if sg_out is not None:
+            etree.SubElement(xmlbcyc, "SpaceGroup").text = sg_out.hm
+        if sg_in is not None:
+            etree.SubElement(xmlbcyc, "SpaceGroupInput").text = sg_in.hm
+        if sg_in is not None and sg_out is not None:
+            etree.SubElement(xmlbcyc, "SpaceGroupChanged").text = str(changed)
         for split, models in sorted(ranges.items()):
             xmlsplit = etree.SubElement(xmlRI, "Split", id=split.split("_")[-1])
             for model in models:
@@ -208,6 +291,8 @@ class slicendice(CPluginScript):
         xmlString = etree.tostring(rootNode, pretty_print=True)
         xmlfile.write(xmlString)
         xmlfile.close()
-        # A placement that is not a solution keeps its files (to look at) but
-        # does not finish as a success.
-        return CPluginScript.SUCCEEDED if solved else CPluginScript.UNSATISFACTORY
+        # Every piece placed by Phaser's cutoff is a success to build from,
+        # whether or not ten cycles took R-free below 0.45; a placement with
+        # a piece unplaced, or none, keeps its files (to look at) but does
+        # not finish as a success.
+        return CPluginScript.SUCCEEDED if (solved or placed) else CPluginScript.UNSATISFACTORY

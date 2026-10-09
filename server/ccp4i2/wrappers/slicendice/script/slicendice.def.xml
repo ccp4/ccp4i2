@@ -80,6 +80,14 @@
           <saveToDb>True</saveToDb>
         </qualifiers>
       </content>
+      <content id="F_SIGF_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREERFLAG_OUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
       <content id="XYZOUT">
         <className>CPdbDataFile</className>
         <qualifiers>
@@ -124,6 +132,17 @@
          <className>CInt</className>
           <qualifiers>
                <default>3</default>
+          </qualifiers>
+      </content>
+      <content id="SGALTERNATIVE">
+         <className>CString</className>
+          <qualifiers>
+               <default>all</default>
+               <onlyEnumerators>True</onlyEnumerators>
+               <enumerators>all,enant,none</enumerators>
+               <menuText>all space groups of the point group,the enantiomorph only,the data's space group only</menuText>
+               <guiLabel>Space groups Phaser tests</guiLabel>
+               <toolTip>SliceNDice's --sgalternative. Pinned to the data's space group (none), a wrong screw-axis choice from POINTLESS cannot be recovered: BAD1330 in P 21 2 21 placed its two lobes at TFZ 8.5 and 7.5 with 28 clashes, in P 21 21 21 at 15.8 and 17.6.</toolTip>
           </qualifiers>
       </content>
       <content id="BFACTOR_TREATMENT">

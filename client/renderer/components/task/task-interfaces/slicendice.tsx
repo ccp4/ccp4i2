@@ -22,7 +22,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement itemName="F_SIGF" {...props} />
         <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
         <CCP4i2TaskElement itemName="ASUIN" {...props} />
-        <CCP4i2TaskElement itemName="NO_MOLS" {...props} qualifiers={{ guiLabel: "The number of monomers to search for" }} />
+        <CCP4i2TaskElement itemName="NO_MOLS" {...props} qualifiers={{ guiLabel: "Copies of the model in the AU (each piece is searched for this many times)" }} />
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
         <CCP4i2TaskElement itemName="BFACTOR_TREATMENT" {...props}
           qualifiers={{ guiLabel: "What the model's B-factor column holds" }} />
@@ -53,6 +53,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           qualifiers={{ guiLabel: "Fewest pieces to split the model into" }} />
         <CCP4i2TaskElement itemName="MAX_SPLITS" {...props}
           qualifiers={{ guiLabel: "Most pieces to split the model into" }} />
+        <CCP4i2TaskElement itemName="SGALTERNATIVE" {...props}
+          qualifiers={{ guiLabel: "Space groups Phaser tests" }} />
         <CCP4i2TaskElement itemName="NPROC" {...props}
           qualifiers={{ guiLabel: "Splits to run at once (processors)" }} />
         <CCP4i2TaskElement itemName="NCYC" {...props}
