@@ -1,0 +1,583 @@
+task: slicendice
+status: draft
+reviewed_by: []
+purpose: >
+  Cuts ONE search model into rigid pieces (Birch clustering of its C-alpha
+  coordinates), places the pieces one after another by likelihood molecular
+  replacement with Phaser, and refines the result with ten cycles of REFMAC
+  (SliceNDice 0.1.3): molecular replacement for a model that is right domain
+  by domain but not between domains.
+
+use_when:
+  - >
+    You have ONE model (a predicted model, or a homologue) whose domains are
+    each right but whose arrangement of domains may differ from the crystal:
+    an AlphaFold/RoseTTAFold model, or a homologue across a hinge
+    (periplasmic binding proteins, kinases, any ligand-closed fold).
+  - >
+    A Phaser search with the whole model (phaser_simple_phil or
+    phaser_pipeline_phil) ended with a search TFZ around 8 and a refined LLG
+    far below the expected one (under 0.3 x, the signature named in
+    phaser_simple_phil's next steps), and R-free near 0.53 after the quick
+    refinement: "right but not one rigid body". BAD1330 (a two-lobe
+    periplasmic binding protein, Chainsaw model at 51% identity, 1.26 A):
+    the whole model placed at search TFZ 9.3, LLG 105, R-free 0.532 (run B
+    here, and Opus's phaser_simple_phil job 5: 8.5, 111, 0.532); in two
+    pieces both lobes placed (TFZ 15.8 and 17.6, LLG 463, R-free 0.509, run
+    A) and the structure was built from that.
+  - >
+    You know how many pieces to try. One job tests ONE number of pieces
+    (MIN_SPLITS = MAX_SPLITS, see the traps); for another number, run the
+    task again. Two is the first choice for a two-domain protein.
+
+not_when:
+  - text: >
+      Several DIFFERENT models (homologues of one component, or an ensemble),
+      or no model yet.
+    instead: mrbump_basic
+  - text: >
+      The AU holds a complex of different chains with a model for each (the
+      three routes of docs/multi-component-mr.md: a complex template, one
+      ensemble per component, or one component at a time).
+    instead: phaser_pipeline_phil
+  - text: >
+      The model is known to be right as one rigid body (the same protein in
+      another crystal form, a single-domain homologue); a plain search is
+      quicker and reports Phaser's own statistics (expected LLG, space-group
+      choice).
+    instead: phaser_simple_phil
+  - text: >
+      You want only to prepare a predicted model (convert pLDDT to
+      B-factors, trim low-confidence residues) without molecular replacement.
+    instead: editbfac
+
+inputs:
+  - param: inputData.XYZIN
+    advice: >
+      ONE copy of the molecule, one chain. Every chain of the file is
+      clustered together, and the pieces are searched for as given. Trim
+      ligands and waters (SliceNDice removes them anyway, slice/slice.py
+      process_input_model). A homologue should be Chainsaw/Sculptor-trimmed
+      first (BAD1330 used 6fth_chainsaw_noh.pdb).
+  - param: modelParameters.BFACTOR_TREATMENT
+    advice: >
+      What the model's B-factor column holds, and it must be said: the task
+      always passes it, so SliceNDice's own guess (bfactor_util.py
+      bfactor_best_guess) never runs. "plddt" for an AlphaFold model: atoms
+      with pLDDT below PLDDT_THRESHOLD (70) are removed and pLDDT is
+      converted to B (Lck job 3). "bfactor" (the default) for a crystal
+      structure or Chainsaw model: nothing is removed or converted. Wrong
+      either way is silent: "bfactor" on an AlphaFold model keeps every
+      residue, low-confidence loops included, and leaves pLDDT in the B
+      column, where a confident residue (pLDDT 90) reads as a high B; "plddt"
+      on a crystal structure removes every atom with B below 70 - most of a
+      well-ordered model - and turns the rest into B-factors near 650 (read
+      from bfactor_util.py, not run). "rms" is for RoseTTAFold
+      (RMS_THRESHOLD 1.75 A, removed above it); "fractional_plddt" for pLDDT
+      on a 0-1 scale (ESMFold); "predicted_bfactor" for a model whose pLDDT
+      was already converted to B (removes residues above the B equivalent of
+      PLDDT_THRESHOLD).
+  - param: modelParameters.MIN_SPLITS
+    advice: >
+      Set equal to MAX_SPLITS, always. With a range SliceNDice 0.1.3 makes
+      every split but runs MR on ONE of them, which one depending on the
+      order the file system lists them (command_line/slice.py run_slice,
+      lines 73-88: the append sits after the loop). The default 1 to 3 is a
+      lottery among three jobs, and the program.xml then lists splits that
+      were never searched. 2 for two domains; 1 is the whole model, a plain
+      Phaser search with less control than phaser_simple_phil.
+  - param: modelParameters.MAX_SPLITS
+    advice: >
+      Equal to MIN_SPLITS (see MIN_SPLITS). The number is the number of
+      pieces: split 2 gave two search models in all three two-split runs.
+      This judgement reads up to four pieces.
+  - param: controlParameters.NO_MOLS
+    advice: >
+      Copies of the WHOLE model in the AU, from the AU contents and a
+      Matthews analysis. Each piece is searched for NO_MOLS times, and the
+      composition is each sequence of ASUIN once, times NO_MOLS
+      (dice/run_phaser.py lines 101-105; the wrapper writes ASUIN with one
+      copy per sequence, CCP4ModelData.writeFasta writeMulti False). So the
+      copy counts in ASUIN are ignored: for two copies of the protein set
+      NO_MOLS 2, not two copies in ASUIN. All evidence runs had 1.
+  - param: inputData.ASUIN
+    advice: >
+      The AU contents. Its sequences become Phaser's composition (see
+      NO_MOLS for how copies are counted). Phaser is told every piece is
+      1.2 A RMS from the target, whatever the identity (dice/run_phaser.py
+      line 102); there is no identity to give.
+  - param: inputData.FREERFLAG
+    advice: >
+      The free set the project will refine against (the REFMAC R-free in the
+      results uses it). Never a new one if a model of this crystal already
+      exists.
+  - param: controlParameters.NCYC
+    advice: >
+      REFMAC cycles after placement, 10 by default (SliceNDice's own default
+      is 100). Ten cycles is a test of the placement, not a refinement; the
+      verdict does not rest on R-free unless every piece is placed.
+
+results:
+  PIECES:
+    file: program.xml
+    xpath: .//RunInfo/Best/bid
+    type: int
+    meaning: >
+      The split chosen (the one with the lowest R-free; in 0.1.3 the only
+      one tried), which is also the number of pieces searched for: split N
+      cut the model into N search models in every run here (BAD1330 run A
+      2, run B 1, Lck job 3 2).
+  RFREE:
+    file: program.xml
+    xpath: .//RunInfo/Best/RFree
+    type: float
+    meaning: >
+      R-free of the best split after NCYC REFMAC cycles (fraction); also the
+      job's KPI RFree. BAD1330 run A 0.5088, run B 0.5317; Lck 0.4274.
+  RWORK:
+    file: program.xml
+    xpath: .//RunInfo/Best/R
+    type: float
+    meaning: >
+      R of the best split after refinement. BAD1330 run A 0.5031, run B
+      0.5312; Lck 0.4062.
+  SND_SOLVED:
+    file: program.xml
+    xpath: .//RunInfo/Best/Solved
+    type: str
+    meaning: >
+      SliceNDice's own test, "True" when R AND R-free are below 0.45
+      (dice/submit_jobs_MX.py line 967; SOLVED_BELOW in the wrapper). An
+      opinion on R-free only: "False" for BAD1330 run A, a correct
+      placement (R-free 0.509 at 1.26 A from a 51%-identity model); "True"
+      for Lck, whose N-lobe is 17-19 A off. Not used by the verdict. Until
+      2026-10-09 it alone decided the job's status.
+  SND_PLACED:
+    file: program.xml
+    xpath: .//RunInfo/Best/Placed
+    type: str
+    optional: true
+    meaning: >
+      The wrapper's own reading of the pieces (written since 2026-10-09):
+      "True" when every piece of the best split has a search TFZ of 8 or
+      more. With SND_SOLVED it decides the job's status: Finished when
+      either is True, else Unsatisfactory. Absent in jobs run before it was
+      written (the four evidence jobs).
+  SND_PARTIAL:
+    file: program.xml
+    xpath: .//RunInfo/Best/Partial
+    type: str
+    meaning: >
+      The wrapper's flag, "True" when some piece's search TFZ is at or above
+      8 and some piece's is below (since 2026-10-09; before that only when
+      SND_SOLVED was also True, so a split failing the 0.45 test with a
+      piece unplaced said "False"). Lck: True. The verdict reads the pieces
+      itself.
+  SPACEGROUP:
+    file: program.xml
+    xpath: .//RunInfo/Best/SpaceGroup
+    type: str
+    optional: true
+    meaning: >
+      The space group Phaser solved in (written since 2026-10-09, from
+      Phaser's own model of the best split). With SGALTERNATIVE "all" (the
+      default since then) Phaser tests every group of the point group, so
+      this can differ from the data's. Absent in jobs run before it was
+      written.
+  SPACEGROUP_INPUT:
+    file: program.xml
+    xpath: .//RunInfo/Best/SpaceGroupInput
+    type: str
+    optional: true
+    meaning: The data's space group, as given to the task (since 2026-10-09).
+  SPACEGROUP_CHANGED:
+    file: program.xml
+    xpath: .//RunInfo/Best/SpaceGroupChanged
+    type: str
+    optional: true
+    meaning: >
+      "True" when SPACEGROUP differs from SPACEGROUP_INPUT (since
+      2026-10-09). Then the job's XYZOUT is Phaser's own model (the data's
+      setting, the new label), F_SIGF_OUT and FREERFLAG_OUT are the
+      project's reflections relabelled in the new group (indices unchanged:
+      Phaser never reindexes), the map coefficients are Phaser's, and RFREE
+      and RWORK are from SliceNDice's refinement of mismatched frames and
+      say nothing (see the traps); the KPIs are left unset. Downstream
+      tasks must take F_SIGF_OUT and FREERFLAG_OUT, never the files this
+      job was given.
+  PIECE1_TFZ:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[1]
+    attribute: tfz
+    type: float
+    meaning: >
+      Phaser's search TFZ for the FIRST piece placed (the translation
+      function Z-score as found, from Phaser's annotation "TFZ=", not the
+      refined "TFZ=="). The number Phaser's cutoff 8 applies to. BAD1330 run
+      A 15.8, run B 9.3 (the whole model); Lck 26.4 (C-lobe).
+  PIECE1_LLG:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[1]
+    attribute: llg
+    type: float
+    meaning: >
+      LLG once the first piece was placed, at the search's resolution.
+      Cumulative: a later piece's llg includes this one. BAD1330 run A 180,
+      run B 105; Lck 482.
+  PIECE1_CLASHES:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[1]
+    attribute: clashes
+    type: int
+    meaning: Phaser's packing clashes (PAK) for the first piece. Run A 0; run B 0; Lck 1.
+  PIECE2_TFZ:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[2]
+    attribute: tfz
+    type: float
+    optional: true
+    meaning: >
+      Search TFZ of the second piece placed, in the context of the first.
+      Absent for a one-piece job, and absent if Phaser placed only one of
+      two pieces. BAD1330 run A 17.6; Lck 6.0 (N-lobe, placed wrongly).
+  PIECE2_LLG:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[2]
+    attribute: llg
+    type: float
+    optional: true
+    meaning: >
+      LLG once the second piece was placed (cumulative: subtract PIECE1_LLG
+      for what it added). BAD1330 run A 343 (+163); Lck 500 (+18).
+  PIECE2_CLASHES:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[2]
+    attribute: clashes
+    type: int
+    optional: true
+    meaning: >
+      Packing clashes after the second piece. Run A 1; Lck 19 (with TFZ 6.0:
+      not placed).
+  PIECE3_TFZ:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[3]
+    attribute: tfz
+    type: float
+    optional: true
+    meaning: Search TFZ of the third piece placed. No evidence job had three pieces.
+  PIECE4_TFZ:
+    file: program.xml
+    xpath: .//RunInfo/Sol/Component[4]
+    attribute: tfz
+    type: float
+    optional: true
+    meaning: Search TFZ of the fourth piece placed. No evidence job had four pieces.
+  SPLIT_TFZ:
+    file: program.xml
+    xpath: .//RunInfo/Sol/tfz
+    type: float
+    meaning: >
+      The TFZ SliceNDice keeps for the split (the "TFZ" column of the
+      report's table): the last TFZ in the LAST solution Phaser listed, of
+      no particular piece and not necessarily of the best solution. Lck 4.4
+      (the tenth listed solution's N-lobe try; the pieces of the best are
+      26.4 and 6.0); BAD1330 run A 20.1 (a refined "TFZ==" of the whole);
+      run B 12.2. Never judge on it.
+  SPLIT_LLG:
+    file: program.xml
+    xpath: .//RunInfo/Sol/llg
+    type: float
+    meaning: >
+      The LLG SliceNDice keeps for the split, after Phaser's final
+      refinement at full resolution (BAD1330 run A 463, run B 110; Lck 1738,
+      again from the last listed solution). Not comparable with the
+      search-resolution PIECE LLGs.
+  # FINDING: Phaser's expected LLG per piece (its "eLLG of ensemble alone"
+  #   table, computed for RMS 1.2 A) is only in the Phaser log
+  #   (slicendice_0/split_N/phaser/split_N_phaser.log): BAD1330 run A 95.9 and
+  #   62.0, run B 312.2 (whole model), Lck 164.0 and 30.6. Run B's refined LLG
+  #   110 against 312 is the hinge signature the Phaser judgements test
+  #   (under 0.3 x is their rule; here 0.35). The wrapper should record it in
+  #   program.xml as the Phaser wrappers do (ExpectedLLG/Ensemble/eLLG).
+  # FINDING: the Component elements are written for EVERY Sol, but the
+  #   verdict reads Sol[1]. In 0.1.3 only one split is ever searched, so
+  #   there is one Sol; if the one-split bug is fixed upstream, the wrapper
+  #   should write the best split's Components under Best.
+
+verdict:
+  - when: PIECES > 4 and PIECE1_TFZ >= 8
+    outcome: ambiguous
+    basis: >
+      This file reads four pieces; more were searched. Read every
+      Component's tfz yourself and apply the rules below by hand. No
+      evidence job had more than two pieces.
+  - when: >
+      PIECE1_TFZ >= 8
+      and (PIECES < 2 or PIECE2_TFZ >= 8)
+      and (PIECES < 3 or PIECE3_TFZ >= 8)
+      and (PIECES < 4 or PIECE4_TFZ >= 8)
+      and RFREE > 0 and RFREE < 0.40
+    outcome: solved
+    basis: >
+      Every piece searched for was placed at a search TFZ of 8 or more
+      (Phaser's cutoff, "Best TFZ is over Z-score cutoff for definite
+      solution (8.00)", BAD1330 run A split_2_phaser.log line 530; the same
+      basis as phaser_simple_phil.agent.yaml, which applies it to the search
+      TFZ, not the refined one) and the quick refinement brought R-free
+      below 0.40. The 0.40 is the Phaser judgements' (our runs only: every
+      R-free under 0.40 after the automatic refinement came from a correct,
+      near-complete model); not a published threshold. No evidence job here
+      reaches it.
+  - when: >
+      PIECE1_TFZ >= 8
+      and (PIECES < 2 or PIECE2_TFZ >= 8)
+      and (PIECES < 3 or PIECE3_TFZ >= 8)
+      and (PIECES < 4 or PIECE4_TFZ >= 8)
+    outcome: placed
+    basis: >
+      Every piece placed by Phaser's cutoff (8.00, above), R-free still at
+      or above 0.40: a right but distant model, or a whole model placed as a
+      compromise across a hinge; building decides. BAD1330 run A (TFZ 15.8
+      and 17.6, R-free 0.509, SliceNDice "Solved False", job Unsatisfactory)
+      is correct: paired by sequence and taken to the nearest symmetry
+      image, 427 of its 490 C-alphas lie within 2 A of the structure then
+      built by modelcraft (bad1330_solve job 8, R-free 0.253), as close as
+      Opus's two-ensemble Phaser job 7 (432/490). BAD1330 run B (one piece,
+      TFZ 9.3, R-free 0.532) lands here too and is roughly right, as a
+      compromise: 323/490 within 2 A, median 1.5-2.1 A per lobe segment
+      (Opus's phaser_simple_phil job 5, the same placement, 333/490). Its
+      next step is the two-piece job, not building (see next).
+  - when: PIECE1_TFZ >= 8 and PIECE1_TFZ < 10 and PIECE1_CLASHES >= 10
+    outcome: ambiguous
+    basis: >
+      Not every piece passed, and the first piece placed only just passed
+      Phaser's 8 while clashing heavily. Our runs only (an expert should set
+      both numbers): a correct placement clashed 0-1 times (BAD1330 run A
+      0 and 1; Lck C-lobe 1); BAD1330 run C, the same model and data merged
+      in the wrong space group (P 21 2 21, which SliceNDice never leaves),
+      placed its first piece at TFZ 8.5 with 28 clashes and its second at
+      7.5 with 28 (LLG 152 against run A's 463, R-free 0.537): no right
+      placement is possible there. Called "partial" it would send an agent
+      to search for the missing piece in a wrong space group.
+  - when: PIECE1_TFZ >= 8 or PIECE2_TFZ >= 8 or PIECE3_TFZ >= 8 or PIECE4_TFZ >= 8
+    outcome: partial
+    basis: >
+      At least one piece placed by Phaser's cutoff 8, and at least one piece
+      searched for is below it or was not placed at all. Lck job 3: C-lobe
+      TFZ 26.4 (0.46 A C-alpha RMSD from 4c3f, help page), N-lobe TFZ 6.0,
+      +18 LLG, 19 clashes, 17-19 A off - while R-free 0.427 passed
+      SliceNDice's test. A piece below 8 with many clashes is not placed,
+      however the refinement went.
+  - when: PIECE1_TFZ >= 6 or PIECE2_TFZ >= 6 or PIECE3_TFZ >= 6 or PIECE4_TFZ >= 6
+    outcome: ambiguous
+    basis: >
+      Best piece in the 6-8 band. The lower bound is the Phaser judgements'
+      (phaser_simple_phil.agent.yaml: Phaser's TFZ guide as recalled, 6-7
+      "possibly", 7-8 "probably"; NOT verified in this workspace). No piece
+      in a slicendice evidence job was the best at 6-8; the Lck N-lobe
+      (6.0) was wrong.
+  - when: true
+    outcome: failed
+    basis: >
+      No piece reached a search TFZ of 6, or Phaser placed nothing (no
+      Component), or the job wrote no program.xml.
+
+traps:
+  - >
+    One number of pieces per job. SliceNDice 0.1.3, given MIN_SPLITS below
+    MAX_SPLITS, cuts the model every way but runs MR on only one split,
+    chosen by file-system order (command_line/slice.py run_slice). The
+    report and program.xml list the splits made (Split elements) but only
+    one Sol: a split listed is not a split tried. Set MIN_SPLITS =
+    MAX_SPLITS and run the task again for another number.
+  - >
+    "Solved False" is not a failed search. BAD1330 run A placed both lobes
+    correctly (TFZ 15.8 and 17.6) while R-free after ten cycles was 0.509,
+    above SliceNDice's 0.45: a 51%-identity model at 1.26 A does not refine
+    below 0.45 in ten cycles, and modelcraft took the same placement to
+    0.253. Before 2026-10-09 that job ended Unsatisfactory with its model
+    labelled "SliceNDice, no solution"; now a job whose every piece placed
+    at TFZ 8 or more finishes, labelled "SliceNDice placement, not yet a
+    solution", and Unsatisfactory means a piece did not place. Either way,
+    judge each piece by its TFZ, then build.
+  - >
+    "Solved True" is no proof that every piece was placed. Lck job 3 passed
+    (R 0.406, R-free 0.427) on the C-lobe alone; the N-lobe had TFZ 6.0 and
+    19 clashes and sits 17-19 A from its place in 4c3f. Read every
+    Component, not the split's R-free; and never the split's own TFZ
+    (SPLIT_TFZ: 4.4 for that split, 20.1 for BAD1330 run A), which belongs
+    to no piece.
+  - >
+    The space group: tested since 2026-10-09, pinned before. Until then the
+    task did not pass --sgalternative, whose SliceNDice default is "none"
+    (util/argparse_util.py line 182; dice/run_phaser.py line 31), so
+    Phaser searched only the data's own group. Data merged in the wrong
+    group of the point group (a screw axis missed or added) could not be
+    solved however good the model: BAD1330 merged as P 21 2 21 (POINTLESS
+    confidence 0.23) while the crystal is P 21 21 21, and the same
+    two-piece job on the data as merged (run C) got pieces at TFZ 8.5 and
+    7.5 with 28 clashes each, LLG 152 and R-free 0.537, against TFZ 15.8
+    and 17.6, 0-1 clashes, LLG 463 and R-free 0.509 in P 21 21 21 (run A).
+    Low TFZs with many clashes on a model that should place were the sign.
+    Now SGALTERNATIVE is "all" by default and the same job (run C2) found
+    the same solution in P 21 21 21 (TFZ 15.8 and 17.6, LLG 464), in 31
+    minutes against 20. Jobs run before 2026-10-09 have no SPACEGROUP
+    result; for those, a weak space-group choice at data reduction is a
+    reason to settle the group first (aimless_pipe again, or a Phaser
+    task).
+  - >
+    After a space-group change SliceNDice's own refinement is of mismatched
+    frames. SliceNDice 0.1.3 reindexes the data for REFMAC with an operator
+    that permutes the axes (run C2: cell 100.1, 50.0, 96.5) while Phaser's
+    model stays in the data's setting (50.0, 96.5, 100.1): R 0.541 /
+    R-free 0.562 for a correct placement, and a refined XYZOUT whose CRYST1
+    did not match its coordinates. The wrapper now recovers Phaser's own
+    model and maps and relabels the project's reflections (F_SIGF_OUT,
+    FREERFLAG_OUT; SPACEGROUP_CHANGED "True"): read the pieces' TFZs, ignore
+    RFREE, and take those two files downstream. A model refined against
+    the original files would be refined against the wrong symmetry.
+  - >
+    BFACTOR_TREATMENT is passed whatever it is; SliceNDice's own detection
+    is bypassed. Left at "bfactor" for an AlphaFold model, nothing is
+    trimmed; set to "plddt" for a crystal structure or Chainsaw model, most
+    of it is deleted. Match it to what the B column holds.
+  - >
+    Many options on the task's def.xml do nothing: the wrapper passes
+    SliceNDice only XYZIN, the reflections, ASUIN, BFACTOR_TREATMENT,
+    PLDDT_THRESHOLD or RMS_THRESHOLD, MIN_SPLITS, MAX_SPLITS, NPROC, NCYC
+    and NO_MOLS (slicendice.py makeCommandAndScript). SEARCH_PDB and
+    SEARCH_AFDB (no network search exists in this SliceNDice), MRMAX,
+    REDUNDANCYLEVEL, HHPREDIN, ENSEMBLES, XYZIN_LIST and the MOLREP-style
+    controls (PRF, NP, NPT, SCORE, ANISO, SEQ, SURF, NMASU, SIM, RESMAX,
+    RESMIN, BADD, BOFF, BCYC) are ignored. Do not set them expecting an
+    effect.
+
+next:
+  - when: outcome == "placed" and PIECES == 1
+    task: slicendice
+    inputs:
+      F_SIGF: "slicendice[-1].F_SIGF"
+      FREERFLAG: "slicendice[-1].FREERFLAG"
+      ASUIN: "slicendice[-1].ASUIN"
+      XYZIN: "slicendice[-1].XYZIN"
+    advice: >
+      The whole model was placed as one piece: a plain Phaser search. If the
+      model may hinge (two domains, R-free still near 0.53), run again with
+      MIN_SPLITS = MAX_SPLITS = 2 (same BFACTOR_TREATMENT and NO_MOLS) and
+      keep whichever job places its pieces at higher TFZ and lower R-free.
+      BAD1330: one piece TFZ 9.3, LLG 105, R-free 0.532, a compromise
+      (323/490 C-alphas within 2 A of the final structure); two pieces TFZ
+      15.8 and 17.6, LLG 463, R-free 0.509 (427/490). Build from the better.
+  - when: (outcome == "solved" or outcome == "placed") and SPACEGROUP_CHANGED == "True"
+    task: modelcraft
+    inputs:
+      XYZIN: "slicendice[-1].XYZOUT"
+      F_SIGF: "slicendice[-1].F_SIGF_OUT"
+      FREERFLAG: "slicendice[-1].FREERFLAG_OUT"
+      ASUIN: "slicendice[-1].ASUIN"
+    advice: >
+      Phaser solved in SPACEGROUP, not the data's group: build from Phaser's
+      placed model against the reflections relabelled in that group
+      (F_SIGF_OUT, FREERFLAG_OUT), and use those two files for every later
+      refinement of these data. The original F_SIGF and FREERFLAG carry
+      the wrong symmetry for this model. BAD1330 run C2 is the case (P 21
+      2 21 given, P 21 21 21 found, TFZ 15.8 and 17.6); modelcraft from it
+      was not run here, but the same placement from run A built to R-free
+      0.253.
+  - when: (outcome == "solved" or outcome == "placed") and (SPACEGROUP_CHANGED == null or SPACEGROUP_CHANGED != "True")
+    task: modelcraft
+    inputs:
+      XYZIN: "slicendice[-1].XYZOUT"
+      F_SIGF: "slicendice[-1].F_SIGF"
+      FREERFLAG: "slicendice[-1].FREERFLAG"
+      ASUIN: "slicendice[-1].ASUIN"
+    advice: >
+      Build from the placed pieces and judge by modelcraft's R-free, not the
+      ten-cycle one: BAD1330 went from the two-lobe placement (R-free 0.49-0.51)
+      to 523 residues at R 0.230 / R-free 0.253 (bad1330_solve job 8, from
+      Opus's equivalent phaser_pipeline_phil job 7). XYZOUT exists for an
+      Unsatisfactory job too. F_SIGF, FREERFLAG and ASUIN resolve to the
+      files this job consumed; keep the task name in the reference.
+  - when: (outcome == "solved" or outcome == "placed") and (SPACEGROUP_CHANGED == null or SPACEGROUP_CHANGED != "True")
+    task: phaser_rnp_pipeline_phil
+    inputs:
+      XYZIN_PARENT: "slicendice[-1].XYZOUT"
+      F_SIGF: "slicendice[-1].F_SIGF"
+      FREERFLAG: "slicendice[-1].FREERFLAG"
+      ASUFILE: "slicendice[-1].ASUIN"
+    advice: >
+      An alternative before building: refine the placed pieces as rigid
+      bodies with Phaser. Each piece is its own chain in XYZOUT, in the
+      order placed (A, B, ...: BAD1330 run A and Lck job 3), so SELECTIONS
+      is one entry per chain, "A/" and "B/" (the form the task's i2run tests
+      use), and COMP_BY ASU. Not run on a SliceNDice output here.
+  - when: outcome == "partial"
+    task: phaser_simple_phil
+    inputs:
+      XYZIN: "slicendice[-1].XYZOUT"
+      XYZIN_FIXED: "slicendice[-1].XYZOUT"
+      F_SIGF: "slicendice[-1].F_SIGF"
+      FREERFLAG: "slicendice[-1].FREERFLAG"
+      ASUFILE: "slicendice[-1].ASUIN"
+    advice: >
+      Search again for the unplaced piece with the placed ones fixed:
+      INPUT_FIXED True; XYZIN_FIXED with an atom selection keeping only the
+      chains whose Component TFZ was 8 or more (Lck: "A/", the C-lobe);
+      XYZIN with a selection of the unplaced piece's chain ("B/", the
+      N-lobe; its position in XYZOUT is wrong but is searched for anyway);
+      COMP_BY ASU. Check which chain is which against the order of the
+      Components (chain A is the first placed in both evidence jobs). That
+      the pipeline honours a selection on XYZIN_FIXED was read from
+      phaser_shims.py (selected atoms written by the wrapper), not run. If
+      it still does not place, build the missing domain into the map
+      phased by what was placed (modelcraft from the selected chains, as
+      the help page suggests), and do not refine the misplaced piece with
+      the rest.
+  - when: outcome == "ambiguous" and PIECE1_CLASHES >= 10
+    task: phaser_simple_phil
+    inputs:
+      XYZIN: "slicendice[-1].XYZIN"
+      F_SIGF: "slicendice[-1].F_SIGF"
+      FREERFLAG: "slicendice[-1].FREERFLAG"
+      ASUFILE: "slicendice[-1].ASUIN"
+    advice: >
+      Heavy clashes at a marginal TFZ. For a job run before 2026-10-09 (no
+      SPACEGROUP result) suspect the space group first: this task then
+      searched only the data's own group, and BAD1330 run C (P 21 2 21,
+      TFZ 8.5/7.5, 28 clashes) was exactly that; run the whole model
+      through phaser_simple_phil (COMP_BY ASU, SEARCHSEQUENCEIDENTITY as a
+      fraction), which tries every group of the point group, and if it
+      changes the group (SPACEGROUP_CHANGE "changed") run slicendice again
+      on its F_SIGF_OUT and FREERFLAG_OUT. For a job that already tested
+      the alternatives (SGALTERNATIVE all), the model is wrong for the
+      data or the lattice is: check NO_MOLS against a Matthews analysis,
+      BFACTOR_TREATMENT, and the data reduction's Laue-group choice.
+  - when: outcome == "ambiguous"
+    advice: >
+      Read each Component: a piece in the 6-8 band with few clashes may be
+      right; one with many clashes (Lck N-lobe: 19) is not. Build from the
+      pieces at 8 or more if any; otherwise check BFACTOR_TREATMENT and
+      NO_MOLS, and try a different number of pieces (another job).
+  - when: outcome == "failed"
+    advice: >
+      The model or the setup, not the splitting alone. Check
+      BFACTOR_TREATMENT matches the B column, NO_MOLS against a Matthews
+      analysis, and the data's space group (this task never tries another).
+      Then another number of pieces (a new job, MIN_SPLITS = MAX_SPLITS), a
+      different model (mrbump_basic or mrparse find them), or the whole
+      model in phaser_simple_phil to read Phaser's expected LLG and
+      space-group search.
+
+sources:
+  - server/ccp4i2/wrappers/slicendice/script/slicendice.py (command line, program.xml, status)
+  - docs/user/source/tasks/slicendice/index.rst (Lck scenario, one-split warning)
+  - server/ccp4i2/tests/i2run/test_slicendice.py
+  - "SliceNDice 0.1.3 source, ccp4-20260702 site-packages/slicendice: command_line/slice.py run_slice; util/argparse_util.py (sgalternative, bfactor_column, tfz/llg cutoffs); util/bfactor_util.py; dice/run_phaser.py; dice/submit_jobs_MX.py line 967"
+  - server/ccp4i2/pipelines/phaser_simple_phil/script/phaser_simple_phil.agent.yaml (TFZ 8 on the search TFZ; 6-8 band; R-free 0.40; the hinge signature)
+  - docs/multi-component-mr.md
+  - "run: BAD1330 run A, slicendice MIN=MAX=2 (P 21 21 21, 1.26 A; TFZ 15.8/17.6, R-free 0.509; correct)"
+  - "run: BAD1330 run B, slicendice MIN=MAX=1 (TFZ 9.3, LLG 105, R-free 0.532; a compromise placement)"
+  - "run: BAD1330 run C, slicendice MIN=MAX=2 on the data as merged in P 21 2 21 (TFZ 8.5/7.5, 28 clashes each, LLG 152, R-free 0.537; Unsatisfactory)"
+  - "run: BAD1330 run C2, the run C job with SGALTERNATIVE all (P 21 21 21 found; TFZ 15.8/17.6, LLG 464; SliceNDice's own refinement of mismatched frames R-free 0.562)"
+  - "run: Lck kinase job 3 (help scenario; TFZ 26.4/6.0, R-free 0.427; partial)"
+  - "run: bad1330_solve jobs 5 (phaser_simple_phil), 7 (phaser_pipeline_phil, two lobes), 8 (modelcraft, R-free 0.253)"
