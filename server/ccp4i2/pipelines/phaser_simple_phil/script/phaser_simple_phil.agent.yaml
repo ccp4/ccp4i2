@@ -263,6 +263,19 @@ results:
   #   judgement.read_result supports it. All xpaths were run against MDM2
   #   job 25 and BetaBlip jobs 3 and 4. REFMAC values carry whitespace.
 
+  EXPECTED_LLG:
+    file: program.xml
+    xpath: .//ExpectedLLG/Ensemble[1]/eLLG
+    type: float
+    optional: true
+    meaning: >
+      Phaser's expected LLG for ONE copy of the search model at full
+      resolution, computed from the identity or RMSD you gave it (MDM2 25
+      600.5; BetaBlip 3 beta 949.5). The refined LLG of a right rigid-body
+      placement of a model as good as stated lands near it; a large
+      shortfall means the model is worse than stated, or right but not one
+      rigid body.
+
 verdict:
   - when: >
       SEARCH_OUTCOME != "placed"
@@ -495,6 +508,23 @@ next:
       When the model covers the whole AU but is distant (MDM2 25), build
       from the placement; judge by modelcraft's R-free, not the ten-cycle
       one. Same space-group caveat as for "solved".
+  - when: (outcome == "placed" or outcome == "ambiguous") and LLG < 0.3 * EXPECTED_LLG
+    advice: >
+      The refined LLG falls short of the expected LLG by more than
+      two-thirds: the placement does not match what Phaser was told to
+      expect. Two explanations. The model is worse than the identity or
+      RMSD stated (then lower it, or trim with sculptor/chainsaw, and
+      search again); or the model is right but not as one rigid body (a
+      hinge between lobes: periplasmic binding proteins, kinases, any
+      ligand-closed fold), which also leaves R-free high after refinement.
+      An agent run (Opus, 2026-10-09) saw LLG 111 against 523 at search
+      TFZ just over 8, split the model into its two lobes, placed them
+      separately and solved the structure. Do that with slicendice
+      (MIN_SPLITS = MAX_SPLITS = 2, see its notes), or cut the domains
+      and give them as separate ensembles to phaser_pipeline_phil; then
+      phaser_rnp_pipeline_phil refines the placed domains as rigid bodies.
+      MDM2 25 also trips this (104 against 600) for the first reason: a
+      57%-identity model of a single small domain.
   - when: outcome == "placed" and FRAC_SCATTERING_MODELS < 0.9
     advice: >
       The model accounts for less of the AU than it holds (BetaBlip 3:

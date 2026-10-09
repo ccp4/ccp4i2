@@ -283,6 +283,16 @@ traps:
     copies and still look like a distant model; compare the rows of the
     final table (MODEL, MODEL_2) with the AU contents and a matthews job.
   - >
+    MrBUMP's Phaser runs test every space group of the point group only
+    with SGALL True (the default since 2026-10-09; the keyword becomes
+    Phaser's SGALTERNATIVE SELECT ALL). Before that they were pinned to
+    the data's space group: an agent run (Opus, 2026-10-09) watched MrBUMP
+    find nothing (TFZ 5.3, LLG 17 against an expected ~3600) in P 21 2 21,
+    POINTLESS's choice at confidence 0.23 over P 21 21 21, where
+    phaser_simple_phil, testing all groups, then solved it. With SGALL
+    False, a low SG_CONFIDENCE in the aimless_pipe verdict is a reason to
+    expect this.
+  - >
     If SPACEGROUP differs from the input data's, the model is in the other
     group (the other hand, or other screw axes) while the reflections
     in the project are still labelled with the old one; the task writes no
