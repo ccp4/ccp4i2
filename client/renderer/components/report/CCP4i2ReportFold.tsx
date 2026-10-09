@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { PropsWithChildren } from "react";
 import $ from "jquery";
 import {
@@ -20,6 +20,9 @@ interface CCP4i2ReportFoldProps
 
 export const CCP4i2ReportFold: React.FC<CCP4i2ReportFoldProps> = (props) => {
   const theme = useTheme();
+  const [expanded, setExpanded] = useState(
+    () => $(props.item).attr("initiallyOpen") === "True"
+  );
 
   // Memoize the content processing to avoid recalculation
   const foldContent = useMemo(() => {
@@ -52,7 +55,8 @@ export const CCP4i2ReportFold: React.FC<CCP4i2ReportFoldProps> = (props) => {
   return (
     <Accordion
       disableGutters
-      defaultExpanded={$(props.item).attr("initiallyOpen") === "True"}
+      expanded={expanded}
+      onChange={(_, isExpanded) => setExpanded(isExpanded)}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
