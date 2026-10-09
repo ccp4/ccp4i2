@@ -9,13 +9,19 @@ solved with one search model holding both chains, and a check that counted
 models told that correct job it had searched for one of two kinds of chain.
 
 A model chain covers the AU sequence it aligns to best, when that alignment
-is worth anything: gemmi's score is positive and at least MIN_MATCHED
-residues match. A wrong pairing scores negative (beta-lactamase against
-BLIP's sequence: -182, with 52 chance matches at 20% identity), a right one
-positive whatever the identity (the demo models: +263 and +165 at 100%); a
-remote homologue scores lower but still positive. Identity alone would
-misassign, since chance pairings reach 20-28%. The MIN_MATCHED floor keeps
-a peptide or a stray short chain from claiming a kind.
+is worth anything: its BLOSUM62 score over the SPAN OF THE TARGET IT ALIGNS
+TO is positive and at least MIN_MATCHED residues match. The span matters:
+a global score charges every target residue the model lacks as a gap, so a
+domain cut from a longer chain scored negative at 100% identity (Opus,
+2026-10-09: lobes of 214 and 276 residues of a 566-residue kinase, -140 and
+-22 against +402 for the whole model, each told it "covers none"). Over the
+aligned span, with BLOSUM62, a wrong pairing still scores negative
+(beta-lactamase against BLIP's sequence: -88, with 41 chance matches at
+16% identity; BLIP against beta-lactamase's: -63) and a right one positive
+whatever its length (the whole demo chains +1348 and +872; the first 120
+residues of beta-lactamase +611, the first 60 +304). Identity alone would misassign, since
+chance pairings reach 20-28%. The MIN_MATCHED floor keeps a peptide or a
+stray short chain from claiming a kind.
 
 gemmi only: no CCP4, no Django.
 """
@@ -72,8 +78,7 @@ def chain_assignments(model_path, kinds: Sequence[dict]) -> List[Tuple[str, Opti
         best = None
         for name, full, polymer_type in expanded:
             try:
-                result = gemmi.align_sequence_to_polymer(
-                    full, polymer, polymer_type, gemmi.AlignmentScoring())
+                result = _align_to_span(full, polymer, polymer_type)
             except Exception:
                 continue
             if best is None or result.score > best[1]:
@@ -83,6 +88,33 @@ def chain_assignments(model_path, kinds: Sequence[dict]) -> List[Tuple[str, Opti
         else:
             out.append((chain.name, None, 0.0))
     return out
+
+
+def _scoring(polymer_type):
+    """BLOSUM62 for protein (gemmi's "b" table), unit scores otherwise."""
+    if polymer_type == gemmi.PolymerType.PeptideL:
+        return gemmi.AlignmentScoring("b")
+    return gemmi.AlignmentScoring()
+
+
+def _align_to_span(full, polymer, polymer_type):
+    """The model chain aligned to the span of the target it covers: a first
+    alignment finds the span, a second scores only that, so the target
+    residues the model lacks at either end cost nothing."""
+    scoring = _scoring(polymer_type)
+    first = gemmi.align_sequence_to_polymer(full, polymer, polymer_type, scoring)
+    target = gemmi.one_letter_code(full)
+    model = gemmi.one_letter_code([residue.name for residue in polymer])
+    gapped_target = first.add_gaps(target, 1)
+    gapped_model = first.add_gaps(model, 2)
+    columns = [i for i, c in enumerate(gapped_model) if c != "-"]
+    if not columns:
+        return first
+    start = sum(1 for c in gapped_target[:columns[0]] if c != "-")
+    stop = sum(1 for c in gapped_target[:columns[-1] + 1] if c != "-")
+    if start == 0 and stop == len(full):
+        return first
+    return gemmi.align_sequence_to_polymer(full[start:stop], polymer, polymer_type, scoring)
 
 
 def covered_kinds(model_path, kinds: Sequence[dict]) -> Dict[str, float]:
