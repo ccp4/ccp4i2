@@ -150,3 +150,18 @@ def test_the_fixed_structure_is_never_filled_from_the_context(tmp_path, data_cel
     inp = plugin.container.inputData
     assert inp.XYZIN.qualifiers("fromPreviousJob") is True
     assert inp.XYZIN_FIXED.qualifiers("fromPreviousJob") is False
+
+
+def test_the_rnp_pipeline_validates_without_ensembles(tmp_path):
+    # phaser_rnp_pipeline_phil inherits the coverage check but builds its
+    # ensembles at run time, so it has no ENSEMBLES to read: every job failed
+    # validation with "'CContainer' object has no attribute 'FIXENSEMBLES'"
+    # (Opus, 2026-10-09, project 30 job 6).
+    plugin = get_plugin_class("phaser_rnp_pipeline_phil")(workDirectory=str(tmp_path), name="rnp")
+    inp = plugin.container.inputData
+    inp.F_SIGF.setFullPath(str(DEMO / "beta_blip_P3221.mtz"))
+    inp.XYZIN_PARENT.setFullPath(str(DEMO / "beta.pdb"))
+    inp.ASUFILE.setFullPath(str(_asu(tmp_path / "two.asu.xml", ["BETA", "BLIP"])))
+    error = plugin.runTimeValidity()
+    assert not _advice(error)
+    assert not [r for r in error._reports if "FIXENSEMBLES" in str(r.get("details", ""))]

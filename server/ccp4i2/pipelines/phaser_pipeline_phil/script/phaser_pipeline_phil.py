@@ -117,10 +117,17 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
             return
         if not kinds:
             return
-        fixed = {str(label) for label in inp.FIXENSEMBLES}
+        # phaser_rnp_pipeline_phil inherits this check but declares no
+        # ensembles: it cuts them from the parent model at run time
+        # (createEnsembles). Reading them as attributes failed every one of
+        # its jobs at validation (Opus, 2026-10-09, project 30 job 6).
+        ensembles = getattr(inp, "ENSEMBLES", None)
+        if ensembles is None:
+            return
+        fixed = {str(label) for label in (getattr(inp, "FIXENSEMBLES", None) or [])}
         covered = set()
         described = []
-        for i, ensemble in enumerate(inp.ENSEMBLES):
+        for i, ensemble in enumerate(ensembles):
             placed = str(ensemble.label) in fixed
             searched = bool(ensemble.use) and int(ensemble.number or 0) > 0
             if not (placed or searched):
