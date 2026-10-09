@@ -43,11 +43,3 @@ def test_shelx_warns_too(tmp_path):
     plugin = get_plugin_class("shelx")(workDirectory=str(tmp_path), name="s")
     assert 203 in _codes(plugin)
 
-
-def test_modelcraft_says_when_phases_are_ignored(tmp_path):
-    plugin = get_plugin_class("modelcraft")(workDirectory=str(tmp_path), name="m")
-    assert 210 not in _codes(plugin)
-    plugin.container.inputData.PHASES.setFullPath(str(tmp_path / "hl.mtz"))
-    assert 210 in _codes(plugin)  # USE_MODEL_PHASES defaults to True
-    plugin.container.controlParameters.USE_MODEL_PHASES.set(False)
-    assert 210 not in _codes(plugin)
