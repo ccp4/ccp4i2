@@ -417,6 +417,14 @@ verdict:
 
 traps:
   - >
+    REFMAC error 350 (an atom its dictionary does not know for that residue)
+    on a model straight from molecular replacement is usually a hydrogen:
+    a search model's hydrogens are its template's, and after Chainsaw's
+    side-chain mutations their names are wrong (glycine's HA2/HA3 on a
+    serine). Strip the hydrogens and rerun; MR pipelines and the chainsaw
+    task do this since 2026-10-09, a model taken from MrBUMP's working
+    directory by hand does not get it (Opus, 2026-10-09).
+  - >
     The free set must be the one the model was refined against before. A
     model refined against other free reflections can start with an R-free
     biased low that rises as refinement proceeds, which reads as the
