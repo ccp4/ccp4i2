@@ -11,9 +11,14 @@
         <qualifiers>
           <mustExist>True</mustExist>
           <allowUndefined>False</allowUndefined>
+          <listMinLength>2</listMinLength>
         </qualifiers>
         <subItem>
           <className>CObsDataFile</className>
+          <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+          </qualifiers>
           <subType>
             <onlyEnumerators>True</onlyEnumerators>
             <menuText>observed data,derived data,reference data</menuText>
