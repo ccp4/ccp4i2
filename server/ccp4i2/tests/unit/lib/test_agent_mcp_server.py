@@ -16,7 +16,7 @@ EXPECTED_TOOLS = {
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
     "what_next", "job_errors", "file_summary", "inspect_file", "find_sequence",
-    "fetch_sequence",
+    "fetch_sequence", "stop_job",
 }
 
 
@@ -43,7 +43,8 @@ def api(monkeypatch):
 def test_the_tools_offered():
     tools = asyncio.run(mcp_server.server.list_tools())
     assert {t.name for t in tools} == EXPECTED_TOOLS
-    # Nothing that deletes or rewrites a job's status.
+    # Nothing that deletes or rewrites a job's status (stop_job goes through
+    # the server's own cancel action, which refuses a job not running or queued).
     assert not any("delete" in t.name or "status" in t.name and t.name != "job_status" for t in tools)
 
 
@@ -314,3 +315,22 @@ def test_list_tasks_matches_any_word_best_first(api):
     assert found == ["phaser_pipeline_phil"]
     found = [t["task"] for t in mcp_server.list_tasks("molecular replacement phaser")["tasks"]]
     assert found[0] == "phaser_pipeline_phil" and "mrparse" not in found
+
+
+def test_stop_job_cancels_through_the_server_and_reports_the_status(api):
+    # Opus had to kill process ids by hand to stop a MrBUMP run searching in
+    # the wrong space group. The server's cancel action does it, guarded.
+    calls, answers = api
+    answers[("POST", "jobs/7/cancel")] = {"id": 7, "status": 4}
+    answers[("GET", "jobs/7")] = {"project": 3, "number": "5", "task_name": "x", "status": 4,
+                                  "float_values": {}, "char_values": {}}
+    status = mcp_server.stop_job(3, "5")
+    assert ("POST", "jobs/7/cancel", {}, None) in calls
+    assert status["status"] == mcp_server.STATUS[4]
+
+
+def test_stop_job_of_a_finished_job_passes_the_refusal_on(api):
+    calls, answers = api
+    answers[("POST", "jobs/7/cancel")] = mcp_server.ApiError("Job is not running or queued (status: Finished)")
+    with pytest.raises(mcp_server.ApiError, match="not running or queued"):
+        mcp_server.stop_job(3, "5")

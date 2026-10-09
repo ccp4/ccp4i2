@@ -497,6 +497,20 @@ def job_status(project_id: int, job: str | int) -> dict:
             "kpis": {**(job.get("float_values") or {}), **(job.get("char_values") or {})}}
 
 
+@server.tool()
+def stop_job(project_id: int, job: str | int) -> dict:
+    """Stop a running or queued job, as the app's Stop button does: its
+    process tree is killed and it is marked Interrupted. It publishes
+    nothing (an interrupted job registers no outputs), but what it wrote is
+    still in its directory for job_errors and inspect_file. A finished job
+    cannot be stopped: the server refuses, and the refusal comes back. An
+    agent (Opus, 2026-10-09) had to kill process ids by hand to stop a
+    MrBUMP run that was searching in the wrong space group."""
+    job_id = _jid(project_id, job)
+    _post(f"jobs/{job_id}/cancel")
+    return job_status(project_id, job)
+
+
 TERMINAL = {"Finished", "Failed", "Unsatisfactory", "Interrupted"}
 
 
