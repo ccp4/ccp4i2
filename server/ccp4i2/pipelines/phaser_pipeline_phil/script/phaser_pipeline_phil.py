@@ -305,10 +305,28 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
+    def withoutHydrogens(self, xyzin, name):
+        """The placed model with no hydrogens, for refinement: a search
+        model's are its template's, misnamed after Chainsaw's mutations, and
+        REFMAC refuses them (error 350; lib/utils/formats/hydrogens.py).
+        The model itself when it has none."""
+        from ccp4i2.core.CCP4ModelData import CPdbDataFile
+        from ccp4i2.lib.utils.formats.hydrogens import strip_hydrogens
+        path = os.path.join(str(self.getWorkDirectory()), f"{name}_noH.pdb")
+        try:
+            removed = strip_hydrogens(str(xyzin.fullPath), path)
+        except Exception:
+            return xyzin
+        if not removed:
+            return xyzin
+        stripped = CPdbDataFile()
+        stripped.setFullPath(path)
+        return stripped
+
     def runSheetbend(self, f_sigf, freer, xyzin):
         try:
             plugin = self.makePluginObject("sheetbend")
-            plugin.container.inputData.XYZIN.set(xyzin)
+            plugin.container.inputData.XYZIN.set(self.withoutHydrogens(xyzin, "sheetbend_in"))
             plugin.container.inputData.F_SIGF.set(f_sigf)
             if freer is not None and freer.isSet():
                 plugin.container.inputData.FREERFLAG.set(freer)
@@ -329,7 +347,7 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
     def runRefmac(self, f_sigf, freer, xyzin):
         try:
             plugin = self.makePluginObject("refmac")
-            plugin.container.inputData.XYZIN.set(xyzin)
+            plugin.container.inputData.XYZIN.set(self.withoutHydrogens(xyzin, "refmac_in"))
             plugin.container.inputData.F_SIGF.set(f_sigf)
             if freer is not None and freer.isSet():
                 plugin.container.inputData.FREERFLAG.set(freer)

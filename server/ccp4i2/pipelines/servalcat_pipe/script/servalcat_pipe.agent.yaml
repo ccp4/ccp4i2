@@ -540,6 +540,14 @@ verdict:
 
 traps:
   - >
+    REFMAC error 350 (an atom its dictionary does not know for that residue)
+    on a model straight from molecular replacement is usually a hydrogen:
+    a search model's hydrogens are its template's, and after Chainsaw's
+    side-chain mutations their names are wrong (glycine's HA2/HA3 on a
+    serine). Strip the hydrogens and rerun; MR pipelines and the chainsaw
+    task do this since 2026-10-09, a model taken from MrBUMP's working
+    directory by hand does not get it (Opus, 2026-10-09).
+  - >
     "unconverged" on geometry is not overruled by a good R-free. Held-out
     RNase Sa (Haiku, 3.1 A): R-work 0.135, R-free 0.258, bond RMSD 0.029 A,
     rmsZ 2.29, and the model was called "publishable". A gap of 0.12

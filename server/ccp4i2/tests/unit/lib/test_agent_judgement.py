@@ -301,3 +301,37 @@ def test_an_imposed_lower_laue_group_is_not_a_second_accepted_group(tmp_path, to
     assert verdict["results"]["OTHER_LAUE_ACCEPTED"] == "P 1 2/m 1"
     assert verdict["results"]["TOP_LAUE_STATUS"] == top_status
     assert verdict["outcome"] == outcome
+
+
+def test_a_refined_llg_far_below_the_expected_llg_gets_the_two_explanations(tmp_path):
+    # Opus (2026-10-09): LLG 111 against an expected 523 at search TFZ just
+    # over 8 was a right placement of a model that is two lobes, not one
+    # rigid body. The judgement now says so, and names the other cause.
+    def xml(llg, ellg):
+        return (f"<PHASER><Solutions><Solution><TFZ>8.4</TFZ><LLG>{llg}</LLG>"
+                "<Placements><Placement><TFZ>8.2</TFZ></Placement></Placements>"
+                f"</Solution></Solutions><ExpectedLLG><Ensemble><eLLG>{ellg}</eLLG>"
+                "</Ensemble></ExpectedLLG><REFMAC><Overall_stats><stats_vs_cycle>"
+                "<new_cycle><r_free>0.52</r_free></new_cycle><new_cycle><r_free>0.50</r_free>"
+                "</new_cycle></stats_vs_cycle></Overall_stats></REFMAC></PHASER>")
+    (tmp_path / "program.xml").write_text(xml(111, 523))
+    verdict = judgement.judge("phaser_simple_phil", tmp_path)
+    assert verdict["outcome"] == "placed"
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert "falls short of the expected LLG" in advice and "two lobes" in advice
+    (tmp_path / "program.xml").write_text(xml(400, 523))
+    verdict = judgement.judge("phaser_simple_phil", tmp_path)
+    assert "falls short of the expected LLG" not in " ".join(s.get("advice", "") for s in verdict["next"])
+
+
+def test_a_low_space_group_confidence_says_mr_must_test_the_alternatives(tmp_path):
+    # Opus (2026-10-09): P 21 2 21 at 0.40 against P 21 21 21 at 0.27; MrBUMP
+    # pinned to the first found nothing, Phaser testing all groups solved it.
+    (tmp_path / "program.xml").write_text(
+        "<aimless_pipe><POINTLESS><BestSolution><Confidence>0.23</Confidence></BestSolution></POINTLESS>"
+        "<AIMLESS><Result><Dataset><ResolutionHigh><Overall>2.0</Overall></ResolutionHigh>"
+        "</Dataset></Result></AIMLESS></aimless_pipe>")
+    verdict = judgement.judge("aimless_pipe", tmp_path)
+    assert verdict["outcome"] == "usable"
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert "screw axes" in advice and "SGALL" in advice

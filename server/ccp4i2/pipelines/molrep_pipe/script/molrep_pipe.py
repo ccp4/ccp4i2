@@ -201,9 +201,20 @@ class molrep_pipe(CPluginScript):
         self.reportStatus(CPluginScript.SUCCEEDED)
 
 
+    def withoutHydrogens(self, xyz, name):
+      """The placed model's path with no hydrogens, for refinement (a search
+      model's are its template's; REFMAC refuses misnamed ones, error 350).
+      The same path when it has none."""
+      from ccp4i2.lib.utils.formats.hydrogens import strip_hydrogens
+      path = os.path.join(str(self.getWorkDirectory()), name + '_noH.pdb')
+      try:
+          return path if strip_hydrogens(xyz, path) else xyz
+      except Exception:
+          return xyz
+
     def runSheetbend(self):
       self.sheetbendPlugin = self.makePluginObject('sheetbend')
-      self.sheetbendPlugin.container.inputData.XYZIN.set(self.xyz)
+      self.sheetbendPlugin.container.inputData.XYZIN.set(self.withoutHydrogens(self.xyz, 'sheetbend_in'))
       self.sheetbendPlugin.container.inputData.F_SIGF.set(self.fobs)
       self.sheetbendPlugin.container.inputData.FREERFLAG.set(self.free)
       status = self.sheetbendPlugin.process()
@@ -244,7 +255,7 @@ class molrep_pipe(CPluginScript):
 
     def run3(self):
       self.refmac = self.makePluginObject('refmac')
-      self.refmac.container.inputData.XYZIN.set(self.xyz)
+      self.refmac.container.inputData.XYZIN.set(self.withoutHydrogens(self.xyz, 'refmac_in'))
       self.refmac.container.inputData.F_SIGF.set(self.fobs)
       self.refmac.container.inputData.FREERFLAG.set(self.free)
       self.refmac.container.controlParameters.HYDROGENS = 'NO'

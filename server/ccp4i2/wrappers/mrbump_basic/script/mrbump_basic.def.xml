@@ -217,6 +217,15 @@
         </qualifiers>
       </content>
 
+      <content id="SGALL">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Test all space groups of the point group in Phaser</guiLabel>
+          <toolTip>Phaser tries every space group of the data's point group (SGALTERNATIVE SELECT ALL), so an uncertain screw axis or hand from POINTLESS is settled by the search. Off, Phaser is pinned to the data's space group.</toolTip>
+        </qualifiers>
+      </content>
+
       <content id="NCYC">
         <className>CInt</className>
         <qualifiers>

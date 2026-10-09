@@ -519,6 +519,19 @@ next:
       copies). Then check them with matthews (HKLIN
       "aimless_pipe[-1].HKLOUT[0]", ASUIN
       "ProvideAsuContents[-1].ASUCONTENTFILE").
+  - when: SG_CONFIDENCE < 0.5
+    advice: >
+      The Laue group is settled but the space group within it is not:
+      POINTLESS's confidence, sqrt(score x (score - next best)), is low
+      because a second space group (other screw axes, or the other hand)
+      scored close. Phaser tests them all (phaser_simple_phil and
+      phaser_pipeline_phil, by default; mrbump_basic with SGALL True, its
+      default since 2026-10-09; molrep_pipe with SG_OPTIONS laue), and
+      the group it solves in is the answer. An agent run (Opus,
+      2026-10-09) had P 21 2 21 at 0.40 against P 21 21 21 at 0.27
+      (confidence 0.23); MrBUMP, then pinned to P 21 2 21, found nothing,
+      and Phaser testing all groups solved it in P 21 21 21. Thaumatin
+      17.1 is the other kind of case, an enantiomorphic pair at 0.659.
   - when: (ANOM_LIMIT > 0 or CCANOM_LIMIT > 0) and MERGED_INPUT == "False"
     task: crank2
     inputs:
