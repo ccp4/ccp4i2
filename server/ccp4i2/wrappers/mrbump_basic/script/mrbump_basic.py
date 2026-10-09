@@ -154,6 +154,13 @@ class mrbump_basic(CPluginScript):
               #self.appendCommandLine(['input.model='+inputCoordPath])
               keyin += "LOCALFILE %s\n" % inputCoordPath
     
+      # Phaser tests every space group of the point group unless told not
+      # to: pinned to POINTLESS's choice, an agent run (Opus, 2026-10-09)
+      # watched MrBUMP find nothing (TFZ 5.3) in P 21 2 21, chosen at
+      # confidence 0.23 over P 21 21 21, where the structure was.
+      sgall = self.container.controlParameters.SGALL
+      keyin += "SGALL %s\n" % ("False" if sgall.isSet() and not sgall else "True")
+
       if self.container.controlParameters.BUCC.isSet():
           if self.container.controlParameters.BUCC:
               keyin += "BUCC True\n" 

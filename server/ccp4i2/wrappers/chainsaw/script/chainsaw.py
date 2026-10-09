@@ -94,16 +94,20 @@ class chainsaw(CPluginScript):
         return result
 
     def processOutputFiles(self):
-      if self.cryst1card is not None:
-          import os
-          tmpFilename = str(self.container.outputData.XYZOUT.fullPath)+'_tmp'
-          os.rename(str(self.container.outputData.XYZOUT.fullPath), tmpFilename)
-          with open(tmpFilename,'r') as inputFile:
-              lines = inputFile.readlines()
-              with open(str(self.container.outputData.XYZOUT.fullPath),'w') as outputFile:
-                  outputFile.write(self.cryst1card)
-                  for line in lines:
-                      outputFile.write(line)
+      from ccp4i2.lib.utils.formats.hydrogens import is_hydrogen_record
+      # The model is a search model: its hydrogens are the template's, and
+      # after side-chain mutation their names are wrong for their residue
+      # (REFMAC error 350 on an agent's Chainsaw model, 2026-10-09). Drop
+      # them, and keep the input's CRYST1, which Chainsaw does not write.
+      path = str(self.container.outputData.XYZOUT.fullPath)
+      cryst1card = getattr(self, 'cryst1card', None)
+      if os.path.isfile(path):
+          with open(path, 'r') as inputFile:
+              lines = [line for line in inputFile if not is_hydrogen_record(line)]
+          with open(path, 'w') as outputFile:
+              if cryst1card is not None:
+                  outputFile.write(cryst1card)
+              outputFile.writelines(lines)
       self.container.outputData.XYZOUT.subType=2
 
       self.container.outputData.XYZOUT.annotation = 'Chainsawed model coordinates'

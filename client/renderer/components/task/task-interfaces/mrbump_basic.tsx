@@ -96,6 +96,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               }}
             />
             <CCP4i2TaskElement
+              itemName="SGALL"
+              {...props}
+              qualifiers={{
+                guiLabel:
+                  "Test all space groups of the point group in Phaser",
+              }}
+            />
+            <CCP4i2TaskElement
               itemName="SEARCH_PDB"
               {...props}
               qualifiers={{

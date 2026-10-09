@@ -484,6 +484,20 @@ next:
       better-trimmed model, an ensemble of several models, or a truer
       identity; keep the same AU contents. If it still cannot be placed,
       build from what was placed (modelcraft, as for "placed").
+  - when: (outcome == "placed" or outcome == "ambiguous") and LLG < 0.3 * ELLG_FIRST_ENSEMBLE
+    advice: >
+      The refined LLG falls short of the expected LLG of even the first
+      ensemble alone by more than two-thirds (with several ensembles the
+      expected total is higher still): the placement does not match what
+      Phaser was told to expect. Either a model is worse than the identity
+      or RMSD stated (lower it, or trim, and search again), or it is right
+      but not one rigid body (a hinge between lobes), which also leaves
+      R-free high. An agent run (Opus, 2026-10-09, phaser_simple_phil) saw
+      LLG 111 against 523 at search TFZ just over 8, split the model into
+      its two lobes and solved the structure with them as separate
+      ensembles: slicendice (MIN_SPLITS = MAX_SPLITS = 2), or cut the
+      domains and give them here as separate ensembles; then
+      phaser_rnp_pipeline_phil refines the placed domains as rigid bodies.
   - when: outcome == "placed" and FRAC_SCATTERING_MODELS < 0.9
     advice: >
       The models account for less of the AU than it holds (BetaBlip 3:
