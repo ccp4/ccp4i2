@@ -33,6 +33,11 @@ def api(monkeypatch):
         return answer
 
     monkeypatch.setattr(mcp_server, "_request", fake)
+    # No file is fetched from a server in these tests either (set_file reads
+    # an mrparse job's program.xml for the model's identity): "" unless a
+    # test says otherwise. It passed locally against a dev server on the
+    # default port and failed in CI with nothing listening.
+    monkeypatch.setattr(mcp_server, "_text", lambda path: "")
     # Project 3 holds job number "5" (server id 7) and its step "5.1" (id 8)
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [
         {"id": 7, "number": "5", "status": 5, "task_name": "x",

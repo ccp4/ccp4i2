@@ -418,7 +418,10 @@ def _model_identity(project_id, resolved):
     rel, name = resolved.get("relPath") or "", resolved.get("baseName") or ""
     if not rel.startswith("CCP4_JOBS/") or not name:
         return None
-    text = _text(f"projects/{project_id}/files_by_path/{rel}/program.xml")
+    try:
+        text = _text(f"projects/{project_id}/files_by_path/{rel}/program.xml")
+    except (urllib.error.URLError, OSError):
+        return None  # the identity is a convenience; the file was set
     if "<Models" not in text:
         return None
     try:
