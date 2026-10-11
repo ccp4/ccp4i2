@@ -466,7 +466,7 @@ next:
       when the model is a homologue to be rebuilt into the target sequence).
       F_SIGF and FREERFLAG resolve to the files this job consumed (it
       produced none under those names). If SPACEGROUP differs from the input
-      data's, use phaser_simple_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT
+      data's, use phaser_simple_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT (since 2026-10-11 a reference to this job's F_SIGF or FREERFLAG resolves to the _OUT file whenever the job wrote one, so the inputs above are right either way)
       instead. Keep the task name in the reference: a bare [-1].F_SIGF_OUT
       skips back to an older job when this one has none.
   - when: outcome == "partial"

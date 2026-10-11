@@ -43,11 +43,18 @@ class mrparse(CPluginScript):
         # Each hit's model, best first. A hit without a model file is skipped:
         # the loop used to carry the previous hit's paths over, registering a
         # duplicate under the wrong name (or NameError on the first hit).
+        # What MrParse knew about each model, kept with it: the judgement
+        # says to choose by identity and coverage (and eLLG when reflections
+        # were given), and those numbers were only in homologs.json, which
+        # an agent cannot see. Haiku aligned the sequences itself to guess
+        # the identity (Eleanor's case, 2026-10-10).
+        models = []
+
         def register(json_path, label, key):
             if not os.path.exists(json_path):
                 return
             with open(json_path, 'r') as f:
-                hits = sorted(json.load(f), key=lambda k: k[key], reverse=True)
+                hits = sorted(json.load(f), key=lambda k: k.get(key) or 0, reverse=True)
             for hit in hits:
                 if not hit.get('pdb_file'):
                     continue
@@ -59,12 +66,13 @@ class mrparse(CPluginScript):
                 self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                 self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
                 self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}".format(label, hit['name'])
+                models.append((label, os.path.basename(hit['pdb_file']), hit))
 
         register(pdb_json, "PDB", 'ellg' if self.hklin else 'seq_ident')
         register(af_json, "AFDB", 'seq_ident')
         register(esm_json, "ESM", 'seq_ident')
         complexes = self._register_complexes(pdb_json)
-        self._write_program_xml(complexes)
+        self._write_program_xml(complexes, models)
 
         # MrParse logs a failed search program and then writes an empty report,
         # so an unrunnable binary looks exactly like an honest "nothing found".
@@ -120,7 +128,7 @@ class mrparse(CPluginScript):
             registered.append((entry, len(out) - 1))
         return registered
 
-    def _write_program_xml(self, complexes):
+    def _write_program_xml(self, complexes, models=()):
         """program.xml: how many sequences were searched for, and the complex
         templates found. The judgement routes on both: one target is one kind
         of molecule (phaser_simple_phil); several, with a template, is that
@@ -147,6 +155,34 @@ class mrparse(CPluginScript):
                 component.set("target", str(chain["target"]))
                 component.set("identity", f"{chain['identity']:.2f}")
                 component.set("hit", str(chain["hit"]))
+        # One Model per XYZOUT model, in XYZOUT order, with what MrParse
+        # recorded of it: identity (a fraction), the target range it covers
+        # and the coverage of a single target, eLLG (reflections given),
+        # MrParse's score, the RMSD it expects, pLDDT for a prediction.
+        target_length = len(targets[0][1]) if len(targets) == 1 and targets[0][1] else None
+        node = etree.SubElement(root, "Models")
+        node.set("count", str(len(models)))
+        for index, (source, filename, hit) in enumerate(models):
+            element = etree.SubElement(node, "Model")
+            element.set("index", str(index))
+            element.set("file", filename)
+            element.set("source", source)
+            element.set("name", str(hit.get("name", "")))
+            for key, attr, fmt in (("seq_ident", "identity", "{:.2f}"), ("ellg", "ellg", "{:.1f}"),
+                                   ("score", "score", "{:.1f}"), ("rmsd", "rmsd", "{:.2f}"),
+                                   ("avg_plddt", "plddt", "{:.1f}"), ("resolution", "resolution", "{:.2f}"),
+                                   ("length", "length", "{:d}"), ("ncopies", "copies", "{:d}")):
+                value = hit.get(key)
+                if isinstance(value, (int, float)):
+                    try:
+                        element.set(attr, fmt.format(value if fmt != "{:d}" else int(value)))
+                    except (ValueError, TypeError):
+                        pass
+            start, stop = hit.get("query_start"), hit.get("query_stop")
+            if isinstance(start, int) and isinstance(stop, int):
+                element.set("range", f"{start}-{stop}")
+                if target_length:
+                    element.set("coverage", f"{min(1.0, (stop - start + 1) / target_length):.2f}")
         with open(self.makeFileName("PROGRAMXML"), "wb") as stream:
             stream.write(etree.tostring(root, pretty_print=True))
 

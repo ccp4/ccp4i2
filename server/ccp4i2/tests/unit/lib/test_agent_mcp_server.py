@@ -274,7 +274,7 @@ def test_a_job_still_running_comes_back_with_its_progress(api, monkeypatch):
     out = mcp_server.wait_for_job(3, "5", max_seconds=0)
     assert out["waited_out"] is True
     assert out["progress"] == {"step": "5.2", "task": "crank2_substrdet",
-                               "log_tail": "start\nTry 12\nCFOM 41.2"}
+                               "log_tail": "start\nTry 12\nCFOM 41.2", "log_unchanged_seconds": 0}
 
 
 def test_sequences_are_found_and_fetched_through_the_jobs_own_methods(api):
@@ -334,3 +334,74 @@ def test_stop_job_of_a_finished_job_passes_the_refusal_on(api):
     answers[("POST", "jobs/7/cancel")] = mcp_server.ApiError("Job is not running or queued (status: Finished)")
     with pytest.raises(mcp_server.ApiError, match="not running or queued"):
         mcp_server.stop_job(3, "5")
+
+
+def test_set_file_from_an_mrparse_model_brings_its_identity(api, monkeypatch):
+    # The Phaser tasks' SEARCHSEQUENCEIDENTITY sat at its 0.9 default and an
+    # agent aligned the sequences itself to set it (Eleanor's case, 2026-10-10).
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "projects/3/resolve_fileuse")] = {
+        "project": "p", "baseName": "6p8e_B_19-297.pdb", "dbFileId": "f", "relPath": "CCP4_JOBS/job_9",
+        "annotation": "PDB hit: 6p8e_B", "fullPath": "/x/6p8e_B_19-297.pdb"}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.SEARCHSEQUENCEIDENTITY"}]}
+    xml = ('<MrParse><Models count="1"><Model index="0" file="6p8e_B_19-297.pdb" identity="0.92"/></Models></MrParse>')
+    monkeypatch.setattr(mcp_server, "_text", lambda path: xml if path.endswith("job_9/program.xml") else "")
+    out = mcp_server.set_file(3, "5", "inputData.XYZIN", "mrparse[-1].XYZOUT[0]")
+    assert out["also_set"] == {"inputData.SEARCHSEQUENCEIDENTITY": 0.92}
+    sets = [c for c in calls if c[1] == "jobs/7/set_parameter"]
+    assert sets[-1][2] == {"object_path": "inputData.SEARCHSEQUENCEIDENTITY", "value": 0.92}
+
+
+def test_set_file_of_any_other_model_sets_nothing_else(api, monkeypatch):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "projects/3/resolve_fileuse")] = {
+        "project": "p", "baseName": "PHASER.1.pdb", "dbFileId": "f", "relPath": "CCP4_JOBS/job_5",
+        "annotation": "Positioned coordinates", "fullPath": "/x/PHASER.1.pdb"}
+    monkeypatch.setattr(mcp_server, "_text", lambda path: "<PHASER/>")
+    out = mcp_server.set_file(3, "5", "inputData.XYZIN", "[5].XYZOUT[0]")
+    assert "also_set" not in out
+    assert len([c for c in calls if c[1] == "jobs/7/set_parameter"]) == 1
+
+
+def test_judge_job_is_short_by_default_and_full_when_asked(api):
+    calls, answers = api
+    full = {"status": "Finished", "judgement_version": "abc", "verdict": {
+        "task": "servalcat_pipe", "outcome": "needs_building", "tone": "caution",
+        "because": "RFREE < 0.40 or R1FREE < 0.40", "missing": [],
+        "basis": "Our runs only. Threshold as recalled, NOT verified in this workspace. More words.",
+        "clauses": [{"text": "RFREE < 0.40", "holds": True, "values": {"RFREE": 0.361}}],
+        "results": {"RFREE": 0.361, "RWORK": 0.296, "CYCLES": 10},
+        "meanings": {"RFREE": "long text " * 50}},
+        "next": [{"task": "modelcraft", "inputs": {"XYZIN": "servalcat_pipe[-1].XYZOUT"},
+                  "advice": "Build next. Judge by modelcraft's R-free. Then a third sentence nobody needs first."}]}
+    answers[("GET", "jobs/7/judgement")] = full
+    short = mcp_server.judge_job(3, "5")
+    assert short["outcome"] == "needs_building" and short["decided_by"] == {"RFREE": 0.361}
+    assert short["unverified"] is True
+    assert "meanings" not in short and "results" not in short
+    assert short["next"][0]["task"] == "modelcraft" and short["next"][0]["inputs"] == {"XYZIN": "servalcat_pipe[-1].XYZOUT"}
+    assert short["next"][0]["advice"] == "Build next. Judge by modelcraft's R-free."
+    assert "verbose=True" in short["more"]
+    assert mcp_server.judge_job(3, "5", verbose=True) == full
+
+
+def test_progress_says_how_long_the_log_has_stood_still(api, monkeypatch):
+    calls, answers = api
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 7, "number": "5", "status": 3, "task_name": "mrbump_basic", "children": []}]}
+    monkeypatch.setattr(mcp_server, "_text", lambda path: "line 1\nline 2\n")
+    mcp_server._LOG_SEEN.clear()
+    clock = {"t": 1000.0}
+    import time
+    monkeypatch.setattr(time, "monotonic", lambda: clock["t"])
+    first = mcp_server._progress(3, "5")
+    assert first["log_unchanged_seconds"] == 0 and "possibly_stalled" not in first
+    clock["t"] += 120
+    assert mcp_server._progress(3, "5")["log_unchanged_seconds"] == 120
+    clock["t"] += mcp_server.STALL_AFTER
+    stalled = mcp_server._progress(3, "5")
+    assert "possibly_stalled" in stalled and "stop_job" in stalled["possibly_stalled"]
+    monkeypatch.setattr(mcp_server, "_text", lambda path: "line 1\nline 2\nline 3\n")
+    assert mcp_server._progress(3, "5")["log_unchanged_seconds"] == 0

@@ -121,6 +121,53 @@ results:
       File name of XYZOUT[0]: entry, chain and the ENTRY's residue range
       (Gamma job 32: 1gyu_A_704-823.pdb; residues 704-822, which lie on
       residues 15-134 of the target sequence).
+  TOP_MODEL_IDENTITY:
+    file: program.xml
+    xpath: .//Models/Model[1]
+    attribute: identity
+    type: float
+    optional: true
+    meaning: >
+      Sequence identity of the first model to the target, as a FRACTION
+      over the aligned region (MrParse's seq_ident; written since
+      2026-10-11, absent in older jobs). The value SEARCHSEQUENCEIDENTITY
+      takes, and set_file fills it in when a Phaser task's XYZIN is set
+      from this job. Gamma 1gyu_A 1.00; CDK4/cyclin D1 6p8e_B 0.92.
+  TOP_MODEL_COVERAGE:
+    file: program.xml
+    xpath: .//Models/Model[1]
+    attribute: coverage
+    type: float
+    optional: true
+    meaning: >
+      Fraction of the target sequence the first model's aligned range
+      covers (one target only; with several targets read TOP_MODEL_RANGE).
+      A high identity over a third of the chain is a domain, not the
+      molecule: the judgement's "choose by identity AND coverage".
+  TOP_MODEL_RANGE:
+    file: program.xml
+    xpath: .//Models/Model[1]
+    attribute: range
+    type: str
+    optional: true
+    meaning: The target residues the first model's alignment spans ("18-299").
+  TOP_MODEL_ELLG:
+    file: program.xml
+    xpath: .//Models/Model[1]
+    attribute: ellg
+    type: float
+    optional: true
+    meaning: >
+      Phaser's expected LLG for the first model, computed by MrParse when
+      reflections were given (6p8e_B 551.7); the models are then ranked by
+      it. Absent without reflections.
+  SECOND_MODEL_IDENTITY:
+    file: program.xml
+    xpath: .//Models/Model[2]
+    attribute: identity
+    type: float
+    optional: true
+    meaning: Identity fraction of the second model, to compare with the first.
   SECOND_MODEL:
     file: params.xml
     xpath: .//outputData/XYZOUT/CPdbDataFile[2]/annotation
@@ -395,8 +442,10 @@ next:
       model first (traps above): highest identity that covers most of the
       sequence; with reflections given, the highest eLLG. Replace [0] by the
       index of the chosen model (XYZOUT[i], in params.xml order). Set
-      SEARCHSEQUENCEIDENTITY to its identity as a fraction (from
-      homologs.json seq_ident; Gamma 1gyu_A 1.0), NCOPIES from a Matthews
+      SEARCHSEQUENCEIDENTITY to its identity as a fraction
+      (TOP_MODEL_IDENTITY, or the Model's identity in program.xml for
+      another model; set_file fills it in when XYZIN comes from this job;
+      Gamma 1gyu_A 1.0), NCOPIES from a Matthews
       analysis, COMP_BY ASU with ASUFILE from ProvideAsuContents, and
       F_SIGF and FREERFLAG from the project's data. XYZIN's atom
       selection is applied by Phaser, so a chain or residue range can be

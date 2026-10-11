@@ -79,3 +79,27 @@ def test_resolve_fileuse_takes_a_file_id(test_project_path):
         assert result.data["baseName"] == "OBSOUT.mtz"
     other = models.Project.objects.create(name="other", directory=str(test_project_path / "other"))
     assert not resolve_fileuse(other, str(the_file.uuid)).success   # not across projects
+
+
+def test_a_consumed_name_resolves_to_the_jobs_out_file_when_it_wrote_one(test_project_path):
+    # Haiku followed the judgement's "[6].F_SIGF" into the original P 21 2 21
+    # file after Phaser had changed the group to P 21 21 21 and written
+    # F_SIGF_OUT (Eleanor's case, 2026-10-10). Downstream of such a job the
+    # consumed name means the job's own re-expression of it.
+    from ccp4i2.lib.utils.files.resolve_fileuse import resolve_fileuse
+    original = _file(test_project_path, content=4, sub_type=1, annotation="/BAD1330/NATIVE")
+    project = original.job.project
+    phaser = models.Job.objects.create(
+        uuid=uuid.uuid4(), project=project, number="2", title="Phaser basic",
+        task_name="phaser_simple_phil", status=models.Job.Status.FINISHED)
+    models.FileUse.objects.create(file=original, job=phaser, role=models.FileUse.Role.IN,
+                                  job_param_name="F_SIGF")
+    relabelled = models.File.objects.create(
+        uuid=uuid.uuid4(), name="F_SIGF_OUT.mtz", directory=models.File.Directory.JOB_DIR,
+        type=original.type, job=phaser, job_param_name="F_SIGF_OUT", content=4, sub_type=1,
+        annotation="/BAD1330/NATIVE, not reindexed (P 21 21 21, 1.26 A)")
+    assert resolve_fileuse(project, "[2].F_SIGF").data["baseName"] == "F_SIGF_OUT.mtz"
+    assert resolve_fileuse(project, "phaser_simple_phil[-1].F_SIGF").data["dbFileId"] == relabelled.uuid.hex
+    # explicit names still mean what they say, and a job without an _OUT is untouched
+    assert resolve_fileuse(project, "[2].F_SIGF_OUT").data["baseName"] == "F_SIGF_OUT.mtz"
+    assert resolve_fileuse(project, "[1].OBSOUT").data["baseName"] == "OBSOUT.mtz"
