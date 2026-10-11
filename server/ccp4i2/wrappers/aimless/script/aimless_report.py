@@ -214,16 +214,16 @@ class aimless_report(Report):
   def justAimless(self, parent=None):
     ''' report for single Aimless step '''
     
-    parent.addText(text='AIMLESS', style='font-size: 150%;')
+    parent.addText(text='AIMLESS', tone="heading")
 
     displayFile(self.fileroot, parent,
                 ['job_2/log.txt', './log.txt'], 'Show log file', self.projectId, self.jobNumber)
     summaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
     self.keyText(None, summaryDiv)
     
     mainDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:10px 0px 10px 0px;")
+      )
 
     if self.numberofdatasets == 1:
       # Use grid layout for two-column display
@@ -234,7 +234,7 @@ class aimless_report(Report):
       self.otherStatistics(leftDiv)
 
     else:  #  > 1 datasets
-      tableDiv = mainDiv.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px; border:1px solid black;")
+      tableDiv = mainDiv.addDiv(style="text-align:center;")
       self.addAimlessSummary(tableDiv)
       # Use grid layout for resolution/other stats
       leftDiv, rightDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
@@ -245,15 +245,15 @@ class aimless_report(Report):
       self.addInterDatasetGraphs(mainDiv)
 
     nextDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;")
+      )
     self.importantGraphs(nextDiv)
 
     gDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;")
+      )
 
     self.moreGraphs(gDiv)
     rDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;")
+      )
 
     self.ReflectionDataDetails(rDiv, infold=False)
 
@@ -273,7 +273,7 @@ class aimless_report(Report):
       
     if self.numberofdatasets == 1:
       parent.addText(text="Key statistics for "+self.datasetheader,
-                     style='font-weight:bold; font-size:120%;')
+                     tone="heading")
 
     cells = self.xmlnode.findall("Result/Dataset/cell")
 
@@ -385,7 +385,7 @@ class aimless_report(Report):
         s += "(E >"+\
              self.outlierControlEmax[0]+"),"+\
              " check details below (Merging)"
-      outlierdiv = parent.addDiv(style='color: red; margin-left: 20px;font-size:115%;')
+      outlierdiv = parent.addDiv(style="color:red;font-size:115%;")
       outlierdiv.append(s)
     if len(self.xmlnode.findall("OnlyMerge"))>0:
       s = "\nNOTE: no scaling was done, just merging"
@@ -425,7 +425,7 @@ class aimless_report(Report):
         if completeness_warning:
           s += "<br/>Warning: low inner shell completeness may indicate that overloaded strong observations have been lost"
 
-      overloaddiv = parent.addDiv(style='color: red;margin-left: 40px;')
+      overloaddiv = parent.addDiv(style="color:red;")
       overloaddiv.append(s)
 
     # Refinement against reference
@@ -439,7 +439,7 @@ class aimless_report(Report):
         parent.append(s)
 
     #  SD correction things
-    sdDiv = parent.addDiv(style="margin-left: 20px;")
+    sdDiv = parent.addDiv()
     s = colourText("SD correction information:\n","Black",
                    style='font-size:120%')
     self.sdcpar = self.SDcorrectionParameters(self.xmlnode)
@@ -528,7 +528,7 @@ class aimless_report(Report):
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addAimlessSummary(self, parent=None, extraitems=None):
       aHeaderDiv = parent.addDiv(
-        style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;")
+        style="font-weight:bold;font-size:130%;")
       aHeaderDiv.append('Data internal consistency statistics')
       self.ResultTable(parent, extraitems)
 
@@ -539,13 +539,12 @@ class aimless_report(Report):
     # print("Aimless importantGraphs", merged)
 
     summaryGraphsDiv = parent.addDiv(
-      style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-    summaryGraphsDiv.append('<br/>')
+      )
     if self.numberofdatasets > 1:
       titleDiv = summaryGraphsDiv.addDiv(
-        style="width:100%; border-width: 1px; border-color: black; clear:both; text-align:center; margin:0px; padding:0px;")
+        style="text-align:center;")
       titleDiv.addText(text='Note that there are separate graphs for each dataset',
-                              style='font-size:150%; color: orange;')
+                              tone="warning")
 
     # Put the key graphs that report on data quality and image-to-image quality at the top
     if not merged:
@@ -553,46 +552,40 @@ class aimless_report(Report):
       byResolutionDiv, byBatchDiv = summaryGraphsDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     else:
       # For merged data, just resolution graph
-      byResolutionDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+      byResolutionDiv = summaryGraphsDiv.addDiv(style="text-align:center;")
 
-    byResolutionDiv.addText(text='Analysis as a function of resolution',style='font-size:130%;font-weight:bold;')
-    byResolutionDiv.append('<br/>')
+    byResolutionDiv.addText(text='Analysis as a function of resolution',tone="heading")
 
     if merged:
       self.ByResolutionGraphsMerged(byResolutionDiv)
     else:
       resmessage = "Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal"
-      byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
-      byResolutionDiv.append('<br/>')
+      byResolutionDiv.addText(text=resmessage,tone="muted")
       resmessage = "(but check anisotropy)"
-      byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
-      byResolutionDiv.append('<br/>')
+      byResolutionDiv.addText(text=resmessage,tone="muted")
       self.ByResolutionGraphs(byResolutionDiv)
 
     if not merged:
-      byBatchDiv.addText(text='Analysis as a function of batch',style='font-size:130%;font-weight:bold;')
-      byBatchDiv.append('<br/>')
+      byBatchDiv.addText(text='Analysis as a function of batch',tone="heading")
       batchmessage = "Analyses against Batch may show radiation damage, and which parts of the data should be removed"
-      byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
-      byBatchDiv.append('<br/>')
+      byBatchDiv.addText(text=batchmessage,tone="muted")
       batchmessage = " (but consider completeness)"
-      byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
-      byBatchDiv.append('<br/>')
+      byBatchDiv.addText(text=batchmessage,tone="muted")
       self.ByBatchGraphs(byBatchDiv)
 
     if self.referencedata is not None:
       if not merged:
         # We may have a graph of statistics against reference vs batch
-        referenceDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+        referenceDiv = summaryGraphsDiv.addDiv(style="text-align:center;")
         referenceDiv.addText(text="Analysis of agreement with reference by batch",
-                             style="font-weight:bold; font-size:125%;")
+                             tone="heading")
         self.referenceGraph(referenceDiv)
       else:
-        referenceDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+        referenceDiv = summaryGraphsDiv.addDiv(style="text-align:center;")
 
       # and reference vs resolution
       referenceDiv.addText(text="Analysis of agreement with reference by resolution",
-                           style="font-weight:bold; font-size:125%;")
+                           tone="heading")
       refresolist = self.xmlnode.findall("CCP4Table[@id='Graph-DatasetRefStatsVsReso']")
       if len(refresolist) > 0:
         self.referenceGraphReso(referenceDiv)
@@ -602,12 +595,10 @@ class aimless_report(Report):
     ''' all graphs and scatterplots etc '''
     # Use grid layout for graphs and scatter plots side by side
     othergraphDiv, scatterplotDiv = parent.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
-    othergraphDiv.addText(text='Other merging statistics graphs',style='font-weight:bold; font-size:130%;')
-    othergraphDiv.append('<br/>')
+    othergraphDiv.addText(text='Other merging statistics graphs',tone="heading")
     self.Graphs(othergraphDiv, select="All")
 
     scatterplotDiv.append('Scatter plots etc')
-    scatterplotDiv.append('<br/>')
     self.aimlessScatterPlots(scatterplotDiv)
 
     displayFile(self.fileroot, scatterplotDiv,
@@ -616,7 +607,7 @@ class aimless_report(Report):
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addInterDatasetGraphs(self,parent=None):
-    tableDiv = parent.addDiv(style="border-width: 1px; border-color: black; margin:0px; padding:0px;")
+    tableDiv = parent.addDiv()
 
     # Intensity correlations in grid layout
     leftDiv, rightDiv = tableDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
@@ -1389,7 +1380,7 @@ class aimless_report(Report):
       #      graphgroup = parent.addGraphGroup(style="width:370px;  height:300px;")
       # print("ByResolutionGraphsMerged NDTS", self.numberofdatasets)
       byresoDiv = parent.addDiv(
-        style="text-align:center;margin:0px auto; padding:3px;")
+        style="text-align:center;")
       graphgroup = parent.addFlotGraphGroup(style="width:300px;  height:270px;")
       # Add a Graph to the GraphGroup - add a table of data and plot instructions to the graph
         
@@ -1771,7 +1762,7 @@ class aimless_report(Report):
       scales.append(dl[hdr.split().index('0k')])
       bfacs.append(dl[hdr.split().index('Bfactor')])
 
-    kbDiv = parent.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px; border:1px solid black;")
+    kbDiv = parent.addDiv(style="text-align:center;")
 
     # Use grid layout for scale/bfactor display
     leftDiv, rightDiv = kbDiv.addTwoColumnLayout(left_span=7, right_span=5, spacing=2)
@@ -1836,7 +1827,7 @@ class aimless_report(Report):
     if self.sdcpar is None: return
     #print("SDANALYSIS")
     sdanaldiv = parent.addDiv()
-    sdanaldiv.addText(text="Analysis of sd(I)", style='font-size: 150%;')
+    sdanaldiv.addText(text="Analysis of sd(I)", tone="heading")
     s = "Error estimates sd(I) are analysed as functions of intensity (and resolution and batch),\n"+\
         "as sigma(delta(I)/sd(I)), where delta(I) = Ihl-<Ih>,"+\
         " and as reduced chi^2 (goodness of fit), ([delta(I)/sd(I)]^2)/(n-m)"
@@ -1860,11 +1851,11 @@ class aimless_report(Report):
     ngraphs = len(sdanals)
 
     if ngraphs > 0:
-      div1 = sdanaldiv.addDiv(style="width:45%; margin:0px; padding:0px;display:inline-block;")
+      div1 = sdanaldiv.addDiv()
       if ngraphs > 1:
-        div1a = sdanaldiv.addDiv(style="width:45%; margin:0px; padding:0px;display:inline-block;")
+        div1a = sdanaldiv.addDiv()
 
-        div1.addText(text="Analysis against intensity", style='font-size: 110%;')
+        div1.addText(text="Analysis against intensity", tone="emphasis")
 
       graphs = self.getSelectedGraphs(graphID="Graph-SDanalysis", graphTitle=" All runs",
                                       plotTitleList=None)
@@ -1889,11 +1880,11 @@ class aimless_report(Report):
                                                        "Mean(Chi^2), Mean(Chi^2)"])
 
     if resographs is not None:
-      div2a = sdanaldiv.addDiv(style="width:48%; margin:0px; padding:0px;display:inline-block;")
+      div2a = sdanaldiv.addDiv()
       div2a.append("Analysis against resolution")
       self.addSelectedGraphs(resographs, div2a)
     if batchgraphs is not None:
-      div2b = sdanaldiv.addDiv(style="width:48%; margin:0px; padding:0px;display:inline-block;")
+      div2b = sdanaldiv.addDiv()
       div2b.append("Analysis against batch")
       self.addSelectedGraphs(batchgraphs, div2b)
 

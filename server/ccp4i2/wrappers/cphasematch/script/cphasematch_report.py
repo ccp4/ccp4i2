@@ -12,7 +12,7 @@ class cphasematch_report(Report):
         results.append( 'However this may include phases which are weighted to zero. Weighted mean phase errors and map correlations may be more informative.' )
 
         # Summary table
-        tableDiv = results.addDiv(style="height:30em;width:20em;float:left;border:0px;")
+        tableDiv = results.addDiv()
         table = tableDiv.addTable(select=".", transpose=True, id='table_1')
         for title,select in [["Mean phase error","phaseError"],[".. weighted by FOM1","weightedPhaseError1"],[".. weighted by FOM2","weightedPhaseError2"],["F-map correlation","reflectionFCorrelation"],["E-map correlation","reflectionECorrelation"]]:
           table.addData(title=title,select=select)

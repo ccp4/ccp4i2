@@ -12,7 +12,7 @@ class SubstituteLigand_report(Report):
 
     def defaultReport(self, parent=None):
         if parent is None: parent = self
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         
         #If there is POINTLESS tags in the XML, then the reflections have been through either aimless_pipe or
         #pointless_reindexToMatch
@@ -77,7 +77,7 @@ class SubstituteLigand_report(Report):
             left, right = summaryFold.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
             servalcatReport.addTablePerCycle(cycle_data, parent=left, initialFinalOnly=True)
             servalcatReport.addGraphPerCycle(parent=right)
-            parent.addDiv(style="clear:both;")
+            parent.addDiv()
         elif len(refmacNodes) > 0:
             # Jobs from before the pipeline refined with servalcat
             from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report

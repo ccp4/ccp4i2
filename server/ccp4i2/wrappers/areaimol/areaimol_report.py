@@ -31,16 +31,16 @@ class areaimol_report(Report):
         if difference is None:
             fold.append("<p>Total accessible area: %s Å²</p>" % totals[0])
             return
-        fold.append(
-            "<p>Accessible area of the first model %s Å², of the second %s "
+        fold.addText(
+            text="Accessible area of the first model %s Å², of the second %s "
             "Å². Over the atoms the two share, the first has %s "
             "Å² %s accessible area: negative where something present only "
-            "in the first model covers the surface.</p>" % (
+            "in the first model covers the surface." % (
                 totals[0], totals[1] if len(totals) > 1 else "?",
                 difference.lstrip("-"),
                 "less" if difference.startswith("-") else "more"))
         if self.xmlnode.findall(".//Areas/Residue"):
-            fold.append("<p>Residues whose accessible area changes, largest change first:</p>")
+            fold.addText(text="Residues whose accessible area changes, largest change first:")
             table = fold.addTable(select=".//Areas", transpose=False, id="residue_differences")
             for title, select in (("Residue", "Residue/name"), ("Chain", "Residue/chain"),
                                   ("Number", "Residue/number"),
@@ -51,9 +51,9 @@ class areaimol_report(Report):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
         )
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
+            self.addText(text="The job is currently running.", tone="emphasis")
 
         if jobStatus not in ["Running", "Running remotely"]:
             self.addAreas()
@@ -72,16 +72,14 @@ class areaimol_report(Report):
             except:
                 pass
 
-            breakDiv = self.addDiv(style="clear:both;")
-            breakDiv.append('<br/>')
+            breakDiv = self.addDiv()
             fold = self.addFold(label="SAS by atom", initiallyOpen=True)
-            graphDiv = fold.addDiv(style='width:800px; height:270px;overflow:auto;')
+            graphDiv = fold.addDiv()
             reportNode = self.xmlnode.findall('.//SASValues')[0]
             self.addGraph(graphDiv,reportNode,internalId="SummaryGraph",tag="SAS")
 
         if jobStatus in ['Unknown','Interrupted','Failed','Unsatisfactory']:
-            breakDiv = self.addDiv(style="clear:both;")
-            breakDiv.append('<br/>')
+            breakDiv = self.addDiv()
             fold = self.addFold(label="Areaimol log file")
             if len(self.xmlnode.findall(".//LogText"))>0:
                 xmlPath = './/LogText'

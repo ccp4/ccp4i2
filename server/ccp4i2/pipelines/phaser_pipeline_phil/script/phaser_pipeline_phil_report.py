@@ -26,7 +26,7 @@ class phaser_pipeline_phil_report(Report):
         node = self.xmlnode.find("PhaserMrResults")
         if node is None:
             parent.addText(text="Phaser has not reported yet" if (jobStatus or "").lower() == "running"
-                           else "No Phaser record", style="color:orange;")
+                           else "No Phaser record", tone="warning")
             return
         self.PHASER_REPORT(xmlnode=node, jobStatus="nooutput").drawContent(jobStatus=jobStatus, parent=parent)
         if self.xmlnode.find("Csymmatch") is not None:

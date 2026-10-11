@@ -8,4 +8,4 @@ class dials_rlattice_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.append("<p>Running the Dials Reciprocal Lattice Viewer</p>")
+        parent.addText(text="Running the Dials Reciprocal Lattice Viewer")

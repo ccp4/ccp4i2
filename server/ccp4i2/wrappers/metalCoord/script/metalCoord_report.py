@@ -34,7 +34,7 @@ class metalCoord_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        self.addDiv(style="clear:both;")  # gives space for the title
+        self.addDiv()  # gives space for the title
 
         def makeAddress(entry, node=""):
             if node:  # for ligand, ligand1, ligand2
@@ -84,7 +84,7 @@ class metalCoord_report(Report):
             elif n_classes > 1:
                 noteDiv.append(f"{n_classes} possible coordination classes are reported. The class with the lowest procrustes distance is the most favourable, has been used for restraints generation and is listed as the first.")
             for j, symmClass in enumerate(site.findall(".//ligands")):
-                indentDiv = siteFold.addDiv(style="margin-left:3em;")
+                indentDiv = siteFold.addDiv()
                 if j == 0: initiallyOpen=True
                 else: initiallyOpen=False
                 label = ""
@@ -175,4 +175,4 @@ class metalCoord_report(Report):
                     table.addData(title="Reference angle (°)", select='angles/angle')
                     table.addData(title="St. dev. (°)", select='angles/std')
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()

@@ -20,7 +20,6 @@ class coot_script_lines_report(Report):
 
         tableRows = self.xmlnode.findall('.//Table/row')
         if len(tableRows) > 0:
-            self.append('<br/>')
             progressGraph = self.addGraph(title="Running fit residues",select=".//Table/row",style="height:250px; width:400px;")
             progressGraph.addData(title="Residue_number",         select="Col_0")
             progressGraph.addData(title="Initial_bond_deviation", select="Col_1")
@@ -31,4 +30,4 @@ class coot_script_lines_report(Report):
             plot.append('xintegral','true')
             for coordinate, colour in [(2,'blue'),(3,'green')]:
                 plot.append('plotline',xcol=1,ycol=coordinate,colour=colour)
-        self.addDiv(style='clear:both;')
+        self.addDiv()

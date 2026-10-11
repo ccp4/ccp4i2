@@ -93,6 +93,11 @@ class ReportClass(object):
         self.title: str | None = kw.get('title', None)
         self.class_: str | None = kw.get('class_', None)
         self.style: str | None = kw.get('style', None)
+        #: What a line is for -- heading, emphasis, info, success, warning,
+        #: error, muted, code -- which the client paints from its theme. The
+        #: html-era ``style`` strings said how instead, and are kept for
+        #: the long tail that has not been converted.
+        self.tone: str | None = kw.get('tone', None)
         self.parent: ReportClass | None = kw.get('parent', None)
         self.outputXml: bool = kw.get('outputXml', False)
         self.internalId: str | None = kw.get('internalId', None)
@@ -171,6 +176,8 @@ class ReportClass(object):
         )
         root.set('class', self.class_ if self.class_ is not None else '')
         root.set('style', self.style if self.style is not None else '')
+        if getattr(self, 'tone', None):
+            root.set('tone', str(self.tone))
         root.text = self.text if (
             hasattr(self, 'text') and self.text is not None) else ''
         root.tail = self.tail if (
@@ -261,7 +268,14 @@ class Container(ReportClass):
         return obj
 
     def addText(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
-        """Add plain text to the report."""
+        """Add a line of text to the report.
+
+        ``text`` may carry inline markup (<b>, <i>, <a>, <span>), kept as
+        markup. Say what the line is for with ``tone``, one of heading,
+        emphasis, info, success, warning, error, muted, code: the client
+        paints it from its theme. ``style`` (a CSS string) is the html-era
+        way and is still honoured, but new code gives a tone.
+        """
         from ccp4i2.report.elements import Text
         return self.addObjectOfClass(Text, xmlnode, jobInfo, **kw)
 

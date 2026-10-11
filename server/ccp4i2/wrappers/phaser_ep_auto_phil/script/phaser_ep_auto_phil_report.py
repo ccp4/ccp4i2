@@ -13,10 +13,10 @@ class phaser_ep_auto_phil_report(PhaserReportBase):
             fom = overall.findtext("fom")
             llg = completion.get("llg") if completion is not None else None
             parent.addText(text=f"Overall figure of merit {fom}" + (f", log-likelihood gain {llg}" if llg else ""),
-                           style="font-weight:bold;")
+                           tone="emphasis")
         if completion is not None and completion.get("converged") == "False":
             parent.addText(text="Substructure completion did not converge within the cycles allowed",
-                           style="color:orange;")
+                           tone="warning")
 
     def drawResults(self, parent, running):
         hands = self.xmlnode.find("Hands")
@@ -57,5 +57,5 @@ class phaser_ep_auto_phil_report(PhaserReportBase):
             if c.get("converged") == "True":
                 text += " -- converged"
             fold.addText(text=text)
-            fold.addDiv(style="clear:both;")
+            fold.addDiv()
         self.drawTimeline(fold)

@@ -14,7 +14,7 @@ class ProvideSequence_report(Report):
         if parent is None: parent=self
         
         if self.jobStatus.lower() == 'unsatisfactory':
-            parent.addText(style='color:red', text="CCP4i2 was unable to interpret the text you provided as one or more sequence")
+            parent.addText(tone="error", text="CCP4i2 was unable to interpret the text you provided as one or more sequence")
         for commentNode in self.xmlnode.findall('./Commentary'):
             commentFold = parent.addFold(label="Conversion commentary", initiallyOpen=(self.jobStatus.lower() == 'unsatisfactory'))
             commentFold.addText(text='CCP4i2 attempted to interpret the text provided in a range of formats, falling back one to the other.  The following commentary shows the output generated as each format in turn was attempted:')

@@ -6,7 +6,7 @@ class i2Dimple_report(Report):
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
+        clearingDiv = self.addDiv()
         self.addDefaultReport(self)
         
     def addDefaultReport(self, parent=None):
@@ -30,8 +30,8 @@ class i2Dimple_report(Report):
             newFold = parent.addFold(label="Refmac progress", initiallyOpen=True)
             
             #Add a summary table
-            tableDiv = newFold.addDiv(style="float:left;width:300px;");
-            tableDiv.addText(text="Initial and final values",style="font-size:125%");
+            tableDiv = newFold.addDiv();
+            tableDiv.addText(text="Initial and final values",tone="heading");
             table = tableDiv.addTable(transpose=True,style="float:right;")
             table.addData(title="Parameter",data=["Initial","Final"])
             table.addData(title="R-value",data=[self.xmlnode.findall(".//new_cycle/r_factor")[0].text,
@@ -47,7 +47,7 @@ class i2Dimple_report(Report):
                         
             #add a summary graph
             progressGraph = newFold.addFlotGraph(title="Refmac progress", select=".//stats_vs_cycle", style="width:400px;border:0px;float:left;")
-            newFold.addDiv(style="clear:both;")
+            newFold.addDiv()
             
             #Create a data column for the cycle number
             nCycles = len(self.xmlnode.findall(".//REFMAC/Overall_stats/stats_vs_cycle/new_cycle"))
@@ -87,8 +87,8 @@ class i2Dimple_report(Report):
             newFold = parent.addFold(label="Blobs found", initiallyOpen=True)
             
             #Add a summary table
-            tableDiv = newFold.addDiv(style="float:left;width:300px;");
-            tableDiv.addText(text="Blobs found:",style="font-size:125%");
+            tableDiv = newFold.addDiv();
+            tableDiv.addText(text="Blobs found:",tone="heading");
             table = tableDiv.addTable(style="float:right;")
             score = [e.text for e in self.xmlnode.findall(".//find-blobs/Blob/score")]
             x = [e.text for e in self.xmlnode.findall(".//find-blobs/Blob/x")]
@@ -120,7 +120,7 @@ class i2Dimple_report(Report):
             l.append('label','Score')
             l.append('colour','blue')
             
-            newFold.addDiv(style="clear:both;")
+            newFold.addDiv()
 
         if len(self.xmlnode.findall("LogText")) > 0:
             newFold = parent.addFold(label="Summary", initiallyOpen=True)

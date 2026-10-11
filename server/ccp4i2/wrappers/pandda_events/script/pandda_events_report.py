@@ -7,7 +7,7 @@ class pandda_events_report(Report):
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if xmlnode is None:
             return
 
@@ -22,11 +22,11 @@ class pandda_events_report(Report):
                 f'{dtag}: receipt is SHORT. PanDDA declared {len(shortfalls)} '
                 f'output(s) that are not in the tree: ' + '; '.join(shortfalls) + '. '
                 'Everything that did arrive is available below.'),
-                style='color:#c62828;font-weight:bold;')
+                tone="emphasis")
         if incomplete:
             self.addText(text=('This receipt was taken from a run that did not finish; '
                                'the events here are what that run got to.'),
-                         style='color:#e65100;')
+                         tone="warning")
         if text('events_table_present') == 'False':
             self.addText(text=('The run-level events table was not written, so site '
                                'numbers and hit probabilities are absent.'))

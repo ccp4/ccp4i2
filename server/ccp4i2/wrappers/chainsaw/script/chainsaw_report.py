@@ -13,7 +13,7 @@ class chainsaw_report(Report):
     
     def defaultReport(self, parent= None):
         if parent is None: parent= self
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
 
         for outputNode in self.xmlnode.findall('.//outputData'):
             newTable = parent.addTable(xmlnode=self.xmlnode)

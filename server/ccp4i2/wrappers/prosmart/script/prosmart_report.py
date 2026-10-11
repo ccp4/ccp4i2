@@ -22,4 +22,4 @@ class prosmart_report(Report):
                     fileType='html',
                 )
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()

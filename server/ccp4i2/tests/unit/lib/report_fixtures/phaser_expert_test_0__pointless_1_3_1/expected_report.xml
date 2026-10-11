@@ -1,12 +1,9 @@
 <CCP4i2Reportpointless_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="pointless" title2="14:17 12-Jul-2020" />
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-    <CCP4i2ReportText class="" style="font-size: 150%;text-align:center">POINTLESS</CCP4i2ReportText>
-    <CCP4i2ReportText class="" style="color:darkorange;">WARNING: Input data are merged, so space group determination is limited to testing for under-merging</CCP4i2ReportText>
-    <CCP4i2ReportGeneric class="" style="">
-      <br />
-    </CCP4i2ReportGeneric>
-    <CCP4i2ReportText class="" style="color:darkorange;">No scaling will be done, just analysis</CCP4i2ReportText>
+  <CCP4i2ReportDiv class="" style="">
+    <CCP4i2ReportText class="" style="" tone="heading">POINTLESS</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="warning">WARNING: Input data are merged, so space group determination is limited to testing for under-merging</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="warning">No scaling will be done, just analysis</CCP4i2ReportText>
     <CCP4i2ReportGeneric class="" style="">
       <p>Selecting space group P 32 2 1<br /> as solutions are enantiomorphic and it matches the input file</p>
     </CCP4i2ReportGeneric>
@@ -22,7 +19,7 @@
         <br />NOTE: the final selected symmetry has alternative indexing schemes, but no reference data has been given<br />Possible alternative indexing operators: [h,k,l], [-h,-k,l]<br />If you already have a matching dataset, you should choose it as a reference set to get consistent indexing</div>
     </CCP4i2ReportGeneric>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
         <CCP4i2ReportGeneric class="" style="">
@@ -68,7 +65,7 @@
         </CCP4i2ReportTable>
       </CCP4i2ReportGridItem>
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-        <CCP4i2ReportText class="" style="font-size:120%;">Scores for each symmetry element</CCP4i2ReportText>
+        <CCP4i2ReportText class="" style="" tone="heading">Scores for each symmetry element</CCP4i2ReportText>
         <CCP4i2ReportGeneric class="" style="">
           <p>Lattice group name P 6 2 2</p>
         </CCP4i2ReportGeneric>
@@ -162,9 +159,9 @@
         </CCP4i2ReportTable>
       </CCP4i2ReportGridItem>
     </CCP4i2ReportGridContainer>
-    <CCP4i2ReportDiv class="" style="width:100%;text-align:center;margin:6px; padding:0px; ">
-      <CCP4i2ReportDiv class="" style="padding:10px 0px 0px 0px;">
-        <CCP4i2ReportText class="" style="font-size:120%;">Details of space group determination</CCP4i2ReportText>
+    <CCP4i2ReportDiv class="" style="text-align:center;">
+      <CCP4i2ReportDiv class="" style="">
+        <CCP4i2ReportText class="" style="" tone="heading">Details of space group determination</CCP4i2ReportText>
         <CCP4i2ReportFold class="" style="" label="Scores for each Laue group" initiallyOpen="False" brief="Laue group">
           <CCP4i2ReportGeneric class="" style="">
             <p>Accept flags: "&gt;", accepted; "=" original accepted; "-" original rejected<br />Dcell: maximum cell difference in degrees</p>

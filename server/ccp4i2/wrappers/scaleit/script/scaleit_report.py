@@ -35,17 +35,16 @@ class scaleit_report(Report):
       if len(self.xmlnode.findall('FATAL_ERROR'))>0:
         text = self.xmlnode.findall('FATAL_ERROR')[0].text
         errorDiv = parent.addDiv(
-          style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
+          )
         errorDiv.addText(text='FATAL ERROR',
-                         style='font-weight:bold; font-size:150%; color:red;')
+                         tone="error")
         errorDiv.append(str(message))
         return
 
-      topDiv = parent.addDiv(style="font-size:100%;border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;")
+      topDiv = parent.addDiv(style="font-size:100%;")
 
       topDiv.addText(text="Comparison of datasets using SCALEIT",
-                     style='font-weight:bold; font-size:150%; color:blue;')
-      topDiv.append(' <br/>')
+                     tone="info")
 
       self.nderivatives = self.scaleitxml.findall('Nderivatives')[0].text
       #  Derivative data blocks
@@ -65,9 +64,8 @@ class scaleit_report(Report):
       self.dnames = self.dataList('Name', self.derivatives)
 
       message = 'Compare each "derivative" dataset against the first "native" dataset'
-      topDiv.append('<br/>')
       topDiv.addText(text=message,
-                     style='font-weight:bold; font-size:110%; color:blue;')
+                     tone="info")
 
       message = '  Dataset ' + self.nativename + ' is treated as "native"'
       if len(self.dnames) == 1:
@@ -80,27 +78,23 @@ class scaleit_report(Report):
       # Input file content, maybe converted
       if self.filetypes is not None:
         self.inputFileTypes(topDiv)
-        topDiv.append('<br/>')
 
       if len(self.scaleitxml.findall('ResolutionMax'))>0:
         maxres = self.scaleitxml.findall('ResolutionMax')[0].text
-        topDiv.append('<br/>')
         message = 'Note: Resolution was cut to ' + maxres + ' \xc5'
-        topDiv.addText(text=message,style='color: blue')
+        topDiv.addText(text=message,tone="info")
 
-      scaleDiv = parent.addDiv(style="font-size:100%;border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;")
+      scaleDiv = parent.addDiv(style="font-size:100%;")
       text = "Results from scaling"
-      scaleDiv.append('<br/>')
       scaleDiv.addText(text=text,
-                     style='font-weight:bold; font-size:120%; color:blue;')
+                     tone="info")
       self.scaleResults(scaleDiv)
 
-      resoDiv = parent.addDiv(style="font-size:100%;border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;")
+      resoDiv = parent.addDiv(style="font-size:100%;")
       text = "Analysis by resolution:"
-      resoDiv.append('<br/>')
 
       resoDiv.addText(text=text,
-                     style='font-weight:bold; font-size:120%; color:blue;')
+                     tone="info")
       self.resolutionAnalysis(resoDiv)
 
       if len(self.scaleitxml.findall('NormalProbability'))>0:
@@ -115,7 +109,6 @@ class scaleit_report(Report):
                    self.fileContentComment(nativecontent))
     derivs = self.filetypes.findall('Derivative')
     for i in range(len(derivs)):
-      parent.append(' <br/>')
       content = derivs[i].text
       message = 'Input "derivative" '+self.dnames[i]+\
                 ' data were '+\
@@ -140,18 +133,15 @@ class scaleit_report(Report):
               tag = 'IsoB'
               aniso = False
           bfactor = self.derivatives[i].findall(tag)[0].text
-          scaleDiv.append('<br/>')
           message = 'Derivative ' + self.dnames[i] +\
                     ', scale factor relative to '+\
                     self.nativename + ' = ' + scale
           scaleDiv.addText(text=message)
-          scaleDiv.append('<br/>')
           if aniso:
               message = 'Anisotropic relative B-factors = '
           else:
               message = 'Isotropic relative B-factor = '
           scaleDiv.addText(text=message+bfactor)
-          scaleDiv.append('<br/>')
 
   # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
   def resolutionAnalysis(self, resoDiv):
@@ -175,9 +165,7 @@ class scaleit_report(Report):
         # Prune out anomalous headers
         tableheaders = tableheaders[:-5]
 
-      resoDiv.append('<br/>')
       resoDiv.addText(text="Totals over all resolution ranges")
-      resoDiv.append('<br/>')
 
       totaltable = resoDiv.addTable(transpose=True,
           style="line-height:80%%; font-size:75%;",
@@ -193,10 +181,8 @@ class scaleit_report(Report):
 
           s = 'Resolution analysis for derivative ' + self.dnames[i] +\
               ' relative to ' + self.nativename
-          resoDiv.append('<br/>')
           resoDiv.addText(text=s,
-                     style='font-weight:bold; font-size:120%; color:blue;')
-          resoDiv.append('<br/>')
+                     tone="info")
           resoElement = self.derivatives[i].findall('ResolutionAnalysis')[0]
 
           # Graphs
@@ -229,10 +215,9 @@ class scaleit_report(Report):
   # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
   def drawNormalProbabilityGraphs(self, npDiv):
 
-      npDiv.append('<br/>')
       npDiv.addText(\
           text="Normal probability analysis of isomorphous differences",
-          style='font-weight:bold; font-size:120%; color:blue;')
+          tone="info")
 
       text = "\nGradient should be 1 for two equivalent isomorphous data sets\n"+\
       "Gradient should be >> 1 for different data sets\n\n"+\
@@ -270,7 +255,6 @@ class scaleit_report(Report):
                                       title=thisgraph.get("title") )
       graph = graph.addPimpleData(xmlnode=thisgraph)
 
-      npDiv.append('<br/>')
 
   # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
   def getGraph(self, tag):

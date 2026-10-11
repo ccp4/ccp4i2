@@ -23,13 +23,13 @@ class add_substructure_report(Report):
             if origin.get("transform"):
                 text += f" ({origin.get('transform')})"
             fold.addText(text=f"Origin and hand: {text}")
-            fold.addDiv(style="clear:both;")
+            fold.addDiv()
         if node.get("all_mse", "0") != "0":
             fold.addText(text=f"Every methionine made selenomethionine: {node.get('all_mse')}")
-            fold.addDiv(style="clear:both;")
+            fold.addDiv()
         for kind, label in LABELS:
             items = [e.text for e in node.findall(kind)]
             if items:
                 table = fold.addTable(transpose=False)
                 table.addData(title=f"{label} ({len(items)})", data=items)
-                fold.addDiv(style="clear:both;")
+                fold.addDiv()

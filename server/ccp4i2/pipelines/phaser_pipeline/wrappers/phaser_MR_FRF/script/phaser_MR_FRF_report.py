@@ -61,8 +61,7 @@ class phaser_MR_FRF_report(Report):
         warningsFolder = parent.addFold(label='PHASER warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from PHASER')
         return
@@ -77,7 +76,6 @@ class phaser_MR_FRF_report(Report):
             dataLabelTuples = [('EULER','Euler Angles'), ('RFZ','Rotation Function Z-score'), ('DEEP','Deep Search')]
             if len(resultsNodes[0].findall('Solution')) > 1:
                 parent.addText(text='Multiple solutions found')
-                parent.append('<br/>')
                 graph = parent.addFlotGraph(title='Solutions',xmlnode=resultsNodes[0], select='Solution',style='height:200px; width:600px;')
                 plotObject = graph.addPlotObject()
                 plotObject.append('title','Solutions')
@@ -94,7 +92,7 @@ class phaser_MR_FRF_report(Report):
             elif len(resultsNodes[0].findall('Solution')) == 1:
                 parent.addText(text='Unique solution found :-)')
             elif len(resultsNodes[0].findall('Solution')) == 0:
-                parent.addText(text='No solutions found',style='color:red;')
+                parent.addText(text='No solutions found',tone="error")
                 return
             table = parent.addTable(xmlnode=resultsNodes[0], select='Solution',style='width:600px;')
             for selector,label in dataLabelTuples:
@@ -125,7 +123,7 @@ class phaser_MR_FRF_report(Report):
         for graphTableNode in graphTableList:
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title") )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
 
 
 

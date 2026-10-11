@@ -56,7 +56,7 @@ class phaser_analysis_report(Report):
     heading = 'Analysis of dataset ['+self.pxdname+'] using Phaser'
     parent.addText(text=heading, style='text-align:center: border:1px solid black;')
 
-    mainDiv = parent.addDiv(style="width:100%;margin:0px; padding:0px;")
+    mainDiv = parent.addDiv()
 
     # Use grid layout for twin analysis and resolution side by side
     leftDiv, rightDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
@@ -103,7 +103,7 @@ class phaser_analysis_report(Report):
     s = html_linebreak(s, True)
     parent.append(s) 
     graphDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
 
     self.drawgraph('informationcontent', graphDiv)
 

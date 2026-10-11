@@ -62,8 +62,7 @@ class xia2_run_report(Report):
                 for programNode in programNodes:
                     summaryNodes = programNode.findall('CCP4Summary')
                     if len(summaryNodes) > 0:
-                        runSummaryFold.addText(text='Summaries from  '+ program.lower(), style="font-size:125%;clear:both;")
-                        runSummaryFold.append('<br/>')
+                        runSummaryFold.addText(text='Summaries from  '+ program.lower(), tone="heading")
                     for summaryNode in summaryNodes:
                         if len(summaryNode.text) < 2000:
                             font_color = "black"
@@ -72,13 +71,12 @@ class xia2_run_report(Report):
 
                     tableNodes = programNode.findall('CCP4ApplicationOutput/CCP4Table')
                     if len(tableNodes) > 0:
-                        runSummaryFold.addText(text='Graphs from  '+ program.lower(), style="font-size:125%;clear:both;")
+                        runSummaryFold.addText(text='Graphs from  '+ program.lower(), tone="heading")
                         gallery = runSummaryFold.addObjectGallery(title="A gallery", tableWidth="32em", contentWidth="350px", height="300px", style="border:1px solid black;")
                     for tableNode in tableNodes:
                         graph = gallery.addFlotGraph( xmlnode=tableNode, title=tableNode.get("title"), style="width:340px; height:290px; border:0px solid black;" )
                         graph = graph.addPimpleData(xmlnode=tableNode)
-                    runSummaryFold.addDiv(style="clear:both;")
-                    runSummaryFold.append("<br/>")
+                    runSummaryFold.addDiv()
 
 
 

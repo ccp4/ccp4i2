@@ -1,13 +1,9 @@
 <CCP4i2Reportparrot_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="parrot" title2="13:47 12-Jul-2020" />
   <CCP4i2ReportResults class="" style="" />
-  <CCP4i2ReportGeneric class="" style="">
-    <p>The solvent content is set to 42.1% corresponding to   1.0 times the asymmetric unit contents.</p>
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportGeneric class="" style="">
-    <p>The final figure-of-merit is <b>0.86</b>, which suggests that the map is good enough for model building. However the figure-of-merit from density modification can be seriously overestimated.</p>
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportDiv class="" style="height:250px;width:20em;float:left;border:0px;">
+  <CCP4i2ReportText class="" style="">The solvent content is set to 42.1% corresponding to   1.0 times the asymmetric unit contents.</CCP4i2ReportText>
+  <CCP4i2ReportText class="" style="">The final figure-of-merit is <b>0.86</b>, which suggests that the map is good enough for model building. However the figure-of-merit from density modification can be seriously overestimated.</CCP4i2ReportText>
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportTable class="" style="" transpose="True">
       <table class="transpose">
         <tbody>
@@ -65,7 +61,7 @@
       </plot>
     </ns0:ccp4_data>
   </CCP4i2ReportFlotGraph>
-  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportFold class="" style="" label="Solvent content analysis" initiallyOpen="False" brief="Solvent content analysis">
     <CCP4i2ReportFlotGraph class="" style="width:450px; height:300px;margin: 0 auto;border:0px;">
       <ns0:ccp4_data title="Cell content analysis" id="data_FlotGraph_1" style="display:none;">
@@ -84,7 +80,7 @@
       </ns0:ccp4_data>
     </CCP4i2ReportFlotGraph>
   </CCP4i2ReportFold>
-  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportFold class="" style="" label="Other graphs from log file" initiallyOpen="False" brief="Other graphs from log file">
     <CCP4i2ReportFlotGraphGroup class="" style="width:450px; height:300px;margin: 0 auto;border:0px;">
       <CCP4i2ReportFlotGraph class="" style="">
@@ -286,7 +282,7 @@
       </CCP4i2ReportFlotGraph>
     </CCP4i2ReportFlotGraphGroup>
   </CCP4i2ReportFold>
-  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportInputData class="" style="">
     <root>
       <h5>Input Data</h5>

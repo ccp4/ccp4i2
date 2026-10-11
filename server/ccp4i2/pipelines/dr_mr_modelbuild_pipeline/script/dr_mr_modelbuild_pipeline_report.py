@@ -138,19 +138,19 @@ class dr_mr_modelbuild_pipeline_report(Report):
     elif len(refxml)>0:
         refsg1 = refxml[0]
 
-    summaryDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+    summaryDiv = self.addDiv()
 
     originalText = ""
     otherText = ""
 
     if self.enantio:
         summaryDiv.addText(text='The input data have been processed in an enantiomorphic space group.')
-        summaryDiv.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
+        summaryDiv.addDiv()
         if jobStatus in ['Running','Running remotely']:
             summaryDiv.addText(text='Because of this the pipeline is being run for both enantiomers: '+best_sg+" and "+self.otherSG)
         else:
             summaryDiv.addText(text='Because of this the pipeline has been run for both enantiomers: '+best_sg+" and "+self.otherSG)
-            summaryDiv.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
+            summaryDiv.addDiv()
             # Each hand's ModelCraft result, from the directories the pipeline
             # records (this read the old Buccaneer pipeline's XML, never
             # written now, and the report failed on every finished run).
@@ -160,9 +160,9 @@ class dr_mr_modelbuild_pipeline_report(Report):
             else:
                 (r0, rf0), (r1, rf1) = results[0], results[1]
                 summaryDiv.addText(text='Model building in '+best_sg+': R '+str(r0)+', R-free '+str(rf0))
-                clearingDiv = summaryDiv.addDiv(style="clear:both;")
+                clearingDiv = summaryDiv.addDiv()
                 summaryDiv.addText(text='Model building in '+self.otherSG+': R '+str(r1)+', R-free '+str(rf1))
-                clearingDiv = summaryDiv.addDiv(style="clear:both;")
+                clearingDiv = summaryDiv.addDiv()
                 if float(rf0) <= float(rf1):
                     summaryDiv.addText(text='Based on this the space group '+best_sg+' appears to have given the best solution')
                     originalText = " (space group "+best_sg+" BEST)"
@@ -171,7 +171,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
                     summaryDiv.addText(text='Based on this the space group '+self.otherSG+' appears to have given the best solution')
                     originalText = " (space group "+best_sg+")"
                     otherText = " (space group "+self.otherSG+" BEST)"
-            clearingDiv = summaryDiv.addDiv(style="clear:both;")
+            clearingDiv = summaryDiv.addDiv()
 
     if aimlessdone and jobStatus in ['Running','Running remotely']:
         pointlessxml = xmlnode.findall(".//AIMLESS_PIPE/POINTLESS")[0]
@@ -245,7 +245,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
         summaryfold = summaryDiv.addFold(label='Aimless Pipeline', brief='Aimless', initiallyOpen=False)
         self.aimless_report = aimless_pipe_report.aimless_pipe_report(xmlnode=self.xmlnode.findall(".//AIMLESS_PIPE")[0], jobStatus=self.jobStatus,jobNumber=self.jobInfo["jobnumber"]+".1")
         self.aimless_report.defaultReport(parent=summaryfold)
-        clearingDiv = summaryfold.addDiv(style="clear:both;")
+        clearingDiv = summaryfold.addDiv()
 
     if len(mrbumpNodes)>0:
         if not molrepdone:
@@ -254,10 +254,10 @@ class dr_mr_modelbuild_pipeline_report(Report):
             summaryfold = summaryDiv.addFold(label='MrBUMP model search and preparation'+originalText, brief='MrBUMP', initiallyOpen=False)
         selectString = ".//mrbump_model_prep/model"
         summaryfold.addText(text='Summary of the MrBUMP MR model search. The highest ranked file will be used as input to the following molecular replacement (MOLREP) job.')
-        summaryfold.addDiv(style="clear:both;")
+        summaryfold.addDiv()
         mrbumpModel  = xmlnode.findall('.//mrbump_model_prep/bestModel')[0].text
         summaryfold.addText(text='The chosen model is '+mrbumpModel)
-        summaryfold.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
+        summaryfold.addDiv()
         progressTable = summaryfold.addTable(select=selectString, style="height:250px; width:260px;float:left;")
         progressTable.addData(title="Rank", select="rank")
         progressTable.addData(title="Chain source", select="chainSource")
@@ -300,14 +300,14 @@ class dr_mr_modelbuild_pipeline_report(Report):
 
         
     if sheetbenddone:
-        summaryDivSheet = self.addDiv(xmlnode=sheetbendsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        summaryDivSheet = self.addDiv(xmlnode=sheetbendsg1)
         sheetbendFold = summaryDivSheet.addFold(label='Shift field refinement'+originalText,initiallyOpen=not refmacdone,brief='Shift field')
         sheetbendReport = sheetbend_report(xmlnode=sheetbendsg1, jobStatus='nooutput')
         sheetbendReport.defaultReport(parent=sheetbendFold)
-        clearingDiv = sheetbendFold.addDiv(style="clear:both;")
+        clearingDiv = sheetbendFold.addDiv()
 
     if refmacdone:
-      summaryDivRef = self.addDiv(xmlnode=refsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      summaryDivRef = self.addDiv(xmlnode=refsg1)
       if not acorndone and not modelcraftdone:
           summaryfold = summaryDivRef.addFold(label='Refinement'+originalText, brief='Refinement', initiallyOpen=True)
       else:
@@ -315,7 +315,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
 
       self.ref_report = MyRefmacReport(xmlnode=refsg1, jobStatus=self.jobStatus)
       self.ref_report.addSummary(xmlnode=refsg1,parent=summaryfold)
-      clearingDiv = summaryfold.addDiv(style="clear:both;")
+      clearingDiv = summaryfold.addDiv()
 
 #FIXME - XML PICTURE
       """
@@ -326,12 +326,12 @@ class dr_mr_modelbuild_pipeline_report(Report):
       """
 
     if acorndone:
-        summaryDivAcorn = self.addDiv( xmlnode=acornsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        summaryDivAcorn = self.addDiv( xmlnode=acornsg1)
         if not modelcraftdone:
             summaryfold = summaryDivAcorn.addFold(label='Phase refinement'+originalText, brief='Phase refinement', initiallyOpen=True)
         else:
             summaryfold = summaryDivAcorn.addFold(label='Phase refinement'+originalText, brief='Phase refinement', initiallyOpen=False)
-        summaryfold.append("<p>Results for Acorn Run</p>")
+        summaryfold.addText(text="Results for Acorn Run")
         graph_height = 300
         graph_width = 500
         
@@ -349,16 +349,16 @@ class dr_mr_modelbuild_pipeline_report(Report):
         l = p.append('plotline',xcol=1,ycol=2)
         l.append('label','Correlation Coefficient')
         l.append('colour','teal')
-        summaryDiv.addDiv(style="width:100%;border-width: 0px; border-color: black; clear:both; margin:0px; padding:0px;")
+        summaryDiv.addDiv()
 
     if modelcraftdone:
-        summaryDivMC = self.addDiv(xmlnode=mcxml[0],style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        summaryDivMC = self.addDiv(xmlnode=mcxml[0])
         summaryfold = summaryDivMC.addFold(label='ModelCraft autobuild'+originalText, brief='ModelCraft', initiallyOpen=len(mcxml)<2)
         directory = mcxml[0].text
         self.mcreport = modelcraft_report.modelcraft_report(jobInfo={"fileroot":directory},jobStatus=self.jobStatus)
 
         if self.jobStatus in ["Running", "Running remotely"]:
-            self.mcreport.append("<p><b>The job is currently running.</b></p>")
+            self.mcreport.addText(text="The job is currently running.", tone="emphasis")
         json_path = os.path.join(directory, "modelcraft.json")
         if os.path.exists(json_path):
             with open(json_path) as stream:
@@ -367,10 +367,10 @@ class dr_mr_modelbuild_pipeline_report(Report):
             self.mcreport.add_table(parent=summaryfold)
             self.mcreport.add_message(self.jobStatus,parent=summaryfold)
             self.mcreport.add_graph(parent=summaryfold)
-        clearingDiv = summaryfold.addDiv(style="clear:both;")
+        clearingDiv = summaryfold.addDiv()
 
     if len(molrepdoneNodes)>1:
-            summaryDivMolrep = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+            summaryDivMolrep = self.addDiv()
             if len(sheetbendNodes)<2:
                 summaryfold = summaryDivMolrep.addFold(label='Molecular replacement'+otherText, brief='MR', initiallyOpen=True)
             else:
@@ -399,23 +399,23 @@ class dr_mr_modelbuild_pipeline_report(Report):
 </plot> ''' )
 
     if len(sheetbendNodes)>1:
-            summaryDivSheet2 = self.addDiv(xmlnode=sheetbendsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+            summaryDivSheet2 = self.addDiv(xmlnode=sheetbendsg2)
             sheetbendFold = summaryDivSheet2.addFold(label='Shift field refinement'+otherText,initiallyOpen=len(refxml)<2,brief='Shift field')
             sheetbendReport = sheetbend_report(xmlnode=sheetbendsg2, jobStatus='nooutput')
             sheetbendReport.defaultReport(parent=sheetbendFold)
-            clearingDiv = sheetbendFold.addDiv(style="clear:both;")
+            clearingDiv = sheetbendFold.addDiv()
 
     if len(refxml)>1:
-          summaryDivRef2 = self.addDiv(xmlnode=refsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+          summaryDivRef2 = self.addDiv(xmlnode=refsg2)
           summaryfold = summaryDivRef2.addFold(label='Refinement'+otherText, brief='Refinement', initiallyOpen=False)
           self.ref_report2 = MyRefmacReport(xmlnode=refsg2, jobStatus=self.jobStatus)
           self.ref_report2.addSummary(xmlnode=refsg2,parent=summaryfold)
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
+          clearingDiv = summaryfold.addDiv()
 
     if len(acornNodes)>1:
-            summaryDivAcorn2 = self.addDiv( xmlnode=acornsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+            summaryDivAcorn2 = self.addDiv( xmlnode=acornsg2)
             summaryfold = summaryDivAcorn2.addFold(label='Phase refinement'+otherText, brief='Phase refinement', initiallyOpen=True)
-            summaryfold.append("<p>Results for Acorn Run</p>")
+            summaryfold.addText(text="Results for Acorn Run")
             graph_height = 300
             graph_width = 500
         
@@ -433,7 +433,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
             l = p.append('plotline',xcol=1,ycol=2)
             l.append('label','Correlation Coefficient')
             l.append('colour','teal')
-            summaryDivAcorn.addDiv(style="width:100%;border-width: 0px; border-color: black; clear:both; margin:0px; padding:0px;")
+            summaryDivAcorn.addDiv()
 
 
 def modelcraft_results(xmlnode):

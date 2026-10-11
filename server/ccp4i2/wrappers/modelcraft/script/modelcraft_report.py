@@ -13,9 +13,9 @@ class modelcraft_report(Report):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
         )
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
+            self.addText(text="The job is currently running.", tone="emphasis")
         json_path = Path(jobInfo["fileroot"], "modelcraft/modelcraft.json")
         if json_path.exists():
             with json_path.open(encoding="utf-8") as text:
@@ -28,12 +28,12 @@ class modelcraft_report(Report):
             self.add_message(jobStatus, parent=summaryFold)
             self.add_graph(parent=summaryFold)
             self.add_picture()
-            self.addDiv(style="clear:both;")
+            self.addDiv()
 
     def add_picture(self, parent=None):
         if parent is None:
             parent = self
-        parent.addDiv(style="clear:both;")
+        parent.addDiv()
         pictureFold = parent.addFold(
             label="Picture", initiallyOpen=True, brief="Picture"
         )
@@ -47,7 +47,7 @@ class modelcraft_report(Report):
             parent = self
         subjob = self.json.get("running_job")
         if subjob:
-            parent.append(f"<p>The sub-job that is currently running is: {subjob}</p>")
+            parent.addText(text=f"The sub-job that is currently running is: {subjob}")
 
     def add_table(self, parent=None):
         if "final" not in self.json:
@@ -88,7 +88,7 @@ class modelcraft_report(Report):
             message += " but requires further work."
         else:
             message += " the model is approaching completion."
-        parent.append(f"<p>{message}</p>")
+        parent.addText(text=f"{message}")
 
     def add_graph(self, parent=None):
         if len(self.json.get("cycles", [])) == 0:

@@ -211,8 +211,7 @@ class privateer_report(Report):
     l = p.append( 'text', xpos=5, ypos=0.72, font='bold 1.25em Helvetica', colour="#AAAAAA" )
     l.text = "Low CC"
 
-    results.append('<br/>')
-    clearingDiv = results.addDiv(style="clear:both;")
+    clearingDiv = results.addDiv()
 
 
     ########## Glycan structures ########
@@ -237,7 +236,7 @@ class privateer_report(Report):
             if chain != self.xmlnode.findall ( ".//ValidationData/Glycan/GlycanChain" )[index].text :
                 chain = self.xmlnode.findall ( ".//ValidationData/Glycan/GlycanChain" )[index].text
                 treesFold.append ( '<p style="font-size:130%; padding:2px; margin-top:20px; margin-bottom:0px; font-weight:bold; margin-left:15px; clear:both"> Chain ' + chain + '</p>' )
-                chaindiv = treesFold.addDiv(style="border-width: 1px; padding-top: 10px; padding-bottom:10px; border-color:black; border-style:solid; border-radius:15px;")
+                chaindiv = treesFold.addDiv(style="border-style:solid;border-radius:15px;")
 #                treesFold.append ( '<p style="background-color:rgb(145,203,219); padding:2px;' +\
 #                        'margin-top:20px; margin-bottom:12px; clear:both"> Chain ' + chain + '</p>' )
             
@@ -257,7 +256,7 @@ class privateer_report(Report):
                     break
 
             #chaindiv.append ('<div style="float:right; padding-top: 5px; padding-bottom: 5px; margin-right:30px;>' + svg_string + '</div>' )
-            svg_div = chaindiv.addDiv ( style="float:right; padding-right:10px; " )
+            svg_div = chaindiv.addDiv (  )
             
 
             svg_div.append ( svg_string )
@@ -281,7 +280,7 @@ class privateer_report(Report):
                         
                         if self.xmlnode.findall ( ".//ValidationData/Glycan" )[index].find('GlycanPermutations') != None:
                             permutationsFold = svg_div.addFold ( label="Closest permutations detected on GlyConnect database", initiallyOpen=False )
-                            permutationsdiv = permutationsFold.addDiv(style="border-width: 1px; padding-top: 10px; padding-bottom:10px; border-color:black; border-style:solid; border-radius:15px;")
+                            permutationsdiv = permutationsFold.addDiv(style="border-style:solid;border-radius:15px;")
                             
                             for permutation in self.xmlnode.findall ( ".//ValidationData/Glycan/GlycanPermutations" )[glycanindexforpermutation]:
                                 wurcspermutation = self.xmlnode.findall ( ".//ValidationData/Glycan/GlycanPermutations/GlycanPermutation/PermutationWURCS" )[permutationindex].text
@@ -320,7 +319,7 @@ class privateer_report(Report):
                                 permutationsdiv.append ( '<p style="font-size:130%; max-width:' + svg_width + 'px; font-weight:bold">GlyTouCan ID:<a href="https://glytoucan.org/Structures/Glycans/' + gtcidpermutation + '">' + gtcidpermutation + '</a>' 
                                 + '<br>GlyConnect ID:' + '<a href="https://glyconnect.expasy.org/browser/structures/' + glyconnectidpermutation + '">' + glyconnectidpermutation + '</a></br></p>')
                                 
-                                svg_div_permutation = permutationsdiv.addDiv ( style="float:right; padding-right:10px; " )
+                                svg_div_permutation = permutationsdiv.addDiv (  )
                                 permutationindex = permutationindex + 1
                     
                             glycanindexforpermutation = glycanindexforpermutation + 1

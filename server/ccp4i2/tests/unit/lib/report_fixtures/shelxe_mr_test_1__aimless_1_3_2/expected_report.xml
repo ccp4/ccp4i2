@@ -1,8 +1,8 @@
 <CCP4i2Reportaimless_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="aimless" title2="15:06 14-Jun-2023" />
-  <CCP4i2ReportText class="" style="font-size: 150%;">AIMLESS</CCP4i2ReportText>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-    <CCP4i2ReportText class="" style="font-weight:bold; font-size:120%;">Key statistics for Dataset: P1/xtl1/ds1</CCP4i2ReportText>
+  <CCP4i2ReportText class="" style="" tone="heading">AIMLESS</CCP4i2ReportText>
+  <CCP4i2ReportDiv class="" style="">
+    <CCP4i2ReportText class="" style="" tone="heading">Key statistics for Dataset: P1/xtl1/ds1</CCP4i2ReportText>
     <CCP4i2ReportGeneric class="" style="">
       <div style="margin-left: 40px;">Unit cell:   34.150  54.810  68.000  90.000  90.000  90.000, wavelength 1.541790Å<br />
         <span style="color:Blue;font-size:100%;">Estimates of resolution: input resolution     1.79Å, beyond  1.79Å from CC(1/2) &gt;  0.20,  1.79Å from I/σ &gt; 1.00</span>
@@ -16,12 +16,12 @@
       <span style="color: blue">
         <br />NOTE: no scaling was done, just merging</span>
     </CCP4i2ReportGeneric>
-    <CCP4i2ReportDiv class="" style="color: red;margin-left: 40px;">
+    <CCP4i2ReportDiv class="" style="color:red;">
       <CCP4i2ReportGeneric class="" style="">
         <p>Note: inner shell completeness:   88.5%<br />Warning: low inner shell completeness may indicate that overloaded strong observations have been lost</p>
       </CCP4i2ReportGeneric>
     </CCP4i2ReportDiv>
-    <CCP4i2ReportDiv class="" style="margin-left: 20px;">
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportGeneric class="" style="">
         <p>
           <span style="color:Black; font-size:120%">SD correction information:<br />
@@ -29,7 +29,7 @@
       </CCP4i2ReportGeneric>
     </CCP4i2ReportDiv>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:10px 0px 10px 0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
         <CCP4i2ReportGeneric class="" style="">
@@ -125,7 +125,7 @@
         </CCP4i2ReportTable>
       </CCP4i2ReportGridItem>
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-        <CCP4i2ReportDiv class="" style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;">
+        <CCP4i2ReportDiv class="" style="font-weight:bold;font-size:130%;">
           <CCP4i2ReportGeneric class="" style="">
             <p>Data internal consistency statistics</p>
           </CCP4i2ReportGeneric>
@@ -274,25 +274,13 @@
       </CCP4i2ReportGridItem>
     </CCP4i2ReportGridContainer>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
-    <CCP4i2ReportDiv class="" style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-      <CCP4i2ReportGeneric class="" style="">
-        <br />
-      </CCP4i2ReportGeneric>
+  <CCP4i2ReportDiv class="" style="">
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-          <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of resolution</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">(but check anisotropy)</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Analysis as a function of resolution</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="muted">Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="muted">(but check anisotropy)</CCP4i2ReportText>
           <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
             <CCP4i2ReportFlotGraph class="" style="">
               <ns0:ccp4_data title=" Correlations CC(1/2) within dataset, ds1" id="data_FlotGraph_0" style="display:none;">
@@ -594,18 +582,9 @@ Anomalous resolution: Insufficient data to determine resolution limit
           </CCP4i2ReportFlotGraphGroup>
         </CCP4i2ReportGridItem>
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-          <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of batch</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Analyses against Batch may show radiation damage, and which parts of the data should be removed</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;"> (but consider completeness)</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Analysis as a function of batch</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="muted">Analyses against Batch may show radiation damage, and which parts of the data should be removed</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="muted"> (but consider completeness)</CCP4i2ReportText>
           <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
             <CCP4i2ReportFlotGraph class="" style="">
               <ns0:ccp4_data title=" Analysis against all Batches for all runs, ds1" id="data_FlotGraph_3" style="display:none;">
@@ -738,13 +717,10 @@ Anomalous resolution: Insufficient data to determine resolution limit
       </CCP4i2ReportGridContainer>
     </CCP4i2ReportDiv>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-        <CCP4i2ReportText class="" style="font-weight:bold; font-size:130%;">Other merging statistics graphs</CCP4i2ReportText>
-        <CCP4i2ReportGeneric class="" style="">
-          <br />
-        </CCP4i2ReportGeneric>
+        <CCP4i2ReportText class="" style="" tone="heading">Other merging statistics graphs</CCP4i2ReportText>
         <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
           <CCP4i2ReportFlotGraph class="" style="">
             <ns0:ccp4_data title=" Completeness &amp; multiplicity v. resolution, ds1" id="data_FlotGraph_4" style="display:none;">
@@ -1454,9 +1430,6 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
         <CCP4i2ReportGeneric class="" style="">
           <p>Scatter plots etc</p>
-        </CCP4i2ReportGeneric>
-        <CCP4i2ReportGeneric class="" style="">
-          <br />
         </CCP4i2ReportGeneric>
         <CCP4i2ReportFlotGraph class="" style="" launcher="Normal probability">
           <ns0:ccp4_data id="data_FlotGraph_14" style="display:none;" title="Normal probability plot">
@@ -5228,7 +5201,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
       </CCP4i2ReportGridItem>
     </CCP4i2ReportGridContainer>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportGeneric class="" style="">
       <p>Summary of input reflection data</p>
     </CCP4i2ReportGeneric>
@@ -5278,14 +5251,14 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
     </CCP4i2ReportTable>
   </CCP4i2ReportDiv>
   <CCP4i2ReportDiv class="" style="">
-    <CCP4i2ReportText class="" style="font-size: 150%;">Analysis of sd(I)</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="heading">Analysis of sd(I)</CCP4i2ReportText>
     <CCP4i2ReportGeneric class="" style="">
       <p>Error estimates sd(I) are analysed as functions of intensity (and resolution and batch),<br />as sigma(delta(I)/sd(I)), where delta(I) = Ihl-&lt;Ih&gt;, and as reduced chi^2 (goodness of fit), ([delta(I)/sd(I)]^2)/(n-m)</p>
     </CCP4i2ReportGeneric>
     <CCP4i2ReportGeneric class="" style="">
       <p>SD correction parameters were not refined</p>
     </CCP4i2ReportGeneric>
-    <CCP4i2ReportDiv class="" style="width:45%; margin:0px; padding:0px;display:inline-block;">
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportFlotGraph class="" style="width:300px;  height:270px;">
         <ns0:ccp4_data id="data_FlotGraph_16" style="display:none;" title=" Run   1, standard deviation v. Intensity, ds1">
           <headers separator=" ">
@@ -5336,7 +5309,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
         </ns0:ccp4_data>
       </CCP4i2ReportFlotGraph>
     </CCP4i2ReportDiv>
-    <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportGeneric class="" style="">
         <p>Analysis against resolution</p>
       </CCP4i2ReportGeneric>
@@ -5399,7 +5372,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
         </ns0:ccp4_data>
       </CCP4i2ReportFlotGraph>
     </CCP4i2ReportDiv>
-    <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportGeneric class="" style="">
         <p>Analysis against batch</p>
       </CCP4i2ReportGeneric>

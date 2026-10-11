@@ -17,7 +17,7 @@ class refmac_report(Report):
         if jobStatus is not None and jobStatus.lower() == 'nooutput':
             return
         
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         if jobStatus.lower().count('running'):
             self.addRunningProgressGraph(self)
@@ -99,7 +99,7 @@ class refmac_report(Report):
         if parent is None: parent=self
         if xmlnode is None: xmlnode = self.xmlnode
         #I *do not know* why This is needed
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
         
         all_cycles = xmlnode.findall('.//Overall_stats/stats_vs_cycle/new_cycle')
@@ -160,7 +160,7 @@ class refmac_report(Report):
            if len(RestrIdx)>0: restr_data[key] = [val[i] for i in RestrIdx]
 
         if len(RigidIdx)>0:
-           RigidDiv = perCycleFold.addDiv(style="float:left;")
+           RigidDiv = perCycleFold.addDiv()
            RigidDiv.addText(text="Rigid body refinement")
            RigidTable = RigidDiv.addTable()
            RigidTable.addData(title="",data=start_end)
@@ -171,7 +171,7 @@ class refmac_report(Report):
            #RigidTable.addData(title="FSCAv-free", data=rigid_data['fscAverFree'])
     
         if len(TLSIdx)>0:
-           TLSDiv = perCycleFold.addDiv(style="float:left; width:250px;")
+           TLSDiv = perCycleFold.addDiv()
            TLSDiv.addText(text="TLS refinement")
            TLSTable = TLSDiv.addTable()
            TLSTable.addData(title="",data=start_end)
@@ -182,7 +182,7 @@ class refmac_report(Report):
            #TLSTable.addData(title="FSCAv-free", data=tls_data['fscAverFree'])
         
         if len(RestrIdx)>0:
-           RestrDiv = perCycleFold.addDiv(style="float:left;")
+           RestrDiv = perCycleFold.addDiv()
            RestrDiv.addText(text="Full atom refinement - XYZ, B (Occ)")
            RestrTable = RestrDiv.addTable()
            RestrTable.addData(title="",data=start_end)
@@ -195,7 +195,7 @@ class refmac_report(Report):
            RestrTable.addData(subtitle="Angle", data=restr_data['rmsANGLE'])
            RestrTable.addData(subtitle="Chiral", data=restr_data['rmsCHIRAL'])
 
-        clearingDiv = perCycleFold.addDiv(style="clear:both;")
+        clearingDiv = perCycleFold.addDiv()
         detailFold = perCycleFold.addFold(label='All cycles',initiallyOpen=False,brief='All cycles')
         fullTable = detailFold.addTable()
         if len(TLSIdx)>0 and len(RestrIdx)>0:
@@ -287,7 +287,7 @@ class refmac_report(Report):
 #        for title,select in  [[ "Twinning operator" ,"SymmetryOperator" ], [ "Fraction"  , "Fraction" ]]:
 #            table.addData(title=title,select=select)
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         return
 
     def addSmartieGraphs(self, parent=None,internalIdPrefix=''):
@@ -458,11 +458,11 @@ class refmac_report(Report):
         dictObjectName = objectNameMap.get('DICT','DICTOUT')
 
         #I *do not know* why This is needed
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
 
         pictureFold = parent.addFold(label='Picture', initiallyOpen=initiallyOpen,brief='Picture')
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         jobDirectory = jobInfo['fileroot']
         from ccp4i2.core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
@@ -635,9 +635,9 @@ class refmac_report(Report):
         if parent is None: parent = self
 
         #create a "shell" div to contain the scrollable table and the hyperlink
-        scrollableDownloadableTableDiv = parent.addDiv(style="height:250px; width:100%; margin-top:2px;")
+        scrollableDownloadableTableDiv = parent.addDiv()
         #place a scrollable div into the shell: the table will be inserted into this div
-        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv(style="height:225px; width:100%; overflow:auto;")
+        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv()
         #Put table1 into this (autoscrolling) div
         table1 = self.addTable1(xmlnode=xmlnode, parent=scrollableTableDiv,internalId=internalId)
         #scrollableDownloadableTableDiv.addDiv(style="height:10px;width:15px; float:right;")

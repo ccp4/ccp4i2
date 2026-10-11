@@ -15,4 +15,4 @@ class dials_image_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.append("<p>Running the DIALS Image Viewer</p>")
+        parent.addText(text="Running the DIALS Image Viewer")

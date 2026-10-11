@@ -57,7 +57,7 @@ class modelASUCheck_report(Report):
         nonMatchedXmlNodes = xml.findall('.//SequenceAlignment/NonAlignedModelChains/Alignment')
 
         if len(xmlNodes) > 0 or len(nonMatchedXmlNodes)>0:
-            parent.addDiv(style="clear:both;")
+            parent.addDiv()
             fold = parent.addFold(label='Sequence alignment detail', brief='Alignment Detail', initiallyOpen=initiallyOpen)
             lineLength = 60
             for alignNode in xmlNodes:
@@ -68,7 +68,7 @@ class modelASUCheck_report(Report):
                 align1 = alignNode.findall("align_1")[0].text
                 align2 = alignNode.findall("align_2")[0].text
                 alignMatch = alignNode.findall("align_match")[0].text
-                labelDiv = fold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
+                labelDiv = fold.addDiv()
                 labelDiv.append("<b>Chain: "+chainID+"</b>")
 
                 if alignMatch is None:
@@ -95,19 +95,18 @@ class modelASUCheck_report(Report):
                 fold.append('<pre>'+preText+'</pre>')
 
         if len(nonMatchedXmlNodes)>0:
-            labelDiv = fold.addDiv(style="clear:both;")
+            labelDiv = fold.addDiv()
             labelDiv.append("<b>Non matched chains from structure</b>")
-            labelDiv = fold.addDiv(style="clear:both;")
+            labelDiv = fold.addDiv()
             labelDiv.append('<span>The following chains in the structure have not been matched to anything in the AU contents. This could be because they are incorrectly or partially modelled, or have undefined residue types. It is possible that on or more of the chains below should be merged with matched chains above to improve the alignment. For each unmodelled chain, the alignment with each unique sequence in the AU contents is shown below. </span><br/>')
-            labelDiv.addDiv(style="clear:both;")
+            labelDiv.addDiv()
             for nonAlignNode in nonMatchedXmlNodes:
                 chainID = nonAlignNode.findall("ChainID")[0].text
                 iseq = nonAlignNode.findall("SeqAUNo")[0].text
-                labelDiv.addDiv(style="clear:both;")
+                labelDiv.addDiv()
                 labelDiv.append('<span><b>Chain '+chainID+'</b> match with sequence number '+iseq+' in AU contents</span>')
-                labelDiv = fold.addDiv(style="clear:both;")
-                labelDiv.addDiv(style="clear:both;")
-                labelDiv.append('<br/>')
+                labelDiv = fold.addDiv()
+                labelDiv.addDiv()
 
                 matchCount = nonAlignNode.findall("match_count")[0].text
                 identity = nonAlignNode.findall("identity")[0].text
@@ -115,7 +114,7 @@ class modelASUCheck_report(Report):
                 align1 = nonAlignNode.findall("align_1")[0].text
                 align2 = nonAlignNode.findall("align_2")[0].text
                 alignMatch = nonAlignNode.findall("align_match")[0].text
-                labelDiv = fold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
+                labelDiv = fold.addDiv()
 
                 tableText = "<table>\n"
                 tableText += f"<tr><th>Match count</th><td>{matchCount}</td></tr>"

@@ -130,12 +130,12 @@ def draw_dnatco_report(parent, cif_paths, json_paths):
         _draw_naval(parent, models, compare)
     if any(model["ntc"] is not None for model in models):
         _draw_ntc(parent, models, compare)
-    parent.addDiv(style="clear:both;")
+    parent.addDiv()
 
 
 def _draw_naval(parent, models, compare):
     fold = parent.addFold(label="NAVAL bond lengths and angles validation", initiallyOpen=True)
-    body = fold.addDiv(style="margin-left:1.5em;")
+    body = fold.addDiv()
     note = body.addDiv(style="font-size:110%;")
     note.append(
         "Every bond length and bond angle of the nucleotides is compared with the NAVAL"
@@ -189,7 +189,7 @@ def _draw_naval(parent, models, compare):
 
 def _draw_ntc(parent, models, compare):
     fold = parent.addFold(label="DNATCO dinucleotide conformer class validation", initiallyOpen=True)
-    body = fold.addDiv(style="margin-left:1.5em;")
+    body = fold.addDiv()
     merged = _merged_steps(models)
 
     overall_fold = body.addFold(label="Overall structure quality", initiallyOpen=True)
@@ -328,6 +328,6 @@ class dnatco_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.addDiv(style="clear:both;")  # gives space for the title
+        parent.addDiv()  # gives space for the title
         filenames = self.jobInfo.get('filenames', {}) if self.jobInfo else {}
         draw_dnatco_report(parent, [filenames.get('CIFOUT')], [filenames.get('JSONOUT')])

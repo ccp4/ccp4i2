@@ -17,7 +17,7 @@ class acorn_report(Report):
 
         results = self.addResults()
         
-        parent.append("<p>Results for Acorn Run</p>")
+        parent.addText(text="Results for Acorn Run")
         # The numbers, not only the plot: where the correlation started, its
         # best and where it ended (cycle 0 is the starting point, before any
         # dynamic density modification).

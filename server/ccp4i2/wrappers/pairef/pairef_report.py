@@ -84,12 +84,12 @@ class pairef_report(Report):
         fold = self.addFold(label="Paired refinement", initiallyOpen=True)
         if results["cutoff"] and not running:
             fold.append(f"<p><b>Suggested high-resolution cutoff: {results['cutoff']} Å</b></p>")
-        fold.append(
-            "<p>Each row adds one shell of data and refines again. The change is "
+        fold.addText(
+            text="Each row adds one shell of data and refines again. The change is "
             "measured at the previous resolution, on the same reflections, so the two "
             "R-free values are comparable: a shell is worth including when adding it "
             "lowers R-free there (a negative change). A change of a few ten-thousandths "
-            "is within noise, the more so in a shell with few free reflections.</p>")
+            "is within noise, the more so in a shell with few free reflections.")
         table = fold.addTable(transpose=False, id="pairef_shells")
         shells = results["shells"]
         table.addData(title="Shell added (Å)",

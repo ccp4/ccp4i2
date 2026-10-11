@@ -8,7 +8,7 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
     def drawVerdict(self, parent, running):
         super().drawVerdict(parent, running)
         if not running and not self.xmlnode.findtext("Verdict"):
-            parent.addText(text="Phaser reported no verdict", style="color:red;")
+            parent.addText(text="Phaser reported no verdict", tone="error")
         best = self.xmlnode.find("PhaserCurrentBestSolution")
         if running and best is not None and best.text:
             self.drawCurrentBest(parent, best.text.strip())
@@ -35,7 +35,7 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
         if refined:
             parts.append(f"refined TFZ {refined[-1]}")
         parent.addText(text="Current best solution: " + (", ".join(parts) if parts else text),
-                       style="font-weight:bold;")
+                       tone="emphasis")
         if components:
             def column(key):
                 def show(v):
@@ -50,7 +50,7 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
             table.addData(title="LLG", data=column("LLG"))
             table.addData(title="Note", data=[", ".join(c.get("notes") or []) for c in components])
         fold = parent.addFold(label="Phaser's annotation", initiallyOpen=False)
-        fold.addText(text=text, style="font-family:monospace;font-size:0.85em;")
+        fold.addText(text=text, tone="code")
 
     def drawResults(self, parent, running):
         if self.xmlnode.find("Solutions") is not None:
@@ -104,7 +104,7 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
             unknown = solution.findtext("UnknownTokens")
             if unknown:
                 fold.addText(text=f"Annotation tokens not understood: {unknown}",
-                             style="color:orange;")
+                             tone="warning")
 
     def drawStrategy(self, parent, running):
         strategy = self.xmlnode.find("Strategy")
@@ -122,10 +122,10 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
             outcome = attempt.get("outcome", "?") + (f", LLG {llg}" if llg else "")
             parent.addText(text=f"Component {component}{where}: {outcome}")
             for warning in attempt.findall("Warning"):
-                parent.addText(text="    " + (warning.text or ""), style="color:orange;")
-            parent.addDiv(style="clear:both;")
+                parent.addText(text="    " + (warning.text or ""), tone="warning")
+            parent.addDiv()
         if strategy is not None and int(strategy.get("unparsed", "0")) > 0:
             parent.addText(text=f"{strategy.get('unparsed')} strategy block(s) in Phaser's "
                                 "summary matched no known sentence -- see the summary below",
-                           style="color:orange;")
+                           tone="warning")
         self.drawTimeline(parent)

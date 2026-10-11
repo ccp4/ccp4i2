@@ -23,7 +23,7 @@ class phaser_singleMR_report(Report):
             parent = self
         self.addResults()
         self._summary(parent)
-        parent.append("<p>Results for Phaser Single Atom MR Run</p>")
+        parent.addText(text="Results for Phaser Single Atom MR Run")
         bda = self.xmlnode.findall('.//SubJob_000/RunDate')[0].text
         parent.append("<p>" + bda + "</p>")
         # KeyText from smartie may be wrapped in <pre> tags; strip them
@@ -32,7 +32,7 @@ class phaser_singleMR_report(Report):
         bestCC = re.sub(r'^\s*<pre>\s*', '', bestCC, flags=re.IGNORECASE)
         bestCC = re.sub(r'\s*</pre>\s*$', '', bestCC, flags=re.IGNORECASE)
         parent.addPre(text=bestCC)
-        parent.append("<p>Note : the best available solution was selected for I2</p>")
+        parent.addText(text="Note : the best available solution was selected for I2")
         self._add_graphs(parent)
 
     def _summary(self, parent):

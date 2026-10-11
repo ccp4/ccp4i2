@@ -55,7 +55,7 @@ class xia2_ssx_reduce_report(Report):
 
         if parent is None:
             parent = self
-        self.addDiv(style="clear:both;")  # gives space for the title
+        self.addDiv()  # gives space for the title
         xia2SsxReduceErrorNode = None
         if len(self.xmlnode.findall("Xia2SsxReduceError"))>0:
             xia2SsxReduceErrorNode = self.xmlnode.findall("Xia2SsxReduceError")[0]
@@ -107,7 +107,7 @@ class xia2_ssx_reduce_report(Report):
         # When error occured
         if xia2SsxReduceErrorNode is not None:
             parent.addText(
-                style="font-size:125%;color:red;",
+                tone="error",
                 text="xia2.ssx_reduce exited with an error",
             )
             parent.addPre(text=xia2SsxReduceErrorNode.text)
@@ -210,7 +210,7 @@ class xia2_ssx_reduce_report(Report):
             dic = None
         if dic is None:
             parent.addText(
-                style="font-size:125%;color:red;",
+                tone="error",
                 text="File not found: dials.merge.json",
             )
             return

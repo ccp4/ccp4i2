@@ -175,7 +175,7 @@ class clustalw_report(Report):
         self.defaultReport(parent=self)
 
     def defaultReport(self, parent=None):
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         if parent is None:
             parent = self
 

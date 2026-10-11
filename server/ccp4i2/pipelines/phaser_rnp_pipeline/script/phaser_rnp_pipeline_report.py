@@ -14,7 +14,7 @@ class phaser_rnp_pipeline_report(Report):
         Report.__init__(self, jobStatus=jobStatus, **kw)
 
         if jobStatus == None or jobStatus.lower() =='nooutput': return
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         try:
             pointlessNode = self.xmlnode.findall('POINTLESS')[0]

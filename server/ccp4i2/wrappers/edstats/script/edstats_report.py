@@ -21,7 +21,7 @@ def _outliers(group, metric, above=None, below=None):
 
 def _none_if_empty(div, nodes):
     if not nodes:
-        div.append("<p><i>None.</i></p>")
+        div.addText(text="<i>None.</i>")
 
 
 class edstats_report(Report):
@@ -175,7 +175,7 @@ class edstats_report(Report):
         l.append('colour','green')
         l.append ( 'width' ).text = plot_width
 
-        tab_div = results.addDiv (style="float:left;")
+        tab_div = results.addDiv ()
         tab_div.append ( "<p >Main chain: </p>" )
         _none_if_empty(tab_div, bad_mc_negatives+bad_mc_positives)
         table = tab_div.addTable(selectNodes = bad_mc_negatives+bad_mc_positives,
@@ -191,7 +191,7 @@ class edstats_report(Report):
 
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
-        tab_div.append ( "<p>Side chains: </p>" )
+        tab_div.addText ( text="Side chains:" )
         _none_if_empty(tab_div, bad_sc_negatives+bad_sc_positives)
 
         table = tab_div.addTable(selectNodes = bad_sc_negatives+bad_sc_positives,
@@ -208,7 +208,7 @@ class edstats_report(Report):
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
 
-        results.addDiv ( style="clear:both;" )
+        results.addDiv (  )
 
     if len(waters) > 0 :
 
@@ -256,7 +256,7 @@ class edstats_report(Report):
         l.append('colour','green')
         l.append ( 'width' ).text = plot_width
 
-        tab_div = waters_folder.addDiv (style="float:left; width:28%; padding-right:50px;")
+        tab_div = waters_folder.addDiv ()
         tab_div.append ( "<p >The entries in the following table may not be water molecules but part of a bigger, undetermined structure (a ligand, perhaps?): </p>" )
         nodes = _outliers(waters, "ZDpa", above=3.0)
         _none_if_empty(tab_div, nodes)
@@ -275,7 +275,7 @@ class edstats_report(Report):
 
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
-        tab_div.append ( "<p>The following entries sit in weak density or next to noise peaks. In the former case, removing them might improve R-free</p>" )
+        tab_div.addText ( text="The following entries sit in weak density or next to noise peaks. In the former case, removing them might improve R-free" )
 
         nodes = _outliers(waters, "ZDma", below=-3.0)
         _none_if_empty(tab_div, nodes)
@@ -294,7 +294,7 @@ class edstats_report(Report):
 
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
-        results.addDiv ( style="clear:both;" )
+        results.addDiv (  )
 
 
     if len(ligands) > 0 :
@@ -360,7 +360,7 @@ class edstats_report(Report):
         l.append( 'symbolsize', '3' )
         l.append( 'symbol', 'o' )
 
-        tab_div = ligands_folder.addDiv (style="float:left; width:30%; padding-right:50px;")
+        tab_div = ligands_folder.addDiv ()
         tab_div.append ( "<p >The ligand models in the following table may be incomplete or fit density poorly: </p>" )
         nodes = _outliers(ligands, "ZDpa", above=3.0)
         _none_if_empty(tab_div, nodes)
@@ -380,7 +380,7 @@ class edstats_report(Report):
 
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
-        tab_div.append ( "<p>The following ligands sit in weak density or next to noise peaks. In the former case, removing them might improve R-free</p>" )
+        tab_div.addText ( text="The following ligands sit in weak density or next to noise peaks. In the former case, removing them might improve R-free" )
 
         nodes = _outliers(ligands, "ZDma", below=-3.0)
         _none_if_empty(tab_div, nodes)
@@ -403,7 +403,7 @@ class edstats_report(Report):
 
 
 
-        results.addDiv ( style="clear:both;" )
+        results.addDiv (  )
 
 
 

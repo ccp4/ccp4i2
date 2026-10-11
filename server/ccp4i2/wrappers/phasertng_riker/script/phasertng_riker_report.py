@@ -79,13 +79,13 @@ class phasertng_riker_report(Report):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
         )
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
+            self.addText(text="The job is currently running.", tone="emphasis")
 
         db_dir = self._find_db_dir(jobInfo.get("fileroot", ""))
         if db_dir is None:
-            self.append("<p>No output directory found.</p>")
+            self.addText(text="No output directory found.")
             return
 
         # Parse output files
@@ -120,7 +120,7 @@ class phasertng_riker_report(Report):
         if result:
             self._add_notifications(result, parent=self)
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
 
     # ------------------------------------------------------------------
     # Parsers
@@ -404,7 +404,7 @@ class phasertng_riker_report(Report):
         else:
             message += " has weak statistics and may not be correct."
 
-        parent.append(f"<p>{message}</p>")
+        parent.addText(text=f"{message}")
 
     def _add_solutions_table(self, solutions, parent):
         """Add a table comparing all solutions."""

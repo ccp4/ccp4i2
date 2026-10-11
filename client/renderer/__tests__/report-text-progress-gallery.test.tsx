@@ -37,6 +37,21 @@ describe("report text", () => {
     expect(node.textContent).toBe("Now: ROTATION FUNCTION");
   });
 
+  it("paints a tone from the theme and says which it is", () => {
+    const { container } = render(
+      <CCP4i2ReportText iItem={0} job={job}
+        item={element('<CCP4i2ReportText tone="error">Phaser reported no verdict</CCP4i2ReportText>')} />
+    );
+    const node = container.firstElementChild as HTMLElement;
+    expect(node.getAttribute("data-tone")).toBe("error");
+    expect(getComputedStyle(node).color).not.toBe("");
+    const heading = render(
+      <CCP4i2ReportText iItem={0} job={job}
+        item={element('<CCP4i2ReportText tone="heading">Solutions</CCP4i2ReportText>')} />
+    ).container.firstElementChild as HTMLElement;
+    expect(getComputedStyle(heading).fontWeight).toBe("600");
+  });
+
   it("renders nothing for an empty line", () => {
     const { container } = render(
       <CCP4i2ReportText iItem={0} job={job} item={element("<CCP4i2ReportText> </CCP4i2ReportText>")} />

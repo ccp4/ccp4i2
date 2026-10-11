@@ -7,7 +7,7 @@ class coordinate_selector_report(Report):
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,jobStatus=jobStatus, **kw)
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         summaryFold = self.addFold(label="Summary",brief="Summary", initiallyOpen=True)
 
         chainList = []
@@ -48,11 +48,11 @@ class coordinate_selector_report(Report):
               t.addData(title="Unknown",data=UnknownList)
 
         numModels = len(xmlnode.findall('.//ModelComposition/Model'))
-        summaryFold.addDiv(style="clear:both;")
+        summaryFold.addDiv()
         if numModels > 1:
             summaryFold.addText(text="This file contains "+str(numModels)+" models")
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
 
         numLigands = len(xmlnode.findall('.//ModelComposition/Ligand'))
         if numLigands > 0:
@@ -61,7 +61,7 @@ class coordinate_selector_report(Report):
             t = ligandsFold.addTable(transpose=False)
             t.addData(title="Ligands",data=ligandList)
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
 
         numMetals = len(xmlnode.findall('.//ModelComposition/Metal'))
         if numMetals > 0:

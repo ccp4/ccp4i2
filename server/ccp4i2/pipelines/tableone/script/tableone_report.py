@@ -101,13 +101,12 @@ class tableone_report(Report):
         # Define Links & then tables.
         spath = os.path.join(self.jobInfo['fileroot'], "tabtest.docx")
         spathtex = os.path.join(self.jobInfo['fileroot'], "tabtest.txt")
-        parent.append("<p>Successfully ran table one generation. Results summary below.</p>")
+        parent.addText(text="Successfully ran table one generation. Results summary below.")
         parent.append('<span style="font-size:110%">Click on the following link to view the '
                                     'word document (which is located at : '
                                     + '<i>' + spath + '</i>' + ') </span>')
         parent.append('<br><a href="{0}"> &#8594;  Open docx file</a></br>'.format(spath))
         parent.append('<br><a href="{0}"> &#8594;  Open latex template</a></br>'.format(spathtex))
-        parent.append('<br/>')
         # Construct Table lists pt1.
         namc, datac = self.getTable1L()
         DefFl = parent.addFold(label="Table One Information", initiallyOpen=True)

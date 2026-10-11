@@ -46,7 +46,7 @@ class dnatco_pipe_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.addDiv(style="clear:both;")  # gives space for the title
+        parent.addDiv()  # gives space for the title
         filenames = self.jobInfo.get('filenames', {}) if self.jobInfo else {}
         cif_paths = [filenames.get('CIFOUT1')]
         json_paths = [filenames.get('JSONOUT1')]

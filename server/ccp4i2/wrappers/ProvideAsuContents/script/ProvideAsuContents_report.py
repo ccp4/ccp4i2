@@ -24,7 +24,7 @@ class ProvideAsuContents_report(Report):
       fileObj = CCP4ModelData.CAsuDataFile()
       fileObj.setFullPath(fileName)
       summaryDiv = self.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
       fold = summaryDiv.addFold(label="AU content - sequences", initiallyOpen=True)
       for seqObj in fileObj.fileContent.seqList:
         div = fold.addDiv()
@@ -74,8 +74,8 @@ class ProvideAsuContents_report(Report):
                       if len(totalWeight) > 0:
                           div.append('<p>Total molecular weight: {0:.1f}</p>'.format(float(totalWeight[0].text)))
                       else:
-                          div.append('<p>Total molecular weight unknown</p>')
+                          div.addText(text='Total molecular weight unknown')
                       if len(cellVolume) > 0:
                           div.append('<p>Cell volume: {0:.2f}</p>'.format(float(cellVolume[0].text)))
                       else:
-                          div.append('<p>Cell volume unknown</p>')
+                          div.addText(text='Cell volume unknown')

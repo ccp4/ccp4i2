@@ -16,7 +16,7 @@ class acedrg_report(Report):
     
     def defaultReport(self, parent=None):
         if parent is None: parent = self
-        parent.addText(text='2D representations', style='font-size:110%;')
+        parent.addText(text='2D representations', tone="emphasis")
         div2D = parent.addDiv()
         self.analyseGeometry()
     

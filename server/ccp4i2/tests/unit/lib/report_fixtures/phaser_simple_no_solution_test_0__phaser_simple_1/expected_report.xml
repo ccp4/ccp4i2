@@ -1,34 +1,16 @@
 <CCP4i2Reportphaser_simple_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="phaser_simple" title2="15:11 16-Jul-2020" />
-  <CCP4i2ReportDiv class="" style="clear:both;" />
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportText class="" style="color:orange;">
+  <CCP4i2ReportDiv class="" style="" />
+  <CCP4i2ReportText class="" style="" tone="warning">
 eLLG indicates that placement of a single copy of ensemble "SearchModel" could be difficult</CCP4i2ReportText>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportText class="" style="color:orange;">The top solution from a FTF did not pack</CCP4i2ReportText>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportText class="" style="color:orange;">The top solution from a TF rescoring did not pack</CCP4i2ReportText>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportText class="" style="color:red;">Total search request exceeds scattering specified in composition. Composition increased to resolve the discrepancy.</CCP4i2ReportText>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
+  <CCP4i2ReportText class="" style="" tone="warning">The top solution from a FTF did not pack</CCP4i2ReportText>
+  <CCP4i2ReportText class="" style="" tone="warning">The top solution from a TF rescoring did not pack</CCP4i2ReportText>
+  <CCP4i2ReportText class="" style="" tone="error">Total search request exceeds scattering specified in composition. Composition increased to resolve the discrepancy.</CCP4i2ReportText>
   <CCP4i2ReportFold class="" style="" label="Elements and scores of current solution" initiallyOpen="True" brief="Current soln.">
-    <CCP4i2ReportText class="" style="color:red;">No solution found yet</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="error">No solution found yet</CCP4i2ReportText>
   </CCP4i2ReportFold>
   <CCP4i2ReportFold class="" style="" label="Comparison of solutions" initiallyOpen="True" brief="All solns">
-    <CCP4i2ReportText class="" style="color:red;">No solutions found</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="error">No solutions found</CCP4i2ReportText>
   </CCP4i2ReportFold>
   <CCP4i2ReportFold class="" style="" label="Analysis of composition and data" initiallyOpen="False" brief="Comp/data">
     <CCP4i2ReportFold class="" style="" label="....Search ensembles and spacegroups" initiallyOpen="False" brief="....Search ensembles and spacegroups">
@@ -159,12 +141,14 @@ Finished: Thu Jul 16 16:11:28 2020
    Ensemble                       Frac.Scat. (Search Frac.Scat.) 
    SearchModel                       147.41%             147.41%
 
-&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+<B>
+          <FONT COLOR="#FF8800">
 ------------------------------------------------------------------------------------------
 Warning: Total search request exceeds scattering specified in composition. Composition
 increased to resolve the discrepancy.
 ------------------------------------------------------------------------------------------
-&lt;/FONT&gt;&lt;/B&gt;
+</FONT>
+        </B>
 
 ** Composition increased
        from 45985
@@ -301,13 +285,15 @@ MONOMERIC ELLG
      eLLG-reso  Ensemble
          4.742  SearchModel
 
-&lt;B&gt;&lt;FONT COLOR="#0077FF"&gt;
+<B>
+          <FONT COLOR="#0077FF">
 ------------------------------------------------------------------------------------------
 Advisory: 
 eLLG indicates that placement of a single copy of ensemble "SearchModel" could be
 difficult
 ------------------------------------------------------------------------------------------
-&lt;/FONT&gt;&lt;/B&gt;
+</FONT>
+        </B>
 
    Expected LLG (eLLG): Chains
    ---------------------------
@@ -1338,7 +1324,7 @@ Finished: Thu Jul 16 16:11:56 2020
       </CCP4i2ReportFlotGraph>
     </CCP4i2ReportObjectGallery>
   </CCP4i2ReportFold>
-  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportInputData class="" style="">
     <root>
       <h5>Input Data</h5>

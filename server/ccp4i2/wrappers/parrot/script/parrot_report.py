@@ -24,25 +24,25 @@ class parrot_report(Report):
           n = (1.0-solc)/v
           s = ""
           if pseq > 0.98:
-            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents.</p>"%(100*solc,n) )
+            parent.addText( text="The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents."%(100*solc,n) )
           else:
-            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents. <i>This is only an estimate. Please check.</i></p>"%(100*solc,n) )
+            parent.addText( text="The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents. <i>This is only an estimate. Please check.</i>"%(100*solc,n) )
         except Exception as e:
-          parent.append( "<p>THERE WAS A PROBLEM REPORTING THE SOLVENT CONTENT %s</p>"%(e,) )
+          parent.addText( text="THERE WAS A PROBLEM REPORTING THE SOLVENT CONTENT %s"%(e,) )
 
         try:
           nncs = int(self.xmlnode.findall('NncsMR')[0].text)
           nmol = int(0.5*(1.0+(1.0+4.0*nncs)**0.5))
-          if nncs > 0: parent.append( "<p>%d NCS operators were identified from the input MR or partial model, suggesting the presence of at least %d molecules.</p>"%(nncs,nmol) )
-          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input MR or partial model.</p>" )
+          if nncs > 0: parent.addText( text="%d NCS operators were identified from the input MR or partial model, suggesting the presence of at least %d molecules."%(nncs,nmol) )
+          else:        parent.addText( text="<b>Warning:</b> No NCS operators were determined from the input MR or partial model." )
         except Exception as e:
           print(e)
 
         try:
           nncs = int(self.xmlnode.findall('NncsHA')[0].text)
           nmol = int(0.5*(1.0+(1.0+4.0*nncs)**0.5))
-          if nncs > 0: parent.append( "<p>%d NCS operators were identified from the input heavy atom model, suggesting the presence of at least %d molecules.</p>"%(nncs,nmol) )
-          else:        parent.append( "<p><b>Warning:</b> No NCS operators were determined from the input heavy atom model.</p>" )
+          if nncs > 0: parent.addText( text="%d NCS operators were identified from the input heavy atom model, suggesting the presence of at least %d molecules."%(nncs,nmol) )
+          else:        parent.addText( text="<b>Warning:</b> No NCS operators were determined from the input heavy atom model." )
         except Exception as e:
           print(e)
 
@@ -57,28 +57,28 @@ class parrot_report(Report):
               ngood += 1
           if nncs > 0:
             if ngood == nncs:
-              parent.append( "<p>Of the %d NCS operators, all had reasonable correlations and mask volumes at the end of the calculation.</p>"%(nncs) )
+              parent.addText( text="Of the %d NCS operators, all had reasonable correlations and mask volumes at the end of the calculation."%(nncs) )
             elif ngood > 0:
-              parent.append( "<p><b>Of the %d NCS operators, only %d had reasonable correlations and mask volumes at the end of the calculation.</b></p>"%(nncs,ngood) )
+              parent.addText( text="Of the %d NCS operators, only %d had reasonable correlations and mask volumes at the end of the calculation."%(nncs,ngood), tone="emphasis" )
             else:
-              parent.append( "<p><b>Of the %d NCS operators, none had reasonable correlations and mask volumes at the end of the calculation.</b></p>"%(nncs) )
+              parent.addText( text="Of the %d NCS operators, none had reasonable correlations and mask volumes at the end of the calculation."%(nncs), tone="emphasis" )
         except Exception as e:
           print(e)
 
         try:
           final_fom = float(self.xmlnode.findall('Final/MeanFOM')[0].text)
           if final_fom > 0.600:
-            parent.append( "<p>The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is good enough for model building. However the figure-of-merit from density modification can be seriously overestimated.</p>"%(final_fom,) )
+            parent.addText( text="The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is good enough for model building. However the figure-of-merit from density modification can be seriously overestimated."%(final_fom,) )
           elif final_fom > 0.400:
-            parent.append( "<p>The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is marginal for model building.</p>"%(final_fom,) )
+            parent.addText( text="The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is marginal for model building."%(final_fom,) )
           else:
-            parent.append( "<p>The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is too poor for model building.</p>"%(final_fom,) )
+            parent.addText( text="The final figure-of-merit is <b>%4.2f</b>, which suggests that the map is too poor for model building."%(final_fom,) )
         except Exception as e:
-          parent.append( "<p>THERE WAS A PROBLEM REPORTING THE FOM %s</p>"%(e,) )
+          parent.addText( text="THERE WAS A PROBLEM REPORTING THE FOM %s"%(e,) )
 
 
         if len( self.xmlnode.findall('Cycles/Cycle') ) > 0:
-          tableDiv = parent.addDiv(style="height:250px;width:20em;float:left;border:0px;")
+          tableDiv = parent.addDiv()
           table = tableDiv.addTable(transpose=True)
           table.addData(title="Solvent content",select='SolventContent/SolventContent')
           table.addData(title="Initial FOM",select='Cycles/Cycle[1]/MeanFOM')
@@ -124,7 +124,7 @@ class parrot_report(Report):
           l = p.append('plotline',xcol=1,ycol=6)
           l = p.append('plotline',xcol=1,ycol=7)
           l = p.append('plotline',xcol=1,ycol=8)
-          clearingDiv = parent.addDiv(style="clear:both;")
+          clearingDiv = parent.addDiv()
 
         # add the solvent content analysis
         solContentFold = parent.addFold(label='Solvent content analysis')
@@ -143,7 +143,7 @@ class parrot_report(Report):
           l = p.append('plotline',xcol=1,ycol=3)
           #l = p.append('histogram',col=3)
           #l.append('binwidth','.5')
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
 
         # Add the rest of the graphs
         otherGraphsFold = parent.addFold(label='Other graphs from log file')
@@ -156,4 +156,4 @@ class parrot_report(Report):
         for thisgraph in graphlist:
             graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
             graph = graph.addPimpleData(xmlnode=thisgraph)
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()

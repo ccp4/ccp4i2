@@ -17,10 +17,8 @@ class molrep_selfrot_report(Report):
         if parent is None: parent=self
 
         for structureFactorNode in self.xmlnode.findall('.//StructureFactors'):
-            parent.append('<br/>')
-            parent.append('<br/>')
-            parent.addText(text = 'Conclusion of search for anisotropy: ',style='font-size:120%;')
-            parent.addText(xmlnode=structureFactorNode, select='INFO',style='font-size:120%;')
+            parent.addText(text = 'Conclusion of search for anisotropy: ',tone="heading")
+            parent.addText(xmlnode=structureFactorNode, select='INFO',tone="heading")
             dataTable = parent.addTable(xmlnode = self.xmlnode, select='StructureFactors')
             headings = {'LowResProvided':'Dmax',
                 'HighResProvided':'Dmin',
@@ -35,10 +33,8 @@ class molrep_selfrot_report(Report):
 
         for pattersonNode in self.xmlnode.findall ('.//Patterson'):
             #Pull out conclusion of search for translational symmetry
-            parent.append('<br/>')
-            parent.append('<br/>')
-            parent.addText(text = 'Conclusion of search for translational symmetry: ',style='font-size:120%;')
-            parent.addText(xmlnode=pattersonNode, select='INFO',style='font-size:120%;')
+            parent.addText(text = 'Conclusion of search for translational symmetry: ',tone="heading")
+            parent.addText(xmlnode=pattersonNode, select='INFO',tone="heading")
 
             # Surface pseudo-translation warning with vector details
             for pstNode in pattersonNode.findall('PseudoTranslation'):
@@ -66,7 +62,6 @@ class molrep_selfrot_report(Report):
                     parent.append(vecHtml)
 
             #Provide list of self Patterson peaks as a table
-            parent.append('<br/>')
             pattersonFold=parent.addFold(label='Self Patterson peaks',initiallyOpen=False,style='font-size:110%;')
             peakTable = pattersonFold.addTable(xmlnode = pattersonNode, select='Peak',title='Self-Patterson peaks')
             headings = 'No IX  IY  IZ  Xfrac  Yfrac  Zfrac  Xort   Yort    Zort   Dens Dens_sigma'.split()
@@ -75,7 +70,6 @@ class molrep_selfrot_report(Report):
 
         for rotationNode in self.xmlnode.findall ('.//SelfRotation'):
             #Provide list of symmetry-expanded rotation funciton peaks as a table
-            parent.append('<br/>')
             selfRotationFold=parent.addFold(label='Self Rotation peaks',initiallyOpen=False,style='font-size:110%;')
             peakTable = selfRotationFold.addTable(xmlnode = rotationNode, select='Peak',title='Self-rotation peaks')
             headings=  'No theta    phi     chi    alpha    beta   gamma      Rf    Rf_sigma'.split()
@@ -102,7 +96,7 @@ class molrep_selfrot_report(Report):
                 ps_text = f.read()
             svg_text = ps_to_svg(ps_text)
         except Exception as e:
-            parent.append(f'<p>Could not render rotation function plot: {e}</p>')
+            parent.addText(text=f'Could not render rotation function plot: {e}')
             return
 
         # Save SVG to job directory for standalone download
@@ -121,7 +115,6 @@ class molrep_selfrot_report(Report):
             f'Download SVG</a>'
         )
 
-        parent.append('<br/>')
         srfFold = parent.addFold(label='Self Rotation Function Plot', initiallyOpen=True, style='font-size:110%;')
         srfFold.append(download_link)
         srfFold.append(svg_text)

@@ -48,9 +48,9 @@ class aimless_pipe_report(Report):
       errormessage =  self.xmlnode.findall('PIPELINE_ERROR')[0].text
       #print("errormessage", errormessage)
       errorDiv = parent.addDiv(
-        style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
+        )
       errorDiv.addText(text='FATAL ERROR',
-                       style='font-weight:bold; font-size:150%; color:red;')
+                       tone="error")
       errorDiv.append(errormessage)
 
       if len(self.xmlnode.findall('AIMLESS/DisasterMessage'))>0:
@@ -104,7 +104,7 @@ class aimless_pipe_report(Report):
     # Empty XML file
     if not havePointlessReport and not haveAimlessReport and not haveCtruncateReport:
       parent.addText(text='No Report data available, probably due to failure of job',
-                     style='color:red;')
+                     tone="error")
       return
 
     self.merged = False   # files are usually unmerged
@@ -186,16 +186,14 @@ class aimless_pipe_report(Report):
     if errorspresent:
       if pointlessFatalErrors:
         errorDiv = parent.addDiv(
-          style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
-        errorDiv.append('<br/>')
-        errorDiv.addText(text='Errors from Pointless', style='font-size:120%;color:red;')
+          )
+        errorDiv.addText(text='Errors from Pointless', tone="error")
         self.pointlessreport.Errors(errorDiv)   #  report any fatal errors
         havePointlessReport = False
       if aimlessFatalErrors:
         errorDiv = parent.addDiv(
-          style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
-        errorDiv.append('<br/>')
-        errorDiv.addText(text='Errors from Aimless', style='font-size:120%;color:red;')
+          )
+        errorDiv.addText(text='Errors from Aimless', tone="error")
         self.aimlessreport.Errors(errorDiv)   #  report any fatal errors
         self.displayLogFiles(parent)
         haveAimlessReport = False
@@ -236,13 +234,13 @@ class aimless_pipe_report(Report):
         return
 
     if importlogxml is not None:
-      topDiv = parent.addDiv(style="font-size:90%;border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;")
-      mmcifDiv = topDiv.addDiv(style="padding:5px;background-color:#CCEEFF;")
+      topDiv = parent.addDiv(style="font-size:90%;")
+      mmcifDiv = topDiv.addDiv(style="background-color:#cceeff;")
       self.mmcifreport(importlogxml, mmcifDiv)
 
     # Summary of summaries
     summaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
     summaryfold = summaryDiv.addFold(label='Key summary', brief='Headline',
                                      initiallyOpen=True)
 
@@ -270,10 +268,9 @@ class aimless_pipe_report(Report):
         if nctruncates > 1:
           text = 'Key warnings for dataset'+ctruncatereport.getDatasetid()
           summaryfold.addText(text=text,
-                              style='font-weight:bold; font-size:120%;')
-          summaryfold.append('<br/>')
+                              tone="heading")
         ctruncatekey = summaryfold.addDiv(\
-          style="margin-left: 40px;")
+          )
 
         ctruncatereport.keyText(ctruncatekey,
                                 phasertncs=self.phasertNCS,
@@ -295,12 +292,12 @@ class aimless_pipe_report(Report):
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . . 
     # Main summary
     overallsummaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
     overallfold = overallsummaryDiv.addFold(label='Overall summary',
                                             brief='Summary',initiallyOpen=True)
     # Put the key messages about spacegroup and resolution at the very top
     # Container for headline content and subsequent graphs
-    headlineDiv = overallfold.addDiv(style="margin:0px; padding:5px;")
+    headlineDiv = overallfold.addDiv()
 
     # Use grid layout for responsive two-column display
     if self.numberofdatasets == 1:
@@ -317,7 +314,7 @@ class aimless_pipe_report(Report):
         self.addPointlessSummary(headlineLeft)
         self.pointlessreport.ElementScoresTable(headlineRight)
       if haveAimlessReport:
-        statsDiv = overallfold.addDiv(style="border:1px solid black; margin:5px; padding:10px;")
+        statsDiv = overallfold.addDiv()
 
     if haveAimlessReport:
       table_info = None
@@ -333,10 +330,8 @@ class aimless_pipe_report(Report):
         self.aimlessreport.addAimlessSummary(statsDiv, table_info)
 
       if self.numberofdatasets > 1:
-        interdatasetDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; \
-            clear:both; margin:0px; padding:0px;")
-        aHeaderDiv = interdatasetDiv.addDiv(style=\
-                         "clear:both;font-weight:bold; font-size:130%;text-align:center;")
+        interdatasetDiv = overallfold.addDiv()
+        aHeaderDiv = interdatasetDiv.addDiv(style="font-weight:bold;font-size:130%;text-align:center;")
         aHeaderDiv.append('<br/>Comparison of differences between datasets')
         self.aimlessreport.addInterDatasetGraphs(interdatasetDiv)
 
@@ -357,20 +352,20 @@ class aimless_pipe_report(Report):
 
       # Phaser analysis
       if self.phaserxmlnodelist is not None:
-        phaserDiv = parent.addDiv(style='width:100%; clear:both; margin:0px; padding:0px;')
+        phaserDiv = parent.addDiv()
         phaserfold = phaserDiv.addFold(label='Analyses of twinning, tNCS and anisotropy from Phaser',
                                             brief='Phaser',initiallyOpen=True)
-        headerDiv = phaserfold.addDiv(style='width:100%;text-align:center;border-width: 1px; border-color: solid black;')
+        headerDiv = phaserfold.addDiv(style="text-align:center;")
         self.phaseranalysis(headerDiv)
 
       if self.ctruncatereports != None:
         toptruncateDiv = parent.addDiv(\
-          style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+          )
         truncatefold = toptruncateDiv.addFold(label='Analysis of twinning from ctruncate',
                                             brief='Truncate',initiallyOpen=True)
 
-        ctruncateDiv = truncatefold.addDiv(style='width:100%;text-align:center;')
-        headerDiv = ctruncateDiv.addDiv(style='width:100%;text-align:center;font-weight: bold; font-size:130%;')
+        ctruncateDiv = truncatefold.addDiv(style="text-align:center;")
+        headerDiv = ctruncateDiv.addDiv(style="text-align:center;font-weight:bold;font-size:130%;")
 ##        headerDiv = ctruncateDiv.addDiv(style='width:100%;text-align:center;font-weight: bold; font-size:130%;')
         headerDiv.addText(text='Analysis for twinning from ctruncate, more details in Istats section')
 
@@ -378,60 +373,55 @@ class aimless_pipe_report(Report):
         nctruncates = len(self.ctruncatereports)
         for ctruncatereport in self.ctruncatereports:
           twinned = ctruncatereport.addWarningTwin(headerDiv,check=True)
-          ctruncateDiv.append('<br/>')
           if nctruncates > 1:
             text = 'Statistics for dataset'+ctruncatereport.getDatasetid()
             ctruncateDiv.addText(text=text)
-            ctruncateDiv.append('<br/>')
           if twinned:
             ctruncateDiv.addText(text='This dataset is probably twinned',
-                          style='color:red;')
+                          tone="error")
           else:
             ctruncateDiv.addText(text='This dataset is probably NOT twinned',
-                              style='font-style:italic; color:green;')
+                              tone="success")
 
           # Twin analysis in two columns
           twinleftDiv, twinrightDiv = ctruncateDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
-          twinleftDiv.addText(text='L-test for twinning',style="font-weight:bold;x font-size:130%;")
-          twinleftDiv.append('<br/>')
+          twinleftDiv.addText(text='L-test for twinning',tone="emphasis")
           ctruncatereport.CtruncateLtest(twinleftDiv)
           ctruncatereport.acentricMoments(twinrightDiv)
 
 
     if havePointlessReport or haveAimlessReport:
-      details1Div = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-      details1Div.append('<br/>')
+      details1Div = parent.addDiv()
       if havePointlessReport:
         self.pointlessreport.Details(details1Div)
 
     if haveAimlessReport:
-      nextgraphsDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      nextgraphsDiv = parent.addDiv()
       nextfold = nextgraphsDiv.addFold(label='Other merging graphs', brief='Merging', initiallyOpen=True)
       self.aimlessreport.moreGraphs(nextfold)
 
       if not self.merged:
-        sdDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        sdDiv = parent.addDiv()
         sdfold =sdDiv.addFold(label='SD analysis', brief='SDanalysis', initiallyOpen=True)
         self.aimlessreport.sdAnalysis(sdfold)
       
-      details2Div = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      details2Div = parent.addDiv()
       fold = details2Div.addFold(label="Details of merging", brief='Details')
       #  Resolution estimates and other stats in two columns
       leftDiv, rightDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
-      aHeaderDiv = leftDiv.addDiv(style="font-weight:bold; font-size:130%;")
+      aHeaderDiv = leftDiv.addDiv(style="font-weight:bold;font-size:130%;")
       aHeaderDiv.append('Resolution estimates')
       self.aimlessreport.resolutionEstimateTable(leftDiv)
 
       # Other stuff
       self.aimlessreport.otherStatistics(rightDiv)
       
-      fold.append('<br/>')
-      crossDiv = fold.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px;")
-      crossHDiv = crossDiv.addDiv(style="font-weight:bold; font-size:130%;text-align:left")
+      crossDiv = fold.addDiv(style="text-align:center;")
+      crossHDiv = crossDiv.addDiv(style="font-weight:bold;font-size:130%;text-align:left;")
 
       self.aimlessreport.interRunTable(crossDiv)
       
-      truncateDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      truncateDiv = parent.addDiv()
       #truncateDiv.append('<br/>')
       fold = truncateDiv.addFold(label="Intensity statistics: twinning tNCS etc",brief='Istats')
 
@@ -439,12 +429,12 @@ class aimless_pipe_report(Report):
         self.addCtruncateReports(fold)
 
       #The following is to return the html to doing one item per line
-      parent.addDiv(style="width:95%; clear:both;")
+      parent.addDiv()
 
   # - - - - - - - - - - - - - - - - - - - - - - - 
   def addAimlessSummaryMerged(self, parent=None, extraitems=None):
     aHeaderDiv = parent.addDiv(
-      style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;")
+      style="font-weight:bold;font-size:130%;")
     aHeaderDiv.append('Data internal consistency statistics')
 
     #print("addAimlessSummaryMerged", extraitems)
@@ -483,7 +473,7 @@ class aimless_pipe_report(Report):
     # Display message about AUTOCUTOFF option
     # Autocutoff block is in self.autocutoffnode
 
-    cutoffDiv = parent.addDiv(style='color:Blue;font-size:105%;margin-left: 20px;')
+    cutoffDiv = parent.addDiv(style="color:blue;font-size:105%;")
 
     # Extract CChalf threshold
     threshold = -1.0
@@ -539,7 +529,7 @@ class aimless_pipe_report(Report):
 
       cutoffDiv.append(s)
 
-      elimit = cutoffDiv.addDiv(style='color:Blue;font-size:95%;margin-left: 40px;')
+      elimit = cutoffDiv.addDiv(style="color:blue;font-size:95%;")
       if ndatasets == 1:
         name = cutoffdatasets[0].attrib['name']
         dtsreslimit = cutoffdatasets[0].findall('ResolutionEstimate')[0].text
@@ -607,9 +597,8 @@ class aimless_pipe_report(Report):
       cifcolumns = importlogxml.findall("mmcifblockcolumns")[0].text
       text.append( "mmCIF columns used: "+cifcolumns)
 
-    mmcifDiv.append("<br/>")
     mmcifDiv.addText(text='Information about the imported  mmCIF file :',
-                        style='font-weight:bold; font-size:110%; color:blue;')
+                        tone="info")
 
     #mmcifDiv.append("<br/>")
     for line in text:
@@ -637,9 +626,9 @@ class aimless_pipe_report(Report):
       errormessage =  self.xmlnode.findall('PIPELINE_ERROR')[0].text
       print("errormessage", errormessage)
       errorDiv = parent.addDiv(
-        style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
+        )
       errorDiv.addText(text='FATAL ERROR',
-                       style='font-weight:bold; font-size:150%; color:red;')
+                       tone="error")
       errorDiv.append(errormessage)
       
     #  1) POINTLESS
@@ -649,7 +638,7 @@ class aimless_pipe_report(Report):
     # Empty XML file
     if not havePointlessReport:
       parent.addText(text='No Report data available, probably due to failure of job',
-                     style='color:red;')
+                     tone="error")
       return
 
     # Pointless report exists
@@ -667,54 +656,51 @@ class aimless_pipe_report(Report):
     if errorspresent:
       if pointlessFatalErrors:
         errorDiv = parent.addDiv(
-          style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
-        errorDiv.append('<br/>')
-        errorDiv.addText(text='Errors from Pointless', style='font-size:120%;color:red;')
+          )
+        errorDiv.addText(text='Errors from Pointless', tone="error")
         self.pointlessreport.Errors(errorDiv)   #  report any fatal errors
         
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . . 
     # Summary of summaries
     summaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
     if havePointlessReport:
       fail = self.pointlessreport.Errors(summaryDiv)   #  report any fatal errors
       if fail:
         return
 
       summaryDiv.addText(text="Report from Pointless while Aimless is running",
-                         style='font-weight:bold; font-size:150%; color:red;')
+                         tone="error")
 
       self.pointlessreport.keyText(summaryDiv)
 
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . . 
     # Main summary
     overallsummaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
 
     # Put the key messages about spacegroup and resolution at the very top
     # Use grid layout for responsive two-column display
-    headlineDiv = overallsummaryDiv.addDiv(style="padding:5px;")
+    headlineDiv = overallsummaryDiv.addDiv()
     leftDiv, rightDiv = headlineDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     self.addPointlessSummary(leftDiv)
 
     if havePointlessReport:
       self.pointlessreport.ElementScoresTable(rightDiv)
     
-      details1Div = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-      details1Div.append('<br/>')
+      details1Div = parent.addDiv()
       if havePointlessReport:
         self.pointlessreport.Details(details1Div, usefold=False, elementscores=False,
                                      all=True, open1=True)
       
       #The following is to return the html to doing one item per line
-      parent.addDiv(style="width:95%; clear:both;")
+      parent.addDiv()
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addPointlessSummary(self, parent=None):
     spacegroupDiv = parent.addDiv(
-      style="text-align:center;margin:0px auto; padding:3px; \
-            line-height:100%;border:1px solid black;")
-    spacegroupDiv.addText(text='Space group determination',style="font-size:130%;")
+      style="text-align:center;line-height:100%;")
+    spacegroupDiv.addText(text='Space group determination',tone="heading")
     self.pointlessreport.MainMessages(spacegroupDiv)
     self.pointlessreport.Errors(spacegroupDiv)   #  report any fatal errors
 
@@ -739,9 +725,8 @@ class aimless_pipe_report(Report):
         title += dts.split('/')[2]+" "
       title += ctruncatenode.findall('DataStatistics/WilsonB')[0].text+" "
     WilsonDiv = parent.addDiv(
-      style="text-align:center;margin:0px auto; padding:1px;")
-    WilsonDiv.addText(text=title,style="font-weight:bold; font-size:125%;")
-    WilsonDiv.append('<br/>')
+      style="text-align:center;")
+    WilsonDiv.addText(text=title,tone="heading")
     #print("addTruncateWilson",self.ctruncatereports[0].xmlnode)
     for ctreport in self.ctruncatereports:
       ctreport.CtruncateWilson(WilsonDiv)
@@ -849,7 +834,7 @@ class aimless_pipe_report(Report):
         place = parent
         if not OK:
           place = parent.addDiv(
-            style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
+            )
   
         for message in freeRmessage:
           #print('line: ', message)
@@ -941,10 +926,9 @@ class aimless_pipe_report(Report):
     # <CCP4Table groupID="Graph" id="informationcontent" title=" Information content of data">
 
     icDiv = parent.addDiv(
-      style="text-align:center;margin:3px auto; padding:1px; ;")
+      style="text-align:center;")
     icDiv.addText(text="Information content by resolution",
-                  style="font-weight:bold; font-size:125%;")
-    icDiv.append('<br/>')
+                  tone="heading")
     graphgroup = icDiv.addFlotGraphGroup(style="width:300px;  height:270px;border:1px solid black:padding:3px")
     for dsetidx in range(self.numberofdatasets):  # Loop datasets
       phaseridx = self.datasetIndex.phaserIndex(dsetidx)  # index into phaser lists
@@ -965,7 +949,7 @@ class aimless_pipe_report(Report):
     for dsetidx in range(self.numberofdatasets):  # Loop datasets
       phaseridx = self.datasetIndex.phaserIndex(dsetidx)  # index into phaser lists
       dname = self.datasetIndex.getDname(dsetidx)
-      phaserdtsDiv = parent.addDiv(style='width:100%;text-align:center;clear:both;')
+      phaserdtsDiv = parent.addDiv(style="text-align:center;")
       self.phaserreports[phaseridx].phaserAnalysisReport(phaserdtsDiv, False)
 
 

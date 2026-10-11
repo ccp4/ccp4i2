@@ -18,7 +18,7 @@ class AMPLE_report(Report):
         repdir = os.path.join(jobInfo.get('fileroot', None), I2DIR, 'jsrview')
         self.table_elements = self.get_tables_as_elements(repdir)
         #print("JMHT WRITING REPORT %s" % self.tables)
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         for e1 in xmlnode:
             if e1.tag == 'tab':
                 self.report_section(e1, self)

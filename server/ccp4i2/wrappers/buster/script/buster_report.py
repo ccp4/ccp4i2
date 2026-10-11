@@ -22,7 +22,7 @@ class buster_report(Report):
         bestRFree = float(self.xmlnode.findall('.//RunInfo/Best/RFree')[0].text)
         sbestR = f'{round(bestR, 3):.3g}'
         sbestRFree = f'{round(bestRFree, 3):.3g}'
-        parent.append("<p>Best refinement in BUSTER reached with R/Rfree: %s / %s </p>"%(sbestR,sbestRFree))
+        parent.addText(text="Best refinement in BUSTER reached with R/Rfree: %s / %s"%(sbestR,sbestRFree))
         inst = "<h3>BUSTER Plots</h3>"
         inst += "<h3>R/RFree, Log-Likelihood, and RMS Values vs Cycle:</h3>"
         parent.append(inst)
@@ -77,7 +77,7 @@ class buster_report(Report):
         l.append('label','RMS Angles')
         l.append('colour','lightgreen')
 
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         fileRoot = self.jobInfo['fileroot']
         if os.path.exists(os.path.join(fileRoot,"Plots","summary.png")):
