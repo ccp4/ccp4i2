@@ -11,13 +11,11 @@ class coot_rebuild_report(Report):
         pdbsWrittenStringS = xmlnode.findall(pdbsWrittenPath)
         if len(pdbsWrittenStringS) > 0:
             pdbsWrittenString = xmlnode.findall(pdbsWrittenPath)[0].text
-            self.append('<br/>')
             self.addText(text='Number of PDBs written: ' + pdbsWrittenString)
         dictsWrittenPath = './/coot_rebuild/number_output_dicts'
         dictsWrittenStringS = xmlnode.findall(dictsWrittenPath)
         if len(dictsWrittenStringS) > 0:
             dictsWrittenString = xmlnode.findall(dictsWrittenPath)[0].text
-            self.append('<br/>')
             self.addText(text='Number of DICTs written: ' + dictsWrittenString)
         self.drawWarnings()
 
@@ -27,8 +25,7 @@ class coot_rebuild_report(Report):
         warningsFolder = parent.addFold(label='Warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from coot_rebuild')
         return

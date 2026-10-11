@@ -15,10 +15,10 @@ class sheetbend_report(Report):
     def defaultReport(self, parent=None, select="."):
         if parent is None: parent = self
 
-        clearingDiv = parent.addDiv(style="clear:both;")
-        parent.append( "<p>Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</p>" )
+        clearingDiv = parent.addDiv()
+        parent.addText( text="Note: R factors and free R factors are only comparable for cycles where the resolution is the same." )
 
-        tableDiv = parent.addDiv(style="float:left;border:0px;")
+        tableDiv = parent.addDiv()
         # Drawn into a pipeline's fold, the parent's XML is the pipeline's:
         # without a select of its own (molrep_pipe passes one, relative to the
         # pipeline), read this report's node, or every column comes back empty.
@@ -34,4 +34,4 @@ class sheetbend_report(Report):
         except Exception as e:
             print( "ERROR sheetbend_report ", e, file=sys.stderr )
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()

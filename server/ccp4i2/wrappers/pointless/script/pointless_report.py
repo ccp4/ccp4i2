@@ -61,16 +61,16 @@ class pointless_report(Report):
     #print "justPointless"
 
     summaryDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      )
 
-    summaryDiv.addText(text='POINTLESS', style='font-size: 150%;text-align:center')
+    summaryDiv.addText(text='POINTLESS', tone="heading")
     if self.fileroot is not None:
       displayFile(self.fileroot, summaryDiv,
                   ['./log.txt'], 'Show log file',projectid=projectid,jobNumber=jobNumber)
 
     if extratext is not None:
       summaryDiv.addText(text=extratext,
-                 style='font-weight:bold;font-size: 130%;text-align:center')
+                 tone="heading")
 
     self.keyText(summaryDiv)
 
@@ -80,13 +80,13 @@ class pointless_report(Report):
     haveElements = len(self.xmlnode.findall(".//ElementScores"))>0
     
     nextDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
+      )
     if haveElements:
       # Use grid layout for two-column display
       mainDiv, rightDiv = nextDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     else:
       # otherwise just one full-width div
-      mainDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+      mainDiv = nextDiv.addDiv(style="text-align:center;")
 
     self.twinWarning(mainDiv)
     self.BestSolutionType(mainDiv)
@@ -95,7 +95,7 @@ class pointless_report(Report):
     if haveElements:
       self.ElementScoresTable(rightDiv)
 
-    detailDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+    detailDiv = nextDiv.addDiv(style="text-align:center;")
     detailText = ""   # default use default
     if len(self.xmlnode.findall('CopyMessage'))>0:
       detailText = "Details"
@@ -203,7 +203,6 @@ class pointless_report(Report):
       s += "\nNumber of observation parts removed "+nremoved+" from "+nbefore
       s += "\nAfter lattice removal, space group first changed to "+newSG
       s = html_linebreak(s)
-      parent.append("<br/>")
       parent.append('<span style="color:blue">'+s+'</span>')
 
     self.extraLatticeHeadline(parent)
@@ -213,12 +212,11 @@ class pointless_report(Report):
       if merged == "True":
         s = "WARNING: Input data are merged, so space group determination is "+\
             "limited to testing for under-merging"
-        parent.addText(text=s, style="color:darkorange;")
-        parent.append("<br/>")
+        parent.addText(text=s, tone="warning")
         datasetlist = self.xmlnode.findall("ReflectionData/Dataset")
         if len(datasetlist) < 2:
           s = "No scaling will be done, just analysis"
-          parent.addText(text=s, style="color:darkorange;")
+          parent.addText(text=s, tone="warning")
 
     if len(self.xmlnode.findall('BestSolutionType'))>0:
       solutionmessage = html_linebreak(self.xmlnode.findall("SolutionMessage")[0].text)
@@ -338,8 +336,8 @@ class pointless_report(Report):
                             brief=brieftext)
     else:
       fold = parent.addDiv(
-        style="padding:10px 0px 0px 0px;")
-      fold.addText(text=text , style="font-size:120%;")
+        )
+      fold.addText(text=text , tone="heading")
 
     self.IndexScores(fold, open1=open1)
     self.ExtralatticeScores(fold)
@@ -366,13 +364,13 @@ class pointless_report(Report):
     haveElements = len(self.xmlnode.findall(".//ElementScores"))>0
     
     nextDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
+      )
     if haveElements:
       # Use grid layout for two-column display
       mainDiv, rightDiv = nextDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     else:
       # otherwise just one full-width div
-      mainDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+      mainDiv = nextDiv.addDiv(style="text-align:center;")
 
     self.BestSolutionType(mainDiv)
     self.BestReindex(mainDiv)
@@ -380,7 +378,7 @@ class pointless_report(Report):
     if haveElements:
       self.ElementScoresTable(rightDiv)
 
-    detailDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+    detailDiv = nextDiv.addDiv(style="text-align:center;")
     detailText = ""   # default use default
     if len(self.xmlnode.findall('CopyMessage'))>0:
       detailText = "Details"
@@ -431,7 +429,6 @@ class pointless_report(Report):
         if colour != '':
           message = '<div style="color:'+colour+';font-size:130%">'+message+'</div>'
         parent.append(message)
-        parent.append("<br/>")
       else:
         # just some missing data
         message = "<br/>NB: "+datamissing.text+"<br/>"
@@ -446,7 +443,6 @@ class pointless_report(Report):
         if colour != '':
           message = '<div style="color:'+colour+';font-size:130%">'+message+'</div>'
         parent.append(message)
-        parent.append("<br/>")
       
   # - - - - - - - - - - - - - - - - -
   def isTwinWarning(self):
@@ -809,7 +805,7 @@ class pointless_report(Report):
   def ElementScoresTable(self,parent=None):
     # short form for embedding in other div
 
-    parent.addText(text="Scores for each symmetry element", style="font-size:120%;")
+    parent.addText(text="Scores for each symmetry element", tone="heading")
     if len(self.xmlnode.findall(".//BestSolutionType"))>0:
       parent.append("Lattice group name "+\
                   self.xmlnode.findall("LatticeSymmetry/LatticegroupName")[0].text)

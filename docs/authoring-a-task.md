@@ -226,6 +226,18 @@ automatically**.
 
 ## Step 3.5 — Cite the program your task runs
 
+A report says what each line is for, not how to paint it. `addText(text=...,
+tone=...)` takes one of `heading`, `emphasis`, `info`, `success`, `warning`,
+`error`, `muted`, `code`, and the client paints it from its theme; the text may
+carry inline markup (`<b>`, `<i>`, `<a>`), kept as markup. Do not append raw
+HTML strings (`parent.append("<p>...</p>")`, `"<br />"`) and do not pass CSS in
+`style=`: both are the html-era way, still rendered for the files not yet
+converted (2026-10-11: 209 raw appends and 101 `addDiv(style=)` remain, listed
+by `grep`), but new code gives a tone. Every report class is rendered against
+recorded jobs by `tests/unit/lib/test_report_fixtures.py`; a change that alters
+the emitted XML shows up there and is accepted with `--rebaseline` once the
+diffs have been read.
+
 If your task wraps a published program, its report should say so. Reports build
 their bibliography from the MedLine files in `server/ccp4i2/references/`, and a
 task that cites nothing renders an empty references section — which used to

@@ -17,16 +17,16 @@ class adding_stats_to_mmcif_i2_report(Report):
         if jobStatus is not None and jobStatus.lower() == 'nooutput':
             return
         elif jobStatus in ['Running','Running remotely']:
-            clearingDiv = self.addDiv(style="clear:both;")
+            clearingDiv = self.addDiv()
             self.runningText(self)
         else:
-            clearingDiv = self.addDiv(style="clear:both;")
+            clearingDiv = self.addDiv()
             self.addDefaultReport(self)
 
     def runningText(self, parent=None) :
         if parent is None: parent = self
         self.addSequenceAlignmentReport(parent)
-        parent.append ( "<p><b>Files sent to the Validation server. Updates will be shown here once validation report ready...</b></p>" )
+        parent.addText ( text="Files sent to the Validation server. Updates will be shown here once validation report ready...", tone="emphasis" )
 
     def addDefaultReport(self, parent=None):
         if parent is None: parent=self
@@ -41,12 +41,12 @@ class adding_stats_to_mmcif_i2_report(Report):
             refmacReportNode0 = self.xmlnode.findall("REFMAC")[0]
             refmacReport = refmac_report.refmac_report(xmlnode=refmacReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
             refmacReport.addSummary(parent=parent, withTables=False)
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
 
         # Sequence alignment validation
         self.addSequenceAlignmentReport(parent)
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         scaledUnmergedFold = parent.addFold(label="Scaled unmerged", initiallyOpen=True)
         if len(self.jobInfo['filenames']['SCALEDUNMERGED'].strip()) != 0:
             scaledUnmergedFold.append(
@@ -78,7 +78,7 @@ class adding_stats_to_mmcif_i2_report(Report):
                 remakeValidationSvg = True
 
             if remakeValidationSvg and summary is not None:
-                parent.append ( "<p>Failed to download validation summary. Regenerating svg...</p>" )
+                parent.addText ( text="Failed to download validation summary. Regenerating svg..." )
                 self.makeValidationSvg(summary, validationSvg)
 
         if not summary and not os.path.exists(validationSvg):
@@ -86,10 +86,10 @@ class adding_stats_to_mmcif_i2_report(Report):
             # because it was not asked: say so once, not as two "No ...
             # downloaded" folds that read like failures.
             fold = parent.addFold(label="Validation", initiallyOpen=True)
-            fold.append("<p>No validation report: the files were not sent to the wwPDB "
+            fold.addText(text="No validation report: the files were not sent to the wwPDB "
                         "validation server, or it returned nothing. Tick <i>Use validation "
                         "server</i> to have them validated here, or upload the files "
-                        "below to OneDep, which validates them as part of deposition.</p>")
+                        "below to OneDep, which validates them as part of deposition.")
             return
 
         summaryFold = parent.addFold(label="Validation summary", initiallyOpen=True)
@@ -98,9 +98,9 @@ class adding_stats_to_mmcif_i2_report(Report):
             # embedded (as Privateer's drawings did).
             summaryFold.append(inline_svg(open(validationSvg).read()))
         else:
-            summaryFold.append("<p>No validation summary was downloaded.</p>")
+            summaryFold.addText(text="No validation summary was downloaded.")
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         statisticsFold = parent.addFold(label="Validation statistics", initiallyOpen=True)
         if len(summary) != 0:
             table = statisticsFold.addTable(style='width:600px;', transpose=True, downloadable=True)
@@ -110,7 +110,7 @@ class adding_stats_to_mmcif_i2_report(Report):
                 if s['value'] is not None:
                     table.addData(title = s['label'], data = [s['value'], s['pc_abs'], s['pc_rel']])
         else:
-            statisticsFold.append ( "<p>No validation statistics were downloaded.</p>" )
+            statisticsFold.addText ( text="No validation statistics were downloaded." )
 
     def addCifStatsTable(self, parent):
         """Render data reduction statistics from CIF stats (no Aimless XML)."""

@@ -1,13 +1,7 @@
 <CCP4i2Reportphaser_pipeline_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="phaser_pipeline" title2="14:34 14-Jun-2023" />
-  <CCP4i2ReportDiv class="" style="clear:both;" />
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
-  <CCP4i2ReportText class="" style="color:red;">Patterson Pathology in NMOL analysis, possible coiled coil or other regular structure, view Patterson (TNCS PATT MAPS ON)</CCP4i2ReportText>
-  <CCP4i2ReportGeneric class="" style="">
-    <br />
-  </CCP4i2ReportGeneric>
+  <CCP4i2ReportDiv class="" style="" />
+  <CCP4i2ReportText class="" style="" tone="error">Patterson Pathology in NMOL analysis, possible coiled coil or other regular structure, view Patterson (TNCS PATT MAPS ON)</CCP4i2ReportText>
   <CCP4i2ReportFold class="" style="" label="Elements and scores of current solution" initiallyOpen="True" brief="Current soln.">
     <CCP4i2ReportText class="" style="">Current best solution has spacegroup P 21 21 21</CCP4i2ReportText>
     <CCP4i2ReportTable class="" style="" transpose="False">
@@ -1308,13 +1302,11 @@ Finished: Wed Jun 14 15:36:42 2023
       </CCP4i2ReportFlotGraph>
     </CCP4i2ReportObjectGallery>
   </CCP4i2ReportFold>
-  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportFold class="" style="" label="Shift field refinement" initiallyOpen="True" brief="Sheetbend">
-    <CCP4i2ReportDiv class="" style="clear:both;" />
-    <CCP4i2ReportGeneric class="" style="">
-      <p>Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</p>
-    </CCP4i2ReportGeneric>
-    <CCP4i2ReportDiv class="" style="float:left;border:0px;">
+    <CCP4i2ReportDiv class="" style="" />
+    <CCP4i2ReportText class="" style="">Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</CCP4i2ReportText>
+    <CCP4i2ReportDiv class="" style="">
       <CCP4i2ReportTable class="" style="" transpose="False">
         <table>
           <thead>
@@ -1417,13 +1409,13 @@ Finished: Wed Jun 14 15:36:42 2023
         </table>
       </CCP4i2ReportTable>
     </CCP4i2ReportDiv>
-    <CCP4i2ReportDiv class="" style="clear:both;" />
+    <CCP4i2ReportDiv class="" style="" />
   </CCP4i2ReportFold>
   <CCP4i2ReportFold class="" style="" label="Summary of refinement" initiallyOpen="True" brief="Summary">
     <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="5">
-        <CCP4i2ReportDiv class="" style="height:250px; width:100%; margin-top:2px;">
-          <CCP4i2ReportDiv class="" style="height:225px; width:100%; overflow:auto;">
+        <CCP4i2ReportDiv class="" style="">
+          <CCP4i2ReportDiv class="" style="">
             <CCP4i2ReportTable class="" style="width:100%;" transpose="False">
               <table>
                 <thead>
@@ -1515,9 +1507,9 @@ Finished: Wed Jun 14 15:36:42 2023
         </CCP4i2ReportFlotGraph>
       </CCP4i2ReportGridItem>
     </CCP4i2ReportGridContainer>
-    <CCP4i2ReportDiv class="" style="clear:both;" />
+    <CCP4i2ReportDiv class="" style="" />
     <CCP4i2ReportFold class="" style="" label="Per cycle statistics" initiallyOpen="False" brief="Per cycle">
-      <CCP4i2ReportDiv class="" style="float:left;">
+      <CCP4i2ReportDiv class="" style="">
         <CCP4i2ReportText class="" style="">Full atom refinement - XYZ, B (Occ)</CCP4i2ReportText>
         <CCP4i2ReportTable class="" style="" transpose="False">
           <table>
@@ -1553,7 +1545,7 @@ Finished: Wed Jun 14 15:36:42 2023
           </table>
         </CCP4i2ReportTable>
       </CCP4i2ReportDiv>
-      <CCP4i2ReportDiv class="" style="clear:both;" />
+      <CCP4i2ReportDiv class="" style="" />
       <CCP4i2ReportFold class="" style="" label="All cycles" initiallyOpen="False" brief="All cycles">
         <CCP4i2ReportTable class="" style="" transpose="False">
           <table>

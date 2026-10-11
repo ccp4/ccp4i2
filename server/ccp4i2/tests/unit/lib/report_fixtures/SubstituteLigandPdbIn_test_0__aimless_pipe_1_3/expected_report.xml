@@ -1,6 +1,6 @@
 <CCP4i2Reportaimless_pipe_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="overflow:auto;">
   <CCP4i2ReportTitle class="" style="" title1="aimless_pipe" title2="14:15 12-Jul-2020" />
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Key summary" initiallyOpen="True" brief="Headline">
       <CCP4i2ReportGeneric class="" style="">
         <p>Sole alternative indexing [h,k,l] relative to reference file 4hg7_1.pdb</p>
@@ -9,7 +9,7 @@
         <p>Copying unmerged data to output file in space group P 65 2 2  with reindex operator [h,k,l]
 </p>
       </CCP4i2ReportGeneric>
-      <CCP4i2ReportText class="" style="font-weight:bold; font-size:120%;">Key statistics for Dataset: SubstituteLigandPdbIn_test_0/C1/D1</CCP4i2ReportText>
+      <CCP4i2ReportText class="" style="" tone="heading">Key statistics for Dataset: SubstituteLigandPdbIn_test_0/C1/D1</CCP4i2ReportText>
       <CCP4i2ReportGeneric class="" style="">
         <div style="margin-left: 40px;">Unit cell:   71.512  71.512 104.293  90.000  90.000 120.000, wavelength 0.872600Å<br />
           <span style="color:Blue;font-size:100%;">Estimates of resolution: input resolution     1.47Å, beyond  1.47Å from CC(1/2) &gt;  0.30,  1.53Å from I/σ &gt; 1.50</span>
@@ -19,19 +19,19 @@
       <CCP4i2ReportGeneric class="" style="">
         <span style="margin-left: 20px;">Number of rejected outliers: 26 (&gt;   6σ); between Friedel pairs: 0 (&gt; 30.9σ); too large: 0 (E &gt;  10.00)</span>
       </CCP4i2ReportGeneric>
-      <CCP4i2ReportDiv class="" style="margin-left: 20px;">
+      <CCP4i2ReportDiv class="" style="">
         <CCP4i2ReportGeneric class="" style="">
           <p>
             <span style="color:Black; font-size:120%">SD correction information:<br />
             </span>Asymptotic I/sigI, ISa:  Run 1: ISa = 25.3</p>
         </CCP4i2ReportGeneric>
       </CCP4i2ReportDiv>
-      <CCP4i2ReportDiv class="" style="color:Blue;font-size:105%;margin-left: 20px;">
+      <CCP4i2ReportDiv class="" style="color:blue;font-size:105%;">
         <CCP4i2ReportGeneric class="" style="">
           <p>No automatic resolution cutoff was requested</p>
         </CCP4i2ReportGeneric>
       </CCP4i2ReportDiv>
-      <CCP4i2ReportDiv class="" style="margin-left: 40px;">
+      <CCP4i2ReportDiv class="" style="">
         <CCP4i2ReportGeneric class="" style="">
           <p>
             <b>
@@ -85,13 +85,13 @@ Completeness test shows some issues.
       <CCP4i2ReportDiv class="" style="width:80%;display:flex;gap:8px;flex-wrap:wrap" />
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Overall summary" initiallyOpen="True" brief="Summary">
-      <CCP4i2ReportDiv class="" style="margin:0px; padding:5px;">
+      <CCP4i2ReportDiv class="" style="">
         <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
           <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-            <CCP4i2ReportDiv class="" style="text-align:center;margin:0px auto; padding:3px;             line-height:100%;border:1px solid black;">
-              <CCP4i2ReportText class="" style="font-size:130%;">Space group determination</CCP4i2ReportText>
+            <CCP4i2ReportDiv class="" style="text-align:center;line-height:100%;">
+              <CCP4i2ReportText class="" style="" tone="heading">Space group determination</CCP4i2ReportText>
               <CCP4i2ReportGeneric class="" style="">
                 <p>Copying unmerged data to output file in space group P 65 2 2  with reindex operator [h,k,l]
 </p>
@@ -99,7 +99,7 @@ Completeness test shows some issues.
             </CCP4i2ReportDiv>
           </CCP4i2ReportGridItem>
           <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-            <CCP4i2ReportDiv class="" style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;">
+            <CCP4i2ReportDiv class="" style="font-weight:bold;font-size:130%;">
               <CCP4i2ReportGeneric class="" style="">
                 <p>Data internal consistency statistics</p>
               </CCP4i2ReportGeneric>
@@ -247,24 +247,12 @@ Completeness test shows some issues.
             </CCP4i2ReportGeneric>
           </CCP4i2ReportGridItem>
         </CCP4i2ReportGridContainer>
-        <CCP4i2ReportDiv class="" style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="">
           <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
             <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-              <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of resolution</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
-              <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
-              <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">(but check anisotropy)</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
+              <CCP4i2ReportText class="" style="" tone="heading">Analysis as a function of resolution</CCP4i2ReportText>
+              <CCP4i2ReportText class="" style="" tone="muted">Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal</CCP4i2ReportText>
+              <CCP4i2ReportText class="" style="" tone="muted">(but check anisotropy)</CCP4i2ReportText>
               <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
                 <CCP4i2ReportFlotGraph class="" style="">
                   <ns0:ccp4_data title=" Correlations CC(1/2) within dataset, D1" id="data_FlotGraph_0" style="display:none;">
@@ -569,18 +557,9 @@ Anomalous resolution: All scores are below the threshold 0.15, ie there is no si
               </CCP4i2ReportFlotGraphGroup>
             </CCP4i2ReportGridItem>
             <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-              <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of batch</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
-              <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Analyses against Batch may show radiation damage, and which parts of the data should be removed</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
-              <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;"> (but consider completeness)</CCP4i2ReportText>
-              <CCP4i2ReportGeneric class="" style="">
-                <br />
-              </CCP4i2ReportGeneric>
+              <CCP4i2ReportText class="" style="" tone="heading">Analysis as a function of batch</CCP4i2ReportText>
+              <CCP4i2ReportText class="" style="" tone="muted">Analyses against Batch may show radiation damage, and which parts of the data should be removed</CCP4i2ReportText>
+              <CCP4i2ReportText class="" style="" tone="muted"> (but consider completeness)</CCP4i2ReportText>
               <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
                 <CCP4i2ReportFlotGraph class="" style="">
                   <ns0:ccp4_data title=" Analysis against all Batches for all runs, D1" id="data_FlotGraph_3" style="display:none;">
@@ -814,11 +793,8 @@ Anomalous resolution: All scores are below the threshold 0.15, ie there is no si
       </CCP4i2ReportDiv>
       <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-          <CCP4i2ReportDiv class="" style="text-align:center;margin:0px auto; padding:1px;">
-            <CCP4i2ReportText class="" style="font-weight:bold; font-size:125%;">Wilson plot B: 17.18 </CCP4i2ReportText>
-            <CCP4i2ReportGeneric class="" style="">
-              <br />
-            </CCP4i2ReportGeneric>
+          <CCP4i2ReportDiv class="" style="text-align:center;">
+            <CCP4i2ReportText class="" style="" tone="heading">Wilson plot B: 17.18 </CCP4i2ReportText>
             <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;margin: 0 auto;border:1px solid black;">
               <CCP4i2ReportFlotGraph class="" style="">
                 <ns0:ccp4_data title="Wilson plot" id="data_FlotGraph_5" style="display:none;">
@@ -879,22 +855,16 @@ Anomalous resolution: All scores are below the threshold 0.15, ie there is no si
       </CCP4i2ReportGridContainer>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Analysis of twinning from ctruncate" initiallyOpen="True" brief="Truncate">
-      <CCP4i2ReportDiv class="" style="width:100%;text-align:center;">
-        <CCP4i2ReportDiv class="" style="width:100%;text-align:center;font-weight: bold; font-size:130%;">
+      <CCP4i2ReportDiv class="" style="text-align:center;">
+        <CCP4i2ReportDiv class="" style="text-align:center;font-weight:bold;font-size:130%;">
           <CCP4i2ReportText class="" style="">Analysis for twinning from ctruncate, more details in Istats section</CCP4i2ReportText>
         </CCP4i2ReportDiv>
-        <CCP4i2ReportGeneric class="" style="">
-          <br />
-        </CCP4i2ReportGeneric>
-        <CCP4i2ReportText class="" style="font-style:italic; color:green;">This dataset is probably NOT twinned</CCP4i2ReportText>
+        <CCP4i2ReportText class="" style="" tone="success">This dataset is probably NOT twinned</CCP4i2ReportText>
         <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
           <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-            <CCP4i2ReportText class="" style="font-weight:bold;x font-size:130%;">L-test for twinning</CCP4i2ReportText>
-            <CCP4i2ReportGeneric class="" style="">
-              <br />
-            </CCP4i2ReportGeneric>
+            <CCP4i2ReportText class="" style="" tone="emphasis">L-test for twinning</CCP4i2ReportText>
             <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:300px;margin: 0 auto;border:1px solid black;">
               <CCP4i2ReportFlotGraph class="" style="">
                 <ns0:ccp4_data title="L-test for twinning" id="data_FlotGraph_6" style="display:none;">
@@ -947,10 +917,7 @@ Anomalous resolution: All scores are below the threshold 0.15, ie there is no si
             </CCP4i2ReportFlotGraphGroup>
           </CCP4i2ReportGridItem>
           <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-            <CCP4i2ReportText class="" style="font-weight:bold; font-size:130%;">Acentric intensity moments</CCP4i2ReportText>
-            <CCP4i2ReportGeneric class="" style="">
-              <br />
-            </CCP4i2ReportGeneric>
+            <CCP4i2ReportText class="" style="" tone="heading">Acentric intensity moments</CCP4i2ReportText>
             <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:300px;margin: 0 auto;border:1px solid black;">
               <CCP4i2ReportFlotGraph class="" style="">
                 <ns0:ccp4_data title="intensity moments vs resolution" id="data_FlotGraph_7" style="display:none;">
@@ -1088,22 +1055,16 @@ twin</th>
       </CCP4i2ReportDiv>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-    <CCP4i2ReportGeneric class="" style="">
-      <br />
-    </CCP4i2ReportGeneric>
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Details of space group determination" initiallyOpen="False" brief="SG details">
       <CCP4i2ReportFold class="" style="" label="Details of test data (in Pointless)" initiallyOpen="False" brief="TestData" />
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Other merging graphs" initiallyOpen="True" brief="Merging">
       <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-          <CCP4i2ReportText class="" style="font-weight:bold; font-size:130%;">Other merging statistics graphs</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Other merging statistics graphs</CCP4i2ReportText>
           <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
             <CCP4i2ReportFlotGraph class="" style="">
               <ns0:ccp4_data title=" Completeness &amp; multiplicity v. resolution, D1" id="data_FlotGraph_8" style="display:none;">
@@ -2104,9 +2065,6 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
           <CCP4i2ReportGeneric class="" style="">
             <p>Scatter plots etc</p>
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <br />
           </CCP4i2ReportGeneric>
           <CCP4i2ReportFlotGraph class="" style="" launcher="Normal probability">
             <ns0:ccp4_data id="data_FlotGraph_21" style="display:none;" title="Normal probability plot">
@@ -15940,10 +15898,10 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
       </CCP4i2ReportGridContainer>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="SD analysis" initiallyOpen="True" brief="SDanalysis">
       <CCP4i2ReportDiv class="" style="">
-        <CCP4i2ReportText class="" style="font-size: 150%;">Analysis of sd(I)</CCP4i2ReportText>
+        <CCP4i2ReportText class="" style="" tone="heading">Analysis of sd(I)</CCP4i2ReportText>
         <CCP4i2ReportGeneric class="" style="">
           <p>Error estimates sd(I) are analysed as functions of intensity (and resolution and batch),<br />as sigma(delta(I)/sd(I)), where delta(I) = Ihl-&lt;Ih&gt;, and as reduced chi^2 (goodness of fit), ([delta(I)/sd(I)]^2)/(n-m)</p>
         </CCP4i2ReportGeneric>
@@ -15974,7 +15932,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
             </tbody>
           </table>
         </CCP4i2ReportTable>
-        <CCP4i2ReportDiv class="" style="width:45%; margin:0px; padding:0px;display:inline-block;">
+        <CCP4i2ReportDiv class="" style="">
           <CCP4i2ReportFlotGraph class="" style="width:300px;  height:270px;">
             <ns0:ccp4_data id="data_FlotGraph_25" style="display:none;" title=" Run   1, standard deviation v. Intensity, D1">
               <headers separator=" ">
@@ -16025,7 +15983,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
             </ns0:ccp4_data>
           </CCP4i2ReportFlotGraph>
         </CCP4i2ReportDiv>
-        <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+        <CCP4i2ReportDiv class="" style="">
           <CCP4i2ReportGeneric class="" style="">
             <p>Analysis against resolution</p>
           </CCP4i2ReportGeneric>
@@ -16093,7 +16051,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
             </ns0:ccp4_data>
           </CCP4i2ReportFlotGraph>
         </CCP4i2ReportDiv>
-        <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+        <CCP4i2ReportDiv class="" style="">
           <CCP4i2ReportGeneric class="" style="">
             <p>Analysis against batch</p>
           </CCP4i2ReportGeneric>
@@ -16165,11 +16123,11 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
       </CCP4i2ReportDiv>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Details of merging" initiallyOpen="False" brief="Details">
       <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
         <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-          <CCP4i2ReportDiv class="" style="font-weight:bold; font-size:130%;">
+          <CCP4i2ReportDiv class="" style="font-weight:bold;font-size:130%;">
             <CCP4i2ReportGeneric class="" style="">
               <p>Resolution estimates</p>
             </CCP4i2ReportGeneric>
@@ -16261,15 +16219,12 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
           </CCP4i2ReportTable>
         </CCP4i2ReportGridItem>
       </CCP4i2ReportGridContainer>
-      <CCP4i2ReportGeneric class="" style="">
-        <br />
-      </CCP4i2ReportGeneric>
-      <CCP4i2ReportDiv class="" style="width:100%;text-align:center;margin:0px; padding:0px;">
-        <CCP4i2ReportDiv class="" style="font-weight:bold; font-size:130%;text-align:left" />
+      <CCP4i2ReportDiv class="" style="text-align:center;">
+        <CCP4i2ReportDiv class="" style="font-weight:bold;font-size:130%;text-align:left;" />
       </CCP4i2ReportDiv>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportFold class="" style="" label="Intensity statistics: twinning tNCS etc" initiallyOpen="False" brief="Istats">
       <CCP4i2ReportDiv class="" style="font-size:120%;">
         <CCP4i2ReportGeneric class="" style="">
@@ -16281,7 +16236,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
       </CCP4i2ReportDiv>
       <CCP4i2ReportDiv class="" style="">
         <CCP4i2ReportFold class="" style="" label="Twinning statistics" initiallyOpen="False" brief="Twinning">
-          <CCP4i2ReportText class="" style="font-size:130%;">Twinning statistics</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="heading">Twinning statistics</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>
               <font color="black">
@@ -16289,11 +16244,7 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
   </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Global twinning estimates:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Global twinning estimates:</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>
               <font color="black">
@@ -16327,18 +16278,10 @@ Range  Mn(I)       NF  MnF   SdF   ChiSqF      NFc  MnFc  SdFc ChiSqFc
   Twinning fraction = 0.100  L statistics = 0.440:
   Twinning fraction = 0.500  L statistics = 0.375:</p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Twinning plots based on global statistics</b>
-            </p>
-          </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>
-                <i>L-test</i>
-              </b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Twinning plots based on global statistics</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="emphasis">
+            <i>L-test</i>
+          </CCP4i2ReportText>
           <CCP4i2ReportFlotGraph class="" style="">
             <ns0:ccp4_data title="L-test for twinning" id="data_FlotGraph_28" style="display:none;">
               <headers separator=" ">
@@ -16401,13 +16344,9 @@ Reference: Padilla, Yeates. A statistic for local intensity differences: robustn
 </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>
-                <i>N(Z) plot</i>
-              </b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">
+            <i>N(Z) plot</i>
+          </CCP4i2ReportText>
           <CCP4i2ReportFlotGraph class="" style="">
             <ns0:ccp4_data title="Cumulative intensity distribution" id="data_FlotGraph_29" style="display:none;">
               <headers separator=" ">
@@ -16504,18 +16443,12 @@ The culmulative intensity, N(Z), plot is diagnostic for both twinning and tNCS. 
 </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>
-                <i>Wilson ratios and moments plot</i>
-              </b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">
+            <i>Wilson ratios and moments plot</i>
+          </CCP4i2ReportText>
           <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
             <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-              <CCP4i2ReportGeneric class="" style="">
-                <p>Acentric reflections</p>
-              </CCP4i2ReportGeneric>
+              <CCP4i2ReportText class="" style="">Acentric reflections</CCP4i2ReportText>
               <CCP4i2ReportTable class="center" style="" transpose="False">
                 <table class="center">
                   <thead>
@@ -16645,9 +16578,7 @@ twin</th>
               </CCP4i2ReportFlotGraph>
             </CCP4i2ReportGridItem>
             <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-              <CCP4i2ReportGeneric class="" style="">
-                <p>Centric reflections</p>
-              </CCP4i2ReportGeneric>
+              <CCP4i2ReportText class="" style="">Centric reflections</CCP4i2ReportText>
               <CCP4i2ReportTable class="center" style="" transpose="False">
                 <table class="center">
                   <thead>
@@ -16760,12 +16691,8 @@ The acentric moments plot can also give an indication of the quality of the high
           </CCP4i2ReportGeneric>
         </CCP4i2ReportFold>
         <CCP4i2ReportFold class="" style="" label="Data quality" initiallyOpen="True" brief="Quality">
-          <CCP4i2ReportText class="" style="font-size:130%;">Data quality</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Resolution range statistics:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Data quality</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Resolution range statistics:</CCP4i2ReportText>
           <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
             <table class="center">
               <thead>
@@ -16843,11 +16770,7 @@ here it is from 61.93 to 1.98A.
               </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Completeness and R-standard plots</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Completeness and R-standard plots</CCP4i2ReportText>
           <CCP4i2ReportFlotGraph class="" style="">
             <ns0:ccp4_data title="intensity completeness vs resolution" id="data_FlotGraph_32" style="display:none;">
               <headers separator=" ">
@@ -16974,11 +16897,7 @@ The completeness at various resolution limit plots gives the completeness after 
 </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Low Resolution Completeness</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Low Resolution Completeness</CCP4i2ReportText>
           <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
             <table class="center">
               <thead>
@@ -17038,11 +16957,7 @@ Low completeness at low resolution can lead to map distortions and other difficu
 </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Wilson scaling:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Wilson scaling:</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>
               <font color="black">Estimate of overall wilson B-factor: 17.18 A^(-2)</font>
@@ -17126,11 +17041,7 @@ Popov and Bourenkov, Acta D (2003) D59, 1145
  </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Check for bad rings:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Check for bad rings:</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>Possible bad resolution rings found, consisting of 4.4% of bins. Data in these may be of lower quality.</p>
           </CCP4i2ReportGeneric>
@@ -17200,7 +17111,7 @@ Popov and Bourenkov, Acta D (2003) D59, 1145
           </CCP4i2ReportGeneric>
         </CCP4i2ReportFold>
         <CCP4i2ReportFold class="" style="" label="tNCS" initiallyOpen="False" brief="tNCS">
-          <CCP4i2ReportText class="" style="font-size:130%;">tNCS</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="heading">tNCS</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>
               <font color="black">
@@ -17222,12 +17133,8 @@ No translational NCS detected.
           </CCP4i2ReportGeneric>
         </CCP4i2ReportFold>
         <CCP4i2ReportFold class="" style="" label="Anomalous" initiallyOpen="False" brief="Anomalous">
-          <CCP4i2ReportText class="" style="font-size:130%;">Anomalous signal</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Anomalous signal statistics:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Anomalous signal</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Anomalous signal statistics:</CCP4i2ReportText>
           <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
             <table class="center">
               <thead>
@@ -17355,7 +17262,7 @@ No translational NCS detected.
           </CCP4i2ReportFlotGraph>
         </CCP4i2ReportFold>
         <CCP4i2ReportFold class="" style="" label="Anisotropy analysis" initiallyOpen="True" brief="Anisotropy">
-          <CCP4i2ReportText class="" style="font-size:130%;">Anisotropy Analysis</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="" tone="heading">Anisotropy Analysis</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>
               <font color="black">
@@ -17364,11 +17271,7 @@ The presence of anisotropy may indicate that the crystal is poorly ordered along
   </font>
             </p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>ML Anisotropy matrices:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">ML Anisotropy matrices:</CCP4i2ReportText>
           <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
             <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
               <CCP4i2ReportGeneric class="" style="">
@@ -17387,11 +17290,7 @@ The presence of anisotropy may indicate that the crystal is poorly ordered along
               </CCP4i2ReportGeneric>
             </CCP4i2ReportGridItem>
           </CCP4i2ReportGridContainer>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Eigenvalues and Eigenvectors of anisotropy matrix</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Eigenvalues and Eigenvectors of anisotropy matrix</CCP4i2ReportText>
           <CCP4i2ReportTable class="center" style="" transpose="False">
             <table class="center">
               <thead>
@@ -17416,11 +17315,7 @@ The presence of anisotropy may indicate that the crystal is poorly ordered along
               </tbody>
             </table>
           </CCP4i2ReportTable>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>
-              <b>Directional plots:</b>
-            </p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="emphasis">Directional plots:</CCP4i2ReportText>
           <CCP4i2ReportFlotGraph class="" style="">
             <ns0:ccp4_data title="Intensities Anisotropy Analysis" id="data_FlotGraph_35" style="display:none;">
               <headers separator=" ">
@@ -17542,15 +17437,11 @@ The directional plots are along the directions of the moments of the anisotropy 
                 <b>Anisotropic correction:</b>
               </p>-0.013600  -0.000000  0.000000  <br />  -0.000000  -0.013600  0.000000  <br />  0.000000  0.000000  0.027200</p>
           </CCP4i2ReportGeneric>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>This will be used in the remaining statistics calculations.</p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="">This will be used in the remaining statistics calculations.</CCP4i2ReportText>
         </CCP4i2ReportFold>
         <CCP4i2ReportFold class="" style="" label="Ice Rings" initiallyOpen="True" brief="Ice Rings">
-          <CCP4i2ReportText class="" style="font-size:130%;">Ice Rings</CCP4i2ReportText>
-          <CCP4i2ReportGeneric class="" style="">
-            <p>Possible ice rings found. Data in these may be of lower quality.</p>
-          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="" tone="heading">Ice Rings</CCP4i2ReportText>
+          <CCP4i2ReportText class="" style="">Possible ice rings found. Data in these may be of lower quality.</CCP4i2ReportText>
           <CCP4i2ReportGeneric class="" style="">
             <p>Ice rings will be ignored in the truncate procedure.</p>
           </CCP4i2ReportGeneric>
@@ -17629,7 +17520,7 @@ The directional plots are along the directions of the moments of the anisotropy 
       </CCP4i2ReportDiv>
     </CCP4i2ReportFold>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:95%; clear:both;" />
+  <CCP4i2ReportDiv class="" style="" />
   <CCP4i2ReportInputData class="" style="">
     <root>
       <h5>Input Data</h5>

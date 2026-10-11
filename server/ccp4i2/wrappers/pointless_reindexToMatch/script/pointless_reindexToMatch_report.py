@@ -16,7 +16,7 @@ class pointless_reindexToMatch_report(pointless_report):
 
       if self.isFatalError():
         errorDiv = self.addDiv(
-          style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;color:red")
+          style="color:red;")
         self.Errors(errorDiv, colour=False)
 
       # Get XML element POINTLESS
@@ -41,12 +41,12 @@ class pointless_reindexToMatch_report(pointless_report):
         expand = True
         analyse = False
         summaryDiv = self.addDiv(\
-          style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+          )
 
         extratext = "Expanding data to space group P1"
-        summaryDiv.addText(text='POINTLESS', style='font-size: 150%;text-align:center')
+        summaryDiv.addText(text='POINTLESS', tone="heading")
         summaryDiv.addText(text=extratext,
-                 style='font-weight:bold;font-size: 130%;text-align:center')
+                 tone="heading")
         return
 
       extratext = None

@@ -14,7 +14,7 @@ class PrepareDeposit_report(Report):
         '''
         Report.__init__(self, *args, **kws)
         if self.jobStatus is None or self.jobStatus.lower() == 'nooutput': return
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         self.defaultReport()
 
     def defaultReport(self, parent=None):

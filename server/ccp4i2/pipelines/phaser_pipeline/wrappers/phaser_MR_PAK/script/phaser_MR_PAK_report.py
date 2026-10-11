@@ -13,7 +13,7 @@ class phaser_MR_PAK_report(Report):
         self.drawContent(jobStatus, self)
         
     def drawContent(self, jobStatus=None, parent=None):
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         #print 'self.xmlnode',self.xmlnode
         if parent is None: parent=self
         #print jobStatus
@@ -25,7 +25,7 @@ class phaser_MR_PAK_report(Report):
         if len(self.xmlnode.findall('PhaserCurrentBestSolution')) > 0:
             self.addBestSolution(parent=bestSolFold)
         else:
-            bestSolFold.addText(text='No solution found yet', style='color:red;',outputXML=self.outputXml, internalId='BestSolText')
+            bestSolFold.addText(text='No solution found yet', tone="error",outputXML=self.outputXml, internalId='BestSolText')
         if len(self.xmlnode.findall('PhaserMrSolutions/Solutions')) > 0:
             compareSolutionsFold = parent.addFold(label='Comparison of solutions', brief='All solns', initiallyOpen=True)
             self.addResults(parent=compareSolutionsFold)
@@ -67,10 +67,8 @@ class phaser_MR_PAK_report(Report):
         if parent is None: parent = self
         advisories = self.xmlnode.findall('.//PhaserAdvisories/Advisory')
         if len(advisories)>0:
-            parent.append('<br/>')
             for advisory in advisories:
-                parent.addText(text=advisory.text,style='color:orange;',outputXML=self.outputXml, internalId='AdvisoriesText')
-                parent.append('<br/>')
+                parent.addText(text=advisory.text,tone="warning",outputXML=self.outputXml, internalId='AdvisoriesText')
         return
 
     def drawWarnings(self, parent=None):
@@ -78,10 +76,8 @@ class phaser_MR_PAK_report(Report):
         warnings = self.xmlnode.findall('.//PhaserWarnings/Warning')
         #warningsFolder = parent.addFold(label='PHASER warnings', initiallyOpen=True)
         if len(warnings)>0:
-            parent.append('<br/>')
             for warning in warnings:
-                parent.addText(text=warning.text,style='color:red;',outputXML=self.outputXml, internalId='WarningsText')
-                parent.append('<br/>')
+                parent.addText(text=warning.text,tone="error",outputXML=self.outputXml, internalId='WarningsText')
         return
 
     def addSearchProblem(self, parent=None):
@@ -116,11 +112,10 @@ class phaser_MR_PAK_report(Report):
             dataLabelTuples = [('SPG','Space group'), ('TFZ','Trans. Z-score')]
             if len(resultsNodes[0].findall('Solution')) > 1:
                 parent.addText(text='Multiple solutions found',outputXML=self.outputXml, internalId='MultipleSolText')
-                parent.append('<br/>')
             elif len(resultsNodes[0].findall('Solution')) == 1:
                 parent.addText(text='Unique solution found :-)',outputXML=self.outputXml, internalId='UniqueSolText')
             elif len(resultsNodes[0].findall('Solution')) == 0:
-                parent.addText(text='No solutions found',style='color:red;',outputXML=self.outputXml, internalId='NoSolText')
+                parent.addText(text='No solutions found',tone="error",outputXML=self.outputXml, internalId='NoSolText')
                 return
             table = parent.addTable(xmlnode=resultsNodes[0], select='Solution',style='width:600px;', outputXml=self.outputXml, internalId='ResultsTable')
             for selector,label in dataLabelTuples:

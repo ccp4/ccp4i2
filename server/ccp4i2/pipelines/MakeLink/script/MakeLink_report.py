@@ -6,9 +6,9 @@ class MakeLink_report(Report):
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
+        clearingDiv = self.addDiv()
         self.addDefaultReport(self)
-        clearingDiv = self.addDiv(style="clear:both;")
+        clearingDiv = self.addDiv()
 
     def addDefaultReport(self, parent=None):
         if parent is None: parent=self

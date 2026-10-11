@@ -71,23 +71,23 @@ class pdb_redo_api_report(Report):
                     fileType='html',
                 )
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
             if len(xmlnode.findall('.//PDB_REDO_JOB_ID'))>0:
                 jobNo = xmlnode.findall('.//PDB_REDO_JOB_ID')[0].text
                 self.append("<p><b>PDB-REDO job {0} is currently running. Results will appear here when the job finishes.</b></p>".format(jobNo))
             else:
-                self.append("<p><b>PDB-REDO job is currently running. Results will appear here when the job finishes.</b></p>")
+                self.addText(text="PDB-REDO job is currently running. Results will appear here when the job finishes.", tone="emphasis")
             return
 
-        clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        clearDiv = self.addDiv()
 
         if len(xmlnode.findall('.//PDB_REDO_JOB_ID'))>0:
             jobNo = xmlnode.findall('.//PDB_REDO_JOB_ID')[0].text
             self.append("<p><b>Results for PDB-REDO job {0} <em>(job number on PDB-REDO web site).</em></b></p>".format(jobNo))
             self.append("<p>You can see a report for this job, including plots comparing these results with results for structures with similar resolutions, on the PDB-REDO website for 21 days.</p>".format(jobNo))
 
-        clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        clearDiv = self.addDiv()
         self.addMetrics(xmlnode)
 
         jobDir = self.jobInfo.get("fileroot", None)
@@ -99,7 +99,7 @@ class pdb_redo_api_report(Report):
             pdbLogFile = xmlnode.findall('.//PDB_REDO_LOG_FILE')[0].text
             with open(os.path.join(jobDir,pdbLogFile)) as f:
                 logText = f.read()
-                pdbLogDiv = processFilesFold.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+                pdbLogDiv = processFilesFold.addDiv()
                 pdbLogDiv.addPre(text = logText)
 
         refmacFilesFold = logFilesFold.addFold(label='Final refmac log', brief='Final refmac log', initiallyOpen=False)
@@ -107,7 +107,7 @@ class pdb_redo_api_report(Report):
             refmacLogFile = xmlnode.findall('.//PDB_REDO_FINAL_REFMAC_LOG_FILE')[0].text
             with open(os.path.join(jobDir,refmacLogFile)) as f:
                 logText = f.read()
-                refmacLogDiv = refmacFilesFold.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+                refmacLogDiv = refmacFilesFold.addDiv()
                 refmacLogDiv.addPre(text = logText)
 
 

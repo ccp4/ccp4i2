@@ -37,7 +37,7 @@ class servalcat_report(Report):
         )
         self.outputJson = json.load(open(outputJsonPath)) if os.path.isfile(outputJsonPath) else None
 
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         if jobStatus.lower().count('running'):
             self.GraphPerCycle(parent=self)
@@ -54,7 +54,7 @@ class servalcat_report(Report):
         self.addTablePerCycle(cycle_data, parent=summaryFold, initialFinalOnly=True)
         self.addGraphPerCycle(parent=summaryFold)
         if withTables:
-            clearingDiv = parent.addDiv(style="clear:both;")
+            clearingDiv = parent.addDiv()
             perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
@@ -128,7 +128,7 @@ class servalcat_report(Report):
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         clearingDiv.append('&#160;&#160;')
 
         if len(xmlnode.findall('.//cycle/geom/summary/rmsd/Bond_distances_non_H')) > 0:
@@ -187,10 +187,10 @@ class servalcat_report(Report):
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         if len(xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')) > 0:
             return
-        noteDiv = parent.addDiv(style="margin-bottom:0;")
+        noteDiv = parent.addDiv()
         note = ""
         if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0 or \
                 len(xmlnode.findall('.//cycle[last()]/data/summary/R')) > 0:
@@ -304,7 +304,7 @@ class servalcat_report(Report):
         if parent is None: parent = self
         if not cycle_data.get('cycle'):  # no <cycle> in the XML: refinement stopped before cycle 0
             return
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         if initialFinalOnly:
             # Pick only data for the first and last cycle
             cycle_data_sel = {}
@@ -318,7 +318,7 @@ class servalcat_report(Report):
         TLSIdx = [idx for idx, val in enumerate([mode == 'TLS' for mode in cycle_data_sel['mode']]) if val]
         RestrIdx = [idx for idx, val in enumerate([mode == 'Restr' for mode in cycle_data_sel['mode']]) if val]
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
         fullTable = None
         fullTable = parent.addTable()
         if len(TLSIdx) > 0 and len(RestrIdx) > 0:
@@ -691,7 +691,7 @@ class servalcat_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
 
 
     def addTwinningAnalysis(self, outputJson=None, parent=None, xmlnode=None):
@@ -703,7 +703,7 @@ class servalcat_report(Report):
             # No twinning analysis
             return
         twinFold = parent.addFold(label="Twinning analysis", brief='Twinning', initiallyOpen=True)
-        divLeft = twinFold.addDiv(style='font-size:110%;float:left')
+        divLeft = twinFold.addDiv(style="font-size:110%;")
 
         try:
             twin_alpha_final = outputJson[-1]['twin_alpha']
@@ -739,7 +739,7 @@ class servalcat_report(Report):
                 plotLine = plotTwin.append('plotline', xcol=1, ycol=i + 2)
                 plotLine.append('symbolsize', '0')
 
-            divRight = twinFold.addDiv(style='font-size:110%;float:left;margin-left:1em;')
+            divRight = twinFold.addDiv(style="font-size:110%;")
             divRight.append("Final twin fractions after refinement:")
             tableTwin = divRight.addTable()
             tableTwin.addData(title="Twin operator", data=twin_operators_labels)
@@ -747,7 +747,7 @@ class servalcat_report(Report):
         except:
             divLeft.append("Error: Twinning report was not found.")
 
-        clearingDiv = parent.addDiv(style="clear:both;")
+        clearingDiv = parent.addDiv()
 
     def addOutlierAnalysis(self, parent=None, xmlnode=None):
         if parent is None: parent = self
@@ -767,7 +767,7 @@ class servalcat_report(Report):
 
         if len(outVdw) > 0:
             n_outliers = len(outVdw)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Van der Waals repulsion outliers indicating close contacts (clashes) between non-bonding atoms:")
             outData = {'atom1': ["-"]*n_outliers,
                        'atom2': ["-"]*n_outliers,
@@ -845,8 +845,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
@@ -857,12 +857,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Type", data=outData['note'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No clashes between atoms (Van der Waals repulsion outliers) observed.")
 
         if len(outBond) > 0:
             n_outliers = len(outBond)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Bond length outliers:")
             outData = {'atom1': ["-"]*n_outliers,
                        'atom2': ["-"]*n_outliers,
@@ -916,8 +916,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['percent'], outData['sigma'], outData['type'], outData['atom1'], outData['atom2'], \
                 outData['value'], outData['ideal'], outData['difference'], outData['z'] = zip(*outDataZip)
     
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
@@ -931,12 +931,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Note", data=outData['note'])
 
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No bond length outliers observed.")
             
         if len(outAngle) > 0:
             n_outliers = len(outAngle)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Bond angle outliers:")
             outData = {'atom1': ["-"]*n_outliers,
                        'atom2': ["-"]*n_outliers,
@@ -982,8 +982,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['difference_float'], outData['sigma'], outData['atom1'], outData['atom2'], \
                 outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
@@ -995,12 +995,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Sigma (°)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No bond angle outliers observed.")
 
         if len(outTorsion) > 0:
             n_outliers = len(outTorsion)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Torsion angle outliers:")
             outData = {'label': ["-"]*n_outliers,
                        'atom1': ["-"]*n_outliers,
@@ -1078,8 +1078,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['difference_float'], outData['label'], outData['atom1'], outData['atom2'], outData['atom3'], \
                 outData['atom4'], outData['value'], outData['ideal'], outData['per'], outData['ideal_per'], outData['z'], outData['difference'], outData['sigma'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Label", data=outData['label'])
@@ -1093,12 +1093,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Sigma (°)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No torsion angle outliers observed.")
 
         if len(outChir) > 0:
             n_outliers = len(outChir)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Chiral volume outliers:")
             outData = {'atomc': ["-"]*n_outliers,
                        'atom1': ["-"]*n_outliers,
@@ -1160,8 +1160,8 @@ class servalcat_report(Report):
             outDataZip.sort(reverse=True)
             outData['z_abs'], outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['both'], outData['difference'], outData['sigma'], outData['signum'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Chiral atom", data=outData['atomc'])
@@ -1174,12 +1174,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Correct sign?", data=outData['signum'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No chirality outliers observed.")
 
         if len(outPlane) > 0:
             n_outliers = len(outPlane)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Planarity outliers:")
             outData = {'atom': ["-"]*n_outliers,
                        'label': ["-"]*n_outliers,
@@ -1201,8 +1201,8 @@ class servalcat_report(Report):
                     outData['z'][i] = '-'
                     outData['z_abs'][i] = '-'
             # Does not need to be sorted
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Label", data=outData['label'])
@@ -1210,12 +1210,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Deviation (&Aring;)", data=outData['dev'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No planarity outliers observed.")
 
         if len(outStacd) > 0:
             n_outliers = len(outStacd)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Stacking distance outliers:")
             outData = {'plane1': ["-"]*n_outliers,
                        'plane2': ["-"]*n_outliers,
@@ -1258,8 +1258,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Plane 1", data=outData['plane1'])
@@ -1270,12 +1270,12 @@ class servalcat_report(Report):
             fullTable.addData(title="Sigma (&Aring;)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No stacking distance outliers observed.")
 
         if len(outStaca) > 0:
             n_outliers = len(outStaca)
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("Stacking angle outliers:")
             outData = {'plane1': ["-"]*n_outliers,
                        'plane2': ["-"]*n_outliers,
@@ -1319,8 +1319,8 @@ class servalcat_report(Report):
             outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            clearingDiv = outlierFold.addDiv()
+            styleDiv = outlierFold.addDiv(style="color:navy;text-align:right;")
             fullTable = None
             fullTable = styleDiv.addTable()
             fullTable.addData(title="Plane 1", data=outData['plane1'])
@@ -1331,7 +1331,7 @@ class servalcat_report(Report):
             fullTable.addData(title="Sigma (°)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
-            div = outlierFold.addDiv(style='font-size:110%')
+            div = outlierFold.addDiv(style="font-size:110%;")
             div.append("No stacking angle outliers observed.")
 
 
@@ -1340,9 +1340,9 @@ class servalcat_report(Report):
         if parent is None: parent = self
         
         #create a "shell" div to contain the scrollable table and the hyperlink
-        scrollableDownloadableTableDiv = parent.addDiv(style="height:250px; width:315px;float:left;margin-top:2px;")
+        scrollableDownloadableTableDiv = parent.addDiv()
         #place a scrollable div into the shell: the table will be inserted into this div
-        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv(style="height:225px; width:300px;clear:both;overflow:auto;")
+        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv()
         #Put table1 into this (autoscrolling) div
         table1 = self.addTable1(cycle_data, parent=scrollableTableDiv,internalId=internalId)
         #Add a hyperlink to this table in the "tables_as_csv_files" directory

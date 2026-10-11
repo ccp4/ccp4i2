@@ -6,7 +6,7 @@ class phaser_ensembler_report(CCP4ReportParser.Report):
 
     def __init__(self,*args,**kws):
         super(phaser_ensembler_report,self).__init__(*args, **kws)
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         logFold = self.addFold(label='Log stream from phaser.ensembler', initiallyOpen = False)
         logPre = logFold.addPre()
         logPre.text = self.xmlnode.findall('LOGTEXT')[0].text

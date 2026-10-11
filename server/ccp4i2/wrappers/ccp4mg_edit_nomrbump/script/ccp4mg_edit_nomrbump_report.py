@@ -16,10 +16,8 @@ class ccp4mg_edit_no_mrbump_report(Report):
         pdbsWrittenStringS = xmlnode.findall(pdbsWrittenPath)
         if len(pdbsWrittenStringS) > 0:
           pdbsWrittenString = xmlnode.findall(pdbsWrittenPath)[0].text
-          self.append('<br/>')
           self.addText(text=pdbsWrittenString+' PDB files were written to the CCP4i2 database during the session.')
         else:
-          self.append('<br/>')
           self.addText(text='No PDB files were written to the CCP4i2 database during the session.')
         self.drawPictures()
         #self.drawWarnings()
@@ -30,8 +28,7 @@ class ccp4mg_edit_no_mrbump_report(Report):
         warningsFolder = parent.addFold(label='Warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from ccp4mg_edit_nomrbump')
         return

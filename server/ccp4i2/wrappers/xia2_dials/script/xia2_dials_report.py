@@ -40,7 +40,7 @@ class xia2_dials_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        self.addDiv(style="clear:both;")  # gives space for the title
+        self.addDiv()  # gives space for the title
         xia2TxtNode = self.xmlnode.findall("Xia2Txt")[0]
         xia2html = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "xia2.html"))
         if os.path.exists(xia2html):
@@ -59,7 +59,7 @@ class xia2_dials_report(Report):
         if len(self.xmlnode.findall("Xia2Error"))>0:
             xia2ErrorNode = self.xmlnode.findall("Xia2Error")[0]
             parent.addText(
-                style="font-size:125%;color:red;", text="xia2 exited with an error"
+                tone="error", text="xia2 exited with an error"
             )
             if xia2TxtNode is not None:
                 parent.addPre(text=xia2TxtNode.text)
@@ -122,7 +122,7 @@ class xia2_dials_report(Report):
             dic = None
         if dic is None:
             parent.addText(
-                style="font-size:125%;color:red;", text="File not found: xia2.json"
+                tone="error", text="File not found: xia2.json"
             )
             return
 
@@ -130,7 +130,7 @@ class xia2_dials_report(Report):
         crystals = dic["_crystals"]
         if len(crystals) > 1:  # don't cope with > 1 crystal here
             parent.addText(
-                style="font-size:125%;color:red;",
+                tone="error",
                 text=("xia2 summary table can only be created " "for a single crystal"),
             )
             return

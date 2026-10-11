@@ -22,7 +22,7 @@ class ctruncate_report(Report):
         except:
           fail = False
 
-        wDiv = self.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        wDiv = self.addDiv()
 
         if 'outputfiles' in jobInfo and len(jobInfo['outputfiles'])>0:
             wDiv.addText(text='Intensity data has been converted to structure factors')
@@ -335,8 +335,8 @@ class ctruncate_report(Report):
 
     def addWarnings(self, parent):
         #summary and warnings
-        wDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-        wDiv.addText(text="Summary",style="font-size: 180%;text-align:left")
+        wDiv = parent.addDiv()
+        wDiv.addText(text="Summary",tone="heading")
         #eg tNCS
         self.addWarningQuality(wDiv)
         self.addWarningWilson(wDiv)
@@ -406,14 +406,13 @@ class ctruncate_report(Report):
         startopen = True
         fold = parent.addFold(label="Details of reflection data",
                               brief='InputData',initiallyOpen=startopen)
-        fold.addText(text="Summary of input reflection data",style="font-size:130%;text-align:center")
-        fold.append("<br/>")
+        fold.addText(text="Summary of input reflection data",tone="heading")
         f = self.xmlnode.findall('ReflectionFile')
         fold.append("<b>File:</b> "+f[0].get("name"))
         fold.append("<b>Crystal/Dataset:</b> "+f[0].findall('CrystalDatasetId')[0].text)
         fold.append("<b>Cell:</b> "+f[0].findall('cell/a')[0].text+", "+f[0].findall('cell/b')[0].text+", "+f[0].findall('cell/c')[0].text+", "+f[0].findall('cell/alpha')[0].text+", "+f[0].findall('cell/beta')[0].text+", "+f[0].findall('cell/gamma')[0].text)
         fold.append("<b>Spacegroup:</b> "+f[0].findall('SpacegroupName')[0].text)
-        fold.append("<p><b>Reflection data summary:</b></p>")
+        fold.addText(text="Reflection data summary:", tone="emphasis")
         table = fold.addTable( select = "ReflectionData", transpose=False, class_="center" )
         taglist = \
                     [ [ "Data type", "ReflectionDataType" ],
@@ -424,7 +423,7 @@ class ctruncate_report(Report):
                       [ "NCentric", "NumberCentric" ] ]
         self.addToTable(taglist, "ReflectionData", table)
         
-        fold.append("<p><b>Maximum indices in reflection data:</b></p>")
+        fold.addText(text="Maximum indices in reflection data:", tone="emphasis")
         path=self.xmlnode.findall('ReflectionData/ReflectionIndexMax')
         table1 = fold.addTable( select = "ReflectionData", transpose=False, class_="center" )
         tablist = []
@@ -444,14 +443,14 @@ class ctruncate_report(Report):
             startopen = self.addWarningTNCS(parent, check=True)
             path=self.xmlnode.findall('translationalNCS')
             fold = parent.addFold(label="tNCS",initiallyOpen=startopen)
-            fold.addText(text='tNCS',style="font-size:130%;")
+            fold.addText(text='tNCS',tone="heading")
             x = self.xmlnode.findall("translationalNCS/Comment[@id='tncs']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
             x = self.xmlnode.findall("translationalNCS/Comment[@id='tncsExplain']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
             x = self.xmlnode.findall("translationalNCS/Reference[@id='tncsExplain']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
-            if path[0].findall('detected')[0].text != "No": fold.append("<p><b>Warning:</b> flat prior used for truncate procedure</p>")
+            if path[0].findall('detected')[0].text != "No": fold.addText(text="<b>Warning:</b> flat prior used for truncate procedure")
             
     def addAnisotropy(self, parent=None):
         if len(self.xmlnode.findall('AnisotropyAnalysis'))>0 and \
@@ -461,12 +460,12 @@ class ctruncate_report(Report):
             path=self.xmlnode.findall('AnisotropyAnalysis')
             fold = parent.addFold(label="Anisotropy analysis",brief="Anisotropy",
                                   initiallyOpen=startopen)
-            fold.addText(text='Anisotropy Analysis',style="font-size:130%;")
+            fold.addText(text='Anisotropy Analysis',tone="heading")
             x = self.xmlnode.findall("AnisotropyAnalysis/Comment[@id='AnisotropyResult']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
             #fold.append("Anisotropy will be corrected for in the truncation procedure.")
             if len(self.xmlnode.findall('AnisotropyAnalysis/BAniso'))>0:
-                fold.append("<p><b>ML Anisotropy matrices:</b></p>")
+                fold.addText(text="ML Anisotropy matrices:", tone="emphasis")
                 # Use grid layout for anisotropy matrices side by side
                 aDiv, bDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
                 result = path[0].findall("BAniso/Orthogonal")[0].text
@@ -479,7 +478,7 @@ class ctruncate_report(Report):
                 list.insert(6,'<br/>')
                 list.insert(3,'<br/>')
                 bDiv.append("<p><b>Anisotropy U matrix:</b></p>"+"  ".join(str(x) for x in list))
-                fold.append("<p><b>Eigenvalues and Eigenvectors of anisotropy matrix</b></p>")
+                fold.addText(text="Eigenvalues and Eigenvectors of anisotropy matrix", tone="emphasis")
                 table = fold.addTable( select = "AnisotropyAnalysis", transpose=False, class_="center" )
                 eigenvaluedata = []
                 eigenvectordata = []
@@ -491,7 +490,7 @@ class ctruncate_report(Report):
                 table.addData( title="Eigenvalue", data=eigenvaluedata)
                 table.addData( title="Eigenvector", data=eigenvectordata)
                 
-                fold.append("<p><b>Directional plots:</b></p>")
+                fold.addText(text="Directional plots:", tone="emphasis")
                 x = self.xmlnode.findall("AnisotropyAnalysis/Comment[@id='YorgoModisPlot']")[0]
                 graphlist = self.xmlnode.findall("CCP4Table[@id='AnisotropyAnalysis']")
                 if len(graphlist) > 0:
@@ -504,7 +503,7 @@ class ctruncate_report(Report):
                 list.insert(6,'<br/>')
                 list.insert(3,'<br/>')
                 fold.append("<p><b>Anisotropic correction:</b></p>"+"  ".join(str(x) for x in list))
-                fold.append("<p>This will be used in the remaining statistics calculations.</p>")
+                fold.addText(text="This will be used in the remaining statistics calculations.")
                 #fold.append("<p><font color='red'>effect of correction on data.</font></p>")
 #######
 
@@ -513,10 +512,10 @@ class ctruncate_report(Report):
         #parent.append('<a name="dataqualityreport"></a>')
         startopen = self.addWarningQuality(parent, check=True)
         fold = parent.addFold(label="Data quality",brief="Quality",initiallyOpen=startopen)
-        fold.addText(text='Data quality',style="font-size:130%;")
+        fold.addText(text='Data quality',tone="heading")
         if len(self.xmlnode.findall('DataStatistics/ResolutionRange'))>0:
             path=self.xmlnode.findall('DataStatistics/ResolutionRange')
-            fold.append("<p><b>Resolution range statistics:</b></p>")
+            fold.addText(text="Resolution range statistics:", tone="emphasis")
             table = fold.addTable( select = ".//DataStatistics/ResolutionRange", transpose=False, style="margin: 0 auto;border:1px solid orange;", class_="center" )
             tablist = []
             minlist = []
@@ -545,7 +544,7 @@ class ctruncate_report(Report):
             fold.append("<p><font color='black'>"+x1.text+" "+x2.text+"<ul>"+x3.text+"</ul></font></p>")
 
         if len(self.xmlnode.findall("CCP4Table[@id='completeness']"))>0:
-            fold.append("<p><b>Completeness and R-standard plots</b></p>")
+            fold.addText(text="Completeness and R-standard plots", tone="emphasis")
             graphlist = self.xmlnode.findall("CCP4Table[@id='completeness']")
             #not stable, so should use graph-aniso as groupID
             graph = fold.addFlotGraph( xmlnode=graphlist[0], title=graphlist[0].get("title") )
@@ -556,7 +555,7 @@ class ctruncate_report(Report):
                 x = x.replace(">", "&gt;");
                 fold.append("<p><font color='black'>"+x+"</font></p>")
         if len(self.xmlnode.findall("DataStatistics/LowResoCompleteness"))>0:
-            fold.append("<p><b>Low Resolution Completeness</b></p>")
+            fold.addText(text="Low Resolution Completeness", tone="emphasis")
             table = fold.addTable( select = "DataStatistics/LowResoCompleteness", transpose=False, style="margin: 0 auto;border:1px solid orange;", class_="center" )
             resolist1 = self.xmlnode.findall("DataStatistics/LowResoCompleteness/ResolutionRange/min")
             resolist2 = self.xmlnode.findall("DataStatistics/LowResoCompleteness/ResolutionRange/max")
@@ -576,7 +575,7 @@ class ctruncate_report(Report):
 
         if len(self.xmlnode.findall('DataStatistics/WilsonB'))>0:
             path=self.xmlnode.findall('DataStatistics/WilsonB')
-            fold.append("<p><b>Wilson scaling:</b></p>")
+            fold.addText(text="Wilson scaling:", tone="emphasis")
             fold.append("<p><font color='black'>Estimate of overall wilson B-factor: "+self.xmlnode.findall('DataStatistics/WilsonB')[0].text+" A^(-2)</font></p>")
             fold.append("<p><font color='black'>Estimate wilson scale factor: "+self.xmlnode.findall('DataStatistics/WilsonScale')[0].text+"</font></p>")
             x = self.xmlnode.findall("DataStatistics/Comment[@id='WilsonB']")[0]
@@ -593,7 +592,7 @@ class ctruncate_report(Report):
             #fold.append("<p><font color='red'>ML calc<br/>outlier reflections</font></p>")
 
         if len(self.xmlnode.findall('OutlierRingsAnalysis'))>0:
-            fold.append("<p><b>Check for bad rings:</b></p>")
+            fold.addText(text="Check for bad rings:", tone="emphasis")
             badrings = False;
             x = self.xmlnode.findall("OutlierRingsAnalysis/present")[0].text
             if x.strip() != "no": badrings = True
@@ -603,7 +602,7 @@ class ctruncate_report(Report):
                     y = float(self.xmlnode.findall("OutlierRingsAnalysis/percentage")[0].text)
                     fold.append("<p>Possible bad resolution rings found, consisting of "+str(y)+"% of bins. Data in these may be of lower quality.</p>")
                 else:
-                    fold.append("<p>Possible bad resolution rings found. Data in these may be of lower quality.</p>")
+                    fold.addText(text="Possible bad resolution rings found. Data in these may be of lower quality.")
                 table = fold.addTable( select = "OutlierRingsAnalysis", transpose=False, style="margin: 0 auto;border:1px solid orange;", class_="center" )
                 taglist = \
                         [["Resolution", "Resolution"],
@@ -613,7 +612,7 @@ class ctruncate_report(Report):
                          ["Ave. Completeness", "ExpectCompleteness"]]
                 self.addToTable(taglist,"OutlierRingsAnalysis/Ring", table)
             else:
-                fold.append("<p>No issues found.</p>")
+                fold.addText(text="No issues found.")
             
             x = self.xmlnode.findall("OutlierRingsAnalysis/Comment[@id='OutlierRingsAnalysis']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
@@ -623,10 +622,10 @@ class ctruncate_report(Report):
             #parent.append('<a name="anomalousreport"></a>')
             startopen = False
             fold = parent.addFold(label="Anomalous",initiallyOpen=startopen)
-            fold.addText(text='Anomalous signal',style="font-size:130%;")
+            fold.addText(text='Anomalous signal',tone="heading")
             #fold.append("<p><font color='red'>Use resolution range to comment on anom signal</font></p>")
             path=self.xmlnode.findall('AnomStatistics/ResolutionRange')
-            fold.append("<p><b>Anomalous signal statistics:</b></p>")
+            fold.addText(text="Anomalous signal statistics:", tone="emphasis")
             table = fold.addTable( select = "AnomStatistics/ResolutionRange", transpose=False, style="margin: 0 auto;border:1px solid orange;", class_="center" )
             tablist = []
             minlist = []
@@ -658,7 +657,7 @@ class ctruncate_report(Report):
             #parent.append('<a name="iceringsreport"></a>')
             startopen = self.addWarningIce(parent, check=True)
             fold = parent.addFold(label="Ice Rings",initiallyOpen=startopen)
-            fold.addText(text='Ice Rings',style="font-size:130%;")
+            fold.addText(text='Ice Rings',tone="heading")
             icerings = False;
             ringslist = self.xmlnode.findall('IceRingsAnalysis/Ring/Reject')
             #better in xml
@@ -667,10 +666,10 @@ class ctruncate_report(Report):
                 if y.strip() != "no": icerings = True
             
             if icerings is True:
-                fold.append("<p>Possible ice rings found. Data in these may be of lower quality.</p>")
+                fold.addText(text="Possible ice rings found. Data in these may be of lower quality.")
                 fold.append("Ice rings will be ignored in the truncate procedure.")
             else:
-                fold.append("<p>No ice rings found.</p>")
+                fold.addText(text="No ice rings found.")
             
             table = fold.addTable( select = "IceRingsAnalysis", transpose=False, style="margin: 0 auto;border:1px solid orange;", class_="center" )
                     
@@ -702,14 +701,14 @@ class ctruncate_report(Report):
         startopen = self.addWarningTwin(parent, check=True)
         fold = parent.addFold(label="Twinning statistics",
                               brief="Twinning",initiallyOpen=startopen)
-        fold.addText(text='Twinning statistics',style="font-size:130%;")
+        fold.addText(text='Twinning statistics',tone="heading")
         x=twinblock.findall("Comment[@id='TwinningSummary']")[0]
         fold.append("<p><font color='black'>"+x.text+"</font></p>")
         x1 = x.text
         y1 = x1.strip()
-        if len(y1) > 0 and y1[0] != "N": fold.append("<p><b>Warning:</b> flat prior used for truncate procedure</p>")
+        if len(y1) > 0 and y1[0] != "N": fold.addText(text="<b>Warning:</b> flat prior used for truncate procedure")
         if len(twinblock.findall('L-test'))>0:
-            fold.append("<p><b>Global twinning estimates:</b></p>")
+            fold.addText(text="Global twinning estimates:", tone="emphasis")
             x=twinblock.findall("Comment[@id='TwinningGlobal']")[0]
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
             table=fold.addTable(class_="center")
@@ -731,7 +730,7 @@ class ctruncate_report(Report):
             fold.append("<p>"+x.text+"</p>")
                     
             if len(self.xmlnode.findall('TwinOps'))>0:
-                fold.append("<p><b>Operator based twinning estimates:</b></p>")
+                fold.addText(text="Operator based twinning estimates:", tone="emphasis")
                 if len(twinblock.findall("Rtwin"))>0:
                     x = twinblock.findtext("Comment[@id='TwinningOperatorBased']")
                     x = x.replace("<", "&lt;");
@@ -762,8 +761,8 @@ class ctruncate_report(Report):
                 else:
                     fold.append("<p>"+twinblock.findall("Comment[@id='TwinOps']")[0].text+"</p>")
 
-        fold.append("<p><b>Twinning plots based on global statistics</b></p>")
-        fold.append("<p><b><i>L-test</i></b></p>")
+        fold.addText(text="Twinning plots based on global statistics", tone="emphasis")
+        fold.addText(text="<i>L-test</i>", tone="emphasis")
         ltestlist = twinblock.findall("CCP4Table[@id='L-test']")
         for thisgraph in ltestlist:
             graph = fold.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
@@ -772,7 +771,7 @@ class ctruncate_report(Report):
         fold.append("<p><font color='black'>"+x.text+"</font></p>")
         x = twinblock.findall(".//Reference[@id='LTest']")[0]
         fold.append("<p><font color='black'>"+x.text+"</font></p>")
-        fold.append("<p><b><i>N(Z) plot</i></b></p>")
+        fold.addText(text="<i>N(Z) plot</i>", tone="emphasis")
         #problem is have amplitudes too
         cumullist = twinblock.findall("CCP4Table[@id='Cumulative intensity distribution']")
         for thisgraph in cumullist:
@@ -782,13 +781,13 @@ class ctruncate_report(Report):
             fold.append("<p><font color='black'>"+x.text+"</font></p>")
         #fold.append("<p><font color='red'>any stats</font></p>")
         if len(twinblock.findall('Moments'))>0:
-            fold.append("<p><b><i>Wilson ratios and moments plot</i></b></p>")
+            fold.addText(text="<i>Wilson ratios and moments plot</i>", tone="emphasis")
             # Use grid layout for acentric/centric moments side by side
             aDiv, bDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
             #problem is have amplitudes too
             mlist = twinblock.findall("Moments[@id='acentric']/Moment")
             if len(mlist)>0:
-                aDiv.append("<p>Acentric reflections</p>")
+                aDiv.addText(text="Acentric reflections")
                 table=aDiv.addTable(class_="center")
                 optab = []
                 vtab = []
@@ -810,7 +809,7 @@ class ctruncate_report(Report):
                     graph = graph.addPimpleData(xmlnode=thisgraph)
                 mlist = twinblock.findall("Moments[@id='centric']/Moment")
                 if len(mlist)>0:
-                    bDiv.append("<p>Centric reflections</p>")
+                    bDiv.addText(text="Centric reflections")
                     table=bDiv.addTable(class_="center")
                     optab = []
                     vtab = []
@@ -840,7 +839,7 @@ class ctruncate_report(Report):
                 oplist = twinblock.findall("TwinOps")
                 #any twinops
                 if len(oplist)>0:
-                    fold.append("<p><b>Calculation of possible twinning operators:</b></p>")
+                    fold.addText(text="Calculation of possible twinning operators:", tone="emphasis")
                     table = fold.addTable( select = "TwinOps", transpose=False, class_="center" )
                     for title,select in [ [ "Operator", "Operator/Description" ],
                              [ "Score/Obliquenss", "Operator/Score" ],
@@ -850,15 +849,15 @@ class ctruncate_report(Report):
                     fold.append("<p>"+x.text+"</p>")
                     x = twinblock.findall("Comment[@id='IfTwinOpsPresent']")[0]
                     fold.append("<p><font color='black'>"+x.text+"</font></p>")
-                    fold.append("<p><b>Twinning operator plots:</b></p>")
-                    fold.append("<p><i>H plot</i></p>")
+                    fold.addText(text="Twinning operator plots:", tone="emphasis")
+                    fold.addText(text="<i>H plot</i>")
                     x = twinblock.findall("Comment[@id='HTest']")[0]
                     fold.append("<p><font color='black'>"+x.text+"</font></p>")
                     hlist = twinblock.findall("CCP4Table[@id='H-test']")
                     for thisgraph in hlist:
                         graph = fold.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
                         graph = graph.addPimpleData(xmlnode=thisgraph)
-                    fold.append("<p><i>ML Britton</i></p>")
+                    fold.addText(text="<i>ML Britton</i>")
                     x = twinblock.findall("Comment[@id='MLBritton']")[0]
                     fold.append("<p><font color='black'>"+x.text+"</font></p>")
                     mllist = twinblock.findall("CCP4Table[@id='ML-Britton']")
@@ -884,8 +883,7 @@ class ctruncate_report(Report):
     def acentricMoments(self, parent, drawgraphs=True):
         if len(self.xmlnode.findall('Twinning/Moments'))>0:
             parent.addText(text="Acentric intensity moments",
-                           style="font-weight:bold; font-size:130%;")
-            parent.append('<br/>')
+                           tone="heading")
             if drawgraphs:  # option to suppress graphs, if already done, just draw table
                 momlist = self.xmlnode.findall("Twinning/CCP4Table[@id='acentricMoments']")
                 # A GraphGroup is a group of graphs displayed in the same graph viewer widget

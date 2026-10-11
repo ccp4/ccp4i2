@@ -7,7 +7,7 @@ class phaser_EP_AUTO_report(Report):
     
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         if jobStatus is None or jobStatus.lower() == 'nooutput': return
         self.drawContent(jobStatus, self)
         
@@ -16,7 +16,7 @@ class phaser_EP_AUTO_report(Report):
         self.drawWarnings(parent=parent)
         atomSetNodes = self.xmlnode.findall('AtomSet')
         for atomSetNode in atomSetNodes:
-            self.addText(text=atomSetNode.text,style="font-size:125%;")
+            self.addText(text=atomSetNode.text,tone="heading")
             solNodes = atomSetNode.findall('AtomList')
             if len(solNodes)>0:
                 self.addPre(text=solNodes[0].text)
@@ -37,8 +37,7 @@ class phaser_EP_AUTO_report(Report):
         warningsFolder = parent.addFold(label='PHASER warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from PHASER')
         return
@@ -52,14 +51,14 @@ class phaser_EP_AUTO_report(Report):
         for iGraph, graphTableNode in enumerate(graphTableList):
             graph = gallery.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title"), internalId='SmartiePlot'+str(iGraph), outputXml=False, label=graphTableNode.get("title"),style="width:500px;" )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
         return
         
         graphgroup = reportFold.addFlotGraphGroup(style="width:500px;  height:300px;",outputXml=False, internalId='SmartiePlot')
         for iGraph, graphTableNode in enumerate(graphTableList):
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title"),internalId='SmartiePlot'+str(iGraph), outputXml=False )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
         return
 
 

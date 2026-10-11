@@ -25,7 +25,7 @@ class pandda_campaign_report(Report):
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if xmlnode is None:
             return
         def text(path, default=''):
@@ -132,7 +132,7 @@ class pandda_campaign_report(Report):
                 f"that, one bad crystal sets the resolution for every dataset. Events found at "
                 f"{processing:.2f} A say little about fragments. Remove the low-resolution datasets, "
                 f"or lower MAX_SHELL_DATASETS below the number of good ones, and run it again."),
-                style="color:#b71c1c; font-weight:600;")
+                tone="error")
 
         headline = fold.addTable(transpose=True)
         headline.addData(title='Datasets analysed', data=[stats.get('n_analysed', '-')])
@@ -244,7 +244,7 @@ class pandda_campaign_report(Report):
             plot.append('ylabel', unit)
             bar = plot.append('barchart', col=1, tcol=2)
             bar.append('colour', '#1976d2')
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
 
     @staticmethod
     def _n(value):

@@ -54,5 +54,5 @@ class AUSPEX_report(Report):
                 )
 
         if not found_any:
-            results.append("<p>No AUSPEX plot files found</p>")
+            results.addText(text="No AUSPEX plot files found")
 

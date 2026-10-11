@@ -14,9 +14,9 @@ class zanuda_report(Report):
 
     def __init__(self, jobInfo={}, jobStatus=None, **kw):
         super().__init__(jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
+            self.addText(text="The job is currently running.", tone="emphasis")
         log_path = os.path.join(jobInfo["fileroot"], self.WATCHED_FILE)
         if os.path.exists(log_path):
             with open(log_path) as istream:

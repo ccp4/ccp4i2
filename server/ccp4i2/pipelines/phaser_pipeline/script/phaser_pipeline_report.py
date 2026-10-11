@@ -36,7 +36,7 @@ class phaser_pipeline_report(Report):
             )
 
         if jobStatus == None or jobStatus.lower() =='nooutput': return
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         if len(self.xmlnode.findall('PhaserMrResults')):
             pmaNode = self.xmlnode.findall('PhaserMrResults')[0]

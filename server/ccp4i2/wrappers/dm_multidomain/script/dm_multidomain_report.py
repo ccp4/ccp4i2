@@ -54,16 +54,16 @@ class dm_multidomain_report(Report):
                     "style='border-collapse:collapse;'>" + "".join(rows)
                     + "</table>")
                 if warned:
-                    parent.append(
-                        "<p><b>Note:</b> a low initial NCS correlation usually "
+                    parent.addText(
+                        text="<b>Note:</b> a low initial NCS correlation usually "
                         "means the operators or mask for that domain need "
                         "checking (wrong copy assignment, mask overlap, or a "
-                        "domain that does not obey the NCS).</p>")
+                        "domain that does not obey the NCS).")
                 else:
-                    parent.append("<p>All averaged domains showed improving NCS "
-                                  "correlation through density modification.</p>")
+                    parent.addText(text="All averaged domains showed improving NCS "
+                                  "correlation through density modification.")
         except Exception as e:
-            parent.append(f"<p>Problem reporting NCS correlations: {e}</p>")
+            parent.addText(text=f"Problem reporting NCS correlations: {e}")
 
         # ---- per-cycle progress plots -------------------------------------
         try:
@@ -100,9 +100,9 @@ class dm_multidomain_report(Report):
                     p.append('xintegral', 'true')
                     p.append('xlabel', 'Cycle')
                     p.append('plotline', xcol=idx['Number'], ycol=idx['Gamma'])
-                parent.addDiv(style="clear:both;")
+                parent.addDiv()
         except Exception as e:
-            parent.append(f"<p>Problem reporting per-cycle graphs: {e}</p>")
+            parent.addText(text=f"Problem reporting per-cycle graphs: {e}")
 
         # ---- native dm loggraph tables ------------------------------------
         try:
@@ -114,9 +114,9 @@ class dm_multidomain_report(Report):
                 graph = group.addFlotGraph(xmlnode=table,
                                            title=table.get("title"))
                 graph.addPimpleData(xmlnode=table)
-            parent.addDiv(style="clear:both;")
+            parent.addDiv()
         except Exception as e:
-            parent.append(f"<p>Problem reporting log graphs: {e}</p>")
+            parent.addText(text=f"Problem reporting log graphs: {e}")
 
     # ------------------------------------------------------------------ #
     def _add_body_map(self, parent):
@@ -236,4 +236,4 @@ class dm_multidomain_report(Report):
                 + "</table>")
             parent.append("".join(parts))
         except Exception as e:
-            parent.append(f"<p>Problem drawing the rigid-body map: {e}</p>")
+            parent.addText(text=f"Problem drawing the rigid-body map: {e}")

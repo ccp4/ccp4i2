@@ -22,7 +22,7 @@ class phaser_MR_RNP_report(Report):
         if len(self.xmlnode.findall('PhaserCurrentBestSolution')) > 0:
             self.addBestSolution(parent=bestSolFold)
         else:
-            bestSolFold.addText(text='No solution found yet', style='color:red;')
+            bestSolFold.addText(text='No solution found yet', tone="error")
         if len(self.xmlnode.findall('PhaserMrSolutions/Solutions')) > 0:
             compareSolutionsFold = parent.addFold(label='Comparison of solutions',initiallyOpen=True)
             self.addResults(parent=compareSolutionsFold)
@@ -48,8 +48,7 @@ class phaser_MR_RNP_report(Report):
         warningsFolder = parent.addFold(label='PHASER warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from PHASER')
         return
@@ -76,7 +75,6 @@ class phaser_MR_RNP_report(Report):
             dataLabelTuples = [('HALL','Space group'), ('TFZ','Trans. Z-score'), ('TFZeq','Refined Trans. Z-score'), ('ORIG_LLG','Initial LLG'), ('LLG','Refined LLG'),  ('ORIG_R','Initial Rfactor'), ('R','Refined Rfactor'),('PAK','Clashes')]
             if len(resultsNodes[0].findall('Solution')) > 1:
                 parent.addText(text='Multiple solutions found')
-                parent.append('<br/>')
                 graph = parent.addFlotGraph(title='Solutions',xmlnode=resultsNodes[0], select='Solution',style='height:200px; width:600px;')
                 plotObject = graph.addPlotObject()
                 plotObject.append('title','Solutions')
@@ -96,7 +94,7 @@ class phaser_MR_RNP_report(Report):
             elif len(resultsNodes[0].findall('Solution')) == 1:
                 parent.addText(text='Unique solution found :-)')
             elif len(resultsNodes[0].findall('Solution')) == 0:
-                parent.addText(text='No solutions found',style='color:red;')
+                parent.addText(text='No solutions found',tone="error")
                 return
             table = parent.addTable(xmlnode=resultsNodes[0], select='Solution',style='width:600px;')
             for selector,label in dataLabelTuples:
@@ -122,7 +120,7 @@ class phaser_MR_RNP_report(Report):
         for graphTableNode in graphTableList:
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title") )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
 
 
 

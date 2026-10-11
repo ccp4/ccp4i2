@@ -13,7 +13,7 @@ class lorestr_i2_report(Report):
 
         self.molProbity = False
 
-        self.addDiv(style='clear:both;')
+        self.addDiv()
 
         if jobStatus.lower().count('running'):
             self.addRunningProgress(self)
@@ -278,7 +278,7 @@ class lorestr_i2_report(Report):
                     protocolBestFold.addText(
                         text="No protocol improved R-free (%.3f before, %.3f for the best): "
                              "LORESTR could not improve this structure. " % (before, after),
-                        style="color:orange;")
+                        tone="warning")
             except (IndexError, TypeError, ValueError):
                 pass
 

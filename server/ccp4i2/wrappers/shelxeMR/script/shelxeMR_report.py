@@ -28,9 +28,9 @@ class shelxeMR_report(Report):
         if best is not None and best.findtext('BestCC'):
             try:
                 residues = int(float(best.findtext('ChainLen')) * int(best.findtext('NumChains')))
-                parent.append(
-                    "<p>Best trace: cycle %s, CC %s%% for the traced structure against the "
-                    "data, %d residues in %s chain(s).</p>"
+                parent.addText(
+                    text="Best trace: cycle %s, CC %s%% for the traced structure against the "
+                    "data, %d residues in %s chain(s)."
                     % (best.findtext('BCycle'), best.findtext('BestCC'), residues,
                        best.findtext('NumChains')))
             except (TypeError, ValueError):

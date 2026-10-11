@@ -7,5 +7,5 @@ class coot1_report(Report):
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         super(). __init__(xmlnode=xmlnode, jobInfo=jobInfo, **kw)
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         self.addText(text='Happily finished')

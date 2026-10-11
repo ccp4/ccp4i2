@@ -14,13 +14,12 @@ class import_serial_report(Report):
         if parent is None: parent = self
 
         try:
-            parent.append("<br />")
             #cc = float(self.xmlnode.findall('overall/cc')[0].text)
             #overallStats.append("<p>Overall statistics</p>")
             overallStats = parent.addFold(label='Overall statistics', initiallyOpen=True)
 
             #tableDiv = overallStats.addDiv(style="height:250px;width:20em;float:left;border:0px;")
-            tableDiv = overallStats.addDiv(style="width:20em;float:left;border:0px;")
+            tableDiv = overallStats.addDiv()
             table = tableDiv.addTable(transpose=True)
             table.addData(title="Low resolution limit",select='overall/d_max')
             table.addData(title="High resolution limit",select='overall/d_min')
@@ -33,8 +32,7 @@ class import_serial_report(Report):
             table.addData(title="Half-set correlation CC(1/2)",select='overall/cc')
             table.addData(title="CC*",select='overall/CCstar')
             table.addData(title="Rsplit",select='overall/rsplit')
-            clearingDiv = overallStats.addDiv(style="clear:both;")
-            parent.append("<br />")
+            clearingDiv = overallStats.addDiv()
 
 
             binnedStats = parent.addFold(label='Statistics vs. resolution', initiallyOpen=True)
@@ -76,8 +74,7 @@ class import_serial_report(Report):
             p.append( 'xscale', 'oneoversqrt' )
             p.append( 'xlabel', 'Resolution (A)' )
             l = p.append('plotline',xcol=1,ycol=3)
-            clearingDiv = binnedStats.addDiv(style="clear:both;")
-            parent.append("<br />")
+            clearingDiv = binnedStats.addDiv()
 
             graph = binnedStats.addFlotGraph(title="Data quality indicators v resolution", xmlnode=self.xmlnode, select="binned/bin", style="width:450px;height:300px;margin:0 auto;float:left;border:0px;" )
             graph.addData(title="Resolution(A)", select="one_over_d_min_sq") # 1 (x)
@@ -108,8 +105,7 @@ class import_serial_report(Report):
                 p.append( 'xscale', 'oneoversqrt' )
                 p.append( 'xlabel', 'Resolution (A)' )
                 l = p.append('plotline',xcol=1,ycol=5)
-            clearingDiv = binnedStats.addDiv(style="clear:both;")
-            parent.append("<br />")
+            clearingDiv = binnedStats.addDiv()
 
         except Exception as e:
-            parent.append("<p>THERE WAS A PROBLEM REPORTING THE STATISTICS: %s</p>"%(e,))
+            parent.addText(text="THERE WAS A PROBLEM REPORTING THE STATISTICS: %s"%(e,))

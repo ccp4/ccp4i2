@@ -10,8 +10,8 @@ class nucleofind_report(Report):
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         super().__init__(xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
 
-        self.addDiv(style="clear:both;")
+        self.addDiv()
 
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
-            self.addDiv(style="clear:both;")
+            self.addText(text="The job is currently running.", tone="emphasis")
+            self.addDiv()

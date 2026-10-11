@@ -40,7 +40,7 @@ class xia2_multiplex_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        self.addDiv(style="clear:both;")  # gives space for the title
+        self.addDiv()  # gives space for the title
         xia2MultiplexErrorNode = None
         if len(self.xmlnode.findall("Xia2MultiplexError"))>0:
             xia2MultiplexErrorNode = self.xmlnode.findall("Xia2MultiplexError")[0]
@@ -70,7 +70,7 @@ class xia2_multiplex_report(Report):
             )
         if xia2MultiplexErrorNode is not None:
             parent.addText(
-                style="font-size:125%;color:red;",
+                tone="error",
                 text="xia2.multiplex exited with an error",
             )
             parent.addPre(text=xia2MultiplexErrorNode.text)
@@ -121,7 +121,7 @@ class xia2_multiplex_report(Report):
             dic = None
         if dic is None:
             parent.addText(
-                style="font-size:125%;color:red;",
+                tone="error",
                 text="File not found: xia2.multiplex.json",
             )
             return

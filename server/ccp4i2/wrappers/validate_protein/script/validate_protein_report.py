@@ -33,7 +33,7 @@ class validate_protein_report(Report):
         section_div = parent.addDiv()
         iris_panel_svg = self.xmlnode.findall('.//Iris/Panel_svg')[0].text
         section_div.append(iris_panel_svg)
-        section_div.addDiv(style='clear:both;')
+        section_div.addDiv()
         parent.append('<br/><br/>')
 
 
@@ -53,7 +53,6 @@ class validate_protein_report(Report):
         table_summary.addData(title='RMS bonds', select='RMS_bonds')
         table_summary.addData(title='RMS angles', select='RMS_angles')
         table_summary.addData(title='Molprobity score', select='Molprobity_score')
-        section_div.append('<br/>')
 
         # Show tables conditionally
         n_rmchn = len(self.xmlnode.findall('.//Molprobity/Ramachandran_outliers/Outlier'))
@@ -67,7 +66,7 @@ class validate_protein_report(Report):
 
         rmchn_div = fold.addDiv()
         if n_rmchn > 0:
-            rmchn_div.append('<p><b>Ramachandran outliers: </b></p>')
+            rmchn_div.addText(text='Ramachandran outliers: ', tone="emphasis")
             table_outliers = rmchn_div.addTable(title='List of outliers', transpose=False)
             table_outliers.addData(title='Chain', data=[ x.attrib["chain"] for x in self.xmlnode.findall('.//Molprobity/Ramachandran_outliers/Outlier') if "chain" in x.attrib])
             table_outliers.addData(title='Seqnum', data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Molprobity/Ramachandran_outliers/Outlier') if "seqnum" in x.attrib])
@@ -76,7 +75,7 @@ class validate_protein_report(Report):
 
         omega_div = fold.addDiv()
         if n_omega > 0:
-            omega_div.append('<p><b>Non-planar omega (peptide bond) angles: </b></p>')
+            omega_div.addText(text='Non-planar omega (peptide bond) angles: ', tone="emphasis")
             table_outliers = omega_div.addTable(title='List of outliers', transpose=False)
             table_outliers.addData(title='Chain', data=[ x.attrib["chain"] for x in self.xmlnode.findall('.//Molprobity/Nonplanar_omegas/Outlier') if "chain" in x.attrib])
             table_outliers.addData(title='Seqnum', data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Molprobity/Nonplanar_omegas/Outlier') if "seqnum" in x.attrib])
@@ -84,7 +83,7 @@ class validate_protein_report(Report):
 
         rotam_div = fold.addDiv()
         if n_rotam > 0:
-            rotam_div.append('<p><b>Rotamer outliers: </b></p>')
+            rotam_div.addText(text='Rotamer outliers: ', tone="emphasis")
             table_outliers = rotam_div.addTable(title='List of outliers', transpose=False)
             table_outliers.addData(title='Chain', data=[ x.attrib["chain"] for x in self.xmlnode.findall('.//Molprobity/Rotamer_outliers/Outlier') if "chain" in x.attrib])
             table_outliers.addData(title='Seqnum', data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Molprobity/Rotamer_outliers/Outlier') if "seqnum" in x.attrib])
@@ -93,7 +92,7 @@ class validate_protein_report(Report):
 
         cbeta_div = fold.addDiv()
         if n_cbeta > 0:
-            cbeta_div.append('<p><b>C<sup><i>&#946;</i></sup> outliers: </b></p>')
+            cbeta_div.addText(text='C<sup><i>&#946;</i></sup> outliers: ', tone="emphasis")
             table_outliers = cbeta_div.addTable(title='List of outliers', transpose=False)
             table_outliers.addData(title='Chain', data=[ x.attrib["chain"] for x in self.xmlnode.findall('.//Molprobity/CBeta_outliers/Outlier') if "chain" in x.attrib])
             table_outliers.addData(title='Seqnum', data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Molprobity/CBeta_outliers/Outlier') if "seqnum" in x.attrib])
@@ -102,7 +101,7 @@ class validate_protein_report(Report):
 
         flips_div = fold.addDiv()
         if n_flips > 0:
-            flips_div.append('<p><b>Suggested side-chain flips: </b></p>')
+            flips_div.addText(text='Suggested side-chain flips: ', tone="emphasis")
             table_outliers = flips_div.addTable(title='List of flips', transpose=False)
             table_outliers.addData(title='Chain', data=[ x.attrib["chain"] for x in self.xmlnode.findall('.//Molprobity/Side_chain_flips/Outlier') if "chain" in x.attrib])
             table_outliers.addData(title='Seqnum', data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Molprobity/Side_chain_flips/Outlier') if "seqnum" in x.attrib])
@@ -110,13 +109,13 @@ class validate_protein_report(Report):
 
         clash_div = fold.addDiv()
         if n_clash > 0:
-            clash_div.append('<p><b>Atomic clashes: </b></p>')
+            clash_div.addText(text='Atomic clashes: ', tone="emphasis")
             table_outliers = clash_div.addTable(title='List of clashes', transpose=False)
             table_outliers.addData(title='First atom', data=[ x.attrib["first_atom"] for x in self.xmlnode.findall('.//Molprobity/Clashes/Outlier') if "first_atom" in x.attrib])
             table_outliers.addData(title='Second atom', data=[ x.attrib["second_atom"] for x in self.xmlnode.findall('.//Molprobity/Clashes/Outlier') if "second_atom" in x.attrib])
             table_outliers.addData(title='Overlap', data=[ x.attrib["overlap"] for x in self.xmlnode.findall('.//Molprobity/Clashes/Outlier') if "overlap" in x.attrib])
 
-        section_div.addDiv(style='clear:both;')
+        section_div.addDiv()
         parent.append('<br/><br/>')
 
 
@@ -152,7 +151,6 @@ class validate_protein_report(Report):
         table.addData(title='Waters', data=b_factor_averages['waters']['All'])
         table.addData(title='Ligands', data=b_factor_averages['ligands']['All'])
         table.addData(title='Ions', data=b_factor_averages['ions']['All'])
-        section_div.append('<br/>')
 
         chain_count = int(self.xmlnode.findall('.//Model_info/Chain_count')[0].text)
         for chain_id in range(chain_count):
@@ -168,9 +166,8 @@ class validate_protein_report(Report):
                 table.addData(title='Waters', data=b_factor_averages['waters'][chain_id])
                 table.addData(title='Ligands', data=b_factor_averages['ligands'][chain_id])
                 table.addData(title='Ions', data=b_factor_averages['ions'][chain_id])
-                section_div.append('<br/>')
 
-        section_div.addDiv(style='clear:both;')
+        section_div.addDiv()
         parent.append('<br/><br/>')
 
 
@@ -184,7 +181,7 @@ class validate_protein_report(Report):
         background_GLY = htmlBase() + '/rama_gly.png'
         background_RST = htmlBase() + '/rama_rst.png'
 
-        graph_div = parent.addDiv(style='float:left; margin-left:50px;')
+        graph_div = parent.addDiv()
         rama_graph = graph_div.addFlotGraph(title='Ramachandran Plot', select='.//Ramachandran', style='height:500px; width:500px; border:0px; float:left; padding:10px; padding-left:15px;')
 
         for resName, resCheck in [
@@ -247,7 +244,7 @@ class validate_protein_report(Report):
         n_outliers = int(self.xmlnode.findall('.//Ramachandran/Totals/Outliers')[0].text)
         n_na = int(self.xmlnode.findall('.//Ramachandran/Totals/NA')[0].text)
 
-        tab_div = parent.addDiv(style='float:left; margin-left:50px;')
+        tab_div = parent.addDiv()
 
         if int(n_outliers) > 0 :
             tab_div.append('<p ><b>Outliers: </b></p>')
@@ -265,7 +262,7 @@ class validate_protein_report(Report):
             text +='In <b><font color=\'red\'>high-energy</font></b> backbone conformations (outliers): <b>%s (%0.2f%%)</b>' % (n_outliers, 100 * n_outliers / n_residues)
         tab_div.append(text)
 
-        section_div.addDiv(style='clear:both;')
+        section_div.addDiv()
         parent.append('<br/><br/><br/><br/>')
 
 

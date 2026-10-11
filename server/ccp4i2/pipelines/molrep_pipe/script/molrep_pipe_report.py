@@ -199,7 +199,7 @@ class molrep_pipe_report(refmac_report):
           plotLine = plot.append('plotline',xcol=1,ycol=4,rightaxis='true',colour='red')
 
   def addProgressTable2(self, parent, internalId='SummaryTable'):
-      progressTableDiv = parent.addDiv(style='border:0px solid black; height:250px; width:260px; float:left; margin-top:1px; margin-right:0px;overflow:auto;')
+      progressTableDiv = parent.addDiv()
       xmlNodes = self.xmlnode.findall('.//RefmacRunning/Cycle')
       nCycles = len(xmlNodes)
 #FIXME - XPATH LOGIC

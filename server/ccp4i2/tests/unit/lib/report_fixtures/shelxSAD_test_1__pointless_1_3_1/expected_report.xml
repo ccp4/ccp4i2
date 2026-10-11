@@ -1,12 +1,9 @@
 <CCP4i2Reportpointless_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
   <CCP4i2ReportTitle class="" style="" title1="pointless" title2="11:35 07-Mar-2022" />
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-    <CCP4i2ReportText class="" style="font-size: 150%;text-align:center">POINTLESS</CCP4i2ReportText>
-    <CCP4i2ReportText class="" style="color:darkorange;">WARNING: Input data are merged, so space group determination is limited to testing for under-merging</CCP4i2ReportText>
-    <CCP4i2ReportGeneric class="" style="">
-      <br />
-    </CCP4i2ReportGeneric>
-    <CCP4i2ReportText class="" style="color:darkorange;">No scaling will be done, just analysis</CCP4i2ReportText>
+  <CCP4i2ReportDiv class="" style="">
+    <CCP4i2ReportText class="" style="" tone="heading">POINTLESS</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="warning">WARNING: Input data are merged, so space group determination is limited to testing for under-merging</CCP4i2ReportText>
+    <CCP4i2ReportText class="" style="" tone="warning">No scaling will be done, just analysis</CCP4i2ReportText>
     <CCP4i2ReportGeneric class="" style="">
       <p>Choosing specified space group P 21 21 21<br /> with reindex operator [h,k,l]</p>
     </CCP4i2ReportGeneric>
@@ -14,7 +11,7 @@
       <p>Solution probability:   0.992,   Confidence     1.000   (high resolution limit for symmetry testing 1.792Å)</p>
     </CCP4i2ReportGeneric>
   </CCP4i2ReportDiv>
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;">
+  <CCP4i2ReportDiv class="" style="">
     <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
         <CCP4i2ReportGeneric class="" style="">
@@ -56,7 +53,7 @@
         </CCP4i2ReportTable>
       </CCP4i2ReportGridItem>
       <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
-        <CCP4i2ReportText class="" style="font-size:120%;">Scores for each symmetry element</CCP4i2ReportText>
+        <CCP4i2ReportText class="" style="" tone="heading">Scores for each symmetry element</CCP4i2ReportText>
         <CCP4i2ReportGeneric class="" style="">
           <p>Lattice group name P 2 2 2</p>
         </CCP4i2ReportGeneric>
@@ -105,9 +102,9 @@
         </CCP4i2ReportTable>
       </CCP4i2ReportGridItem>
     </CCP4i2ReportGridContainer>
-    <CCP4i2ReportDiv class="" style="width:100%;text-align:center;margin:6px; padding:0px; ">
-      <CCP4i2ReportDiv class="" style="padding:10px 0px 0px 0px;">
-        <CCP4i2ReportText class="" style="font-size:120%;">Details of space group determination</CCP4i2ReportText>
+    <CCP4i2ReportDiv class="" style="text-align:center;">
+      <CCP4i2ReportDiv class="" style="">
+        <CCP4i2ReportText class="" style="" tone="heading">Details of space group determination</CCP4i2ReportText>
         <CCP4i2ReportFold class="" style="" label="Scores for each Laue group" initiallyOpen="False" brief="Laue group">
           <CCP4i2ReportGeneric class="" style="">
             <p>Accept flags: "&gt;", accepted; "=" original accepted; "-" original rejected<br />Dcell: maximum cell difference in degrees</p>

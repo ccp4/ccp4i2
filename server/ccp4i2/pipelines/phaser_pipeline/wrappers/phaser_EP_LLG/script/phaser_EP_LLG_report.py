@@ -7,7 +7,7 @@ class phaser_EP_LLG_report(Report):
     
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         if jobStatus is None or jobStatus.lower() == 'nooutput': return
         self.drawContent(jobStatus, self)
         
@@ -22,8 +22,7 @@ class phaser_EP_LLG_report(Report):
         warningsFolder = parent.addFold(label='PHASER warnings', initiallyOpen=True)
         if len(warnings)>0:
             for warning in warnings:
-                warningsFolder.addText(text=warning.text,style='color:red;')
-                warningsFolder.append('<br/>')
+                warningsFolder.addText(text=warning.text,tone="error")
         else:
             warningsFolder.addText(text='No warnings from PHASER')
         return
@@ -36,7 +35,7 @@ class phaser_EP_LLG_report(Report):
         for graphTableNode in graphTableList:
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title") )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
-        parent.addDiv(style='clear:both;')
+        parent.addDiv()
 
 
 

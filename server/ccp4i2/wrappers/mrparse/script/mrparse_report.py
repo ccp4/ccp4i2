@@ -31,14 +31,14 @@ class mrparse_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.append("<p>Finished running MrParse</p>")
+        parent.addText(text="Finished running MrParse")
         basepath = self.jobInfo['fileroot']
         mrparse_rep = os.path.join(basepath, "mrparse_0", 'mrparse.html')
 
         self.complexTemplates(parent)
         ResultsI2Folder = parent.addFold(label='MrParse Reports', initiallyOpen=True)
         if not os.path.exists(mrparse_rep):
-            ResultsI2Folder.append('<p>MrParse report not found</p>')
+            ResultsI2Folder.addText(text='MrParse report not found')
             return
 
         # MrParse writes its stylesheets and scripts as absolute paths into its
@@ -84,13 +84,13 @@ class mrparse_report(Report):
         if not found:
             return
         fold = parent.addFold(label='Complex templates', initiallyOpen=True)
-        fold.append('<p>Hits from one PDB entry match more than one of the sequences '
+        fold.addText(text='Hits from one PDB entry match more than one of the sequences '
                     'searched for. Each entry below is also written as one model holding '
                     'those chains, in the entry\'s own frame, to be placed as a single '
                     'rigid body: the number of copies is then the number of copies of the '
                     'complex. Use it when the subunits are expected to sit as they do in '
                     'the entry; otherwise search for the single-chain models as separate '
-                    'components in Expert molecular replacement.</p>')
+                    'components in Expert molecular replacement.')
         table = fold.addTable()
         entries, files, components = [], [], []
         for element in found:

@@ -53,4 +53,4 @@ class csymmatch_report(Report):
             plot.append('xintegral','true')
             for coordinate, colour in [(2,'blue')]:
                 plotLine = plot.append('plotline',xcol=1,ycol=coordinate,colour=colour)
-            parent.addDiv(style='clear:both')
+            parent.addDiv()

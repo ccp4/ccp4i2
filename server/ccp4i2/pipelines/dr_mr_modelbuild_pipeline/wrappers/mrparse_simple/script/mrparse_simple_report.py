@@ -24,7 +24,7 @@ class mrparse_simple_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        parent.append("<p>Finished running MrParse</p>")
+        parent.addText(text="Finished running MrParse")
         basepath = self.jobInfo['fileroot']
         mrparse_rep = os.path.join(basepath, "mrparse_0", 'mrparse.html')
 
@@ -53,5 +53,5 @@ class mrparse_simple_report(Report):
                 fileType='html',
             )
         else:
-            ResultsI2Folder.append('<p>MrParse report not found</p>')
+            ResultsI2Folder.addText(text='MrParse report not found')
         return

@@ -34,7 +34,7 @@ class arcimboldo_report ( Report ) :
 		if os.path.exists(fileXml):
 			self.arcimboldoXml = self.loadXmlFile(fileXml)
 
-			div = self.addDiv(style='clear:both;')
+			div = self.addDiv()
 			if jobStatus is not None and jobStatus.lower() == 'nooutput':
 				return
 			elif jobStatus is not None and jobStatus.lower() == 'running':
@@ -49,7 +49,7 @@ class arcimboldo_report ( Report ) :
 		elif jobStatus is not None and jobStatus.lower() != 'nooutput' and jobStatus.lower() != 'running':
 			self.borReport(jobInfo)
 		else:
-			self.append('<p><b>Starting job. Waiting for results.</b></p>')
+			self.addText(text='Starting job. Waiting for results.', tone="emphasis")
 
 	def fatalErrorReport(self, parent=None):
 		"""Render the FATAL messages ARCIMBOLDO wrote to its log, if any."""
@@ -62,7 +62,7 @@ class arcimboldo_report ( Report ) :
 		if not fatalErrors:
 			return
 
-		div = parent.addDiv(style='clear:both;')
+		div = parent.addDiv()
 		html = ('<div style="border:1px solid #d32f2f; border-left:6px solid #d32f2f; '
 				'background:#fdecea; padding:0.6em 1em; margin:0.5em 0;">'
 				'<p style="color:#d32f2f; margin:0 0 0.4em 0;"><b>ARCIMBOLDO aborted</b></p>')
@@ -110,7 +110,7 @@ class arcimboldo_report ( Report ) :
 		if parent is None:
 			parent = self
 
-		summaryDiv = parent.addDiv(style='clear:both;')
+		summaryDiv = parent.addDiv()
 		summaryFold = summaryDiv.addFold(label='Summary', brief='Summary', initiallyOpen=True)
 
 		completeness = []
@@ -160,7 +160,7 @@ class arcimboldo_report ( Report ) :
 		if parent is None:
 			parent = self
 
-		statusDiv = parent.addDiv(style='clear:both;')
+		statusDiv = parent.addDiv()
 		statusFold = statusDiv.addFold(label='Status', brief='Status', initiallyOpen=True)
 
 		try:
@@ -187,7 +187,7 @@ class arcimboldo_report ( Report ) :
 		if parent is None:
 			parent = self
 
-		borDiv = parent.addDiv(style='clear:both;')
+		borDiv = parent.addDiv()
 		borFold = borDiv.addFold(label='Setup file', brief='Setup', initiallyOpen=False)
 
 		borFile = os.path.join(jobInfo['fileroot'],'setup.bor')

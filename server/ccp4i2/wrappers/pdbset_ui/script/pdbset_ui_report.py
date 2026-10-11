@@ -10,9 +10,9 @@ class pdbset_ui_report(Report):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
         )
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if jobStatus in ["Running", "Running remotely"]:
-            self.append("<p><b>The job is currently running.</b></p>")
+            self.addText(text="The job is currently running.", tone="emphasis")
 
         fold = self.addFold(label="Log file")
         if len(self.xmlnode.findall(".//LogText"))>0:

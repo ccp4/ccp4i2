@@ -84,12 +84,12 @@ class import_merged_report(Report):
       return
     elif status == "IMPORTING":
       parent.addText(text="File import is running",
-                     style='font-weight:bold; font-size:150%; color:red;')
+                     tone="error")
       message1 = 'file reading'
 
     elif status == "DRPIPE_RUNNING":
       parent.addText(text="Data reduction pipeline is running to generate statistics",
-                     style='font-weight:bold; font-size:150%; color:red;')
+                     tone="error")
     elif status == "FINISHED":
       pass
       #parent.addText(text="Data reduction pipeline has finished",
@@ -119,10 +119,10 @@ class import_merged_report(Report):
     elif fformat == 'sca':
       message = 'Merged Scalepack ' + message1
 
-    importDiv = parent.addDiv(style="border: 1px solid black; margin: 20px 1px 1px 1px; padding:5px;font-size:95%;line-height:1.7")
+    importDiv = parent.addDiv(style="font-size:95%;line-height:1.7;")
 
     importDiv.addText(text='Information about the import file :',
-                       style='font-weight:bold; font-size:110%; color:blue;')
+                       tone="info")
 
     #importDiv.append("<br/>")
     #importDiv.append(message)
@@ -170,9 +170,9 @@ class import_merged_report(Report):
         importDiv.addText(text=line)
         #importDiv.append("<br/>")
     elif fformat == 'mmcif':
-      mmcifDiv = importDiv.addDiv(style="padding:5px;background-color:#CCEEFF;")
+      mmcifDiv = importDiv.addDiv(style="background-color:#cceeff;")
       mmcifDiv.addText(text='Information about the mmCIFfile :',
-                        style='font-weight:bold; font-size:110%; color:blue;')
+                        tone="info")
 
       message = self.mmcifreport()   #  information about the mmCIF file
       #mmcifDiv.append("<br/>")
@@ -182,7 +182,7 @@ class import_merged_report(Report):
       #mmcifDiv.append(message)
 
     parent.addText(text="NB data from the original file are kept for use in downstream processing",
-                   style='font-weight:bold; font-size:120%; color:blue;')
+                   tone="info")
 
 
     return
@@ -346,7 +346,7 @@ class import_merged_report(Report):
     if len(headlines) > 0:
       # errors
       place = parent.addDiv(
-        style="width:90%;border: 2px solid red; clear:both; margin:3px; padding:6px;")
+        )
       for line in headlines:
         place.append(line)
 
@@ -440,7 +440,7 @@ class import_merged_report(Report):
 
     self.omitmessage = None
 
-    topDiv = parent.addDiv(style="font-size:100%;border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;")
+    topDiv = parent.addDiv(style="font-size:100%;")
 
     status = self.reportstatus()
 
@@ -448,7 +448,7 @@ class import_merged_report(Report):
     if not status == "FINISHED": return
 
     topDiv.addText(text="Import of merged data",
-                     style='font-weight:bold; font-size:150%; color:blue;')
+                     tone="info")
     #topDiv.append(' <br/>')
     self.importReport(topDiv)
 
@@ -462,9 +462,8 @@ class import_merged_report(Report):
     #topDiv.append("<br/>")
     self.freeRmessage(topDiv)
 
-    topDiv.append('<br/>')
     topDiv.addText(text="Report from data reduction, for analysis only",
-                     style='font-weight:bold; font-size:140%; color:blue;')
+                     tone="info")
 
     # Instantiate aimless and pointless and ctruncate reports from which to cherry pick
     # The nooutput flag makes sure thay don't do anything
@@ -554,7 +553,7 @@ class import_merged_report(Report):
       errorspresent += ' Pipeline Error'
 
       if errorspresent != '':
-        errorDiv = parent.addDiv(style="border-width: 1px; border-color: black;clear:both; margin:0px; padding:0px;color:red")
+        errorDiv = parent.addDiv(style="color:red;")
         if 'Pipeline' in errorspresent:
           message = 'WARNING: Pipeline error: '+\
                     drpipelinexml.findall('PIPELINE_ERROR')[0].text
@@ -615,7 +614,7 @@ class import_merged_report(Report):
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
     # Summary of summaries
     summaryDiv = parent.addDiv(\
-           style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+           )
     summaryfold = summaryDiv.addFold(label='Key summary', brief='Headline',
                                      initiallyOpen=True)
     if pointlessxml != None:
@@ -639,15 +638,15 @@ class import_merged_report(Report):
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
     # Main summary
     overallsummaryDiv = parent.addDiv(\
-         style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+         )
     overallfold = overallsummaryDiv.addFold(label='Overall summary',
                                                 brief='Summary',initiallyOpen=True)
 
     # Put the key messages about spacegroup and resolution at the very top
     #headlineDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:5px;")
-    headlineDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:5px;")
-    leftDiv = headlineDiv.addDiv(style="width:49%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:0px;")
-    statsDiv = headlineDiv.addDiv(style="width:46%;float:left;text-align:center;margin:0px; padding:10px;border:1px solid black;")
+    headlineDiv = overallfold.addDiv()
+    leftDiv = headlineDiv.addDiv(style="text-align:center;line-height:100%;font-size:100%;")
+    statsDiv = headlineDiv.addDiv(style="text-align:center;")
     # not usually anything useful from Pointless
     #if pointlessxml != None:
     #  self.addPointlessSummaryMerged(leftDiv)
@@ -659,14 +658,13 @@ class import_merged_report(Report):
     #  Aimless resolution graphs in left div
     if (aimlessxml != None):
       # Put the key graphs that report on data quality at the top
-      leftDiv.addText(text='Analysis as a function of resolution',style='font-size:130%;font-weight:bold;')
-      leftDiv.append('<br/>')
+      leftDiv.addText(text='Analysis as a function of resolution',tone="heading")
       self.aimlessreport.ByResolutionGraphsMerged(leftDiv)
       self.aimlessreport.Graphs(leftDiv, select='Completeness')
 
     nextdiv = overallfold.addDiv()
-    nextleftDiv = nextdiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
-    nextrightDiv = nextdiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+    nextleftDiv = nextdiv.addDiv(style="text-align:center;")
+    nextrightDiv = nextdiv.addDiv(style="text-align:center;")
 
     if self.ctruncatereports != None:
       wilsonDiv = nextleftDiv
@@ -682,14 +680,14 @@ class import_merged_report(Report):
     if phaserfailmessage is not None:
       parent.addText(text=phaserfailmessage)
     if self.phaserreport != None:
-      phaserDiv = parent.addDiv(style='width:100%; clear:both; margin:0px; padding:0px;')
+      phaserDiv = parent.addDiv()
       phaserfold = phaserDiv.addFold(label='Analyses of twinning, tNCS and anisotropy from Phaser',
                                             brief='Phaser',initiallyOpen=True)
-      phaserDiv = phaserfold.addDiv(style="width:100%;margin:0px; padding:1px;")
+      phaserDiv = phaserfold.addDiv()
       self.phaserreport.phaserAnalysisReport(phaserDiv, False)
 
     if self.pointlessreport is not None:
-      pointlessDiv = parent.addDiv(style='width:100%; clear:both; margin:0px; padding:0px;')
+      pointlessDiv = parent.addDiv()
       pointlessfold = pointlessDiv.addFold(\
         label='Details of space group determination',
         brief='Symmetry analysis',
@@ -699,38 +697,36 @@ class import_merged_report(Report):
     # Truncate L-test next
     if self.ctruncatereports != None:
       toptruncateDiv = parent.addDiv(
-        style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        )
 
       truncatefold = toptruncateDiv.addFold(label='Analysis of twinning from ctruncate',
                                     brief='Truncate',initiallyOpen=True)
-      headerDiv = truncatefold.addDiv(style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;text-align:center")
-      headerDiv.append('<br/>')
+      headerDiv = truncatefold.addDiv(style="text-align:center;")
 
       headerDiv.addText(text='Graphs for detecting twinning etc, more details below',
-                        style='text-align:center;font-weight: bold; font-size:130%;')
+                        tone="heading")
 
       twinned = self.ctruncatereports[0].addWarningTwin(headerDiv,check=True)
-      headerDiv.append('<br/>')
       if twinned:
         headerDiv.addText(text='This dataset is probably twinned',
-                          style='text-align:center;font-weight: bold; font-style:italic; font-size:130%;color:red;')
+                          tone="error")
       else:
         headerDiv.addText(text='This dataset is probably NOT twinned',
-                            style='text-align:center;font-weight: bold; font-style:italic; font-size:130%;color:green;')
+                            tone="success")
 
-      truncateDiv = headerDiv.addDiv(style="clear:both;")
-      leftDiv = truncateDiv.addDiv(style="width:48%;float:left;text-align:center;margin:0px; padding:0px;")
-      rightDiv = truncateDiv.addDiv(style="width:48%;float:right;text-align:center;margin:0px; padding:0px;")
+      truncateDiv = headerDiv.addDiv()
+      leftDiv = truncateDiv.addDiv(style="text-align:center;")
+      rightDiv = truncateDiv.addDiv(style="text-align:center;")
 
       self.addTruncateLtest(leftDiv)
 
-      momentDiv = rightDiv.addDiv(style="width:100%;")
+      momentDiv = rightDiv.addDiv()
       for ctruncatereport in self.ctruncatereports:
         ctruncate_report.ctruncate_report(xmlnode=ctruncatereport, jobStatus='nooutput')
         ctruncatereport.acentricMoments(momentDiv)
 
 
-      truncateDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      truncateDiv = parent.addDiv()
       fold = truncateDiv.addFold(label="Intensity statistics: twinning tNCS etc",brief='Istats')
       self.addCtruncateReports(fold)
 
@@ -877,20 +873,20 @@ class import_merged_report(Report):
   # . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   def addTruncateLtest(self, parent=None):
     LtestDiv = parent.addDiv(
-      style="text-align:center;margin:0px auto; padding:3px;")
-    LtestDiv.addText(text='L-test for twinning',style="font-weight:bold; font-size:130%;")
+      style="text-align:center;")
+    LtestDiv.addText(text='L-test for twinning',tone="heading")
     self.ctruncatereports[0].CtruncateLtest(LtestDiv)
 
   # . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   def addTruncateWilson(self, parent=None):
     icDiv = parent.addDiv(
-      style="text-align:center;margin:0px auto; padding:3px;")
+      style="text-align:center;")
     self.ctruncatereports[0].CtruncateWilson(icDiv)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addAimlessSummaryMerged(self, parent=None, extraitems=None):
     aHeaderDiv = parent.addDiv(
-      style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;")
+      style="font-weight:bold;font-size:130%;")
     aHeaderDiv.append('Data internal consistency statistics')
 
     #print("addAimlessSummaryMerged", extraitems)
@@ -933,7 +929,7 @@ class import_merged_report(Report):
     # <CCP4Table groupID="Graph" id="informationcontent" title=" Information content of data">
 
     icDiv = parent.addDiv(
-      style="text-align:center;margin:0px auto; padding:3px;")
+      style="text-align:center;")
     graphgroup = icDiv.addFlotGraphGroup(style="width:300px;  height:270px;border:1px solid black;")
     thisgraph = phaserxml.findall('CCP4Table[@id="informationcontent"]')[0]
     graph = graphgroup.addFlotGraph(xmlnode=thisgraph, title=thisgraph.attrib["title"] )

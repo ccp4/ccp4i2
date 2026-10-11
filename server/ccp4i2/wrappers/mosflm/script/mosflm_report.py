@@ -17,23 +17,23 @@ class mosflm_report(Report):
         importMosflmReport = import_mosflm_report.import_mosflm_report(xmlnode=integrationResultNode,jobInfo=jobInfo, jobStatus="nooutput")
 
         detectorFold = self.addFold(label="Detector and beam", initiallyOpen=True)
-        detectorDiv = detectorFold.addDiv(style="border:2px solid black;display:inline-block;")
+        detectorDiv = detectorFold.addDiv()
         graphLineChooser = detectorDiv.addGraphLineChooser(tableWidth='220px',contentWidth='260px',height='270px')
         importMosflmReport.beamGraph(parent=graphLineChooser)
         importMosflmReport.centralSpotProfile(parent=detectorDiv)
 
-        clearingDiv = self.addDiv(style="clear:both;")
+        clearingDiv = self.addDiv()
         
         crystalFold = self.addFold(label="Crystal", initiallyOpen=True)
-        crystalDiv = crystalFold.addDiv(style="border:2px solid black;display:inline-block;")
+        crystalDiv = crystalFold.addDiv()
         otherGraphLineChooser = crystalDiv.addGraphLineChooser(tableWidth='220px',contentWidth='260px',height='270px')
         importMosflmReport.crystalGraph(parent=otherGraphLineChooser)
         importMosflmReport.blockProfiles(parent=crystalDiv)
         
-        clearingDiv = self.addDiv(style="clear:both;")
+        clearingDiv = self.addDiv()
 
         dataFold = self.addFold(label="Data", initiallyOpen=True)
-        dataDiv = dataFold.addDiv(style="border:2px solid black;display:inline-block;")
+        dataDiv = dataFold.addDiv()
         thirdGraphLineChooser = dataDiv.addGraphLineChooser(tableWidth='220px',contentWidth='260px',height='270px')
         importMosflmReport.dataGraph(parent=thirdGraphLineChooser)
         importMosflmReport.histograms(parent=dataDiv)

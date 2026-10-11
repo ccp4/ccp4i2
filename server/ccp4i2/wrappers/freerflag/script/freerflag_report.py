@@ -30,8 +30,7 @@ class freerflag_report(Report):
       # for stand-alone FreeR job (not in pipeline)
       text = 'GENERATE FREER SET'
       parent.addText(text=text,
-                     style='font-weight:bold; font-size:120%; color:blue;')
-      parent.append(' <br/>')
+                     tone="info")
       self.mainReport(parent, self.xmlnode)
 
     # - - - - - - - - - - - - - - - - -
@@ -45,7 +44,6 @@ class freerflag_report(Report):
       
       if len(freerxml.findall('Mode'))>0:
         mode = freerxml.findall('Mode')[0].text
-        parent.append(' <br/>')
         if mode == 'Complete':
           message = 'FreeR flags generated to COMPLETE input set'
         elif mode == 'New':
@@ -64,12 +62,10 @@ class freerflag_report(Report):
             frcut = freerCutResolution[0].text
             message = 'Input FreeR data was cut to match the resolution'+\
                       ' of the data, '+frcut+' \xc5'
-            parent.append(' <br/>')
             parent.addText(text=message)
 
       if len(freerxml.findall('GlobalResolutionLimit'))>0:
         glres = freerxml.findall('GlobalResolutionLimit')[0].text
         message = 'For output, the FreeR set was cut to  resolution limit of '+\
                   glres+' \xc5'
-        parent.append(' <br/>')
         parent.addText(text=message)

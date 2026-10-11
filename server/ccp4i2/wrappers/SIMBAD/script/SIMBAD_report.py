@@ -29,7 +29,7 @@ class SIMBAD_report(Report):
         repdir = os.path.join(jobInfo.get('fileroot', None), SIMBAD_DIRNAME, SIMBAD_PYRVAPI_SHAREDIR)
         self.get_tables_as_elements(repdir)
         #print("JMHT WRITING REPORT %s" % self.e1_dict)
-        self.addDiv(style='clear:both;')
+        self.addDiv()
         for e1 in xmlnode:
             # Process each tab separately
             if e1.tag == 'tab':

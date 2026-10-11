@@ -7,17 +7,17 @@ class pandda_fanout_report(Report):
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        self.addDiv(style="clear:both;")
+        self.addDiv()
         if xmlnode is None:
             return
         text = lambda path, default='': (
             xmlnode.findtext(path) if xmlnode.findtext(path) is not None else default)
         if text('dry_run') == 'True':
-            self.addText(text='Preview only: nothing was created.', style='font-weight:bold;')
+            self.addText(text='Preview only: nothing was created.', tone="emphasis")
         if text('incomplete') == 'True':
             self.addText(text=('The run did not write its events table: a partial tree. Receipts were '
                                'taken for what is there and told the run did not finish.'),
-                         style='color:#e65100;')
+                         tone="warning")
         self.addText(text=('This job records what the fan-out created at the time. Each receipt is '
                            'its own job in its own project, and that is where its state lives.'))
 

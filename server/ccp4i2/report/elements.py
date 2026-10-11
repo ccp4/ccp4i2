@@ -79,6 +79,23 @@ class Text(ReportClass):
             for node in nodes:
                 self.text += node.text
 
+    def as_data_etree(self) -> etree.Element:
+        """The text, with any inline markup it carries (<b>, <i>, <a>,
+        <span>) as child elements rather than escaped characters, so the
+        client renders it as markup. A string that is not well-formed
+        markup ("R < 0.40 and TFZ > 8") stays plain text."""
+        root = super().as_data_etree()
+        text = self.text if isinstance(self.text, str) else ''
+        if '<' in text and '>' in text:
+            try:
+                parsed = etree.fromstring(('<span>' + text + '</span>').encode('utf-8'))
+            except BaseException:
+                return root
+            root.text = parsed.text or ''
+            for child in parsed:
+                root.append(child)
+        return root
+
 
 
 class Pre(Text):

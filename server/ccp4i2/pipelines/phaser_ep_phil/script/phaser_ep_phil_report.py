@@ -36,7 +36,7 @@ class phaser_ep_phil_report(Report):
         node = self.xmlnode.find("PhaserEpResults")
         if node is None:
             parent.addText(text="Phaser has not reported yet" if (jobStatus or "").lower() == "running"
-                           else "No Phaser record", style="color:orange;")
+                           else "No Phaser record", tone="warning")
             return
         phaser_ep_auto_phil_report(xmlnode=node, jobStatus="nooutput").drawContent(jobStatus=jobStatus, parent=parent)
         for hand, label in (("original", "Original hand"), ("inverted", "Inverted hand")):
@@ -45,7 +45,7 @@ class phaser_ep_phil_report(Report):
                 from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
                 fold = parent.addFold(label=f"Density modification: {label}", initiallyOpen=False)
                 parrot_report(xmlnode=parrot, jobStatus="nooutput").defaultReport(parent=fold)
-                fold.addDiv(style="clear:both;")
+                fold.addDiv()
             mc = self.xmlnode.find(f"{hand}/ModelCraft")
             if mc is not None and mc.text:
                 from ccp4i2.wrappers.modelcraft.script.modelcraft_report import modelcraft_report
@@ -59,4 +59,4 @@ class phaser_ep_phil_report(Report):
                     report.add_table(parent=fold)
                     report.add_message(jobStatus, parent=fold)
                     report.add_graph(parent=fold)
-                fold.addDiv(style="clear:both;")
+                fold.addDiv()
