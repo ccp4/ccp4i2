@@ -65,7 +65,17 @@ class mrparse(CPluginScript):
                 shutil.copy(xyz_in, xyz_out)
                 self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                 self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
-                self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}".format(label, hit['name'])
+                # The annotation is what project_jobs and the app show: say
+                # the identity and eLLG there too, not only in program.xml.
+                facts = []
+                if isinstance(hit.get('seq_ident'), (int, float)):
+                    facts.append("%.0f%% id" % (100 * hit['seq_ident']))
+                if isinstance(hit.get('ellg'), (int, float)) and hit['ellg']:
+                    facts.append("eLLG %.0f" % hit['ellg'])
+                if isinstance(hit.get('query_start'), int) and isinstance(hit.get('query_stop'), int):
+                    facts.append("%d-%d" % (hit['query_start'], hit['query_stop']))
+                self.container.outputData.XYZOUT[-1].annotation = "{} hit: {}{}".format(
+                    label, hit['name'], " (%s)" % ", ".join(facts) if facts else "")
                 models.append((label, os.path.basename(hit['pdb_file']), hit))
 
         register(pdb_json, "PDB", 'ellg' if self.hklin else 'seq_ident')

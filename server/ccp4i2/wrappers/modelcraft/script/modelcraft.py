@@ -55,12 +55,38 @@ class modelcraft(CPluginScript):
     TASKCOMMAND = "modelcraft"
     ERROR_CODES = {
         201: {"description": "ModelCraft stopped before it produced a model"},
+        202: {"description": "PHASES and XYZIN come from different jobs"},
     }
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild", "coot1"]
 
     def __init__(self, *args, **kws):
         super(modelcraft, self).__init__(*args, **kws)
+
+    def validity(self):
+        error = super().validity()
+        # A new modelcraft job is pre-filled from the latest results of each
+        # kind: an agent's job 8 took XYZIN from the latest placement (job 6)
+        # and PHASES from an older one (job 5), and nothing said so
+        # (2026-10-11). Phases from one model with coordinates from another
+        # start the building from a mismatch. Advice, not a block.
+        inp = self.container.inputData
+        try:
+            use_model_phases = bool(self.container.controlParameters.USE_MODEL_PHASES)
+        except Exception:
+            use_model_phases = False
+        if not use_model_phases and inp.XYZIN.isSet() and inp.PHASES.isSet():
+            from_xyz = str(getattr(inp.XYZIN, "relPath", "") or "")
+            from_phs = str(getattr(inp.PHASES, "relPath", "") or "")
+            if from_xyz and from_phs and from_xyz != from_phs:
+                from ccp4i2.core import CCP4ErrorHandling
+                error.append(klass=self.TASKNAME, code=202,
+                             details=f"PHASES come from {from_phs} but XYZIN from {from_xyz}: phases of "
+                                     "one model with the coordinates of another. Take both from the "
+                                     "same job, or set USE_MODEL_PHASES to start from the model alone.",
+                             name=f"{self.TASKNAME}.container.inputData.PHASES",
+                             severity=CCP4ErrorHandling.SEVERITY_WARNING)
+        return error
 
     def processInputFiles(self):
         params = self.container.controlParameters

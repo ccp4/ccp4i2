@@ -139,18 +139,26 @@ def _walk(container, prefix):
             yield child, path
 
 
-def summarise(container, sections=SECTIONS, only_set=False, query=None):
+def summarise(container, sections=None, only_set=False, query=None):
     """The parameters of a job's container, one dict each, in def.xml order.
 
-    ``sections`` limits it to some of inputData / controlParameters /
-    outputData; ``only_set`` to those with a value; ``query`` to those whose
-    path or label contains it (case-insensitive).
+    ``sections`` limits it to some sections by name; by default every
+    container the task declares is read -- inputData, controlParameters,
+    outputData, and a task's own (slicendice's modelParameters, mrparse's
+    options). A fixed list of three hid modelParameters: set_parameter
+    on MIN_SPLITS reported "set: false" though it had taken, and a query
+    found nothing (an agent run, 2026-10-11). ``only_set`` keeps those with
+    a value; ``query`` those whose path or label contains it.
     """
     query = query.lower() if query else None
     out = []
     for section in container.children():
         name = section.objectName()
-        if name not in sections or not isinstance(section, CContainer):
+        if not isinstance(section, CContainer) or not name or name.startswith("_"):
+            continue
+        if sections is None and name.startswith("gui"):
+            continue  # guiAdmin, guiParameters: the app's own state, not the task's inputs
+        if sections is not None and name not in sections:
             continue
         for obj, path in _walk(section, name):
             try:

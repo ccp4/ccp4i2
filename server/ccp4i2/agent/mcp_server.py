@@ -311,7 +311,67 @@ def create_job(project_id: int, task: str) -> dict:
     the project's latest results, as in the app: check them with
     job_parameters(only_set=True)."""
     job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
-    return {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
+    out = {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
+    carried = _carry_model_identity(job["id"], job["project"])
+    if carried:
+        out["also_set"] = carried
+    return out
+
+
+def _carry_model_identity(job_id, project_id):
+    """When a new job's XYZIN was pre-filled from an mrparse model, give its
+    SEARCHSEQUENCEIDENTITY the identity mrparse recorded (set_file does the
+    same for a file set by hand). The pre-fill left the 0.9 default and an
+    agent guessed 0.45 where mrparse had 0.51 (2026-10-11)."""
+    try:
+        params = _get(f"jobs/{job_id}/parameters", query="SEARCHSEQUENCEIDENTITY").get("parameters") or []
+        if not params:
+            return None
+        xyzin = next((e for e in (_get(f"jobs/{job_id}/parameters", query="XYZIN").get("parameters") or [])
+                      if e.get("path", "").endswith(".XYZIN") and e.get("set")), None)
+        file_id = (xyzin or {}).get("value", {}).get("fileId") if isinstance((xyzin or {}).get("value"), dict) else None
+        if not file_id:
+            return None
+        resolved = _get(f"projects/{project_id}/resolve_fileuse", fileuse=str(file_id))
+        identity = _model_identity(project_id, resolved)
+        if identity is None:
+            return None
+        target = params[0]["path"]
+        _post(f"jobs/{job_id}/set_parameter", {"object_path": target, "value": identity})
+        return {target: identity}
+    except (ApiError, KeyError, TypeError, ValueError):
+        return None
+
+
+def _resolve_path(job_id, path):
+    """A parameter path as the job knows it, from a full path
+    ("modelParameters.MIN_SPLITS"), a bare keyword ("MIN_SPLITS") or a dotted
+    tail ("sgalternative.select"): the one path ending in it, matched on
+    name boundaries. Several matches refuse and list them; none says what is
+    close. Judgements can then name parameters as the program's own
+    documentation does."""
+    import difflib
+    wanted = str(path).strip()
+    try:
+        entries = (_get(f"jobs/{job_id}/parameters") or {}).get("parameters") or []
+    except ApiError:
+        entries = []
+    paths = [e["path"] for e in entries if e.get("path")]
+    sections = {p.split(".", 1)[0] for p in paths}
+    if not paths or wanted in paths or "[" in wanted or wanted.split(".", 1)[0] in sections:
+        return wanted  # canonical (a section the job has), a list item, or nothing to check against
+    tail = wanted.lower()
+    hits = [p for p in paths if p.lower() == tail or p.lower().endswith("." + tail)]
+    if len(hits) == 1:
+        return hits[0]
+    if len(hits) > 1:
+        raise ApiError(f"{wanted!r} names {len(hits)} parameters: {', '.join(hits)}. Give one of them.")
+    labels = {e["path"]: str(e.get("label") or "") for e in entries if e.get("path")}
+    near = difflib.get_close_matches(tail, [p.lower() for p in paths], n=4, cutoff=0.6)
+    near_paths = [p for p in paths if p.lower() in near][:4]
+    by_label = [p for p, l in labels.items() if tail in l.lower()][:4]
+    hint = ", ".join(dict.fromkeys(near_paths + by_label)) or "job_parameters lists them"
+    raise ApiError(f"No parameter {wanted!r} on this job. Close: {hint}")
 
 
 @server.tool()
@@ -326,9 +386,10 @@ def clone_job(project_id: int, job: str | int) -> dict:
 def job_parameters(project_id: int, job: str | int, section: str = "", only_set: bool = False, query: str = "") -> dict:
     """A job's parameters, one entry each: path, label, value, whether set
     and required, choices, default; for a list, item_fields: what each item
-    holds. ``section`` limits to inputData, controlParameters or outputData;
-    ``query`` to paths or labels containing it. Use the path with
-    set_parameter / set_file."""
+    holds. ``section`` limits to one section (inputData, controlParameters,
+    outputData, or a task's own such as modelParameters); ``query`` to
+    paths or labels containing it. set_parameter and set_file take the
+    path, or a bare keyword when it names one parameter."""
     job_id = _jid(project_id, job)
     data = _get(f"jobs/{job_id}/parameters", section=section or None,
                 only_set="1" if only_set else None, query=query or None)
@@ -380,6 +441,7 @@ def set_parameter(project_id: int, job: str | int, path: str,
     or a file id>"}. For a single file parameter set_file is simpler."""
     job_id = _jid(project_id, job)
     project_id = _job(job_id)["project"]
+    path = _resolve_path(job_id, path)
     _post(f"jobs/{job_id}/set_parameter",
           {"object_path": path, "value": _resolve_files(value, project_id)})
     now, is_set = _value_at(job_id, path)
@@ -395,6 +457,7 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     job of a task)."""
     job_id = _jid(project_id, job)
     job = _job(job_id)
+    path = _resolve_path(job_id, path)
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
@@ -574,6 +637,30 @@ def wait_for_job(project_id: int, job: str | int, max_seconds: int = 45) -> dict
         time.sleep(min(10, max(1, deadline - time.monotonic())))
 
 
+@server.tool()
+def wait_for_any(project_id: int, jobs: list, max_seconds: int = 45) -> dict:
+    """Wait until ANY of several jobs ends, or max_seconds pass; gives every
+    job's status and names the ones that ended. For two jobs running at
+    once (an agent alternated sixty single-job polls between a MrBUMP and
+    a SliceNDice run), call this instead of wait_for_job on each."""
+    import time
+    numbers = [str(j).strip() for j in (jobs or [])]
+    deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
+    while True:
+        statuses = {n: job_status(project_id, n) for n in numbers}
+        ended = [n for n, st in statuses.items() if st["status"] in TERMINAL]
+        if ended or time.monotonic() >= deadline or not numbers:
+            out = {"jobs": statuses, "ended": ended, "waited_out": not ended}
+            if not ended:
+                for n in numbers:
+                    try:
+                        statuses[n]["progress"] = _progress(project_id, n)
+                    except ApiError:
+                        pass
+            return out
+        time.sleep(min(10, max(1, deadline - time.monotonic())))
+
+
 def _progress(project_id, number, lines=3):
     """The deepest step of a job that is running now, and its log's last lines."""
     tree = _get(f"projects/{project_id}/job_tree")["job_tree"]
@@ -598,7 +685,29 @@ def _progress(project_id, number, lines=3):
     log = _text(f"projects/{project_id}/files_by_path/CCP4_JOBS/{directory}/log.txt")
     tail = [line for line in log.splitlines() if line.strip()][-lines:]
     out = {"step": step, "task": node.get("task_name"), "log_tail": "\n".join(tail)}
-    out.update(_stall(f"{project_id}/{step}", log))
+    # The server's view first: when anything under the step's directory
+    # last changed (MrBUMP's own log is silent through a 40-minute Phaser
+    # run while Phaser's files change), and whether the process lives.
+    activity = None
+    try:
+        activity = _get(f"jobs/{node['id']}/activity") if node.get("id") else None
+    except ApiError:
+        activity = None
+    if activity and activity.get("seconds_since_change") is not None:
+        quiet = int(activity["seconds_since_change"])
+        out["seconds_since_any_file_changed"] = quiet
+        out["newest_file"] = activity.get("newest_file")
+        if activity.get("process_alive") is not None:
+            out["process_alive"] = activity["process_alive"]
+        if activity.get("process_alive") is False:
+            out["possibly_stalled"] = ("the job's process is gone but its status is still running: "
+                                       "check job_errors; stop_job clears it")
+        elif quiet >= STALL_AFTER:
+            out["possibly_stalled"] = (f"nothing under the step's directory has changed for {quiet // 60} min; "
+                                       "a long Phaser or REFMAC step can be silent, but check job_errors and "
+                                       "the step's directory, and stop_job if it is stuck")
+    else:
+        out.update(_stall(f"{project_id}/{step}", log))
     return out
 
 
@@ -711,6 +820,7 @@ def _compact_judgement(data):
         "tone": verdict.get("tone"),
         "because": verdict.get("because"),
         "decided_by": decided,
+        "results": {k: v for k, v in (verdict.get("results") or {}).items() if v is not None},
         "missing": verdict.get("missing") or [],
         "unverified": any(mark in basis for mark in _UNVERIFIED),
         "basis": _first_sentences(verdict.get("basis")),

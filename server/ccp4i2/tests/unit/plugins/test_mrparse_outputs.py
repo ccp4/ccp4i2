@@ -23,5 +23,5 @@ def test_a_hit_without_a_model_is_skipped(tmp_path):
     plugin.processOutputFiles()
     outputs = plugin.container.outputData.XYZOUT
     assert len(outputs) == 1
-    assert str(outputs[0].annotation) == "PDB hit: 1abc_A"
+    assert str(outputs[0].annotation) == "PDB hit: 1abc_A (95% id)"   # identity rides along since 2026-10-11
     assert str(outputs[0].fullPath).endswith("1abc_A.pdb")

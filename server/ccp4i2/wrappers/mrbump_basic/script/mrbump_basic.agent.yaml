@@ -10,7 +10,16 @@ purpose: >
   the sequence, trying both hands of an enantiomorphic space group, and
   refines that one solution with jelly-body REFMAC (NCYC cycles). The
   refined model and map coefficients are the job's outputs, whatever the
-  quality of the solution.
+  quality of the solution. Its time goes as the number of space groups
+  tested (SGALL) times the number of search models and regions times the
+  cost of a Phaser run at the data's resolution: on 1.26 A data of a
+  566-residue protein each Phaser range took 40-60 minutes and the job was
+  still running after 3.5 hours (an agent run, 2026-10-11), where mrparse
+  then phaser_simple_phil then slicendice solved it in 70 minutes. It
+  never splits a model into domains, so a protein with a hinge between
+  lobes needs that route, and its quick search can discard the model that
+  the full search would have placed (the same run: 6fth and 3omb got no
+  translation function and were dropped).
 
 use_when:
   - >
@@ -25,6 +34,14 @@ use_when:
     SEARCH_PDB and SEARCH_AFDB False to search with those alone).
 
 not_when:
+  - text: >
+      The protein is two or more domains that may sit differently from the
+      template (a periplasmic binding protein, a kinase, any ligand-closed
+      fold), or the data are high-resolution and large: MrBUMP places each
+      model as one rigid body and takes an hour per Phaser range at 1.26 A,
+      and a hinge protein ends with a partial or wrong placement. Find the
+      models with mrparse and place them in pieces with slicendice.
+    instead: mrparse
   - text: >
       You want to see which models exist (identity, coverage, PDB or
       predicted) and choose one, state its identity, set the number of
