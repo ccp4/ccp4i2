@@ -215,3 +215,29 @@ def test_an_asu_entry_is_filled_from_uniprot_with_its_construct(client, project,
     assert "YAYLRQLEEE" in saved and "CCNB1" in saved
     out = _method(client, job, "ProvideAsuContents", "fetchUniProt", ["nonsense"])
     assert out["success"] is False
+
+
+def test_activity_says_when_anything_under_the_job_last_changed(client, project):
+    # The facade's stall signal read only the job's own log.txt, which MrBUMP
+    # writes between forty-minute Phaser runs; a healthy job looked stalled.
+    import os
+    import time
+    job = _job(client, project)
+    deep = os.path.join(job.directory, "search_mrbump_1", "phaser")
+    os.makedirs(deep, exist_ok=True)
+    with open(os.path.join(deep, "phaser.log"), "w") as stream:
+        stream.write("Rotation function\n")
+    r = client.get(f"{API}/jobs/{job.id}/activity/")
+    assert r.status_code == 200, r.content
+    data = r.json()["data"]
+    assert data["seconds_since_change"] is not None and data["seconds_since_change"] < 60
+    assert data["newest_file"] == os.path.join("search_mrbump_1", "phaser", "phaser.log")
+    assert data["process_alive"] is None  # no process recorded for a pending job
+    old = time.time() - 3600
+    os.utime(os.path.join(deep, "phaser.log"), (old, old))
+    for name in os.listdir(job.directory):
+        path = os.path.join(job.directory, name)
+        if os.path.isfile(path):
+            os.utime(path, (old, old))
+    data = client.get(f"{API}/jobs/{job.id}/activity/").json()["data"]
+    assert data["seconds_since_change"] >= 3500

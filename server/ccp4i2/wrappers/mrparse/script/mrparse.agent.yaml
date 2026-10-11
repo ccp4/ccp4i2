@@ -108,7 +108,8 @@ results:
     type: str
     meaning: >
       Annotation of XYZOUT[0], the wrapper's first choice: "PDB hit:
-      <entry>_<chain>" (or "AFDB hit:" / "ESM hit:"). Gamma job 32: "PDB
+      <entry>_<chain> (<identity>% id, eLLG <n>, <target range>)" (or
+      "AFDB hit:" / "ESM hit:"; the bracket since 2026-10-11). Gamma job 32: "PDB
       hit: 1gyu_A". It is the best PDB match by eLLG when reflections were
       given, else by sequence identity; predicted models always come after
       every PDB match, whatever their quality (mrparse_wrapper.py lines
@@ -160,7 +161,11 @@ results:
     meaning: >
       Phaser's expected LLG for the first model, computed by MrParse when
       reflections were given (6p8e_B 551.7); the models are then ranked by
-      it. Absent without reflections.
+      it. Absent without reflections. Not the same number as another
+      program's eLLG for the same model: an agent run (2026-10-11) saw
+      mrparse 673 against MrBUMP 5118 for one model on 1.26 A data; the
+      resolution each uses was not checked. Compare eLLGs within one job
+      only.
   SECOND_MODEL_IDENTITY:
     file: program.xml
     xpath: .//Models/Model[2]

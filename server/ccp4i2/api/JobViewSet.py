@@ -1422,15 +1422,15 @@ class JobViewSet(ModelViewSet):
         class, label, tip, set, value, required, choices, default, file_type.
         The container endpoint has everything; this has what is needed.
         """
-        from ..agent.parameters import SECTIONS, summarise
+        from ..agent.parameters import summarise
 
         try:
             the_job = models.Job.objects.get(id=pk)
             plugin = get_job_plugin(the_job)  # held: the container dies with it
-            sections = request.GET.getlist("section") or SECTIONS
+            sections = request.GET.getlist("section") or None  # None: every section the task declares
             result = summarise(
                 plugin.container,
-                sections=tuple(sections),
+                sections=tuple(sections) if sections else None,
                 only_set=request.GET.get("only_set") in ("1", "true", "True"),
                 query=request.GET.get("query") or None,
             )
@@ -2561,6 +2561,57 @@ class JobViewSet(ModelViewSet):
         logger.info("Cancelled job %s", pk)
         serializer = serializers.JobSerializer(job)
         return Response(serializer.data)
+
+    @action(detail=True, methods=["get"])
+    def activity(self, request, pk=None):
+        """Signs of life of a job: when anything under its directory last
+        changed, and whether its process is still running.
+
+        GET /api/jobs/123/activity/ ->
+            {"seconds_since_change": 42, "newest_file": "search_mrbump_1/.../phaser.log",
+             "process_alive": true}
+
+        The facade's stall signal read only the job's own log.txt, which
+        MrBUMP writes between forty-minute Phaser runs, so a healthy job
+        looked stalled; the newest file anywhere under the job says
+        otherwise. Walks the tree with a cap on entries so a PanDDA
+        campaign's thousands of files do not make the call slow.
+        """
+        try:
+            the_job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error("Job not found", status=404)
+        import time
+        newest, newest_path, seen = 0.0, None, 0
+        root = str(the_job.directory)
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames if not d.startswith(".")]
+            for name in filenames:
+                seen += 1
+                if seen > 20000:
+                    dirnames[:] = []
+                    break
+                try:
+                    mtime = os.stat(os.path.join(dirpath, name)).st_mtime
+                except OSError:
+                    continue
+                if mtime > newest:
+                    newest, newest_path = mtime, os.path.relpath(os.path.join(dirpath, name), root)
+        alive = None
+        if the_job.process_id:
+            try:
+                os.kill(int(the_job.process_id), 0)
+                alive = True
+            except ProcessLookupError:
+                alive = False
+            except (PermissionError, OSError, ValueError):
+                alive = None
+        return api_success({
+            "seconds_since_change": int(time.time() - newest) if newest else None,
+            "newest_file": newest_path,
+            "files_seen": seen,
+            "process_alive": alive,
+        })
 
     @action(detail=True, methods=["get"])
     def dictionaries(self, request, pk=None):

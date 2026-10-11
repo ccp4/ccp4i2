@@ -16,7 +16,7 @@ EXPECTED_TOOLS = {
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
     "what_next", "job_errors", "file_summary", "inspect_file", "find_sequence",
-    "fetch_sequence", "stop_job",
+    "fetch_sequence", "stop_job", "wait_for_any",
 }
 
 
@@ -385,7 +385,7 @@ def test_judge_job_is_short_by_default_and_full_when_asked(api):
     short = mcp_server.judge_job(3, "5")
     assert short["outcome"] == "needs_building" and short["decided_by"] == {"RFREE": 0.361}
     assert short["unverified"] is True
-    assert "meanings" not in short and "results" not in short
+    assert "meanings" not in short and short["results"] == {"RFREE": 0.361, "RWORK": 0.296, "CYCLES": 10}
     assert short["next"][0]["task"] == "modelcraft" and short["next"][0]["inputs"] == {"XYZIN": "servalcat_pipe[-1].XYZOUT"}
     assert short["next"][0]["advice"] == "Build next. Judge by modelcraft's R-free."
     assert "verbose=True" in short["more"]
@@ -410,3 +410,64 @@ def test_progress_says_how_long_the_log_has_stood_still(api, monkeypatch):
     assert "possibly_stalled" in stalled and "stop_job" in stalled["possibly_stalled"]
     monkeypatch.setattr(mcp_server, "_text", lambda path: "line 1\nline 2\nline 3\n")
     assert mcp_server._progress(3, "5")["log_unchanged_seconds"] == 0
+
+
+def _params(*paths):
+    return {"parameters": [{"path": p, "label": p.rsplit(".", 1)[-1].replace("_", " ").title()} for p in paths]}
+
+
+def test_a_bare_keyword_resolves_to_the_one_parameter_it_names(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = _params("inputData.XYZIN", "modelParameters.MIN_SPLITS",
+                                                    "modelParameters.MAX_SPLITS", "controlParameters.NO_MOLS")
+    out = mcp_server.set_parameter(3, "5", "MIN_SPLITS", 2)
+    assert out["path"] == "modelParameters.MIN_SPLITS"
+    assert ("POST", "jobs/7/set_parameter", {"object_path": "modelParameters.MIN_SPLITS", "value": 2}, None) in calls
+
+
+def test_an_ambiguous_or_unknown_keyword_is_refused_with_help(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = _params("inputData.ENSEMBLES.select", "controlParameters.sgalternative.select")
+    with pytest.raises(mcp_server.ApiError, match="2 parameters"):
+        mcp_server.set_parameter(3, "5", "select", "ALL")
+    assert mcp_server._resolve_path(7, "sgalternative.select") == "controlParameters.sgalternative.select"
+    with pytest.raises(mcp_server.ApiError, match="No parameter 'MINSPLIT'"):
+        mcp_server._resolve_path(7, "MINSPLIT")
+    assert not any(c[1] == "jobs/7/set_parameter" for c in calls)
+
+
+def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
+    calls, answers = api
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 7, "number": "5", "status": 3, "task_name": "mrbump_basic", "children": []},
+        {"id": 9, "number": "6", "status": 6, "task_name": "slicendice", "children": []}]}
+    answers[("GET", "jobs/7")] = {"project": 3, "number": "5", "task_name": "mrbump_basic", "status": 3}
+    answers[("GET", "jobs/9")] = {"project": 3, "number": "6", "task_name": "slicendice", "status": 6}
+    out = mcp_server.wait_for_any(3, ["5", "6"], max_seconds=0)
+    assert out["ended"] == ["6"] and out["waited_out"] is False
+    assert out["jobs"]["5"]["status"] == "Running" and out["jobs"]["6"]["status"] == "Finished"
+
+
+def test_the_compact_verdict_keeps_every_number_read(api):
+    calls, answers = api
+    answers[("GET", "jobs/7/judgement")] = {"status": "Finished", "verdict": {
+        "task": "mrparse", "outcome": "models_found", "because": "TOP_MODEL != null", "clauses": [],
+        "results": {"TOP_MODEL": "PDB hit: 6fth_A", "TOP_MODEL_IDENTITY": 0.51, "TOP_MODEL_ELLG": 673.0, "DATABASE": None}},
+        "next": []}
+    short = mcp_server.judge_job(3, "5")
+    assert short["results"] == {"TOP_MODEL": "PDB hit: 6fth_A", "TOP_MODEL_IDENTITY": 0.51, "TOP_MODEL_ELLG": 673.0}
+
+
+def test_create_job_carries_the_identity_of_a_prefilled_mrparse_model(api, monkeypatch):
+    calls, answers = api
+    answers[("POST", "projects/3/create_task")] = {"new_job": {"id": 11, "project": 3, "number": "7", "task_name": "phaser_simple_phil"}}
+    answers[("GET", "jobs/11/parameters")] = {"parameters": [
+        {"path": "inputData.SEARCHSEQUENCEIDENTITY", "value": 0.9, "set": True},
+        {"path": "inputData.XYZIN", "set": True, "value": {"file": "6fth_A_1-566.pdb", "fileId": "abc"}}]}
+    answers[("GET", "projects/3/resolve_fileuse")] = {"baseName": "6fth_A_1-566.pdb", "relPath": "CCP4_JOBS/job_4", "dbFileId": "abc"}
+    monkeypatch.setattr(mcp_server, "_text", lambda path: '<MrParse><Models><Model file="6fth_A_1-566.pdb" identity="0.51"/></Models></MrParse>'
+                        if path.endswith("job_4/program.xml") else "")
+    out = mcp_server.create_job(3, "phaser_simple_phil")
+    assert out["job"] == "7" and out["also_set"] == {"inputData.SEARCHSEQUENCEIDENTITY": 0.51}
