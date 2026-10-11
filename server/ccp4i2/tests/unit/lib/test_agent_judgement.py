@@ -335,3 +335,34 @@ def test_a_low_space_group_confidence_says_mr_must_test_the_alternatives(tmp_pat
     assert verdict["outcome"] == "usable"
     advice = " ".join(step.get("advice", "") for step in verdict["next"])
     assert "screw axes" in advice and "SGALL" in advice
+
+
+def test_every_file_reference_in_a_judgement_names_a_real_parameter():
+    # Haiku (Eleanor's case, 2026-10-10) followed a next step to a file name
+    # the task does not have. Every "task[-n].NAME" in every shipped file,
+    # in the inputs maps and in the prose, must name a parameter of that task.
+    import re
+    import tempfile
+    from ccp4i2.core.tasks import get_plugin_class
+    ref = re.compile(r"\b([A-Za-z][A-Za-z0-9_]*)\[-?\d+\]\.([A-Za-z][A-Za-z0-9_]*)")
+    known = {}
+
+    def params(task):
+        if task not in known:
+            plugin = get_plugin_class(task)(workDirectory=tempfile.mkdtemp(), name=task)
+            known[task] = {child.objectName()
+                           for section in ("inputData", "outputData", "controlParameters")
+                           for child in (getattr(plugin.container, section).children()
+                                         if getattr(plugin.container, section, None) is not None else [])}
+        return known[task]
+
+    bad = []
+    for task in TASKS:
+        path = judgement.judgement_path(task)
+        if not path or not Path(path).is_file():
+            continue
+        for match in ref.finditer(Path(path).read_text()):
+            source, name = match.group(1), match.group(2)
+            if source in TASKS and name not in params(source):
+                bad.append(f"{task}: {source}[..].{name}")
+    assert bad == []

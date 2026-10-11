@@ -398,7 +398,43 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
-    return {"path": path, "file": resolved.get("baseName"), "annotation": resolved.get("annotation")}
+    out = {"path": path, "file": resolved.get("baseName"), "annotation": resolved.get("annotation")}
+    identity = _model_identity(job["project"], resolved) if path.endswith("XYZIN") else None
+    if identity is not None:
+        # A search model from mrparse brings its identity: the Phaser tasks'
+        # SEARCHSEQUENCEIDENTITY otherwise sits at its 0.9 default, and an
+        # agent had to align the sequences itself to set it (Eleanor's case).
+        section = path.rsplit(".", 1)[0]
+        target = f"{section}.SEARCHSEQUENCEIDENTITY"
+        if _get(f"jobs/{job_id}/parameters", query="SEARCHSEQUENCEIDENTITY").get("parameters"):
+            _post(f"jobs/{job_id}/set_parameter", {"object_path": target, "value": identity})
+            out["also_set"] = {target: identity}
+    return out
+
+
+def _model_identity(project_id, resolved):
+    """The identity (a fraction) mrparse recorded for a model it produced,
+    from its program.xml Models table; None for any other file."""
+    rel, name = resolved.get("relPath") or "", resolved.get("baseName") or ""
+    if not rel.startswith("CCP4_JOBS/") or not name:
+        return None
+    try:
+        text = _text(f"projects/{project_id}/files_by_path/{rel}/program.xml")
+    except (urllib.error.URLError, OSError):
+        return None  # the identity is a convenience; the file was set
+    if "<Models" not in text:
+        return None
+    try:
+        root = ET.fromstring(text)
+    except ET.ParseError:
+        return None
+    for model in root.iter("Model"):
+        if model.get("file") == name and model.get("identity"):
+            try:
+                return float(model.get("identity"))
+            except ValueError:
+                return None
+    return None
 
 
 @server.tool()
@@ -561,7 +597,37 @@ def _progress(project_id, number, lines=3):
     directory = "/".join(f"job_{n}" for n in step.split("."))
     log = _text(f"projects/{project_id}/files_by_path/CCP4_JOBS/{directory}/log.txt")
     tail = [line for line in log.splitlines() if line.strip()][-lines:]
-    return {"step": step, "task": node.get("task_name"), "log_tail": "\n".join(tail)}
+    out = {"step": step, "task": node.get("task_name"), "log_tail": "\n".join(tail)}
+    out.update(_stall(f"{project_id}/{step}", log))
+    return out
+
+
+#: Per running step, (what its log looked like, when it first looked so):
+#: the facade is long-lived, so a log that has not changed between calls
+#: can be said to have stood still that long.
+_LOG_SEEN: dict = {}
+STALL_AFTER = 600  # seconds with no change to the log before "possibly stalled"
+
+
+def _stall(key, log, now=None):
+    """How long the step's log has been unchanged across calls, and whether
+    that is long enough to suspect a stall. An agent polled a MrBUMP job for
+    fifteen minutes of identical lines (Haiku, Eleanor's case) with nothing
+    to tell it the difference between slow and stuck."""
+    import time
+    now = time.monotonic() if now is None else now
+    mark = (len(log), hash(log[-2000:]))
+    seen = _LOG_SEEN.get(key)
+    if seen is None or seen[0] != mark:
+        _LOG_SEEN[key] = (mark, now)
+        return {"log_unchanged_seconds": 0}
+    unchanged = int(now - seen[1])
+    out = {"log_unchanged_seconds": unchanged}
+    if unchanged >= STALL_AFTER:
+        out["possibly_stalled"] = (f"the log has not changed for {unchanged // 60} min; "
+                                   "a long Phaser or REFMAC step can be silent, but check job_errors "
+                                   "and the step's directory, and stop_job if it is stuck")
+    return out
 
 
 @server.tool()
@@ -602,13 +668,63 @@ def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
 
 
 @server.tool()
-def judge_job(project_id: int, job: str | int) -> dict:
+def judge_job(project_id: int, job: str | int, verbose: bool = False) -> dict:
     """Did a finished job work? Reads the numbers the task's judgement names
-    from the job's files, and gives the outcome, the reason, and the next
-    steps the judgement suggests. ``missing`` lists numbers that could not be
-    read; an outcome resting on missing numbers is not to be trusted."""
+    from the job's files, and gives the outcome, the reason, the numbers
+    that decided it, and the next steps the judgement suggests. ``missing``
+    lists numbers that could not be read; an outcome resting on missing
+    numbers is not to be trusted. ``unverified`` is true when the rule that
+    fired rests on a threshold its author marked as recalled rather than
+    checked. The default answer is short; verbose=True adds every number
+    read, what each means, the rule's full basis and the next steps' whole
+    advice."""
     job_id = _jid(project_id, job)
-    return _get(f"jobs/{job_id}/judgement")
+    data = _get(f"jobs/{job_id}/judgement")
+    return data if verbose else _compact_judgement(data)
+
+
+_UNVERIFIED = ("not verified", "as recalled", "from memory", "unverified", "not checked")
+
+
+def _first_sentences(text, n=2):
+    parts = [p.strip() for p in str(text or "").replace("\n", " ").split(". ") if p.strip()]
+    out = ". ".join(parts[:n])
+    return out + ("." if out and not out.endswith(".") else "") if len(parts) > n else out
+
+
+def _compact_judgement(data):
+    """The verdict an agent needs first: outcome, reason, the numbers the
+    rule read, and the next steps with their inputs. A servalcat verdict ran
+    to thousands of tokens of criteria tables (Haiku, Eleanor's case)."""
+    if not isinstance(data, dict):
+        return data
+    verdict = data.get("verdict") if isinstance(data.get("verdict"), dict) else data
+    decided = {}
+    for clause in verdict.get("clauses") or []:
+        for name, value in (clause.get("values") or {}).items():
+            decided[name] = value
+    basis = str(verdict.get("basis") or "").lower()
+    out = {
+        "status": data.get("status"),
+        "task": verdict.get("task"),
+        "outcome": verdict.get("outcome"),
+        "tone": verdict.get("tone"),
+        "because": verdict.get("because"),
+        "decided_by": decided,
+        "missing": verdict.get("missing") or [],
+        "unverified": any(mark in basis for mark in _UNVERIFIED),
+        "basis": _first_sentences(verdict.get("basis")),
+        "next": [{k: v for k, v in {
+            "task": step.get("task"),
+            "inputs": step.get("inputs"),
+            "advice": _first_sentences(step.get("advice") or step.get("why")),
+        }.items() if v} for step in (data.get("next") or [])],
+    }
+    for key in ("note", "judgement_version"):
+        if data.get(key):
+            out[key] = data[key]
+    out["more"] = "judge_job(..., verbose=True) for every number read, its meaning, and the full basis and advice"
+    return out
 
 
 @server.tool()

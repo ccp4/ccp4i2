@@ -323,6 +323,26 @@ def _files_on(job, ref: FileUseRef, role):
             if owned:
                 return owned
 
+            # A job that wrote NAME_OUT re-expressed the NAME it consumed
+            # (reflections relabelled or reindexed after Phaser changed the
+            # space group: F_SIGF -> F_SIGF_OUT, FREERFLAG -> FREERFLAG_OUT).
+            # Downstream of that job, NAME means the data in the job's own
+            # frame, so the reference resolves to the output. An agent
+            # followed "[6].F_SIGF" into the original P 21 2 21 file after
+            # a change to P 21 21 21 (Eleanor's case, 2026-10-10).
+            if not token.upper().endswith("_OUT"):
+                relabelled = [
+                    f
+                    for f in models.File.objects.filter(
+                        job=job, job_param_name__iexact=f"{token}_OUT"
+                    )
+                    .select_related("job__project")
+                    .order_by("id")
+                    if _role_of_owned(f, job) == models.FileUse.Role.OUT
+                ]
+                if relabelled:
+                    return relabelled
+
             # Files this job consumed, whoever owns them.
             file_ids = models.FileUse.objects.filter(
                 job=job, role=role, **lookup

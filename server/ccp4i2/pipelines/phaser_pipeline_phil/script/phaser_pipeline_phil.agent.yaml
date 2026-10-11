@@ -465,7 +465,7 @@ next:
       their sequences. If SPACEGROUP_CHANGE is "changed" or "setting" (a
       different space group, or the same in another setting; read it, do
       not infer it from the names), use
-      phaser_pipeline_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT, and report
+      phaser_pipeline_phil[-1].F_SIGF_OUT and .FREERFLAG_OUT, and report (since 2026-10-11 a reference to this job's F_SIGF or FREERFLAG resolves to the _OUT file whenever the job wrote one, so the inputs above are right either way)
       the change. Keep the task
       name in the reference: a bare [-1].F_SIGF_OUT skips back to an older
       job when this one has none.
