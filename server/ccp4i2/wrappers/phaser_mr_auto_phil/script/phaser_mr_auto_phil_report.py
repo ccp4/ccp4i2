@@ -11,7 +11,46 @@ class phaser_mr_auto_phil_report(PhaserReportBase):
             parent.addText(text="Phaser reported no verdict", style="color:red;")
         best = self.xmlnode.find("PhaserCurrentBestSolution")
         if running and best is not None and best.text:
-            parent.addText(text="Current best solution: " + best.text.strip())
+            self.drawCurrentBest(parent, best.text.strip())
+
+    def drawCurrentBest(self, parent, text):
+        """Phaser's running best solution, read rather than quoted: one row
+        per component placed so far (its RFZ, search TFZ, clashes and the
+        LLG once it was in), the space group, and the refined TFZ of the
+        whole; the annotation itself under a fold for anyone who wants it.
+        It was printed raw: "SOLU SET RFZ=4.6 TFZ=6.2 PAK=0 LLG=40 TFZ==8.1
+        SOLU SPAC P 21 21 21 SOLU 6DIM ENSE ...", one unbroken line."""
+        from ccp4i2.wrappers.phaser_phil.script.phaser_run import annotation_tokens
+        import re
+        annotation = text.split("SOLU SET", 1)[1] if "SOLU SET" in text else text
+        annotation = annotation.split("SOLU ", 1)[0]
+        components, _unknown = annotation_tokens(annotation)
+        space_group = re.search(r"SOLU SPAC\s+([^\n]*?)(?=\s+SOLU|\s*$)", text)
+        refined = re.findall(r"TFZ==(-?[\d.]+)", annotation)
+        parts = []
+        if space_group:
+            parts.append(f"space group {space_group.group(1).strip()}")
+        if components:
+            parts.append(f"{len(components)} component{'s' if len(components) != 1 else ''} placed")
+        if refined:
+            parts.append(f"refined TFZ {refined[-1]}")
+        parent.addText(text="Current best solution: " + (", ".join(parts) if parts else text),
+                       style="font-weight:bold;")
+        if components:
+            def column(key):
+                def show(v):
+                    return str(int(v)) if isinstance(v, float) and v.is_integer() else str(v)
+                return [show(c[key]) if c.get(key) is not None else "–" for c in components]
+            table = parent.addTable(style="width:480px;", outputXml=self.outputXml,
+                                    internalId="PhaserCurrentBestTable")
+            table.addData(title="Component", data=[str(i + 1) for i in range(len(components))])
+            table.addData(title="RFZ", data=column("RFZ"))
+            table.addData(title="TFZ", data=column("TFZ"))
+            table.addData(title="Clashes", data=column("PAK"))
+            table.addData(title="LLG", data=column("LLG"))
+            table.addData(title="Note", data=[", ".join(c.get("notes") or []) for c in components])
+        fold = parent.addFold(label="Phaser's annotation", initiallyOpen=False)
+        fold.addText(text=text, style="font-family:monospace;font-size:0.85em;")
 
     def drawResults(self, parent, running):
         if self.xmlnode.find("Solutions") is not None:

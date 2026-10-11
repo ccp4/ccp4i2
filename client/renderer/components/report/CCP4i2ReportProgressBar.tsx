@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import $ from "jquery";
 import { Box, LinearProgress, Typography } from "@mui/material";
-import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
+import type { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 
 /**
  * A styled progress bar report element.
@@ -14,11 +14,14 @@ import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 export const CCP4i2ReportProgressBar: React.FC<CCP4i2ReportElementProps> = ({
   item,
 }) => {
-  const { value, max, label, percent, color } = useMemo(() => {
+  const { value, max, label, percent, color, indeterminate } = useMemo(() => {
     const el = $(item);
     const v = parseFloat(el.attr("value") || "0");
     const m = parseFloat(el.attr("max") || "100");
     const pct = m > 0 ? (v / m) * 100 : 0;
+    // No maximum yet (a running report between stages): the bar is busy,
+    // not "0/0 (0.0%)" in red.
+    const indeterminate = !(m > 0);
 
     // Color: green >= 90%, blue >= 70%, orange >= 50%, red < 50%
     let c: "success" | "primary" | "warning" | "error" = "success";
@@ -32,6 +35,7 @@ export const CCP4i2ReportProgressBar: React.FC<CCP4i2ReportElementProps> = ({
       label: el.attr("label") || "",
       percent: pct,
       color: c,
+      indeterminate,
     };
   }, [item]);
 
@@ -44,18 +48,20 @@ export const CCP4i2ReportProgressBar: React.FC<CCP4i2ReportElementProps> = ({
       )}
       <Box sx={{ flexGrow: 1, minWidth: 100 }}>
         <LinearProgress
-          variant="determinate"
-          value={Math.min(percent, 100)}
-          color={color}
+          variant={indeterminate ? "indeterminate" : "determinate"}
+          value={indeterminate ? undefined : Math.min(percent, 100)}
+          color={indeterminate ? "primary" : color}
           sx={{ height: 8, borderRadius: 4 }}
         />
       </Box>
-      <Typography
-        variant="body2"
-        sx={{ minWidth: 80, textAlign: "right", flexShrink: 0 }}
-      >
-        {Math.round(value)}/{Math.round(max)} ({percent.toFixed(1)}%)
-      </Typography>
+      {!indeterminate && (
+        <Typography
+          variant="body2"
+          sx={{ minWidth: 80, textAlign: "right", flexShrink: 0 }}
+        >
+          {Math.round(value)}/{Math.round(max)} ({percent.toFixed(1)}%)
+        </Typography>
+      )}
     </Box>
   );
 };
