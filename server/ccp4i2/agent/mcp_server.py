@@ -315,12 +315,38 @@ def create_job(project_id: int, task: str) -> dict:
     every input it takes; those filled in from the project's latest
     results, as in the app, are what job_parameters(job, only_set=True)
     shows."""
-    job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
+    if server._tool_manager.get_tool(task) is not None:
+        raise ApiError(f"{task!r} is a tool, not a task: call {task}(...) directly. "
+                       "list_tasks finds tasks.")
+    try:
+        job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
+    except ApiError as err:
+        if str(err).startswith("No task named"):
+            raise ApiError(f"{err} list_tasks(query) finds a task by what it does.") from err
+        raise
     out = {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
     carried = _carry_model_identity(job["id"], job["project"])
     if carried:
         out["also_set"] = carried
+    unrun = _never_run(job["project"], job["number"])
+    if unrun:
+        # A small model filled in seven jobs and ran none, each waiting on
+        # files the one before had not made (2026-10-12).
+        out["note"] = (f"Job{'s' if len(unrun) > 1 else ''} {', '.join(unrun)} "
+                       f"{'are' if len(unrun) > 1 else 'is'} Pending and never run. A job's "
+                       "outputs exist only after run_job(job) and wait_for_job: run the "
+                       "jobs this one needs first.")
     return out
+
+
+def _never_run(project_id, but):
+    """The numbers of a project's top-level jobs still Pending, ``but`` aside."""
+    try:
+        tree = _get(f"projects/{project_id}/job_tree").get("job_tree") or []
+    except ApiError:
+        return []
+    return [str(j["number"]) for j in reversed(tree)
+            if j.get("status") == 1 and str(j.get("number")) != str(but)]
 
 
 def _carry_model_identity(job_id, project_id):

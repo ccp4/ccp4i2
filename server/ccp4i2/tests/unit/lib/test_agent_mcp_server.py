@@ -486,6 +486,37 @@ def test_a_bare_list_name_with_its_index_resolves(api):
         mcp_server._resolve_path(7, "controlParameters.NCOPY")
 
 
+def test_a_tool_asked_for_as_a_task_is_named_as_a_tool(api):
+    calls, answers = api
+    with pytest.raises(mcp_server.ApiError, match="'upload_file' is a tool, not a task"):
+        mcp_server.create_job(3, "upload_file")
+    assert not calls
+
+
+def test_an_unknown_task_points_to_list_tasks(api):
+    calls, answers = api
+    answers[("POST", "projects/3/create_task")] = mcp_server.ApiError("No task named 'refine'")
+    with pytest.raises(mcp_server.ApiError, match="list_tasks"):
+        mcp_server.create_job(3, "refine")
+
+
+def test_create_job_notes_the_jobs_never_run(api):
+    calls, answers = api
+    answers[("POST", "projects/3/create_task")] = {"new_job": {"id": 9, "project": 3, "number": "8",
+                                                             "task_name": "refmac"}}
+    answers[("GET", "jobs/9/parameters")] = {"parameters": []}
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 9, "number": "8", "status": 1, "task_name": "refmac"},
+        {"id": 8, "number": "7", "status": 6, "task_name": "phaser_pipeline_phil"},
+        {"id": 3, "number": "2", "status": 1, "task_name": "ProvideSequence"},
+        {"id": 2, "number": "1", "status": 1, "task_name": "import_merged"}]}
+    out = mcp_server.create_job(3, "refmac")
+    assert out["note"].startswith("Jobs 1, 2 are Pending and never run")
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 9, "number": "8", "status": 1, "task_name": "refmac"}]}
+    assert "note" not in mcp_server.create_job(3, "refmac")
+
+
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
     calls, answers = api
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [

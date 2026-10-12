@@ -54,7 +54,7 @@ def _similar_tasks(task_name, n=5):
                if task.title and not task.successor}
     wanted = task_name.lower()
     found = sorted(low for low in offered if low.startswith(wanted))
-    found += [low for low in difflib.get_close_matches(wanted, offered, n=n, cutoff=0.5)
+    found += [low for low in difflib.get_close_matches(wanted, offered, n=n, cutoff=0.7)
               if low not in found]
     return [offered[low] for low in found[:n]]
 
