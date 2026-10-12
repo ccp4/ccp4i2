@@ -142,6 +142,85 @@ def shape_errors(target, value, path):
     return []
 
 
+def after_api_set(obj):
+    """Let the object holding ``obj`` respond to its being set through the
+    API, as the interface's own handlers do in the browser: an owner with
+    afterChildSet(name) is told which of its fields changed. A failure is
+    logged, not raised: the value itself is set."""
+    owner = obj.parent() if obj is not None and hasattr(obj, "parent") else None
+    hook = getattr(owner, "afterChildSet", None)
+    if callable(hook):
+        try:
+            hook(obj.objectName())
+        except Exception:  # the set stands; the fill is a convenience
+            logger.exception("afterChildSet(%s) failed", obj.objectName())
+
+
+def _is_a(mimetype, target):
+    """Whether a file of ``mimetype`` is a kind of the file ``target`` takes:
+    an observed-data MTZ is an MTZ. Compared by class name along the file
+    class's MRO, since core's stub/implementation split can defeat
+    isinstance."""
+    from ccp4i2.core.cdata_registry import cdata_classes
+    from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS, FILETYPES_TEXT
+    if mimetype not in FILETYPES_TEXT:
+        return False
+    index = FILETYPES_TEXT.index(mimetype)
+    if index >= len(FILETYPES_CLASS):
+        return False
+    file_class = cdata_classes().get(f"C{FILETYPES_CLASS[index]}")
+    if file_class is None:
+        return False
+    return type(target).__name__ in {c.__name__ for c in file_class.__mro__}
+
+
+def file_type_errors(target, value, path):
+    """Where ``value`` puts a project file of the wrong kind into a file
+    input, as messages: the rule the interface's file menus apply (the
+    file's type among the input's mimeTypeName, or the input takes
+    "Unknown"), widened to a file whose class is a kind of the input's
+    (an observed-data MTZ into an MTZ input). Through the API nothing applied it: an agent put a free-R
+    MTZ into a sequence input and a .seq into mrbump's ASU contents, and
+    both validated clean (2026-10-12). A file given by a path, not a
+    project file, is left to validation. Lists and composites are checked
+    item by item, field by field."""
+    from ccp4i2.core.base_object.fundamental_types import CList
+    if value is None:
+        return []
+    if isinstance(target, (CDataFile, CCP4File.CDataFile)):
+        if not isinstance(value, dict) or not value.get("dbFileId"):
+            return []
+        allowed = target.get_qualifier("mimeTypeName")
+        allowed = [a for a in (allowed if isinstance(allowed, (list, tuple)) else [allowed]) if a]
+        if not allowed or "Unknown" in allowed:
+            return []
+        try:
+            the_file = models.File.objects.select_related("type").get(uuid=str(value["dbFileId"]))
+        except (models.File.DoesNotExist, ValueError):
+            return []  # not a project file: validation says whether it exists
+        if the_file.type.name in allowed or _is_a(the_file.type.name, target):
+            return []
+        made = f"job {the_file.job.number}'s {the_file.job_param_name}" if the_file.job else "an imported file"
+        return [f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
+                f"is {the_file.type.name}"]
+    if isinstance(target, (CList, CCP4Data.CList)) and isinstance(value, list):
+        make = getattr(target, "makeItem", None)
+        if make is None:
+            return []
+        errors = []
+        for i, item_value in enumerate(value):
+            errors += file_type_errors(make(), item_value, f"{path}[{i}]")
+        return errors
+    if isinstance(value, dict):
+        errors = []
+        for key, item_value in value.items():
+            child = getattr(target, key, None)
+            if child is not None and hasattr(child, "objectName"):
+                errors += file_type_errors(child, item_value, f"{path}.{key}")
+        return errors
+    return []
+
+
 def set_parameter_container(
     the_container: CContainer, object_path: str, value: Union[str, int, dict, None]
 ):

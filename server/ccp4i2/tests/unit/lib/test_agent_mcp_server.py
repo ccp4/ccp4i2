@@ -16,7 +16,7 @@ EXPECTED_TOOLS = {
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
     "what_next", "job_errors", "file_summary", "inspect_file", "find_sequence",
-    "fetch_sequence", "stop_job", "wait_for_any",
+    "fetch_sequence", "stop_job", "wait_for_any", "add_list_item",
 }
 
 
@@ -349,7 +349,8 @@ def test_set_file_from_an_mrparse_model_brings_its_identity(api, monkeypatch):
     answers[("GET", "projects/3/resolve_fileuse")] = {
         "project": "p", "baseName": "6p8e_B_19-297.pdb", "dbFileId": "f", "relPath": "CCP4_JOBS/job_9",
         "annotation": "PDB hit: 6p8e_B", "fullPath": "/x/6p8e_B_19-297.pdb"}
-    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.SEARCHSEQUENCEIDENTITY"}]}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.XYZIN"},
+                                                         {"path": "inputData.SEARCHSEQUENCEIDENTITY"}]}
     xml = ('<MrParse><Models count="1"><Model index="0" file="6p8e_B_19-297.pdb" identity="0.92"/></Models></MrParse>')
     monkeypatch.setattr(mcp_server, "_text", lambda path: xml if path.endswith("job_9/program.xml") else "")
     out = mcp_server.set_file(3, "5", "inputData.XYZIN", "mrparse[-1].XYZOUT[0]")
@@ -436,6 +437,132 @@ def test_an_ambiguous_or_unknown_keyword_is_refused_with_help(api):
     with pytest.raises(mcp_server.ApiError, match="No parameter 'MINSPLIT'"):
         mcp_server._resolve_path(7, "MINSPLIT")
     assert not any(c[1] == "jobs/7/set_parameter" for c in calls)
+
+
+PHASER_INPUTS = {"parameters": [
+    {"path": "inputData.F_SIGF", "class": "CObsDataFile", "label": "Reflections", "set": True},
+    {"path": "inputData.ENSEMBLES", "class": "CEnsembleList", "set": False, "item_fields": {
+        "label": {"class": "COneWord", "label": "Label"},
+        "pdbItemList": {"class": "CList", "label": "Models", "item_fields": {
+            "structure": {"class": "CPdbDataFile", "label": "Model"},
+            "identity_to_target": {"class": "CFloat", "label": "Identity"}}}}},
+    {"path": "inputData.SEQUENCES", "class": "CSequenceWithCopiesList", "set": False, "item_fields": {
+        "seqFile": {"class": "CSeqDataFile", "label": "Sequence file"},
+        "nCopies": {"class": "CInt", "label": "Copies"}}},
+    {"path": "controlParameters.NCOPIES", "class": "CInt", "label": "Copies"},
+    {"path": "outputData.XYZOUT", "class": "CPdbDataFile", "label": "Placed model"},
+]}
+
+
+def test_a_guessed_file_input_is_answered_with_the_real_ones(api, tmp_path):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "task_name": "phaser_pipeline_phil"}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    model = tmp_path / "beta.pdb"
+    model.write_text("ATOM\n")
+    with pytest.raises(mcp_server.ApiError) as refused:
+        mcp_server.upload_file(3, "5", "inputData.SEARCHMODELS[0].structure", str(model))
+    message = str(refused.value)
+    assert "No parameter 'inputData.SEARCHMODELS' on this phaser_pipeline_phil job" in message
+    assert "inputData.ENSEMBLES[i].pdbItemList[j].structure (Model)" in message
+    assert "inputData.SEQUENCES[i].seqFile (Sequence file)" in message
+    assert "inputData.F_SIGF (Reflections)" in message
+    assert "outputData" not in message and "add_list_item" in message
+    with pytest.raises(mcp_server.ApiError, match="ENSEMBLES"):
+        mcp_server.set_file(3, "5", "STRUCTURE[0].structure", "[1].XYZOUT")
+    assert not any(c[0] == "POST" for c in calls)
+
+
+def test_a_bare_list_name_with_its_index_resolves(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    assert (mcp_server._resolve_path(7, "ENSEMBLES[0].pdbItemList[0].structure", files=True)
+            == "inputData.ENSEMBLES[0].pdbItemList[0].structure")
+    # a full path, or a field within a parameter, is the server's to check
+    assert mcp_server._resolve_path(7, "inputData.ENSEMBLES[3].label") == "inputData.ENSEMBLES[3].label"
+    assert mcp_server._resolve_path(7, "inputData.F_SIGF.annotation") == "inputData.F_SIGF.annotation"
+    with pytest.raises(mcp_server.ApiError, match="without only_set"):
+        mcp_server._resolve_path(7, "controlParameters.NCOPY")
+
+
+def test_a_tool_asked_for_as_a_task_is_named_as_a_tool(api):
+    calls, answers = api
+    with pytest.raises(mcp_server.ApiError, match="'upload_file' is a tool, not a task"):
+        mcp_server.create_job(3, "upload_file")
+    assert not calls
+
+
+def test_an_unknown_task_points_to_list_tasks(api):
+    calls, answers = api
+    answers[("POST", "projects/3/create_task")] = mcp_server.ApiError("No task named 'refine'")
+    with pytest.raises(mcp_server.ApiError, match="list_tasks"):
+        mcp_server.create_job(3, "refine")
+
+
+def test_create_job_notes_the_jobs_never_run(api):
+    calls, answers = api
+    answers[("POST", "projects/3/create_task")] = {"new_job": {"id": 9, "project": 3, "number": "8",
+                                                             "task_name": "refmac"}}
+    answers[("GET", "jobs/9/parameters")] = {"parameters": []}
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 9, "number": "8", "status": 1, "task_name": "refmac"},
+        {"id": 8, "number": "7", "status": 6, "task_name": "phaser_pipeline_phil"},
+        {"id": 3, "number": "2", "status": 1, "task_name": "ProvideSequence"},
+        {"id": 2, "number": "1", "status": 1, "task_name": "import_merged"}]}
+    out = mcp_server.create_job(3, "refmac")
+    assert out["note"].startswith("Jobs 1, 2 are Pending and never run")
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 9, "number": "8", "status": 1, "task_name": "refmac"}]}
+    assert "note" not in mcp_server.create_job(3, "refmac")
+
+
+def test_a_field_of_a_list_item_not_there_says_to_set_the_list_whole(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.ASU_CONTENT"}]}
+    answers[("POST", "jobs/7/set_parameter")] = mcp_server.ApiError(
+        "Parameter path 'ProvideAsuContents.inputData.ASU_CONTENT[0].name' not found")
+    with pytest.raises(mcp_server.ApiError, match="add_list_item\\(job, 'inputData.ASU_CONTENT'\\)"):
+        mcp_server.set_parameter(3, "5", "inputData.ASU_CONTENT[0].name", "beta")
+
+
+def test_add_list_item_resolves_its_list_and_the_files_in_its_values(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    answers[("GET", "projects/3/resolve_fileuse")] = {"baseName": "beta.pdb", "fullPath": "/x/beta.pdb"}
+    answers[("POST", "jobs/7/add_list_item")] = {"item": "inputData.ENSEMBLES[0].pdbItemList[0]"}
+    out = mcp_server.add_list_item(3, "5", "ENSEMBLES[0].pdbItemList", {"structure": {"file": "[2].XYZOUT"}})
+    assert out["item"] == "inputData.ENSEMBLES[0].pdbItemList[0]"
+    post = next(c for c in calls if c[1] == "jobs/7/add_list_item")
+    assert post[2] == {"object_path": "inputData.ENSEMBLES[0].pdbItemList",
+                       "values": {"structure": {"baseName": "beta.pdb"}}}
+
+
+def test_a_reference_set_as_a_file_inputs_value_is_resolved(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    answers[("GET", "projects/3/resolve_fileuse")] = {"baseName": "OBSOUT.mtz", "dbFileId": "f1",
+                                                      "fullPath": "/x/OBSOUT.mtz"}
+    mcp_server.set_parameter(3, "5", "inputData.F_SIGF", "[1].OBSOUT")
+    post = next(c for c in calls if c[1] == "jobs/7/set_parameter")
+    assert post[2] == {"object_path": "inputData.F_SIGF", "value": {"baseName": "OBSOUT.mtz", "dbFileId": "f1"}}
+    # Text that only looks like one, for a parameter that is not a file, is left as it is
+    calls.clear()
+    mcp_server.set_parameter(3, "5", "controlParameters.NCOPIES", "2")
+    post = next(c for c in calls if c[1] == "jobs/7/set_parameter")
+    assert post[2]["value"] == "2"
+
+
+def test_job_errors_of_a_running_job_says_it_has_not_ended(api):
+    calls, answers = api
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 7, "number": "5", "status": 3, "task_name": "mrbump_basic", "children": []}]}
+    answers[("GET", "jobs/7/diagnostic_xml")] = mcp_server.ApiError("Diagnostic file not found for job x")
+    out = mcp_server.job_errors(3, "5")
+    assert out["status"] == "Running" and out["errors"] == [] and "not ended" in out["note"]
 
 
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):

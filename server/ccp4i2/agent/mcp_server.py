@@ -13,6 +13,7 @@ Deliberately absent: deleting anything, changing a job's status, and any
 file outside a project. See docs/agentic-knowledge.md.
 """
 import json
+import re
 import mimetypes
 import os
 import urllib.error
@@ -53,13 +54,21 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    one (e.g. shelx or crank2, not ShelxCD then the rest): the pipeline holds
    the decisions between stages. Go stage by stage only as a fallback a
    judgement points you to.
-2. create_job(project, task). A new job is filled in from the project's
-   latest results, as in the app: read job_parameters(job, only_set=True)
-   and check those are the files you mean.
+2. create_job(project, task). job_parameters(job) then lists every input
+   the task takes, set or not, with each list's item_fields: read it before
+   setting anything, and use its paths rather than guessing names. A new
+   job is filled in from the project's latest results, as in the app:
+   job_parameters(job, only_set=True) shows just those, to check they are
+   the files you mean. A job does nothing until run_job: a later job can
+   use only what earlier jobs have made by running.
 3. Set inputs: set_file(job, path, "[n].PARAM[i]") for a file another job
    made or imported (n is a job number; -1 the latest), upload_file for a
    file from disk, set_parameter for anything else. Paths are as
-   job_parameters lists them, e.g. inputData.XYZIN.
+   job_parameters lists them, e.g. inputData.XYZIN. A list (search
+   models, sequences, ASU contents) is built an item at a time:
+   add_list_item(job, path) adds one and answers with the paths of what
+   it holds; set or upload into those. A list inside an item (an
+   ensemble's models, inputData.ENSEMBLES[0].pdbItemList) the same way.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
 5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory. It
@@ -307,15 +316,42 @@ def project_jobs(project_id: int) -> dict:
 
 @server.tool()
 def create_job(project_id: int, task: str) -> dict:
-    """Create a job of ``task`` in a project. Its inputs are filled in from
-    the project's latest results, as in the app: check them with
-    job_parameters(only_set=True)."""
-    job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
+    """Create a job of ``task`` in a project. job_parameters(job) lists
+    every input it takes; those filled in from the project's latest
+    results, as in the app, are what job_parameters(job, only_set=True)
+    shows."""
+    if server._tool_manager.get_tool(task) is not None:
+        raise ApiError(f"{task!r} is a tool, not a task: call {task}(...) directly. "
+                       "list_tasks finds tasks.")
+    try:
+        job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
+    except ApiError as err:
+        if str(err).startswith("No task named"):
+            raise ApiError(f"{err} list_tasks(query) finds a task by what it does.") from err
+        raise
     out = {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
     carried = _carry_model_identity(job["id"], job["project"])
     if carried:
         out["also_set"] = carried
+    unrun = _never_run(job["project"], job["number"])
+    if unrun:
+        # A small model filled in seven jobs and ran none, each waiting on
+        # files the one before had not made (2026-10-12).
+        out["note"] = (f"Job{'s' if len(unrun) > 1 else ''} {', '.join(unrun)} "
+                       f"{'are' if len(unrun) > 1 else 'is'} Pending and never run. A job's "
+                       "outputs exist only after run_job(job) and wait_for_job: run the "
+                       "jobs this one needs first.")
     return out
+
+
+def _never_run(project_id, but):
+    """The numbers of a project's top-level jobs still Pending, ``but`` aside."""
+    try:
+        tree = _get(f"projects/{project_id}/job_tree").get("job_tree") or []
+    except ApiError:
+        return []
+    return [str(j["number"]) for j in reversed(tree)
+            if j.get("status") == 1 and str(j.get("number")) != str(but)]
 
 
 def _carry_model_identity(job_id, project_id):
@@ -343,13 +379,17 @@ def _carry_model_identity(job_id, project_id):
         return None
 
 
-def _resolve_path(job_id, path):
+def _resolve_path(job_id, path, files=False):
     """A parameter path as the job knows it, from a full path
     ("modelParameters.MIN_SPLITS"), a bare keyword ("MIN_SPLITS") or a dotted
-    tail ("sgalternative.select"): the one path ending in it, matched on
-    name boundaries. Several matches refuse and list them; none says what is
-    close. Judgements can then name parameters as the program's own
-    documentation does."""
+    tail ("sgalternative.select"), any of them followed by a list index
+    ("ENSEMBLES[0].pdbItemList[0].structure"): the one path ending in it,
+    matched on name boundaries. Several matches refuse and list them; none
+    says what is close and, for a file (``files``), what the job's file
+    inputs are. Judgements can then name parameters as the program's own
+    documentation does, and a guessed name is answered with the real ones:
+    a small model guessed inputData.SEARCHMODELS[0].structure for three
+    tasks running and never found ENSEMBLES (2026-10-12)."""
     import difflib
     wanted = str(path).strip()
     try:
@@ -357,21 +397,64 @@ def _resolve_path(job_id, path):
     except ApiError:
         entries = []
     paths = [e["path"] for e in entries if e.get("path")]
-    sections = {p.split(".", 1)[0] for p in paths}
-    if not paths or wanted in paths or "[" in wanted or wanted.split(".", 1)[0] in sections:
-        return wanted  # canonical (a section the job has), a list item, or nothing to check against
-    tail = wanted.lower()
+    if not paths or wanted in paths:
+        return wanted  # canonical, or nothing to check against
+    head, bracket, rest = wanted.partition("[")
+    rest = bracket + rest
+    if any(head == p or head.startswith(p + ".") for p in paths):
+        return wanted  # a parameter, or a field within one: the server checks the rest
+    tail = head.lower()
     hits = [p for p in paths if p.lower() == tail or p.lower().endswith("." + tail)]
     if len(hits) == 1:
-        return hits[0]
+        return hits[0] + rest
     if len(hits) > 1:
-        raise ApiError(f"{wanted!r} names {len(hits)} parameters: {', '.join(hits)}. Give one of them.")
+        raise ApiError(f"{head!r} names {len(hits)} parameters: {', '.join(hits)}. Give one of them.")
+    name = tail.rsplit(".", 1)[-1]
     labels = {e["path"]: str(e.get("label") or "") for e in entries if e.get("path")}
-    near = difflib.get_close_matches(tail, [p.lower() for p in paths], n=4, cutoff=0.6)
-    near_paths = [p for p in paths if p.lower() in near][:4]
-    by_label = [p for p, l in labels.items() if tail in l.lower()][:4]
-    hint = ", ".join(dict.fromkeys(near_paths + by_label)) or "job_parameters lists them"
-    raise ApiError(f"No parameter {wanted!r} on this job. Close: {hint}")
+    lowered = {p.lower().rsplit(".", 1)[-1]: p for p in paths}
+    near = [lowered[n] for n in difflib.get_close_matches(name, lowered, n=4, cutoff=0.6)]
+    by_label = [p for p, l in labels.items() if name.replace("_", " ") in l.lower()][:4]
+    task = (_job(job_id) or {}).get("task_name")
+    message = f"No parameter {head!r} on this {task + ' ' if task else ''}job."
+    close = list(dict.fromkeys(near + by_label))
+    if close:
+        message += f" Close: {', '.join(close)}."
+    if files:
+        inputs = _file_inputs(entries)
+        if inputs:
+            message += " Its file inputs: " + "; ".join(inputs) + "."
+            if any("[" in i for i in inputs):
+                message += (" A list item must exist before a file is put in it:"
+                            " add_list_item(job, <the list>) adds one and gives its paths.")
+    else:
+        message += " job_parameters(job) (without only_set) lists every parameter it has."
+    raise ApiError(message)
+
+
+def _file_inputs(entries):
+    """Where a job takes files, outputs aside: each file parameter's path,
+    and inside a list the path of each file an item holds, written with [i],
+    [j] for the indices, with the label after it."""
+    found = []
+
+    def walk(path, fields, depth):
+        for key, field in (fields or {}).items():
+            here = f"{path}.{key}"
+            if field.get("item_fields"):
+                index = "ijk"[min(depth, 2)]
+                walk(f"{here}[{index}]", field["item_fields"], depth + 1)
+            elif str(field.get("class", "")).endswith("DataFile"):
+                found.append(f"{here} ({field.get('label') or key})")
+
+    for e in entries:
+        path = e.get("path") or ""
+        if path.startswith("outputData."):
+            continue
+        if e.get("item_fields"):
+            walk(f"{path}[i]", e["item_fields"], 1)
+        elif str(e.get("class", "")).endswith("DataFile"):
+            found.append(f"{path} ({e.get('label') or path.rsplit('.', 1)[-1]})")
+    return found
 
 
 @server.tool()
@@ -442,10 +525,62 @@ def set_parameter(project_id: int, job: str | int, path: str,
     job_id = _jid(project_id, job)
     project_id = _job(job_id)["project"]
     path = _resolve_path(job_id, path)
-    _post(f"jobs/{job_id}/set_parameter",
-          {"object_path": path, "value": _resolve_files(value, project_id)})
+    if isinstance(value, str) and _REFERENCE.match(value.strip()) and _is_file_input(job_id, path):
+        # A reference given as the value of a file input was stored as the
+        # file's NAME ("[1].OBSOUT"), reported set, and failed only at
+        # validation as a missing file (gpt-oss, 2026-10-12): take it as
+        # set_file does
+        value = {"file": value.strip()}
+    try:
+        _post(f"jobs/{job_id}/set_parameter",
+              {"object_path": path, "value": _resolve_files(value, project_id)})
+    except ApiError as err:
+        if "[" in path and "not found" in str(err):
+            # gpt-oss set ASU_CONTENT[0].name field by field on an empty
+            # list, six times over (2026-10-12).
+            whole = path.split("[", 1)[0]
+            raise ApiError(f"{err}. That list item does not exist yet: "
+                           f"add_list_item(job, {whole!r}) adds one and gives the paths of "
+                           "its fields; then set them one by one.") from err
+        raise
     now, is_set = _value_at(job_id, path)
     return {"path": path, "now": now, "set": is_set}
+
+
+_REFERENCE = re.compile(r"^(\[-?\d+\]|-?\d+|[A-Za-z_]\w*\[-?\d+\])\.\w+(\[\d+\])?$")
+
+
+def _is_file_input(job_id, path):
+    """Whether the parameter at ``path`` (no list index) takes a file."""
+    if "[" in path:
+        return False
+    name = path.rsplit(".", 1)[-1]
+    try:
+        entries = _get(f"jobs/{job_id}/parameters", query=name).get("parameters") or []
+    except ApiError:
+        return False
+    entry = next((e for e in entries if e.get("path") == path), None)
+    return bool(entry) and str(entry.get("class", "")).endswith("DataFile")
+
+
+@server.tool()
+def add_list_item(project_id: int, job: str | int, path: str, values: dict | None = None) -> dict:
+    """Add one item to a list parameter of a pending job, as the
+    interface's "add" button does, optionally setting some of its fields
+    (``values``: {field: value}, a file as {"file": "<reference or file
+    id>"}). Answers with the item's path and the paths of its fields,
+    files and the lists inside it: set_parameter, set_file or upload_file
+    into those, and add_list_item again for a list inside the item. E.g.
+    add_list_item(job, "inputData.ENSEMBLES", {"label": "beta"}), then
+    add_list_item(job, "inputData.ENSEMBLES[0].pdbItemList"), then
+    upload_file to inputData.ENSEMBLES[0].pdbItemList[0].structure."""
+    job_id = _jid(project_id, job)
+    project_id = _job(job_id)["project"]
+    path = _resolve_path(job_id, path)
+    body = {"object_path": path}
+    if values:
+        body["values"] = _resolve_files(values, project_id)
+    return _post(f"jobs/{job_id}/add_list_item", body)
 
 
 @server.tool()
@@ -457,7 +592,7 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     job of a task)."""
     job_id = _jid(project_id, job)
     job = _job(job_id)
-    path = _resolve_path(job_id, path)
+    path = _resolve_path(job_id, path, files=True)
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
@@ -504,15 +639,16 @@ def _model_identity(project_id, resolved):
 def upload_file(project_id: int, job: str | int, path: str, local_path: str, column_labels: str = "") -> dict:
     """Import a file from this computer into a pending job's file input
     (an MTZ needs ``column_labels`` when it holds more than one data set,
-    e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, set the list
-    first with set_parameter (items without the file), then upload to the
-    item's path, e.g. inputData.ENSEMBLES[0].pdbItemList[0].structure.
+    e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, add the item
+    first with add_list_item, then upload to the path it answers with, e.g.
+    inputData.ENSEMBLES[0].pdbItemList[0].structure.
     Reflection data from outside the project: import them with import_merged
     instead, which checks them and makes the free-R set."""
     job_id = _jid(project_id, job)
     source = Path(local_path).expanduser()
     if not source.is_file():
         raise ApiError(f"no file {source}")
+    path = _resolve_path(job_id, path, files=True)
     boundary = uuid.uuid4().hex
     fields = {"objectPath": path}
     if column_labels:
@@ -758,7 +894,14 @@ def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
 
     def report(jid, number):
         reports = []
-        for r in _errors(_get(f"jobs/{jid}/diagnostic_xml").get("xml")):
+        try:
+            # A job still running (or never run) has written no diagnostic
+            # yet: say what its log says rather than fail (asked of a
+            # stalled MrBUMP, 2026-10-12)
+            xml = _get(f"jobs/{jid}/diagnostic_xml").get("xml")
+        except ApiError:
+            xml = None
+        for r in _errors(xml):
             keep = {k: r[k] for k in ("code", "description", "details", "severityName", "class")
                     if r.get(k)}
             if keep and keep not in reports:
@@ -771,6 +914,9 @@ def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
     this = node(tree, str(job).strip()) or {}
     out = report(job_id, str(job).strip())
     out["status"] = STATUS.get(this.get("status"), this.get("status"))
+    if this.get("status") in (1, 2, 3, 7):
+        out["note"] = ("The job has not ended: it has recorded no errors yet. wait_for_job "
+                       "shows its progress and whether it has stalled.")
     failed = [c for c in this.get("children") or [] if c.get("status") in (4, 5, 10)]
     out["failed_steps"] = [dict(report(c["id"], c["number"]), task=c["task_name"]) for c in failed]
     return out

@@ -26,7 +26,7 @@ from ccp4i2_api.file_grants import grant_ttl, mint_grant
 
 from ..db import models
 from ..db.delete_project_directory import remove_project_directory
-from ..lib.async_create_job import create_job_async
+from ..lib.async_create_job import UnknownTaskError, create_job_async
 from ..lib.kpi_labels import kpi_labels
 from ..lib.kpi_values import kpi_map
 from ..lib.response import api_error, api_success
@@ -922,6 +922,8 @@ class ProjectViewSet(ModelViewSet):
         except models.Project.DoesNotExist:
             logger.exception("Project %s not found", pk)
             return api_error("Project not found", status=404)
+        except UnknownTaskError as e:
+            return api_error(str(e), status=400)
         except KeyError as e:
             logger.exception("Missing required field: %s", e)
             return api_error(f"Missing required field: {e}", status=400)

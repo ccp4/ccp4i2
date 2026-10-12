@@ -13,6 +13,7 @@ Key features:
 - Database integration via AsyncDatabaseHandler
 """
 
+import difflib
 import logging
 import uuid
 from pathlib import Path
@@ -21,7 +22,7 @@ from typing import Optional, Dict, Any
 from asgiref.sync import sync_to_async
 
 from ..core.CCP4PluginScript import CPluginScript
-from ..core.tasks import get_plugin_class, get_task_title
+from ..core.tasks import TASKS, get_plugin_class, get_task_title
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
@@ -31,6 +32,31 @@ from .utils.parameters.set_input_by_context import set_input_by_context_job
 
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
+
+
+class UnknownTaskError(ValueError):
+    """A job was asked for of a task that is not registered."""
+
+    def __init__(self, task_name):
+        self.task_name = task_name
+        self.suggestions = _similar_tasks(task_name)
+        message = f"No task named {task_name!r}"
+        if self.suggestions:
+            message += "; did you mean " + ", ".join(self.suggestions) + "?"
+        super().__init__(message)
+
+
+def _similar_tasks(task_name, n=5):
+    """The tasks the chooser offers (titled, not superseded) that look like
+    ``task_name``: names it begins first, then the closest by spelling, case
+    ignored."""
+    offered = {name.lower(): name for name, task in TASKS.items()
+               if task.title and not task.successor}
+    wanted = task_name.lower()
+    found = sorted(low for low in offered if low.startswith(wanted))
+    found += [low for low in difflib.get_close_matches(wanted, offered, n=n, cutoff=0.7)
+              if low not in found]
+    return [offered[low] for low in found[:n]]
 
 
 async def create_job_async(
@@ -100,6 +126,11 @@ async def create_job_async(
         Exception: If plugin class not found or instantiation fails
     """
     logger.info(f"Creating job: task={task_name}, project={project_uuid}")
+
+    # Before anything is written: an unknown name would otherwise leave a job
+    # row and directory behind when the plugin lookup fails.
+    if task_name not in TASKS:
+        raise UnknownTaskError(task_name)
 
     # Create database handler
     db_handler = AsyncDatabaseHandler(project_uuid=project_uuid)

@@ -944,6 +944,8 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
             updated_object_dict,
         )
         logger.info("set_parameter_container returned: %s", updated_object)
+        from ccp4i2.lib.utils.parameters.set_parameter import after_api_set
+        after_api_set(updated_object)
         save_params_for_job(the_job_plugin=plugin, the_job=job)
 
         result = json.loads(json.dumps(updated_object, cls=CCP4i2JsonEncoder))
