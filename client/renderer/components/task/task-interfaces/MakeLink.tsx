@@ -45,16 +45,22 @@ type MonomerDict = Record<string, MonomerInfo>;
 
 const EMPTY_MONOMER: MonomerInfo = { atoms: [], bonds: [] };
 
+/** Why a library monomer could not be drawn; null when it was, or none asked for. */
+type LibraryFailure = "not_found" | "unavailable" | null;
+
 /**
  * Fetch atom/bond info for a monomer from the CCP4 library.
- * Returns { atoms, bonds } or the empty default on failure.
+ * Returns the monomer (or the empty default) and why the fetch failed, so
+ * "no such monomer" is not reported for "the library could not be read".
  */
-function useMonomerInfo(resName: string | undefined): MonomerInfo {
+function useMonomerInfo(resName: string | undefined): { info: MonomerInfo; failure: LibraryFailure } {
   const [info, setInfo] = useState<MonomerInfo>(EMPTY_MONOMER);
+  const [failure, setFailure] = useState<LibraryFailure>(null);
 
   useEffect(() => {
     if (!resName || resName.trim().length === 0) {
       setInfo(EMPTY_MONOMER);
+      setFailure(null);
       return;
     }
 
@@ -62,23 +68,29 @@ function useMonomerInfo(resName: string | undefined): MonomerInfo {
     const code = resName.trim().toUpperCase();
     apiJson<{
       success: boolean;
+      reason?: string;
       data?: { atoms: string[]; bonds: MonomerBond[]; atom_details?: MonomerAtomDetail[] };
     }>(`monomer-info/${code}`)
       .then((res) => {
-        if (!cancelled && res.success && res.data) {
+        if (cancelled) return;
+        if (res.success && res.data) {
           setInfo({
             atoms: res.data.atoms,
             bonds: res.data.bonds,
             atom_details: res.data.atom_details ?? [],
           });
-        } else if (!cancelled) {
+          setFailure(null);
+        } else {
           // Not the previous monomer's atoms under a new name.
           setInfo(EMPTY_MONOMER);
+          setFailure(res.reason === "not_found" || res.reason === "invalid" ? "not_found" : "unavailable");
         }
       })
       .catch((err) => {
         console.warn(`[MakeLink] Fetch failed for "${code}":`, err);
-        if (!cancelled) setInfo(EMPTY_MONOMER);
+        if (cancelled) return;
+        setInfo(EMPTY_MONOMER);
+        setFailure("unavailable");
       });
 
     return () => {
@@ -86,7 +98,7 @@ function useMonomerInfo(resName: string | undefined): MonomerInfo {
     };
   }, [resName]);
 
-  return info;
+  return { info, failure };
 }
 
 const isTruthy = (value: unknown) => value === true || value === "True" || value === "true";
@@ -169,7 +181,7 @@ function useMonomer(
   const { value: chargeValue } = useTaskItem(`CHARGE_${n}_VALUE`);
 
   const isCIF = type === "CIF";
-  const libraryMonomer = useMonomerInfo(isCIF ? undefined : tlc);
+  const { info: libraryMonomer, failure: libraryFailure } = useMonomerInfo(isCIF ? undefined : tlc);
 
   // CIF mode: the monomers in the chosen dictionary, from its digest.
   const [dictMonomers, setDictMonomers] = useState<MonomerDict>({});
@@ -261,9 +273,11 @@ function useMonomer(
     ? dictCodes.length === 0
       ? "Choose a dictionary file to draw its monomer"
       : "Choose a residue name"
-    : tlc?.trim()
-      ? `"${tlc.trim().toUpperCase()}" is not in the CCP4 monomer library`
-      : "Type a residue name to draw it";
+    : !tlc?.trim()
+      ? "Type a residue name to draw it"
+      : libraryFailure === "unavailable"
+        ? `Could not read "${tlc.trim().toUpperCase()}" from the CCP4 monomer library`
+        : `"${tlc.trim().toUpperCase()}" is not in the CCP4 monomer library`;
 
   return {
     isCIF, monomer, code, emptyMessage, dictCodes, handleDictChange,

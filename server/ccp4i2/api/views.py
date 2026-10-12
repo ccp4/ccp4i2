@@ -237,27 +237,22 @@ def monomer_info(request, code):
     }
     """
     from ..lib.utils.formats.cif_ligand import extract_monomer_atoms_bonds
+    from ..lib.utils.files.monomer_library import MonomerLibraryError, find_monomer_cif
 
-    ccp4 = os.environ.get("CCP4", "")
-    if not ccp4:
+    # A local CCP4 library if there is one, else the published library
+    # (a served API server may carry no CCP4); see monomer_library.py.
+    code_upper = code.strip().upper()
+    try:
+        cif_path = find_monomer_cif(code_upper)
+    except MonomerLibraryError as err:
+        reason = {400: "invalid", 404: "not_found"}.get(err.status, "unavailable")
         return JsonResponse(
-            {"success": False, "error": "CCP4 environment not configured"},
-            status=500,
-        )
-
-    # Monomer library: $CCP4/lib/data/monomers/{first_letter}/{CODE}.cif
-    code_upper = code.upper()
-    first_letter = code_upper[0].lower()
-    cif_path = os.path.join(ccp4, "lib", "data", "monomers", first_letter, f"{code_upper}.cif")
-
-    if not os.path.isfile(cif_path):
-        return JsonResponse(
-            {"success": False, "error": f"Monomer '{code_upper}' not found in library"},
-            status=404,
+            {"success": False, "error": str(err), "reason": reason},
+            status=err.status,
         )
 
     try:
-        result = extract_monomer_atoms_bonds(cif_path)
+        result = extract_monomer_atoms_bonds(str(cif_path))
         return JsonResponse({
             "success": True,
             "data": {
