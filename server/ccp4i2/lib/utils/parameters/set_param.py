@@ -127,13 +127,13 @@ def set_parameter(
         # A value of the wrong shape (an object for a text field) was stored
         # as its repr and failed only at validation; refuse it here, naming
         # the field
-        from .set_parameter import shape_errors
+        from .set_parameter import file_type_errors, shape_errors
         try:
             target = plugin.container.find_by_path(normalized_path, skip_first=True)
         except AttributeError:
             target = None  # the set below reports the bad path
         if target is not None:
-            problems = shape_errors(target, value, object_path)
+            problems = shape_errors(target, value, object_path) + file_type_errors(target, value, object_path)
             if problems:
                 return Result.fail("; ".join(problems))
 

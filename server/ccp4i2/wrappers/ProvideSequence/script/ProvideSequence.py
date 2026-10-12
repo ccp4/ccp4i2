@@ -88,9 +88,44 @@ class ProvideSequence(CPluginScript):
             "accession", "entry_name", "protein_name", "gene", "organism", "reviewed", "range")}
             | {"length": len(entry["sequence"])}}
 
+    # -- the text from a file, as the interface fills it -----------------
+
+    def _files_given(self):
+        inp = self.container.inputData
+        return [f for f in (inp.SEQIN, inp.XYZIN) if f.isSet()]
+
+    def _text_from_files(self):
+        """What the interface puts in SEQUENCETEXT when a file is chosen:
+        a sequence file's content, or a model's chain sequences as FASTA.
+        The interface does it in the browser; a job set up through the API
+        (an agent, i2run) never had it done, was told SEQUENCETEXT was
+        required, and agents typed in "beta.seq content" or "\\n" to pass
+        (2026-10-12)."""
+        inp = self.container.inputData
+        if inp.SEQIN.isSet() and inp.SEQIN.exists():
+            with open(inp.SEQIN.getFullPath(), encoding="utf-8", errors="replace") as handle:
+                return handle.read()
+        if inp.XYZIN.isSet() and inp.XYZIN.exists():
+            from ccp4i2.lib.utils.files.digest import digest_file_object
+            sequences = (digest_file_object(inp.XYZIN) or {}).get("sequences") or {}
+            return "\n".join(f">{chain}\n{seq}" for chain, seq in sequences.items())
+        return ""
+
+    def validity(self):
+        # A file given stands for the text: the text is read from it at run
+        # time when none was entered
+        if self._files_given() and not str(self.container.controlParameters.SEQUENCETEXT).strip():
+            self.container.controlParameters.SEQUENCETEXT.setQualifier('allowUndefined', True)
+        return super().validity()
+
     def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
-        
+
+        if not str(self.container.controlParameters.SEQUENCETEXT).strip():
+            text = self._text_from_files()
+            if text.strip():
+                self.container.controlParameters.SEQUENCETEXT.set(text)
+
         root = etree.Element('ProvideSequence')
         
         # Create a temporary file to store the sequence(s) that will be used

@@ -142,6 +142,52 @@ def shape_errors(target, value, path):
     return []
 
 
+def file_type_errors(target, value, path):
+    """Where ``value`` puts a project file of the wrong kind into a file
+    input, as messages: the rule the interface's file menus apply (the
+    file's type among the input's mimeTypeName, or the input takes
+    "Unknown"). Through the API nothing applied it: an agent put a free-R
+    MTZ into a sequence input and a .seq into mrbump's ASU contents, and
+    both validated clean (2026-10-12). A file given by a path, not a
+    project file, is left to validation. Lists and composites are checked
+    item by item, field by field."""
+    from ccp4i2.core.base_object.fundamental_types import CList
+    if value is None:
+        return []
+    if isinstance(target, (CDataFile, CCP4File.CDataFile)):
+        if not isinstance(value, dict) or not value.get("dbFileId"):
+            return []
+        allowed = target.get_qualifier("mimeTypeName")
+        allowed = [a for a in (allowed if isinstance(allowed, (list, tuple)) else [allowed]) if a]
+        if not allowed or "Unknown" in allowed:
+            return []
+        try:
+            the_file = models.File.objects.select_related("type").get(uuid=str(value["dbFileId"]))
+        except (models.File.DoesNotExist, ValueError):
+            return []  # not a project file: validation says whether it exists
+        if the_file.type.name in allowed:
+            return []
+        made = f"job {the_file.job.number}'s {the_file.job_param_name}" if the_file.job else "an imported file"
+        return [f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
+                f"is {the_file.type.name}"]
+    if isinstance(target, (CList, CCP4Data.CList)) and isinstance(value, list):
+        make = getattr(target, "makeItem", None)
+        if make is None:
+            return []
+        errors = []
+        for i, item_value in enumerate(value):
+            errors += file_type_errors(make(), item_value, f"{path}[{i}]")
+        return errors
+    if isinstance(value, dict):
+        errors = []
+        for key, item_value in value.items():
+            child = getattr(target, key, None)
+            if child is not None and hasattr(child, "objectName"):
+                errors += file_type_errors(child, item_value, f"{path}.{key}")
+        return errors
+    return []
+
+
 def set_parameter_container(
     the_container: CContainer, object_path: str, value: Union[str, int, dict, None]
 ):

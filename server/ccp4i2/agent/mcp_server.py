@@ -13,6 +13,7 @@ Deliberately absent: deleting anything, changing a job's status, and any
 file outside a project. See docs/agentic-knowledge.md.
 """
 import json
+import re
 import mimetypes
 import os
 import urllib.error
@@ -524,6 +525,12 @@ def set_parameter(project_id: int, job: str | int, path: str,
     job_id = _jid(project_id, job)
     project_id = _job(job_id)["project"]
     path = _resolve_path(job_id, path)
+    if isinstance(value, str) and _REFERENCE.match(value.strip()) and _is_file_input(job_id, path):
+        # A reference given as the value of a file input was stored as the
+        # file's NAME ("[1].OBSOUT"), reported set, and failed only at
+        # validation as a missing file (gpt-oss, 2026-10-12): take it as
+        # set_file does
+        value = {"file": value.strip()}
     try:
         _post(f"jobs/{job_id}/set_parameter",
               {"object_path": path, "value": _resolve_files(value, project_id)})
@@ -538,6 +545,22 @@ def set_parameter(project_id: int, job: str | int, path: str,
         raise
     now, is_set = _value_at(job_id, path)
     return {"path": path, "now": now, "set": is_set}
+
+
+_REFERENCE = re.compile(r"^(\[-?\d+\]|-?\d+|[A-Za-z_]\w*\[-?\d+\])\.\w+(\[\d+\])?$")
+
+
+def _is_file_input(job_id, path):
+    """Whether the parameter at ``path`` (no list index) takes a file."""
+    if "[" in path:
+        return False
+    name = path.rsplit(".", 1)[-1]
+    try:
+        entries = _get(f"jobs/{job_id}/parameters", query=name).get("parameters") or []
+    except ApiError:
+        return False
+    entry = next((e for e in entries if e.get("path") == path), None)
+    return bool(entry) and str(entry.get("class", "")).endswith("DataFile")
 
 
 @server.tool()

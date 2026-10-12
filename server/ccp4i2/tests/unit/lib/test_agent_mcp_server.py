@@ -540,6 +540,22 @@ def test_add_list_item_resolves_its_list_and_the_files_in_its_values(api):
                        "values": {"structure": {"baseName": "beta.pdb"}}}
 
 
+def test_a_reference_set_as_a_file_inputs_value_is_resolved(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    answers[("GET", "projects/3/resolve_fileuse")] = {"baseName": "OBSOUT.mtz", "dbFileId": "f1",
+                                                      "fullPath": "/x/OBSOUT.mtz"}
+    mcp_server.set_parameter(3, "5", "inputData.F_SIGF", "[1].OBSOUT")
+    post = next(c for c in calls if c[1] == "jobs/7/set_parameter")
+    assert post[2] == {"object_path": "inputData.F_SIGF", "value": {"baseName": "OBSOUT.mtz", "dbFileId": "f1"}}
+    # Text that only looks like one, for a parameter that is not a file, is left as it is
+    calls.clear()
+    mcp_server.set_parameter(3, "5", "controlParameters.NCOPIES", "2")
+    post = next(c for c in calls if c[1] == "jobs/7/set_parameter")
+    assert post[2]["value"] == "2"
+
+
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
     calls, answers = api
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [

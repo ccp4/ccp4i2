@@ -75,12 +75,13 @@ def add_list_item(job: models.Job, object_path: str,
     section_path = normalized.split(".", 1)[1] if normalized.startswith(f"{job.task_name}.") else normalized
     item_path = f"{section_path}[{index}]"
     if values:
-        from .set_parameter import shape_errors
+        from .set_parameter import file_type_errors, shape_errors
         for field, value in values.items():
             field_path = f"{normalized}[{index}].{field}"
             try:
                 child = plugin.container.find_by_path(field_path, skip_first=True)
-                problems = shape_errors(child, value, f"{item_path}.{field}")
+                problems = (shape_errors(child, value, f"{item_path}.{field}")
+                            + file_type_errors(child, value, f"{item_path}.{field}"))
                 if problems:
                     raise ValueError("; ".join(problems))
                 plugin.container.set_parameter(field_path, value, skip_first=True)
