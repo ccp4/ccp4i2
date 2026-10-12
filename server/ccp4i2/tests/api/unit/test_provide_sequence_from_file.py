@@ -96,3 +96,37 @@ def test_a_project_file_of_the_wrong_kind_is_refused(client, job):
     r = client.post(f"{API}/jobs/{other.id}/set_parameter/",
                     data={"object_path": "inputData.SEQIN", "value": seq}, format="json")
     assert r.status_code == 200, r.content
+
+
+def test_an_asu_entry_is_filled_from_its_source_file(client, job):
+    # In the interface, choosing an entry's sequence file fills the entry in
+    # the browser; an agent's upload left the sequence empty, and validation
+    # then failed on it
+    asu_job = _new(client, job.project, "ProvideAsuContents")
+    r = client.post(f"{API}/jobs/{asu_job.id}/add_list_item/",
+                    data={"object_path": "inputData.ASU_CONTENT", "values": {"nCopies": 2}}, format="json")
+    assert r.status_code == 200, r.content
+    item = r.json()["data"]["item"]
+    r = client.post(f"{API}/jobs/{asu_job.id}/upload_file_param/",
+                    {"file": SimpleUploadedFile("beta.seq", BETA.read_bytes()),
+                     "objectPath": f"{item}.source"}, format="multipart")
+    assert r.status_code == 200, r.content
+    r = client.get(f"{API}/jobs/{asu_job.id}/parameters/", {"query": "ASU_CONTENT"})
+    asu = next(p for p in r.json()["data"]["parameters"] if p["path"] == "inputData.ASU_CONTENT")
+    entry = asu["value"][int(item.rsplit("[", 1)[1].rstrip("]"))]
+    expected = "".join(BETA.read_text().splitlines()[1:]).replace(" ", "")
+    assert entry["sequence"] == expected
+    assert entry["name"] and entry["polymerType"] == "PROTEIN" and entry["nCopies"] == 2
+    assert "sequence" not in _errors(client, asu_job).split(item)[-1][:200]
+
+
+def test_a_kind_of_the_file_an_input_takes_is_taken():
+    # An observed-data MTZ is an MTZ: ProvideAsuContents' HKLIN (a plain
+    # MTZ) refused the import's OBSOUT on the exact-type rule alone
+    from ccp4i2.core.cdata_registry import cdata_classes
+    from ccp4i2.lib.utils.parameters.set_parameter import _is_a
+    mtz = cdata_classes()["CMtzDataFile"]()
+    assert _is_a("application/CCP4-mtz-observed", mtz)
+    assert not _is_a("application/CCP4-seq", mtz)
+    seq = cdata_classes()["CSeqDataFile"]()
+    assert not _is_a("application/CCP4-mtz-observed", seq)

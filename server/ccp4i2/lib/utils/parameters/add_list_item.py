@@ -84,7 +84,9 @@ def add_list_item(job: models.Job, object_path: str,
                             + file_type_errors(child, value, f"{item_path}.{field}"))
                 if problems:
                     raise ValueError("; ".join(problems))
-                plugin.container.set_parameter(field_path, value, skip_first=True)
+                set_obj = plugin.container.set_parameter(field_path, value, skip_first=True)
+                from .set_parameter import after_api_set
+                after_api_set(set_obj)
             except (AttributeError, ValueError, TypeError) as err:
                 target.pop()
                 fields = item_paths(item, item_path)

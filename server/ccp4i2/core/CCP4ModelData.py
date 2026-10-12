@@ -3499,6 +3499,39 @@ class CAsuContentSeq(CData):
                                       "organism", "reviewed", "range")} | {
             "length": len(entry["sequence"])}
 
+    def fillFromSource(self):
+        """This entry's sequence, polymer type, name and description from its
+        source file, as the interface fills them when a file is chosen (in
+        the browser, casucontentseq.tsx setSEQUENCEFromSEQIN). The number
+        of copies is the user's to say, not the file's: kept. Returns
+        whether anything was filled."""
+        import re
+        if not self.source.isSet() or not self.source.exists():
+            return False
+        self.source.loadFile()
+        seq = self.source.getFileContent()
+        text = "".join(str(seq.sequence).split()) if seq is not None else ""
+        if not text:
+            return False
+        molecule = str(seq.moleculeType).upper() if seq.moleculeType.isSet() else "PROTEIN"
+        if molecule == "NUCLEIC":
+            molecule = "RNA" if "U" in text.upper() and "T" not in text.upper() else "DNA"
+        self.sequence.set(text)
+        self.polymerType.set(molecule if molecule in ("PROTEIN", "DNA", "RNA") else "PROTEIN")
+        label = str(seq.name) if seq.name.isSet() and str(seq.name).strip() else str(seq.identifier)
+        self.name.set(re.sub(r"[^a-zA-Z0-9]", "_", label.strip()) or "sequence")
+        annotation = str(self.source.annotation) if self.source.annotation.isSet() else ""
+        if annotation:
+            self.description.set(annotation)
+        return True
+
+    def afterChildSet(self, child_name):
+        """Set through the API (lib/utils/parameters/set_parameter.py,
+        after_api_set): a source file chosen fills the entry, as in the
+        interface; an agent's upload left the sequence empty (2026-10-12)."""
+        if child_name == "source":
+            self.fillFromSource()
+
     sequence = content(
         "CSequenceString",
         allowUndefined=False,

@@ -141,6 +141,8 @@ def set_parameter(
         # and enables database synchronization when appropriate
         try:
             obj = plugin.container.set_parameter(normalized_path, value, skip_first=True)
+            from .set_parameter import after_api_set
+            after_api_set(obj)
         except AttributeError as err:
             # Say what was tried, in the caller's terms: the underlying error
             # names the leaf as missing and the root as the origin, which reads
