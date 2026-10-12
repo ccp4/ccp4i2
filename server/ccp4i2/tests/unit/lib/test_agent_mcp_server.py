@@ -349,7 +349,8 @@ def test_set_file_from_an_mrparse_model_brings_its_identity(api, monkeypatch):
     answers[("GET", "projects/3/resolve_fileuse")] = {
         "project": "p", "baseName": "6p8e_B_19-297.pdb", "dbFileId": "f", "relPath": "CCP4_JOBS/job_9",
         "annotation": "PDB hit: 6p8e_B", "fullPath": "/x/6p8e_B_19-297.pdb"}
-    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.SEARCHSEQUENCEIDENTITY"}]}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.XYZIN"},
+                                                         {"path": "inputData.SEARCHSEQUENCEIDENTITY"}]}
     xml = ('<MrParse><Models count="1"><Model index="0" file="6p8e_B_19-297.pdb" identity="0.92"/></Models></MrParse>')
     monkeypatch.setattr(mcp_server, "_text", lambda path: xml if path.endswith("job_9/program.xml") else "")
     out = mcp_server.set_file(3, "5", "inputData.XYZIN", "mrparse[-1].XYZOUT[0]")
@@ -436,6 +437,53 @@ def test_an_ambiguous_or_unknown_keyword_is_refused_with_help(api):
     with pytest.raises(mcp_server.ApiError, match="No parameter 'MINSPLIT'"):
         mcp_server._resolve_path(7, "MINSPLIT")
     assert not any(c[1] == "jobs/7/set_parameter" for c in calls)
+
+
+PHASER_INPUTS = {"parameters": [
+    {"path": "inputData.F_SIGF", "class": "CObsDataFile", "label": "Reflections", "set": True},
+    {"path": "inputData.ENSEMBLES", "class": "CEnsembleList", "set": False, "item_fields": {
+        "label": {"class": "COneWord", "label": "Label"},
+        "pdbItemList": {"class": "CList", "label": "Models", "item_fields": {
+            "structure": {"class": "CPdbDataFile", "label": "Model"},
+            "identity_to_target": {"class": "CFloat", "label": "Identity"}}}}},
+    {"path": "inputData.SEQUENCES", "class": "CSequenceWithCopiesList", "set": False, "item_fields": {
+        "seqFile": {"class": "CSeqDataFile", "label": "Sequence file"},
+        "nCopies": {"class": "CInt", "label": "Copies"}}},
+    {"path": "controlParameters.NCOPIES", "class": "CInt", "label": "Copies"},
+    {"path": "outputData.XYZOUT", "class": "CPdbDataFile", "label": "Placed model"},
+]}
+
+
+def test_a_guessed_file_input_is_answered_with_the_real_ones(api, tmp_path):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "task_name": "phaser_pipeline_phil"}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    model = tmp_path / "beta.pdb"
+    model.write_text("ATOM\n")
+    with pytest.raises(mcp_server.ApiError) as refused:
+        mcp_server.upload_file(3, "5", "inputData.SEARCHMODELS[0].structure", str(model))
+    message = str(refused.value)
+    assert "No parameter 'inputData.SEARCHMODELS' on this phaser_pipeline_phil job" in message
+    assert "inputData.ENSEMBLES[i].pdbItemList[j].structure (Model)" in message
+    assert "inputData.SEQUENCES[i].seqFile (Sequence file)" in message
+    assert "inputData.F_SIGF (Reflections)" in message
+    assert "outputData" not in message and "set the list whole" in message
+    with pytest.raises(mcp_server.ApiError, match="ENSEMBLES"):
+        mcp_server.set_file(3, "5", "STRUCTURE[0].structure", "[1].XYZOUT")
+    assert not any(c[0] == "POST" for c in calls)
+
+
+def test_a_bare_list_name_with_its_index_resolves(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    assert (mcp_server._resolve_path(7, "ENSEMBLES[0].pdbItemList[0].structure", files=True)
+            == "inputData.ENSEMBLES[0].pdbItemList[0].structure")
+    # a full path, or a field within a parameter, is the server's to check
+    assert mcp_server._resolve_path(7, "inputData.ENSEMBLES[3].label") == "inputData.ENSEMBLES[3].label"
+    assert mcp_server._resolve_path(7, "inputData.F_SIGF.annotation") == "inputData.F_SIGF.annotation"
+    with pytest.raises(mcp_server.ApiError, match="without only_set"):
+        mcp_server._resolve_path(7, "controlParameters.NCOPY")
 
 
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):

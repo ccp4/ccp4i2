@@ -53,9 +53,13 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
    one (e.g. shelx or crank2, not ShelxCD then the rest): the pipeline holds
    the decisions between stages. Go stage by stage only as a fallback a
    judgement points you to.
-2. create_job(project, task). A new job is filled in from the project's
-   latest results, as in the app: read job_parameters(job, only_set=True)
-   and check those are the files you mean.
+2. create_job(project, task). job_parameters(job) then lists every input
+   the task takes, set or not, with each list's item_fields: read it before
+   setting anything, and use its paths rather than guessing names. A new
+   job is filled in from the project's latest results, as in the app:
+   job_parameters(job, only_set=True) shows just those, to check they are
+   the files you mean. A job does nothing until run_job: a later job can
+   use only what earlier jobs have made by running.
 3. Set inputs: set_file(job, path, "[n].PARAM[i]") for a file another job
    made or imported (n is a job number; -1 the latest), upload_file for a
    file from disk, set_parameter for anything else. Paths are as
@@ -307,9 +311,10 @@ def project_jobs(project_id: int) -> dict:
 
 @server.tool()
 def create_job(project_id: int, task: str) -> dict:
-    """Create a job of ``task`` in a project. Its inputs are filled in from
-    the project's latest results, as in the app: check them with
-    job_parameters(only_set=True)."""
+    """Create a job of ``task`` in a project. job_parameters(job) lists
+    every input it takes; those filled in from the project's latest
+    results, as in the app, are what job_parameters(job, only_set=True)
+    shows."""
     job = _post(f"projects/{project_id}/create_task", {"task_name": task})["new_job"]
     out = {"project_id": job["project"], "job": job["number"], "task": job["task_name"]}
     carried = _carry_model_identity(job["id"], job["project"])
@@ -343,13 +348,17 @@ def _carry_model_identity(job_id, project_id):
         return None
 
 
-def _resolve_path(job_id, path):
+def _resolve_path(job_id, path, files=False):
     """A parameter path as the job knows it, from a full path
     ("modelParameters.MIN_SPLITS"), a bare keyword ("MIN_SPLITS") or a dotted
-    tail ("sgalternative.select"): the one path ending in it, matched on
-    name boundaries. Several matches refuse and list them; none says what is
-    close. Judgements can then name parameters as the program's own
-    documentation does."""
+    tail ("sgalternative.select"), any of them followed by a list index
+    ("ENSEMBLES[0].pdbItemList[0].structure"): the one path ending in it,
+    matched on name boundaries. Several matches refuse and list them; none
+    says what is close and, for a file (``files``), what the job's file
+    inputs are. Judgements can then name parameters as the program's own
+    documentation does, and a guessed name is answered with the real ones:
+    a small model guessed inputData.SEARCHMODELS[0].structure for three
+    tasks running and never found ENSEMBLES (2026-10-12)."""
     import difflib
     wanted = str(path).strip()
     try:
@@ -357,21 +366,64 @@ def _resolve_path(job_id, path):
     except ApiError:
         entries = []
     paths = [e["path"] for e in entries if e.get("path")]
-    sections = {p.split(".", 1)[0] for p in paths}
-    if not paths or wanted in paths or "[" in wanted or wanted.split(".", 1)[0] in sections:
-        return wanted  # canonical (a section the job has), a list item, or nothing to check against
-    tail = wanted.lower()
+    if not paths or wanted in paths:
+        return wanted  # canonical, or nothing to check against
+    head, bracket, rest = wanted.partition("[")
+    rest = bracket + rest
+    if any(head == p or head.startswith(p + ".") for p in paths):
+        return wanted  # a parameter, or a field within one: the server checks the rest
+    tail = head.lower()
     hits = [p for p in paths if p.lower() == tail or p.lower().endswith("." + tail)]
     if len(hits) == 1:
-        return hits[0]
+        return hits[0] + rest
     if len(hits) > 1:
-        raise ApiError(f"{wanted!r} names {len(hits)} parameters: {', '.join(hits)}. Give one of them.")
+        raise ApiError(f"{head!r} names {len(hits)} parameters: {', '.join(hits)}. Give one of them.")
+    name = tail.rsplit(".", 1)[-1]
     labels = {e["path"]: str(e.get("label") or "") for e in entries if e.get("path")}
-    near = difflib.get_close_matches(tail, [p.lower() for p in paths], n=4, cutoff=0.6)
-    near_paths = [p for p in paths if p.lower() in near][:4]
-    by_label = [p for p, l in labels.items() if tail in l.lower()][:4]
-    hint = ", ".join(dict.fromkeys(near_paths + by_label)) or "job_parameters lists them"
-    raise ApiError(f"No parameter {wanted!r} on this job. Close: {hint}")
+    lowered = {p.lower().rsplit(".", 1)[-1]: p for p in paths}
+    near = [lowered[n] for n in difflib.get_close_matches(name, lowered, n=4, cutoff=0.6)]
+    by_label = [p for p, l in labels.items() if name.replace("_", " ") in l.lower()][:4]
+    task = (_job(job_id) or {}).get("task_name")
+    message = f"No parameter {head!r} on this {task + ' ' if task else ''}job."
+    close = list(dict.fromkeys(near + by_label))
+    if close:
+        message += f" Close: {', '.join(close)}."
+    if files:
+        inputs = _file_inputs(entries)
+        if inputs:
+            message += " Its file inputs: " + "; ".join(inputs) + "."
+            if any("[" in i for i in inputs):
+                message += (" A list item must exist before a file is put in it: set the list"
+                            " whole with set_parameter, items shaped as job_parameters' item_fields.")
+    else:
+        message += " job_parameters(job) (without only_set) lists every parameter it has."
+    raise ApiError(message)
+
+
+def _file_inputs(entries):
+    """Where a job takes files, outputs aside: each file parameter's path,
+    and inside a list the path of each file an item holds, written with [i],
+    [j] for the indices, with the label after it."""
+    found = []
+
+    def walk(path, fields, depth):
+        for key, field in (fields or {}).items():
+            here = f"{path}.{key}"
+            if field.get("item_fields"):
+                index = "ijk"[min(depth, 2)]
+                walk(f"{here}[{index}]", field["item_fields"], depth + 1)
+            elif str(field.get("class", "")).endswith("DataFile"):
+                found.append(f"{here} ({field.get('label') or key})")
+
+    for e in entries:
+        path = e.get("path") or ""
+        if path.startswith("outputData."):
+            continue
+        if e.get("item_fields"):
+            walk(f"{path}[i]", e["item_fields"], 1)
+        elif str(e.get("class", "")).endswith("DataFile"):
+            found.append(f"{path} ({e.get('label') or path.rsplit('.', 1)[-1]})")
+    return found
 
 
 @server.tool()
@@ -457,7 +509,7 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     job of a task)."""
     job_id = _jid(project_id, job)
     job = _job(job_id)
-    path = _resolve_path(job_id, path)
+    path = _resolve_path(job_id, path, files=True)
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
@@ -513,6 +565,7 @@ def upload_file(project_id: int, job: str | int, path: str, local_path: str, col
     source = Path(local_path).expanduser()
     if not source.is_file():
         raise ApiError(f"no file {source}")
+    path = _resolve_path(job_id, path, files=True)
     boundary = uuid.uuid4().hex
     fields = {"objectPath": path}
     if column_labels:
