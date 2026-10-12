@@ -1,3 +1,5 @@
+import os
+
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -6,6 +8,7 @@ class mrbump_basic(CPluginScript):
 
     TASKNAME = 'mrbump_basic'
     TASKCOMMAND = 'mrbump'
+    ERROR_CODES = {201: {'description': 'The AU contents gave no sequence for MrBUMP'}}
 
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
@@ -20,8 +23,17 @@ class mrbump_basic(CPluginScript):
         self.hklin,error = self.makeHklin(dataObjects)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
-        else:
-            return CPluginScript.SUCCEEDED
+        # MrBUMP given an empty sequence does not stop: it spun at full CPU,
+        # writing nothing, with the job left Running, when ASUIN was a file
+        # that did not parse as AU contents (a .seq; 2026-10-12)
+        self.seqFile = os.path.join(self.workDirectory, 'SEQIN.fasta')
+        self.container.inputData.ASUIN.writeFasta(fileName=self.seqFile)
+        if not os.path.exists(self.seqFile) or not open(self.seqFile).read().strip():
+            self.appendErrorReport(201, 'The AU contents file (ASUIN) gave no sequence: it holds '
+                                   'none, or is not an AU contents file. Make one with '
+                                   'ProvideAsuContents.')
+            return CPluginScript.FAILED
+        return CPluginScript.SUCCEEDED
     
     def makeCommandAndScript(self):
 
@@ -176,9 +188,7 @@ class mrbump_basic(CPluginScript):
       kf.close()
 
       self.appendCommandLine( [ 'HKLIN', self.hklin ] )
-      seqFile = os.path.join(self.workDirectory,'SEQIN.fasta')
-      inp.ASUIN.writeFasta(fileName=seqFile)
-      self.appendCommandLine( [ 'SEQIN', seqFile ] )
+      self.appendCommandLine( [ 'SEQIN', self.seqFile ] )
       self.appendCommandLine( [ 'KEYIN', str( keyfile ) ] )
 
       self.appendCommandLine( [ 'XMLOUT', str( self.makeFileName( 'PROGRAMXML' ) ) ] )
