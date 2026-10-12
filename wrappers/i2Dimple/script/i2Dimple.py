@@ -121,17 +121,13 @@ class i2Dimple(CPluginScript):
                     phaserElement = etree.SubElement(xmlStructure,"PHASER")
                     phaserElement.text = configParser.get("phaser","status")
                 refmacCycleArrays = {}
-                #Extract refmac5 jelly cycles output
-                if "refmac5 jelly"  in configParser.sections():
-                    for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 jelly",property))
-                        refmacCycleArrays[property] = perCycleArray
-                #Extract refmac5 jelly cycles output
-                if "refmac5 restr"  in configParser.sections():
-                    for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 restr",property))
-                        if property in refmacCycleArrays: refmacCycleArrays[property] += perCycleArray
-                        else: refmacCycleArrays[property] = perCycleArray
+                #Extract refmac cycles output
+                for stage in ["jelly", "restr"]:
+                    for section in [f"refmacat {stage}", f"refmac5 {stage}"]:
+                        if section in configParser.sections():
+                            for prop in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
+                                perCycleArray = json.loads(configParser.get(section,prop))
+                                refmacCycleArrays.setdefault(prop, []).extend(perCycleArray)
                 #Identify if pointless has spotted a better reindexing
                 if "pointless" in configParser.sections():
                     if "alt_reindex" in [item[0] for item in configParser.items("pointless")]:
@@ -199,8 +195,8 @@ class i2Dimple(CPluginScript):
             
             #Extract performanceindictors from XML
             try:
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//Cycle/iter_overall_r")[-1].text)
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.xpath("//Cycle/iter_free_r")[-1].text)
+                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//new_cycle/r_factor")[-1].text)
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.xpath("//new_cycle/r_free")[-1].text)
             except: pass
             
             programXMLFile.write(etree.tostring(xmlStructure))
