@@ -43,7 +43,7 @@ class coot_find_ligand(CPluginScript):
             os.chdir(job_dir)
 
         try:
-            mc = coot_headless_api.molecules_container_py(True)
+            mc = coot_headless_api.molecules_container_t(True)
             mc.set_make_backups(False)
             mc.set_use_gemmi(False)
             imol = mc.read_pdb(xyzin)
@@ -68,7 +68,8 @@ class coot_find_ligand(CPluginScript):
                     element = ET.SubElement(xmlRoot, "AddedLigand")
                     element.set("clusterVolume", str(info.get_cluster_volume()))
                     element.set("fittingScore", str(info.get_fitting_score()))
-            mc.merge_molecules(imol, ":".join(clusterMols.values()))
+            if clusterMols:
+                mc.merge_molecules(imol, ":".join(clusterMols.values()))
             mc.write_coordinates(imol, xyzout)
 
             ET.ElementTree(xmlRoot).write(self.makeFileName("PROGRAMXML"))
