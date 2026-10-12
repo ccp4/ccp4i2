@@ -520,8 +520,19 @@ def set_parameter(project_id: int, job: str | int, path: str,
     job_id = _jid(project_id, job)
     project_id = _job(job_id)["project"]
     path = _resolve_path(job_id, path)
-    _post(f"jobs/{job_id}/set_parameter",
-          {"object_path": path, "value": _resolve_files(value, project_id)})
+    try:
+        _post(f"jobs/{job_id}/set_parameter",
+              {"object_path": path, "value": _resolve_files(value, project_id)})
+    except ApiError as err:
+        if "[" in path and "not found" in str(err):
+            # gpt-oss set ASU_CONTENT[0].name field by field on an empty
+            # list, six times over (2026-10-12).
+            whole = path.split("[", 1)[0]
+            raise ApiError(f"{err}. That list item does not exist yet: set the list whole, "
+                           f"set_parameter(path={whole!r}, value=[{{...}}, ...]), each item shaped "
+                           f"as job_parameters' item_fields for {whole}; then its fields "
+                           "can be set one by one.") from err
+        raise
     now, is_set = _value_at(job_id, path)
     return {"path": path, "now": now, "set": is_set}
 

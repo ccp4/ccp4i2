@@ -517,6 +517,16 @@ def test_create_job_notes_the_jobs_never_run(api):
     assert "note" not in mcp_server.create_job(3, "refmac")
 
 
+def test_a_field_of_a_list_item_not_there_says_to_set_the_list_whole(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.ASU_CONTENT"}]}
+    answers[("POST", "jobs/7/set_parameter")] = mcp_server.ApiError(
+        "Parameter path 'ProvideAsuContents.inputData.ASU_CONTENT[0].name' not found")
+    with pytest.raises(mcp_server.ApiError, match="set the list whole.*'inputData.ASU_CONTENT'"):
+        mcp_server.set_parameter(3, "5", "inputData.ASU_CONTENT[0].name", "beta")
+
+
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
     calls, answers = api
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [
