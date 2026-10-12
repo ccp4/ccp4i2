@@ -556,6 +556,15 @@ def test_a_reference_set_as_a_file_inputs_value_is_resolved(api):
     assert post[2]["value"] == "2"
 
 
+def test_job_errors_of_a_running_job_says_it_has_not_ended(api):
+    calls, answers = api
+    answers[("GET", "projects/3/job_tree")] = {"job_tree": [
+        {"id": 7, "number": "5", "status": 3, "task_name": "mrbump_basic", "children": []}]}
+    answers[("GET", "jobs/7/diagnostic_xml")] = mcp_server.ApiError("Diagnostic file not found for job x")
+    out = mcp_server.job_errors(3, "5")
+    assert out["status"] == "Running" and out["errors"] == [] and "not ended" in out["note"]
+
+
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
     calls, answers = api
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [

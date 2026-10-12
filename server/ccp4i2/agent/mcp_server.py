@@ -894,7 +894,14 @@ def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
 
     def report(jid, number):
         reports = []
-        for r in _errors(_get(f"jobs/{jid}/diagnostic_xml").get("xml")):
+        try:
+            # A job still running (or never run) has written no diagnostic
+            # yet: say what its log says rather than fail (asked of a
+            # stalled MrBUMP, 2026-10-12)
+            xml = _get(f"jobs/{jid}/diagnostic_xml").get("xml")
+        except ApiError:
+            xml = None
+        for r in _errors(xml):
             keep = {k: r[k] for k in ("code", "description", "details", "severityName", "class")
                     if r.get(k)}
             if keep and keep not in reports:
@@ -907,6 +914,9 @@ def job_errors(project_id: int, job: str | int, log_lines: int = 40) -> dict:
     this = node(tree, str(job).strip()) or {}
     out = report(job_id, str(job).strip())
     out["status"] = STATUS.get(this.get("status"), this.get("status"))
+    if this.get("status") in (1, 2, 3, 7):
+        out["note"] = ("The job has not ended: it has recorded no errors yet. wait_for_job "
+                       "shows its progress and whether it has stalled.")
     failed = [c for c in this.get("children") or [] if c.get("status") in (4, 5, 10)]
     out["failed_steps"] = [dict(report(c["id"], c["number"]), task=c["task_name"]) for c in failed]
     return out
