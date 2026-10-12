@@ -63,7 +63,11 @@ CCP4i2 runs crystallographic tasks as jobs in projects. Work like this:
 3. Set inputs: set_file(job, path, "[n].PARAM[i]") for a file another job
    made or imported (n is a job number; -1 the latest), upload_file for a
    file from disk, set_parameter for anything else. Paths are as
-   job_parameters lists them, e.g. inputData.XYZIN.
+   job_parameters lists them, e.g. inputData.XYZIN. A list (search
+   models, sequences, ASU contents) is built an item at a time:
+   add_list_item(job, path) adds one and answers with the paths of what
+   it holds; set or upload into those. A list inside an item (an
+   ensemble's models, inputData.ENSEMBLES[0].pdbItemList) the same way.
 4. validate(job) and fix every error before run_job(job). Warnings are
    advice; say why you go on if you do.
 5. wait_for_job(job) until it is Finished, Failed or Unsatisfactory. It
@@ -419,8 +423,8 @@ def _resolve_path(job_id, path, files=False):
         if inputs:
             message += " Its file inputs: " + "; ".join(inputs) + "."
             if any("[" in i for i in inputs):
-                message += (" A list item must exist before a file is put in it: set the list"
-                            " whole with set_parameter, items shaped as job_parameters' item_fields.")
+                message += (" A list item must exist before a file is put in it:"
+                            " add_list_item(job, <the list>) adds one and gives its paths.")
     else:
         message += " job_parameters(job) (without only_set) lists every parameter it has."
     raise ApiError(message)
@@ -528,13 +532,32 @@ def set_parameter(project_id: int, job: str | int, path: str,
             # gpt-oss set ASU_CONTENT[0].name field by field on an empty
             # list, six times over (2026-10-12).
             whole = path.split("[", 1)[0]
-            raise ApiError(f"{err}. That list item does not exist yet: set the list whole, "
-                           f"set_parameter(path={whole!r}, value=[{{...}}, ...]), each item shaped "
-                           f"as job_parameters' item_fields for {whole}; then its fields "
-                           "can be set one by one.") from err
+            raise ApiError(f"{err}. That list item does not exist yet: "
+                           f"add_list_item(job, {whole!r}) adds one and gives the paths of "
+                           "its fields; then set them one by one.") from err
         raise
     now, is_set = _value_at(job_id, path)
     return {"path": path, "now": now, "set": is_set}
+
+
+@server.tool()
+def add_list_item(project_id: int, job: str | int, path: str, values: dict | None = None) -> dict:
+    """Add one item to a list parameter of a pending job, as the
+    interface's "add" button does, optionally setting some of its fields
+    (``values``: {field: value}, a file as {"file": "<reference or file
+    id>"}). Answers with the item's path and the paths of its fields,
+    files and the lists inside it: set_parameter, set_file or upload_file
+    into those, and add_list_item again for a list inside the item. E.g.
+    add_list_item(job, "inputData.ENSEMBLES", {"label": "beta"}), then
+    add_list_item(job, "inputData.ENSEMBLES[0].pdbItemList"), then
+    upload_file to inputData.ENSEMBLES[0].pdbItemList[0].structure."""
+    job_id = _jid(project_id, job)
+    project_id = _job(job_id)["project"]
+    path = _resolve_path(job_id, path)
+    body = {"object_path": path}
+    if values:
+        body["values"] = _resolve_files(values, project_id)
+    return _post(f"jobs/{job_id}/add_list_item", body)
 
 
 @server.tool()
@@ -593,9 +616,9 @@ def _model_identity(project_id, resolved):
 def upload_file(project_id: int, job: str | int, path: str, local_path: str, column_labels: str = "") -> dict:
     """Import a file from this computer into a pending job's file input
     (an MTZ needs ``column_labels`` when it holds more than one data set,
-    e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, set the list
-    first with set_parameter (items without the file), then upload to the
-    item's path, e.g. inputData.ENSEMBLES[0].pdbItemList[0].structure.
+    e.g. "/*/*/[FP,SIGFP]"). For a file inside a list item, add the item
+    first with add_list_item, then upload to the path it answers with, e.g.
+    inputData.ENSEMBLES[0].pdbItemList[0].structure.
     Reflection data from outside the project: import them with import_merged
     instead, which checks them and makes the free-R set."""
     job_id = _jid(project_id, job)

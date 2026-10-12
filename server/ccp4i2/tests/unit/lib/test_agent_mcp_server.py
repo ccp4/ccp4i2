@@ -16,7 +16,7 @@ EXPECTED_TOOLS = {
     "create_job", "clone_job", "job_parameters", "set_parameter", "set_file",
     "upload_file", "validate", "run_job", "job_status", "wait_for_job", "judge_job",
     "what_next", "job_errors", "file_summary", "inspect_file", "find_sequence",
-    "fetch_sequence", "stop_job", "wait_for_any",
+    "fetch_sequence", "stop_job", "wait_for_any", "add_list_item",
 }
 
 
@@ -467,7 +467,7 @@ def test_a_guessed_file_input_is_answered_with_the_real_ones(api, tmp_path):
     assert "inputData.ENSEMBLES[i].pdbItemList[j].structure (Model)" in message
     assert "inputData.SEQUENCES[i].seqFile (Sequence file)" in message
     assert "inputData.F_SIGF (Reflections)" in message
-    assert "outputData" not in message and "set the list whole" in message
+    assert "outputData" not in message and "add_list_item" in message
     with pytest.raises(mcp_server.ApiError, match="ENSEMBLES"):
         mcp_server.set_file(3, "5", "STRUCTURE[0].structure", "[1].XYZOUT")
     assert not any(c[0] == "POST" for c in calls)
@@ -523,8 +523,21 @@ def test_a_field_of_a_list_item_not_there_says_to_set_the_list_whole(api):
     answers[("GET", "jobs/7/parameters")] = {"parameters": [{"path": "inputData.ASU_CONTENT"}]}
     answers[("POST", "jobs/7/set_parameter")] = mcp_server.ApiError(
         "Parameter path 'ProvideAsuContents.inputData.ASU_CONTENT[0].name' not found")
-    with pytest.raises(mcp_server.ApiError, match="set the list whole.*'inputData.ASU_CONTENT'"):
+    with pytest.raises(mcp_server.ApiError, match="add_list_item\\(job, 'inputData.ASU_CONTENT'\\)"):
         mcp_server.set_parameter(3, "5", "inputData.ASU_CONTENT[0].name", "beta")
+
+
+def test_add_list_item_resolves_its_list_and_the_files_in_its_values(api):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3}
+    answers[("GET", "jobs/7/parameters")] = PHASER_INPUTS
+    answers[("GET", "projects/3/resolve_fileuse")] = {"baseName": "beta.pdb", "fullPath": "/x/beta.pdb"}
+    answers[("POST", "jobs/7/add_list_item")] = {"item": "inputData.ENSEMBLES[0].pdbItemList[0]"}
+    out = mcp_server.add_list_item(3, "5", "ENSEMBLES[0].pdbItemList", {"structure": {"file": "[2].XYZOUT"}})
+    assert out["item"] == "inputData.ENSEMBLES[0].pdbItemList[0]"
+    post = next(c for c in calls if c[1] == "jobs/7/add_list_item")
+    assert post[2] == {"object_path": "inputData.ENSEMBLES[0].pdbItemList",
+                       "values": {"structure": {"baseName": "beta.pdb"}}}
 
 
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):

@@ -2033,6 +2033,45 @@ class JobViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["post"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def add_list_item(self, request, pk=None):
+        """
+        Append an item to a list parameter of a pending job, as the
+        interface's "add" button does, optionally setting some of its fields.
+
+        Request body: {"object_path": "inputData.ENSEMBLES",
+                       "values": {"label": "beta"}}   (values optional)
+
+        Response data: {"item": "inputData.ENSEMBLES[1]", "index": 1,
+                        "length": 2, "fields": [...], "files": [...],
+                        "lists": ["inputData.ENSEMBLES[1].pdbItemList"]}
+        """
+        try:
+            form_data = json.loads(request.body.decode("utf-8"))
+            job = models.Job.objects.get(id=pk)
+            object_path = form_data["object_path"]
+            values = form_data.get("values") or None
+
+            from ..lib.utils.parameters.add_list_item import add_list_item as add_item
+
+            result = add_item(job, object_path, values)
+            if result.success:
+                return api_success(result.data)
+            return api_error(result.error, status=400, details=result.error_details)
+
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(f"Job not found: {str(err)}", status=404)
+        except KeyError as err:
+            return api_error(f"Missing required field: {err}", status=400)
+        except Exception as err:
+            logger.exception("Unexpected error adding a list item for job %s", pk, exc_info=err)
+            return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    @action(
+        detail=True,
         methods=["get"],
         serializer_class=serializers.JobSerializer,
     )
