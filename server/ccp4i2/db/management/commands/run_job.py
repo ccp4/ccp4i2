@@ -9,6 +9,18 @@ from ccp4i2.db.models import Job, Project
 from ccp4i2.lib.async_run_job import run_job_async
 
 
+
+def record_own_process(job):
+    """Record this process as the job's, so the cancel action (the app's
+    Stop button, the agent facade's stop_job) can kill it and everything it
+    started. Only the detached route recorded a PID; local dispatch runs
+    the job in this process (run_job_safe.sh), so a cancel found no PID,
+    marked the job Interrupted and killed nothing: a MrBUMP given an empty
+    sequence spun on at full CPU for two hours after it (2026-10-12)."""
+    job.process_id = os.getpid()
+    job.save(update_fields=["process_id"])
+
+
 class Command(BaseCommand):
     """
     A Django management command to run a job.
@@ -98,6 +110,8 @@ class Command(BaseCommand):
             crash_log_path = the_job.directory / "crash_traceback.txt"
             self._crash_log = open(crash_log_path, 'w')
             faulthandler.enable(file=self._crash_log)
+
+            record_own_process(the_job)
 
             with open(
                 the_job.directory / "cplusplus_stdout.txt", "w", encoding="utf-8"
