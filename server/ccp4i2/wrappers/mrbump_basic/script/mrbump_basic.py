@@ -8,7 +8,8 @@ class mrbump_basic(CPluginScript):
 
     TASKNAME = 'mrbump_basic'
     TASKCOMMAND = 'mrbump'
-    ERROR_CODES = {201: {'description': 'The AU contents gave no sequence for MrBUMP'}}
+    ERROR_CODES = {201: {'description': 'The AU contents gave no sequence for MrBUMP'},
+                   202: {'description': 'MrBUMP finished without a solution'}}
 
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
@@ -210,6 +211,16 @@ class mrbump_basic(CPluginScript):
         hklout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.mtz")
         if os.path.exists(hklout):
             self.container.outputData.HKLOUT=hklout
+        if not os.path.exists(xyzout) or not os.path.exists(hklout):
+            # No final model: none of its search models placed, or none was
+            # found. Splitting the missing HKLOUT then failed "without giving
+            # a reason", and an agent quoted that and stopped (2026-10-13)
+            self.appendErrorReport(202, 'MrBUMP finished without a solution: none of its search models '
+                                   'gave a placement it accepted, or none was found or could be fetched. '
+                                   'Its log lists the models tried. Next: try mrparse to see the models '
+                                   'and place one with phaser_simple_phil, or give a model you have.',
+                                   severity=CCP4ErrorHandling.SEVERITY_ERROR)
+            return CPluginScript.FAILED
 
         import os
 

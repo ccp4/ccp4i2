@@ -38,3 +38,12 @@ def test_real_au_contents_go_through(tmp_path, monkeypatch):
         str(Path(ccp4i2.__file__).parent / "demo_data" / "gamma" / "gamma.asu.xml"))
     assert plugin.processInputFiles() == CPluginScript.SUCCEEDED
     assert ">" in Path(plugin.seqFile).read_text()
+
+
+def test_no_solution_is_said_to_be_no_solution(tmp_path):
+    # MrBUMP wrote no output_mrbump_1 files: the job failed "without giving a
+    # reason" when splitting the missing HKLOUT (2026-10-13)
+    plugin = get_plugin_class("mrbump_basic")(workDirectory=str(tmp_path), name="m")
+    assert plugin.processOutputFiles() == CPluginScript.FAILED
+    reports = plugin.errorReport._reports
+    assert 202 in [r["code"] for r in reports]
