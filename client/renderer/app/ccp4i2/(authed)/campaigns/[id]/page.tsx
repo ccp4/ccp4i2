@@ -85,6 +85,11 @@ function getFileDisplayLabel(file: CCP4File): string {
 // else DIMPLE) is lib/campaign_matrix.py choose_current_model.
 const REFINEMENT_TASK_NAMES = ["refmac", "i2Refmac", "i2Dimple", "dimple"];
 
+const PANDDA_EXPORT_HINT =
+  "Download the datasets as a ZIP, to run PanDDA elsewhere. To run PanDDA " +
+  "in CCP4i2, configure a \u201cPanDDA over a set of datasets\u201d job in " +
+  "the campaign's parent project.";
+
 interface CampaignDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -479,14 +484,21 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 >
                   Batch Import
                 </Button>
-                <Button
-                  variant="outlined"
-                  startIcon={<ScienceIcon />}
-                  onClick={() => setShowPanddaExport(true)}
-                  disabled={!memberProjects?.length}
-                >
-                  PANDDA
-                </Button>
+                {/* An export, not a run: PanDDA runs are configured, on
+                    purpose, as a job in the parent project. The tooltip
+                    says so, and so does the dialog. */}
+                <Tooltip title={PANDDA_EXPORT_HINT}>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      startIcon={<DownloadIcon />}
+                      onClick={() => setShowPanddaExport(true)}
+                      disabled={!memberProjects?.length}
+                    >
+                      Export for PanDDA
+                    </Button>
+                  </span>
+                </Tooltip>
                 <Button
                   variant="outlined"
                   startIcon={<PreviewIcon />}
@@ -636,6 +648,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
         onClose={() => setShowPanddaExport(false)}
         campaignId={campaignId}
         campaignName={campaign.name}
+        parentProject={parentProject ? { id: parentProject.id, name: parentProject.name } : undefined}
       />
 
       {/* Edit File Annotation Dialog */}
