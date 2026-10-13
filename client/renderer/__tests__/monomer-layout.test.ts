@@ -95,6 +95,35 @@ describe("layoutMonomer", () => {
     const out = layoutMonomer(atoms("A"), [], [{ x: 0, y: 0 }, { x: 5, y: 5 }], BOX);
     expect(out.atoms).toHaveLength(1);
   });
+
+  describe("with a fixed bond length", () => {
+    // A chain of n atoms 1.5 apart, as RDKit lays them out.
+    const chain = (n: number) => {
+      const names = Array.from({ length: n }, (_, i) => `C${i + 1}`);
+      const bonds: MonomerBond[] = names.slice(1).map((name, i) => ({ atom1: names[i], atom2: name, type: "single" }));
+      const coords = names.map((_, i) => ({ x: i * 1.5, y: 0 }));
+      return { details: atoms(...names), bonds, coords };
+    };
+    const drawn = (bond: { x1: number; y1: number; x2: number; y2: number }) =>
+      Math.hypot(bond.x2 - bond.x1, bond.y2 - bond.y1);
+
+    it("grows the box for a big monomer instead of shrinking its bonds", () => {
+      // 40 atoms in a row would be squeezed to under 5px a bond in a 200px box.
+      const { details, bonds, coords } = chain(40);
+      const out = layoutMonomer(details, bonds, coords, { ...BOX, bondLength: 30 });
+      for (const bond of out.bonds) expect(drawn(bond)).toBeCloseTo(30);
+      expect(out.width).toBeCloseTo(39 * 30 + 2 * BOX.padding);
+      expect(out.height).toBe(BOX.height);
+    });
+
+    it("does not blow a small monomer up, and centres it in the box", () => {
+      const { details, bonds, coords } = chain(2);
+      const out = layoutMonomer(details, bonds, coords, { ...BOX, bondLength: 30 });
+      expect(drawn(out.bonds[0])).toBeCloseTo(30);
+      expect(out.width).toBe(BOX.width);
+      expect((out.atoms[0].x + out.atoms[1].x) / 2).toBeCloseTo(BOX.width / 2);
+    });
+  });
 });
 
 describe("bondLines", () => {

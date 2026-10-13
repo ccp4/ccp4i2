@@ -13,10 +13,16 @@
  * trip, and gives no way to make bonds clickable.
  */
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+import FitScreenIcon from "@mui/icons-material/FitScreen";
 
 import { useRDKit } from "../../providers/rdkit-provider";
 import {
@@ -49,8 +55,11 @@ export interface MonomerPickerProps {
   edits?: MonomerEdits;
   onPickAtom?: (name: string) => void;
   onPickBond?: (atom1: string, atom2: string) => void;
+  /** The smallest drawing; a big monomer draws larger and scrolls. */
   width?: number;
   height?: number;
+  /** Pixels per bond at 100%, kept whatever the monomer's size. */
+  bondLength?: number;
   /** Shown above the drawing, e.g. the monomer code. */
   title?: string;
   emptyMessage?: string;
@@ -73,6 +82,11 @@ const PADDING = 26;
 const HIT_RADIUS = 13;
 const LABEL_RADIUS = 11;
 const DOUBLE_BOND_GAP = 5;
+// Long enough that a bond still shows between two label discs (2 x 11px).
+const BOND_LENGTH = 36;
+// The frame a big monomer scrolls inside.
+const FRAME_HEIGHT = 420;
+const ZOOMS = [0.5, 0.67, 0.8, 1, 1.25, 1.5, 2];
 
 function superscriptCharge(charge: number): string {
   if (!charge) return "";
@@ -93,11 +107,14 @@ export function MonomerPicker({
   onPickBond,
   width = 320,
   height = 260,
+  bondLength = BOND_LENGTH,
   title,
   emptyMessage = "No monomer selected",
 }: MonomerPickerProps) {
   const theme = useTheme();
   const { rdkitModule, isLoading } = useRDKit();
+  // null: shrink the whole drawing into the frame, however small that makes it.
+  const [zoom, setZoom] = useState<number | null>(1);
 
   const layout: MonomerLayout | null = useMemo(() => {
     if (!rdkitModule || atomDetails.length === 0) return null;
@@ -113,13 +130,14 @@ export function MonomerPicker({
         width,
         height,
         padding: PADDING,
+        bondLength,
       });
     } catch {
       return null;
     } finally {
       mol.delete();
     }
-  }, [rdkitModule, atomDetails, bonds, width, height]);
+  }, [rdkitModule, atomDetails, bonds, width, height, bondLength]);
 
   const marked = useMemo(() => new Set(markedAtoms ?? []), [markedAtoms]);
   const deleted = useMemo(() => new Set(edits?.deletes ?? []), [edits]);
@@ -155,160 +173,227 @@ export function MonomerPicker({
   const atomsPickable = mode === "atom" && Boolean(onPickAtom);
   const bondsPickable = mode === "bond" && Boolean(onPickBond);
 
+  // Larger than the smallest box means the monomer outgrew it: then the
+  // reader needs a way to see all of it as well as to pick from it.
+  const oversized = layout.width > width || layout.height > height;
+  const zoomIndex = zoom === null ? -1 : ZOOMS.indexOf(zoom);
+  const stepZoom = (step: 1 | -1) => {
+    if (zoomIndex < 0) {
+      setZoom(1);
+      return;
+    }
+    setZoom(ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, zoomIndex + step))]);
+  };
+
   return (
     <Box>
-      {title && (
-        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-          {title}
-        </Typography>
+      {(title || oversized) && (
+        <Stack direction="row" alignItems="center" sx={{ mb: 0.5, minHeight: 28 }}>
+          <Typography variant="subtitle2" sx={{ flexGrow: 1 }}>
+            {title}
+          </Typography>
+          {oversized && (
+            <>
+              <Tooltip title="Zoom out">
+                <span>
+                  <IconButton
+                    size="small"
+                    aria-label="Zoom out"
+                    disabled={zoom === null || zoomIndex === 0}
+                    onClick={() => stepZoom(-1)}
+                  >
+                    <ZoomOutIcon fontSize="small" />
+                  </IconButton>
+                </span>
+              </Tooltip>
+              <Typography variant="caption" color="text.secondary" sx={{ minWidth: 36, textAlign: "center" }}>
+                {zoom === null ? "fit" : `${Math.round(zoom * 100)}%`}
+              </Typography>
+              <Tooltip title="Zoom in">
+                <span>
+                  <IconButton
+                    size="small"
+                    aria-label="Zoom in"
+                    disabled={zoomIndex === ZOOMS.length - 1}
+                    onClick={() => stepZoom(1)}
+                  >
+                    <ZoomInIcon fontSize="small" />
+                  </IconButton>
+                </span>
+              </Tooltip>
+              <Tooltip title="Fit the whole monomer in view">
+                <span>
+                  <IconButton
+                    size="small"
+                    aria-label="Fit in view"
+                    disabled={zoom === null}
+                    onClick={() => setZoom(null)}
+                  >
+                    <FitScreenIcon fontSize="small" />
+                  </IconButton>
+                </span>
+              </Tooltip>
+            </>
+          )}
+        </Stack>
       )}
+      {/* A big monomer keeps its bond length and scrolls in this frame,
+          rather than shrinking until its bonds hide under the labels. */}
       <Box
-        component="svg"
-        viewBox={`0 0 ${layout.width} ${layout.height}`}
-        width="100%"
-        role="group"
-        aria-label={title ? `${title} structure` : "Monomer structure"}
         sx={{
-          maxWidth: layout.width,
           border: 1,
           borderColor: "divider",
           borderRadius: 1,
           bgcolor: "background.paper",
-          display: "block",
+          overflow: "auto",
+          maxHeight: FRAME_HEIGHT,
         }}
       >
-        {layout.bonds.map((bond) => {
-          const key = bondKey(bond.atom1, bond.atom2);
-          const isSelected = key === selectedBondKey;
-          const label = `${bond.atom1}-${bond.atom2}`;
-          const newOrder = edits ? editedOrder(edits, bond.atom1, bond.atom2) : null;
-          const shown = newOrder ? { ...bond, type: newOrder.toLowerCase() } : bond;
-          const isGone = deleted.has(bond.atom1) || deleted.has(bond.atom2);
-          return (
-            <g
-              key={key}
-              data-bond={label}
-              data-order={shown.type}
-              data-deleted={isGone ? "true" : undefined}
-              opacity={isGone ? 0.35 : 1}
-              role={bondsPickable ? "button" : undefined}
-              tabIndex={bondsPickable ? 0 : undefined}
-              aria-label={bondsPickable ? `Bond ${label}` : undefined}
-              aria-pressed={bondsPickable ? isSelected : undefined}
-              onClick={bondsPickable ? () => onPickBond!(bond.atom1, bond.atom2) : undefined}
-              onKeyDown={
-                bondsPickable
-                  ? (event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        onPickBond!(bond.atom1, bond.atom2);
+        <Box
+          component="svg"
+          viewBox={`0 0 ${layout.width} ${layout.height}`}
+          width={zoom === null ? "100%" : layout.width * zoom}
+          height={zoom === null ? undefined : layout.height * zoom}
+          role="group"
+          aria-label={title ? `${title} structure` : "Monomer structure"}
+          sx={{
+            display: "block",
+            ...(zoom === null && { maxWidth: layout.width, maxHeight: FRAME_HEIGHT - 2, mx: "auto" }),
+          }}
+        >
+          {layout.bonds.map((bond) => {
+            const key = bondKey(bond.atom1, bond.atom2);
+            const isSelected = key === selectedBondKey;
+            const label = `${bond.atom1}-${bond.atom2}`;
+            const newOrder = edits ? editedOrder(edits, bond.atom1, bond.atom2) : null;
+            const shown = newOrder ? { ...bond, type: newOrder.toLowerCase() } : bond;
+            const isGone = deleted.has(bond.atom1) || deleted.has(bond.atom2);
+            return (
+              <g
+                key={key}
+                data-bond={label}
+                data-order={shown.type}
+                data-deleted={isGone ? "true" : undefined}
+                opacity={isGone ? 0.35 : 1}
+                role={bondsPickable ? "button" : undefined}
+                tabIndex={bondsPickable ? 0 : undefined}
+                aria-label={bondsPickable ? `Bond ${label}` : undefined}
+                aria-pressed={bondsPickable ? isSelected : undefined}
+                onClick={bondsPickable ? () => onPickBond!(bond.atom1, bond.atom2) : undefined}
+                onKeyDown={
+                  bondsPickable
+                    ? (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          onPickBond!(bond.atom1, bond.atom2);
+                        }
                       }
-                    }
-                  : undefined
-              }
-              style={{ cursor: bondsPickable ? "pointer" : "default" }}
-            >
-              {/* An invisible fat line under the bond: a 2px stroke is far
-                  too thin to hit with a mouse, let alone a trackpad. */}
-              {bondsPickable && (
-                <line
-                  x1={bond.x1}
-                  y1={bond.y1}
-                  x2={bond.x2}
-                  y2={bond.y2}
-                  stroke="transparent"
-                  strokeWidth={12}
-                />
-              )}
-              {bondLines(shown, DOUBLE_BOND_GAP).map((line, index) => (
-                <line
-                  key={index}
-                  x1={line.x1}
-                  y1={line.y1}
-                  x2={line.x2}
-                  y2={line.y2}
-                  stroke={isSelected ? selectionColour : newOrder ? editColour : lineColour}
-                  strokeWidth={isSelected ? 3 : newOrder ? 2.2 : 1.6}
-                  strokeDasharray={isGone ? "3 3" : undefined}
-                  strokeLinecap="round"
-                />
-              ))}
-            </g>
-          );
-        })}
-
-        {layout.atoms.map((atom) => {
-          const isSelected = atom.name === selectedAtom;
-          const isMarked = marked.has(atom.name);
-          const isGone = deleted.has(atom.name);
-          const newCharge = edits ? editedCharge(edits, atom.name) : null;
-          const charge = newCharge ?? atom.charge;
-          const colour =
-            newCharge !== null
-              ? editColour
-              : ELEMENT_COLOURS[atom.element?.toUpperCase() ?? ""] ?? lineColour;
-          return (
-            <g
-              key={atom.name}
-              data-atom={atom.name}
-              data-deleted={isGone ? "true" : undefined}
-              data-charge={charge}
-              opacity={isGone ? 0.4 : 1}
-              role={atomsPickable ? "button" : undefined}
-              tabIndex={atomsPickable ? 0 : undefined}
-              aria-label={atomsPickable ? `Atom ${atom.name}` : undefined}
-              aria-pressed={atomsPickable ? isSelected : undefined}
-              onClick={atomsPickable ? () => onPickAtom!(atom.name) : undefined}
-              onKeyDown={
-                atomsPickable
-                  ? (event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        onPickAtom!(atom.name);
-                      }
-                    }
-                  : undefined
-              }
-              style={{ cursor: atomsPickable ? "pointer" : "default" }}
-            >
-              {atomsPickable && (
-                <circle cx={atom.x} cy={atom.y} r={HIT_RADIUS} fill="transparent" />
-              )}
-              {/* Opaque disc so the label is legible where a bond runs under it. */}
-              <circle
-                cx={atom.x}
-                cy={atom.y}
-                r={LABEL_RADIUS}
-                fill={theme.palette.background.paper}
-                stroke={
-                  isSelected ? selectionColour : isMarked ? markColour : "transparent"
+                    : undefined
                 }
-                strokeWidth={isSelected || isMarked ? 2.5 : 0}
-              />
-              {/* The dictionary name, not the element symbol: the name is
-                  what the user is choosing and what the task stores. */}
-              <text
-                x={atom.x}
-                y={atom.y}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={atom.name.length > 3 ? 8.5 : 10}
-                fontFamily={theme.typography.fontFamily}
-                fill={isSelected ? selectionColour : colour}
-                fontWeight={isSelected ? 700 : 500}
-                textDecoration={isGone ? "line-through" : undefined}
-                style={{ userSelect: "none", pointerEvents: "none" }}
+                style={{ cursor: bondsPickable ? "pointer" : "default" }}
               >
-                {atom.name}
-                {charge !== 0 && (
-                  <tspan fontSize={7} dy={-4}>
-                    {superscriptCharge(charge)}
-                  </tspan>
+                {/* An invisible fat line under the bond: a 2px stroke is far
+                    too thin to hit with a mouse, let alone a trackpad. */}
+                {bondsPickable && (
+                  <line
+                    x1={bond.x1}
+                    y1={bond.y1}
+                    x2={bond.x2}
+                    y2={bond.y2}
+                    stroke="transparent"
+                    strokeWidth={12}
+                  />
                 )}
-              </text>
-            </g>
-          );
-        })}
+                {bondLines(shown, DOUBLE_BOND_GAP).map((line, index) => (
+                  <line
+                    key={index}
+                    x1={line.x1}
+                    y1={line.y1}
+                    x2={line.x2}
+                    y2={line.y2}
+                    stroke={isSelected ? selectionColour : newOrder ? editColour : lineColour}
+                    strokeWidth={isSelected ? 3 : newOrder ? 2.2 : 1.6}
+                    strokeDasharray={isGone ? "3 3" : undefined}
+                    strokeLinecap="round"
+                  />
+                ))}
+              </g>
+            );
+          })}
+
+          {layout.atoms.map((atom) => {
+            const isSelected = atom.name === selectedAtom;
+            const isMarked = marked.has(atom.name);
+            const isGone = deleted.has(atom.name);
+            const newCharge = edits ? editedCharge(edits, atom.name) : null;
+            const charge = newCharge ?? atom.charge;
+            const colour =
+              newCharge !== null
+                ? editColour
+                : ELEMENT_COLOURS[atom.element?.toUpperCase() ?? ""] ?? lineColour;
+            return (
+              <g
+                key={atom.name}
+                data-atom={atom.name}
+                data-deleted={isGone ? "true" : undefined}
+                data-charge={charge}
+                opacity={isGone ? 0.4 : 1}
+                role={atomsPickable ? "button" : undefined}
+                tabIndex={atomsPickable ? 0 : undefined}
+                aria-label={atomsPickable ? `Atom ${atom.name}` : undefined}
+                aria-pressed={atomsPickable ? isSelected : undefined}
+                onClick={atomsPickable ? () => onPickAtom!(atom.name) : undefined}
+                onKeyDown={
+                  atomsPickable
+                    ? (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          onPickAtom!(atom.name);
+                        }
+                      }
+                    : undefined
+                }
+                style={{ cursor: atomsPickable ? "pointer" : "default" }}
+              >
+                {atomsPickable && (
+                  <circle cx={atom.x} cy={atom.y} r={HIT_RADIUS} fill="transparent" />
+                )}
+                {/* Opaque disc so the label is legible where a bond runs under it. */}
+                <circle
+                  cx={atom.x}
+                  cy={atom.y}
+                  r={LABEL_RADIUS}
+                  fill={theme.palette.background.paper}
+                  stroke={
+                    isSelected ? selectionColour : isMarked ? markColour : "transparent"
+                  }
+                  strokeWidth={isSelected || isMarked ? 2.5 : 0}
+                />
+                {/* The dictionary name, not the element symbol: the name is
+                    what the user is choosing and what the task stores. */}
+                <text
+                  x={atom.x}
+                  y={atom.y}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={atom.name.length > 3 ? 8.5 : 10}
+                  fontFamily={theme.typography.fontFamily}
+                  fill={isSelected ? selectionColour : colour}
+                  fontWeight={isSelected ? 700 : 500}
+                  textDecoration={isGone ? "line-through" : undefined}
+                  style={{ userSelect: "none", pointerEvents: "none" }}
+                >
+                  {atom.name}
+                  {charge !== 0 && (
+                    <tspan fontSize={7} dy={-4}>
+                      {superscriptCharge(charge)}
+                    </tspan>
+                  )}
+                </text>
+              </g>
+            );
+          })}
+        </Box>
       </Box>
     </Box>
   );

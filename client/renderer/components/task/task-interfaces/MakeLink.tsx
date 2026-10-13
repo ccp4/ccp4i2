@@ -158,7 +158,7 @@ function useMonomer(
   n: 1 | 2,
   useTaskItem: ReturnType<typeof useJob>["useTaskItem"],
   setParameter: ReturnType<typeof useJob>["setParameter"],
-  fetchDigest: ReturnType<typeof useJob>["fetchDigest"]
+  useFileDigest: ReturnType<typeof useJob>["useFileDigest"]
 ) {
   const { value: type } = useTaskItem(`MON_${n}_TYPE`);
   const { value: tlc } = useTaskItem(`RES_NAME_${n}_TLC`);
@@ -166,7 +166,7 @@ function useMonomer(
   const { value: atomTLC, item: atomTLCItem } = useTaskItem(`ATOM_NAME_${n}_TLC`);
   const { value: atomCIF, item: atomCIFItem } = useTaskItem(`ATOM_NAME_${n}_CIF`);
   const { value: atomPlain, item: atomPlainItem } = useTaskItem(`ATOM_NAME_${n}`);
-  const { item: dictItem } = useTaskItem(`DICT_${n}`);
+  const { item: dictItem, value: dictValue } = useTaskItem(`DICT_${n}`);
 
   const { value: deletes, item: deletesItem } = useTaskItem(`DELETE_ATOMS_${n}`);
   const { value: bondOrders, item: bondOrdersItem } = useTaskItem(`BOND_ORDERS_${n}`);
@@ -183,24 +183,30 @@ function useMonomer(
   const isCIF = type === "CIF";
   const { info: libraryMonomer, failure: libraryFailure } = useMonomerInfo(isCIF ? undefined : tlc);
 
-  // CIF mode: the monomers in the chosen dictionary, from its digest.
-  const [dictMonomers, setDictMonomers] = useState<MonomerDict>({});
-  const handleDictChange = useCallback(async () => {
-    if (!dictItem?._objectPath) return;
-    const digest = await fetchDigest(dictItem._objectPath);
-    if (digest?.monomers && typeof digest.monomers === "object") {
-      const codes = Object.keys(digest.monomers);
-      setDictMonomers(digest.monomers);
-      // Auto-select only when the dictionary holds exactly one monomer.
-      if (codes.length === 1 && cifNameItem?._objectPath && cifName !== codes[0]) {
-        setParameter({ object_path: cifNameItem._objectPath, value: codes[0] });
-      }
-    }
-  }, [dictItem?._objectPath, fetchDigest, cifNameItem?._objectPath, cifName, setParameter]);
+  // CIF mode: the monomers in the chosen dictionary, from its digest. Read
+  // whenever there is a file, not only when one is picked, so a job reopened
+  // with its dictionary already chosen draws it too. Keyed by the file, so a
+  // different dictionary on the same parameter is read afresh.
+  const dictFileId: string | undefined = (isCIF && dictValue?.dbFileId) || undefined;
+  const { data: dictDigest } = useFileDigest(
+    dictFileId && dictItem?._objectPath ? dictItem._objectPath : "",
+    dictFileId
+  );
+  const dictMonomers: MonomerDict = useMemo(
+    () =>
+      dictFileId && dictDigest?.monomers && typeof dictDigest.monomers === "object"
+        ? dictDigest.monomers
+        : {},
+    [dictFileId, dictDigest]
+  );
 
+  // Auto-select only when the dictionary holds exactly one monomer.
   useEffect(() => {
-    if (isCIF && dictItem?.dbFileId) handleDictChange();
-  }, [isCIF, dictItem?.dbFileId, handleDictChange]);
+    const codes = Object.keys(dictMonomers);
+    if (codes.length === 1 && cifNameItem?._objectPath && cifName !== codes[0]) {
+      setParameter({ object_path: cifNameItem._objectPath, value: codes[0] });
+    }
+  }, [dictMonomers, cifNameItem?._objectPath, cifName, setParameter]);
 
   const dictCodes = useMemo(() => Object.keys(dictMonomers), [dictMonomers]);
   const monomer: MonomerInfo = isCIF ? (cifName && dictMonomers[cifName]) || EMPTY_MONOMER : libraryMonomer;
@@ -280,13 +286,13 @@ function useMonomer(
         : `"${tlc.trim().toUpperCase()}" is not in the CCP4 monomer library`;
 
   return {
-    isCIF, monomer, code, emptyMessage, dictCodes, handleDictChange,
+    isCIF, monomer, code, emptyMessage, dictCodes,
     linkAtom, pickLink, edits, writeEdits,
   };
 }
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { useTaskItem, container, setParameter, fetchDigest } = useJob(props.job.id);
+  const { useTaskItem, container, setParameter, useFileDigest } = useJob(props.job.id);
   const toggleLink = useBoolToggle(useTaskItem, "TOGGLE_LINK");
   // A cloned or autofilled job can carry a model with the toggle off, which
   // validity() warns about; the model stays in view so the warning can be acted on.
@@ -296,8 +302,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: BOND_ORDER } = useTaskItem("BOND_ORDER");
   const linkOrder = (dictionaryOrder(BOND_ORDER) ?? "SINGLE") as BondOrder;
 
-  const mon1 = useMonomer(1, useTaskItem, setParameter, fetchDigest);
-  const mon2 = useMonomer(2, useTaskItem, setParameter, fetchDigest);
+  const mon1 = useMonomer(1, useTaskItem, setParameter, useFileDigest);
+  const mon2 = useMonomer(2, useTaskItem, setParameter, useFileDigest);
 
   if (!container) return <LinearProgress />;
 
@@ -318,7 +324,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement itemName={`MON_${n}_TYPE`} {...props} qualifiers={{ guiLabel: " " }} />
         </InlineField>
         {mon.isCIF && (
-          <CCP4i2TaskElement itemName={`DICT_${n}`} {...props} onChange={mon.handleDictChange} />
+          <CCP4i2TaskElement itemName={`DICT_${n}`} {...props} />
         )}
         {mon.isCIF ? (
           <InlineField label="Residue name" width={MONOMER_FIELD} labelWidth={MONOMER_LABEL_WIDTH}>
