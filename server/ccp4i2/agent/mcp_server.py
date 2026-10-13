@@ -593,6 +593,10 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     job_id = _jid(project_id, job)
     job = _job(job_id)
     path = _resolve_path(job_id, path, files=True)
+    if "/" in reference or "\\" in reference or Path(reference).expanduser().exists():
+        # gpt-oss gave set_file a file on disk, again and again (2026-10-13)
+        raise ApiError(f"{reference!r} is a file on this computer, not one in the project: "
+                       f"upload_file(job, {path!r}, local_path=...) imports it.")
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
@@ -762,6 +766,11 @@ def wait_for_job(project_id: int, job: str | int, max_seconds: int = 45) -> dict
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
     while True:
         status = job_status(project_id, job)
+        if status["status"] == "Pending":
+            # gpt-oss waited 35 minutes, in ever longer calls, on a job it had
+            # never started (2026-10-13)
+            status["not_started"] = "This job has not been started: run_job(job) starts it."
+            return status
         if status["status"] in TERMINAL or time.monotonic() >= deadline:
             status["waited_out"] = status["status"] not in TERMINAL
             if status["waited_out"]:
@@ -784,6 +793,10 @@ def wait_for_any(project_id: int, jobs: list, max_seconds: int = 45) -> dict:
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
     while True:
         statuses = {n: job_status(project_id, n) for n in numbers}
+        pending = [n for n, st in statuses.items() if st["status"] == "Pending"]
+        if pending:
+            return {"jobs": statuses, "ended": [], "not_started": pending,
+                    "note": f"Not started: {', '.join(pending)}. run_job starts a job."}
         ended = [n for n, st in statuses.items() if st["status"] in TERMINAL]
         if ended or time.monotonic() >= deadline or not numbers:
             out = {"jobs": statuses, "ended": ended, "waited_out": not ended}

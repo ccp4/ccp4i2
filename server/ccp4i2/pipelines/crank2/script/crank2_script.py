@@ -32,6 +32,7 @@ class crank2(CPluginScript):
     202: {'description': 'Substructure atom type not set: give the anomalous scatterer (e.g. Se, Xe, S)'},
     203: {'description': 'Crank2 will make a new free-R set; give the project one if it has one'},
     204: {'description': 'A free-R set is given but Free set is not "existing", so it is ignored'},
+    205: {'description': 'Free set is "existing" but no free-R set is given: refinement would hold out nothing'},
   }
 
   # Steps that need the substructure's atom type: without one Crank2 defines
@@ -70,6 +71,17 @@ class crank2(CPluginScript):
                              'and give it, so later refinement is against the same set.',
                      name=f'{self.TASKNAME}.container.inputData.FREE',
                      severity=CCP4ErrorHandling.SEVERITY_WARNING)
+    elif free == 'existing' and not inp.FREERFLAG.isSet():
+      # SetFree() then passes nothing, and REFMAC refines with no free
+      # reflections at all ("Switching off use of free R"): an agent set
+      # FREE "existing" on warning 203's advice and gave no set (HypF,
+      # 2026-10-13), and the build's R-free could never be read
+      error.append(klass=self.TASKNAME, code=205,
+                   details='Free set is "existing" but no free-R set is given, so nothing would '
+                           'be held out: give the project\'s set (FREERFLAG, from import or data '
+                           'reduction), or choose "new".',
+                   name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
+                   severity=CCP4ErrorHandling.SEVERITY_ERROR)
     return error
 
   def has_cont_attr(self,cont,strng):

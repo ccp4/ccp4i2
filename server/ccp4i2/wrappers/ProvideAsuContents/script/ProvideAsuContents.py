@@ -39,6 +39,81 @@ class ProvideAsuContents(CPluginScript):
         save(self, job)
         return {"success": True, "index": index, "added": added}
 
+    # -- a file chosen fills the table (any route: the page, the API, i2run) --
+
+    SOURCES = ("ASUCONTENTIN", "XYZIN", "SEQIN")
+
+    def afterParameterSet(self, obj):
+        """A sequence, model or AU-contents file was set: add its sequences to
+        ASU_CONTENT, as the page used to in the browser. A sequence already in
+        the table gains copies rather than a second row; rows with no sequence
+        give way to the file's. Returns what was done, for the caller to say.
+
+        The page did this itself after setting the file, so a job set up any
+        other way (an agent, i2run) had the file and an empty table, and
+        agents gave up there (gamma, CDK1/cyclin B/CKS2, 2026-10-13)."""
+        import re
+        from ccp4i2.lib.utils.files.digest import digest_file_object
+        from ccp4i2.lib.utils.sequences.asu_entries import entries_from_digest
+        if obj.objectName() not in self.SOURCES or obj.parent() is not self.container.inputData:
+            return None
+        if not obj.isSet():
+            return None  # cleared, not chosen
+        label = (str(obj.annotation) if obj.annotation.isSet() else "") or str(obj.baseName) or "file"
+        digest = digest_file_object(obj)
+        if not digest or digest.get("status") == "Failed":
+            return f"Could not read {label}" + (f": {digest.get('reason')}" if digest else "")
+        entries, chains = entries_from_digest(digest, label)
+        entries = [e for e in entries if e.get("polymerType") in ("PROTEIN", "DNA", "RNA")]
+        if not entries:
+            return f"No polymer sequences found in {label}"
+
+        items = self.container.inputData.ASU_CONTENT
+        key = lambda polymer, sequence: f"{str(polymer).upper()}:{re.sub(r'[^A-Za-z]', '', str(sequence))}"
+        for i in reversed(range(len(items))):  # rows with no sequence give way
+            if not str(items[i].sequence).strip():
+                items.pop(i)
+        present = {key(item.polymerType, item.sequence): item for item in items}
+        added = folded = 0
+        for entry in entries:
+            hit = present.get(key(entry["polymerType"], entry["sequence"]))
+            copies = int(entry.get("nCopies") or 1)
+            if hit is not None:
+                hit.nCopies.set(int(hit.nCopies) + copies)
+                folded += 1
+                continue
+            item = items.makeItem()
+            items.append(item)
+            item.sequence.set(re.sub(r"\s", "", str(entry["sequence"])))
+            item.polymerType.set(entry["polymerType"])
+            item.name.set(re.sub(r"[^A-Za-z0-9_]", "_", str(entry.get("name") or "sequence")))
+            if entry.get("description"):
+                item.description.set(str(entry["description"]))
+            item.nCopies.set(copies)
+            present[key(entry["polymerType"], entry["sequence"])] = item
+            added += 1
+        parts = [f"{chains} chain{'' if chains == 1 else 's'} from {label}"]
+        if added:
+            parts.append(f"{added} new row{'' if added == 1 else 's'}")
+        if folded:
+            parts.append(f"{folded} added as copies of rows already present")
+        return ": ".join(parts)
+
+    def fillFromFile(self, name):
+        """Fill the table from ``name`` (ASUCONTENTIN, XYZIN or SEQIN) as it is
+        set now, and save: for a file that reached the job without being set
+        through the API (carried over from an earlier job), which the page
+        fills once when it opens. Only a pending job."""
+        from ccp4i2.lib.utils.jobs.editing import editable_job, save
+        job, why = editable_job(self)
+        if job is None:
+            return {"success": False, "error": why}
+        if name not in self.SOURCES:
+            return {"success": False, "error": f"{name} is not one of {', '.join(self.SOURCES)}"}
+        note = self.afterParameterSet(getattr(self.container.inputData, name))
+        save(self, job)
+        return {"success": True, "note": note}
+
     def validity(self):
       """The contents come from the list or, if it is empty, from a file.
 

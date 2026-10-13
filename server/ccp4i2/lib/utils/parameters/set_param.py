@@ -142,7 +142,7 @@ def set_parameter(
         try:
             obj = plugin.container.set_parameter(normalized_path, value, skip_first=True)
             from .set_parameter import after_api_set
-            after_api_set(obj)
+            note = after_api_set(obj)
         except AttributeError as err:
             # Say what was tried, in the caller's terms: the underlying error
             # names the leaf as missing and the root as the origin, which reads
@@ -177,6 +177,8 @@ def set_parameter(
             "value": value,
             "object_type": type(obj).__name__ if obj is not None else "Unknown",
         }
+        if note:
+            result_data["note"] = note
 
         # Add file-specific info if it's a CDataFile
         if obj is not None and hasattr(obj, 'getFullPath'):

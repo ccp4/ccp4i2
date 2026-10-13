@@ -815,6 +815,27 @@ class CData(HierarchicalObject):
             # For complex types, store in default values
             self._default_values['default'] = value
 
+    def _is_required_list_item(self):
+        """Whether this is one of the first listMinLength items of a list:
+        an item the list needs filled, so never optional however empty.
+
+        An unset optional object downgrades its children's errors to
+        warnings, and an empty list item looked like one: aimless_pipe's
+        UNMERGEDFILES[0] (listMinLength 1) reported its missing file as a
+        warning, run_job let the job start, and it failed at once, seven
+        times over for an agent (2026-10-13). Items beyond the minimum keep
+        the lenient rule. Validity only: list items are saved and reloaded
+        whatever their state (CList.getEtree writes every item)."""
+        parent = self.parent() if hasattr(self, "parent") else None
+        items = getattr(parent, "_items", None)
+        if not isinstance(items, list):
+            return False
+        try:
+            minimum = int(parent.get_qualifier("listMinLength") or 0)
+        except (TypeError, ValueError):
+            return False
+        return any(item is self for item in items[:minimum])
+
     def validity(self):
         """Validate this object and return an error report.
 
@@ -857,6 +878,7 @@ class CData(HierarchicalObject):
         is_optional_and_unset = (
             is_optional and
             not self.isSet(allowUndefined=False, allowDefault=False)
+            and not self._is_required_list_item()
         )
 
         # Base CData validation - can be extended by subclasses

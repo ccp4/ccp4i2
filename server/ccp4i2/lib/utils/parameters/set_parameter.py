@@ -143,18 +143,31 @@ def shape_errors(target, value, path):
 
 
 def after_api_set(obj):
-    """Let the object holding ``obj`` respond to its being set through the
-    API, as the interface's own handlers do in the browser: an owner with
-    afterChildSet(name) is told which of its fields changed. A failure is
-    logged, not raised: the value itself is set."""
-    owner = obj.parent() if obj is not None and hasattr(obj, "parent") else None
+    """Let the objects above ``obj`` respond to its being set through the API,
+    as the interface's own handlers did in the browser: an owner with
+    afterChildSet(name) is told which of its fields changed, and the task's
+    plugin, if it has afterParameterSet(obj), is told which parameter. Returns
+    what the plugin says it did (a sentence for the caller), or None. A
+    failure is logged, not raised: the value itself is set."""
+    if obj is None or not hasattr(obj, "parent"):
+        return None
+    owner = obj.parent()
     hook = getattr(owner, "afterChildSet", None)
     if callable(hook):
         try:
             hook(obj.objectName())
         except Exception:  # the set stands; the fill is a convenience
             logger.exception("afterChildSet(%s) failed", obj.objectName())
-
+    plugin = owner
+    while plugin is not None and not callable(getattr(plugin, "afterParameterSet", None)):
+        plugin = plugin.parent() if hasattr(plugin, "parent") else None
+    if plugin is None:
+        return None
+    try:
+        return plugin.afterParameterSet(obj)
+    except Exception:  # the set stands
+        logger.exception("afterParameterSet(%s) failed", obj.objectName())
+        return None
 
 def _is_a(mimetype, target):
     """Whether a file of ``mimetype`` is a kind of the file ``target`` takes:
@@ -172,6 +185,7 @@ def _is_a(mimetype, target):
     if file_class is None:
         return False
     return type(target).__name__ in {c.__name__ for c in file_class.__mro__}
+
 
 
 def file_type_errors(target, value, path):
@@ -201,8 +215,14 @@ def file_type_errors(target, value, path):
         if the_file.type.name in allowed or _is_a(the_file.type.name, target):
             return []
         made = f"job {the_file.job.number}'s {the_file.job_param_name}" if the_file.job else "an imported file"
-        return [f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
-                f"is {the_file.type.name}"]
+        message = (f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
+                   f"is {the_file.type.name}")
+        if the_file.directory == models.File.Directory.IMPORT_DIR:
+            # Imported as one kind, it is that kind; an agent then concluded the
+            # file could never be used here (gamma SAD, 2026-10-13)
+            message += ("; to use the original file here, upload_file it into this input, "
+                        "which imports it as the kind this input takes")
+        return [message]
     if isinstance(target, (CList, CCP4Data.CList)) and isinstance(value, list):
         make = getattr(target, "makeItem", None)
         if make is None:

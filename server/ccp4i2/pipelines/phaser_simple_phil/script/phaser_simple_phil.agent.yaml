@@ -26,6 +26,12 @@ use_when:
 
 not_when:
   - text: >
+      An experimental-phasing job here (crank2, shelx, phaser_ep_phil) is
+      judged "built": keep it, free of model bias. Place a model only if
+      highly relevant (identity and coverage 0.9 or more), then use it for
+      MR-SAD or compare fairly (see that job's advice).
+    instead: servalcat_pipe
+  - text: >
       The AU holds several different molecules with a model EACH (no entry
       holds the whole complex, or the subunits may sit differently here),
       to be searched together in one run (route B of
@@ -263,6 +269,38 @@ results:
   #   judgement.read_result supports it. All xpaths were run against MDM2
   #   job 25 and BetaBlip jobs 3 and 4. REFMAC values carry whitespace.
 
+  NCOPIES:
+    file: params.xml
+    xpath: .//inputData/NCOPIES
+    type: int
+    optional: true     # absent when left at its default
+    meaning: >
+      Copies of the search model asked for. FRAC_SCATTERING_MODELS is for
+      one copy: multiply by this for the fraction of the AU the search
+      covers (cdk4-cyclind1 job 10: 0.416 x 2 = 0.83).
+  INPUT_FIXED:
+    file: params.xml
+    xpath: .//inputData/INPUT_FIXED
+    type: str
+    optional: true     # absent at its default (False)
+    meaning: >
+      "True" when a fixed, already-placed structure was given: the
+      solution's LLG then includes the fixed part's (haiku2_cdk4_cyclind1
+      job 5: LLG 1844 against one search copy's eLLG 1188, cyclin fixed).
+  COMP_BY:
+    file: params.xml
+    xpath: .//inputData/COMP_BY
+    type: str
+    optional: true
+    meaning: >
+      Where Phaser's composition came from: ASU (the AU contents file) or
+      SEQUENCES (both full compositions), or a guess: MW, SOLVENT, or
+      DEFAULT, which params.xml omits, so a missing COMP_BY is the default
+      (def.xml enumerators DEFAULT, ASU, SEQUENCES, MW, SOLVENT; haiku2 job
+      5 ran at the default 50% solvent with an ASUFILE set and unused).
+      EXPECTED_LLG and
+      FRAC_SCATTERING_MODELS are computed from it, so they are only as
+      right as the composition.
   EXPECTED_LLG:
     file: program.xml
     xpath: .//ExpectedLLG/Ensemble[1]/eLLG
@@ -338,6 +376,41 @@ verdict:
       the refined MDM2 job 3 model) and BetaBlip job 3 (search TFZ 10.4,
       R-free 0.453 -> 0.447 at 3.0 A, BLIP still unplaced; 263/263 CA within
       2 A of BetaBlip 4's model). MDM2's 8.0 is rounded and sits on the line.
+  - when: >
+      SEARCH_OUTCOME == "placed" and (INPUT_FIXED == null or INPUT_FIXED != "True")
+      and TFZ_LAST >= 5 and LLG >= 60
+      and ((NCOPIES == null and LLG >= 0.2 * EXPECTED_LLG)
+           or (NCOPIES != null and LLG >= 0.2 * NCOPIES * EXPECTED_LLG))
+    outcome: placed
+    basis: >
+      A search TFZ below Phaser's definite 8, but the refined solution
+      reaches at least 0.2 of the LLG Phaser expected for what was searched
+      for: LLG (the whole solution's) against NCOPIES x EXPECTED_LLG (one
+      copy's), so like is compared with like (NCOPIES absent is 1). The
+      expected LLG already accounts for the fraction of the scattering the
+      model represents and its stated accuracy, so the ratio judges the
+      placement of one component of a larger AU on its own terms, where
+      the search TFZ is diluted by what is missing. k = 0.2 is an expert's
+      choice (2026-10-13), to be revised on experience: known-correct
+      placements measured this way sit at 0.23-0.29 - cdk4_cyclind1 job 9
+      956 / (2 x 2065) = 0.23 and cdk4-cyclind1 job 10 1062 / (2 x 1826) =
+      0.29 (two copies of a CDK4/cyclin D1 complex template, search TFZ
+      32-33), and gpt-oss on CDK4/cyclin D1 (2026-10-13, job not kept):
+      search TFZ 5.8, refined TFZ 27.1, LLG 1244 / 4460 = 0.28, which
+      the fall-through had called "failed". Why that job's FRAC is 0.93
+      is not known (its AU contents held CDK4 twice and no cyclin D1;
+      which composition Phaser used was not kept). The 0.3 of the
+      "worse than stated" advice below (#777) compares the solution's LLG
+      with ONE copy's eLLG, a different measure.
+      The LLG floor of 60: Phaser's own guide to eLLG
+      values (printed in its log, cdk4-cyclind1 job 10 log lines 929-936:
+      above 64 "yes") is for the EXPECTED LLG of a copy; used here for the
+      achieved one, against a ratio met by noise when the eLLG is small.
+      The search TFZ floor of 5 is the proposer's, not Phaser's.
+      SEARCH_OUTCOME "placed" keeps out an incomplete search (the partial
+      rules start at 6); INPUT_FIXED keeps out a fixed part's LLG counted
+      as the new model's. Judge the placement by building, as for any
+      "placed".
   - when: TFZ_LAST >= 6
     outcome: ambiguous
     basis: >
@@ -525,6 +598,27 @@ next:
       phaser_rnp_pipeline_phil refines the placed domains as rigid bodies.
       MDM2 25 also trips this (104 against 600) for the first reason: a
       57%-identity model of a single small domain.
+  - when: outcome != "solved" and FRAC_SCATTERING_MODELS >= 0.9 and RFREE >= 0.45
+    advice: >
+      CHECK the composition before trusting the expected LLG: Phaser took
+      one copy of the model to be (nearly) the whole AU, and R-free is
+      still high after refinement. Right if the crystal holds only this
+      molecule and the model is distant (then build). Wrong if it holds
+      anything the model does not cover (another molecule of a complex,
+      more copies): the AU contents Phaser used are incomplete, and
+      EXPECTED_LLG, FRAC_SCATTERING_MODELS and the LLG ratio with them;
+      give every component and its copies (ProvideAsuContents, COMP_BY
+      ASU) and run again. FRAC is per copy, so a wrongly composed search
+      for several copies does not trip this. The 0.45 is the proposer's,
+      not a published value. Seen once: gpt-oss on CDK4/cyclin D1
+      (2026-10-13), FRAC 0.93 with R-free 0.51, AU contents without
+      cyclin D1 (job not kept).
+  - when: outcome != "solved" and (COMP_BY == null or (COMP_BY != "ASU" and COMP_BY != "SEQUENCES"))
+    advice: >
+      The composition was a guess (COMP_BY default, MW or SOLVENT), so the expected
+      LLG, the fraction of scattering and the verdict that rests on them
+      are rough. Give the whole AU contents (COMP_BY ASU, ASUFILE from
+      ProvideAsuContents) and run again before deciding.
   - when: outcome == "placed" and FRAC_SCATTERING_MODELS < 0.9
     advice: >
       The model accounts for less of the AU than it holds (BetaBlip 3:
