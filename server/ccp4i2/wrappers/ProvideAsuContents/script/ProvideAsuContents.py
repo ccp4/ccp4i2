@@ -124,6 +124,18 @@ class ProvideAsuContents(CPluginScript):
       from ccp4i2.core import CCP4ErrorHandling
 
       error = super(ProvideAsuContents, self).validity()
+      # A protein entry this short is rarely the crystallised construct: an
+      # agent typed "MNNI" for both BetaBlip components (2026-10-13). A
+      # warning, not an error: peptides are real.
+      for i, item in enumerate(self.container.inputData.ASU_CONTENT):
+          seq = "".join(str(item.sequence).split()) if item.sequence.isSet() else ""
+          polymer = str(item.polymerType) if item.polymerType.isSet() else "PROTEIN"
+          if seq and polymer == "PROTEIN" and len(seq) < 20:
+              error.append(klass=self.TASKNAME, code=210,
+                           details=f'Entry {i + 1} has only {len(seq)} residues: is this the whole '
+                                   'sequence? Upload the sequence file into its source, or fetch it.',
+                           name=f'{self.TASKNAME}.container.inputData.ASU_CONTENT[{i}].sequence',
+                           severity=CCP4ErrorHandling.SEVERITY_WARNING)
       if not self.container.inputData.ASUCONTENTIN.isSet():
           return error
       filtered = CCP4ErrorHandling.CErrorReport()

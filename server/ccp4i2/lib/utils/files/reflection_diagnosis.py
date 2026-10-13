@@ -210,8 +210,13 @@ def _diagnose_mtz(path, d):
         d["merged"] = not _hkl_repeats(mtz)
     else:
         d["merged"] = True
-    # anomalous iff any (+)/(-) column is present.
-    d["anomalous"] = any("(+)" in c.label or "(-)" in c.label for c in mtz.columns)
+    # Anomalous iff the file keeps anomalous data: a column of type K (I+/I-),
+    # G (F+/F-) or D (DANO), whatever it is called. By label alone, "(+)"/"(-)"
+    # missed CCP4i2's own split files (Iplus/Iminus), so an agent was told
+    # gamma's merged Xe data had no anomalous signal and gave up on SAD
+    # (2026-10-13). The label test stays for files whose types are unset.
+    d["anomalous"] = (any(c.type in ("K", "G", "D") for c in mtz.columns)
+                      or any("(+)" in c.label or "(-)" in c.label for c in mtz.columns))
     # StarAniso: the server writes an "SA_flag" column, and stamps "STARANISO"
     # into the MTZ history. Either cue is enough (Qt used the SA_flag column).
     labels_up = [c.label.upper() for c in mtz.columns]

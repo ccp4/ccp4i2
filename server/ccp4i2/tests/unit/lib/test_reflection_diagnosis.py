@@ -303,3 +303,22 @@ def test_no_isym_no_batches_is_merged(tmp_path):
     p = tmp_path / "merged.mtz"
     _write_mtz_rows(p, [(0, 0, 1), (0, 1, 1)], with_isym=False)
     assert diagnose_reflection_file(p)["merged"] is True
+
+
+# --- anomalous: by column type, not label (2026-10-13) -------------------------
+
+@pytest.mark.parametrize("cols, anomalous", [
+    # CCP4i2's own split anomalous file (aimless_pipe HKLOUT): Iplus/Iminus,
+    # which the "(+)"/"(-)" label test missed - an agent was told gamma's Xe
+    # data had no anomalous signal and gave up on SAD
+    ([("Iplus", "K"), ("SIGIplus", "M"), ("Iminus", "K"), ("SIGIminus", "M")], True),
+    ([("Fplus", "G"), ("SIGFplus", "L"), ("Fminus", "G"), ("SIGFminus", "L")], True),
+    ([("DANO", "D"), ("SIGDANO", "Q")], True),
+    ([("F(+)", "G"), ("SIGF(+)", "L"), ("F(-)", "G"), ("SIGF(-)", "L")], True),
+    ([("FreeR_flag", "I")], False),
+])
+def test_diagnose_mtz_anomalous_by_column_type(tmp_path, cols, anomalous):
+    pytest.importorskip("gemmi")
+    p = tmp_path / "anom.mtz"
+    _write_mtz(p, cols)
+    assert diagnose_reflection_file(p)["anomalous"] is anomalous

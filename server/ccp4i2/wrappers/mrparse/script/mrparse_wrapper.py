@@ -27,8 +27,45 @@ class mrparse(CPluginScript):
         self.hklin = None
         CPluginScript.__init__(self, *args, **kwargs)
 
+    # MrParse refuses any letter outside the 20 amino acids ("'X' is not a
+    # valid unambiguous letter for protein"); a UniProt or pasted sequence can
+    # carry X (unknown), B, Z, U, O or a stop. Same length, so ranges hold.
+    _STAND_INS = {"X": "A", "B": "D", "Z": "E", "U": "C", "O": "K", "J": "L"}
+
+    def _sequence_for_mrparse(self):
+        """SEQIN, or a copy with its non-standard letters replaced (logged):
+        Haiku's CDK4/cyclin D1 mrparse job failed on an X (2026-10-13)."""
+        source = str(self.container.inputData.SEQIN.getFullPath())
+        try:
+            with open(source, encoding="utf-8", errors="replace") as handle:
+                lines = handle.read().splitlines()
+        except OSError:
+            return source
+        changed, out = {}, []
+        for line in lines:
+            if line.startswith(">") or line.startswith(";"):
+                out.append(line)
+                continue
+            fixed = []
+            for ch in line.replace("*", ""):
+                up = ch.upper()
+                if up in self._STAND_INS:
+                    changed[up] = changed.get(up, 0) + 1
+                    fixed.append(self._STAND_INS[up])
+                else:
+                    fixed.append(ch)
+            out.append("".join(fixed))
+        if not changed:
+            return source
+        cleaned = os.path.join(self.getWorkDirectory(), "SEQIN_for_mrparse.fasta")
+        with open(cleaned, "w", encoding="utf-8") as handle:
+            handle.write("\n".join(out) + "\n")
+        print("Non-standard residue letters replaced for MrParse: "
+              + ", ".join(f"{k} x{n} -> {self._STAND_INS[k]}" for k, n in sorted(changed.items())))
+        return cleaned
+
     def processInputFiles(self):
-        self.seqin = self.container.inputData.SEQIN
+        self.seqin = self._sequence_for_mrparse()
         if self.container.inputData.F_SIGF.isSet():
             self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
             if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:

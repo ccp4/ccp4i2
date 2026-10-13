@@ -604,23 +604,26 @@ next:
       (outcome == "check_symmetry" or outcome == "twinning_suspected")
       and (TWIN_LTEST != "No" and (OTHER_LAUE_ACCEPTED != "" or LAUE_CONFIDENCE < 0.5))
     advice: >
-      Two warnings together: the space group is uncertain (a second Laue
-      group accepted, or a low Laue confidence) AND the L-test calls the data
-      twinned. Together these are the signature of a twinned crystal merged
-      in too high a symmetry, or of the wrong lattice. A held-out agent run
+      Rerun aimless_pipe in the lower Laue group (MODE CHOOSE, CHOOSE_MODE
+      LAUEGROUP) before trusting MR in the chosen one: the space group is
+      uncertain AND the L-test calls the data twinned. Together these are
+      the signature of a twinned crystal merged in too high a symmetry, or
+      of the wrong lattice. A held-out agent run
       had Laue confidence 0.14 (against 0.999 in our evidence runs), an
       accepted monoclinic alternative and an L-test "Yes", went on to MR
-      and building, and stalled. Run MR in the chosen group, but expect the
-      lower group: refine with twin refinement, and if R-free stays high
-      after a confident placement (high TFZ), go back to the data, not to
-      more building. Run zanuda on the refined model, or rerun aimless_pipe
-      in the lower Laue group (MODE CHOOSE, CHOOSE_MODE LAUEGROUP).
+      and building, and stalled (Haiku again, 2026-10-13: Phaser failed
+      in the chosen group, LLG 23 of an expected 1223, and it built on the
+      failure). The right group has the lower Rmeas; if MR is run in the
+      chosen group anyway, refine with twin refinement, and if R-free stays
+      high after a confident placement, go back to the data, not to more
+      building. Run zanuda on a refined model.
   - when: outcome == "check_symmetry"
     advice: >
-      POINTLESS accepted a second Laue group (OTHER_LAUE_ACCEPTED). Run MR in
-      the chosen group (above); if it fails, rerun aimless_pipe with MODE
-      CHOOSE, CHOOSE_MODE LAUEGROUP and CHOOSE_LAUEGROUP set to
-      OTHER_LAUE_ACCEPTED, and repeat MR. When the alternative is the LOWER
+      If MR in the chosen group fails, rerun aimless_pipe with MODE CHOOSE,
+      CHOOSE_MODE LAUEGROUP and CHOOSE_LAUEGROUP set to OTHER_LAUE_ACCEPTED,
+      and repeat MR - do not build on a failed placement. POINTLESS accepted
+      a second Laue group (OTHER_LAUE_ACCEPTED); run MR in the chosen group
+      (above) first. When the alternative is the LOWER
       group and the L-test also says twinned, rerun in the lower group
       first and compare the two merges: the right group has the lower
       Rmeas (CDK4/cyclin D1: 0.345 in P m m m, 0.171 in P 1 2/m 1, with
