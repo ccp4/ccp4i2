@@ -5,8 +5,8 @@ same dataset, finding the cells where they disagree, and recording how each
 disagreement was settled.
 
 **Baseline:** commit `a531c8852` (branch `django`), surveyed 2026-10-13.
-**Status:** design note, nothing built. The decisions in
-[Decisions to take](#decisions-to-take) are open.
+**Status:** design note, nothing built. The five decisions were taken on
+2026-10-13; see [Decisions](#decisions).
 
 Companion documents:
 
@@ -101,6 +101,11 @@ resolution.**
 | two or more, not all the same | none | **to reconcile** | none (see below) |
 | any | present | **resolved** | the resolution's |
 
+"Verdicts" here means attributed ones whenever the cell has any. An
+unattributed verdict (one recorded before reviewers were tracked) counts only
+at a cell with no attributed verdict. See
+[Existing unattributed verdicts](#existing-unattributed-verdicts).
+
 Note:
 
 - **One reviewer is "agreed".** A cell scored once is in the same state as
@@ -113,7 +118,8 @@ Note:
   (below) treat it as `unclear`, which is honest: the reviewers have not
   settled it.
 
-What counts as a difference is a [decision to take](#decisions-to-take).
+Any two different verdicts are a difference, so a hit beside an unclear is
+"to reconcile" too (decision 1).
 
 ## What changes, consumer by consumer
 
@@ -127,7 +133,7 @@ Everything that reads "the" verdict today, and what it reads afterwards.
 | new: `PUT` / `DELETE sites/{site}/resolution/{project}` | — | settle a cell, or reopen it |
 | `member_projects` → `site_cells` (`lib/campaign_events.py`) | `verdict` | `verdict` = the **effective** verdict, so an older client keeps working; adds `state`, `verdicts` (`[{evaluator, verdict}]`) and `mine` |
 | `member_projects` → `site_evaluations` (the chips fallback) | hit/unclear verdicts | hit/unclear **effective** verdicts; a "to reconcile" cell counts as unclear |
-| `sites_evaluated` ("Eval." column) | cells with a verdict | cells with any verdict. A per-reviewer count is [a decision](#decisions-to-take) |
+| `sites_evaluated` ("Eval." column) | cells with a verdict | cells **the viewer** has scored, with everyone's count in the tooltip once there is more than one reviewer (decision 4) |
 | Site and summary scenes (`lib/campaign_scene.py`): membership is the verdict | hit verdicts; `include=unclear` adds unclears | the same rule on the **effective** verdict, so "to reconcile" cells are drawn only with `include=unclear` |
 | Site delete warning (`evaluation_count`) | counts verdicts | counts verdicts and resolutions |
 | `delete_campaign` | deletes evaluations with sites | also deletes resolutions (cascade) |
@@ -152,11 +158,17 @@ release note, not engineered around.
   active one withdraws it, as now.
 - Beneath them, the other reviewers' verdicts at this cell, as small chips:
   `JS · empty`, with the full email and the time in the tooltip.
-  *When* they are shown is [a decision](#decisions-to-take) (blind
-  rescoring).
+- **Blind scoring is a switch** (decision 2). With it on, other reviewers'
+  verdicts at a cell stay hidden until you have recorded your own there, so a
+  rescore is not anchored by the first score. With it off, they show at once,
+  which is what a discussion needs. The switch is per viewer and remembered in
+  the browser, not a campaign setting, and it defaults to on. The matrix
+  follows it too: with blinding on, a cell you have not scored shows only
+  whether *anyone* has scored it, not what they said.
 - In a "to reconcile" cell, a **Resolve** control: the three verdicts again,
-  plus a note field. A resolved cell shows the resolution, who made it and
-  the note, and a **Reopen** action.
+  plus a note field. Anyone who can score can resolve (decision 3), and the
+  resolution records who did. A resolved cell shows the resolution, who
+  resolved it and the note, and a **Reopen** action.
 
 ### The overview matrix
 
@@ -180,21 +192,24 @@ reviewer's verdict, and the resolution if there is one.
 
 ## Existing unattributed verdicts
 
-Every verdict recorded so far has `evaluator = ""`. Left alone, the first
-verdict a person records on such a cell becomes a second row, and the cell
-turns "to reconcile" against what is almost certainly their own earlier
-verdict.
+Every verdict recorded before PR 1 has `evaluator = ""`. Their history is
+lost and is not reconstructed (decision 5). Nobody can say who gave them, and
+code must not guess.
 
-They cannot be attributed automatically. On the desktop they are almost
-certainly the one user's, but a hosted deployment's could be anyone's, and
-code must not guess by platform. Proposal:
+They are **kept, and outranked**:
 
-- A management command, `attribute_verdicts --to <email> [--campaign <name>]`,
-  which assigns unattributed rows to a named reviewer. It is explicit and run
-  once.
-- Until it is run, unattributed rows display as **"unattributed"** and take
-  part in the state like any reviewer's. The panel says so on an affected
-  cell ("1 unattributed verdict here; `attribute_verdicts` can assign it").
+- At a cell where **only** unattributed verdicts exist, the cell behaves as
+  today: the unattributed verdict is the effective verdict, so the matrix of
+  a campaign scored before this change looks the same afterwards.
+- The first **attributed** verdict at a cell is treated as though it were the
+  first verdict there. From then on the cell's state is derived from
+  attributed verdicts only, so an earlier unattributed verdict can never put a
+  cell "to reconcile", including against the same person's new verdict.
+- The unattributed row is not deleted or rewritten. It stays in the database
+  and the snapshot, and the panel and the cell tooltip show it as *earlier,
+  unattributed: hit*, for the record.
+
+No `attribute_verdicts` command and no data migration are needed.
 
 ## Agents
 
@@ -214,10 +229,11 @@ Three PRs, each useful alone.
    attributed, so fewer unattributed ones pile up while the rest is built.
 2. **Model and API.** The migration (uniqueness to
    `(project, site, evaluator)`, the `SiteResolution` model), the derived
-   state, the endpoint changes, snapshot export and import, scene membership
-   on the effective verdict, and `attribute_verdicts`.
-3. **Interface.** The panel's other reviewers' verdicts, Resolve and Reopen,
-   the matrix's ≠ state, the To reconcile filter and Next to reconcile.
+   state (with unattributed verdicts outranked), the endpoint changes,
+   snapshot export and import, and scene membership on the effective verdict.
+3. **Interface.** The panel's other reviewers' verdicts and the blind-scoring
+   switch, Resolve and Reopen, the matrix's ≠ state, the per-viewer "Eval."
+   count, the To reconcile filter and Next to reconcile.
 
 ### Tests
 
@@ -227,29 +243,28 @@ Three PRs, each useful alone.
 - **API:** two authenticated users scoring the same cell give two rows and
   "to reconcile"; one withdrawing leaves the other's; a resolution sets the
   effective verdict and survives a later change, which raises *changed since
-  resolved*; a body-supplied `evaluator` is ignored.
+  resolved*; a body-supplied `evaluator` is ignored; an unattributed verdict
+  is the effective verdict alone, but never makes a cell "to reconcile" once
+  an attributed verdict exists.
 - **Snapshot round trip** with two reviewers and a resolution.
 - **Scenes:** a "to reconcile" cell is drawn only with `include=unclear`.
 - **Client:** the cell-state rules in `lib/site-matrix.ts` (pure, as today),
   and the ≠ glyph rendered.
 
-## Decisions to take
+## Decisions
 
-1. **What counts as a disagreement?** Any two different verdicts, or only hit
-   against empty? *Recommendation:* any difference. A hit beside an unclear is
-   exactly a cell where one reviewer asked for a second opinion and the answer
-   is worth recording. The overview can still sort hit-against-empty first.
-2. **Blind rescoring?** Does a rescorer see earlier verdicts before giving
-   their own? Seeing them anchors the second opinion, which defeats the point
-   of rescoring. *Recommendation:* hidden until you have recorded your own at
-   that cell, with a per-session "show others' verdicts" switch for
-   discussion rather than scoring.
-3. **Who may resolve?** Anyone who can score, or a named role?
-   *Recommendation:* anyone, with `resolved_by` recorded. The desktop has no
-   roles, and the record of who resolved is what matters.
-4. **The "Eval." column:** cells anyone has scored, or cells *I* have scored?
-   A rescorer needs the second to see their progress. *Recommendation:* "I",
-   with everyone's count in the tooltip, once there is more than one reviewer.
-5. **Unattributed verdicts:** the command as proposed, or should the desktop
-   offer a one-time "These N verdicts were recorded before reviewers were
-   tracked; attribute them to you?" prompt that runs it?
+Taken 2026-10-13.
+
+1. **Any difference is a disagreement.** Hit beside unclear is "to
+   reconcile", like hit beside empty. The overview can still sort
+   hit-against-empty first.
+2. **Blind scoring is a per-viewer switch,** on by default. See
+   [The interface](#the-interface).
+3. **Anyone may resolve,** and the resolution records who acted as resolver
+   (`resolved_by`).
+4. **"Eval." counts the viewer's own scoring,** with everyone's count in the
+   tooltip.
+5. **History before attribution is accepted as lost.** Unattributed verdicts
+   are kept, and an incoming attributed verdict is treated as though it were
+   the first. See
+   [Existing unattributed verdicts](#existing-unattributed-verdicts).
