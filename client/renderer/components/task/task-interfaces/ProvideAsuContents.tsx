@@ -13,14 +13,9 @@ import { useJob, valueOfItem } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback, useEffect, useRef } from "react";
 import { useApi } from "../../../api";
+import { apiPost } from "../../../api-fetch";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 import { usePopcorn } from "../../../providers/popcorn-provider";
-import {
-  chainsFromDigest,
-  deduplicateChains,
-  mergeAsuEntries,
-  type AsuSequenceEntry,
-} from "../task-elements/mmcif-sequence-parser";
 
 /**
  * ProvideAsuContents: say what is in the asymmetric unit.
@@ -32,33 +27,19 @@ import {
  * from the web (PDBe / RCSB / AlphaFold for a model, UniProt or a PDB entry
  * for a sequence). Loading a file APPENDS to the table; a sequence already
  * there gains copies rather than a duplicate row; Clear on the table starts
- * over. Last, a reflection file gives the cell for a Matthews estimate of how
+ * over. The server does the appending when the file is set
+ * (ProvideAsuContents.afterParameterSet), so a job set up any other way (i2run,
+ * an agent) fills the same way; this page shows the table it then holds. Last, a reflection file gives the cell for a Matthews estimate of how
  * many copies the crystal holds.
  */
-
-/** The ASU-file digest already lists rows; the other two digests list chains. */
-function entriesFromDigest(digest: any, label: string): { entries: AsuSequenceEntry[]; chains: number } {
-  if (Array.isArray(digest?.sequences) && !digest?.composition) {
-    const entries = digest.sequences.map((seq: any) => ({
-      name: seq.name,
-      sequence: seq.sequence,
-      polymerType: seq.polymerType,
-      description: seq.description,
-      nCopies: seq.nCopies ?? 1,
-    }));
-    return { entries, chains: entries.length };
-  }
-  const chains = chainsFromDigest(digest, label);
-  return { entries: deduplicateChains(chains), chains: chains.length };
-}
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const api = useApi();
   const { setMessage } = usePopcorn();
-  const { useTaskItem, useFileDigest, fetchDigest, getErrors, mutateValidation, mutateContainer } =
+  const { useTaskItem, useFileDigest, getErrors, mutateValidation, mutateContainer } =
     useJob(job.id);
-  const { forceUpdate: forceSetAsuContent, item: asuContentItem } = useTaskItem("ASU_CONTENT");
+  const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem, value: asuContentInValue } = useTaskItem("ASUCONTENTIN");
   const { value: HKLINValue } = useTaskItem("HKLIN");
 
@@ -105,47 +86,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   }, [mutateValidation, mutateMolWeight, mutateMatthews]);
 
   /**
-   * A source file was chosen: read its digest and append its sequences to the
-   * table. `updatedItem` comes from onChange and carries the fresh object path;
-   * when a pulldown choice has not yet reached the container, that is the only
-   * path that names the new file.
+   * A source file was chosen. The server added its sequences to the table when
+   * the file was set; show the table it now holds, and what was added.
    */
   const fillFrom = useCallback(
-    async (updatedItem: any, fallbackItem: any) => {
-      const objectPath = updatedItem?._objectPath || fallbackItem?._objectPath;
-      if (!objectPath) return;
+    async (updatedItem: any, fallbackItem: any, note?: string | null) => {
       const chosen = updatedItem ? valueOfItem(updatedItem) : valueOfItem(fallbackItem);
       if (!chosen?.dbFileId && !chosen?.baseName) return; // cleared, not chosen
       const label = chosen?.annotation || chosen?.baseName || "file";
-
-      const digest = await fetchDigest(objectPath);
-      if (!digest || digest.status === "Failed") {
-        setMessage(`Could not read ${label}${digest?.reason ? `: ${digest.reason}` : ""}`);
-        return;
-      }
-      const { entries, chains } = entriesFromDigest(digest, label);
-      if (entries.length === 0) {
-        setMessage(`No polymer sequences found in ${label}`);
-        return;
-      }
-      const existing: AsuSequenceEntry[] = Array.isArray(valueOfItem(asuContentItem))
-        ? valueOfItem(asuContentItem)
-        : [];
-      const merged = mergeAsuEntries(existing, entries);
-      await forceSetAsuContent(merged);
-      // Force a full container refetch so the table re-renders (a function-updater
-      // patch with revalidate:false may not reach every subscriber).
       await mutateContainer();
       await refreshDerived();
-
-      const added = merged.length - existing.length;
-      const folded = entries.length - added;
-      const parts = [`${chains} chain${chains === 1 ? "" : "s"} from ${label}`];
-      if (added) parts.push(`${added} new row${added === 1 ? "" : "s"}`);
-      if (folded) parts.push(`${folded} added as copies of rows already present`);
-      setMessage(parts.join(": "));
+      setMessage(note || `Sequences from ${label} added to the table`);
     },
-    [fetchDigest, asuContentItem, forceSetAsuContent, mutateContainer, refreshDerived, setMessage]
+    [mutateContainer, refreshDerived, setMessage]
   );
 
   // When ASUCONTENTIN is already set (e.g. imperatively by another task) and the
@@ -156,9 +109,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     const hasFile = Boolean(asuContentInValue?.dbFileId);
     if (hasFile && rowCount === 0 && asuContentInItem?._objectPath) {
       hasAutoPopulated.current = true;
-      fillFrom(asuContentInItem, asuContentInItem);
+      // The file reached this job without being set here (carried over from
+      // an earlier job), so the server has not filled the table from it yet
+      apiPost(`jobs/${job.id}/object_method/`, {
+        object_path: "ProvideAsuContents",
+        method_name: "fillFromFile",
+        args: ["ASUCONTENTIN"],
+        kwargs: {},
+      })
+        .then((response: any) =>
+          fillFrom(asuContentInItem, asuContentInItem, response?.data?.result?.note))
+        .catch((err: any) => setMessage(`Could not fill the table: ${err?.message || err}`));
     }
-  }, [asuContentInValue?.dbFileId, rowCount, asuContentInItem, fillFrom]);
+  }, [asuContentInValue?.dbFileId, rowCount, asuContentInItem, fillFrom, job.id, setMessage]);
 
   // Why the Matthews panel is empty, when it is.
   const matthewsResults =
