@@ -61,6 +61,7 @@ describe("SiteMatrixCellContent", () => {
     const box = screen.getByTestId("site-box");
     expect(box.getAttribute("data-kind")).toBe("filled");
     expect(box.getAttribute("data-colour")).toBe("success");
+    expect(box.textContent).toBe("\u2713");
 
     fireEvent.click(screen.getByRole("link"));
     expect(open).toHaveBeenCalledWith(
@@ -82,6 +83,28 @@ describe("SiteMatrixCellContent", () => {
     const box = screen.getByTestId("site-box");
     expect(box.getAttribute("data-kind")).toBe("outlined");
     expect(box.getAttribute("data-colour")).toBe("error");
+    // The outline is where colour is thinnest, so the mark matters most here.
+    expect(box.textContent).toBe("\u2715");
+  });
+
+  it("marks an event nobody has judged with no glyph", () => {
+    render(
+      <SiteMatrixCellContent
+        project={project({
+          site_cells: {
+            u5: {
+              event: { event_idx: 1, hit_probability: null, distance: 1, has_pose: false },
+              verdict: null,
+            },
+          },
+        })}
+        site={site}
+        campaignId={7}
+      />
+    );
+    const box = screen.getByTestId("site-box");
+    expect(box.getAttribute("data-colour")).toBe("grey");
+    expect(box.textContent).toBe("");
   });
 
   it("is not a link without a model job", () => {
