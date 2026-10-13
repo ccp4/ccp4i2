@@ -147,3 +147,33 @@ class FanInTest(TestCase):
         self.assertTrue(filled["success"], filled)
         self.assertEqual(filled["data"]["added"], ["x425"])
         self.assertEqual(len(self.datasets()), 1)
+
+    def test_query_count_does_not_grow_with_the_campaign(self):
+        """A campaign runs to a thousand members, and this is one request: a
+        query per member made it seconds locally and far longer against a
+        database across a network (test_pandda_fanin_scaling.py has numbers).
+        The count is pinned by comparison, not by value, so it survives an
+        added query and catches a per-member one."""
+        from django.db import connection
+        from django.test.utils import CaptureQueriesContext
+
+        def queries():
+            # A fresh row each time, so neither call finds the job's own
+            # project already cached by the other.
+            job = models.Job.objects.get(pk=self.job.pk)
+            with CaptureQueriesContext(connection) as captured:
+                preview = campaign_candidates(job)
+            return len(captured), len(preview["candidates"])
+
+        before, n_before = queries()
+        for name in ("x430", "x431", "x432"):
+            project = make_project(name)
+            models.ProjectGroupMembership.objects.create(group=self.group, project=project, type=MEMBER)
+            finished_dimple(project)
+            acedrg = models.Job.objects.create(project=project, number="2", task_name="LidiaAcedrgNew",
+                                               title="acedrg", status=models.Job.Status.FINISHED)
+            acedrg.directory.mkdir(parents=True, exist_ok=True)
+            register(acedrg, "DICTOUT_LIST[0]", "LIG.cif", "application/refmac-dictionary")
+        after, n_after = queries()
+        self.assertEqual(n_after, n_before + 3)
+        self.assertEqual(after, before)

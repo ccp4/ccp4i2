@@ -269,21 +269,30 @@ def campaign_dataset_specs(group, skipped: Optional[list] = None) -> List[Datase
     from ccp4i2.lib.pandda_export import (
         _find_dictionary_cif, collect_pandda_datasets)
 
+    datasets = list(collect_pandda_datasets(group))
+    # Every file the chosen jobs registered, in one query rather than one or
+    # two per job per output; ordered by id, as .first() would take them.
+    jobs = [job for _, dimple, acedrg in datasets for job in (dimple, acedrg) if job]
+    files_by_job: Dict[int, list] = {}
+    for row in models.File.objects.filter(job__in=jobs).select_related("job__project").order_by("id"):
+        files_by_job.setdefault(row.job_id, []).append(row)
+
     def registered(job, *param_names):
         """The File row a job registered under one of ``param_names``
-        (``DICTOUT`` or ``DICTOUT_LIST[0]`` for a dictionary), or None."""
+        (``DICTOUT`` or ``DICTOUT_LIST[0]`` for a dictionary), or None.
+        An exact name first, then the first by id that starts with it."""
         if job is None:
             return None
-        rows = models.File.objects.filter(job=job)
+        rows = files_by_job.get(job.id, [])
         for name in param_names:
-            row = rows.filter(job_param_name=name).first() or \
-                rows.filter(job_param_name__startswith=name).order_by("id").first()
+            row = next((r for r in rows if r.job_param_name == name), None) or \
+                next((r for r in rows if (r.job_param_name or "").startswith(name)), None)
             if row is not None:
                 return row
         return None
 
     specs = []
-    for project, dimple_job, acedrg_job in collect_pandda_datasets(group):
+    for project, dimple_job, acedrg_job in datasets:
         if not dimple_job:
             logger.warning("campaign %s: %s has no finished dimple, skipped",
                            group.name, project.name)
