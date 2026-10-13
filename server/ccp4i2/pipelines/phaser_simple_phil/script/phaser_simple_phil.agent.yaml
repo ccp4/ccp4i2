@@ -26,6 +26,12 @@ use_when:
 
 not_when:
   - text: >
+      An experimental-phasing job here (crank2, shelx, phaser_ep_phil) is
+      judged "built": keep it, free of model bias. Place a model only if
+      highly relevant (identity and coverage 0.9 or more), then use it for
+      MR-SAD or compare fairly (see that job's advice).
+    instead: servalcat_pipe
+  - text: >
       The AU holds several different molecules with a model EACH (no entry
       holds the whole complex, or the subunits may sit differently here),
       to be searched together in one run (route B of
