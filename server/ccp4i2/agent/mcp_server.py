@@ -766,6 +766,11 @@ def wait_for_job(project_id: int, job: str | int, max_seconds: int = 45) -> dict
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
     while True:
         status = job_status(project_id, job)
+        if status["status"] == "Pending":
+            # gpt-oss waited 35 minutes, in ever longer calls, on a job it had
+            # never started (2026-10-13)
+            status["not_started"] = "This job has not been started: run_job(job) starts it."
+            return status
         if status["status"] in TERMINAL or time.monotonic() >= deadline:
             status["waited_out"] = status["status"] not in TERMINAL
             if status["waited_out"]:
@@ -788,6 +793,10 @@ def wait_for_any(project_id: int, jobs: list, max_seconds: int = 45) -> dict:
     deadline = time.monotonic() + max(0, min(int(max_seconds), 1800))
     while True:
         statuses = {n: job_status(project_id, n) for n in numbers}
+        pending = [n for n, st in statuses.items() if st["status"] == "Pending"]
+        if pending:
+            return {"jobs": statuses, "ended": [], "not_started": pending,
+                    "note": f"Not started: {', '.join(pending)}. run_job starts a job."}
         ended = [n for n, st in statuses.items() if st["status"] in TERMINAL]
         if ended or time.monotonic() >= deadline or not numbers:
             out = {"jobs": statuses, "ended": ended, "waited_out": not ended}

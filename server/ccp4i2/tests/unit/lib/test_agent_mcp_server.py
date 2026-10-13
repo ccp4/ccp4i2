@@ -574,6 +574,16 @@ def test_set_file_given_a_file_on_disk_points_to_upload_file(api):
     assert not any(c[1] == "projects/3/resolve_fileuse" for c in calls)
 
 
+def test_waiting_on_a_job_never_started_returns_at_once(api, monkeypatch):
+    calls, answers = api
+    answers[("GET", "jobs/7")] = {"id": 7, "project": 3, "number": "5", "task_name": "x", "status": 1}
+    monkeypatch.setattr("time.sleep", lambda s: (_ for _ in ()).throw(AssertionError("slept")))
+    out = mcp_server.wait_for_job(3, "5", max_seconds=1200)
+    assert out["status"] == "Pending" and "run_job" in out["not_started"]
+    out = mcp_server.wait_for_any(3, ["5"], max_seconds=1200)
+    assert out["not_started"] == ["5"] and "run_job" in out["note"]
+
+
 def test_wait_for_any_returns_when_one_job_ends(api, monkeypatch):
     calls, answers = api
     answers[("GET", "projects/3/job_tree")] = {"job_tree": [
