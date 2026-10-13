@@ -250,11 +250,15 @@ def _is_referenced_elsewhere(container, file_id, param_object) -> bool:
         return True
     from ccp4i2.lib.utils.parameters.value_dict import value_dict_for_object
 
+    # dbFileId is stored without dashes and File.uuid prints with them, so
+    # compare the hex: comparing the strings matched nothing, ever.
+    wanted = str(file_id).replace("-", "").lower()
     for other in others:
         if other is param_object:
             continue
         try:
-            if str(value_dict_for_object(other).get("dbFileId")) == str(file_id):
+            held = str(value_dict_for_object(other).get("dbFileId") or "")
+            if held.replace("-", "").lower() == wanted:
                 return True
         except Exception:
             # Same reasoning: an unreadable sibling might be the reference

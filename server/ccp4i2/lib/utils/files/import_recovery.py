@@ -214,7 +214,7 @@ def restore(missing: MissingImport) -> bool:
 # A job's container
 
 
-def _input_files(container) -> list:
+def input_files(container) -> list:
     """Every file the job reads: all sections but outputData (the same walk
     async_import_files makes)."""
     if hasattr(container, "inputData"):
@@ -243,7 +243,7 @@ def missing_imports_in(container) -> List[Tuple[object, MissingImport]]:
     container whose imported copy has gone."""
     by_id: Dict[uuid.UUID, list] = {}
     try:
-        for file_obj in _input_files(container):
+        for file_obj in input_files(container):
             file_id = _db_file_id(file_obj)
             if file_id is not None:
                 by_id.setdefault(file_id, []).append(file_obj)
