@@ -42,12 +42,18 @@ def _listed_labels(job) -> set:
     return set()
 
 
-def _file_reference(file_uuid: str) -> Dict:
+def _file_rows(specs) -> Dict[str, "models.File"]:
+    """Every file the specs refer to, by uuid string, in one query."""
+    uuids = {uuid for spec in specs for uuid in (spec.source_file_uuids or {}).values()}
+    return {str(row.uuid): row for row in
+            models.File.objects.select_related("job__project").filter(uuid__in=uuids)}
+
+
+def _file_reference(row) -> Dict:
     """A registered file as a CDataFile takes it: by project, relPath,
     baseName and dbFileId, so the interface shows the file and the run
     records a use of it rather than importing a copy. The project is the
     file's own, which is not the job's: these files live in the members."""
-    row = models.File.objects.select_related("job__project").get(uuid=file_uuid)
     return {
         "baseName": str(row.name),
         "relPath": str(row.rel_path),
@@ -85,6 +91,7 @@ def campaign_candidates(job) -> Dict:
     for group in campaigns:
         skipped: list = []
         specs = campaign_dataset_specs(group, skipped=skipped)
+        rows = _file_rows(specs)
         result["campaigns"].append({
             "name": group.name, "id": group.id,
             # uuid arrives with the campaign-persistence change (#608)
@@ -100,7 +107,7 @@ def campaign_candidates(job) -> Dict:
                 "xyzin": str(spec.xyzin),
                 "hklin": str(spec.hklin),
                 "dict": str(spec.dictionary) if spec.dictionary else None,
-                "refs": {role: _file_reference(uuid)
+                "refs": {role: _file_reference(rows[uuid])
                          for role, uuid in (spec.source_file_uuids or {}).items()},
                 "listed": spec.label in listed,
             })
