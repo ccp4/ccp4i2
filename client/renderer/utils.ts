@@ -34,6 +34,12 @@ export type SetParameterResponse =
       success: true;
       data: {
         updated_item: any;
+        /**
+         * What the task did in response, when setting this changed more than
+         * the item itself (ProvideAsuContents fills its table from a file).
+         * The caller then re-reads the container rather than patching it.
+         */
+        note?: string;
       };
     }
   | {
@@ -150,6 +156,12 @@ export type UploadFileParamResponse =
       success: true;
       data: {
         updated_item: any;
+        /**
+         * What the task did in response, when setting this changed more than
+         * the item itself (ProvideAsuContents fills its table from a file).
+         * The caller then re-reads the container rather than patching it.
+         */
+        note?: string;
         /**
          * Earlier imports of the same uploaded bytes, earliest first. Empty
          * when there are none. The server reports rather than acts: reusing a
@@ -1091,6 +1103,11 @@ export const useJob = (jobId: number | null | undefined): JobData => {
               { revalidate: false }
             );
           }
+          // The task changed more than this item (a file filled a table):
+          // re-read the container so the rest shows too
+          if (result.success && result.data?.note) {
+            await mutateContainer();
+          }
 
           // Still update validation and params_xml
           await Promise.all([mutateValidation(), mutateParams_xml()]);
@@ -1133,6 +1150,11 @@ export const useJob = (jobId: number | null | undefined): JobData => {
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
             );
+          }
+          // The task changed more than this item (a file filled a table):
+          // re-read the container so the rest shows too
+          if (result.success && result.data?.note) {
+            await mutateContainer();
           }
 
           return result;
@@ -1231,6 +1253,11 @@ export const useJob = (jobId: number | null | undefined): JobData => {
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
             );
+          }
+          // The task changed more than this item (a file filled a table):
+          // re-read the container so the rest shows too
+          if (result.success && result.data?.note) {
+            await mutateContainer();
           }
 
           // The same bytes may already be in this project. Say so, and leave

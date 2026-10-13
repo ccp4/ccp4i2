@@ -946,7 +946,7 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
         )
         logger.info("set_parameter_container returned: %s", updated_object)
         from ccp4i2.lib.utils.parameters.set_parameter import after_api_set
-        after_api_set(updated_object)
+        note = after_api_set(updated_object)
         save_params_for_job(the_job_plugin=plugin, the_job=job)
 
         result = json.loads(json.dumps(updated_object, cls=CCP4i2JsonEncoder))
@@ -991,7 +991,10 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
         # be retried against the same handle.
         if staged_row is not None:
             staged_upload.consume(staged_row)
-        return {"updated_item": result, "duplicate_of": duplicate_of}
+        out = {"updated_item": result, "duplicate_of": duplicate_of}
+        if note:  # what the task did in response (a file filling a table)
+            out["note"] = note
+        return out
     except Exception:
         _discard_staged_upload(job, downloaded_file_path)
         raise
