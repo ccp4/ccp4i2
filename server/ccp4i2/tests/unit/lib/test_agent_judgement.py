@@ -366,3 +366,84 @@ def test_every_file_reference_in_a_judgement_names_a_real_parameter():
             if source in TASKS and name not in params(source):
                 bad.append(f"{task}: {source}[..].{name}")
     assert bad == []
+
+
+def _phaser_job(tmp_path, search_tfz, llg, ellg, frac, rfree, comp_by="ASU", ncopies=1,
+                fixed=False, outcome="placed"):
+    (tmp_path / "program.xml").write_text(
+        f"<PHASER><Solutions><Solution><TFZ>27.1</TFZ><LLG>{llg}</LLG>"
+        f"<Placements><Placement><TFZ>{search_tfz}</TFZ></Placement></Placements>"
+        f"</Solution></Solutions><ExpectedLLG><FractionScatteringOfEnsembles>{frac}"
+        f"</FractionScatteringOfEnsembles><Ensemble><eLLG>{ellg}</eLLG></Ensemble></ExpectedLLG>"
+        "<REFMAC><Overall_stats><stats_vs_cycle><new_cycle><r_free>0.515</r_free></new_cycle>"
+        f"<new_cycle><r_free>{rfree}</r_free></new_cycle></stats_vs_cycle></Overall_stats></REFMAC>"
+        f'<Strategy><Attempt outcome="{outcome}"/></Strategy></PHASER>')
+    fields = (f"<COMP_BY>{comp_by}</COMP_BY>" if comp_by else "") + f"<NCOPIES>{ncopies}</NCOPIES>"
+    if fixed:
+        fields += "<INPUT_FIXED>True</INPUT_FIXED>"
+    (tmp_path / "params.xml").write_text(f"<container><inputData>{fields}</inputData></container>")
+    return judgement.judge("phaser_simple_phil", tmp_path)
+
+
+def test_the_gpt_oss_cdk4_placement_is_placed_and_its_composition_questioned(tmp_path):
+    # gpt-oss on CDK4/cyclin D1 (2026-10-13): search TFZ 5.8, refined LLG 1244
+    # of an expected 4460 (0.28 >= 0.2), FRAC 0.93 with R-free 0.51
+    verdict = _phaser_job(tmp_path, 5.8, 1243.72, 4459.5, 0.93246, 0.513)
+    assert verdict["outcome"] == "placed"
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert "CHECK the composition" in advice
+
+
+def test_the_ratio_is_against_every_copy_searched_for(tmp_path):
+    # cdk4_cyclind1 job 9: two copies, LLG 956 against one copy's 2065:
+    # 956 / (2 x 2065) = 0.23, placed; 700 would be 0.17, not
+    assert _phaser_job(tmp_path, 5.5, 956.48, 2064.8, 0.45, 0.5, ncopies=2)["outcome"] == "placed"
+    assert _phaser_job(tmp_path, 5.5, 700, 2064.8, 0.45, 0.5, ncopies=2)["outcome"] == "failed"
+
+
+def test_a_weak_search_confirmed_by_the_expected_llg_is_placed(tmp_path):
+    # The same placement with the composition right: CDK4 about half the AU,
+    # the expected LLG about half as large (cdk4-cyclind1 jobs 9 and 10 had
+    # 1826-2065 with FRAC 0.42-0.45), so the ratio is about 0.56
+    verdict = _phaser_job(tmp_path, 5.8, 1243.72, 2230, 0.465, 0.513)
+    assert verdict["outcome"] == "placed"
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert "CHECK the composition" not in advice
+    # the model covers less of the AU than it holds: place the rest
+    assert "a component is missing" in advice
+
+
+def test_a_weak_search_the_expected_llg_does_not_confirm_stays_failed(tmp_path):
+    verdict = _phaser_job(tmp_path, 5.8, 400, 4460, 0.5, 0.55)
+    assert verdict["outcome"] == "failed"
+
+
+def test_the_ambiguous_band_without_the_expected_llg_stays_ambiguous(tmp_path):
+    verdict = _phaser_job(tmp_path, 6.5, 400, 4460, 0.5, 0.55)
+    assert verdict["outcome"] == "ambiguous"
+
+
+def test_a_guessed_composition_is_said_to_be_one(tmp_path):
+    verdict = _phaser_job(tmp_path, 6.5, 400, 4460, 0.5, 0.55, comp_by="MW")
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert "The composition was a guess" in advice
+
+
+def test_the_default_composition_is_said_to_be_a_guess(tmp_path):
+    # params.xml omits a parameter at its default: COMP_BY absent is DEFAULT
+    # (haiku2_cdk4_cyclind1 job 5 ran at 50% solvent with an ASUFILE unused)
+    verdict = _phaser_job(tmp_path, 6.5, 400, 4460, 0.5, 0.55, comp_by=None)
+    assert "The composition was a guess" in " ".join(s.get("advice", "") for s in verdict["next"])
+    verdict = _phaser_job(tmp_path, 6.5, 400, 4460, 0.5, 0.55, comp_by="SEQUENCES")
+    assert "The composition was a guess" not in " ".join(s.get("advice", "") for s in verdict["next"])
+
+
+def test_a_fixed_parts_llg_does_not_place_a_weak_new_model(tmp_path):
+    # With INPUT_FIXED the solution's LLG includes the fixed part's
+    verdict = _phaser_job(tmp_path, 5.5, 1844, 1188, 0.39, 0.5, fixed=True)
+    assert verdict["outcome"] == "failed"
+
+
+def test_an_unfinished_search_is_not_placed_by_the_ratio(tmp_path):
+    verdict = _phaser_job(tmp_path, 5.5, 1244, 2230, 0.465, 0.5, outcome="no definite solution")
+    assert verdict["outcome"] != "placed"
