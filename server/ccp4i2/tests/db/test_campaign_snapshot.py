@@ -186,6 +186,29 @@ class RoundTripTest(CampaignSnapshotBase):
         self.assertEqual(SiteEvaluation.objects.get(project=m2, site=site1).note, "partial")
         self.assertEqual(SiteEvaluation.objects.count(), 3)
 
+    def test_every_reviewer_at_a_cell_comes_back(self):
+        """One verdict per reviewer (docs/site-verdict-reconciliation.md): a
+        second reviewer's verdict at the same cell is restored beside the
+        first, not over it, and restoring again changes nothing."""
+        with project_snapshot.suspended():
+            SiteEvaluation.objects.create(
+                project=self.m1, site=self.site1, verdict=SiteEvaluation.Verdict.EMPTY,
+                evaluator="alice@example.org", note="that is a water")
+        write_snapshot(self.m1)
+        self.lose_the_database()
+
+        dirs = [Path(p.directory) for p in (self.parent, self.m1, self.m2)]
+        restore_all(dirs)
+        restore_all(dirs, replace=True)
+
+        cell = SiteEvaluation.objects.filter(
+            project__uuid=self.uuids["m1"], site__uuid=self.uuids["site1"])
+        self.assertEqual(
+            sorted((e.evaluator, e.verdict, e.note) for e in cell),
+            [("alice@example.org", "empty", "that is a water"),
+             ("martin", "hit", "clear density for the fragment")])
+        self.assertEqual(SiteEvaluation.objects.count(), 4)
+
     def test_a_member_restored_before_its_parent_says_so_and_recovers_later(self):
         self.lose_the_database()
         report = restore_from_directory(Path(self.m1.directory))

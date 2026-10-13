@@ -1041,6 +1041,11 @@ The client draws a box when there is an event, coloured by the verdict
 where PanDDA found nothing. **The event never sets the verdict**: invariant 1
 of section 9.1 holds, and nothing automated writes a `SiteEvaluation`.
 
+One verdict per cell, and no record of who gave it, is the model as built.
+Letting several reviewers score the same cell, and finding the cells where
+they disagree, is designed in
+[docs/site-verdict-reconciliation.md](site-verdict-reconciliation.md).
+
 The rule (`lib/campaign_matrix.match_events_to_sites`, pure and unit-tested):
 
 * `CampaignSite.radius` (A, default 8.0, editable through the site `PATCH`)

@@ -852,8 +852,11 @@ def import_campaigns(root_node: ET.Element) -> list:
             continue
         fields = _row_fields(SiteEvaluation, node)
         evaluated_at = fields.pop("evaluated_at", None)
+        # One verdict per reviewer at a cell, so the reviewer is part of the
+        # key: restoring a project brings back every reviewer's verdict.
+        evaluator = fields.pop("evaluator", "") or ""
         evaluation, _ = SiteEvaluation.objects.update_or_create(
-            project=project, site=site, defaults=fields
+            project=project, site=site, evaluator=evaluator, defaults=fields
         )
         if evaluated_at is not None:
             # auto_now stamped the save; put the recorded time back.

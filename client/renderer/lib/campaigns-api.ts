@@ -390,7 +390,8 @@ export function useCampaignsApi() {
       siteId: number,
       projectId: number,
       verdict: SiteVerdict,
-      extra: { evaluator?: string; note?: string } = {}
+      // No evaluator: the server records the signed-in user as the reviewer.
+      extra: { note?: string } = {}
     ): Promise<SiteEvaluation> {
       const result = await apiPut<SiteEvaluation>(
         `projectgroups/${campaignId}/sites/${siteId}/evaluation/${projectId}`,

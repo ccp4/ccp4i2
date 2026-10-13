@@ -12,9 +12,21 @@ those apart, and several of the tests below pin that they stay apart.
 """
 
 import pytest
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 
 from ccp4i2.db import models
+
+
+def client_as(email):
+    """A client authenticated as a reviewer, as the desktop's OS user or a
+    hosted Azure AD user would be."""
+    user, _ = get_user_model().objects.get_or_create(
+        username=email.split("@")[0], defaults={"email": email}
+    )
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client
 
 
 @pytest.fixture
@@ -66,10 +78,10 @@ def evaluation_url(group, site, project):
 @pytest.mark.django_db
 class TestRecordingAVerdict:
     def test_records_a_hit(self, campaign):
-        client = APIClient()
+        client = client_as("alice@example.org")
         response = client.put(
             evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
-            {"verdict": "hit", "evaluator": "alice"},
+            {"verdict": "hit"},
             format="json",
         )
         assert response.status_code == 201, response.data
@@ -79,7 +91,7 @@ class TestRecordingAVerdict:
             project=campaign["a"], site=campaign["site_a"]
         )
         assert stored.verdict == "hit"
-        assert stored.evaluator == "alice"
+        assert stored.evaluator == "alice@example.org"
 
     def test_changing_a_verdict_replaces_it(self, campaign):
         """One verdict per dataset per site, not a history of them."""
@@ -323,10 +335,10 @@ class TestReadingOneDatasetsVerdicts:
         assert campaign["site_b"].id not in {r["site_id"] for r in response.data}
 
     def test_carries_the_note_and_evaluator(self, campaign):
-        client = APIClient()
+        client = client_as("mn@example.org")
         client.put(
             evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
-            {"verdict": "unclear", "evaluator": "mn", "note": "density is weak"},
+            {"verdict": "unclear", "note": "density is weak"},
             format="json",
         )
 
@@ -335,7 +347,7 @@ class TestReadingOneDatasetsVerdicts:
             f"/evaluations/{campaign['a'].id}/"
         )
         row = response.data[0]
-        assert row["evaluator"] == "mn"
+        assert row["evaluator"] == "mn@example.org"
         assert row["note"] == "density is weak"
         assert row["project_id"] == campaign["a"].id
 
@@ -434,3 +446,117 @@ class TestWhatDeletingASiteWouldCost:
             project=campaign["a"], site=campaign["site_a"], verdict="empty"
         )
         assert self.sites(campaign)["Pocket A"]["evaluation_count"] == 1
+
+
+@pytest.mark.django_db
+class TestTheReviewerIsRecorded:
+    """The server records who gave a verdict; the client cannot say, or
+    forget to say. Until verdicts from more than one reviewer are supported
+    (docs/site-verdict-reconciliation.md) there is one per cell, so a named
+    reviewer's verdict is protected from being replaced by somebody else."""
+
+    def url(self, campaign):
+        return evaluation_url(campaign["group"], campaign["site_a"], campaign["a"])
+
+    def stored(self, campaign):
+        return models.SiteEvaluation.objects.get(project=campaign["a"], site=campaign["site_a"])
+
+    def test_an_evaluator_in_the_body_is_ignored(self, campaign):
+        response = client_as("alice@example.org").put(
+            self.url(campaign), {"verdict": "hit", "evaluator": "bob@example.org"}, format="json"
+        )
+        assert response.status_code == 201, response.data
+        assert self.stored(campaign).evaluator == "alice@example.org"
+
+    def test_an_unauthenticated_request_records_no_reviewer(self, campaign):
+        APIClient().put(self.url(campaign), {"verdict": "hit", "evaluator": "bob"}, format="json")
+        assert self.stored(campaign).evaluator == ""
+
+    def test_a_reviewer_can_change_and_withdraw_their_own(self, campaign):
+        alice = client_as("alice@example.org")
+        alice.put(self.url(campaign), {"verdict": "unclear"}, format="json")
+        assert alice.put(self.url(campaign), {"verdict": "hit"}, format="json").status_code == 200
+        assert self.stored(campaign).verdict == "hit"
+        assert alice.delete(self.url(campaign)).status_code == 204
+
+    def test_a_second_reviewer_is_stored_beside_the_first(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        response = client_as("bob@example.org").put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert response.status_code == 201, response.data
+        rows = models.SiteEvaluation.objects.filter(project=campaign["a"], site=campaign["site_a"])
+        assert sorted((r.evaluator, r.verdict) for r in rows) == [
+            ("alice@example.org", "hit"), ("bob@example.org", "empty")]
+
+    def test_withdrawing_takes_only_your_own(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        bob = client_as("bob@example.org")
+        assert bob.delete(self.url(campaign)).status_code == 404, "bob has nothing here"
+        bob.put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert bob.delete(self.url(campaign)).status_code == 204
+        assert self.stored(campaign).evaluator == "alice@example.org"
+
+    def test_an_unattributed_verdict_is_kept_beside_a_new_one(self, campaign):
+        """Verdicts from before reviewers were tracked are kept; whoever
+        scores the cell now adds their own beside it."""
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="unclear", evaluator=""
+        )
+        response = client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        assert response.status_code == 201
+        rows = models.SiteEvaluation.objects.filter(project=campaign["a"], site=campaign["site_a"])
+        assert sorted((r.evaluator, r.verdict) for r in rows) == [
+            ("", "unclear"), ("alice@example.org", "hit")]
+
+    def test_the_scoring_view_shows_only_your_own(self, campaign):
+        """Blind scoring: the per-dataset list is the caller's verdicts."""
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        bob = client_as("bob@example.org")
+        listing = f"/api/ccp4i2/projectgroups/{campaign['group'].id}/evaluations/{campaign['a'].id}/"
+        assert bob.get(listing).data == []
+        bob.put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert [(r["verdict"], r["evaluator"]) for r in bob.get(listing).data] == [
+            ("empty", "bob@example.org")]
+
+
+def member_cell(client, campaign, site="site_a", project="a"):
+    rows = client.get(f"/api/ccp4i2/projectgroups/{campaign['group'].id}/member_projects/").data
+    row = next(r for r in rows if r["id"] == campaign[project].id)
+    return row, row["site_cells"][str(campaign[site].uuid)]
+
+
+@pytest.mark.django_db
+class TestWhatACellSays:
+    """The overview's cell, derived from every reviewer's verdict
+    (lib/site_verdicts.py)."""
+
+    def url(self, campaign):
+        return evaluation_url(campaign["group"], campaign["site_a"], campaign["a"])
+
+    def test_reviewers_who_agree(self, campaign):
+        for who in ("alice@example.org", "bob@example.org"):
+            client_as(who).put(self.url(campaign), {"verdict": "hit"}, format="json")
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"], cell["mine"]) == ("agreed", "hit", "hit")
+
+    def test_any_difference_is_to_reconcile_and_reads_as_unclear(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        client_as("bob@example.org").put(self.url(campaign), {"verdict": "unclear"}, format="json")
+        row, cell = member_cell(client_as("carol@example.org"), campaign)
+        assert (cell["state"], cell["verdict"], cell["mine"]) == ("to_reconcile", "unclear", None)
+        assert cell["verdicts"] == [
+            {"evaluator": "alice@example.org", "verdict": "hit"},
+            {"evaluator": "bob@example.org", "verdict": "unclear"},
+        ]
+        # The chips fallback reads the effective verdict too.
+        assert [e["verdict"] for e in row["site_evaluations"]] == ["unclear"]
+
+    def test_an_unattributed_verdict_never_puts_a_cell_to_reconcile(self, campaign):
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="empty", evaluator=""
+        )
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"]) == ("agreed", "empty"), "alone, it is the verdict"
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"]) == ("agreed", "hit"), "outranked, not contradicted"
+        assert {"evaluator": "", "verdict": "empty"} in cell["verdicts"], "kept for the record"
