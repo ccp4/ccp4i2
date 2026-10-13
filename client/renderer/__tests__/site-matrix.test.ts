@@ -16,6 +16,7 @@ import {
   siteCellTooltip,
   siteCellUrl,
   verdictColourKey,
+  verdictGlyph,
   verdictWords,
 } from "../lib/site-matrix";
 import {
@@ -82,6 +83,14 @@ describe("verdict colours and words", () => {
     expect(verdictWords("empty")).toBe("rejected (empty)");
     expect(verdictWords("unclear")).toBe("uncertain");
     expect(verdictWords("hit")).toBe("hit (accepted)");
+  });
+
+  it("gives each decided verdict a distinct glyph, so colour is not the only cue", () => {
+    expect(verdictGlyph(null)).toBeNull();
+    expect(verdictGlyph(undefined)).toBeNull();
+    const glyphs = (["hit", "unclear", "empty"] as const).map(verdictGlyph);
+    expect(glyphs).toEqual(["\u2713", "?", "\u2715"]);
+    expect(new Set(glyphs).size).toBe(3);
   });
 });
 

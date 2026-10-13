@@ -11,6 +11,12 @@
  *   neither.
  * * **Colour** says what a reviewer decided: grey not yet looked at, red
  *   rejected (empty), amber uncertain, green accepted (hit).
+ * * **A glyph** says it again without colour: ✓ hit, ✕ rejected, ? uncertain,
+ *   nothing for not evaluated. Colour alone fails red-green colour-blind
+ *   readers, and fails worst on an outlined box, where the colour is only a
+ *   2 px border; MUI's default red and green are also of almost equal
+ *   lightness, so they do not even separate in greyscale. The glyph makes
+ *   every verdict readable from shape, and colour a second cue.
  *
  * So a grey filled box is work outstanding (an event nobody has judged), and
  * a green outlined box is a finding PanDDA did not make. A row whose model is
@@ -113,6 +119,25 @@ export function verdictColourKey(
       return "error";
     default:
       return "grey";
+  }
+}
+
+/**
+ * The glyph drawn inside a box for its verdict, or null for none (not yet
+ * evaluated, which is the absence of a decision rather than a fourth one).
+ */
+export function verdictGlyph(
+  verdict: SiteVerdict | null | undefined
+): string | null {
+  switch (verdict) {
+    case "hit":
+      return "\u2713"; // ✓
+    case "unclear":
+      return "?";
+    case "empty":
+      return "\u2715"; // ✕
+    default:
+      return null;
   }
 }
 
