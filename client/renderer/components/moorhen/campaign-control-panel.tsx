@@ -354,21 +354,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     [molecules, visibleRepresentations, onRepresentationsChange]
   );
 
-  // What has been recorded at each site for the selected dataset. Absent
-  // means nobody has looked there; "empty" means somebody looked and found
-  // nothing. The control has to show those differently or it will write the
-  // wrong one back.
+  // What *you* have recorded at each site for the selected dataset. The
+  // server sends only the viewer's own verdicts, so a rescore is not anchored
+  // by somebody else's (blind scoring). Absent means you have not looked
+  // there; "empty" means you looked and found nothing. The control has to
+  // show those differently or it will write the wrong one back.
   const verdictBySite = useMemo(
     () => new Map((evaluations ?? []).map((e) => [e.site_id, e.verdict])),
     [evaluations]
   );
-  // Who recorded it: the server stamps the signed-in user, and refuses to
-  // let somebody else replace a named reviewer's verdict, so the control
-  // says whose it is before anyone tries.
-  const evaluatorBySite = useMemo(
-    () => new Map((evaluations ?? []).map((e) => [e.site_id, e.evaluator])),
-    [evaluations]
-  );
+
 
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
@@ -789,7 +784,6 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                   {selectedMemberProjectId && onSetVerdict && (
                     <SiteVerdictControl
                       verdict={verdictBySite.get(site.id)}
-                      evaluator={evaluatorBySite.get(site.id)}
                       onSet={(verdict) => onSetVerdict(site.id, verdict)}
                       onClear={
                         onClearVerdict
@@ -1198,23 +1192,14 @@ const VERDICT_OPTIONS: {
   },
 ];
 
-/** "alice" from "alice@example.org": short enough for a tooltip line. */
-function reviewerName(evaluator: string | undefined): string | null {
-  if (!evaluator) return null;
-  return evaluator.split("@")[0] || evaluator;
-}
-
 const SiteVerdictControl: React.FC<{
   verdict: SiteVerdict | undefined;
-  /** Who recorded the verdict, or empty for one recorded before reviewers were tracked. */
-  evaluator?: string;
   onSet: (verdict: SiteVerdict) => Promise<void>;
   onClear?: () => Promise<void>;
-}> = ({ verdict, evaluator, onSet, onClear }) => {
+}> = ({ verdict, onSet, onClear }) => {
   const [busy, setBusy] = useState(false);
-  // Why the last click was refused (the server says, e.g. another reviewer's
-  // verdict is here). Shown until the pointer leaves, so a refusal is never
-  // silent.
+  // Why the last click failed, as the server says it. Shown until the
+  // pointer leaves, so a failure is never silent.
   const [refusal, setRefusal] = useState<string | null>(null);
 
   const handle = useCallback(
@@ -1236,8 +1221,6 @@ const SiteVerdictControl: React.FC<{
     [verdict, onSet, onClear]
   );
 
-  const by = reviewerName(evaluator);
-
   return (
     <Tooltip
       open={Boolean(refusal)}
@@ -1251,11 +1234,7 @@ const SiteVerdictControl: React.FC<{
           return (
             <Tooltip
               key={choice}
-              title={
-                active
-                  ? `${label}${by ? ` (recorded by ${by})` : ""} — click to withdraw`
-                  : label
-              }
+              title={active ? `${label} — click to withdraw` : label}
             >
               <span>
                 <IconButton

@@ -174,11 +174,15 @@ def test_member_projects_carries_a_cell_for_every_site(
                   # Which receipt: a click opens that receipt's evidence.
                   "receipt_job_id": _receipt_job("frag_drg").id},
         "verdict": "hit",
+        # Recorded with no reviewer, so it is the one verdict the cell has.
+        "state": "agreed",
+        "verdicts": [{"evaluator": "", "verdict": "hit"}],
+        "mine": "hit",
     }
     # S2's radius is 3 A and the event is 1 A from its origin.
     assert drg["site_cells"][str(s2.uuid)]["event"]["event_idx"] == 2
     assert drg["site_cells"][str(s2.uuid)]["event"]["distance"] == 1.0
-    assert drg["site_cells"][str(s3.uuid)] == {"event": None, "verdict": None}
+    assert drg["site_cells"][str(s3.uuid)] == {"event": None, "verdict": None, "state": None, "verdicts": [], "mine": None}
     assert drg["frame_mismatch"] is None
 
     # Compared directly: frag_lig's centroid is in its own frame, 2.29 A off.
@@ -187,7 +191,8 @@ def test_member_projects_carries_a_cell_for_every_site(
 
     apo = rows["frag_apo"]["site_cells"]
     assert apo[str(s1.uuid)]["event"]["has_pose"] is False
-    assert apo[str(s3.uuid)] == {"event": None, "verdict": "empty"}
+    assert apo[str(s3.uuid)]["event"] is None
+    assert apo[str(s3.uuid)]["verdict"] == "empty"
 
     # The model a click opens: each member's refmac job.
     model = drg["current_model_job"]
@@ -207,7 +212,7 @@ def test_a_dataset_with_no_receipt_has_empty_cells(
     s1, _, _ = _sites(group)
     # Nothing recorded yet: the cells are there, the events are not.
     row = _member_rows(group)["frag_drg"]
-    assert row["site_cells"][str(s1.uuid)] == {"event": None, "verdict": None}
+    assert row["site_cells"][str(s1.uuid)] == {"event": None, "verdict": None, "state": None, "verdicts": [], "mine": None}
     assert row["frame_mismatch"] is None
 
 

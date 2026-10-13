@@ -479,27 +479,84 @@ class TestTheReviewerIsRecorded:
         assert self.stored(campaign).verdict == "hit"
         assert alice.delete(self.url(campaign)).status_code == 204
 
-    def test_another_reviewers_verdict_is_not_replaced(self, campaign):
+    def test_a_second_reviewer_is_stored_beside_the_first(self, campaign):
         client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
         response = client_as("bob@example.org").put(self.url(campaign), {"verdict": "empty"}, format="json")
-        assert response.status_code == 409
-        assert "alice@example.org" in response.data["error"]
-        assert response.data["details"] == {"evaluator": "alice@example.org", "verdict": "hit"}
-        stored = self.stored(campaign)
-        assert (stored.verdict, stored.evaluator) == ("hit", "alice@example.org")
+        assert response.status_code == 201, response.data
+        rows = models.SiteEvaluation.objects.filter(project=campaign["a"], site=campaign["site_a"])
+        assert sorted((r.evaluator, r.verdict) for r in rows) == [
+            ("alice@example.org", "hit"), ("bob@example.org", "empty")]
 
-    def test_another_reviewers_verdict_is_not_withdrawn(self, campaign):
+    def test_withdrawing_takes_only_your_own(self, campaign):
         client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
-        assert client_as("bob@example.org").delete(self.url(campaign)).status_code == 409
-        assert self.stored(campaign).verdict == "hit"
+        bob = client_as("bob@example.org")
+        assert bob.delete(self.url(campaign)).status_code == 404, "bob has nothing here"
+        bob.put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert bob.delete(self.url(campaign)).status_code == 204
+        assert self.stored(campaign).evaluator == "alice@example.org"
 
-    def test_an_unattributed_verdict_is_replaced_as_before(self, campaign):
-        """Verdicts recorded before reviewers were tracked have no reviewer;
-        whoever scores the cell next takes it over."""
+    def test_an_unattributed_verdict_is_kept_beside_a_new_one(self, campaign):
+        """Verdicts from before reviewers were tracked are kept; whoever
+        scores the cell now adds their own beside it."""
         models.SiteEvaluation.objects.create(
             project=campaign["a"], site=campaign["site_a"], verdict="unclear", evaluator=""
         )
         response = client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
-        assert response.status_code == 200
-        stored = self.stored(campaign)
-        assert (stored.verdict, stored.evaluator) == ("hit", "alice@example.org")
+        assert response.status_code == 201
+        rows = models.SiteEvaluation.objects.filter(project=campaign["a"], site=campaign["site_a"])
+        assert sorted((r.evaluator, r.verdict) for r in rows) == [
+            ("", "unclear"), ("alice@example.org", "hit")]
+
+    def test_the_scoring_view_shows_only_your_own(self, campaign):
+        """Blind scoring: the per-dataset list is the caller's verdicts."""
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        bob = client_as("bob@example.org")
+        listing = f"/api/ccp4i2/projectgroups/{campaign['group'].id}/evaluations/{campaign['a'].id}/"
+        assert bob.get(listing).data == []
+        bob.put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert [(r["verdict"], r["evaluator"]) for r in bob.get(listing).data] == [
+            ("empty", "bob@example.org")]
+
+
+def member_cell(client, campaign, site="site_a", project="a"):
+    rows = client.get(f"/api/ccp4i2/projectgroups/{campaign['group'].id}/member_projects/").data
+    row = next(r for r in rows if r["id"] == campaign[project].id)
+    return row, row["site_cells"][str(campaign[site].uuid)]
+
+
+@pytest.mark.django_db
+class TestWhatACellSays:
+    """The overview's cell, derived from every reviewer's verdict
+    (lib/site_verdicts.py)."""
+
+    def url(self, campaign):
+        return evaluation_url(campaign["group"], campaign["site_a"], campaign["a"])
+
+    def test_reviewers_who_agree(self, campaign):
+        for who in ("alice@example.org", "bob@example.org"):
+            client_as(who).put(self.url(campaign), {"verdict": "hit"}, format="json")
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"], cell["mine"]) == ("agreed", "hit", "hit")
+
+    def test_any_difference_is_to_reconcile_and_reads_as_unclear(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        client_as("bob@example.org").put(self.url(campaign), {"verdict": "unclear"}, format="json")
+        row, cell = member_cell(client_as("carol@example.org"), campaign)
+        assert (cell["state"], cell["verdict"], cell["mine"]) == ("to_reconcile", "unclear", None)
+        assert cell["verdicts"] == [
+            {"evaluator": "alice@example.org", "verdict": "hit"},
+            {"evaluator": "bob@example.org", "verdict": "unclear"},
+        ]
+        # The chips fallback reads the effective verdict too.
+        assert [e["verdict"] for e in row["site_evaluations"]] == ["unclear"]
+
+    def test_an_unattributed_verdict_never_puts_a_cell_to_reconcile(self, campaign):
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="empty", evaluator=""
+        )
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"]) == ("agreed", "empty"), "alone, it is the verdict"
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        _, cell = member_cell(client_as("alice@example.org"), campaign)
+        assert (cell["state"], cell["verdict"]) == ("agreed", "hit"), "outranked, not contradicted"
+        assert {"evaluator": "", "verdict": "empty"} in cell["verdicts"], "kept for the record"

@@ -202,6 +202,12 @@ class CampaignSite(Model):
 class SiteEvaluation(Model):
     """One person's verdict on one dataset at one site.
 
+    One row per reviewer: several people can score the same cell, and what
+    the cell says is derived from their rows (lib/site_verdicts.py,
+    docs/site-verdict-reconciliation.md). ``evaluator`` is the reviewer,
+    recorded by the server from the authenticated user; empty for verdicts
+    recorded before reviewers were tracked.
+
     Per site, not per project: in fragment screening a dataset is routinely a
     hit at one site and empty at another, so a project-level flag cannot say
     what was found.
@@ -239,10 +245,11 @@ class SiteEvaluation(Model):
     note = TextField(blank=True, default="")
 
     class Meta:
-        unique_together = ["project", "site"]
+        unique_together = ["project", "site", "evaluator"]
 
     def __str__(self):
-        return f"{self.project} at {self.site}: {self.verdict}"
+        by = f" by {self.evaluator}" if self.evaluator else ""
+        return f"{self.project} at {self.site}: {self.verdict}{by}"
 
 
 class CampaignEvent(Model):
