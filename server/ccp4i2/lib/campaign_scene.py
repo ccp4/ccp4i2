@@ -698,9 +698,10 @@ def build_site_scene(group, site, include_unclear: bool = False,
     hit *at this site* drawn on top as its ligand's sticks, each fitted onto
     the exemplar locally, on the CAs around the site.
 
-    Membership is the verdict and nothing else: a dataset is in iff it has a
-    ``hit`` evaluation at this site, plus ``unclear`` ones when asked for,
-    in a muted colour. ``empty`` and unevaluated members are out, and there
+    Membership is the verdict and nothing else: a dataset is in iff its
+    cell's effective verdict at this site (across reviewers,
+    lib/site_verdicts.py) is ``hit``, plus ``unclear`` ones when asked for,
+    in a muted colour. A cell whose reviewers disagree counts as unclear. ``empty`` and unevaluated members are out, and there
     is deliberately no fall-back to ligand detection when a site has no
     verdicts -- that would show every ligand in the campaign under the name
     of one site. A site nobody has evaluated gets an honest exemplar-only
@@ -748,15 +749,22 @@ def build_site_scene(group, site, include_unclear: bool = False,
             type=models.ProjectGroupMembership.MembershipType.MEMBER
         ).values_list("project_id", flat=True)
     )
-    # Ordered by project id so the fallback exemplar, when one is needed, is
-    # the lowest-id hit: stable, arbitrary, and recorded as such in stats.
-    evaluations = site.evaluations.select_related("project").order_by("project_id")
+    # One entry per dataset, from what its cell says across reviewers
+    # (lib/site_verdicts.py): one reviewer's hit beside another's empty is
+    # "to reconcile", whose effective verdict is unclear, so it is drawn only
+    # when unclears are asked for. Ordered by project id so the fallback
+    # exemplar, when one is needed, is the lowest-id hit: stable, arbitrary,
+    # and recorded as such in stats.
+    from .site_verdicts import cell_verdicts
+    cells = cell_verdicts(site.evaluations.all())
+    projects = {p.id: p for p in models.Project.objects.filter(
+        id__in=[project_id for project_id, _ in cells])}
 
     hits: list = []
-    for evaluation in evaluations:
-        if evaluation.project_id not in member_ids:
+    for (project_id, _), cell in sorted(cells.items()):
+        if project_id not in member_ids:
             continue
-        verdict = evaluation.verdict
+        verdict = cell["verdict"]
         if verdict == Verdict.EMPTY:
             stats["empty_verdicts"] += 1
             continue
@@ -767,7 +775,7 @@ def build_site_scene(group, site, include_unclear: bool = False,
         else:
             stats["hits_claimed"] += 1
 
-        project = evaluation.project
+        project = projects[project_id]
         hit, reason = _resolve_hit(project, used_names)
         if hit is None:
             stats["skipped"].append(
