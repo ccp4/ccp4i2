@@ -342,15 +342,25 @@ def heal_receipts(receipt_ids: List[int], jobs_by_id: Dict[int, models.Job]) -> 
     return healed
 
 
+def _cell(event, verdict: Optional[dict]) -> dict:
+    """One cell as served: the event, the effective ``verdict`` (what older
+    clients read), and -- when anyone has scored it -- its ``state``, every
+    reviewer's ``verdicts``, and the caller's own (``mine``)."""
+    if verdict is None:
+        return {"event": event, "verdict": None, "state": None, "verdicts": [], "mine": None}
+    return {"event": event, **verdict}
+
+
 def site_matrix(group, sites: List[models.CampaignSite],
                 jobs_by_project: Dict[int, list],
-                verdicts: Dict[tuple, str]) -> Dict[int, dict]:
+                verdicts: Dict[tuple, dict]) -> Dict[int, dict]:
     """Per member project: ``site_cells``, ``frame_mismatch`` and
     ``current_model_job``, as ``member_projects`` serves them.
 
     ``jobs_by_project`` holds every job of every member (the caller has
     already fetched them for the job list); ``verdicts`` maps
-    ``(project_id, site_id)`` to a verdict. Adds two queries for the whole
+    ``(project_id, site_id)`` to what the cell says
+    (``lib.site_verdicts.cell_verdict``). Adds two queries for the whole
     page -- the events of each member's latest receipt, and the parent's
     reference file -- and reads at most one file header, cached.
     """
@@ -393,10 +403,8 @@ def site_matrix(group, sites: List[models.CampaignSite],
                 cell["receipt_job_id"] = receipt_id
         out[project_id] = {
             "site_cells": {
-                str(site.uuid): {
-                    "event": matched[str(site.uuid)],
-                    "verdict": verdicts.get((project_id, site.id)),
-                }
+                str(site.uuid): _cell(matched[str(site.uuid)],
+                                      verdicts.get((project_id, site.id)))
                 for site in sites
             },
             "frame_mismatch": mismatch,

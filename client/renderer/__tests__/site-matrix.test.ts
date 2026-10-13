@@ -16,6 +16,7 @@ import {
   siteCellTooltip,
   siteCellUrl,
   verdictColourKey,
+  verdictGlyph,
   verdictWords,
 } from "../lib/site-matrix";
 import {
@@ -83,6 +84,14 @@ describe("verdict colours and words", () => {
     expect(verdictWords("unclear")).toBe("uncertain");
     expect(verdictWords("hit")).toBe("hit (accepted)");
   });
+
+  it("gives each decided verdict a distinct glyph, so colour is not the only cue", () => {
+    expect(verdictGlyph(null)).toBeNull();
+    expect(verdictGlyph(undefined)).toBeNull();
+    const glyphs = (["hit", "unclear", "empty"] as const).map(verdictGlyph);
+    expect(glyphs).toEqual(["\u2713", "?", "\u2715"]);
+    expect(new Set(glyphs).size).toBe(3);
+  });
 });
 
 describe("siteCellTooltip", () => {
@@ -101,6 +110,31 @@ describe("siteCellTooltip", () => {
       "Verdict: hit (accepted)",
       "PanDDA event 2, hit probability 0.87, d = 1.4 Å",
       "Click to view",
+    ]);
+  });
+
+  it("says when reviewers disagree, and who said what", () => {
+    const lines = siteCellTooltip(
+      "Pocket A",
+      {
+        event: null,
+        verdict: "unclear",
+        state: "to_reconcile",
+        verdicts: [
+          { evaluator: "", verdict: "empty" },
+          { evaluator: "alice@example.org", verdict: "hit" },
+          { evaluator: "bob@example.org", verdict: "unclear" },
+        ],
+      },
+      null,
+      true
+    );
+    expect(lines.slice(0, 5)).toEqual([
+      "Pocket A",
+      "Verdict: reviewers disagree",
+      "  unattributed: rejected (empty)",
+      "  alice: hit (accepted)",
+      "  bob: uncertain",
     ]);
   });
 
@@ -192,7 +226,26 @@ describe("matrix columns", () => {
     expect(cellFor(p, sites[3])).toBeNull();
     expect(evaluatedCount(p, sites)).toEqual({
       done: 2,
+      anyone: 2,
       total: 4,
+      findings: 1,
+    });
+  });
+
+  it("counts the viewer's own scoring separately from everyone's", () => {
+    const cells: Record<string, SiteCell> = {
+      a: { event: null, verdict: "hit", state: "agreed", mine: "hit",
+           verdicts: [{ evaluator: "me@x", verdict: "hit" }] },
+      b: { event: null, verdict: "empty", state: "agreed", mine: null,
+           verdicts: [{ evaluator: "them@x", verdict: "empty" }] },
+      c: { event: null, verdict: null, state: null, mine: null, verdicts: [] },
+    };
+    const p = project({ site_cells: cells });
+    const sites = [site(1, "a"), site(2, "b"), site(3, "c")];
+    expect(evaluatedCount(p, sites)).toEqual({
+      done: 1,
+      anyone: 2,
+      total: 3,
       findings: 1,
     });
   });

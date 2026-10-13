@@ -155,15 +155,37 @@ def collect_pandda_datasets(group):
     Used by both the export endpoint (to build the ZIP) and the
     ``pandda_data`` summary endpoint (to report counts to the UI), so
     the two stay consistent.
+
+    Two queries whatever the campaign's size: the members, then every
+    finished dimple and acedrg job among them, newest first, keeping the
+    first of each per project -- what ``_latest_finished_job`` picks one
+    project at a time. A campaign runs to a thousand members or more, and
+    a query per member per task made the fill from campaign take seconds
+    locally and far longer against a database across a network
+    (tests/db/test_pandda_fanin_scaling.py).
     """
-    member_memberships = group.memberships.filter(
-        type=models.ProjectGroupMembership.MembershipType.MEMBER
-    ).select_related("project")
-    for membership in member_memberships:
-        project = membership.project
-        dimple_job = _latest_finished_job(project, DIMPLE_TASK_NAMES)
-        acedrg_job = _latest_finished_job(project, ACEDRG_TASK_NAMES)
-        yield project, dimple_job, acedrg_job
+    projects = [
+        membership.project
+        for membership in group.memberships.filter(
+            type=models.ProjectGroupMembership.MembershipType.MEMBER
+        ).select_related("project")
+    ]
+    by_id = {project.id: project for project in projects}
+    latest = {}
+    for job in models.Job.objects.filter(
+        project_id__in=list(by_id),
+        task_name__in=list(DIMPLE_TASK_NAMES) + list(ACEDRG_TASK_NAMES),
+        status=models.Job.Status.FINISHED,
+    ).order_by("-id"):
+        kind = "dimple" if job.task_name in DIMPLE_TASK_NAMES else "acedrg"
+        if (job.project_id, kind) not in latest:
+            # The project already loaded, so job.directory costs no query.
+            job.project = by_id[job.project_id]
+            latest[(job.project_id, kind)] = job
+    for project in projects:
+        yield (project,
+               latest.get((project.id, "dimple")),
+               latest.get((project.id, "acedrg")))
 
 
 def build_pandda_zip(group, temp_dir: Optional[Path] = None) -> PanddaExportResult:

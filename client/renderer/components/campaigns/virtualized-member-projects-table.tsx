@@ -784,10 +784,14 @@ function EvaluatedCountCell({
   project: MemberProjectWithSummary;
   sites: CampaignSite[];
 }) {
-  const { done, total, findings } = evaluatedCount(project, sites);
+  const { done, anyone, total, findings } = evaluatedCount(project, sites);
   const note = evaluationNote(done, total, findings > 0);
+  // The count is the viewer's own scoring; say so once anybody else's
+  // differs from it, so a rescorer can tell their progress from the cell's.
   const detail =
-    note?.detail ?? `All ${total} sites evaluated in this dataset.`;
+    anyone !== done
+      ? `You have scored ${done} of ${total} sites here; ${anyone} have been scored by anyone.`
+      : (note?.detail ?? `All ${total} sites evaluated in this dataset.`);
   return (
     <TableCell align="center" sx={{ px: 0.5 }}>
       <Tooltip title={detail}>
