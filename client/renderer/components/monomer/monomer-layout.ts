@@ -40,12 +40,16 @@ export interface MonomerLayout {
  * increasing downwards. A single uniform scale keeps bond lengths equal,
  * which is the whole point of a chemical depiction -- fitting width and
  * height independently would stretch the molecule.
+ *
+ * With `bondLength` (pixels) the scale is fixed instead, and the box is the
+ * smallest size: a big ligand grows the box rather than shrinking until its
+ * bonds disappear under the atom labels, and a small one is not blown up.
  */
 export function layoutMonomer(
   atomDetails: MonomerAtomDetail[],
   bonds: MonomerBond[],
   coordinates: { x: number; y: number }[],
-  box: { width: number; height: number; padding: number }
+  box: { width: number; height: number; padding: number; bondLength?: number }
 ): MonomerLayout {
   const usable = Math.min(atomDetails.length, coordinates.length);
   if (usable === 0) {
@@ -61,15 +65,26 @@ export function layoutMonomer(
 
   const spanX = maxX - minX;
   const spanY = maxY - minY;
-  const usableWidth = Math.max(1, box.width - 2 * box.padding);
-  const usableHeight = Math.max(1, box.height - 2 * box.padding);
-  // A single atom, or a perfectly linear molecule, has no span on one axis.
-  // Guard both, or the scale is Infinity and every atom lands on NaN.
-  const scale = Math.min(
-    spanX > 1e-6 ? usableWidth / spanX : Infinity,
-    spanY > 1e-6 ? usableHeight / spanY : Infinity
-  );
-  const finiteScale = Number.isFinite(scale) ? scale : 1;
+  let width = box.width;
+  let height = box.height;
+  let finiteScale: number;
+  if (box.bondLength) {
+    finiteScale = box.bondLength / typicalBondLength(atomDetails, bonds, coordinates, usable);
+    width = Math.max(box.width, spanX * finiteScale + 2 * box.padding);
+    height = Math.max(box.height, spanY * finiteScale + 2 * box.padding);
+  } else {
+    const fitWidth = Math.max(1, box.width - 2 * box.padding);
+    const fitHeight = Math.max(1, box.height - 2 * box.padding);
+    // A single atom, or a perfectly linear molecule, has no span on one axis.
+    // Guard both, or the scale is Infinity and every atom lands on NaN.
+    const scale = Math.min(
+      spanX > 1e-6 ? fitWidth / spanX : Infinity,
+      spanY > 1e-6 ? fitHeight / spanY : Infinity
+    );
+    finiteScale = Number.isFinite(scale) ? scale : 1;
+  }
+  const usableWidth = Math.max(1, width - 2 * box.padding);
+  const usableHeight = Math.max(1, height - 2 * box.padding);
 
   // Centre whatever is left over, so a wide flat molecule sits in the middle
   // rather than hugging the top.
@@ -106,7 +121,31 @@ export function layoutMonomer(
     });
   }
 
-  return { atoms, bonds: placedBonds, width: box.width, height: box.height };
+  return { atoms, bonds: placedBonds, width, height };
+}
+
+/**
+ * The median bond length in the raw coordinates: RDKit draws at about 1.5,
+ * but the median does not care, and one stretched bond does not move it.
+ */
+function typicalBondLength(
+  atomDetails: MonomerAtomDetail[],
+  bonds: MonomerBond[],
+  coordinates: { x: number; y: number }[],
+  usable: number
+): number {
+  const index = new Map(atomDetails.slice(0, usable).map((a, i) => [a.name, i]));
+  const lengths: number[] = [];
+  for (const bond of bonds) {
+    const i = index.get(bond.atom1);
+    const j = index.get(bond.atom2);
+    if (i === undefined || j === undefined) continue;
+    const length = Math.hypot(coordinates[i].x - coordinates[j].x, coordinates[i].y - coordinates[j].y);
+    if (length > 1e-6) lengths.push(length);
+  }
+  if (lengths.length === 0) return 1.5;
+  lengths.sort((a, b) => a - b);
+  return lengths[Math.floor(lengths.length / 2)];
 }
 
 /**

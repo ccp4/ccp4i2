@@ -84,7 +84,12 @@ export const CSimpleAutocompleteElement: React.FC<
       qualifiers?.menuText &&
       qualifiers.menuText.length === processedEnumerators.length
     ) {
-      processedLabels = qualifiers.menuText.map((text: string) => text.trim());
+      // A blank menuText entry is a placeholder (Qt-era def.xml files declare
+      // `<menuText>    </menuText>` for menus filled at runtime): the value
+      // itself is the label, not an empty string.
+      processedLabels = qualifiers.menuText.map(
+        (text: string, index: number) => `${text ?? ""}`.trim() || processedLabels[index]
+      );
     }
 
     const processedGuiLabel =
