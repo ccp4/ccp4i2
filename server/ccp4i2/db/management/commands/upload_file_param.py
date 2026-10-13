@@ -104,6 +104,7 @@ class Command(BaseCommand):
             upload_result = upload_file_param(the_job, request)
             result = upload_result["updated_item"]
             duplicate_of = upload_result.get("duplicate_of") or []
+            reused = upload_result.get("reused")
 
             if json_output:
                 self.stdout.write(json.dumps({
@@ -113,6 +114,7 @@ class Command(BaseCommand):
                     "parameter_path": object_path,
                     "updated_item": result,
                     "duplicate_of": duplicate_of,
+                    "reused": reused,
                 }, indent=2))
             else:
                 self.stdout.write(self.style.SUCCESS("Upload successful:"))
@@ -120,6 +122,12 @@ class Command(BaseCommand):
                 self.stdout.write(f"  Annotation: {result.get('annotation', 'N/A')}")
                 if result.get('dbFileId'):
                     self.stdout.write(f"  DB ID: {result.get('dbFileId')}")
+                if reused:
+                    self.stdout.write(self.style.WARNING(
+                        f"  NOTE: identical to {reused['baseName']} (job "
+                        f"{reused['jobNumber']}), already in this project; using "
+                        f"that rather than a second copy"
+                    ))
                 # Only the ones that could actually serve this parameter. The
                 # same source imported for a different representation --- one
                 # reflection file for F/SIGF and again for the free-R set --- is

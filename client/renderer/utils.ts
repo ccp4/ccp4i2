@@ -164,11 +164,20 @@ export type UploadFileParamResponse =
         note?: string;
         /**
          * Earlier imports of the same uploaded bytes, earliest first. Empty
-         * when there are none. The server reports rather than acts: reusing a
-         * file silently would mean two jobs sharing one record, which neither
-         * the delete path nor the export path is ready for.
+         * when there are none, and when the upload was `reused` instead.
          */
         duplicate_of?: DuplicateImport[];
+        /**
+         * The file already in the project that the parameter now points at,
+         * when the upload turned out to be identical to it (same bytes, type,
+         * content and subtype). No second copy was kept.
+         */
+        reused?: {
+          uuid: string;
+          baseName: string;
+          annotation: string;
+          jobNumber: string | null;
+        };
       };
     }
   | {
@@ -1275,7 +1284,16 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             result.success
               ? (result.data?.duplicate_of ?? []).filter((d) => d.interchangeable)
               : [];
-          if (interchangeable.length) {
+          const reused = result.success ? result.data?.reused : undefined;
+          if (reused) {
+            setMessage(
+              `${fileName} is identical to ${reused.baseName}` +
+                (reused.jobNumber ? ` (imported by job ${reused.jobNumber})` : "") +
+                `, already in this project, so that file is used rather than a ` +
+                `second copy.`,
+              "info"
+            );
+          } else if (interchangeable.length) {
             const [earlier] = interchangeable;
             const others = interchangeable.length - 1;
             setMessage(

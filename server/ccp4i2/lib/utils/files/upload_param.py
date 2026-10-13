@@ -326,6 +326,44 @@ def _existing_imports_of_same_source(job, source_checksum: str, exclude_file=Non
         return []
 
 
+def _identical_earlier_import(job, checksum: str, file_type, content, sub_type):
+    """A file already imported into this project that is this one, byte for
+    byte, captured the same way --- so a second copy would be pure waste.
+
+    Compares the import as it landed (FileImport.checksum), not its source:
+    two imports of one reflection file for different columns share a source
+    and are still different files. Requiring type, content flag and subtype
+    to agree as well means the earlier file is one the picker would have
+    offered for this slot anyway; reusing it is what the user would have done
+    by choosing it from the list.
+
+    Safe to share. A job's upload only ever replaces files that job imported
+    itself (``_file_currently_held_by``), and deleting the importing job keeps
+    its imported files by default (``navigation/dependencies.py``).
+    """
+    if not checksum:
+        return None
+    try:
+        candidates = (
+            models.FileImport.objects.filter(
+                checksum=checksum,
+                file__job__project=job.project,
+                file__directory=models.File.Directory.IMPORT_DIR,
+                file__type=file_type,
+                file__content=content,
+                file__sub_type=sub_type,
+            )
+            .select_related("file", "file__job", "file__job__project")
+            .order_by("time")
+        )
+        for candidate in candidates:
+            if candidate.file.path.exists():
+                return candidate.file
+    except Exception as err:
+        logger.warning("Could not look for an identical earlier import: %s", err)
+    return None
+
+
 # Jobs that have not run yet hold their file references only in params XML, so
 # the guard below has to read them. If a site somehow has more pending jobs than
 # this, reading them all on every upload is not worth it --- treat the question
@@ -476,6 +514,9 @@ class _LocalPathUpload:
     def __init__(self, path: pathlib.Path):
         self._path = pathlib.Path(path)
         self.name = self._path.name
+        # Where it came from, for FileImport.name: what lets a copy deleted
+        # from CCP4_IMPORTED_FILES be put back (see import_recovery).
+        self.source_path = str(self._path.resolve())
         self._handle = None
 
     def read(self, size: int = -1) -> bytes:
@@ -821,6 +862,12 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
             imported_file_path.name,
         )
 
+        # Forget the file this slot held before. getFullPath() prefers dbFileId
+        # to the path, so a slot autopopulated with a previous job's output
+        # went on resolving to *that* file: the checksum recorded for this
+        # import, and the content flag detected for it, were the old file's.
+        if getattr(param_object, "dbFileId", None) is not None:
+            param_object.dbFileId.unSet()
         logger.info("Setting full path on param_object: %s", imported_file_path)
         param_object.setFullPath(str(imported_file_path))
         logger.info("Loading file...")
@@ -901,6 +948,29 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
         # value from just before the first array-indirection brackets.  hence coot_rebuild.outputData.XYZOUT[0] becomes
         # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
 
+        # The same bytes, captured the same way, already in the project: use
+        # that file rather than keep a second copy of it. Say so, so that the
+        # user knows which file the job will read and from where.
+        reused = _identical_earlier_import(
+            job, param_object.checksum(), file_type_obj, contentFlag, subType)
+        if reused is not None:
+            logger.info("Upload is identical to %s (job %s); using that",
+                        reused.name, reused.job.number)
+            if imported_file_path != reused.path:
+                imported_file_path.unlink(missing_ok=True)
+            out = _point_at_existing_file(container, plugin, job, final_path_with_index,
+                                          reused)
+            if staged_row is not None:
+                staged_upload.consume(staged_row)
+            out["reused"] = {
+                "uuid": str(reused.uuid),
+                "baseName": reused.name,
+                "annotation": reused.annotation,
+                "jobNumber": reused.job.number,
+            }
+            out["duplicate_of"] = []
+            return out
+
         # Build annotation - include MTZ metadata if available
         annotation = spec.annotation or build_file_annotation(files[0].name, mtz_metadata)
 
@@ -918,7 +988,9 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
 
         new_file_import = models.FileImport(
             file=new_file,
-            name=files[0].name,
+            # The full path when the import was by path, as Qt-i2 recorded it;
+            # an upload's original location is never known, only its name.
+            name=getattr(files[0], "source_path", None) or files[0].name,
             checksum=param_object.checksum(),
             source_checksum=source_checksum,
             description=provenance_description,
@@ -998,6 +1070,31 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
     except Exception:
         _discard_staged_upload(job, downloaded_file_path)
         raise
+
+
+def _point_at_existing_file(container, plugin, job, path_with_index, file_record) -> dict:
+    """Set a file parameter to a File already in the project, and save."""
+    from ccp4i2.lib.utils.parameters.set_parameter import after_api_set
+
+    updated_object = set_parameter_container(
+        container,
+        path_with_index,
+        {
+            "project": str(file_record.job.project.uuid).replace("-", ""),
+            "baseName": file_record.name,
+            "relPath": file_record.rel_path,
+            "annotation": file_record.annotation,
+            "dbFileId": str(file_record.uuid).replace("-", ""),
+            "subType": file_record.sub_type,
+            "contentFlag": file_record.content,
+        },
+    )
+    note = after_api_set(updated_object)
+    save_params_for_job(the_job_plugin=plugin, the_job=job)
+    out = {"updated_item": json.loads(json.dumps(updated_object, cls=CCP4i2JsonEncoder))}
+    if note:
+        out["note"] = note
+    return out
 
 
 def download_file(job: models.Job, the_file, initial_download_project_folder: str):

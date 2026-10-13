@@ -10,9 +10,19 @@ import logging
 from xml.etree import ElementTree as ET
 from ccp4i2.db import models
 from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.files.import_recovery import report_missing_imports
 from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
 
 logger = logging.getLogger(__name__)
+
+
+def _with_missing_imports(plugin, error):
+    """Say so when an input's imported copy has been deleted from the project,
+    and whether it can be put back (see import_recovery). The core validity()
+    cannot ask: it knows nothing of the database."""
+    report_missing_imports(
+        plugin.container, error, getattr(plugin, "TASKNAME", type(plugin).__name__))
+    return error
 
 
 def validate_job(job: models.Job) -> Result[ET.Element]:
@@ -61,7 +71,7 @@ def validate_job(job: models.Job) -> Result[ET.Element]:
 
         # Use CPluginScript.validity_as_xml() for comprehensive validation
         # This includes container validation AND input file checks
-        error_tree = plugin.validity_as_xml()
+        error_tree = plugin._error_report_to_xml(_with_missing_imports(plugin, plugin.validity()))
 
         # Count errors for logging
         error_reports = error_tree.findall('.//errorReport')
@@ -136,7 +146,8 @@ def validate_job_run_time(job: models.Job) -> Result[ET.Element]:
     plugin = plugin_result.data
 
     try:
-        error_tree = plugin.runTimeValidity_as_xml()
+        error_tree = plugin._error_report_to_xml(
+            _with_missing_imports(plugin, plugin.runTimeValidity()))
 
         error_reports = error_tree.findall('.//errorReport')
         logger.info(

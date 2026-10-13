@@ -587,8 +587,14 @@ class AsyncDatabaseHandler:
                 # Create FileImport record
                 models.FileImport.objects.create(
                     file=file_obj,
-                    name=str(source_path),
+                    # Absolute, so a copy deleted from CCP4_IMPORTED_FILES can
+                    # be put back from it (see import_recovery); i2run is often
+                    # given a path relative to wherever it was started.
+                    name=str(Path(source_path).resolve()),
                     checksum=checksum or "",
+                    # A straight copy, so the source and the import are the
+                    # same bytes, and an upload of them later is a duplicate.
+                    source_checksum=checksum or "",
                     last_modified=timezone.now(),
                 )
 

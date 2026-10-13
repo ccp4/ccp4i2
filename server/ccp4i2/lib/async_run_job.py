@@ -71,6 +71,13 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         # Update job status to RUNNING
         await db_handler.update_job_status(job.uuid, models.Job.Status.RUNNING)
 
+        # An input whose copy in CCP4_IMPORTED_FILES has been deleted by hand:
+        # put it back from where it was imported from, if that still holds the
+        # same bytes. What cannot be put back is logged here and reported by
+        # validation; the program that reads it then fails as it would have.
+        from .utils.files.import_recovery import restore_missing_imports
+        await sync_to_async(restore_missing_imports)(plugin.container)
+
         # Run validity() to allow plugins to adjust qualifiers
         # This is critical for pipelines like servalcat_pipe which set allowUndefined=True
         # on embedded wrappers (e.g., metalCoordWrapper.inputData.XYZIN)
