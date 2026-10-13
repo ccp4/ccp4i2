@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogTitle,
   LinearProgress,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -22,8 +23,8 @@ import {
   CheckCircle as CheckIcon,
   Error as ErrorIcon,
   Download as DownloadIcon,
-  Science as ScienceIcon,
 } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { apiFetch } from "../../api-fetch";
 
@@ -47,6 +48,8 @@ interface PanddaExportDialogProps {
   onClose: () => void;
   campaignId: number;
   campaignName: string;
+  /** The campaign's parent project, where a PanDDA run is configured. */
+  parentProject?: { id: number; name: string };
 }
 
 /**
@@ -61,7 +64,9 @@ export function PanddaExportDialog({
   onClose,
   campaignId,
   campaignName,
+  parentProject,
 }: PanddaExportDialogProps) {
+  const router = useRouter();
   const [exporting, setExporting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -116,16 +121,44 @@ export function PanddaExportDialog({
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle>
         <Stack direction="row" spacing={1} alignItems="center">
-          <ScienceIcon color="primary" />
-          <Typography variant="h6">Export for PANDDA</Typography>
+          <DownloadIcon color="primary" />
+          <Typography variant="h6">Export for PanDDA</Typography>
         </Stack>
       </DialogTitle>
       <DialogContent>
         <Stack spacing={2}>
           <Typography variant="body2" color="text.secondary">
             Export final.pdb, final.mtz, and dictionary files from finished
-            Dimple jobs for use with PANDDA (Pan-Dataset Density Analysis).
+            Dimple jobs, to run PanDDA (Pan-Dataset Density Analysis)
+            elsewhere.
           </Typography>
+
+          {/* Information, not a shortcut: a PanDDA run is hours of compute
+              that later results key off, so it stays a job somebody
+              configures and checks before running. */}
+          <Alert severity="info">
+            To run PanDDA in CCP4i2 instead, configure a{" "}
+            <strong>PanDDA over a set of datasets</strong> job in the
+            campaign&apos;s parent project
+            {parentProject ? (
+              <>
+                {" "}(
+                <Link
+                  component="button"
+                  variant="body2"
+                  sx={{ verticalAlign: "baseline" }}
+                  onClick={() => {
+                    onClose();
+                    router.push(`/ccp4i2/project/${parentProject.id}`);
+                  }}
+                >
+                  {parentProject.name}
+                </Link>
+                )
+              </>
+            ) : null}{" "}
+            and use <strong>Fill from campaign</strong> to list the datasets.
+          </Alert>
 
           {isLoading && (
             <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>

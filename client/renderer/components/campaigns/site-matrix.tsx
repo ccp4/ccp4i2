@@ -22,6 +22,7 @@ import {
   siteCellTooltip,
   siteCellUrl,
   verdictColourKey,
+  verdictGlyph,
 } from "../../lib/site-matrix";
 
 /** Width of a site column, in px. Narrow, because there may be 30 or more. */
@@ -45,11 +46,14 @@ function VerdictSwatch({
   verdict: SiteVerdict | null;
 }) {
   const key = verdictColourKey(verdict);
+  const glyph = verdictGlyph(verdict);
   return (
     <Box
       data-testid="site-box"
       data-kind={kind}
       data-colour={key}
+      // Decorative: the cell's aria-label already says the verdict in words.
+      aria-hidden
       sx={(theme) => {
         const colour = paletteColour(theme, key);
         return {
@@ -59,9 +63,24 @@ function VerdictSwatch({
           borderRadius: "3px",
           border: `2px solid ${colour}`,
           bgcolor: kind === "filled" ? colour : "transparent",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          // On a fill, the palette's own text colour for it (white on green
+          // and red, dark on amber); on an outline, the verdict colour.
+          color:
+            kind === "filled" && key !== "grey"
+              ? theme.palette[key].contrastText
+              : colour,
+          fontSize: 11,
+          fontWeight: 700,
+          lineHeight: 1,
+          userSelect: "none",
         };
       }}
-    />
+    >
+      {glyph}
+    </Box>
   );
 }
 
@@ -84,7 +103,7 @@ export function SiteMatrixLegend() {
         <Typography variant="caption">Verdict, no event</Typography>
       </Stack>
       <Typography variant="caption" color="text.secondary">
-        Colour is the verdict:
+        Colour and mark are the verdict:
       </Typography>
       {VERDICT_LEGEND.map(({ verdict, label }) => (
         <Stack

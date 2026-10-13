@@ -22,6 +22,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Theme,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -73,7 +74,12 @@ interface VirtualizedMemberProjectsTableProps {
   onRefresh: () => void;
   onDelete: (project: MemberProjectWithSummary) => void;
   onProjectClick: (project: MemberProjectWithSummary) => void;
-  /** Maximum height of the table container (default: 500) */
+  /**
+   * A maximum height for the table's scroll box. Left out, the table fills
+   * the height its parent gives it, which is what keeps the header in view:
+   * the header sticks within this box, so the box must be the only thing
+   * that scrolls (see the campaign page).
+   */
   maxHeight?: number | string;
   /**
    * The campaign's sites. With them, and a server that sends per-site cells,
@@ -98,6 +104,69 @@ const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
 const JOBS_COLLAPSED_KEY = "campaign-jobs-column-collapsed";
 /** The folded Jobs column: a count and the unfold button. */
 const JOBS_COLLAPSED_WIDTH = 72;
+/** Width of the Actions column, and so where the sticky name column starts. */
+const ACTIONS_COLUMN_WIDTH = 60;
+
+/**
+ * A viewport too short for sticky headers to pay their way: a phone held
+ * landscape. The site names are written upwards and the header is ~120 px
+ * tall, so pinning it there would leave a sliver for the rows.
+ */
+export const HEIGHT_CONSTRAINED = "@media (max-height: 480px)";
+/** Too narrow to keep the name column pinned while the sites scroll past. */
+const WIDTH_CONSTRAINED = "@media (max-width: 600px)";
+
+/**
+ * The header row sticks to the top of the table's scroll box.
+ *
+ * Done here rather than with MUI's `stickyHeader`, because that never reaches
+ * the cells in this app: the theme gives MuiTableCell a default `variant` of
+ * "body" (theme/variants.ts), which overrides the "head" a cell would take
+ * from TableHead, and MUI only makes head cells sticky.
+ *
+ * `top: auto` rather than `position: static` where the viewport is too short:
+ * the cells stay sticky, so the pinned ones still hold their column, but no
+ * longer stick vertically.
+ */
+const STICKY_HEAD_SX = {
+  "& th": {
+    position: "sticky",
+    top: 0,
+    zIndex: 2,
+    bgcolor: "background.paper",
+    [HEIGHT_CONSTRAINED]: { top: "auto" },
+  },
+} as const;
+
+/**
+ * The Actions and Project Name columns stay put while a wide matrix scrolls
+ * sideways, so a box is always readable against its dataset as well as its
+ * site. A pinned cell needs its own background, or the cells scrolling under
+ * it show through; the row's hover tint is layered back on as an image.
+ */
+function pinnedColumnSx(left: number, header = false) {
+  if (header) {
+    return {
+      left,
+      // Above the other header cells, which scroll under it at the corner.
+      // Doubled to outrank STICKY_HEAD_SX's selector.
+      "&&": { zIndex: 3 },
+      // Too narrow: not pinned, but still part of the sticky header row.
+      [WIDTH_CONSTRAINED]: { left: "auto" },
+    } as const;
+  }
+  return {
+    position: "sticky",
+    left,
+    zIndex: 1,
+    bgcolor: "background.paper",
+    ".MuiTableRow-hover:hover &": {
+      backgroundImage: (theme: Theme) =>
+        `linear-gradient(${theme.palette.action.hover}, ${theme.palette.action.hover})`,
+    },
+    [WIDTH_CONSTRAINED]: { position: "static" },
+  } as const;
+}
 
 export function VirtualizedMemberProjectsTable({
   projects,
@@ -108,7 +177,7 @@ export function VirtualizedMemberProjectsTable({
   onRefresh,
   onDelete,
   onProjectClick,
-  maxHeight = "max(420px, calc(100vh - 320px))",
+  maxHeight,
   sites,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -190,7 +259,14 @@ export function VirtualizedMemberProjectsTable({
   }
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+      }}
+    >
       {/* First-time hint banner */}
       <Collapse in={showHint}>
         <Alert
@@ -218,7 +294,7 @@ export function VirtualizedMemberProjectsTable({
       <TableContainer
       ref={parentRef}
       sx={{
-        maxHeight,
+        ...(maxHeight !== undefined ? { maxHeight } : { flex: 1, minHeight: 0 }),
         overflow: "auto",
       }}
     >
@@ -236,10 +312,17 @@ export function VirtualizedMemberProjectsTable({
             : undefined,
         }}
       >
-        <TableHead>
+        <TableHead sx={STICKY_HEAD_SX}>
           <TableRow>
-            <TableCell width={60}>Actions</TableCell>
-            <TableCell>Project Name</TableCell>
+            <TableCell
+              width={ACTIONS_COLUMN_WIDTH}
+              sx={pinnedColumnSx(0, true)}
+            >
+              Actions
+            </TableCell>
+            <TableCell sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH, true)}>
+              Project Name
+            </TableCell>
             <TableCell width={120}>Ligand</TableCell>
             <TableCell align="center" width={96}>Resolution</TableCell>
             <TableCell align="center" width={96}>R-Factor</TableCell>
@@ -533,7 +616,10 @@ function MemberProjectRow({
       onClick={onProjectClick}
     >
       {/* Actions menu */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
+      <TableCell
+        onClick={(e) => e.stopPropagation()}
+        sx={pinnedColumnSx(0)}
+      >
         <IconButton size="small" onClick={(e) => setMenuAnchor(e.currentTarget)}>
           <MoreIcon fontSize="small" />
         </IconButton>
@@ -563,7 +649,7 @@ function MemberProjectRow({
       </TableCell>
 
       {/* Project name with tags */}
-      <TableCell>
+      <TableCell sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH)}>
         <Stack spacing={0.5}>
           <Typography variant="body2">{project.name}</Typography>
           <ProjectTagChips tags={project.tags} maxVisible={4} size="small" hideEmpty />

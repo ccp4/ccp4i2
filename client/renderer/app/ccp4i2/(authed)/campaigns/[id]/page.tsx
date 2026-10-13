@@ -54,6 +54,7 @@ import {
   PanddaExportDialog,
   VirtualizedMemberProjectsTable,
 } from "@/components/campaigns";
+import { HEIGHT_CONSTRAINED } from "@/components/campaigns/virtualized-member-projects-table";
 import { useCampaignsApi, useSmilesLookup } from "@/lib/campaigns-api";
 import { DeleteProjectFilesOption } from "@/components/delete-project-files-option";
 import { doDownload } from "@/api";
@@ -84,6 +85,18 @@ function getFileDisplayLabel(file: CCP4File): string {
 // finished jobs carry a model to show. The server's rule (latest refinement,
 // else DIMPLE) is lib/campaign_matrix.py choose_current_model.
 const REFINEMENT_TASK_NAMES = ["refmac", "i2Refmac", "i2Dimple", "dimple"];
+
+/**
+ * The least height the member table's panel keeps when the campaign details
+ * are unfolded: its toolbar, search box, legend and site header, and a
+ * handful of rows. Below that the page scrolls rather than the table shrink.
+ */
+const MEMBER_TABLE_MIN_HEIGHT = 420;
+
+const PANDDA_EXPORT_HINT =
+  "Download the datasets as a ZIP, to run PanDDA elsewhere. To run PanDDA " +
+  "in CCP4i2, configure a \u201cPanDDA over a set of datasets\u201d job in " +
+  "the campaign's parent project.";
 
 interface CampaignDetailPageProps {
   params: Promise<{ id: string }>;
@@ -230,11 +243,28 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
   }
 
   return (
-    <Box sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
+    <Box
+      sx={{
+        flex: 1,
+        minHeight: 0,
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       {/* The full window width, not the "lg" cap: a campaign with a dozen
-          annotated sites needs a column for each beside the dataset's own. */}
-      <Container maxWidth={false} sx={{ my: 3 }}>
-        <Stack spacing={3}>
+          annotated sites needs a column for each beside the dataset's own.
+
+          The page fills the window and the member table takes whatever height
+          is left, so the table is the one thing that scrolls and its header
+          (the site names) stays in view. Only when the campaign details are
+          unfolded on a short window does the page scroll as well, because
+          the table keeps a usable minimum. */}
+      <Container
+        maxWidth={false}
+        sx={{ py: 3, flex: "1 0 auto", display: "flex", flexDirection: "column" }}
+      >
+        <Stack spacing={3} sx={{ flex: 1, minHeight: 0 }}>
           {/* Header with actions and collapsible campaign info */}
           <Paper sx={{ p: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
@@ -445,7 +475,18 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
           </Paper>
 
           {/* Member Projects Section */}
-          <Paper sx={{ p: 2 }}>
+          <Paper
+            sx={{
+              p: 2,
+              flex: "1 1 0",
+              minHeight: MEMBER_TABLE_MIN_HEIGHT,
+              display: "flex",
+              flexDirection: "column",
+              // A phone held landscape: the header no longer sticks (see the
+              // table), and the table takes the whole screen once scrolled to.
+              [HEIGHT_CONSTRAINED]: { minHeight: "calc(100dvh - 32px)" },
+            }}
+          >
             <Stack
               direction="row"
               justifyContent="space-between"
@@ -479,14 +520,21 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 >
                   Batch Import
                 </Button>
-                <Button
-                  variant="outlined"
-                  startIcon={<ScienceIcon />}
-                  onClick={() => setShowPanddaExport(true)}
-                  disabled={!memberProjects?.length}
-                >
-                  PANDDA
-                </Button>
+                {/* An export, not a run: PanDDA runs are configured, on
+                    purpose, as a job in the parent project. The tooltip
+                    says so, and so does the dialog. */}
+                <Tooltip title={PANDDA_EXPORT_HINT}>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      startIcon={<DownloadIcon />}
+                      onClick={() => setShowPanddaExport(true)}
+                      disabled={!memberProjects?.length}
+                    >
+                      Export for PanDDA
+                    </Button>
+                  </span>
+                </Tooltip>
                 <Button
                   variant="outlined"
                   startIcon={<PreviewIcon />}
@@ -636,6 +684,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
         onClose={() => setShowPanddaExport(false)}
         campaignId={campaignId}
         campaignName={campaign.name}
+        parentProject={parentProject ? { id: parentProject.id, name: parentProject.name } : undefined}
       />
 
       {/* Edit File Annotation Dialog */}
