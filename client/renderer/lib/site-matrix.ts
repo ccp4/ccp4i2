@@ -167,6 +167,15 @@ export function eventDescription(event: NonNullable<SiteCell["event"]>): string 
 export const NO_MODEL_JOB_NOTE = "No refinement or dimple run yet";
 
 /**
+ * A reviewer as a tooltip line names them: "alice" from "alice@example.org",
+ * and "unattributed" for a verdict recorded before reviewers were tracked.
+ */
+export function reviewerName(evaluator: string): string {
+  if (!evaluator) return "unattributed";
+  return evaluator.split("@")[0] || evaluator;
+}
+
+/**
  * The tooltip for a box, as lines. For a mismatch it is the reason only; for
  * a blank cell it is still useful (the site name, "not evaluated") because a
  * hover over an empty column is how somebody checks which site it is.
@@ -178,7 +187,18 @@ export function siteCellTooltip(
   hasModelJob: boolean
 ): string[] {
   if (frameMismatch) return [siteName, frameMismatch];
-  const lines = [siteName, `Verdict: ${verdictWords(cell?.verdict)}`];
+  const lines = [
+    siteName,
+    cell?.state === "to_reconcile"
+      ? "Verdict: reviewers disagree"
+      : `Verdict: ${verdictWords(cell?.verdict)}`,
+  ];
+  // Who said what, once there is more than one verdict here.
+  if ((cell?.verdicts?.length ?? 0) > 1) {
+    for (const { evaluator, verdict } of cell!.verdicts!) {
+      lines.push(`  ${reviewerName(evaluator)}: ${verdictWords(verdict)}`);
+    }
+  }
   if (cell?.event) {
     lines.push(`PanDDA ${eventDescription(cell.event)}`);
   } else {
@@ -212,16 +232,25 @@ export function siteCellUrl(
 }
 
 /**
- * How many of the campaign's sites have a verdict in this dataset, counted
+ * How many of the campaign's sites have been scored in this dataset, counted
  * over the sites shown, so the count and the boxes beside it always agree.
+ *
+ * `done` is the viewer's own scoring, which is what a rescorer needs to see
+ * their progress (docs/site-verdict-reconciliation.md, decision 4); `anyone`
+ * counts every reviewer. Against an older server, which does not say whose a
+ * verdict is, the two are the same.
  */
 export function evaluatedCount(
   project: MemberProjectWithSummary,
   sites: CampaignSite[]
-): { done: number; total: number; findings: number } {
-  const verdicts = sites.map((site) => cellFor(project, site)?.verdict);
+): { done: number; anyone: number; total: number; findings: number } {
+  const cells = sites.map((site) => cellFor(project, site));
+  const verdicts = cells.map((cell) => cell?.verdict);
+  const anyone = verdicts.filter(Boolean).length;
+  const knowsMine = cells.some((cell) => cell !== null && cell.mine !== undefined);
   return {
-    done: verdicts.filter(Boolean).length,
+    done: knowsMine ? cells.filter((cell) => cell?.mine).length : anyone,
+    anyone,
     total: sites.length,
     /** Hits and uncertains: the verdicts that are something found. */
     findings: verdicts.filter((v) => v === "hit" || v === "unclear").length,

@@ -354,14 +354,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     [molecules, visibleRepresentations, onRepresentationsChange]
   );
 
-  // What has been recorded at each site for the selected dataset. Absent
-  // means nobody has looked there; "empty" means somebody looked and found
-  // nothing. The control has to show those differently or it will write the
-  // wrong one back.
+  // What *you* have recorded at each site for the selected dataset. The
+  // server sends only the viewer's own verdicts, so a rescore is not anchored
+  // by somebody else's (blind scoring). Absent means you have not looked
+  // there; "empty" means you looked and found nothing. The control has to
+  // show those differently or it will write the wrong one back.
   const verdictBySite = useMemo(
     () => new Map((evaluations ?? []).map((e) => [e.site_id, e.verdict])),
     [evaluations]
   );
+
 
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
@@ -1196,16 +1198,22 @@ const SiteVerdictControl: React.FC<{
   onClear?: () => Promise<void>;
 }> = ({ verdict, onSet, onClear }) => {
   const [busy, setBusy] = useState(false);
+  // Why the last click failed, as the server says it. Shown until the
+  // pointer leaves, so a failure is never silent.
+  const [refusal, setRefusal] = useState<string | null>(null);
 
   const handle = useCallback(
     async (choice: SiteVerdict) => {
       setBusy(true);
+      setRefusal(null);
       try {
         if (choice === verdict && onClear) {
           await onClear();
         } else {
           await onSet(choice);
         }
+      } catch (err) {
+        setRefusal(err instanceof Error ? err.message : String(err));
       } finally {
         setBusy(false);
       }
@@ -1214,32 +1222,39 @@ const SiteVerdictControl: React.FC<{
   );
 
   return (
-    <>
-      {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
-        const active = verdict === choice;
-        return (
-          <Tooltip
-            key={choice}
-            title={active ? `${label} — click to withdraw` : label}
-          >
-            <span>
-              <IconButton
-                edge="end"
-                size="small"
-                disabled={busy}
-                onClick={() => handle(choice)}
-                color={active && colour !== "standard" ? colour : "default"}
-                sx={{
-                  opacity: active ? 1 : 0.35,
-                  p: 0.25,
-                }}
-              >
-                <Icon fontSize="small" />
-              </IconButton>
-            </span>
-          </Tooltip>
-        );
-      })}
-    </>
+    <Tooltip
+      open={Boolean(refusal)}
+      title={refusal ?? ""}
+      onClose={() => setRefusal(null)}
+      disableHoverListener
+    >
+      <span onMouseLeave={() => setRefusal(null)}>
+        {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
+          const active = verdict === choice;
+          return (
+            <Tooltip
+              key={choice}
+              title={active ? `${label} — click to withdraw` : label}
+            >
+              <span>
+                <IconButton
+                  edge="end"
+                  size="small"
+                  disabled={busy}
+                  onClick={() => handle(choice)}
+                  color={active && colour !== "standard" ? colour : "default"}
+                  sx={{
+                    opacity: active ? 1 : 0.35,
+                    p: 0.25,
+                  }}
+                >
+                  <Icon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+          );
+        })}
+      </span>
+    </Tooltip>
   );
 };

@@ -50,9 +50,10 @@ def _project(name):
     return models.Project.objects.get(name=name)
 
 
-def _evaluate(site, project_name, verdict):
+def _evaluate(site, project_name, verdict, evaluator=""):
     models.SiteEvaluation.objects.create(
-        project=_project(project_name), site=site, verdict=verdict
+        project=_project(project_name), site=site, verdict=verdict,
+        evaluator=evaluator,
     )
 
 
@@ -200,6 +201,26 @@ def test_include_unclear_adds_them_in_a_muted_colour(campaign):
     assert sticks["frag_drg"]["representations"][0]["colour"] != campaign_scene.UNCLEAR_COLOUR
     assert with_unclear["stats"]["hits_drawn"] == 1
     assert with_unclear["stats"]["unclear_drawn"] == 1
+    drawn = {d["project"]: d["verdict"] for d in with_unclear["stats"]["drawn"]}
+    assert drawn == {"frag_drg": "hit", "frag_lig": "unclear"}
+
+
+def test_membership_is_what_the_cell_says_across_reviewers(campaign):
+    """One entry per dataset, from its cell's effective verdict
+    (lib/site_verdicts.py): two reviewers' hits draw the ligand once, and
+    reviewers who disagree make the cell unclear, drawn only on request."""
+    site = _site(campaign)
+    _evaluate(site, "frag_drg", Verdict.HIT, "alice@example.org")
+    _evaluate(site, "frag_drg", Verdict.HIT, "bob@example.org")
+    _evaluate(site, "frag_lig", Verdict.HIT, "alice@example.org")
+    _evaluate(site, "frag_lig", Verdict.EMPTY, "bob@example.org")
+
+    without = _get(campaign, site).json()
+    assert [e["file"] for e in _sticks(without["scene"])] == ["frag_drg"]
+    assert without["stats"]["hits_claimed"] == 1
+    assert without["stats"]["unclear_verdicts"] == 1
+
+    with_unclear = _get(campaign, site, "?include=unclear").json()
     drawn = {d["project"]: d["verdict"] for d in with_unclear["stats"]["drawn"]}
     assert drawn == {"frag_drg": "hit", "frag_lig": "unclear"}
 
