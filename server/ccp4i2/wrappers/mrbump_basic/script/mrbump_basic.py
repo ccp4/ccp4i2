@@ -31,7 +31,8 @@ class mrbump_basic(CPluginScript):
         if not os.path.exists(self.seqFile) or not open(self.seqFile).read().strip():
             self.appendErrorReport(201, 'The AU contents file (ASUIN) gave no sequence: it holds '
                                    'none, or is not an AU contents file. Make one with '
-                                   'ProvideAsuContents.')
+                                   'ProvideAsuContents.',
+                                   severity=CCP4ErrorHandling.SEVERITY_ERROR)
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
     

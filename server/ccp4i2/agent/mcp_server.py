@@ -593,6 +593,10 @@ def set_file(project_id: int, job: str | int, path: str, reference: str) -> dict
     job_id = _jid(project_id, job)
     job = _job(job_id)
     path = _resolve_path(job_id, path, files=True)
+    if "/" in reference or "\\" in reference or Path(reference).expanduser().exists():
+        # gpt-oss gave set_file a file on disk, again and again (2026-10-13)
+        raise ApiError(f"{reference!r} is a file on this computer, not one in the project: "
+                       f"upload_file(job, {path!r}, local_path=...) imports it.")
     resolved = _get(f"projects/{job['project']}/resolve_fileuse", fileuse=reference)
     resolved.pop("fullPath", None)  # a path the client is not to hand back
     _post(f"jobs/{job_id}/set_parameter", {"object_path": path, "value": resolved})
