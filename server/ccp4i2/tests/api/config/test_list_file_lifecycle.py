@@ -24,6 +24,28 @@ class TestListFileLifecycle(APITestBase):
 
     task_name = "aimless_pipe"
 
+    def _append_row(self, name="UNMERGEDFILES"):
+        """Add a row after those already there. The base class's
+        add_list_item sets the whole list to one empty row (right for the
+        first row of a new job, which starts with one), which wipes the
+        rows these tests are about; they passed regardless only while every
+        upload made its own copy of the file, so a copy always survived."""
+        self.set_param(f"inputData.{name}", self._rows(name) + [{}])
+
+    def _rows(self, name="UNMERGEDFILES"):
+        """The list's rows as plain values, which set_param takes back. The
+        container's {_class, _value, _qualifiers} nodes do not round-trip:
+        sent back as they are, every row arrives empty."""
+        def plain(node):
+            if isinstance(node, dict) and "_value" in node:
+                return plain(node["_value"])
+            if isinstance(node, dict):
+                return {key: plain(value) for key, value in node.items()}
+            if isinstance(node, list):
+                return [plain(each) for each in node]
+            return node
+        return plain(self._list_value(name))
+
     def _files_on_disk(self):
         return sorted(p.name for p in
                       (self.get_job_directory().parent.parent / "CCP4_IMPORTED_FILES").glob("*.mtz"))
@@ -62,8 +84,12 @@ class TestListFileLifecycle(APITestBase):
 
         self.add_list_item("inputData.UNMERGEDFILES")
         self.upload_file("inputData.UNMERGEDFILES[0].file", gamma_unmerged_mtz)
-        self.add_list_item("inputData.UNMERGEDFILES")
+        self._append_row()
         self.upload_file("inputData.UNMERGEDFILES[1].file", gamma_unmerged_mtz)
+        # Both rows now hold the one file: the second upload reused the first's.
+        rows = self._list_value()
+        assert rows[0]["_value"]["file"]["_value"]["dbFileId"]["_value"] == \
+            rows[1]["_value"]["file"]["_value"]["dbFileId"]["_value"]
 
         self.upload_file("inputData.UNMERGEDFILES[1].file", mdm2_unmerged_mtz)
 
@@ -83,7 +109,7 @@ class TestListFileLifecycle(APITestBase):
         return node["_value"]
 
     def test_the_reported_sequence_add_add_remove_readd(
-            self, gamma_unmerged_mtz, mdm2_unmerged_mtz):
+            self, gamma_unmerged_mtz, mdm2_unmerged_mtz, demo_data_dir):
         """Job 66 of GammaBySAD, reproduced.
 
         Add gamma, add MDM2, remove a row, add MDM2 back. The gamma row then
@@ -96,10 +122,14 @@ class TestListFileLifecycle(APITestBase):
         self.create_job()
 
         # Three rows, and the middle one goes. That is what makes the records
-        # and the rows disagree: removing the last renumbers nothing.
-        for index, path in enumerate((gamma_unmerged_mtz, mdm2_unmerged_mtz,
-                                      gamma_unmerged_mtz)):
-            self.add_list_item("inputData.UNMERGEDFILES")
+        # and the rows disagree: removing the last renumbers nothing. Three
+        # different files, since an identical one would reuse a record.
+        third = str(demo_data_dir / "gamma" / "HKLOUT_unmerged.mtz")
+        for index, path in enumerate((gamma_unmerged_mtz, mdm2_unmerged_mtz, third)):
+            if index == 0:
+                self.add_list_item("inputData.UNMERGEDFILES")
+            else:
+                self._append_row()
             self.upload_file(f"inputData.UNMERGEDFILES[{index}].file", path)
 
         records = {f.job_param_name: f for f in
@@ -109,7 +139,7 @@ class TestListFileLifecycle(APITestBase):
         survivor_path = last.path
         survivor_uuid = last.uuid
 
-        current = self._list_value()
+        current = self._rows()
         assert len(current) == 3, f"expected three rows, got {len(current)}"
         self.set_param("inputData.UNMERGEDFILES", [current[0], current[2]])
         assert len(self._list_value()) == 2, \
@@ -117,7 +147,7 @@ class TestListFileLifecycle(APITestBase):
 
         # The third row now sits at index 1, while its record still says [2].
         # Adding another row appends at index 2 and uploads into it.
-        self.add_list_item("inputData.UNMERGEDFILES")
+        self._append_row()
         self.upload_file("inputData.UNMERGEDFILES[2].file", mdm2_unmerged_mtz)
 
         gamma_path = survivor_path

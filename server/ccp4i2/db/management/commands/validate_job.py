@@ -48,8 +48,12 @@ class Command(BaseCommand):
 
         if result.success:
             error_tree = result.data
-            errors = error_tree.findall('.//error')
-            warnings = error_tree.findall('.//warning')
+            # The report is errorReport elements graded by <severity>; there
+            # are no <error> or <warning> elements, and looking for them made
+            # every job "pass".
+            reports = error_tree.findall('.//errorReport')
+            errors = [r for r in reports if r.findtext('severity') == 'ERROR']
+            warnings = [r for r in reports if r.findtext('severity') == 'WARNING']
 
             output_path = options.get("output")
             if output_path:
@@ -75,7 +79,7 @@ class Command(BaseCommand):
                             f"✗ Found {len(errors)} validation error(s)"
                         ))
                         for err in errors[:5]:  # Show first 5
-                            msg = err.findtext('message', 'No message')
+                            msg = err.findtext('description', 'No message')
                             self.stdout.write(f"  - {msg}")
                         if len(errors) > 5:
                             self.stdout.write(f"  ... and {len(errors) - 5} more")
@@ -84,6 +88,11 @@ class Command(BaseCommand):
                         self.stdout.write(self.style.WARNING(
                             f"! Found {len(warnings)} warning(s)"
                         ))
+                        for warning in warnings[:5]:
+                            msg = warning.findtext('description', 'No message')
+                            self.stdout.write(f"  - {msg}")
+                        if len(warnings) > 5:
+                            self.stdout.write(f"  ... and {len(warnings) - 5} more")
 
                     if output_path:
                         self.stdout.write(f"\nFull report: {output_path}")
