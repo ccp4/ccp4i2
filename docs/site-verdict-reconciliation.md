@@ -222,18 +222,26 @@ PanDDA's `interesting` is), never in `SiteEvaluation`.
 
 ## Delivery
 
-Three PRs, each useful alone.
+What cannot be recovered later is the verdicts themselves, so storing them
+comes first. Everything else is derived from the stored verdicts and can
+follow.
 
-1. **Attribution (small, first).** The write endpoint sets `evaluator` from
-   `request.user`. No schema change. From the moment it ships, verdicts are
-   attributed, so fewer unattributed ones pile up while the rest is built.
-2. **Model and API.** The migration (uniqueness to
-   `(project, site, evaluator)`, the `SiteResolution` model), the derived
-   state (with unattributed verdicts outranked), the endpoint changes,
-   snapshot export and import, and scene membership on the effective verdict.
-3. **Interface.** The panel's other reviewers' verdicts and the blind-scoring
-   switch, Resolve and Reopen, the matrix's ≠ state, the per-viewer "Eval."
-   count, the To reconcile filter and Next to reconcile.
+1. **Attribution and storage (#815).** The write endpoint sets `evaluator`
+   from `request.user`. The migration makes uniqueness
+   `(project, site, evaluator)`, and the derived state uses `unclear` as the
+   effective verdict of a disagreement. The endpoint changes, snapshot
+   import, and scene membership on the effective verdict are included. The
+   panel lists only the caller's own verdicts, which is blind scoring
+   without the switch. The matrix tooltip lists each reviewer.
+2. **Reconciliation.** The `SiteResolution` model and its endpoints, the
+   *resolved* and *changed since resolved* states, and the resolution in
+   the snapshot.
+3. **Interface.** The panel's other reviewers' verdicts and the
+   blind-scoring switch, Resolve and Reopen, the matrix's ≠ state and
+   matrix blinding, the To reconcile filter and Next to reconcile.
+
+Until 3 lands, the overview matrix shows every cell's effective verdict to
+everyone, so blinding holds in the Moorhen panel only.
 
 ### Tests
 
