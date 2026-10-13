@@ -412,6 +412,33 @@ traps:
     the better data. The derivative is for the phases.
 next:
   - when: outcome == "built"
+    advice: >
+      Keep this structure: experimental phases owe nothing to a model, so
+      its map is free of model bias. Replace it only with a highly
+      relevant model, and only on a fair comparison. Highly relevant:
+      identity and coverage 0.9 or more (mrparse TOP_MODEL_IDENTITY and
+      TOP_MODEL_COVERAGE are fractions; mrbump_basic's SEQID is a
+      percentage) - the proposer's bounds, for an expert to set. Fair:
+      refine both final models in one program (R factors from different
+      programs do not compare), against a free set NEITHER has seen, with
+      the heavy-atom sites in both (an MR model has none; place them in its
+      frame with add_substructure or phaser_EP_LLG; crank2's HypF trap:
+      0.437 against 0.287 from missing Hg alone). Otherwise use the MR model
+      for MR-SAD instead: phaser_ep_phil with PARTIAL_BY MODEL, the placed
+      MR model as XYZIN_PARTIAL, HAND off, and not this job's substructure
+      as XYZIN_HA (its origin may differ); partial mode has not been run in
+      this workspace. An agent (gpt-oss, HypF, 2026-10-13) had a crank2
+      build (R 0.269, 86 residues, a clear hand), found HypF itself by
+      MrBUMP (98.9%) and refined and rebuilt only the MR model, so the two
+      were never compared.
+  - when: outcome == "phased" or outcome == "ambiguous"
+    advice: >
+      If a highly relevant model exists (identity and coverage 0.9 or more,
+      from mrparse), MR-SAD uses it with the anomalous signal: place it
+      (phaser_simple_phil), then phaser_ep_phil with PARTIAL_BY MODEL, the
+      placed model as XYZIN_PARTIAL and HAND off (partial mode has not been
+      run in this workspace). Otherwise build from these phases as below.
+  - when: outcome == "built"
     task: servalcat_pipe
     inputs:
       XYZIN: "shelx[-1].XYZOUT_COMPLETE"

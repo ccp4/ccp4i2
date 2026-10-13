@@ -447,3 +447,52 @@ def test_a_fixed_parts_llg_does_not_place_a_weak_new_model(tmp_path):
 def test_an_unfinished_search_is_not_placed_by_the_ratio(tmp_path):
     verdict = _phaser_job(tmp_path, 5.5, 1244, 2230, 0.465, 0.5, outcome="no definite solution")
     assert verdict["outcome"] != "placed"
+
+
+def _crank2_job(tmp_path, build_r, rfree=None):
+    (tmp_path / "program.xml").write_text(
+        "<crank2><CrankSteps><Step name='comb_phdmmb'>"
+        f"<RFactor>{build_r}</RFactor></Step></CrankSteps></crank2>")
+    performance = f"<RFactor>{build_r}</RFactor>" + (f"<RFree>{rfree}</RFree>" if rfree else "")
+    (tmp_path / "params.xml").write_text(
+        f"<container><outputData><PERFORMANCE>{performance}</PERFORMANCE></outputData></container>")
+    return judgement.judge("crank2", tmp_path)
+
+
+def test_a_crank2_build_without_a_free_r_is_judged_on_its_own_r(tmp_path):
+    # HypF (gpt-oss, 2026-10-13): BUILD_R 0.2686 and no R-free in its
+    # output; it was only "phased", and the agent replaced it with MR
+    verdict = _crank2_job(tmp_path, 0.2686)
+    assert verdict["outcome"] == "built"
+    advice = " ".join(step.get("advice", "") for step in verdict["next"])
+    assert advice.startswith("Keep this structure") or "Keep this structure" in advice
+    assert "a free set NEITHER has seen" in advice and "heavy-atom sites in both" in advice
+    assert "HAND off" in advice
+    # no free set was held out: say so, and how to refine fairly now
+    assert "No free set was used" in advice
+    # the route that needs the free set given does not fire without one
+    assert not any(step.get("task") == "servalcat_pipe" and "crank2[-1].FREERFLAG" in str(step.get("inputs"))
+                   for step in verdict["next"])
+
+
+def test_without_a_free_set_a_weaker_build_is_not_called_built(tmp_path):
+    # Crank2's own 0.32 is tightened to 0.30 when there is no R-free to check it
+    assert _crank2_job(tmp_path, 0.31)["outcome"] == "phased"
+
+
+def test_a_weaker_crank2_build_points_to_mr_sad_when_a_good_model_exists(tmp_path):
+    verdict = _crank2_job(tmp_path, 0.40)
+    assert verdict["outcome"] == "phased"
+    assert "XYZIN_PARTIAL" in " ".join(step.get("advice", "") for step in verdict["next"])
+
+
+def test_mr_tasks_say_not_to_replace_an_experimental_structure_lightly():
+    for task in ("mrbump_basic", "phaser_simple_phil", "phaser_pipeline_phil"):
+        entries = [e for e in judgement.load(task)["not_when"] if "free of model bias" in e["text"]]
+        assert entries, task
+        assert len(entries[0]["text"]) <= 400  # describe_task shows 400 characters
+    # mrbump_basic sends the agent to look at the models first
+    entry = next(e for e in judgement.load("mrbump_basic")["not_when"] if "free of model bias" in e["text"])
+    assert entry["instead"] == "mrparse"
+    # mrparse places nothing and adds no bias: no such entry
+    assert not any("free of model bias" in e["text"] for e in judgement.load("mrparse")["not_when"])

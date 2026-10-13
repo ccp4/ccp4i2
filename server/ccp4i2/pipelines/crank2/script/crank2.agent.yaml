@@ -346,6 +346,14 @@ results:
       "Definition of a free set of reflections" when Crank2 made its own
       free set (FREE "new", the default): GammaXe 6 and Haiku 4. Absent
       when an existing set was used (Sonnet 4).
+  FREERFLAG_GIVEN:
+    file: params.xml
+    xpath: ".//inputData/FREERFLAG/baseName"
+    type: str
+    optional: true     # absent when no free-R set was given
+    meaning: >
+      The free-R set given, if any. FREE "existing" without one holds out
+      nothing (validation error 205 since 2026-10-13).
   FREE_SET:
     file: params.xml
     xpath: ".//inputData/FREE"
@@ -418,6 +426,19 @@ verdict:
       R-free cross-check (0.35) is ours, from these runs only (one data set,
       1.8 A); the help page's "under 40%" (crank2.rst lines 322-325,
       335-337) does not separate them.
+  - when: RFREE == null and BUILD_R < 0.30
+    outcome: built
+    basis: >
+      No free set was held out, so no R-free (params.xml PERFORMANCE has
+      none): FREE "no", or FREE "existing" with no FREERFLAG, where
+      SetFree() passes nothing and REFMAC switches free R off (HypF,
+      gpt-oss 2026-10-13: job_6/ref/refmac/REFMAC5.log lines 347-351; now
+      validation error 205). Without the R-free cross-check the cut is
+      tightened from Crank2's own 0.32 to 0.30, as shelx tightens its
+      no-free-set R-work cut. HypF: BUILD_R 0.2686, hand 2 with "good
+      discrimination", 86 of 91 residues, Crank2's score 0.967 - judged
+      only "phased" before this rule. A stopped or crashed run has no
+      BUILD_R and stays out.
   - when: BUILD_R < 0.467 or (BUILD_R == null and RWORK < 0.467)
     outcome: phased
     basis: >
@@ -560,7 +581,42 @@ traps:
     "existing"). The native has no heavy atoms to model, and is usually
     the better data. The derivative is for the phases.
 next:
-  - when: outcome == "built" and FREE_SET == "existing"
+  - when: outcome == "built"
+    advice: >
+      Keep this structure: experimental phases owe nothing to a model, so
+      its map is free of model bias. Replace it only with a highly
+      relevant model, and only on a fair comparison. Highly relevant:
+      identity and coverage 0.9 or more (mrparse TOP_MODEL_IDENTITY and
+      TOP_MODEL_COVERAGE are fractions; mrbump_basic's SEQID is a
+      percentage) - the proposer's bounds, for an expert to set. Fair:
+      refine both final models in one program (R factors from different
+      programs do not compare), against a free set NEITHER has seen, with
+      the heavy-atom sites in both (an MR model has none; place them in its
+      frame with add_substructure or phaser_EP_LLG; crank2's HypF trap:
+      0.437 against 0.287 from missing Hg alone). Otherwise use the MR model
+      for MR-SAD instead: phaser_ep_phil with PARTIAL_BY MODEL, the placed
+      MR model as XYZIN_PARTIAL, HAND off, and not this job's substructure
+      as XYZIN_HA (its origin may differ); partial mode has not been run in
+      this workspace. An agent (gpt-oss, HypF, 2026-10-13) had this job's
+      build (R 0.269, 86 residues, a clear hand), found HypF itself by
+      MrBUMP (98.9%) and refined and rebuilt only the MR model, so the two
+      were never compared.
+  - when: outcome == "phased" or outcome == "ambiguous"
+    advice: >
+      If a highly relevant model exists (identity and coverage 0.9 or more,
+      from mrparse), MR-SAD uses it with the anomalous signal: place it
+      (phaser_simple_phil), then phaser_ep_phil with PARTIAL_BY MODEL, the
+      placed model as XYZIN_PARTIAL and HAND off (partial mode has not been
+      run in this workspace). Otherwise build from these phases as below.
+  - when: outcome == "built" and RFREE == null
+    advice: >
+      No free set was used (FREE "no", or "existing" without a set, which
+      validation now refuses), so this build has no R-free. Refine it with
+      the project's free set (FREEROUT of the import or data reduction),
+      knowing the model has already seen those reflections, so its first
+      R-free is optimistic; or run crank2 again with FREE "existing" and
+      that set.
+  - when: outcome == "built" and FREE_SET == "existing" and FREERFLAG_GIVEN != null
     task: servalcat_pipe
     inputs:
       XYZIN: "crank2[-1].XYZOUT_COMPLETE"
