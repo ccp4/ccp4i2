@@ -90,6 +90,8 @@ def test_a_project_file_of_the_wrong_kind_is_refused(client, job):
     assert r.status_code == 400, r.content
     error = r.json()["error"]
     assert "application/CCP4-asu-content" in error and "beta.seq" in error and "application/CCP4-seq" in error
+    # An uploaded file is a raw import: the refusal says how to bring it in as this kind
+    assert "upload_file it into this input" in error
 
     # The same file where a sequence file goes is taken
     other = _new(client, job.project, "ProvideSequence")

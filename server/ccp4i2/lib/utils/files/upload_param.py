@@ -708,15 +708,16 @@ def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
             job_param_name,
         )
 
-    assert isinstance(
-        param_object,
-        (
-            CCP4File.CDataFile,
-            CDataFile,
-            CCP4XtalData.CMtzDataFile,
-            CMtzDataFile,
-        ),
-    ), f"param_object must be CDataFile, got {type(param_object)}"
+    if not isinstance(param_object, (CCP4File.CDataFile, CDataFile,
+                                     CCP4XtalData.CMtzDataFile, CMtzDataFile)):
+        # An agent uploaded to UNMERGEDFILES[0], the item, not its file
+        # (2026-10-13): name the file inside it rather than the class
+        inner = [c.objectName() for c in (param_object.children() if hasattr(param_object, "children") else [])
+                 if isinstance(c, (CCP4File.CDataFile, CDataFile))]
+        if inner:
+            raise ValueError(f"{object_path} is a {type(param_object).__name__}, not a file: upload into "
+                             + " or ".join(f"{object_path}.{name}" for name in inner))
+        raise ValueError(f"{object_path} is a {type(param_object).__name__}, not a file input")
     assert len(files) == 1, f"Expected 1 file, got {len(files)}"
 
     # Check MRO for debugging
@@ -1031,6 +1032,26 @@ def download_file(job: models.Job, the_file, initial_download_project_folder: st
     return dest
 
 
+def _unmerged_explained(handler):
+    """gemmi refuses unmerged data where merged are expected with
+    'Mtz::ensure_asu() is for merged MTZ only', which told an agent nothing
+    (2026-10-13). Say what the data are and what to do."""
+    import functools
+
+    @functools.wraps(handler)
+    def wrapped(*args, **kwargs):
+        try:
+            return handler(*args, **kwargs)
+        except RuntimeError as err:
+            if "is for merged MTZ only" in str(err):
+                raise ValueError("These are unmerged reflection data (one row per observation), and "
+                                 "this input takes merged data: reduce them with aimless_pipe first "
+                                 "(its UNMERGEDFILES[0].file), then use its output here.") from err
+            raise
+    return wrapped
+
+
+@_unmerged_explained
 def handle_reflections(
     job: models.Job,
     param_object: CMtzDataFile,
@@ -1109,6 +1130,7 @@ def handle_reflections(
     return result
 
 
+@_unmerged_explained
 def handle_reflections_multi(
     job: models.Job,
     param_object: CMtzDataFile,

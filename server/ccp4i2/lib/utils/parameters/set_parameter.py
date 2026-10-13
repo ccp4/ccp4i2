@@ -201,8 +201,14 @@ def file_type_errors(target, value, path):
         if the_file.type.name in allowed or _is_a(the_file.type.name, target):
             return []
         made = f"job {the_file.job.number}'s {the_file.job_param_name}" if the_file.job else "an imported file"
-        return [f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
-                f"is {the_file.type.name}"]
+        message = (f"{path} takes {' or '.join(allowed)} files; {the_file.name} ({made}) "
+                   f"is {the_file.type.name}")
+        if the_file.directory == models.File.Directory.IMPORT_DIR:
+            # Imported as one kind, it is that kind; an agent then concluded the
+            # file could never be used here (gamma SAD, 2026-10-13)
+            message += ("; to use the original file here, upload_file it into this input, "
+                        "which imports it as the kind this input takes")
+        return [message]
     if isinstance(target, (CList, CCP4Data.CList)) and isinstance(value, list):
         make = getattr(target, "makeItem", None)
         if make is None:
