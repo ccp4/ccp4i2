@@ -117,27 +117,53 @@ export const HEIGHT_CONSTRAINED = "@media (max-height: 480px)";
 const WIDTH_CONSTRAINED = "@media (max-width: 600px)";
 
 /**
+ * The header row sticks to the top of the table's scroll box.
+ *
+ * Done here rather than with MUI's `stickyHeader`, because that never reaches
+ * the cells in this app: the theme gives MuiTableCell a default `variant` of
+ * "body" (theme/variants.ts), which overrides the "head" a cell would take
+ * from TableHead, and MUI only makes head cells sticky.
+ *
+ * `top: auto` rather than `position: static` where the viewport is too short:
+ * the cells stay sticky, so the pinned ones still hold their column, but no
+ * longer stick vertically.
+ */
+const STICKY_HEAD_SX = {
+  "& th": {
+    position: "sticky",
+    top: 0,
+    zIndex: 2,
+    bgcolor: "background.paper",
+    [HEIGHT_CONSTRAINED]: { top: "auto" },
+  },
+} as const;
+
+/**
  * The Actions and Project Name columns stay put while a wide matrix scrolls
  * sideways, so a box is always readable against its dataset as well as its
  * site. A pinned cell needs its own background, or the cells scrolling under
  * it show through; the row's hover tint is layered back on as an image.
  */
 function pinnedColumnSx(left: number, header = false) {
+  if (header) {
+    return {
+      left,
+      // Above the other header cells, which scroll under it at the corner.
+      // Doubled to outrank STICKY_HEAD_SX's selector.
+      "&&": { zIndex: 3 },
+      // Too narrow: not pinned, but still part of the sticky header row.
+      [WIDTH_CONSTRAINED]: { left: "auto" },
+    } as const;
+  }
   return {
     position: "sticky",
     left,
-    // Above the scrolling body cells; a header cell is also above the
-    // other (z-index 2) sticky header cells it meets at the corner.
-    zIndex: header ? 3 : 1,
+    zIndex: 1,
     bgcolor: "background.paper",
-    ...(header
-      ? {}
-      : {
-          ".MuiTableRow-hover:hover &": {
-            backgroundImage: (theme: Theme) =>
-              `linear-gradient(${theme.palette.action.hover}, ${theme.palette.action.hover})`,
-          },
-        }),
+    ".MuiTableRow-hover:hover &": {
+      backgroundImage: (theme: Theme) =>
+        `linear-gradient(${theme.palette.action.hover}, ${theme.palette.action.hover})`,
+    },
     [WIDTH_CONSTRAINED]: { position: "static" },
   } as const;
 }
@@ -284,12 +310,9 @@ export function VirtualizedMemberProjectsTable({
               EVALUATED_COLUMN_WIDTH +
               siteColumns.length * SITE_COLUMN_WIDTH
             : undefined,
-          [HEIGHT_CONSTRAINED]: {
-            "& .MuiTableCell-stickyHeader": { position: "static" },
-          },
         }}
       >
-        <TableHead>
+        <TableHead sx={STICKY_HEAD_SX}>
           <TableRow>
             <TableCell
               width={ACTIONS_COLUMN_WIDTH}
