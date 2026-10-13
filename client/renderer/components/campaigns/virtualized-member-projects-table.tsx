@@ -22,6 +22,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Theme,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -73,7 +74,12 @@ interface VirtualizedMemberProjectsTableProps {
   onRefresh: () => void;
   onDelete: (project: MemberProjectWithSummary) => void;
   onProjectClick: (project: MemberProjectWithSummary) => void;
-  /** Maximum height of the table container (default: 500) */
+  /**
+   * A maximum height for the table's scroll box. Left out, the table fills
+   * the height its parent gives it, which is what keeps the header in view:
+   * the header sticks within this box, so the box must be the only thing
+   * that scrolls (see the campaign page).
+   */
   maxHeight?: number | string;
   /**
    * The campaign's sites. With them, and a server that sends per-site cells,
@@ -98,6 +104,43 @@ const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
 const JOBS_COLLAPSED_KEY = "campaign-jobs-column-collapsed";
 /** The folded Jobs column: a count and the unfold button. */
 const JOBS_COLLAPSED_WIDTH = 72;
+/** Width of the Actions column, and so where the sticky name column starts. */
+const ACTIONS_COLUMN_WIDTH = 60;
+
+/**
+ * A viewport too short for sticky headers to pay their way: a phone held
+ * landscape. The site names are written upwards and the header is ~120 px
+ * tall, so pinning it there would leave a sliver for the rows.
+ */
+export const HEIGHT_CONSTRAINED = "@media (max-height: 480px)";
+/** Too narrow to keep the name column pinned while the sites scroll past. */
+const WIDTH_CONSTRAINED = "@media (max-width: 600px)";
+
+/**
+ * The Actions and Project Name columns stay put while a wide matrix scrolls
+ * sideways, so a box is always readable against its dataset as well as its
+ * site. A pinned cell needs its own background, or the cells scrolling under
+ * it show through; the row's hover tint is layered back on as an image.
+ */
+function pinnedColumnSx(left: number, header = false) {
+  return {
+    position: "sticky",
+    left,
+    // Above the scrolling body cells; a header cell is also above the
+    // other (z-index 2) sticky header cells it meets at the corner.
+    zIndex: header ? 3 : 1,
+    bgcolor: "background.paper",
+    ...(header
+      ? {}
+      : {
+          ".MuiTableRow-hover:hover &": {
+            backgroundImage: (theme: Theme) =>
+              `linear-gradient(${theme.palette.action.hover}, ${theme.palette.action.hover})`,
+          },
+        }),
+    [WIDTH_CONSTRAINED]: { position: "static" },
+  } as const;
+}
 
 export function VirtualizedMemberProjectsTable({
   projects,
@@ -108,7 +151,7 @@ export function VirtualizedMemberProjectsTable({
   onRefresh,
   onDelete,
   onProjectClick,
-  maxHeight = "max(420px, calc(100vh - 320px))",
+  maxHeight,
   sites,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -190,7 +233,14 @@ export function VirtualizedMemberProjectsTable({
   }
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+      }}
+    >
       {/* First-time hint banner */}
       <Collapse in={showHint}>
         <Alert
@@ -218,7 +268,7 @@ export function VirtualizedMemberProjectsTable({
       <TableContainer
       ref={parentRef}
       sx={{
-        maxHeight,
+        ...(maxHeight !== undefined ? { maxHeight } : { flex: 1, minHeight: 0 }),
         overflow: "auto",
       }}
     >
@@ -234,12 +284,22 @@ export function VirtualizedMemberProjectsTable({
               EVALUATED_COLUMN_WIDTH +
               siteColumns.length * SITE_COLUMN_WIDTH
             : undefined,
+          [HEIGHT_CONSTRAINED]: {
+            "& .MuiTableCell-stickyHeader": { position: "static" },
+          },
         }}
       >
         <TableHead>
           <TableRow>
-            <TableCell width={60}>Actions</TableCell>
-            <TableCell>Project Name</TableCell>
+            <TableCell
+              width={ACTIONS_COLUMN_WIDTH}
+              sx={pinnedColumnSx(0, true)}
+            >
+              Actions
+            </TableCell>
+            <TableCell sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH, true)}>
+              Project Name
+            </TableCell>
             <TableCell width={120}>Ligand</TableCell>
             <TableCell align="center" width={96}>Resolution</TableCell>
             <TableCell align="center" width={96}>R-Factor</TableCell>
@@ -533,7 +593,10 @@ function MemberProjectRow({
       onClick={onProjectClick}
     >
       {/* Actions menu */}
-      <TableCell onClick={(e) => e.stopPropagation()}>
+      <TableCell
+        onClick={(e) => e.stopPropagation()}
+        sx={pinnedColumnSx(0)}
+      >
         <IconButton size="small" onClick={(e) => setMenuAnchor(e.currentTarget)}>
           <MoreIcon fontSize="small" />
         </IconButton>
@@ -563,7 +626,7 @@ function MemberProjectRow({
       </TableCell>
 
       {/* Project name with tags */}
-      <TableCell>
+      <TableCell sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH)}>
         <Stack spacing={0.5}>
           <Typography variant="body2">{project.name}</Typography>
           <ProjectTagChips tags={project.tags} maxVisible={4} size="small" hideEmpty />
