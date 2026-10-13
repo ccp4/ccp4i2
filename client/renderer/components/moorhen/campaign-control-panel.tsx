@@ -362,6 +362,13 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     () => new Map((evaluations ?? []).map((e) => [e.site_id, e.verdict])),
     [evaluations]
   );
+  // Who recorded it: the server stamps the signed-in user, and refuses to
+  // let somebody else replace a named reviewer's verdict, so the control
+  // says whose it is before anyone tries.
+  const evaluatorBySite = useMemo(
+    () => new Map((evaluations ?? []).map((e) => [e.site_id, e.evaluator])),
+    [evaluations]
+  );
 
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
@@ -782,6 +789,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                   {selectedMemberProjectId && onSetVerdict && (
                     <SiteVerdictControl
                       verdict={verdictBySite.get(site.id)}
+                      evaluator={evaluatorBySite.get(site.id)}
                       onSet={(verdict) => onSetVerdict(site.id, verdict)}
                       onClear={
                         onClearVerdict
@@ -1190,22 +1198,37 @@ const VERDICT_OPTIONS: {
   },
 ];
 
+/** "alice" from "alice@example.org": short enough for a tooltip line. */
+function reviewerName(evaluator: string | undefined): string | null {
+  if (!evaluator) return null;
+  return evaluator.split("@")[0] || evaluator;
+}
+
 const SiteVerdictControl: React.FC<{
   verdict: SiteVerdict | undefined;
+  /** Who recorded the verdict, or empty for one recorded before reviewers were tracked. */
+  evaluator?: string;
   onSet: (verdict: SiteVerdict) => Promise<void>;
   onClear?: () => Promise<void>;
-}> = ({ verdict, onSet, onClear }) => {
+}> = ({ verdict, evaluator, onSet, onClear }) => {
   const [busy, setBusy] = useState(false);
+  // Why the last click was refused (the server says, e.g. another reviewer's
+  // verdict is here). Shown until the pointer leaves, so a refusal is never
+  // silent.
+  const [refusal, setRefusal] = useState<string | null>(null);
 
   const handle = useCallback(
     async (choice: SiteVerdict) => {
       setBusy(true);
+      setRefusal(null);
       try {
         if (choice === verdict && onClear) {
           await onClear();
         } else {
           await onSet(choice);
         }
+      } catch (err) {
+        setRefusal(err instanceof Error ? err.message : String(err));
       } finally {
         setBusy(false);
       }
@@ -1213,33 +1236,46 @@ const SiteVerdictControl: React.FC<{
     [verdict, onSet, onClear]
   );
 
+  const by = reviewerName(evaluator);
+
   return (
-    <>
-      {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
-        const active = verdict === choice;
-        return (
-          <Tooltip
-            key={choice}
-            title={active ? `${label} — click to withdraw` : label}
-          >
-            <span>
-              <IconButton
-                edge="end"
-                size="small"
-                disabled={busy}
-                onClick={() => handle(choice)}
-                color={active && colour !== "standard" ? colour : "default"}
-                sx={{
-                  opacity: active ? 1 : 0.35,
-                  p: 0.25,
-                }}
-              >
-                <Icon fontSize="small" />
-              </IconButton>
-            </span>
-          </Tooltip>
-        );
-      })}
-    </>
+    <Tooltip
+      open={Boolean(refusal)}
+      title={refusal ?? ""}
+      onClose={() => setRefusal(null)}
+      disableHoverListener
+    >
+      <span onMouseLeave={() => setRefusal(null)}>
+        {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
+          const active = verdict === choice;
+          return (
+            <Tooltip
+              key={choice}
+              title={
+                active
+                  ? `${label}${by ? ` (recorded by ${by})` : ""} — click to withdraw`
+                  : label
+              }
+            >
+              <span>
+                <IconButton
+                  edge="end"
+                  size="small"
+                  disabled={busy}
+                  onClick={() => handle(choice)}
+                  color={active && colour !== "standard" ? colour : "default"}
+                  sx={{
+                    opacity: active ? 1 : 0.35,
+                    p: 0.25,
+                  }}
+                >
+                  <Icon fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+          );
+        })}
+      </span>
+    </Tooltip>
   );
 };

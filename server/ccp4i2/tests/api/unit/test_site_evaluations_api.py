@@ -12,9 +12,21 @@ those apart, and several of the tests below pin that they stay apart.
 """
 
 import pytest
+from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 
 from ccp4i2.db import models
+
+
+def client_as(email):
+    """A client authenticated as a reviewer, as the desktop's OS user or a
+    hosted Azure AD user would be."""
+    user, _ = get_user_model().objects.get_or_create(
+        username=email.split("@")[0], defaults={"email": email}
+    )
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client
 
 
 @pytest.fixture
@@ -66,10 +78,10 @@ def evaluation_url(group, site, project):
 @pytest.mark.django_db
 class TestRecordingAVerdict:
     def test_records_a_hit(self, campaign):
-        client = APIClient()
+        client = client_as("alice@example.org")
         response = client.put(
             evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
-            {"verdict": "hit", "evaluator": "alice"},
+            {"verdict": "hit"},
             format="json",
         )
         assert response.status_code == 201, response.data
@@ -79,7 +91,7 @@ class TestRecordingAVerdict:
             project=campaign["a"], site=campaign["site_a"]
         )
         assert stored.verdict == "hit"
-        assert stored.evaluator == "alice"
+        assert stored.evaluator == "alice@example.org"
 
     def test_changing_a_verdict_replaces_it(self, campaign):
         """One verdict per dataset per site, not a history of them."""
@@ -323,10 +335,10 @@ class TestReadingOneDatasetsVerdicts:
         assert campaign["site_b"].id not in {r["site_id"] for r in response.data}
 
     def test_carries_the_note_and_evaluator(self, campaign):
-        client = APIClient()
+        client = client_as("mn@example.org")
         client.put(
             evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
-            {"verdict": "unclear", "evaluator": "mn", "note": "density is weak"},
+            {"verdict": "unclear", "note": "density is weak"},
             format="json",
         )
 
@@ -335,7 +347,7 @@ class TestReadingOneDatasetsVerdicts:
             f"/evaluations/{campaign['a'].id}/"
         )
         row = response.data[0]
-        assert row["evaluator"] == "mn"
+        assert row["evaluator"] == "mn@example.org"
         assert row["note"] == "density is weak"
         assert row["project_id"] == campaign["a"].id
 
@@ -434,3 +446,60 @@ class TestWhatDeletingASiteWouldCost:
             project=campaign["a"], site=campaign["site_a"], verdict="empty"
         )
         assert self.sites(campaign)["Pocket A"]["evaluation_count"] == 1
+
+
+@pytest.mark.django_db
+class TestTheReviewerIsRecorded:
+    """The server records who gave a verdict; the client cannot say, or
+    forget to say. Until verdicts from more than one reviewer are supported
+    (docs/site-verdict-reconciliation.md) there is one per cell, so a named
+    reviewer's verdict is protected from being replaced by somebody else."""
+
+    def url(self, campaign):
+        return evaluation_url(campaign["group"], campaign["site_a"], campaign["a"])
+
+    def stored(self, campaign):
+        return models.SiteEvaluation.objects.get(project=campaign["a"], site=campaign["site_a"])
+
+    def test_an_evaluator_in_the_body_is_ignored(self, campaign):
+        response = client_as("alice@example.org").put(
+            self.url(campaign), {"verdict": "hit", "evaluator": "bob@example.org"}, format="json"
+        )
+        assert response.status_code == 201, response.data
+        assert self.stored(campaign).evaluator == "alice@example.org"
+
+    def test_an_unauthenticated_request_records_no_reviewer(self, campaign):
+        APIClient().put(self.url(campaign), {"verdict": "hit", "evaluator": "bob"}, format="json")
+        assert self.stored(campaign).evaluator == ""
+
+    def test_a_reviewer_can_change_and_withdraw_their_own(self, campaign):
+        alice = client_as("alice@example.org")
+        alice.put(self.url(campaign), {"verdict": "unclear"}, format="json")
+        assert alice.put(self.url(campaign), {"verdict": "hit"}, format="json").status_code == 200
+        assert self.stored(campaign).verdict == "hit"
+        assert alice.delete(self.url(campaign)).status_code == 204
+
+    def test_another_reviewers_verdict_is_not_replaced(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        response = client_as("bob@example.org").put(self.url(campaign), {"verdict": "empty"}, format="json")
+        assert response.status_code == 409
+        assert "alice@example.org" in response.data["error"]
+        assert response.data["details"] == {"evaluator": "alice@example.org", "verdict": "hit"}
+        stored = self.stored(campaign)
+        assert (stored.verdict, stored.evaluator) == ("hit", "alice@example.org")
+
+    def test_another_reviewers_verdict_is_not_withdrawn(self, campaign):
+        client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        assert client_as("bob@example.org").delete(self.url(campaign)).status_code == 409
+        assert self.stored(campaign).verdict == "hit"
+
+    def test_an_unattributed_verdict_is_replaced_as_before(self, campaign):
+        """Verdicts recorded before reviewers were tracked have no reviewer;
+        whoever scores the cell next takes it over."""
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="unclear", evaluator=""
+        )
+        response = client_as("alice@example.org").put(self.url(campaign), {"verdict": "hit"}, format="json")
+        assert response.status_code == 200
+        stored = self.stored(campaign)
+        assert (stored.verdict, stored.evaluator) == ("hit", "alice@example.org")

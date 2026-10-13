@@ -30,6 +30,18 @@ from ..lib.utils.jobs import pandda_site_index
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+def _reviewer(request) -> str:
+    """Who is recording a verdict: the authenticated user's email (the OS
+    user's on the desktop, the Azure AD user's when hosted), else their
+    username, else "" for an unauthenticated request. A string rather than
+    a user foreign key, because a verdict travels in a project snapshot to
+    installations where that user row does not exist."""
+    user = getattr(request, "user", None)
+    if user is None or not getattr(user, "is_authenticated", False):
+        return ""
+    return (getattr(user, "email", "") or user.get_username() or "")[:150]
+
+
 class ProjectGroupViewSet(ModelViewSet):
     """
     ViewSet for managing project groups.
@@ -1006,7 +1018,17 @@ class ProjectGroupViewSet(ModelViewSet):
         """Record, change or withdraw what was found at one site in one dataset.
 
         PUT with {"verdict": "hit"|"empty"|"unclear"} and an optional
-        "evaluator" and "note". DELETE withdraws the verdict.
+        "note". DELETE withdraws the verdict.
+
+        The reviewer is the authenticated user, recorded by the server. An
+        "evaluator" in the body is ignored, so a verdict can be neither
+        attributed to somebody else nor left unattributed by a client that
+        forgets to say. One verdict per cell is still the model (see
+        docs/site-verdict-reconciliation.md for one per reviewer), so until
+        that lands a verdict another named reviewer gave is not replaced or
+        withdrawn: the request is refused with 409 and says whose it is. A
+        verdict with no reviewer (recorded before reviewers were tracked) is
+        replaced as before.
 
         Withdrawing is not the same as recording "empty": no row means nobody
         has looked, while "empty" asserts that somebody looked and found
@@ -1027,11 +1049,25 @@ class ProjectGroupViewSet(ModelViewSet):
                     "That project is not part of this campaign", status=404
                 )
 
+            reviewer = _reviewer(request)
+            existing = models.SiteEvaluation.objects.filter(
+                project_id=project_id, site=site
+            ).first()
+            if existing is not None and existing.evaluator and existing.evaluator != reviewer:
+                action = "withdraw" if request.method == "DELETE" else "replace"
+                return api_error(
+                    f"{existing.evaluator} recorded '{existing.verdict}' here; "
+                    f"you cannot {action} another reviewer's verdict until "
+                    "verdicts from more than one reviewer are supported",
+                    status=409,
+                    details={"evaluator": existing.evaluator, "verdict": existing.verdict},
+                )
+
             if request.method == "DELETE":
-                deleted, _ = models.SiteEvaluation.objects.filter(
-                    project_id=project_id, site=site
-                ).delete()
-                return Response(status=204 if deleted else 404)
+                if existing is None:
+                    return Response(status=404)
+                existing.delete()
+                return Response(status=204)
 
             verdict = (request.data or {}).get("verdict")
             valid = [choice[0] for choice in models.SiteEvaluation.Verdict.choices]
@@ -1045,7 +1081,7 @@ class ProjectGroupViewSet(ModelViewSet):
                 site=site,
                 defaults={
                     "verdict": verdict,
-                    "evaluator": str(request.data.get("evaluator", ""))[:150],
+                    "evaluator": reviewer,
                     "note": str(request.data.get("note", "")),
                 },
             )
