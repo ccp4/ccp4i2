@@ -318,6 +318,16 @@ next:
       refinement stalls, search for more with the placed model fixed; if it
       finds more, correct the contents (clone this job, double nCopies)
       before density modification and building.
+  - when: outcome == "too_sparse" and TOTAL_WEIGHT < 5000
+    advice: >
+      The sequences are wrong, not the copies: the whole AU comes to under
+      5 kDa, a peptide, not a crystallised protein. Upload the real sequence
+      file into each entry's source (upload_file to
+      inputData.ASU_CONTENT[i].source fills the entry), or fetch it
+      (fetch_sequence), and run again; do NOT multiply copies of what is
+      there. An agent typed "MNNI" as both components of BetaBlip
+      (gpt-oss, 2026-10-13), went on to MR with that composition (an
+      expected LLG far too large) and never placed BLIP.
   - when: outcome == "too_sparse"
     task: ProvideAsuContents
     advice: >

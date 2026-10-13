@@ -57,6 +57,13 @@ class matthews(process):
         obj.solvent_content=self.inp.Get(has_solvent_content=True).solvent_content
       if prog.nick=='matthews_coef':
         probabs = prog.GetStat('probab_matth_all')
+        if not probabs:
+          # No number of copies fits the cell: max([]) crashed here with
+          # "max() arg is an empty sequence" when an agent's AU contents held
+          # the same 134-residue chain twice (gamma SAD, 2026-10-13)
+          common.Error('The sequence(s) given do not fit the cell at any number of copies '
+                       '(Matthews finds none): check the AU contents for a duplicated entry, '
+                       'too many copies, or a sequence that is not the crystallised construct.')
         ind = probabs.index(max(probabs))
         if not obj.solvent_content:
           obj.solvent_content=format(prog.GetStat('solvent_content_all')[ind]*0.01,'.3f')
