@@ -210,8 +210,17 @@ export interface SiteCellEvent {
 /** What one dataset holds at one campaign site. */
 export interface SiteCell {
   event: SiteCellEvent | null;
-  /** null when nobody has given a verdict at this site in this dataset. */
+  /**
+   * The cell's effective verdict across reviewers: null when nobody has
+   * looked, "unclear" when reviewers disagree (docs/site-verdict-reconciliation.md).
+   */
   verdict: SiteVerdict | null;
+  /** "to_reconcile" when reviewers differ. Absent from an older server. */
+  state?: "agreed" | "to_reconcile" | null;
+  /** Every reviewer's verdict; evaluator "" for one recorded before reviewers were tracked. */
+  verdicts?: { evaluator: string; verdict: SiteVerdict }[];
+  /** The viewer's own verdict here, or null. Absent from an older server. */
+  mine?: SiteVerdict | null;
 }
 
 /** The job whose model the campaign views should open for a dataset. */

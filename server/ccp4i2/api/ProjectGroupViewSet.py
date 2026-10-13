@@ -26,8 +26,21 @@ from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
 from ..lib import campaign_events
 from ..lib.utils.jobs import pandda_site_index
+from ..lib import site_verdicts
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
+
+
+def _reviewer(request) -> str:
+    """Who is recording a verdict: the authenticated user's email (the OS
+    user's on the desktop, the Azure AD user's when hosted), else their
+    username, else "" for an unauthenticated request. A string rather than
+    a user foreign key, because a verdict travels in a project snapshot to
+    installations where that user row does not exist."""
+    user = getattr(request, "user", None)
+    if user is None or not getattr(user, "is_authenticated", False):
+        return ""
+    return (getattr(user, "email", "") or user.get_username() or "")[:150]
 
 
 class ProjectGroupViewSet(ModelViewSet):
@@ -167,15 +180,19 @@ class ProjectGroupViewSet(ModelViewSet):
             # Every verdict at this campaign's sites for these datasets: one
             # query, restricted to this campaign, because a project can belong
             # to more than one.
-            evaluations_by_project = {}
-            verdicts = {}
-            for evaluation in models.SiteEvaluation.objects.filter(
-                site__group=group, project_id__in=project_ids
-            ).select_related("site"):
-                evaluations_by_project.setdefault(
-                    evaluation.project_id, []).append(evaluation)
-                verdicts[(evaluation.project_id, evaluation.site_id)] = (
-                    evaluation.verdict)
+            # Several reviewers may have scored a cell; what it says is
+            # derived from their verdicts (lib/site_verdicts.py), and the
+            # caller's own is picked out for the "Eval." count.
+            verdicts = site_verdicts.cell_verdicts(
+                models.SiteEvaluation.objects.filter(
+                    site__group=group, project_id__in=project_ids
+                ),
+                reviewer=_reviewer(request),
+            )
+            site_names = {site.id: site.name for site in sites}
+            cells_by_project = {}
+            for (project_id, site_id), cell in verdicts.items():
+                cells_by_project.setdefault(project_id, []).append((site_id, cell))
 
             # Every job of every member, and their KPI values, in three
             # queries. The values are selected by project rather than
@@ -250,13 +267,13 @@ class ProjectGroupViewSet(ModelViewSet):
                 # evaluated count, and the per-dataset view has the detail.
                 evaluations = []
                 evaluated = 0
-                for evaluation in evaluations_by_project.get(project.id, ()):
+                for site_id, cell in cells_by_project.get(project.id, ()):
                     evaluated += 1
-                    if evaluation.verdict in ("hit", "unclear"):
+                    if cell["verdict"] in ("hit", "unclear"):
                         evaluations.append({
-                            "site_id": evaluation.site_id,
-                            "site_name": evaluation.site.name,
-                            "verdict": evaluation.verdict,
+                            "site_id": site_id,
+                            "site_name": site_names[site_id],
+                            "verdict": cell["verdict"],
                         })
 
                 # Hits first, so a dataset with many unclears never has its
@@ -950,7 +967,13 @@ class ProjectGroupViewSet(ModelViewSet):
         url_path=r"evaluations/(?P<project_id>[0-9]+)",
     )
     def project_evaluations(self, request, pk=None, project_id=None):
-        """Every verdict recorded for one dataset, including the empties.
+        """The caller's verdicts for one dataset, including the empties.
+
+        The caller's own, not every reviewer's: this is what the scoring
+        control shows, and showing another reviewer's call before you have
+        made yours anchors a rescore (blind scoring,
+        docs/site-verdict-reconciliation.md). What the cells say across
+        reviewers is in ``member_projects``' ``site_cells``.
 
         The overview payload in `member_projects` carries only hits and
         unclears, because it renders a row per dataset and most sites are
@@ -972,7 +995,8 @@ class ProjectGroupViewSet(ModelViewSet):
 
             evaluations = (
                 models.SiteEvaluation.objects.filter(
-                    project_id=project_id, site__group=group
+                    project_id=project_id, site__group=group,
+                    evaluator=_reviewer(request),
                 )
                 .select_related("site")
                 .order_by("site__order", "site__id")
@@ -1006,7 +1030,15 @@ class ProjectGroupViewSet(ModelViewSet):
         """Record, change or withdraw what was found at one site in one dataset.
 
         PUT with {"verdict": "hit"|"empty"|"unclear"} and an optional
-        "evaluator" and "note". DELETE withdraws the verdict.
+        "note". DELETE withdraws the verdict.
+
+        The reviewer is the authenticated user, recorded by the server. An
+        "evaluator" in the body is ignored, so a verdict can be neither
+        attributed to somebody else nor left unattributed by a client that
+        forgets to say. Each reviewer has their own verdict at a cell, so PUT
+        and DELETE act on the caller's alone: another reviewer's verdict, and
+        one recorded before reviewers were tracked, are never touched
+        (docs/site-verdict-reconciliation.md).
 
         Withdrawing is not the same as recording "empty": no row means nobody
         has looked, while "empty" asserts that somebody looked and found
@@ -1027,9 +1059,11 @@ class ProjectGroupViewSet(ModelViewSet):
                     "That project is not part of this campaign", status=404
                 )
 
+            reviewer = _reviewer(request)
+
             if request.method == "DELETE":
                 deleted, _ = models.SiteEvaluation.objects.filter(
-                    project_id=project_id, site=site
+                    project_id=project_id, site=site, evaluator=reviewer
                 ).delete()
                 return Response(status=204 if deleted else 404)
 
@@ -1043,9 +1077,9 @@ class ProjectGroupViewSet(ModelViewSet):
             evaluation, created = models.SiteEvaluation.objects.update_or_create(
                 project_id=project_id,
                 site=site,
+                evaluator=reviewer,
                 defaults={
                     "verdict": verdict,
-                    "evaluator": str(request.data.get("evaluator", ""))[:150],
                     "note": str(request.data.get("note", "")),
                 },
             )
