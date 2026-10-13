@@ -104,6 +104,31 @@ describe("siteCellTooltip", () => {
     ]);
   });
 
+  it("says when reviewers disagree, and who said what", () => {
+    const lines = siteCellTooltip(
+      "Pocket A",
+      {
+        event: null,
+        verdict: "unclear",
+        state: "to_reconcile",
+        verdicts: [
+          { evaluator: "", verdict: "empty" },
+          { evaluator: "alice@example.org", verdict: "hit" },
+          { evaluator: "bob@example.org", verdict: "unclear" },
+        ],
+      },
+      null,
+      true
+    );
+    expect(lines.slice(0, 5)).toEqual([
+      "Pocket A",
+      "Verdict: reviewers disagree",
+      "  unattributed: rejected (empty)",
+      "  alice: hit (accepted)",
+      "  bob: uncertain",
+    ]);
+  });
+
   it("leaves out an unknown hit probability", () => {
     expect(eventDescription({ ...event, hit_probability: null })).toBe(
       "event 2, d = 1.4 Å"
@@ -192,7 +217,26 @@ describe("matrix columns", () => {
     expect(cellFor(p, sites[3])).toBeNull();
     expect(evaluatedCount(p, sites)).toEqual({
       done: 2,
+      anyone: 2,
       total: 4,
+      findings: 1,
+    });
+  });
+
+  it("counts the viewer's own scoring separately from everyone's", () => {
+    const cells: Record<string, SiteCell> = {
+      a: { event: null, verdict: "hit", state: "agreed", mine: "hit",
+           verdicts: [{ evaluator: "me@x", verdict: "hit" }] },
+      b: { event: null, verdict: "empty", state: "agreed", mine: null,
+           verdicts: [{ evaluator: "them@x", verdict: "empty" }] },
+      c: { event: null, verdict: null, state: null, mine: null, verdicts: [] },
+    };
+    const p = project({ site_cells: cells });
+    const sites = [site(1, "a"), site(2, "b"), site(3, "c")];
+    expect(evaluatedCount(p, sites)).toEqual({
+      done: 1,
+      anyone: 2,
+      total: 3,
       findings: 1,
     });
   });
