@@ -220,6 +220,62 @@ export function ccp4DodgeEmClamp(buffer: ArrayBuffer): ArrayBuffer {
   return out;
 }
 
+// --------------------------------------------------------------------------
+// Give a crystal's P1 map back its space group
+//
+// Some programs write a crystal's maps as P1 over the crystal's own cell --
+// PanDDA does, for every Z-map and event map. With orthogonal angles that is
+// exactly coot's EM test above, so the map is contoured inside the unit-cell
+// box, nowhere near a model that sits outside it. The receipt job rewrites its
+// copies with the crystal's space group (pandda_events: _write_with_spacegroup,
+// header word 23 only); a map opened straight from the run's tree needs the
+// same, done here on the bytes before coot reads them.
+// --------------------------------------------------------------------------
+
+/** A crystal a P1 map may belong to: its space group (CCP4 number) and cell. */
+export interface CrystalSymmetry {
+  ccp4: number;
+  cell: [number, number, number, number, number, number];
+}
+
+const OFF_CELL_A = 40;
+/** Relative tolerance on cell lengths, absolute (deg) on angles. */
+const CELL_LENGTH_TOLERANCE = 0.005;
+const CELL_ANGLE_TOLERANCE = 0.1;
+
+/**
+ * If ``buffer`` is a P1 CCP4 map on the cell of one of ``crystals`` (a crystal
+ * that is not P1), return a copy carrying that crystal's space group; else the
+ * buffer unchanged. Only ISPG changes, as when the receipt writes its copies.
+ * The cell must match: a P1 map on another cell (an EM map, a different
+ * crystal) is left alone.
+ */
+export function ccp4RestoreSpaceGroup(
+  buffer: ArrayBuffer,
+  crystals: CrystalSymmetry[],
+): ArrayBuffer {
+  if (buffer.byteLength < CCP4_HEADER_BYTES || crystals.length === 0) return buffer;
+  const dv = new DataView(buffer);
+  const le = dv.getUint8(OFF_MACHST) !== 0x11;
+  const ispg = dv.getInt32(OFF_ISPG, le);
+  if (ispg !== 0 && ispg !== 1) return buffer;
+  const cell = [0, 1, 2, 3, 4, 5].map((i) => dv.getFloat32(OFF_CELL_A + 4 * i, le));
+  const match = crystals.find(
+    (c) =>
+      c.ccp4 > 1 &&
+      c.cell.every((v, i) =>
+        i < 3
+          ? Math.abs(v - cell[i]) <= CELL_LENGTH_TOLERANCE * Math.max(v, 1)
+          : Math.abs(v - cell[i]) <= CELL_ANGLE_TOLERANCE,
+      ),
+  );
+  if (!match) return buffer;
+  const out = buffer.slice(0);
+  new DataView(out).setInt32(OFF_ISPG, match.ccp4, le);
+  console.info(`[maps] P1 map on a loaded model's cell: given its space group (CCP4 ${match.ccp4})`);
+  return out;
+}
+
 /** Default mask look: a translucent solid surface in a soft blue. NB Moorhen's
  *  setMapColours expects 0-255 components (it divides by 255 internally) — 0-1
  *  floats render as a near-black mesh. */

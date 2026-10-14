@@ -82,7 +82,7 @@ import {
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
 import { collectMapRenderState } from "../../lib/moorhen-map-render-state";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, ccp4RestoreSpaceGroup, type CrystalSymmetry, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MASK_PROVENANCE_PREFIX,
@@ -496,6 +496,34 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Unlike
   // fetchMap (MTZ coefficients), this uses loadToCootFromMapData. Masks get the
   // shared translucent-solid defaults and are never made the active map.
+  /** The crystals of the loaded models (space group and cell), read from
+   *  each molecule's gemmi structure; P1 and unreadable ones are skipped. */
+  const loadedCrystals = useCallback((): CrystalSymmetry[] => {
+    // Moorhen 1.0 exposes gemmi as window.gemmiModule; older builds as CCP4Module.
+    type Gemmi = { get_spacegroup_by_name?: (n: string) => { ccp4: number; delete?: () => void } };
+    const w = window as unknown as { gemmiModule?: Gemmi; CCP4Module?: Gemmi };
+    const gemmi = w.gemmiModule ?? w.CCP4Module;
+    const list = (store.getState() as moorhen.State).molecules.moleculeList ?? [];
+    const out: CrystalSymmetry[] = [];
+    for (const mol of list) {
+      try {
+        const st = (mol as unknown as {
+          gemmiStructure?: { spacegroup_hm: string; cell: { a: number; b: number; c: number; alpha: number; beta: number; gamma: number } };
+        }).gemmiStructure;
+        if (!st?.spacegroup_hm || !gemmi?.get_spacegroup_by_name) continue;
+        const sg = gemmi.get_spacegroup_by_name(st.spacegroup_hm);
+        const ccp4 = sg?.ccp4;
+        sg?.delete?.();
+        if (!ccp4 || ccp4 <= 1) continue;
+        const c = st.cell;
+        out.push({ ccp4, cell: [c.a, c.b, c.c, c.alpha, c.beta, c.gamma] });
+      } catch {
+        // a molecule without a readable structure contributes nothing
+      }
+    }
+    return out;
+  }, [store]);
+
   const fetchMapFile = useCallback(async (
     url: string,
     mapName: string,
@@ -517,6 +545,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // (no-op if already float). For masks, also nudge the P1/orthogonal cell
       // off 90° so coot contours periodically instead of clamping to the cell box.
       let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      // A crystal's map written as P1 (PanDDA's are) takes the space group of
+      // a loaded model on the same cell, or coot boxes it into the unit cell.
+      if (!opts.isMask) mapData = ccp4RestoreSpaceGroup(mapData, loadedCrystals());
       if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
       newMap = await MoorhenMap.loadToCootFromMapData(
         new Uint8Array(mapData),
@@ -565,7 +596,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       console.warn(`Cannot fetch map file from ${url}`);
     }
     return newMap;
-  }, [commandCentre, store, dispatch]);
+  }, [commandCentre, store, dispatch, loadedCrystals]);
 
   /**
    * Build a molecule of each monomer a dictionary describes, at the centre
@@ -1115,9 +1146,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
+          // A crystal's map written as P1 takes the space group of a loaded
+          // model on its cell (scene models load before maps).
           const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
           newMap = await MoorhenMap.loadToCootFromMapData(
-            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
+            new Uint8Array(sceneMap.isMask
+              ? ccp4DodgeEmClamp(mapBytes)
+              : ccp4RestoreSpaceGroup(mapBytes, loadedCrystals())),
             sceneMap.name,
             !!sceneMap.isDifference,
             mapInstance,
@@ -1155,7 +1190,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         return null;
       }
     },
-    [commandCentre, store, dispatch, resolveSceneRefUrl],
+    [commandCentre, store, dispatch, resolveSceneRefUrl, loadedCrystals],
   );
 
   // Map masker: mask a source map by a model's atom selection, producing a

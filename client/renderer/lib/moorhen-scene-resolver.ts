@@ -262,7 +262,7 @@ interface CCP4GemmiModule {
 /**
  * Centroid + bounding radius (Å) of a CID selection, walked over the molecule's
  * cached gemmi structure via the gemmi WASM module Moorhen exposes as
- * `window.CCP4Module`. Orientation-independent. Returns null if gemmi / the
+ * `window.gemmiModule` (`CCP4Module` before 1.0). Orientation-independent. Returns null if gemmi / the
  * structure is unavailable or the selection matched no atoms. emscripten objects
  * are .delete()d so the WASM heap doesn't grow on repeated applies.
  */
@@ -272,7 +272,9 @@ function selectionBoundingSphere(
 ): { centre: [number, number, number]; radius: number } | null {
   const M =
     typeof window !== "undefined"
-      ? (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module
+      ? // Moorhen 1.0 exposes gemmi as window.gemmiModule; older builds as CCP4Module.
+        ((window as unknown as { gemmiModule?: CCP4GemmiModule }).gemmiModule ??
+        (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module)
       : undefined;
   const struct = (mol as unknown as { gemmiStructure?: unknown }).gemmiStructure;
   if (!M || !struct || typeof M.Selection !== "function") return null;
