@@ -436,21 +436,6 @@ export function useApi() {
     },
 
     /**
-     * Fetch project directory with optional polling.
-     *
-     * @param projectId - Project ID to fetch directory for (null to skip)
-     * @param shouldPoll - Whether to enable polling (e.g., when dialog is open)
-     */
-    projectDirectory(projectId: number | null | undefined, shouldPoll: boolean = false): SWRResponse<any> {
-      const swrKey = projectId ? `projects/${projectId}/directory` : null;
-      return useSWR<any>(
-        getStringKey(swrKey),
-        jsonFetcher,
-        { refreshInterval: shouldPoll ? POLL_INTERVAL.ACTIVE : POLL_INTERVAL.DISABLED }
-      );
-    },
-
-    /**
      * Fetch a file by ID.
      *
      * @param fileId - File ID to fetch (null to skip)

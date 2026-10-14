@@ -1,15 +1,13 @@
-import React, {
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import useSWR from "swr";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   Box,
-  Typography,
+  CircularProgress,
   IconButton,
-  Collapse,
+  LinearProgress,
   Stack,
+  Typography,
 } from "@mui/material";
 import {
   ExpandMore as ExpandMoreIcon,
@@ -19,7 +17,9 @@ import {
   InsertDriveFile as FileIcon,
   MoreVert as MoreVertIcon,
 } from "@mui/icons-material";
+import { apiJson } from "../api-fetch";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
+import { DirectoryEntry, directoryRows } from "../lib/directory-rows";
 import SearchField from "./search-field";
 
 export interface FileSystemItem {
@@ -27,518 +27,322 @@ export interface FileSystemItem {
   name: string;
   type: "directory" | "file";
   size?: number;
-  mode?: number;
-  inode?: number;
-  device?: number;
-  nlink?: number;
-  uid?: number;
-  gid?: number;
-  atime?: number;
   mtime?: number;
-  ctime?: number;
-  contents?: FileSystemItem[];
+  link?: boolean;
 }
 
 export interface DirectoryBrowserProps {
-  directoryTree: any[];
-  fileFilter?: (item: FileSystemItem) => boolean;
-  onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  searchTerm?: string;
-  autoExpandedPaths?: Set<string>;
-  isSearchActive?: boolean;
-}
-
-interface TreeNodeProps {
-  item: FileSystemItem;
-  level: number;
-  expandedNodes: Set<string>;
-  onToggleExpand: (path: string) => void;
-  searchTerm: string;
+  /**
+   * The listing endpoint of what is browsed, e.g. ``jobs/12/directory`` or
+   * ``projects/3/directory``. It answers ``?path=`` with one folder and
+   * ``?search=`` with matching names from the whole tree.
+   */
+  endpoint: string | null;
+  /** Re-list the open folders this often (ms); 0 never. */
+  pollInterval?: number;
+  /** Lists again whenever this changes (e.g. a job's status). */
+  revision?: string | number;
   fileFilter?: (item: FileSystemItem) => boolean;
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
 }
 
+interface SearchResult {
+  items: (FileSystemItem & { relative: string })[];
+  truncated: boolean;
+}
+
+const ROW_HEIGHT = 30;
+const INDENT = 16;
+
+const listingUrl = (endpoint: string, query: Record<string, string>) =>
+  `${endpoint}?${new URLSearchParams(query).toString()}`;
+
+/** Every open folder, root included, listed in one SWR entry. */
+async function fetchListings(
+  [endpoint, , ...folders]: string[]
+): Promise<Record<string, DirectoryEntry[]>> {
+  const listed = await Promise.all(
+    folders.map(async (folder) => {
+      const body = await apiJson<{ container?: DirectoryEntry[] }>(
+        listingUrl(endpoint, { path: folder })
+      );
+      return [folder, Array.isArray(body?.container) ? body.container : []] as const;
+    })
+  );
+  return Object.fromEntries(listed);
+}
+
+function useDebounced<T>(value: T, delay: number): T {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+  return debounced;
+}
+
+const formatSize = (size?: number) =>
+  size === undefined ? "" : size < 1024 * 1024
+    ? `${(size / 1024).toFixed(1)} KB`
+    : `${(size / (1024 * 1024)).toFixed(1)} MB`;
+
+/**
+ * A file browser that lists a folder only when it is opened.
+ *
+ * It used to receive the whole tree, walked and stat'ed on the server and
+ * re-fetched every few seconds while a job ran: for a PanDDA run over
+ * hundreds of datasets that was megabytes per poll from a network share,
+ * and every node of it mounted in the page. Now the open folders are listed
+ * (and re-listed when polling), only the rows on screen are drawn, and
+ * search asks the server, which can see folders the browser has not opened.
+ */
 const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
-  directoryTree,
+  endpoint,
+  pollInterval = 0,
+  revision,
   fileFilter,
   onItemClick,
-  searchTerm,
-  autoExpandedPaths = new Set(),
-  isSearchActive = false,
 }) => {
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
-  const [searchTermState, setSearchTerm] = useState<string>("");
+  const [open, setOpen] = useState<Set<string>>(new Set());
+  const [searchTerm, setSearchTerm] = useState("");
+  const query = useDebounced(searchTerm.trim(), 300);
+  const { openMenu } = useFileSystemFileBrowser();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Use the FileSystemFileBrowser context
-  const { openMenu, anchorEl, menuNode } = useFileSystemFileBrowser();
+  // A different root starts closed.
+  useEffect(() => setOpen(new Set()), [endpoint]);
 
-  const sortedDirectoryTree = useMemo(() => {
-    if (!directoryTree) return [];
+  const folders = useMemo(() => ["", ...Array.from(open).sort()], [open]);
+  const { data: listings, isLoading } = useSWR(
+    endpoint ? [endpoint, String(revision ?? ""), ...folders] : null,
+    fetchListings,
+    { refreshInterval: pollInterval, revalidateOnFocus: false, keepPreviousData: true }
+  );
 
-    // Helper to extract trailing integer from name pattern "name_{integer}"
-    const extractTrailingInt = (name: string) => {
-      const match = name.match(/_(\d+)$/);
-      return match ? parseInt(match[1], 10) : null;
-    };
+  const { data: found, isLoading: searching } = useSWR<SearchResult>(
+    endpoint && query ? listingUrl(endpoint, { search: query }) : null,
+    async (url: string) => (await apiJson<{ container: SearchResult }>(url)).container,
+    { revalidateOnFocus: false, keepPreviousData: true }
+  );
 
-    // Recursive sorting function
-    const sortItems = (items: FileSystemItem[]): FileSystemItem[] => {
-      return items
-        .slice()
-        .sort((a: FileSystemItem, b: FileSystemItem) => {
-          // Directories first
-          if (a.type === "directory" && b.type !== "directory") return -1;
-          if (a.type !== "directory" && b.type === "directory") return 1;
+  const rows = useMemo(
+    () => (listings ? directoryRows(listings, open, fileFilter) : []),
+    [listings, open, fileFilter]
+  );
 
-          // Check for name_{int} pattern
-          const aInt = extractTrailingInt(a.name);
-          const bInt = extractTrailingInt(b.name);
+  const searchRows = useMemo(
+    () =>
+      (found?.items ?? []).filter(
+        (item) => item.type === "directory" || !fileFilter || fileFilter(item)
+      ),
+    [found, fileFilter]
+  );
 
-          if (aInt !== null && bInt !== null) {
-            // If both have trailing ints, sort numerically
-            if (a.name.replace(/_\d+$/, "") === b.name.replace(/_\d+$/, "")) {
-              return aInt - bInt;
-            }
-          }
+  const inSearch = Boolean(query);
+  const count = inSearch ? searchRows.length : rows.length;
 
-          // Fallback to lexicographical
-          return a.name.localeCompare(b.name);
-        })
-        .map((item) => {
-          // Recursively sort directory contents
-          if (item.type === "directory" && item.contents) {
-            return {
-              ...item,
-              contents: sortItems(item.contents),
-            };
-          }
-          return item;
-        });
-    };
+  const virtualizer = useVirtualizer({
+    count,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: 20,
+  });
 
-    return sortItems(directoryTree);
-  }, [directoryTree]);
-
-  // Filter directory tree based on provided filter function
-  const filteredTree = useMemo(() => {
-    if (!fileFilter) return sortedDirectoryTree;
-
-    const filterItems = (items: FileSystemItem[]): FileSystemItem[] => {
-      return items
-        .map((item) => {
-          if (item.type === "directory") {
-            const filteredContents = item.contents
-              ? filterItems(item.contents)
-              : [];
-            if (filteredContents.length > 0) {
-              return { ...item, contents: filteredContents };
-            }
-            return null;
-          } else if (item.type === "file" && fileFilter(item)) {
-            return item;
-          }
-          return null;
-        })
-        .filter((item): item is FileSystemItem => item !== null);
-    };
-
-    return filterItems(sortedDirectoryTree);
-  }, [sortedDirectoryTree, fileFilter]);
-
-  // Search functionality
-  const searchFilteredTree = useMemo(() => {
-    if (!searchTermState.trim()) return filteredTree;
-
-    const filterBySearch = (items: FileSystemItem[]): FileSystemItem[] => {
-      return items
-        .map((item) => {
-          if (item.type === "directory") {
-            const filteredContents = item.contents
-              ? filterBySearch(item.contents)
-              : [];
-            if (
-              filteredContents.length > 0 ||
-              item.name.toLowerCase().includes(searchTermState.toLowerCase())
-            ) {
-              return { ...item, contents: filteredContents };
-            }
-            return null;
-          } else if (
-            item.name.toLowerCase().includes(searchTermState.toLowerCase())
-          ) {
-            return item;
-          }
-          return null;
-        })
-        .filter((item): item is FileSystemItem => item !== null);
-    };
-
-    return filterBySearch(filteredTree);
-  }, [filteredTree, searchTermState]);
-
-  const handleToggleExpand = useCallback((path: string) => {
-    setExpandedNodes((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(path)) {
-        newSet.delete(path);
+  const toggle = useCallback((relative: string) => {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(relative)) {
+        // Closing a folder closes what was open inside it.
+        for (const path of prev) {
+          if (path === relative || path.startsWith(`${relative}/`)) next.delete(path);
+        }
       } else {
-        newSet.add(path);
+        next.add(relative);
       }
-      return newSet;
+      return next;
     });
   }, []);
 
-  // Handle menu opening using the context
+  /** Show a search hit in the tree: open its folders and leave search. */
+  const reveal = useCallback((relative: string, isDirectory: boolean) => {
+    const parts = relative.split("/");
+    const upTo = isDirectory ? parts.length : parts.length - 1;
+    setOpen((prev) => {
+      const next = new Set(prev);
+      for (let i = 1; i <= upTo; i++) next.add(parts.slice(0, i).join("/"));
+      return next;
+    });
+    setSearchTerm("");
+  }, []);
+
   const handleMenuOpen = useCallback(
     (item: FileSystemItem, element: HTMLElement) => {
-      // Capture the position immediately while the element is still valid
+      // A fixed anchor that outlives the row: virtualised rows unmount on scroll.
       const rect = element.getBoundingClientRect();
-
-      // Create a stable virtual anchor to avoid DOM removal issues
-      const virtualAnchor = document.createElement("div");
-      virtualAnchor.style.position = "fixed";
-      virtualAnchor.style.top = `${rect.bottom}px`;
-      virtualAnchor.style.left = `${rect.left}px`;
-      virtualAnchor.style.width = "1px";
-      virtualAnchor.style.height = "1px";
-      virtualAnchor.style.pointerEvents = "none";
-      virtualAnchor.style.visibility = "hidden";
-      virtualAnchor.style.zIndex = "9999";
-      virtualAnchor.id = "file-menu-anchor";
-
-      // Add to DOM immediately
-      document.body.appendChild(virtualAnchor);
-
-      // Use the context's openMenu function
-      openMenu(virtualAnchor, item);
+      document.getElementById("file-menu-anchor")?.remove();
+      const anchor = document.createElement("div");
+      Object.assign(anchor.style, {
+        position: "fixed",
+        top: `${rect.bottom}px`,
+        left: `${rect.left}px`,
+        width: "1px",
+        height: "1px",
+        pointerEvents: "none",
+        visibility: "hidden",
+        zIndex: "9999",
+      });
+      anchor.id = "file-menu-anchor";
+      document.body.appendChild(anchor);
+      openMenu(anchor, item);
     },
     [openMenu]
   );
 
-  const TreeNode: React.FC<TreeNodeProps> = ({
-    item,
-    level,
-    expandedNodes,
-    onToggleExpand,
-    searchTerm,
-    fileFilter,
-    onItemClick,
-  }) => {
-    const isExpanded = expandedNodes.has(item.path);
-    const hasChildren =
-      item.type === "directory" && item.contents && item.contents.length > 0;
-
-    // Highlight search term
-    const highlightText = (text: string, term: string) => {
-      if (!term.trim()) return text;
-      const regex = new RegExp(`(${term})`, "gi");
-      const parts = text.split(regex);
-      return parts.map((part, index) =>
-        regex.test(part) ? (
-          <mark key={index} style={{ backgroundColor: "#ffeb3b", padding: 0 }}>
-            {part}
-          </mark>
-        ) : (
-          part
-        )
-      );
-    };
-
-    const handleClick = (event: React.MouseEvent) => {
-      event.stopPropagation();
-      if (item.type === "directory") {
-        onToggleExpand(item.path);
-      }
-      onItemClick?.(item, event);
-    };
-
-    const handleDoubleClick = (event: React.MouseEvent) => {
-      event.stopPropagation();
-    };
-
-    const handleRightClick = (event: React.MouseEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
-      handleMenuOpen(item, event.currentTarget as HTMLElement);
-    };
-
-    const handleMenuClick = (event: React.MouseEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
-      handleMenuOpen(item, event.currentTarget as HTMLElement);
-    };
-
-    return (
-      <Box>
-        <Box
-          data-tree-item-row={item.path}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: `${level * 16}px`,
-            paddingY: 0.5,
-            cursor: "context-menu", // <-- Change cursor to indicate contextual menu
-            backgroundColor: "transparent",
-            "&:hover": {
-              backgroundColor: "action.hover",
-              "& .menu-button": {
-                opacity: 1,
-              },
-            },
-            borderRadius: 1,
-            margin: 0.25,
-            position: "relative",
-          }}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-          onContextMenu={handleRightClick}
-        >
-          {/* Always show caret area for directories to maintain alignment */}
-          {item.type === "directory" ? (
-            <IconButton
-              size="small"
-              sx={{
-                padding: 0.25,
-                marginRight: 0.5,
-                visibility: hasChildren ? "visible" : "hidden",
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (hasChildren) {
-                  onToggleExpand(item.path);
-                }
-              }}
-            >
-              {hasChildren ? (
-                isExpanded ? (
-                  <ExpandMoreIcon fontSize="small" />
-                ) : (
-                  <ChevronRightIcon fontSize="small" />
-                )
-              ) : (
-                <ChevronRightIcon fontSize="small" style={{ opacity: 0 }} />
-              )}
-            </IconButton>
-          ) : (
-            <Box sx={{ width: 32, height: 24, marginRight: 0.5 }} />
-          )}
-
-          {item.type === "directory" ? (
-            isExpanded ? (
-              <FolderOpenIcon
-                fontSize="small"
-                sx={{ marginRight: 1, color: "primary.main" }}
-              />
-            ) : (
-              <FolderIcon
-                fontSize="small"
-                sx={{ marginRight: 1, color: "primary.main" }}
-              />
-            )
-          ) : (
-            <FileIcon
-              fontSize="small"
-              sx={{ marginRight: 1, color: "text.secondary" }}
-            />
-          )}
-
-          <Typography
-            variant="body2"
-            sx={{
-              fontFamily: item.type === "directory" ? "inherit" : "monospace",
-              fontSize: "0.875rem",
-              color: "text.primary",
-              fontWeight: "normal",
-              flex: 1,
-              minWidth: 0,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {highlightText(item.name, searchTerm)}
-          </Typography>
-
-          {item.type === "file" && item.size && (
-            <Typography
-              variant="caption"
-              sx={{
-                color: "text.secondary",
-                fontSize: "0.75rem",
-                marginRight: 1,
-                flexShrink: 0,
-              }}
-            >
-              {(item.size / 1024).toFixed(1)} KB
-            </Typography>
-          )}
-
-          <IconButton
-            className="menu-button"
-            size="small"
-            sx={{
-              opacity: 0,
-              transition: "opacity 0.2s",
-              padding: 0.25,
-              marginLeft: 0.5,
-              flexShrink: 0,
-            }}
-            onClick={handleMenuClick}
-          >
-            <MoreVertIcon fontSize="small" />
-          </IconButton>
-        </Box>
-
-        {item.type === "directory" && hasChildren && (
-          <Collapse in={isExpanded}>
-            <Box>
-              {item.contents!.map((child) => (
-                <TreeNode
-                  key={child.path}
-                  item={child}
-                  level={level + 1}
-                  expandedNodes={expandedNodes}
-                  onToggleExpand={onToggleExpand}
-                  searchTerm={searchTerm ?? ""}
-                  fileFilter={fileFilter}
-                  onItemClick={onItemClick}
-                />
-              ))}
-            </Box>
-          </Collapse>
-        )}
+  const renderEntry = (
+    item: FileSystemItem,
+    depth: number,
+    label: string,
+    caret: "open" | "closed" | "none",
+    onActivate: (event: React.MouseEvent) => void
+  ) => (
+    <Box
+      data-tree-item-row={item.path}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        height: ROW_HEIGHT,
+        pl: `${depth * INDENT}px`,
+        cursor: "context-menu",
+        borderRadius: 1,
+        "&:hover": { backgroundColor: "action.hover", "& .menu-button": { opacity: 1 } },
+      }}
+      onClick={(event) => {
+        event.stopPropagation();
+        onActivate(event);
+        onItemClick?.(item, event);
+      }}
+      onContextMenu={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        handleMenuOpen(item, event.currentTarget as HTMLElement);
+      }}
+    >
+      <Box sx={{ width: 28, display: "flex", justifyContent: "center", flexShrink: 0 }}>
+        {caret === "open" && <ExpandMoreIcon fontSize="small" />}
+        {caret === "closed" && <ChevronRightIcon fontSize="small" />}
       </Box>
+      {item.type === "directory" ? (
+        caret === "open" ? (
+          <FolderOpenIcon fontSize="small" sx={{ mr: 1, color: "primary.main" }} />
+        ) : (
+          <FolderIcon fontSize="small" sx={{ mr: 1, color: "primary.main" }} />
+        )
+      ) : (
+        <FileIcon fontSize="small" sx={{ mr: 1, color: "text.secondary" }} />
+      )}
+      <Typography
+        variant="body2"
+        title={label}
+        sx={{
+          fontFamily: item.type === "directory" ? "inherit" : "monospace",
+          fontSize: "0.875rem",
+          flex: 1,
+          minWidth: 0,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          fontStyle: item.link ? "italic" : "normal",
+        }}
+      >
+        {label}
+      </Typography>
+      {item.type === "file" && (
+        <Typography variant="caption" sx={{ color: "text.secondary", mr: 1, flexShrink: 0 }}>
+          {formatSize(item.size)}
+        </Typography>
+      )}
+      <IconButton
+        className="menu-button"
+        size="small"
+        sx={{ opacity: 0, transition: "opacity 0.2s", p: 0.25, flexShrink: 0 }}
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          handleMenuOpen(item, event.currentTarget as HTMLElement);
+        }}
+      >
+        <MoreVertIcon fontSize="small" />
+      </IconButton>
+    </Box>
+  );
+
+  const renderRow = (index: number) => {
+    if (inSearch) {
+      const hit = searchRows[index];
+      return renderEntry(hit, 0, hit.relative, "none", () =>
+        hit.type === "directory" ? reveal(hit.relative, true) : undefined
+      );
+    }
+    const row = rows[index];
+    if (row.kind === "loading") {
+      return (
+        <Box sx={{ display: "flex", alignItems: "center", height: ROW_HEIGHT, pl: `${row.depth * INDENT + 28}px` }}>
+          <CircularProgress size={14} sx={{ mr: 1 }} />
+          <Typography variant="caption" color="text.secondary">Listing…</Typography>
+        </Box>
+      );
+    }
+    const isDirectory = row.entry.type === "directory";
+    return renderEntry(
+      row.entry,
+      row.depth,
+      row.entry.name,
+      isDirectory ? (row.open ? "open" : "closed") : "none",
+      () => isDirectory && toggle(row.relative)
     );
   };
 
-  // Local state for manually expanded items (user clicked)
-  const [manuallyExpanded, setManuallyExpanded] = useState<Set<string>>(
-    new Set()
-  );
-
-  // Function to check if an item should be expanded
-  const isExpanded = useCallback(
-    (itemPath: string) => {
-      if (isSearchActive) {
-        // During search, use auto-expanded paths
-        return autoExpandedPaths.has(itemPath);
-      } else {
-        // When not searching, use manually expanded paths
-        return manuallyExpanded.has(itemPath);
-      }
-    },
-    [isSearchActive, autoExpandedPaths, manuallyExpanded]
-  );
-
-  // Handle manual toggle (user clicking expand/collapse)
-  const toggleExpansion = useCallback(
-    (itemPath: string) => {
-      if (isSearchActive) {
-        // Don't allow manual toggle during search
-        return;
-      }
-
-      setManuallyExpanded((prev) => {
-        const newSet = new Set(prev);
-        if (newSet.has(itemPath)) {
-          newSet.delete(itemPath);
-        } else {
-          newSet.add(itemPath);
-        }
-        return newSet;
-      });
-    },
-    [isSearchActive]
-  );
-
-  // Clear manual expansions when search becomes active
-  useEffect(() => {
-    if (isSearchActive) {
-      setManuallyExpanded(new Set());
-    }
-  }, [isSearchActive]);
-
-  // Recursive function to render directory items
-  const renderDirectoryItem = useCallback(
-    (item: any, currentPath: string = "") => {
-      const itemPath = currentPath ? `${currentPath}/${item.name}` : item.name;
-      const expanded = isExpanded(itemPath);
-      const hasChildren = item.children && item.children.length > 0;
-
-      // Check if this item or any children match the search
-      const matchesSearch = searchTerm
-        ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        : false;
-
-      return (
-        <div key={itemPath}>
-          <div
-            onClick={() => hasChildren && toggleExpansion(itemPath)}
-            style={{
-              cursor: hasChildren ? "pointer" : "default",
-              padding: "4px 8px",
-              backgroundColor: matchesSearch ? "#ffeb3b" : "transparent", // Highlight matches
-              fontWeight: matchesSearch ? "bold" : "normal",
-            }}
-          >
-            {hasChildren && (
-              <span style={{ marginRight: "8px" }}>{expanded ? "▼" : "▶"}</span>
-            )}
-            {item.name}
-          </div>
-
-          {hasChildren && expanded && (
-            <div style={{ marginLeft: "20px" }}>
-              {item.children.map((child: any) =>
-                renderDirectoryItem(child, itemPath)
-              )}
-            </div>
-          )}
-        </div>
-      );
-    },
-    [isExpanded, toggleExpansion, searchTerm]
-  );
+  let message: string | null = null;
+  if (inSearch && !searching && count === 0) message = "No matching files found";
+  if (!inSearch && listings && count === 0) message = "No files found";
 
   return (
-    <Stack sx={{ flex: 1, "overflow": "hidden" }}>
+    <Stack sx={{ flex: 1, overflow: "hidden" }}>
       <SearchField
-        value={searchTermState}
+        value={searchTerm}
         onChange={setSearchTerm}
         placeholder="Search files..."
         size="small"
         sx={{ px: 2, py: 1 }}
       />
-      <Box
-        sx={{
-          flex: 1, // This will take remaining space
-          overflow: "auto", // This creates the scrollable area
-          scrollbarWidth: "thin",
-          p: 1,
-          pb: 4,
-        }}
-      >
-        {searchFilteredTree.length > 0 ? (
-          searchFilteredTree.map((item) => (
-            <TreeNode
-              key={item.path}
-              item={item}
-              level={0}
-              expandedNodes={expandedNodes}
-              onToggleExpand={handleToggleExpand}
-              searchTerm={searchTerm || ""}
-              fileFilter={fileFilter}
-              onItemClick={onItemClick}
-            />
-          ))
-        ) : (
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ p: 2, textAlign: "center" }}
-          >
-            {searchTerm ? "No matching files found" : "No files found"}
+      {(isLoading || (inSearch && searching)) && <LinearProgress />}
+      {inSearch && found?.truncated && (
+        <Typography variant="caption" color="text.secondary" sx={{ px: 2 }}>
+          Showing the first {found.items.length} matches; narrow the search to see the rest.
+        </Typography>
+      )}
+      <Box ref={scrollRef} sx={{ flex: 1, overflow: "auto", scrollbarWidth: "thin", p: 1, pb: 4 }}>
+        {message ? (
+          <Typography variant="body2" color="text.secondary" sx={{ p: 2, textAlign: "center" }}>
+            {message}
           </Typography>
+        ) : (
+          <Box sx={{ height: virtualizer.getTotalSize(), position: "relative" }}>
+            {virtualizer.getVirtualItems().map((virtualRow) => (
+              <Box
+                key={virtualRow.key}
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  transform: `translateY(${virtualRow.start}px)`,
+                }}
+              >
+                {renderRow(virtualRow.index)}
+              </Box>
+            ))}
+          </Box>
         )}
       </Box>
     </Stack>

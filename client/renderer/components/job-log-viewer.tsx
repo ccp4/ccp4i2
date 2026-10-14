@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useContext } from "react";
+import { useEffect, useCallback } from "react";
 import { Job, Project } from "../types/models";
 import { useJobDirectory } from "../utils";
 import { Box } from "@mui/material";
@@ -13,15 +13,10 @@ interface JobLogViewerProps {
 }
 
 export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
-  // Use job-aware directory hook for adaptive polling based on job status
-  const { directory } = useJobDirectory(project.id, job);
+  // Lists the job's own folders, re-listing the open ones while it runs
+  const { endpoint, pollInterval, revision } = useJobDirectory(job);
   const { closeMenu } = useFileSystemFileBrowser();
   const { setContentSpecification } = useFilePreviewContext();
-
-  const directoryData = useMemo(
-    () => (directory?.container as FileSystemItem[]) ?? null,
-    [directory]
-  );
 
   // Clean up virtual anchor when component unmounts
   useEffect(() => {
@@ -42,8 +37,8 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
     closeMenu();
   };
 
-  // Filter to show only log files and relevant directories
-  const logFileFilter = (item: any) => {
+  // Filter to show only log files (folders are always shown)
+  const logFileFilter = useCallback((item: FileSystemItem) => {
     if (item.type === "directory") {
       return true; // Always show directories for navigation
     }
@@ -61,9 +56,9 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
     }
 
     return logExtensions.some((ext) => item.name.toLowerCase().endsWith(ext));
-  };
+  }, []);
 
-  const handleFileSelect = (menuNode: any) => {
+  const handleFileSelect = (menuNode: FileSystemItem) => {
     // Handle file selection if needed, e.g., preview or download
     if (menuNode.type !== "directory") {
       // Set the preview node or perform any action needed
@@ -87,20 +82,14 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
 
   return (
     <Box sx={{ display: "flex", height: "100%", width: "100%" }}>
-      {directoryData ? (
-        <>
-          <DirectoryBrowser
-            directoryTree={directoryData || []}
-            fileFilter={logFileFilter}
-            onItemClick={handleFileSelect}
-          />
-          <FileSystemFileMenu onClose={handleMenuClose} />
-        </>
-      ) : (
-        <Box sx={{ p: 2, textAlign: "center", width: "100%" }}>
-          No job files found for job {job.number}
-        </Box>
-      )}
+      <DirectoryBrowser
+        endpoint={endpoint}
+        pollInterval={pollInterval}
+        revision={revision}
+        fileFilter={logFileFilter}
+        onItemClick={handleFileSelect}
+      />
+      <FileSystemFileMenu onClose={handleMenuClose} />
     </Box>
   );
 };

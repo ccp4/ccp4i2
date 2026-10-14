@@ -35,7 +35,7 @@ from ..lib.utils.files.resolve_fileuse import resolve_fileuse
 from ..lib.utils.files.upload_param import resolve_importable_path
 from ..lib.utils.files import staged_upload
 from ..lib.utils.files.staged_upload import StagedUploadError
-from ..lib.utils.navigation.list_project import list_project
+from ..lib.utils.navigation.list_project import browse, list_project
 from . import serializers
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -704,16 +704,18 @@ class ProjectViewSet(ModelViewSet):
         """
 
         the_project = models.Project.objects.get(pk=pk)
-        result = list_project(str(the_project.uuid))
         try:
-            result_str = json.dumps(result, indent=2)
-            return JsonResponse(
-                json.loads(f'{{"status": "Success", "container": {result_str}}}')
-            )
+            result = browse(the_project.directory, request.GET)
+        except ValueError as err:
+            return api_error(str(err), status=400)
+        if result is None:
+            result = list_project(str(the_project.uuid))
+        try:
+            return JsonResponse({"status": "Success", "container": result})
         except TypeError as err:
             logger.exception("Failed encoding listing of %s", exc_info=err)
             return JsonResponse(
-                {status: "Failed", "container": {"Reason": "TypeError"}}
+                {"status": "Failed", "container": {"Reason": "TypeError"}}
             )
 
     @action(
