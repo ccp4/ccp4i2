@@ -7,6 +7,7 @@ import {
   IconButton,
   LinearProgress,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import {
@@ -20,6 +21,7 @@ import {
 import { apiJson } from "../api-fetch";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
 import { DirectoryEntry, directoryRows } from "../lib/directory-rows";
+import { formatModified, formatSize, formatTimestamp } from "../lib/file-kinds";
 import SearchField from "./search-field";
 
 export interface FileSystemItem {
@@ -81,11 +83,6 @@ function useDebounced<T>(value: T, delay: number): T {
   return debounced;
 }
 
-const formatSize = (size?: number) =>
-  size === undefined ? "" : size < 1024 * 1024
-    ? `${(size / 1024).toFixed(1)} KB`
-    : `${(size / (1024 * 1024)).toFixed(1)} MB`;
-
 /**
  * A file browser that lists a folder only when it is opened.
  *
@@ -108,6 +105,13 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   const query = useDebounced(searchTerm.trim(), 300);
   const { openMenu } = useFileSystemFileBrowser();
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // "4 min ago" must not stay four minutes old on a job that has stopped polling.
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   // A different root starts closed.
   useEffect(() => setOpen(new Set()), [endpoint]);
@@ -257,9 +261,22 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
         {label}
       </Typography>
       {item.type === "file" && (
-        <Typography variant="caption" sx={{ color: "text.secondary", mr: 1, flexShrink: 0 }}>
+        <Typography
+          variant="caption"
+          sx={{ color: "text.secondary", mr: 1, flexShrink: 0, minWidth: 64, textAlign: "right" }}
+        >
           {formatSize(item.size)}
         </Typography>
+      )}
+      {item.mtime !== undefined && (
+        <Tooltip title={`Modified ${formatTimestamp(item.mtime)}`} placement="left">
+          <Typography
+            variant="caption"
+            sx={{ color: "text.secondary", mr: 1, flexShrink: 0, minWidth: 72, textAlign: "right" }}
+          >
+            {formatModified(item.mtime, now)}
+          </Typography>
+        </Tooltip>
       )}
       <IconButton
         className="menu-button"

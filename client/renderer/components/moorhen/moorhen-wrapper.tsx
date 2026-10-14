@@ -52,6 +52,13 @@ import {
   type DictionaryFile,
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
+import {
+  baseName,
+  classifyCif,
+  isLoadableFile,
+  looksLikeMask,
+  planPathLoad,
+} from "../../lib/moorhen-path-load";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -100,6 +107,9 @@ export interface MoorhenWrapperProps {
   /** The job this window is a recorded Moorhen session for: load its inputs
    *  from the server's load plan, save back into it, finish it. */
   sessionJobId?: number | null;
+  /** Files or folders to open by their path in the project (needs
+   *  ``projectId``): what a job directory holds, registered or not. */
+  filePaths?: string[];
 }
 
 /** Map a project UUID to its primary key (the form the REST filters need). The
@@ -193,7 +203,7 @@ async function resolveJobParamUrl(
 /** The mime type a job's authored Moorhen scene registers under. */
 const SCENE_FILE_TYPE = "application/moorhen-scene";
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId, filePaths }) => {
   const capabilities = useMoorhenCapabilities();
   const session = useMoorhenSession(sessionJobId, !!sessionJobId);
   const [isSafari] = useState(() => isSafariBrowser());
@@ -1527,6 +1537,76 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     })();
   }, [fileIds, cootInitialized]);
+
+  // Paths in the project (from a directory browser's "Open in Moorhen"):
+  // files load as they are, folders as the files directly in them.
+  const filePathsKey = (filePaths ?? []).join("\n");
+  useEffect(() => {
+    if (!filePathsKey || !projectId || !cootInitialized) return;
+    const paths = filePathsKey.split("\n");
+    const urlFor = (path: string) =>
+      `/api/proxy/ccp4i2/projects/${projectId}/project_file?path=${encodeURIComponent(path)}`;
+    (async () => {
+      const files: string[] = [];
+      for (const path of paths) {
+        if (isLoadableFile(path)) {
+          files.push(path);
+          continue;
+        }
+        const listing = await apiGet(
+          `projects/${projectId}/directory?path=${encodeURIComponent(path)}`,
+        ).catch(() => null);
+        for (const entry of listing?.container ?? []) {
+          if (entry.type === "file") files.push(path ? `${path}/${entry.name}` : entry.name);
+        }
+      }
+      const plan = planPathLoad(files);
+      const dictionaries: DictionaryToAttach[] = [];
+      const models = [...plan.coordinates];
+      for (const path of plan.cifs) {
+        const text = await apiText(urlFor(path)).catch(() => null);
+        const kind = text ? classifyCif(text) : null;
+        if (kind === "coordinates") models.push(path);
+        else if (kind === "dictionary") dictionaries.push({ text: text as string });
+      }
+      const failed: string[] = [];
+      let loaded = 0;
+      for (const [index, path] of models.entries()) {
+        const molecule = await loadStructure(urlFor(path), baseName(path), {
+          dictionaries,
+          centre: index === 0,
+        });
+        if (molecule) loaded += 1;
+        else failed.push(baseName(path));
+      }
+      if (models.length === 0) {
+        for (const [index, dict] of dictionaries.entries()) {
+          const built = await loadMoleculesFromDictionary(dict, `path-dict-${index}`, {
+            centre: index === 0,
+          });
+          loaded += built.length;
+        }
+        if (dictionaries.length > 0) dispatch(setRequestDrawScene(true));
+      }
+      for (const path of plan.maps) {
+        try {
+          const map = await fetchMapFile(urlFor(path), baseName(path), {
+            isMask: looksLikeMask(path),
+          });
+          if (map) loaded += 1;
+          else failed.push(baseName(path));
+        } catch (err) {
+          console.warn(`[paths] could not open ${path}:`, err);
+          failed.push(baseName(path));
+        }
+      }
+      if (loaded === 0 && failed.length === 0) {
+        setMessage(`Nothing in ${paths.join(", ")} that Moorhen can open`, "warning");
+      } else if (failed.length > 0) {
+        setMessage(`Could not open ${failed.join(", ")}`, "warning");
+      }
+    })();
+  }, [filePathsKey, projectId, cootInitialized]);
 
   // A session window loads the job's inputs from the server's load plan,
   // once, in the server's order (dictionaries first, then coordinates,
