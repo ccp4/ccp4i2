@@ -30,6 +30,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  Link,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -278,7 +279,18 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                   <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
                     <Typography variant="body2" color="text.secondary">
                       <strong>Parent:</strong>{" "}
-                      {parentProject?.name || "None"}
+                      {parentProject ? (
+                        <Link
+                          component="button"
+                          variant="body2"
+                          onClick={() => router.push(`/ccp4i2/project/${parentProject.id}`)}
+                          sx={{ verticalAlign: "baseline" }}
+                        >
+                          {parentProject.name}
+                        </Link>
+                      ) : (
+                        "None"
+                      )}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <strong>Coords:</strong>{" "}
@@ -291,6 +303,16 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                   </Stack>
                 )}
               </Box>
+              {parentProject && (
+                <Tooltip title={`Open the parent project, ${parentProject.name}`}>
+                  <IconButton
+                    aria-label="Open the parent project"
+                    onClick={() => router.push(`/ccp4i2/project/${parentProject.id}`)}
+                  >
+                    <FolderIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title="Refresh">
                 <IconButton onClick={handleRefresh}>
                   <RefreshIcon />
