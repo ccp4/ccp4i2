@@ -213,6 +213,12 @@ export interface SceneFileRef {
 
   /** Job parameter name, e.g. "XYZOUT". Pair with `job`. */
   param?: string;
+
+  /** Path relative to the project directory, e.g.
+   *  "CCP4_JOBS/job_3/pandda2_out/processed_datasets/x1/x1-z_map.native.ccp4".
+   *  For files the database does not record, such as what a running job has
+   *  written so far. Needs `projectId` or `projectName`. */
+  projectPath?: string;
 }
 
 // --------------------------------------------------------------------------

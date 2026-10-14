@@ -34,6 +34,7 @@ files?: ({
   projectName?: string  # project name (unique within this deployment). Resolves job+param when projectId is absent; advisory on a fileId ref. Not portable across deployments — prefer projectId when known
   fileId?: number  # ccp4i2 file id (globally unique in the DB); fetches without a project qualifier
   job?: number  # pair with param
+  projectPath?: string  # path in the project directory, for files not in the database (a running job's); needs projectId or projectName
   param?: string  # job parameter, e.g. "XYZOUT"
 })[]
 superpose?: ({

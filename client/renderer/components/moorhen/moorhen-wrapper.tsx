@@ -59,6 +59,7 @@ import {
   looksLikeMask,
   planPathLoad,
 } from "../../lib/moorhen-path-load";
+import { projectPathUrl } from "../../lib/scene-project-path";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -202,6 +203,21 @@ async function resolveJobParamUrl(
 
 /** The mime type a job's authored Moorhen scene registers under. */
 const SCENE_FILE_TYPE = "application/moorhen-scene";
+
+/** The URL of a scene's projectPath ref: the scene's project (by uuid or
+ *  name) when it names one, else this page's. */
+async function resolveProjectPathUrl(
+  ref: { projectPath?: string; projectId?: string; projectName?: string },
+  current: { uuid: string | null; name: string | null; pk: number | null },
+): Promise<string | null> {
+  if (!ref.projectPath) return null;
+  const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
+  if (projectPk == null) {
+    console.warn(`[scene] projectPath ${ref.projectPath}: no project context`);
+    return null;
+  }
+  return projectPathUrl(projectPk, ref.projectPath);
+}
 
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId, filePaths }) => {
   const capabilities = useMoorhenCapabilities();
@@ -953,6 +969,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`, loadOpts)
           : null;
       }
+      if (ref.projectPath) {
+        const url = await resolveProjectPathUrl(ref, {
+          uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+        });
+        return url ? loadStructure(url, ref.name || baseName(ref.projectPath), loadOpts) : null;
+      }
       if (ref.url) {
         return loadStructure(ref.url, ref.name || ref.url, loadOpts);
       }
@@ -991,6 +1013,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
           { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
         );
+      } else if (ref.projectPath) {
+        url = await resolveProjectPathUrl(ref, {
+          uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+        });
       } else if (ref.url) {
         url = ref.url;
       }
@@ -1040,6 +1066,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
         { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
       );
+    }
+    if (ref.projectPath) {
+      return await resolveProjectPathUrl(ref, {
+        uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+      });
     }
     if (ref.url) return ref.url;
     return null;
@@ -1544,8 +1575,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   useEffect(() => {
     if (!filePathsKey || !projectId || !cootInitialized) return;
     const paths = filePathsKey.split("\n");
-    const urlFor = (path: string) =>
-      `/api/proxy/ccp4i2/projects/${projectId}/project_file?path=${encodeURIComponent(path)}`;
+    const urlFor = (path: string) => projectPathUrl(projectId, path);
     (async () => {
       const files: string[] = [];
       for (const path of paths) {

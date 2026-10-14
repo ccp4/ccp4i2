@@ -10,6 +10,8 @@
  *                    origin-relative URLs. Portable WITHIN a deployment only.
  *   - fileId (+projectId)        — symbolic project file.
  *   - job + param (+projectId)   — symbolic job output.
+ *   - projectPath (+projectId)   — a file by its path in the project, for
+ *                                  what the database does not record.
  *
  * These are "recipes for producing a core ref": on a strict-portable export
  * they lower to bundle assets or absolute URLs. See design doc §5.
@@ -40,6 +42,12 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
     ),
   fileId: z.number().optional().describe("ccp4i2 file id (globally unique in the DB); fetches without a project qualifier"),
   job: z.number().optional().describe("pair with param"),
+  projectPath: z
+    .string()
+    .optional()
+    .describe(
+      "path in the project directory, for files not in the database (a running job's); needs projectId or projectName",
+    ),
   param: z.string().optional().describe('job parameter, e.g. "XYZOUT"'),
 })
   .strict()
@@ -54,12 +62,13 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
       ref.relativeUrl,
       hasFileId ? "fileId" : undefined,
       hasJobParam ? "job+param" : undefined,
+      ref.projectPath,
     ].filter((v) => v != null && v !== "");
     if (sources.length !== 1) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
-          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId, job+param(+projectId|projectName)",
+          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId, job+param(+projectId|projectName), projectPath(+projectId|projectName)",
       });
     }
     // A fileId is globally unique in the ccp4i2 DB and the download URL keys on
@@ -74,6 +83,20 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
         code: z.ZodIssueCode.custom,
         path: ["projectId"],
         message: "job+param needs a project qualifier: set projectId (UUID) or projectName",
+      });
+    }
+    if (ref.projectPath != null && ref.projectId == null && ref.projectName == null) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["projectId"],
+        message: "projectPath needs a project qualifier: set projectId (UUID) or projectName",
+      });
+    }
+    if (ref.projectPath != null && (ref.projectPath.startsWith("/") || ref.projectPath.split("/").includes(".."))) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["projectPath"],
+        message: "projectPath is relative to the project directory and stays inside it",
       });
     }
     if (ref.job != null && ref.param == null) {

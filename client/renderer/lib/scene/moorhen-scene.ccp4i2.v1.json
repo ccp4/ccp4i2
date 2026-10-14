@@ -88,6 +88,10 @@
             "description": "pair with param",
             "type": "number"
           },
+          "projectPath": {
+            "description": "path in the project directory, for files not in the database (a running job's); needs projectId or projectName",
+            "type": "string"
+          },
           "param": {
             "description": "job parameter, e.g. \"XYZOUT\"",
             "type": "string"
