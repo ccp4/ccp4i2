@@ -1896,13 +1896,20 @@ class JobViewSet(ModelViewSet):
         tab shows. The project-wide listing had to walk every job to deliver
         one, which on a campaign parent with a PanDDA job (a directory per
         dataset) is thousands of entries per poll.
+
+        GET /api/jobs/123/directory/?path=<relative> lists one folder of the
+        job; ?search=<term> searches it by name (see ``browse``).
         """
-        from ..lib.utils.navigation.list_project import list_job
+        from ..lib.utils.navigation.list_project import browse, job_directory, list_job
 
         try:
-            result = list_job(pk)
+            result = browse(job_directory(pk), request.GET)
+            if result is None:
+                result = list_job(pk)
         except models.Job.DoesNotExist as err:
             return api_error(f"Job not found: {err}", status=404)
+        except ValueError as err:
+            return api_error(str(err), status=400)
         try:
             return JsonResponse({"status": "Success", "container": result})
         except TypeError as err:

@@ -27,6 +27,7 @@ import {
   ArrowBack,
   Home,
   Input as InputIcon,
+  OpenInNew,
 } from "@mui/icons-material";
 import { useApi } from "../../api";
 import { Project, Job, File as DjangoFile } from "../../types/models";
@@ -48,6 +49,8 @@ interface HierarchyPanelProps {
   children: React.ReactNode;
   onBack?: () => void;
   breadcrumbs?: React.ReactNode;
+  /** Beside the title, e.g. the button that opens the project in CCP4i2. */
+  headerAction?: React.ReactNode;
   searchValue: string;
   onSearchChange: (value: string) => void;
   searchPlaceholder?: string;
@@ -59,6 +62,7 @@ const HierarchyPanel: React.FC<HierarchyPanelProps> = ({
   children,
   onBack,
   breadcrumbs,
+  headerAction,
   searchValue,
   onSearchChange,
   searchPlaceholder = "Search...",
@@ -106,6 +110,7 @@ const HierarchyPanel: React.FC<HierarchyPanelProps> = ({
         </Typography>
         {breadcrumbs && <Box sx={{ mt: 0.25 }}>{breadcrumbs}</Box>}
       </Box>
+      {headerAction}
     </Box>
 
     {/* Compact Search Box */}
@@ -558,6 +563,21 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
     </Box>
   );
 
+  // The selected project's own page in CCP4i2, in a window of its own so the
+  // viewer stays open (the app opens window.open URLs as new windows).
+  const openProjectAction = selectedProject ? (
+    <Tooltip title={`Open ${selectedProject.name || `project ${selectedProject.id}`} in CCP4i2`}>
+      <IconButton
+        size="small"
+        aria-label="Open project in CCP4i2"
+        sx={{ color: "white", p: 0.5 }}
+        onClick={() => window.open(`/ccp4i2/project/${selectedProject.id}`, "_blank")}
+      >
+        <OpenInNew fontSize="small" />
+      </IconButton>
+    </Tooltip>
+  ) : null;
+
   // Create breadcrumbs
   const createBreadcrumbs = () => {
     if (selectedJob) {
@@ -633,6 +653,7 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
           title={`Files in Job ${selectedJob.number}`}
           onBack={handleBackToJobs}
           breadcrumbs={createBreadcrumbs()}
+          headerAction={openProjectAction}
           searchValue={fileSearchTerm}
           onSearchChange={setFileSearchTerm}
           searchPlaceholder="Search files..."
@@ -678,6 +699,7 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
           }`}
           onBack={handleBackToProjects}
           breadcrumbs={createBreadcrumbs()}
+          headerAction={openProjectAction}
           searchValue={jobSearchTerm}
           onSearchChange={setJobSearchTerm}
           searchPlaceholder="Search jobs..."

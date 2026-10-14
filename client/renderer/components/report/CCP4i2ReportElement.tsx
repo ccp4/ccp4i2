@@ -21,6 +21,7 @@ import { CCP4i2ReportJobDetails } from "./CCP4i2ReportJobDetails";
 import { CCP4i2ReportVerdict } from "./CCP4i2ReportVerdict";
 import { CCP4i2ReportProgressBar } from "./CCP4i2ReportProgressBar";
 import { CCP4i2ReportFileLink } from "./CCP4i2ReportFileLink";
+import { CCP4i2ReportMoorhenLink } from "./CCP4i2ReportMoorhenLink";
 import { CCP4i2ReportErrorReports } from "./CCP4i2ReportErrorReports";
 import {
   CCP4i2ReportGridContainer,
@@ -286,6 +287,15 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
       } else if (["CCP4i2ReportFileLink"].includes(tagName)) {
         return (
           <CCP4i2ReportFileLink
+            key={`${iItem}`}
+            iItem={iItem}
+            item={item}
+            job={job}
+          />
+        );
+      } else if (["CCP4i2ReportMoorhenLink"].includes(tagName)) {
+        return (
+          <CCP4i2ReportMoorhenLink
             key={`${iItem}`}
             iItem={iItem}
             item={item}

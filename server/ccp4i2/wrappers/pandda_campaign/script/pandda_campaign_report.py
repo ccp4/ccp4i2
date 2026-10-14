@@ -44,6 +44,8 @@ class pandda_campaign_report(Report):
             else:
                 self.addText(text='Progress unknown: this PanDDA build does not report it.')
 
+        self._add_peek(xmlnode.find('peek'), self._labels(xmlnode), running=state in ('running', 'dispatched'))
+
         summary = self.addFold(label='Run', brief='Run', initiallyOpen=True)
         table = summary.addTable(transpose=True)
         table.addData(title='Datasets staged', data=[text('n_datasets')])
@@ -73,6 +75,38 @@ class pandda_campaign_report(Report):
             table.addData(title='xtal', data=[d.get('xtal') for d in datasets])
             table.addData(title='Label', data=[d.get('label') for d in datasets])
             table.addData(title='Dictionary', data=[d.get('dict') for d in datasets])
+
+    # -- looking at the events, before the receipts exist --------------------
+
+    def _add_peek(self, node, labels, running):
+        """A button per event the finished datasets report, opening Moorhen
+        on the event: apo model, event map, PanDDA's candidate pose. The
+        scene is built when the button is pressed (the job's eventScene),
+        from the run's own files, so it works while the run goes on."""
+        if node is None:
+            return
+        events = node.findall('event')
+        total = int(node.get('total') or 0)
+        finished = int(node.get('datasets') or 0)
+        fold = self.addFold(label='Look at the events', brief='Events', initiallyOpen=True)
+        if not events:
+            fold.addText(text=(f"No events yet in the {finished} dataset(s) finished so far."
+                               if running else 'No dataset reported an event.'))
+            return
+        shown = f"the {len(events)} best-scored" if total > len(events) else "each"
+        fold.addText(text=(
+            f"{total} event(s) in the {finished} dataset(s) finished so far. Open {shown} in Moorhen: "
+            f"the apo model, the event map and PanDDA's candidate pose, centred on the event, the "
+            f"Z-map loaded but hidden." if running else
+            f"Open {shown} of the {total} event(s) in Moorhen, from the run's own files: the apo "
+            f"model, the event map and PanDDA's candidate pose. After fan-out each event is also "
+            f"in its dataset's project, with the receipt's scene."))
+        for event in events:
+            dtag = event.get('dtag')
+            name = labels.get(dtag) or dtag
+            score = f" (score {event.get('score')})" if event.get('score') else ''
+            fold.addMoorhenLink(label=f"{name} event {event.get('idx')}{score}", method='eventScene',
+                                kwargs={'dtag': dtag, 'event_idx': int(event.get('idx'))})
 
     # -- the run's own analysis, recapitulated from its tables ---------------
 

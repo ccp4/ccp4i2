@@ -68,6 +68,7 @@ import type { moorhen } from "moorhen/types/moorhen";
 // name (importing it gives "is not a constructor").
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
+import { extractProjectPathFromUniqueId } from "./scene-project-path";
 import {
   MoorhenScene,
   SceneColour,
@@ -261,7 +262,7 @@ interface CCP4GemmiModule {
 /**
  * Centroid + bounding radius (Å) of a CID selection, walked over the molecule's
  * cached gemmi structure via the gemmi WASM module Moorhen exposes as
- * `window.CCP4Module`. Orientation-independent. Returns null if gemmi / the
+ * `window.gemmiModule` (`CCP4Module` before 1.0). Orientation-independent. Returns null if gemmi / the
  * structure is unavailable or the selection matched no atoms. emscripten objects
  * are .delete()d so the WASM heap doesn't grow on repeated applies.
  */
@@ -271,7 +272,9 @@ function selectionBoundingSphere(
 ): { centre: [number, number, number]; radius: number } | null {
   const M =
     typeof window !== "undefined"
-      ? (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module
+      ? // Moorhen 1.0 exposes gemmi as window.gemmiModule; older builds as CCP4Module.
+        ((window as unknown as { gemmiModule?: CCP4GemmiModule }).gemmiModule ??
+        (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module)
       : undefined;
   const struct = (mol as unknown as { gemmiStructure?: unknown }).gemmiStructure;
   if (!M || !struct || typeof M.Selection !== "function") return null;
@@ -916,6 +919,9 @@ export function isFetchable(fr: SceneFileRef): boolean {
   // to fetch. projectId/projectName are advisory context here.
   if (fr.fileId !== undefined) return true;
   if (fr.job !== undefined && fr.param) return true;
+  // A path in the project: the host fetcher loads it through the project's
+  // file endpoint, the project resolved as for job+param.
+  if (fr.projectPath) return true;
   // Inline dict text: trivially "fetchable" — the fetcher just returns
   // the text. Only valid on dictionary refs (validator enforces this).
   if (fr.cifText && fr.kind === "dictionary") return true;
@@ -936,6 +942,13 @@ function matchOneFile(
     for (const mol of molecules) {
       const fid = extractFileIdFromUniqueId(mol.uniqueId || "");
       if (fid === fr.fileId) return mol;
+    }
+  }
+
+  // 1b. Match a file loaded by its path in the project.
+  if (fr.projectPath) {
+    for (const mol of molecules) {
+      if (extractProjectPathFromUniqueId(mol.uniqueId || "") === fr.projectPath) return mol;
     }
   }
 
@@ -981,6 +994,11 @@ function matchOneMap(fr: SceneFileRef, maps: moorhen.Map[]): moorhen.Map | null 
     for (const m of maps) {
       const fid = extractFileIdFromUniqueId(m.uniqueId || "");
       if (fid === fr.fileId) return m;
+    }
+  }
+  if (fr.projectPath) {
+    for (const m of maps) {
+      if (extractProjectPathFromUniqueId(m.uniqueId || "") === fr.projectPath) return m;
     }
   }
   if (fr.bundle) {

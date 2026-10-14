@@ -1,7 +1,8 @@
 """
 Report action elements.
 
-Help, Launch, CopyToClipboard, CopyUrlToClipboard, Download, LaunchTask, FileLink.
+Help, Launch, CopyToClipboard, CopyUrlToClipboard, Download, LaunchTask, FileLink,
+MoorhenLink.
 
 These elements represent interactive actions that appear in reports —
 buttons for launching viewers, downloading data, copying information,
@@ -246,4 +247,57 @@ class FileLink:
             root.set('projectId', str(self.projectId))
         if self.jobId is not None:
             root.set('jobId', str(self.jobId))
+        return root
+
+
+class MoorhenLink:
+    """A button that opens Moorhen on a scene the job builds when asked.
+
+    The scene comes from one of the job's plugin methods, named ``method``
+    and called through ``object_method`` with ``kwargs``, so a report can
+    offer a view it would be too costly to prepare for every redraw (a
+    running report is drawn on every poll). The method returns
+    ``{"success": True, "scene": <scene dict>}``, or ``{"success": False,
+    "error": ...}``. Its name must end in ``Scene``: the viewer page calls
+    only such methods, which build a scene and change nothing.
+
+    Attributes:
+        label: Display text (e.g. "xtal-0002 event 1")
+        method: The plugin method (e.g. "eventScene")
+        kwargs: Its keyword arguments, JSON-serialisable
+        projectId: Project integer PK, for the viewer page's route
+    """
+
+    counter: int = 0
+
+    def __init__(
+        self,
+        config: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
+        MoorhenLink.counter += 1
+        self.id: str | None = kw.get('id', None)
+        self.internalId: str = kw.get('internalId', f'MoorhenLink_{MoorhenLink.counter}')
+        self.label: str | None = kw.get('label', None)
+        self.method: str | None = kw.get('method', None)
+        self.kwargs: dict = kw.get('kwargs', None) or {}
+        self.projectId: str | None = kw.get('projectId', None)
+        if self.method is not None and not self.method.endswith('Scene'):
+            raise ValueError(f'MoorhenLink method {self.method!r} must be a ...Scene method')
+
+    def as_data_etree(self) -> etree.Element:
+        """Serialise to XML for the React frontend."""
+        import json
+        root = etree.Element('CCP4i2ReportMoorhenLink', key=self.internalId)
+        if self.label is not None:
+            root.set('label', self.label)
+        if self.method is not None:
+            root.set('method', self.method)
+        root.set('kwargs', json.dumps(self.kwargs, sort_keys=True))
+        if self.projectId is not None:
+            root.set('projectId', str(self.projectId))
         return root

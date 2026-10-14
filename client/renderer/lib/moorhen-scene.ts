@@ -293,6 +293,8 @@ function validateFiles(
     if ("fileId" in entry) ref.fileId = optNum(entry, "fileId", `${p}.fileId`, errors);
     if ("job" in entry) ref.job = optNum(entry, "job", `${p}.job`, errors);
     if ("param" in entry) ref.param = optStr(entry, "param", `${p}.param`, errors);
+    if ("projectPath" in entry)
+      ref.projectPath = optStr(entry, "projectPath", `${p}.projectPath`, errors);
 
     // pdb id sanity check (4 char or extended 8 char). Keep it permissive
     // but flag obvious nonsense.
@@ -328,10 +330,17 @@ function validateFiles(
     const hasRelativeUrl = !!ref.relativeUrl;
     const hasFileId = ref.fileId !== undefined;
     const hasJobParam = ref.job !== undefined && !!ref.param;
-    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasRelativeUrl && !hasFileId && !hasJobParam) {
+    const hasProjectPath = !!ref.projectPath;
+    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasRelativeUrl && !hasFileId && !hasJobParam && !hasProjectPath) {
       errors.push({
         path: p,
-        message: "must set one of: pdb, url, relativeUrl, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
+        message: "must set one of: pdb, url, relativeUrl, bundle, fileId (+projectId), job+param (+projectId), projectPath (+projectId), or cifText (for dictionaries)",
+      });
+    }
+    if (hasProjectPath && !ref.projectId && !ref.projectName) {
+      errors.push({
+        path: `${p}.projectId`,
+        message: "required when projectPath is set (or give projectName)",
       });
     }
     // fileId form: needs projectId (the lifter always pairs them, and the

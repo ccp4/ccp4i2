@@ -116,8 +116,6 @@ const pendingSyncs = new Map<string, any>();
 export interface ProjectData {
   project: Project | undefined;
   mutateProject: () => void;
-  directory: any;
-  mutateDirectory: () => void;
   jobs: Job[] | undefined;
   /** Mutates the job_tree SWR cache (the single source of truth for jobs) */
   mutateJobs: KeyedMutator<JobTreeResponse>;
@@ -786,12 +784,6 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
     endpoint: "",
   });
 
-  const { data: directory, mutate: mutateDirectory } = api.get_endpoint<any>({
-    type: "projects",
-    id: projectId,
-    endpoint: "directory",
-  });
-
   // Subscribe to job_tree — shared SWR key with ClassicJobsList (which polls it)
   const { jobs, mutateJobs } = useProjectJobs(projectId);
 
@@ -805,8 +797,6 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
   return {
     project,
     mutateProject,
-    directory,
-    mutateDirectory,
     jobs,
     mutateJobs,
     files,
@@ -861,65 +851,25 @@ const DIRECTORY_ACTIVE_POLL_INTERVAL = 5000;
 export const ACTIVE_JOB_STATUSES = [2, 3, 7];
 
 /**
- * Hook for fetching directory data with job-aware polling.
+ * What a job's directory browser lists, and how often.
  *
- * - Polls frequently (5s) when the active job is running/queued OR was recently started
- * - Stops polling when job is idle
- * - Forces a refresh when job transitions from running to not-running
- * - Uses grace period tracking to handle DB latency after job submission
+ * - The job's own directory (``jobs/<id>/directory``), not the project's
+ * - Re-lists the open folders every 5s while the job is running or queued,
+ *   or was just started (grace period for DB latency after submission)
+ * - ``revision`` changes with the job's status, so the browser lists again
+ *   when the job finishes and polling stops
  *
- * @param projectId - The project ID to fetch directory for
- * @param activeJob - The currently active job (optional)
+ * @param activeJob - The job whose directory is browsed (optional)
  */
-export const useJobDirectory = (
-  projectId: number | undefined,
-  activeJob: Job | undefined | null
-) => {
-  const api = useApi();
-
+export const useJobDirectory = (activeJob: Job | undefined | null) => {
   // Use grace period-aware hook to handle DB latency after job submission
   // This also updates the observed status for stall detection
   const isJobActive = useIsJobEffectivelyActive(activeJob?.id, activeJob?.status);
 
-  // Track previous job status for transition detection
-  const previousJob = usePrevious(activeJob);
-
-  // Use adaptive polling - fast when job is running, no polling when idle
-  const pollInterval = isJobActive ? DIRECTORY_ACTIVE_POLL_INTERVAL : 0;
-
-  // The job's own directory, not the project's. The project listing walked
-  // every job to deliver one: on a campaign parent whose PanDDA job holds a
-  // directory per dataset that was ~2000 entries per poll, every few seconds
-  // while the job ran. projectId is kept in the signature because callers
-  // pass it and the browser still wants it for file actions.
-  const { data: directory, mutate: mutateDirectory } = api.get_endpoint<any>(
-    activeJob?.id
-      ? {
-          type: "jobs",
-          id: activeJob.id,
-          endpoint: "directory",
-        }
-      : null,
-    pollInterval
-  );
-
-  // Detect status transitions from running to not-running and force refresh
-  useEffect(() => {
-    if (!activeJob || !previousJob) return;
-
-    // Check if job transitioned from running to finished
-    const wasActive = ACTIVE_JOB_STATUSES.includes(previousJob.status);
-    const isNowIdle = !ACTIVE_JOB_STATUSES.includes(activeJob.status);
-
-    // Only refresh if this is the same job (not a job switch) and it just finished
-    if (wasActive && isNowIdle && activeJob.id === previousJob.id) {
-      mutateDirectory();
-    }
-  }, [activeJob, previousJob, mutateDirectory]);
-
   return {
-    directory,
-    mutateDirectory,
+    endpoint: activeJob?.id ? `jobs/${activeJob.id}/directory` : null,
+    pollInterval: isJobActive ? DIRECTORY_ACTIVE_POLL_INTERVAL : 0,
+    revision: activeJob?.status,
     isJobActive,
   };
 };

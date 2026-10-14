@@ -52,6 +52,15 @@ import {
   type DictionaryFile,
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
+import {
+  baseName,
+  classifyCif,
+  isLoadableFile,
+  looksLikeMask,
+  planPathLoad,
+} from "../../lib/moorhen-path-load";
+import { projectPathUrl } from "../../lib/scene-project-path";
+import { SceneSource } from "../../lib/scene-source";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -73,7 +82,7 @@ import {
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
 import { collectMapRenderState } from "../../lib/moorhen-map-render-state";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, ccp4RestoreSpaceGroup, type CrystalSymmetry, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MASK_PROVENANCE_PREFIX,
@@ -100,6 +109,12 @@ export interface MoorhenWrapperProps {
   /** The job this window is a recorded Moorhen session for: load its inputs
    *  from the server's load plan, save back into it, finish it. */
   sessionJobId?: number | null;
+  /** Files or folders to open by their path in the project (needs
+   *  ``projectId``): what a job directory holds, registered or not. */
+  filePaths?: string[];
+  /** A scene the job builds on request (a report link): called once Coot is
+   *  ready, and what it returns applied. */
+  sceneSource?: SceneSource | null;
 }
 
 /** Map a project UUID to its primary key (the form the REST filters need). The
@@ -193,7 +208,22 @@ async function resolveJobParamUrl(
 /** The mime type a job's authored Moorhen scene registers under. */
 const SCENE_FILE_TYPE = "application/moorhen-scene";
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId }) => {
+/** The URL of a scene's projectPath ref: the scene's project (by uuid or
+ *  name) when it names one, else this page's. */
+async function resolveProjectPathUrl(
+  ref: { projectPath?: string; projectId?: string; projectName?: string },
+  current: { uuid: string | null; name: string | null; pk: number | null },
+): Promise<string | null> {
+  if (!ref.projectPath) return null;
+  const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
+  if (projectPk == null) {
+    console.warn(`[scene] projectPath ${ref.projectPath}: no project context`);
+    return null;
+  }
+  return projectPathUrl(projectPk, ref.projectPath);
+}
+
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId, filePaths, sceneSource }) => {
   const capabilities = useMoorhenCapabilities();
   const session = useMoorhenSession(sessionJobId, !!sessionJobId);
   const [isSafari] = useState(() => isSafariBrowser());
@@ -466,6 +496,34 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Unlike
   // fetchMap (MTZ coefficients), this uses loadToCootFromMapData. Masks get the
   // shared translucent-solid defaults and are never made the active map.
+  /** The crystals of the loaded models (space group and cell), read from
+   *  each molecule's gemmi structure; P1 and unreadable ones are skipped. */
+  const loadedCrystals = useCallback((): CrystalSymmetry[] => {
+    // Moorhen 1.0 exposes gemmi as window.gemmiModule; older builds as CCP4Module.
+    type Gemmi = { get_spacegroup_by_name?: (n: string) => { ccp4: number; delete?: () => void } };
+    const w = window as unknown as { gemmiModule?: Gemmi; CCP4Module?: Gemmi };
+    const gemmi = w.gemmiModule ?? w.CCP4Module;
+    const list = (store.getState() as moorhen.State).molecules.moleculeList ?? [];
+    const out: CrystalSymmetry[] = [];
+    for (const mol of list) {
+      try {
+        const st = (mol as unknown as {
+          gemmiStructure?: { spacegroup_hm: string; cell: { a: number; b: number; c: number; alpha: number; beta: number; gamma: number } };
+        }).gemmiStructure;
+        if (!st?.spacegroup_hm || !gemmi?.get_spacegroup_by_name) continue;
+        const sg = gemmi.get_spacegroup_by_name(st.spacegroup_hm);
+        const ccp4 = sg?.ccp4;
+        sg?.delete?.();
+        if (!ccp4 || ccp4 <= 1) continue;
+        const c = st.cell;
+        out.push({ ccp4, cell: [c.a, c.b, c.c, c.alpha, c.beta, c.gamma] });
+      } catch {
+        // a molecule without a readable structure contributes nothing
+      }
+    }
+    return out;
+  }, [store]);
+
   const fetchMapFile = useCallback(async (
     url: string,
     mapName: string,
@@ -487,6 +545,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // (no-op if already float). For masks, also nudge the P1/orthogonal cell
       // off 90° so coot contours periodically instead of clamping to the cell box.
       let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      // A crystal's map written as P1 (PanDDA's are) takes the space group of
+      // a loaded model on the same cell, or coot boxes it into the unit cell.
+      if (!opts.isMask) mapData = ccp4RestoreSpaceGroup(mapData, loadedCrystals());
       if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
       newMap = await MoorhenMap.loadToCootFromMapData(
         new Uint8Array(mapData),
@@ -535,7 +596,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       console.warn(`Cannot fetch map file from ${url}`);
     }
     return newMap;
-  }, [commandCentre, store, dispatch]);
+  }, [commandCentre, store, dispatch, loadedCrystals]);
 
   /**
    * Build a molecule of each monomer a dictionary describes, at the centre
@@ -943,6 +1004,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`, loadOpts)
           : null;
       }
+      if (ref.projectPath) {
+        const url = await resolveProjectPathUrl(ref, {
+          uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+        });
+        return url ? loadStructure(url, ref.name || baseName(ref.projectPath), loadOpts) : null;
+      }
       if (ref.url) {
         return loadStructure(ref.url, ref.name || ref.url, loadOpts);
       }
@@ -981,6 +1048,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
           { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
         );
+      } else if (ref.projectPath) {
+        url = await resolveProjectPathUrl(ref, {
+          uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+        });
       } else if (ref.url) {
         url = ref.url;
       }
@@ -1031,6 +1102,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
       );
     }
+    if (ref.projectPath) {
+      return await resolveProjectPathUrl(ref, {
+        uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current,
+      });
+    }
     if (ref.url) return ref.url;
     return null;
   }, []);
@@ -1070,9 +1146,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
+          // A crystal's map written as P1 takes the space group of a loaded
+          // model on its cell (scene models load before maps).
           const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
           newMap = await MoorhenMap.loadToCootFromMapData(
-            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
+            new Uint8Array(sceneMap.isMask
+              ? ccp4DodgeEmClamp(mapBytes)
+              : ccp4RestoreSpaceGroup(mapBytes, loadedCrystals())),
             sceneMap.name,
             !!sceneMap.isDifference,
             mapInstance,
@@ -1110,7 +1190,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         return null;
       }
     },
-    [commandCentre, store, dispatch, resolveSceneRefUrl],
+    [commandCentre, store, dispatch, resolveSceneRefUrl, loadedCrystals],
   );
 
   // Map masker: mask a source map by a model's atom selection, producing a
@@ -1527,6 +1607,103 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     })();
   }, [fileIds, cootInitialized]);
+
+  // Paths in the project (from a directory browser's "Open in Moorhen"):
+  // files load as they are, folders as the files directly in them.
+  const filePathsKey = (filePaths ?? []).join("\n");
+  useEffect(() => {
+    if (!filePathsKey || !projectId || !cootInitialized) return;
+    const paths = filePathsKey.split("\n");
+    const urlFor = (path: string) => projectPathUrl(projectId, path);
+    (async () => {
+      const files: string[] = [];
+      for (const path of paths) {
+        if (isLoadableFile(path)) {
+          files.push(path);
+          continue;
+        }
+        const listing = await apiGet(
+          `projects/${projectId}/directory?path=${encodeURIComponent(path)}`,
+        ).catch(() => null);
+        for (const entry of listing?.container ?? []) {
+          if (entry.type === "file") files.push(path ? `${path}/${entry.name}` : entry.name);
+        }
+      }
+      const plan = planPathLoad(files);
+      const dictionaries: DictionaryToAttach[] = [];
+      const models = [...plan.coordinates];
+      for (const path of plan.cifs) {
+        const text = await apiText(urlFor(path)).catch(() => null);
+        const kind = text ? classifyCif(text) : null;
+        if (kind === "coordinates") models.push(path);
+        else if (kind === "dictionary") dictionaries.push({ text: text as string });
+      }
+      const failed: string[] = [];
+      let loaded = 0;
+      for (const [index, path] of models.entries()) {
+        const molecule = await loadStructure(urlFor(path), baseName(path), {
+          dictionaries,
+          centre: index === 0,
+        });
+        if (molecule) loaded += 1;
+        else failed.push(baseName(path));
+      }
+      if (models.length === 0) {
+        for (const [index, dict] of dictionaries.entries()) {
+          const built = await loadMoleculesFromDictionary(dict, `path-dict-${index}`, {
+            centre: index === 0,
+          });
+          loaded += built.length;
+        }
+        if (dictionaries.length > 0) dispatch(setRequestDrawScene(true));
+      }
+      for (const path of plan.maps) {
+        try {
+          const map = await fetchMapFile(urlFor(path), baseName(path), {
+            isMask: looksLikeMask(path),
+          });
+          if (map) loaded += 1;
+          else failed.push(baseName(path));
+        } catch (err) {
+          console.warn(`[paths] could not open ${path}:`, err);
+          failed.push(baseName(path));
+        }
+      }
+      if (loaded === 0 && failed.length === 0) {
+        setMessage(`Nothing in ${paths.join(", ")} that Moorhen can open`, "warning");
+      } else if (failed.length > 0) {
+        setMessage(`Could not open ${failed.join(", ")}`, "warning");
+      }
+    })();
+  }, [filePathsKey, projectId, cootInitialized]);
+
+  // A scene a job builds on request: ask the job's plugin, apply the answer.
+  const sceneSourceKey = sceneSource ? JSON.stringify(sceneSource) : "";
+  useEffect(() => {
+    if (!sceneSourceKey || !cootInitialized) return;
+    const source = JSON.parse(sceneSourceKey) as SceneSource;
+    (async () => {
+      try {
+        const job = await apiGet(`jobs/${source.jobId}`);
+        if (!job?.task_name) throw new Error(`job ${source.jobId} not found`);
+        const response: any = await apiPost(`jobs/${source.jobId}/object_method/`, {
+          object_path: job.task_name,
+          method_name: source.method,
+          args: [],
+          kwargs: source.kwargs,
+        });
+        const result = response?.data?.result;
+        if (!result?.success || !result.scene) {
+          throw new Error(result?.error || "the job built no scene");
+        }
+        if (!applySceneRef.current) throw new Error("the viewer is not ready to apply a scene");
+        // JSON is YAML: the scene goes in as the text the scenes panel would take.
+        await applySceneRef.current(JSON.stringify(result.scene));
+      } catch (err) {
+        setMessage(`Could not open the scene: ${err instanceof Error ? err.message : String(err)}`, "warning");
+      }
+    })();
+  }, [sceneSourceKey, cootInitialized]);
 
   // A session window loads the job's inputs from the server's load plan,
   // once, in the server's order (dictionaries first, then coordinates,

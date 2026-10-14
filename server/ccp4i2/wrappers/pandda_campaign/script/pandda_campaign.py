@@ -96,6 +96,9 @@ class pandda_campaign(CPluginScript):
         self._progress = None
         self._summary = None
         self._analysis = None
+        # Events of finished datasets, by dtag (pandda_live_scene.peek_events):
+        # kept across report writes so each reads only what finished since.
+        self._peek_cache = {}
 
     # -- interface-time methods, through the generic object_method endpoint --
     #
@@ -122,6 +125,29 @@ class pandda_campaign(CPluginScript):
         result = fill_datasets(self, job)
         return result.to_dict() if hasattr(result, "to_dict") else {
             "success": result.success, "data": result.data, "error": result.error}
+
+    def eventScene(self, dtag, event_idx=None):
+        """A Moorhen scene of one event (or, with no ``event_idx``, of one
+        dataset's Z-map), built from this run's own tree.
+
+        For the report's "look at it" links while the run is going, and
+        after it ends until fan-out delivers the receipts. The scene names
+        the run's files by their path in the project: the database records
+        none of them. Built on request because it reads the event map to
+        choose a contour.
+        """
+        from .pandda_live_scene import live_event_scene
+        job = self._job_row()
+        if job is None:
+            return {"success": False, "error": "this job is not in the database"}
+        try:
+            scene = live_event_scene(
+                self._out_dir(), Path(self.workDirectory) / 'staging' / 'datasets',
+                job.project.directory, str(job.project.uuid), dtag,
+                None if event_idx in (None, '') else int(event_idx))
+        except ValueError as e:
+            return {"success": False, "error": str(e)}
+        return {"success": True, "scene": scene}
 
     def _job_row(self):
         """This job's database row: from the dbHandler context when there is
@@ -735,6 +761,25 @@ class pandda_campaign(CPluginScript):
             logger.warning('remote report not refreshed: %s', e)
         return summary
 
+    #: How many events the report offers to open; the best-scored first.
+    PEEK_LIMIT = 60
+
+    def _peek_to_xml(self, root):
+        """The events the finished datasets report so far, for the report's
+        links into Moorhen. Never raises: a report is never worth a job."""
+        from .pandda_live_scene import peek_events
+        try:
+            events = peek_events(self._out_dir(), self._peek_cache)
+        except Exception as e:      # noqa: BLE001
+            logger.debug('events not listed for the report: %s', e)
+            return
+        node = ET.SubElement(root, 'peek', total=str(len(events)),
+                             datasets=str(len(self._peek_cache)))
+        for event in events[:self.PEEK_LIMIT]:
+            item = ET.SubElement(node, 'event', dtag=event['dtag'], idx=str(event['event_idx']))
+            if event['score'] is not None:
+                item.set('score', f"{event['score']:.3f}")
+
     def _write_program_xml(self, state: str, failure: str = ''):
         root = ET.Element('pandda_campaign')
         ET.SubElement(root, 'state').text = state
@@ -774,6 +819,7 @@ class pandda_campaign(CPluginScript):
                               dict='yes' if 'dict.cif' in entry['files'] else 'no')
         if self._analysis:
             analysis.analysis_to_xml(root, self._analysis)
+        self._peek_to_xml(root)
         tree = ET.ElementTree(root)
         ET.indent(tree, space='  ')
         tree.write(self.makeFileName('PROGRAMXML'), encoding='utf-8', xml_declaration=True)

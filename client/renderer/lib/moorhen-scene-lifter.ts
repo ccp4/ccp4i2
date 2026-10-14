@@ -23,6 +23,7 @@
 import type { moorhen } from "moorhen/types/moorhen";
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
+import { extractProjectPathFromUniqueId } from "./scene-project-path";
 import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
@@ -751,6 +752,9 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
       delete ref.url;
       delete ref.relativeUrl;
       delete ref.fileId;
+      delete ref.job;
+      delete ref.param;
+      delete ref.projectPath;
       delete ref.projectId;
       delete ref.projectName;
       ref.bundle = assetPath;
@@ -887,6 +891,12 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
     };
   }
 
+  // A file opened by its path in the project (not in the database).
+  const projectPath = extractProjectPathFromUniqueId(mol.uniqueId ?? "");
+  if (projectPath !== null && ctx.projectId) {
+    return { name, projectId: ctx.projectId, projectName: ctx.projectName, projectPath };
+  }
+
   // PDBe-fetched structures: recover the portable `pdb:` ref from the proxy
   // download URL (absolute or origin-relative), e.g.
   //   /api/proxy/pdbe/entry-files/download/1ogu.cif  ->  pdb: 1OGU
@@ -944,6 +954,10 @@ function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFil
       projectName: ctx.projectName,
       fileId,
     };
+  }
+  const projectPath = extractProjectPathFromUniqueId(map.uniqueId ?? "");
+  if (projectPath !== null && ctx.projectId) {
+    return { name, kind, projectId: ctx.projectId, projectName: ctx.projectName, projectPath };
   }
   if (map.uniqueId && /^https?:\/\//.test(map.uniqueId)) {
     return { name, kind, url: map.uniqueId };

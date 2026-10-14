@@ -1,10 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Job, Project } from "../types/models";
 import { useJobDirectory } from "../utils";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
-import DirectoryBrowser, { FileSystemItem } from "./directory-browser";
+import DirectoryBrowser from "./directory-browser";
 import { FileSystemFileMenu } from "./file-system-file-menu";
-import { LinearProgress } from "@mui/material";
 
 interface JobDirectoryViewProps {
   job: Job;
@@ -14,8 +13,8 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
   job,
   project,
 }) => {
-  // Use job-aware directory hook for adaptive polling based on job status
-  const { directory } = useJobDirectory(project.id, job);
+  // Lists the job's own folders, re-listing the open ones while it runs
+  const { endpoint, pollInterval, revision } = useJobDirectory(job);
 
   const { closeMenu } = useFileSystemFileBrowser();
 
@@ -39,20 +38,10 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
     };
   }, []);
 
-  // jobs/<id>/directory answers with this job's own contents, so there is
-  // nothing to walk: the old listing was the whole project and this had to
-  // descend CCP4_JOBS/job_N/job_M to find the part it wanted.
-  const directoryData = useMemo(
-    () => (directory?.container as FileSystemItem[]) ?? null,
-    [directory]
-  );
-
-  return directory ? (
+  return (
     <>
-      <DirectoryBrowser directoryTree={directoryData || []} />
+      <DirectoryBrowser endpoint={endpoint} pollInterval={pollInterval} revision={revision} />
       <FileSystemFileMenu onClose={handleMenuClose} />
     </>
-  ) : (
-    <LinearProgress />
   );
 };
