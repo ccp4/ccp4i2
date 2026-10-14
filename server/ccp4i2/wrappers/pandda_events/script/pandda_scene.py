@@ -9,7 +9,13 @@ camera belongs on the event centroid. This module says so as scene documents
 this authors against it), referencing the receipt's own outputs by job
 number and parameter, which survive a project move.
 """
-from typing import Dict, List, Optional
+from typing import Callable, Dict, List, Optional
+
+#: Makes a scene file ref: ``ref(name, role, kind)``, where ``role`` is the
+#: receipt's output parameter ("XYZIN_APO", "EVENTS[0].EVENT_MAP", ...). The
+#: receipt names its outputs by job and parameter; a scene of a run still in
+#: progress names the run's own files by path (pandda_campaign.eventScene).
+RefMaker = Callable[[str, str, str], Optional[Dict]]
 
 Z_CONTOUR = 3.0            # a Z-map is in z units; contour at z = 3
 EVENT_MAP_COLOUR = "#3f51b5"
@@ -28,35 +34,38 @@ def _job(job_number: str):
     return int(text) if text.isdigit() else text
 
 
-def _base(name: str, job_number: str, project_id: str, dtag: str, *, apo: bool, zmap: bool,
+def job_param_refs(job_number: str, project_id: str) -> RefMaker:
+    """Refs to a receipt's own outputs, by job number and parameter."""
+    return lambda name, role, kind: _ref(name, role, kind, job_number, project_id)
+
+
+def _base(name: str, ref: RefMaker, dtag: str, *, apo: bool, zmap: bool,
           dictionary: bool) -> Dict:
     scene: Dict = {"scene": name, "version": 1, "files": [], "elements": [], "maps": []}
     if apo:
-        scene["files"].append(_ref("apo", "XYZIN_APO", "coordinates", job_number, project_id))
+        scene["files"].append(ref("apo", "XYZIN_APO", "coordinates"))
         scene["elements"].append({"file": "apo", "representations": [{"style": "CRs"}, {"style": "CBs"}]})
     if dictionary:
-        scene["files"].append(_ref("dict", "DICT", "dictionary", job_number, project_id))
+        scene["files"].append(ref("dict", "DICT", "dictionary"))
     if zmap:
-        scene["files"].append(_ref("zmap", "ZMAP", "map", job_number, project_id))
+        scene["files"].append(ref("zmap", "ZMAP", "map"))
         scene["maps"].append({"name": "Z-map", "file": "zmap", "isDifference": True,
                               "contourLevel": Z_CONTOUR, "radius": MAP_RADIUS})
     return scene
 
 
-def _add_event(scene: Dict, event: Dict, job_number: str, project_id: str, *, dictionary: bool,
+def _add_event(scene: Dict, event: Dict, ref: RefMaker, *, dictionary: bool,
                visible: bool) -> None:
     idx = event["idx"]
     if event.get("has_map"):
-        scene["files"].append(_ref(f"event{idx}_map", f"EVENTS[{event['position']}].EVENT_MAP", "map",
-                                   job_number, project_id))
+        scene["files"].append(ref(f"event{idx}_map", f"EVENTS[{event['position']}].EVENT_MAP", "map"))
         entry = {"name": f"Event {idx} map", "file": f"event{idx}_map", "radius": MAP_RADIUS,
                  "colour": EVENT_MAP_COLOUR, "visible": visible}
         if event.get("display_contour") is not None:
             entry["contourLevel"] = float(event["display_contour"])
         scene["maps"].append(entry)
     if event.get("has_pose"):
-        scene["files"].append(_ref(f"event{idx}_pose", f"EVENTS[{event['position']}].POSE", "coordinates",
-                                   job_number, project_id))
+        scene["files"].append(ref(f"event{idx}_pose", f"EVENTS[{event['position']}].POSE", "coordinates"))
         element = {"file": f"event{idx}_pose", "representations": [{"style": "CBs"}]}
         if dictionary:
             element["dictionaries"] = ["dict"]
@@ -81,13 +90,15 @@ def _look_at(scene: Dict, event: Dict) -> None:
 
 
 def event_scene(dtag: str, job_number: str, project_id: str, event: Dict, *, apo: bool, zmap: bool,
-                dictionary: bool) -> Dict:
+                dictionary: bool, ref: Optional[RefMaker] = None) -> Dict:
     """One event: the apo model, the Z-map, this event's map at its display
-    contour and its pose, centred on the event."""
+    contour and its pose, centred on the event. ``ref`` makes the file refs;
+    by default they name the receipt's outputs by job and parameter."""
+    ref = ref or job_param_refs(job_number, project_id)
     ligand = f" ({event['ligand_id']})" if event.get("ligand_id") else ""
-    scene = _base(f"{dtag} event {event['idx']}{ligand}", job_number, project_id, dtag,
+    scene = _base(f"{dtag} event {event['idx']}{ligand}", ref, dtag,
                   apo=apo, zmap=zmap, dictionary=dictionary)
-    _add_event(scene, event, job_number, project_id, dictionary=dictionary, visible=True)
+    _add_event(scene, event, ref, dictionary=dictionary, visible=True)
     _look_at(scene, event)
     return scene
 
@@ -106,11 +117,12 @@ def overview_scene(dtag: str, job_number: str, project_id: str, events: List[Dic
                    zmap: bool, dictionary: bool) -> Dict:
     """The whole receipt: every event's map and pose, the focus event's map
     shown and the rest hidden, centred on the focus event."""
-    scene = _base(f"{dtag}: PanDDA events", job_number, project_id, dtag,
+    ref = job_param_refs(job_number, project_id)
+    scene = _base(f"{dtag}: PanDDA events", ref, dtag,
                   apo=apo, zmap=zmap, dictionary=dictionary)
     focus = focus_event(events)
     for event in events:
-        _add_event(scene, event, job_number, project_id, dictionary=dictionary, visible=(event is focus))
+        _add_event(scene, event, ref, dictionary=dictionary, visible=(event is focus))
     if focus is not None:
         _look_at(scene, focus)
     return scene

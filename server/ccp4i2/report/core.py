@@ -369,6 +369,26 @@ class Container(ReportClass):
         from ccp4i2.report.actions import Download
         return self.addObjectOfClass(Download, xmlnode, jobInfo, **kw)
 
+    def addMoorhenLink(self, label: str, method: str, kwargs: dict | None = None, **kw: Any) -> Any:
+        """Add a button that opens Moorhen on a scene the job's plugin builds.
+
+        Args:
+            label: Display text (e.g. "xtal-0002 event 1")
+            method: A plugin method ending in ``Scene`` that returns
+                ``{"success": True, "scene": {...}}`` (see actions.MoorhenLink)
+            kwargs: Its keyword arguments
+        """
+        from ccp4i2.report.actions import MoorhenLink
+        obj = MoorhenLink(
+            jobInfo=self.jobInfo,
+            label=label,
+            method=method,
+            kwargs=kwargs,
+            projectId=kw.get('projectId', self.jobInfo.get('project_pk')),
+        )
+        self.children.append(obj)
+        return obj
+
     def addFileLink(self, label: str, relativePath: str, fileType: str = 'text', **kw: Any) -> Any:
         """Add a clickable link to a file in the job directory.
 

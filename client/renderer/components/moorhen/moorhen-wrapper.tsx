@@ -60,6 +60,7 @@ import {
   planPathLoad,
 } from "../../lib/moorhen-path-load";
 import { projectPathUrl } from "../../lib/scene-project-path";
+import { SceneSource } from "../../lib/scene-source";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -111,6 +112,9 @@ export interface MoorhenWrapperProps {
   /** Files or folders to open by their path in the project (needs
    *  ``projectId``): what a job directory holds, registered or not. */
   filePaths?: string[];
+  /** A scene the job builds on request (a report link): called once Coot is
+   *  ready, and what it returns applied. */
+  sceneSource?: SceneSource | null;
 }
 
 /** Map a project UUID to its primary key (the form the REST filters need). The
@@ -219,7 +223,7 @@ async function resolveProjectPathUrl(
   return projectPathUrl(projectPk, ref.projectPath);
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId, filePaths }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId, filePaths, sceneSource }) => {
   const capabilities = useMoorhenCapabilities();
   const session = useMoorhenSession(sessionJobId, !!sessionJobId);
   const [isSafari] = useState(() => isSafariBrowser());
@@ -1637,6 +1641,34 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     })();
   }, [filePathsKey, projectId, cootInitialized]);
+
+  // A scene a job builds on request: ask the job's plugin, apply the answer.
+  const sceneSourceKey = sceneSource ? JSON.stringify(sceneSource) : "";
+  useEffect(() => {
+    if (!sceneSourceKey || !cootInitialized) return;
+    const source = JSON.parse(sceneSourceKey) as SceneSource;
+    (async () => {
+      try {
+        const job = await apiGet(`jobs/${source.jobId}`);
+        if (!job?.task_name) throw new Error(`job ${source.jobId} not found`);
+        const response: any = await apiPost(`jobs/${source.jobId}/object_method/`, {
+          object_path: job.task_name,
+          method_name: source.method,
+          args: [],
+          kwargs: source.kwargs,
+        });
+        const result = response?.data?.result;
+        if (!result?.success || !result.scene) {
+          throw new Error(result?.error || "the job built no scene");
+        }
+        if (!applySceneRef.current) throw new Error("the viewer is not ready to apply a scene");
+        // JSON is YAML: the scene goes in as the text the scenes panel would take.
+        await applySceneRef.current(JSON.stringify(result.scene));
+      } catch (err) {
+        setMessage(`Could not open the scene: ${err instanceof Error ? err.message : String(err)}`, "warning");
+      }
+    })();
+  }, [sceneSourceKey, cootInitialized]);
 
   // A session window loads the job's inputs from the server's load plan,
   // once, in the server's order (dictionaries first, then coordinates,

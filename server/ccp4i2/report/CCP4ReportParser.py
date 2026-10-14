@@ -94,6 +94,7 @@ from ccp4i2.report.actions import (  # noqa: F401
     Download,
     FileLink,
     Help,
+    MoorhenLink,
     Launch,
     LaunchTask,
 )
