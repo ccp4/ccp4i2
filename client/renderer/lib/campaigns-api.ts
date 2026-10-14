@@ -449,51 +449,8 @@ export function useCampaignsApi() {
 // Compound SMILES lookup
 // =============================================================================
 
-/**
- * Hook to look up SMILES for a list of registry IDs.
- * Uses the compounds API if available.
- */
-export function useSmilesLookup(regIds: number[]) {
-  // Build query string for batch lookup
-  // Use reg_number__in for django-filter lookup
-  // Sort and dedupe to ensure stable cache key
-  const uniqueRegIds = [...new Set(regIds)].sort((a, b) => a - b);
-  const queryString =
-    uniqueRegIds.length > 0 ? `reg_number__in=${uniqueRegIds.join(",")}` : null;
-
-  // This assumes compounds API is available at /api/compounds/
-  // Use apiFetch for authenticated requests (required in Azure deployment)
-  const { data, error, isLoading } = useSWR(
-    queryString ? `/api/proxy/compounds/compounds/?${queryString}` : null,
-    async (url: string) => {
-      const response = await apiFetch(url);
-      if (!response.ok) {
-        throw new Error("Failed to fetch compound data");
-      }
-      const json = await response.json();
-      return json.results || json;
-    }
-  );
-
-  // Build lookup map - memoized to avoid recreating on every render
-  const smilesMap = useMemo(() => {
-    const map: Record<number, string> = {};
-    if (data && Array.isArray(data)) {
-      data.forEach((compound: { reg_number?: number; smiles?: string }) => {
-        if (compound.reg_number && compound.smiles) {
-          map[compound.reg_number] = compound.smiles;
-        }
-      });
-    }
-    return map;
-  }, [data]);
-
-  return {
-    smilesMap,
-    isLoading,
-    error,
-  };
-}
+// Batched, paginated and cached: see lib/smiles-lookup.ts.
+export { useSmilesLookup } from "./smiles-lookup";
 
 // =============================================================================
 // Job operations for campaigns
