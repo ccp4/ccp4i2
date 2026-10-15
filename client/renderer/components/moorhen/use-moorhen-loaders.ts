@@ -748,6 +748,10 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
         }
         if (newMap.molNo === -1) return null;
         if (uniqueId) newMap.uniqueId = uniqueId;
+        // The panels label a map by its type ("2Fo-Fc", "Fo-Fc"); a scene's
+        // map is called what the scene calls it ("Z-map", "Event 1 map").
+        (newMap as any).ccp4i2ShortLabel = sceneMap.name;
+        (newMap as any).ccp4i2Description = sceneMap.name;
         primeEmMapHeaderInfo(newMap);
         dispatch(addMap(newMap));
         if (ref.kind === "map" && sceneMap.isMask) {

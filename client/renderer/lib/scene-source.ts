@@ -18,13 +18,29 @@ export interface SceneSource {
 
 export const isSceneMethod = (method: string) => /^[A-Za-z_][A-Za-z0-9_]*Scene$/.test(method);
 
-export function sceneSourceUrl(projectId: number, source: SceneSource): string | null {
-  if (!Number.isFinite(projectId) || !isSceneMethod(source.method)) return null;
+/** Where a scene opens: the project viewer, or the campaign viewer on one
+ *  of its member jobs (that job's model and maps, the campaign's sites), the
+ *  scene applied on top once the job has loaded. */
+export interface SceneTarget {
+  campaignId: number;
+  jobId: number;
+}
+
+export function sceneSourceUrl(
+  projectId: number,
+  source: SceneSource,
+  target?: SceneTarget | null,
+): string | null {
+  if (!isSceneMethod(source.method)) return null;
   const query = new URLSearchParams({
     sceneJob: String(source.jobId),
     sceneMethod: source.method,
     sceneArgs: JSON.stringify(source.kwargs ?? {}),
   });
+  if (target && Number.isFinite(target.campaignId) && Number.isFinite(target.jobId)) {
+    return `/ccp4i2/moorhen-page/campaign/${target.campaignId}?job=${target.jobId}&${query.toString()}`;
+  }
+  if (!Number.isFinite(projectId)) return null;
   return `/ccp4i2/moorhen-page/project/${projectId}?${query.toString()}`;
 }
 

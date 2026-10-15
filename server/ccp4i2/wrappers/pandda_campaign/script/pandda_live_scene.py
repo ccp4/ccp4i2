@@ -151,14 +151,20 @@ def _safe_dtag(dtag: str) -> str:
 
 
 def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag: str,
-                     event_idx: Optional[int] = None) -> Dict:
+                     event_idx: Optional[int] = None, apo_file_id: Optional[int] = None) -> Dict:
     """The scene for one event of a run in progress (or finished, before fan-out).
 
     The apo model, the event's map at its display contour and PanDDA's
     candidate pose, centred on the event; the Z-map is loaded but hidden. The
-    ligand's dictionary is attached to the pose and to the apo model both. With no ``event_idx``, the dataset alone: the apo model
-    and its Z-map, shown. Files outside the project directory (a link the
-    share cannot follow) are left out rather than named.
+    ligand's dictionary is attached to the pose and to the apo model both.
+    With no ``event_idx``, the dataset alone: the apo model and its Z-map,
+    shown. Files outside the project directory (a link the share cannot
+    follow) are left out rather than named.
+
+    ``apo_file_id`` names the model to use as the protein instead of the
+    staged apo model: a database file id, the member's current model when the
+    scene opens on the campaign page. A viewer with that file loaded reuses
+    it rather than loading a second copy, and the dictionary attaches to it.
     """
     dtag = _safe_dtag(dtag)
     staged = Path(staged_datasets) / dtag if staged_datasets else None
@@ -197,12 +203,15 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
     def ref(name: str, role: str, kind: str) -> Dict:
         if role == "DICT" and dictionary_text:
             return {"name": name, "kind": kind, "cifText": dictionary_text}
+        if role == "XYZIN_APO" and apo_file_id is not None:
+            return {"name": name, "kind": kind, "fileId": int(apo_file_id), "projectId": project_uuid}
         return {"name": name, "kind": kind, "projectPath": paths[role], "projectId": project_uuid}
 
     has_pose = event is not None and paths["EVENTS[0].POSE"] is not None
     if event is None:
         scene = event_scene(dtag, "", project_uuid, {"idx": 0, "position": 0},
-                            apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
+                            apo=paths["XYZIN_APO"] is not None or apo_file_id is not None,
+                            zmap=paths["ZMAP"] is not None,
                             dictionary=paths["DICT"] is not None, ref=ref)
         scene["scene"] = f"{dtag}: Z-map"
         scene.pop("activeMap", None)
@@ -224,7 +233,8 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
     # The dictionary whenever there is one, pose or not: it rides on the apo
     # model too, so a ligand built or merged there is read correctly.
     scene = event_scene(dtag, "", project_uuid, record,
-                        apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
+                        apo=paths["XYZIN_APO"] is not None or apo_file_id is not None,
+                        zmap=paths["ZMAP"] is not None,
                         dictionary=paths["DICT"] is not None, ref=ref)
     # The event map is what to look at; the Z-map is there to switch on.
     for entry in scene["maps"]:

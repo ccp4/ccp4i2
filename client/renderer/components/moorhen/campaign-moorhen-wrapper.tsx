@@ -47,6 +47,7 @@ import {
 } from "../../lib/event-evidence";
 import type { MoorhenScene } from "../../types/moorhen-scene";
 import { EMPTY_PROJECT_CONTEXT, ProjectContext } from "../../lib/scene-ref-urls";
+import type { SceneSource } from "../../lib/scene-source";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import { MoorhenViewerFrame, useMoorhenViewerCore } from "./use-moorhen-viewer-core";
 import { useMoorhenLoaders, type JobLoadInfo } from "./use-moorhen-loaders";
@@ -71,6 +72,12 @@ export interface CampaignMoorhenWrapperProps {
    *  the dataset's model once it is in view -- the `event` URL parameter,
    *  which is how a filled box in the campaign's site matrix opens. */
   initialEvent?: EventRef | null;
+  /** A scene a job builds on request (a PanDDA report's button): asked for
+   *  once the member's model is in view, and applied over it. The member's
+   *  coordinate file is passed as ``apo_file_id`` so a scene that would
+   *  load an apo model reuses the loaded one and attaches its dictionary
+   *  to it. The scene carries its own camera (the event). */
+  sceneSource?: SceneSource | null;
   sites: CampaignSite[];
   onAddSite: (site: NewCampaignSite) => Promise<void>;
   onUpdateSite: (
@@ -95,6 +102,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   viewParam,
   initialSiteId,
   initialEvent,
+  sceneSource,
   sites,
   onAddSite,
   onUpdateSite,
@@ -394,6 +402,46 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // The loaders are stable, and the guard makes this run once.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialEvent, cootInitialized, contentReady, fileSource, dispatch]);
+
+  // Apply the scene the URL asked for, over the member's loaded model. Once
+  // per page load, after the content is ready (the scene positions the
+  // camera, and a load's own centreOn() would otherwise undo it), and only
+  // on a job: the scene names the member's model by the file just loaded.
+  const appliedSceneSource = useRef(false);
+  const sceneSourceKey = sceneSource ? JSON.stringify(sceneSource) : "";
+  useEffect(() => {
+    if (appliedSceneSource.current) return;
+    if (!sceneSourceKey || !cootInitialized || !contentReady) return;
+    if (fileSource.type !== "job") return;
+    appliedSceneSource.current = true;
+    const source = JSON.parse(sceneSourceKey) as SceneSource;
+    const token = loadToken.current;
+    (async () => {
+      try {
+        const job = await apiGet(`jobs/${source.jobId}`);
+        if (!job?.task_name) throw new Error(`job ${source.jobId} not found`);
+        const response: any = await apiPost(`jobs/${source.jobId}/object_method/`, {
+          object_path: job.task_name,
+          method_name: source.method,
+          args: [],
+          kwargs: memberCoordFileId != null
+            ? { ...source.kwargs, apo_file_id: memberCoordFileId }
+            : source.kwargs,
+        });
+        const result = response?.data?.result;
+        if (!result?.success || !result.scene) {
+          throw new Error(result?.error || "the job built no scene");
+        }
+        if (loadToken.current !== token) return; // the member changed meanwhile
+        // JSON is YAML: the scene goes in as the text the scenes panel would take.
+        await handleApplyScene(JSON.stringify(result.scene));
+      } catch (err) {
+        setMessage(`Could not open the scene: ${err instanceof Error ? err.message : String(err)}`, "warning");
+      }
+    })();
+    // memberCoordFileId is set by the load that made contentReady true.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sceneSourceKey, cootInitialized, contentReady, fileSource]);
 
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(

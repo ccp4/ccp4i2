@@ -94,19 +94,27 @@ class pandda_campaign_report(Report):
                                if running else 'No dataset reported an event.'))
             return
         shown = f"the {len(events)} best-scored" if total > len(events) else "each"
+        campaign = node.get('campaign')
+        where = ("on the dataset's current model in the campaign viewer, with its maps and the "
+                 "campaign's sites to move between" if campaign else "over the apo model PanDDA analysed")
         fold.addText(text=(
-            f"{total} event(s) in the {finished} dataset(s) finished so far. Open {shown} in Moorhen: "
-            f"the apo model, the event map and PanDDA's candidate pose, centred on the event, the "
-            f"Z-map loaded but hidden." if running else
-            f"Open {shown} of the {total} event(s) in Moorhen, from the run's own files: the apo "
-            f"model, the event map and PanDDA's candidate pose. After fan-out each event is also "
-            f"in its dataset's project, with the receipt's scene."))
+            f"{total} event(s) in the {finished} dataset(s) finished so far. Open {shown} in Moorhen "
+            f"{where}: the event map and PanDDA's candidate pose, centred on the event, the Z-map "
+            f"loaded but hidden." if running else
+            f"Open {shown} of the {total} event(s) in Moorhen {where}: the event map and PanDDA's "
+            f"candidate pose, from the run's own files. After fan-out each event is also in its "
+            f"dataset's project, with the receipt's scene."))
         for event in events:
             dtag = event.get('dtag')
             name = labels.get(dtag) or dtag
             score = f" (score {event.get('score')})" if event.get('score') else ''
+            # A member with a current model opens in the campaign viewer on it;
+            # one without (or a run that is not a campaign's) on the project page.
+            member_job = event.get('member_job') if campaign else None
             fold.addMoorhenLink(label=f"{name} event {event.get('idx')}{score}", method='eventScene',
-                                kwargs={'dtag': dtag, 'event_idx': int(event.get('idx'))})
+                                kwargs={'dtag': dtag, 'event_idx': int(event.get('idx'))},
+                                campaignId=campaign if member_job else None,
+                                jobId=member_job)
 
     # -- the run's own analysis, recapitulated from its tables ---------------
 

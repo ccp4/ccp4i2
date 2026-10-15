@@ -266,6 +266,10 @@ class MoorhenLink:
         method: The plugin method (e.g. "eventScene")
         kwargs: Its keyword arguments, JSON-serialisable
         projectId: Project integer PK, for the viewer page's route
+        campaignId: With jobId, open the campaign viewer on that member job
+            (its model and maps, the site drawer) and apply the scene there
+            instead of the project viewer
+        jobId: The member job the campaign viewer opens on
     """
 
     counter: int = 0
@@ -286,6 +290,8 @@ class MoorhenLink:
         self.method: str | None = kw.get('method', None)
         self.kwargs: dict = kw.get('kwargs', None) or {}
         self.projectId: str | None = kw.get('projectId', None)
+        self.campaignId = kw.get('campaignId', None)
+        self.jobId = kw.get('jobId', None)
         if self.method is not None and not self.method.endswith('Scene'):
             raise ValueError(f'MoorhenLink method {self.method!r} must be a ...Scene method')
 
@@ -300,4 +306,7 @@ class MoorhenLink:
         root.set('kwargs', json.dumps(self.kwargs, sort_keys=True))
         if self.projectId is not None:
             root.set('projectId', str(self.projectId))
+        if self.campaignId is not None and self.jobId is not None:
+            root.set('campaignId', str(self.campaignId))
+            root.set('jobId', str(self.jobId))
         return root

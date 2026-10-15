@@ -7,6 +7,7 @@ import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
 import type { MoorhenScene } from "@/types/moorhen-scene";
 import { parseEventParam } from "@/lib/event-evidence";
+import { sceneSourceFromParams } from "@/lib/scene-source";
 import type {
   NewCampaignSite,
   SiteEvaluation,
@@ -25,6 +26,14 @@ function CampaignPageContent() {
   // Optional: a PanDDA event whose evidence to load (a filled matrix box)
   const eventParam = searchParams?.get("event");
   const initialEvent = useMemo(() => parseEventParam(eventParam), [eventParam]);
+  // Optional: a scene a job builds on request (a PanDDA report's "open in
+  // Moorhen" button), applied over the member's model once it is in view.
+  const sceneKey = ["sceneJob", "sceneMethod", "sceneArgs"].map((k) => searchParams?.get(k) ?? "").join("\n");
+  const sceneSource = useMemo(
+    () => (searchParams ? sceneSourceFromParams(searchParams) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [sceneKey],
+  );
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
 
@@ -323,6 +332,7 @@ function CampaignPageContent() {
         viewParam={viewParam}
         initialSiteId={siteParam ? parseInt(siteParam) : null}
         initialEvent={initialEvent}
+        sceneSource={sceneSource}
         sites={sites || []}
         onAddSite={handleAddSite}
         onUpdateSite={handleUpdateSite}
