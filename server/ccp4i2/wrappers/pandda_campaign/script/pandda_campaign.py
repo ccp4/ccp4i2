@@ -795,49 +795,21 @@ class pandda_campaign(CPluginScript):
                     item.set('member_job', str(member[1]))
 
     def _campaign_views(self) -> dict:
-        """Where an event is looked at on the campaign page: the campaign
-        this run's project is parent of, and each dataset's member project
-        and current-model job. Read from the database once and kept for the
-        plugin's life; a dataset's current model can change, so a fresh
-        report (a new plugin instance) reads again. Empty when the run is not
-        a campaign's: the report then opens events on the project page.
-        """
+        """Where an event is looked at on the campaign page (see
+        pandda_campaign_views). Read from the database once and kept for
+        the plugin's life; a dataset's current model can change, so a fresh
+        report (a new plugin instance) reads again. Not the process that
+        ran: the manifest comes from the job directory."""
+        from .pandda_campaign_views import campaign_views
         if self._member_views is not None:
             return self._member_views
-        views = {'campaign': None, 'members': {}}
-        self._member_views = views
-        try:
-            from ccp4i2.db import models
-            from ccp4i2.lib.campaign_events import current_model_job
-            from ccp4i2.lib.utils.jobs.pandda_fanin import _parent_campaigns
-            job = self._job_row()
-            if job is None:
-                return views
-            manifest = self._manifest
-            if manifest is None:
-                # Not the process that ran: a report drawn later reads the
-                # manifest the run wrote.
-                manifest_path = Path(self.workDirectory) / 'manifest.json'
-                if manifest_path.is_file():
-                    manifest = json.loads(manifest_path.read_text())
-            if not manifest:
-                return views
-            campaigns = _parent_campaigns(job.project)
-            if not campaigns:
-                return views
-            views['campaign'] = campaigns[0].id
-            for entry in manifest['datasets']:
-                uuid = entry.get('project_uuid')
-                if not uuid:
-                    continue
-                project = models.Project.objects.filter(uuid=uuid).first()
-                if project is None:
-                    continue
-                current = current_model_job(project)
-                views['members'][entry['xtal']] = (project.id, current.id if current else None)
-        except Exception as e:      # noqa: BLE001 - a report is never worth a job
-            logger.debug('campaign views not read for the report: %s', e)
-        return views
+        manifest = self._manifest
+        if manifest is None:
+            manifest_path = Path(self.workDirectory) / 'manifest.json'
+            if manifest_path.is_file():
+                manifest = json.loads(manifest_path.read_text())
+        self._member_views = campaign_views(self._job_row(), manifest)
+        return self._member_views
 
     def _write_program_xml(self, state: str, failure: str = ''):
         root = ET.Element('pandda_campaign')

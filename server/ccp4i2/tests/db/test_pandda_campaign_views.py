@@ -5,6 +5,7 @@ campaign viewer on the right model. Read through the plugin the way the
 report generation reaches it (a plugin that did not run: the manifest comes
 from the job directory)."""
 import json
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from shutil import rmtree
 
@@ -13,6 +14,7 @@ from django.test import TestCase, override_settings
 from ...db import models
 from ...lib.utils.helpers.object_method import object_method
 from ...lib.utils.jobs.create import create_job
+from ...wrappers.pandda_campaign.script.pandda_campaign_report import pandda_campaign_report
 
 PROJECTS_DIR = Path(__file__).parent.parent / "CCP4I2_PANDDA_VIEWS_TEST_DIR"
 PARENT = models.ProjectGroupMembership.MembershipType.PARENT
@@ -73,3 +75,17 @@ class CampaignViewsTest(TestCase):
         job = models.Job.objects.get(uuid=job_uuid)
         (Path(job.directory) / "manifest.json").write_text(json.dumps({"manifest_version": 1, "datasets": []}))
         assert self.views(job) == {"campaign": None, "members": {}}
+
+    def test_a_report_drawn_from_an_older_record_looks_the_views_up(self):
+        """A run finished before the plugin recorded where events are looked
+        at: regenerating its report is enough, the report asks the database."""
+        xml = ("<pandda_campaign><state>finished</state><peek total='2' datasets='2'>"
+               "<event dtag='xtal-0000' idx='1' score='0.9'/><event dtag='xtal-0001' idx='1'/>"
+               "</peek></pandda_campaign>")
+        report = pandda_campaign_report(xmlnode=ET.fromstring(xml),
+                                        jobInfo={"project_pk": self.parent.id, "jobid": str(self.job.uuid)},
+                                        jobStatus="Finished")
+        links = [e for e in report.as_data_etree().iter() if e.tag == "CCP4i2ReportMoorhenLink"]
+        assert (links[0].get("campaignId"), links[0].get("jobId")) == (str(self.group.id), str(self.refined.id))
+        # a member with no current model stays on the project page
+        assert links[1].get("campaignId") is None

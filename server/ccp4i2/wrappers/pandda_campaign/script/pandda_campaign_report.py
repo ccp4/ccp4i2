@@ -95,6 +95,15 @@ class pandda_campaign_report(Report):
             return
         shown = f"the {len(events)} best-scored" if total > len(events) else "each"
         campaign = node.get('campaign')
+        # A record written before the plugin recorded where events are looked
+        # at (or by a plugin that was not the process running): look it up
+        # now. Only once the job has stopped, when the report is drawn once
+        # and cached; a running report is drawn on every poll.
+        looked_up = None
+        if campaign is None and not running:
+            from .pandda_campaign_views import campaign_views_for_job_uuid, member_view
+            looked_up = campaign_views_for_job_uuid(self.jobInfo.get('jobid'))
+            campaign = looked_up['campaign'] and str(looked_up['campaign'])
         where = ("on the dataset's current model in the campaign viewer, with its maps and the "
                  "campaign's sites to move between" if campaign else "over the apo model PanDDA analysed")
         fold.addText(text=(
@@ -111,6 +120,8 @@ class pandda_campaign_report(Report):
             # A member with a current model opens in the campaign viewer on it;
             # one without (or a run that is not a campaign's) on the project page.
             member_job = event.get('member_job') if campaign else None
+            if looked_up is not None and member_job is None:
+                _, member_job = member_view(looked_up, dtag)
             fold.addMoorhenLink(label=f"{name} event {event.get('idx')}{score}", method='eventScene',
                                 kwargs={'dtag': dtag, 'event_idx': int(event.get('idx'))},
                                 campaignId=campaign if member_job else None,
