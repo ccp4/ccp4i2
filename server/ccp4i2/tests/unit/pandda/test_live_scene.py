@@ -80,6 +80,20 @@ def test_the_dictionary_rides_on_the_protein_without_a_pose(run):
     assert next(e for e in scene["elements"] if e["file"] == "apo")["dictionaries"] == ["dict"]
 
 
+def test_the_apo_model_can_be_a_database_file(run):
+    """On the campaign page the member's current model is already loaded:
+    the scene names it by file id, so the viewer reuses it (and attaches
+    the dictionary to it) instead of loading the staged apo model again."""
+    project, tree = run
+    scene = live_event_scene(tree, None, project, "uuid-1", "xtal-0001", 1, apo_file_id=321)
+    apo = next(f for f in scene["files"] if f["name"] == "apo")
+    assert apo == {"name": "apo", "kind": "coordinates", "fileId": 321, "projectId": "uuid-1"}
+    assert next(e for e in scene["elements"] if e["file"] == "apo")["dictionaries"] == ["dict"]
+    # the dataset-only view too
+    scene = live_event_scene(tree, None, project, "uuid-1", "xtal-0003", None, apo_file_id=321)
+    assert next(f for f in scene["files"] if f["name"] == "apo")["fileId"] == 321
+
+
 def test_files_outside_the_project_are_left_out(run):
     """The synthetic apo link points beside the tree (staged_inputs/), so
     with the tree as the project root it lies outside: the scene must not
@@ -104,6 +118,23 @@ def test_bad_requests_say_why(run, dtag, idx):
     project, tree = run
     with pytest.raises(ValueError):
         live_event_scene(tree, None, project, "u", dtag, idx)
+
+
+def test_the_report_opens_a_campaign_members_event_on_the_campaign_page():
+    """With the campaign and the member's current-model job recorded, the
+    link opens the campaign viewer on that job; a member with no current
+    model, or a run outside a campaign, opens on the project page."""
+    xml = ("<pandda_campaign><state>finished</state>"
+           "<peek total='2' datasets='5' campaign='9'>"
+           "<event dtag='xtal-0001' idx='1' member_project='12' member_job='345'/>"
+           "<event dtag='xtal-0002' idx='1' member_project='13'/></peek></pandda_campaign>")
+    report = pandda_campaign_report(xmlnode=ET.fromstring(xml), jobInfo={"project_pk": 4},
+                                    jobStatus="Finished")
+    links = [e for e in report.as_data_etree().iter() if e.tag == "CCP4i2ReportMoorhenLink"]
+    assert (links[0].get("campaignId"), links[0].get("jobId")) == ("9", "345")
+    assert links[1].get("campaignId") is None and links[1].get("jobId") is None
+    text = " ".join(e.text or "" for e in report.as_data_etree().iter() if (e.text or "").strip())
+    assert "campaign viewer" in text
 
 
 def test_the_report_offers_a_link_per_event():

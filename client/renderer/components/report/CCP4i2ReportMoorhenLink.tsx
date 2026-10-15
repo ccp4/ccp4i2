@@ -14,6 +14,8 @@ import { sceneSourceUrl } from "../../lib/scene-source";
  *   method    — the job's plugin method that builds the scene ("eventScene")
  *   kwargs    — its keyword arguments, as JSON
  *   projectId — project integer PK, for the viewer page's route
+ *   campaignId, jobId — present together: open the campaign viewer on that
+ *               member job and apply the scene there
  */
 export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (props) => {
   const { label, href } = useMemo(() => {
@@ -25,13 +27,19 @@ export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (prop
     } catch {
       kwargs = {};
     }
+    const campaignId = parseInt(el.attr("campaignId") || "", 10);
+    const memberJobId = parseInt(el.attr("jobId") || "", 10);
+    const target =
+      Number.isFinite(campaignId) && Number.isFinite(memberJobId)
+        ? { campaignId, jobId: memberJobId }
+        : null;
     return {
       label: el.attr("label") || "Open in Moorhen",
       href: sceneSourceUrl(projectId, {
         jobId: props.job.id,
         method: el.attr("method") || "",
         kwargs,
-      }),
+      }, target),
     };
   }, [props.item, props.job]);
 

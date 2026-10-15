@@ -528,8 +528,12 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
               };
 
               const sliderPosition = valueToSlider(level);
+              // A map with a label of its own (a scene's "Z-map", "Event 1
+              // map") is called that; the rest by their type.
+              const ownLabel = (map as any).ccp4i2ShortLabel as string | undefined;
               const shortName =
-                mapSubType === 4
+                ownLabel ??
+                (mapSubType === 4
                   ? "Mask"
                   : mapSubType === 3
                     ? "Anom"
@@ -537,7 +541,7 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
                       ? "Fo-Fc"
                       : isDiff
                         ? "Fo-Fc"
-                        : "2Fo-Fc";
+                        : "2Fo-Fc");
 
               return (
                 <Stack

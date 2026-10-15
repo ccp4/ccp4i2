@@ -518,8 +518,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             // identically-labelled rows a second loaded dataset brings. The
             // hover says which map this actually is: the type spelled out,
             // and the file's own annotation underneath.
+            // A map with a label of its own (a scene's, a PanDDA event's) is
+            // what its label says, not a type.
             const fullType = ownLabel
-              ? "PanDDA event map"
+              ? ownLabel
               : mapSubType === 4
                 ? "Mask"
                 : mapSubType === 3
