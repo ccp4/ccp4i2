@@ -478,7 +478,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-mdl-molfile"
         mimeType.description = "MDL Molfile"
         mimeType.fileExtensions = ['mol']
-        mimeType.viewers = ['lidia']
+        mimeType.viewers = ['layla']
         mimeType.className = 'MDLMolDataFile'
         self.mimeTypes["chemical/x-mdl-molfile"] = mimeType
 

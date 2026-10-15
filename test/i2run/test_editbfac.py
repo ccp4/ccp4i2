@@ -4,7 +4,11 @@ import pytest
 from .utils import download, i2run
 
 
-_ROBETTA_MODELS = "https://robetta.bakerlab.org/models_download.php"
+_ROSETTAFOLD_MODEL = (
+    "https://raw.githubusercontent.com/RosettaCommons/RoseTTAFold/"
+    "fcf9125c59e3dd84cf511dcb475ddd81a23613f5/"
+    "example/pyrosetta/model/model_1.crderr.pdb"
+)
 
 
 @pytest.fixture(scope="module", name="alphafold_info")
@@ -33,9 +37,9 @@ def alphafold_pae_fixture(alphafold_info):
         yield path
 
 
-@pytest.fixture(scope="module", name="robetta_pdb")
-def robetta_pdb_fixture():
-    with download(f"{_ROBETTA_MODELS}?id=14697") as path:
+@pytest.fixture(scope="module", name="rosettafold_pdb")
+def rosettafold_pdb_fixture():
+    with download(_ROSETTAFOLD_MODEL) as path:
         yield path
 
 
@@ -67,9 +71,9 @@ def test_alphafold_pae(alphafold_cif, alphafold_pae):
             gemmi.read_pdb(str(job / f"converted_model_chainA{i}.pdb"))
 
 
-def test_robetta(robetta_pdb):
+def test_rosettafold(rosettafold_pdb):
     args = ["editbfac"]
-    args += ["--XYZIN", robetta_pdb]
+    args += ["--XYZIN", rosettafold_pdb]
     args += ["--BTREATMENT", "rmsd"]
     args += ["--CONFCUT", "False"]
     args += ["--COMPACTREG", "False"]

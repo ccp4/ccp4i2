@@ -33,7 +33,7 @@ class coot_rsr_morph(CPluginScript):
         gm_alpha = self.container.controlParameters.GM_ALPHA
         blur_b_factor = self.container.controlParameters.BLUR_B_FACTOR
 
-        mc = coot_headless_api.molecules_container_py(True)
+        mc = coot_headless_api.molecules_container_t(True)
         mc.set_make_backups(False)
         mc.set_use_gemmi(False)
         imol = mc.read_pdb(xyzin)

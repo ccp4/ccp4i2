@@ -281,20 +281,25 @@ class servalcat(CPluginScript):
             try:
                 statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
                 statsOverall["Rfree"] = jsonStats[-1]['data']['summary']['Rfree']
-                statsOverall["CCFworkavg"] = jsonStats[-1]['data']['summary']['CCFworkavg']
-                statsOverall["CCFfreeavg"] = jsonStats[-1]['data']['summary']['CCFfreeavg']
                 self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["Rwork"])
                 self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["Rfree"])
-                self.container.outputData.PERFORMANCEINDICATOR.CCFwork_avg.set(statsOverall["CCFworkavg"])
-                self.container.outputData.PERFORMANCEINDICATOR.CCFfree_avg.set(statsOverall["CCFfreeavg"])
             except:
                 try:
                     statsOverall["R1work"] = jsonStats[-1]['data']['summary']['R1work']
                     statsOverall["R1free"] = jsonStats[-1]['data']['summary']['R1free']
-                    statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
-                    statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
                     self.container.outputData.PERFORMANCEINDICATOR.R1Factor.set(statsOverall["R1work"])
                     self.container.outputData.PERFORMANCEINDICATOR.R1Free.set(statsOverall["R1free"])
+                except:
+                    pass
+            try:
+                statsOverall["CCFworkavg"] = jsonStats[-1]['data']['summary']['CCFworkavg']
+                statsOverall["CCFfreeavg"] = jsonStats[-1]['data']['summary']['CCFfreeavg']
+                self.container.outputData.PERFORMANCEINDICATOR.CCFwork_avg.set(statsOverall["CCFworkavg"])
+                self.container.outputData.PERFORMANCEINDICATOR.CCFfree_avg.set(statsOverall["CCFfreeavg"])
+            except:
+                try:
+                    statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
+                    statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
                     self.container.outputData.PERFORMANCEINDICATOR.CCIwork_avg.set(statsOverall["CCIworkavg"])
                     self.container.outputData.PERFORMANCEINDICATOR.CCIfree_avg.set(statsOverall["CCIfreeavg"])
                 except:
@@ -302,14 +307,19 @@ class servalcat(CPluginScript):
         else:
             try:
                 statsOverall["R"] = jsonStats[-1]['data']['summary']['R']
-                statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
                 self.container.outputData.PERFORMANCEINDICATOR.R.set(statsOverall["R"])
-                self.container.outputData.PERFORMANCEINDICATOR.CCF_avg.set(statsOverall["CCFavg"])
             except:
                 try:
                     statsOverall["R1"] = jsonStats[-1]['data']['summary']['R1']
-                    statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
                     self.container.outputData.PERFORMANCEINDICATOR.R1.set(statsOverall["R1"])
+                except:
+                    pass
+            try:
+                statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
+                self.container.outputData.PERFORMANCEINDICATOR.CCF_avg.set(statsOverall["CCFavg"])
+            except:
+                try:
+                    statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
                     self.container.outputData.PERFORMANCEINDICATOR.CCI_avg.set(statsOverall["CCIavg"])
                 except:
                     pass

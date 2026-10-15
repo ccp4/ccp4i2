@@ -616,6 +616,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                 self.ligands_checkboxes.setChoices(
                     "<i>No monomers including metal sites were found in the input atomic model.</i>",
                     self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
+            self.updateMonomersWithMetalsSelection()
 
   def updateMonomersWithMetalsSelection(self):
         if hasattr(self, "ligands_checkboxes"):   \

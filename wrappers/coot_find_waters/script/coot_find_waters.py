@@ -33,7 +33,7 @@ class coot_find_waters(CPluginScript):
         mindist = self.container.controlParameters.MINDIST
         maxdist = self.container.controlParameters.MAXDIST
         
-        mc = coot_headless_api.molecules_container_py(True)
+        mc = coot_headless_api.molecules_container_t(True)
         mc.set_make_backups(False)
         mc.set_use_gemmi(False)
         imol = mc.read_pdb(xyzin)

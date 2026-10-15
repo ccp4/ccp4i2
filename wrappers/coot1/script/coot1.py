@@ -1,24 +1,14 @@
-from os import environ
 from pathlib import Path
-from sys import platform
+from shutil import which
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ModelData import CPdbDataFile
-
-
-def coot1Command():
-    ccp4 = Path(environ["CCP4"])
-    if platform == "win32":
-        return str(ccp4 / ".." / "WinCoot1" / "wincoot.bat")
-    if platform == "darwin":
-        return str(ccp4 / "libexec" / "coot-1")
-    return str(ccp4 / "coot_py3" / "bin" / "coot-1")
 
 
 class coot1(CPluginScript):
     TASKNAME = "coot1"
     TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
-    TASKCOMMAND = coot1Command()
+    TASKCOMMAND = which("coot-1")
     TASKVERSION = 0.1
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
@@ -54,6 +44,7 @@ class coot1(CPluginScript):
         with scriptPath.open("w", encoding="utf-8") as stream:
             stream.write("\n".join(script))
         self.appendCommandLine(["--script", scriptPath])
+        self.appendCommandLine("--no-state-script")
 
         return CPluginScript.SUCCEEDED
 

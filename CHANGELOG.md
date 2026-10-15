@@ -1,5 +1,18 @@
 # CCP4i2 Changelog
 
+## [2.7.0] - 2026-10-12
+
+- Replaced Lidia with Layla for sketching ligands
+- Coot 1 replaces Coot 0.9 as the default interactive Coot task
+- Finding Coot 1 and Layla executables on the PATH
+- Added --no-state-script when running Coot 1
+- New task for finding ligands with the Coot API
+- Removed Coot options from Phaser pipelines
+- Coot 0.9 tasks moved to the end of the model building module
+- Removed dummy program XML from the cmapcoeff task
+- Fixed Coot API tasks for the Coot in CCP4 10
+- Fixed DIMPLE R-factor reporting with refmacat
+
 ## [2.6.3] - 2026-06-25
 
 - Replace adding_stats_to_mmcif with pdbdepo.py

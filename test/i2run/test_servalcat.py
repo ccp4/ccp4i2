@@ -203,10 +203,9 @@ def check_r_and_cc(
     minCCwork: float = None,
     minCCfree: float = None,
 ):
-    rLabel = "R1" if intensities else "R"
     ccLabel = "CCI" if intensities else "CCF"
-    rworks = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}work")]
-    rfrees = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}free")]
+    rworks = [float(e.text) for e in xml.findall(f".//data/summary/Rwork")]
+    rfrees = [float(e.text) for e in xml.findall(f".//data/summary/Rfree")]
     ccworks = [float(e.text) for e in xml.findall(f".//data/summary/{ccLabel}workavg")]
     ccfrees = [float(e.text) for e in xml.findall(f".//data/summary/{ccLabel}freeavg")]
     assert len(rworks) == len(rfrees) == len(ccworks) == len(ccfrees) == expectedLen
