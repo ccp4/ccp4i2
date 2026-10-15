@@ -49,6 +49,9 @@ def test_scene_says_what_the_receipt_knows():
     assert scene["view"] == {"origin": [-15.0, -40.0, -30.0], "zoom": pandda_scene.EVENT_ZOOM}
     pose = next(e for e in scene["elements"] if e["file"] == "event1_pose")
     assert pose["dictionaries"] == ["dict"]
+    # ...and on the protein, so a pose merged into it keeps its chemistry
+    apo = next(e for e in scene["elements"] if e["file"] == "apo")
+    assert apo["dictionaries"] == ["dict"]
     assert all(f["job"] == 2 and f["projectId"] == "uuid" for f in scene["files"])
 
 

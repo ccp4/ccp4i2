@@ -62,6 +62,17 @@ def test_event_scene_names_the_runs_files_by_project_path(run):
     assert maps["zmap"]["visible"] is False
     assert maps["event1_map"]["visible"] is True and maps["event1_map"]["contourLevel"] > 0
     assert scene["view"]["origin"] == [-15.0, -40.0, -30.0]
+    dicts = {e["file"]: e.get("dictionaries") for e in scene["elements"]}
+    assert dicts == {"apo": ["dict"], "event1_pose": ["dict"]}
+
+
+def test_the_dictionary_rides_on_the_protein_without_a_pose(run):
+    """Event 2 has no build: no pose, but the ligand's dictionary still goes
+    on the apo model, for a ligand built there by hand."""
+    project, tree = run
+    scene = live_event_scene(tree, None, project, "u", "xtal-0001", 2)
+    assert {f["name"] for f in scene["files"]} >= {"apo", "dict"}
+    assert next(e for e in scene["elements"] if e["file"] == "apo")["dictionaries"] == ["dict"]
 
 
 def test_files_outside_the_project_are_left_out(run):

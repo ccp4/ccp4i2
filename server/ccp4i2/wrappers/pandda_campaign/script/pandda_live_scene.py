@@ -96,8 +96,8 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
     """The scene for one event of a run in progress (or finished, before fan-out).
 
     The apo model, the event's map at its display contour and PanDDA's
-    candidate pose with its dictionary, centred on the event; the Z-map is
-    loaded but hidden. With no ``event_idx``, the dataset alone: the apo model
+    candidate pose, centred on the event; the Z-map is loaded but hidden. The
+    ligand's dictionary is attached to the pose and to the apo model both. With no ``event_idx``, the dataset alone: the apo model
     and its Z-map, shown. Files outside the project directory (a link the
     share cannot follow) are left out rather than named.
     """
@@ -139,7 +139,7 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
     if event is None:
         scene = event_scene(dtag, "", project_uuid, {"idx": 0, "position": 0},
                             apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
-                            dictionary=False, ref=ref)
+                            dictionary=paths["DICT"] is not None, ref=ref)
         scene["scene"] = f"{dtag}: Z-map"
         scene.pop("activeMap", None)
         return scene
@@ -157,9 +157,11 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
         "ligand_id": outputs.ligand_id,
         "score": event.score,
     }
+    # The dictionary whenever there is one, pose or not: it rides on the apo
+    # model too, so a ligand built or merged there is read correctly.
     scene = event_scene(dtag, "", project_uuid, record,
                         apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
-                        dictionary=has_pose and paths["DICT"] is not None, ref=ref)
+                        dictionary=paths["DICT"] is not None, ref=ref)
     # The event map is what to look at; the Z-map is there to switch on.
     for entry in scene["maps"]:
         if entry.get("file") == "zmap":
