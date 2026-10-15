@@ -8,7 +8,6 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
-import platform
 
 class acedrg(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -16,7 +15,6 @@ class acedrg(CPluginScript):
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'acedrg'                                  # Task name - should be same as class name
     TASKCOMMAND = 'acedrg'                                     # The command to run the executable
-    if platform.system() == 'Windows': TASKCOMMAND = 'acedrg.bat'
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
