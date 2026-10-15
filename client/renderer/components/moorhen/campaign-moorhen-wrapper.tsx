@@ -1,56 +1,31 @@
 "use client";
 
 /**
- * Campaign-specific Moorhen wrapper with site navigation and member project switching.
+ * The campaign Moorhen viewer: site navigation, member project switching,
+ * verdicts, and a summary scene of every discovered fragment.
  *
- * This is a specialized version of MoorhenWrapper for fragment screening campaigns.
- * It provides:
- * - Binding site navigation
- * - Member project switching via dropdown
- * - Standard view state URL support
+ * The viewer itself (refs, sizing, store wiring) comes from
+ * use-moorhen-viewer-core; loading and scenes from use-moorhen-loaders, the
+ * same code the project/job/file viewer runs. What is here is the campaign's
+ * own: which member and job are in view and when that content is ready,
+ * the sites and the camera moves between them, the evidence for a PanDDA
+ * event, the ligand the member's dictionary describes, and its drawer.
  */
-
 import {
-  addMolecule,
-  showMolecule,
-  addMap,
   removeMolecule,
   removeMap,
-  setActiveMap,
-  setContourLevel,
-  setMapColours,
-  setMapRadius,
-  setTheme,
-  setBackgroundColor,
   setOrigin,
   setQuat,
   setZoom,
   setRequestDrawScene,
-  MoorhenContainer,
-  MoorhenMolecule,
-  MoorhenMap,
 } from "moorhen/react-lib";
-import { setShownSidePanel, MoorhenInstanceProvider, MoorhenMenuSystem } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenInstance, MoorhenPanel } from "moorhen/react-lib";
-
-import {
-  RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import type { MoorhenPanel } from "moorhen/react-lib";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { moorhen } from "moorhen/types/moorhen";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { webGL } from "moorhen/types/mgWebGL";
-import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
-import { useTheme } from "../../theme/theme-provider";
+import { apiText, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { extractFileIdFromUniqueId, readCameraState } from "../../lib/moorhen-view-state";
-import { useCampaignsApi } from "../../lib/campaigns-api";
-import { usePopcorn } from "../../providers/popcorn-provider";
 import {
   ProjectGroup,
   CampaignSite,
@@ -60,59 +35,21 @@ import {
   MemberProjectWithSummary,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
-import {
-  MoorhenFallback,
-  MoorhenErrorBoundary,
-  useMoorhenCapabilities,
-  isSafariBrowser,
-} from "./moorhen-capability-check";
-import {
-  applyScene,
-  SceneFileFetcher,
-  SceneDictionaryFetcher,
-  SceneDictionaryLoader,
-  SceneMapFetcher,
-  SceneResolveResult,
-} from "../../lib/moorhen-scene-resolver";
-import { parseScene, serialiseScene } from "../../lib/scene";
-import {
-  liftSceneStraight,
-  promoteSceneToPortable,
-  type LiftCtx,
-  SceneLiftHints,
-  SceneRefUrlResolver,
-} from "../../lib/moorhen-scene-lifter";
-import { collectMapRenderState } from "../../lib/moorhen-map-render-state";
+import { serialiseScene } from "../../lib/scene";
 import { preferredJobId, siteViewUrl } from "../../lib/site-verdicts";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
-import {
-  COORDINATE_TYPES,
-  fetchCompanionDictionaryFiles,
-  fetchDictionaryTexts,
-  fetchJobDictionaryFiles,
-  loadWithDictionaries,
-  provenanceOf,
-  type DictionaryToAttach,
-} from "../../lib/moorhen-dictionaries";
+import { fetchDictionaryTexts } from "../../lib/moorhen-dictionaries";
 import { candidateLigandCodes, placeLigand } from "../../lib/ligand-codes";
 import {
   evidenceLoadPlan,
   fetchEventEvidence,
   fileDownloadUrl,
-  hexToRgb01,
   type EventRef,
 } from "../../lib/event-evidence";
-import type {
-  MaskMap,
-  MoorhenScene,
-  SceneDomain,
-  SceneFileRef,
-  SceneSuperpose,
-} from "../../types/moorhen-scene";
-import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
-import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
+import type { MoorhenScene } from "../../types/moorhen-scene";
+import { EMPTY_PROJECT_CONTEXT, ProjectContext } from "../../lib/scene-ref-urls";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
-import type { SceneBundleAssets } from "./moorhen-scenes-panel";
+import { MoorhenViewerFrame, useMoorhenViewerCore } from "./use-moorhen-viewer-core";
+import { useMoorhenLoaders, type JobLoadInfo } from "./use-moorhen-loaders";
 
 type FileSource =
   | { type: "none" }
@@ -170,12 +107,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   onSelectMemberProject,
   parentProject,
 }) => {
-  const capabilities = useMoorhenCapabilities();
-  const [isSafari] = useState(() => isSafariBrowser());
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const campaignsApi = useCampaignsApi();
-  const { setMessage } = usePopcorn();
+  const core = useMoorhenViewerCore({ sidePanelKey: "campaignControls" });
+  const { setMessage, dispatch, store, cootInitialized, molecules, maps } = core;
 
   // Representation visibility state (lifted from control panel for URL capture)
   const [visibleRepresentations, setVisibleRepresentations] = useState<string[]>(["CRs"]);
@@ -221,38 +154,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const hasInitializedReps = useRef(false);
 
-  // Container ref for measuring available height below the AppBar.
-  // Moorhen 1.0 no longer accepts a setMoorhenDimensions callback; it takes a
-  // static `size` prop and otherwise defaults to the full window.innerHeight,
-  // which overflows the viewport because the viewer renders under a toolbar.
-  // So we measure the container's offset and feed Moorhen an explicit size,
-  // keeping it in sync on window resize.
-  const moorhenContainerRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState<[number, number]>(() =>
-    typeof window === "undefined"
-      ? [0, 0]
-      : [window.innerWidth, window.innerHeight]
-  );
-  useEffect(() => {
-    const measure = () => {
-      const top = moorhenContainerRef.current?.getBoundingClientRect().top ?? 0;
-      setSize([window.innerWidth, window.innerHeight - top]);
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
-  const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
-  const commandCentre = useRef<null | moorhen.CommandCentre>(null);
-  // Filled by MoorhenContainer on mount. Molecules and maps are built from it.
-  const moorhenInstanceRef = useRef<null | MoorhenInstance>(null);
-  const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
-  const mapsRef = useRef<null | moorhen.Map[]>(null);
-  const activeMapRef = useRef<moorhen.Map>(null);
-  const lastHoveredAtom = useRef<null | moorhen.HoveredAtom>(null);
-  const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
-  const timeCapsuleRef = useRef(null);
   const loadedFileSource = useRef<FileSource | null>(null);
   /**
    * True once the current `fileSource` has finished loading into Coot.
@@ -276,18 +177,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // not by which molecule is active; see lib/ligand-codes).
   const [ligandCodes, setLigandCodes] = useState<string[]>([]);
   const [memberCoordFileId, setMemberCoordFileId] = useState<number | null>(null);
-  // Store ALL loaded dictionary contents so we can add them to molecules
-
-  const cootInitialized = useSelector(
-    (state: moorhen.State) => state.generalStates.cootInitialized
-  );
-  const molecules = useSelector(
-    (state: moorhen.State) => state.molecules.moleculeList
-  );
-  const maps = useSelector(
-    (state: moorhen.State) => (state as unknown as { maps: moorhen.Map[] }).maps || []
-  );
-  const store = useStore();
 
   // Initialize representations from URL if available (after molecules load)
   useEffect(() => {
@@ -298,63 +187,40 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     }
   }, [initialRepresentations, molecules, applyRepresentationsToMolecules]);
 
+  // The project a scene ref resolves against when it names none of its own:
+  // the campaign's parent, where the campaign-level jobs (a PanDDA run) live.
+  const projectContextRef = useRef<ProjectContext>(EMPTY_PROJECT_CONTEXT);
   useEffect(() => {
-    dispatch(
-      setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
-    );
-    dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
-  }, [theme.mode, dispatch]);
+    projectContextRef.current = parentProject
+      ? { pk: parentProject.id, uuid: parentProject.uuid ?? null, name: parentProject.name ?? null }
+      : EMPTY_PROJECT_CONTEXT;
+  }, [parentProject]);
 
-  // Auto-open the campaign controls side panel
-  useEffect(() => {
-    dispatch(setShownSidePanel("campaignControls"));
-  }, [dispatch]);
-
-  const monomerLibraryPath =
-    "https://raw.githubusercontent.com/MonomerLibrary/monomers/master/";
-
-  const backgroundColor = useSelector(
-    (state: moorhen.State) => state.sceneSettings.backgroundColor
-  );
-  const defaultBondSmoothness = useSelector(
-    (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
-  );
-
-  // In web browsers, use API route for CORP headers (COEP compatibility), with
-  // the Moorhen version in the path so the route's immutable cache is honest
-  // across upgrades. In Electron, serve directly from public/MoorhenAssets.
-  const isElectron = isElectronWindow();
-  const urlPrefix = moorhenUrlPrefix(isElectron);
-
-  // Start the WASM download now, rather than after the data archives.
-  //
-  // MoorhenCommandCentre.init() awaits three .tar.gz fetches before posting
-  // CootInitialize, and only that message makes the worker fetch the WASM --
-  // the biggest file on the page, last in the queue. Warming the cache here
-  // lets the two run together; the worker's own fetch then joins it. No effect
-  // in Electron, which reads these files from disk.
-  useEffect(() => {
-    if (isElectron) return;
-    return prefetchMoorhenWasm(urlPrefix);
-  }, [isElectron, urlPrefix]);
-
-  const getOrigin = useCallback(() => {
-    return readCameraState(store.getState() as moorhen.State).origin;
-  }, [store]);
+  const {
+    fetchMolecule,
+    fetchMapFile,
+    fetchFile,
+    fetchJobFiles,
+    handleMapContourLevelChange,
+    handleApplyScene,
+    handleCaptureScene,
+    handlePromoteSceneToPortable,
+  } = useMoorhenLoaders({
+    core,
+    projectContext: projectContextRef,
+    captureProject: { projectName: campaign.name },
+  });
 
   // Cleanup all loaded molecules and maps
   const cleanupLoadedContent = useCallback(() => {
-    // Remove all molecules
     for (const mol of molecules) {
       dispatch(removeMolecule(mol));
       mol.delete();
     }
-    // Remove all maps
     for (const map of maps) {
       dispatch(removeMap(map));
       map.delete();
     }
-    // Trigger redraw
     dispatch(setRequestDrawScene(true));
     // Reset ligand info
     setLigandDictFileId(null);
@@ -364,329 +230,41 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     hasInitializedReps.current = false;
   }, [molecules, maps, dispatch]);
 
-  // ----------------------------------------------------------------------
-  // Scene apply path (used by the campaign "Summary View")
-  //
-  // A summary scene (built server-side by lib/campaign_scene.py) overlays
-  // every discovered fragment on the parent ribbon, each fragment scoped to
-  // its own restraint dictionary. We drive it through the shared scene
-  // resolver (applyScene) rather than the ad-hoc job loader above, because
-  // the resolver already does the load-global-then-scope-per-molecule
-  // dictionary dance the fragment-campaign case needs.
-  // ----------------------------------------------------------------------
-
-  // Bundle assets (from an opened .scene.zip in the Scenes panel) live in a
-  // ref so the stable-identity fetchers below can reach this apply's assets;
-  // refreshed at the top of each apply.
-  const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
-
-  // What the last applied scene asked for that cannot be read back off the
-  // live view: a superposition leaves no trace on a molecule, and mask/domain
-  // declarations are scene-level. Capturing without these would silently drop
-  // the fitting that a campaign scene is mostly made of.
-  const lastAppliedSuperposeRef = useRef<SceneSuperpose[] | undefined>(undefined);
-  const lastAppliedMaskMapsRef = useRef<MaskMap[] | undefined>(undefined);
-  const lastAppliedDomainsRef = useRef<SceneDomain[] | undefined>(undefined);
-  // Which file defines each molecule's ligands, gathered at load time, so a
-  // captured scene lists the dictionary under the molecule it belongs to.
-  const dictSourcesRef = useRef<
-    Map<number, Map<string, { fileId: number; projectId?: string }>>
-  >(new Map());
-
-  // Structure load for the scene fetcher. Mirrors the generic wrapper's
-  // proven loadStructureFromText: load coords, add default reps, centre, and
-  // crucially dispatch(showMolecule) so the molecule is actually visible. The
-  // resolver then hides these loader-default reps and applies the scene's own
-  // (so "scene owns the look" still holds) — but without showMolecule the
-  // molecule loads invisibly and the viewer stays blank.
-  const loadSceneStructureFromText = useCallback(
-    async (
-      coordText: string,
-      molName: string,
-      uniqueId: string,
-      opts: { dictionaries?: DictionaryToAttach[] } = {},
-    ): Promise<moorhen.Molecule | null> => {
-      if (!commandCentre.current) return null;
-      const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
-      newMolecule.setBackgroundColour(backgroundColor);
-      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
-      try {
-        // The element's own dictionaries go on BEFORE Moorhen goes looking
-        // for missing monomers. Without this the ligand is bonded from
-        // whatever the monomer library happens to return for its code -- or
-        // from nothing at all for a novel fragment -- and the scoped
-        // read_dictionary_string that the resolver does afterwards arrives
-        // too late to be what the molecule was built from. See
-        // lib/moorhen-dictionaries: deferring that fetch is the whole point.
-        await loadWithDictionaries(newMolecule as any, opts.dictionaries ?? [], () =>
-          newMolecule.loadToCootFromString(coordText, molName),
-        );
-        if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
-        newMolecule.uniqueId = uniqueId;
-        // Remember which file defines each of this molecule's ligands, so a
-        // captured scene lists them under this molecule's element.
-        const provenance = provenanceOf(opts.dictionaries ?? []);
-        if (newMolecule.molNo != null && provenance.size > 0) {
-          dictSourcesRef.current.set(newMolecule.molNo, provenance);
-        }
-        // Ribbon first (protein overview), fall back to sticks. These get
-        // hidden by the resolver and replaced with the scene's reps.
-        try {
-          await newMolecule.addRepresentation("CRs", "/*/*/*/*");
-        } catch {
-          await newMolecule.addRepresentation("CBs", "/*/*/*/*");
-        }
-        try {
-          await newMolecule.addRepresentation("ligands", "/*/*/*/*");
-        } catch {
-          /* no ligands present — fine */
-        }
-        await newMolecule.centreOn("/*/*/*/*", false, true);
-        dispatch(addMolecule(newMolecule));
-        dispatch(showMolecule({ molNo: newMolecule.molNo } as never));
-        return newMolecule;
-      } catch (err) {
-        console.warn(`[scene] failed to load ${molName} (${uniqueId}):`, err);
-        return null;
-      }
-    },
-    [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch],
-  );
-
-  const loadSceneStructure = useCallback(
-    async (
-      url: string,
-      molName: string,
-      opts: { dictionaries?: DictionaryToAttach[] } = {},
-    ): Promise<moorhen.Molecule | null> => {
-      try {
-        const pdbData = await apiText(url);
-        return loadSceneStructureFromText(pdbData, molName, url, opts);
-      } catch (err) {
-        console.warn(`[scene] failed to fetch ${molName} from ${url}:`, err);
-        return null;
-      }
-    },
-    [loadSceneStructureFromText],
-  );
-
-  const handleFetchSceneFile: SceneFileFetcher = useCallback(
-    async (ref: SceneFileRef, fetchOpts) => {
-      // The element's scoped dictionaries, which the resolver hands us here.
-      // Dropping this argument is what left every campaign summary ligand
-      // bonded without its own chemistry.
-      const loadOpts = { dictionaries: fetchOpts?.dictionaries ?? [] };
-      // Bundle: decode bytes from the in-memory asset map (no network).
-      if (ref.bundle) {
-        const buf = bundleAssetsRef.current.get(ref.bundle);
-        if (!buf) {
-          console.warn(`[scene] bundle lookup miss: ${ref.bundle}`);
-          return null;
-        }
-        const coordText = new TextDecoder("utf-8").decode(buf);
-        return loadSceneStructureFromText(
-          coordText,
-          ref.name || ref.bundle,
-          `bundle:${ref.bundle}`,
-          loadOpts,
-        );
-      }
-      // A ccp4i2 fileId is globally unique, so it alone builds the URL;
-      // projectId is advisory and must not gate the fetch (the generic
-      // wrapper has always treated it that way).
-      if (ref.fileId !== undefined) {
-        return loadSceneStructure(
-          `/api/proxy/ccp4i2/files/${ref.fileId}/download/`,
-          ref.name || `file_${ref.fileId}`,
-          loadOpts,
-        );
-      }
-      if (ref.pdb) {
-        const pdbId = ref.pdb.toLowerCase();
-        return loadSceneStructure(
-          `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`,
-          ref.name || pdbId,
-          loadOpts,
-        );
-      }
-      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url, loadOpts);
-      return null;
-    },
-    [loadSceneStructure, loadSceneStructureFromText],
-  );
-
-  const handleFetchSceneDictionary: SceneDictionaryFetcher = useCallback(
-    async (ref: SceneFileRef): Promise<string | null> => {
-      if (ref.cifText) return ref.cifText;
-      if (ref.bundle) {
-        const buf = bundleAssetsRef.current.get(ref.bundle);
-        if (!buf) return null;
-        return new TextDecoder("utf-8").decode(buf);
-      }
-      let url: string | null = null;
-      if (ref.fileId !== undefined && ref.projectId) {
-        url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
-      } else if (ref.url) {
-        url = ref.url;
-      }
-      if (!url) return null;
-      try {
-        return await apiText(url);
-      } catch (err) {
-        console.warn(`[scene] failed to fetch dictionary ${ref.name}:`, err);
-        return null;
-      }
-    },
-    [],
-  );
-
-  const handleLoadSceneDictionary: SceneDictionaryLoader = useCallback(
-    async (dictText: string, molNo: number): Promise<void> => {
-      if (!commandCentre.current) return;
-      await commandCentre.current.cootCommand(
-        {
-          returnType: "status",
-          command: "read_dictionary_string",
-          commandArgs: [dictText, molNo],
-          changesMolecules: molNo >= 0 ? [molNo] : [],
+  /**
+   * The selected member's job: its first dictionary drives the 2D ligand
+   * panel and "Add ligand here", and the view centres on it.
+   */
+  const loadMemberJob = useCallback(
+    (jobId: number) =>
+      fetchJobFiles(jobId, {
+        centre: true,
+        onLoaded: ({ dictionaryFiles, dictionaries, coordFile }: JobLoadInfo) => {
+          if (dictionaryFiles.length > 0) {
+            const firstDict = dictionaryFiles[0];
+            setLigandDictFileId(firstDict.id);
+            setLigandName(
+              firstDict.name?.replace(/\.cif$/i, "") || firstDict.annotation || "Ligand",
+            );
+            setLigandCodes(candidateLigandCodes(dictionaries.map((d) => d.text)));
+          } else {
+            setLigandDictFileId(null);
+            setLigandName(null);
+            setLigandCodes([]);
+          }
+          setMemberCoordFileId(coordFile ? coordFile.id : null);
         },
-        false,
-      );
-    },
-    [],
+      }),
+    [fetchJobFiles],
   );
 
-  // Map fetcher: loads a scene maps[] entry. Real-space CCP4 map files
-  // (kind: "map", incl. masks) load via loadToCootFromMapData; MTZ refs via
-  // loadToCootFromMtzData with the column spec. applyMapState (in the resolver)
-  // then applies contour/style/colour, incl. the mask defaults.
-  const handleFetchSceneMap: SceneMapFetcher = useCallback(
-    async (ref, sceneMap) => {
-      if (!commandCentre.current) return null;
-      let bytes: ArrayBuffer | null = null;
-      let uniqueId: string | null = null;
-      if (ref.bundle) {
-        const buf = bundleAssetsRef.current.get(ref.bundle);
-        if (!buf) {
-          console.warn(`[scene] map bundle miss: ${ref.bundle}`);
-          return null;
-        }
-        bytes = buf;
-        uniqueId = `bundle:${ref.bundle}`;
-      } else {
-        let url: string | null = null;
-        if (ref.fileId !== undefined && ref.projectId) {
-          url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
-        } else if (ref.url) {
-          url = ref.url;
-        }
-        if (!url) return null;
-        try {
-          bytes = await apiArrayBuffer(url);
-          uniqueId = url;
-        } catch (err) {
-          console.warn(`[scene] map fetch failed for ${ref.name}:`, err);
-          return null;
-        }
-      }
-      try {
-        const mapInstance = requireMoorhenInstance(moorhenInstanceRef);
-        let newMap: moorhen.Map;
-        if (ref.kind === "map") {
-          // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
-          const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
-          newMap = await MoorhenMap.loadToCootFromMapData(
-            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
-            sceneMap.name,
-            !!sceneMap.isDifference,
-            mapInstance,
-          );
-          (newMap as any).isCcp4MapFile = true;
-          if (sceneMap.isMask) markMaskMap(newMap);
-        } else {
-          const cols = sceneMap.columns ?? {};
-          newMap = await MoorhenMap.loadToCootFromMtzData(
-            new Uint8Array(bytes as ArrayBuffer),
-            sceneMap.name,
-            {
-              F: cols.F,
-              PHI: cols.PHI,
-              Fobs: cols.Fobs,
-              SigFobs: cols.SigFobs,
-              FreeR: cols.FreeR,
-              useWeight: !!cols.useWeight,
-              calcStructFact: !!cols.calcStructFact,
-              isDifference: !!sceneMap.isDifference,
-            } as moorhen.selectedMtzColumns,
-            mapInstance,
-          );
-        }
-        if (newMap.molNo === -1) return null;
-        if (uniqueId) newMap.uniqueId = uniqueId;
-        primeEmMapHeaderInfo(newMap);
-        dispatch(addMap(newMap));
-        if (ref.kind === "map" && sceneMap.isMask) {
-          await applyMaskDefaults(dispatch, newMap as any);
-        }
-        return newMap;
-      } catch (err) {
-        console.warn(`[scene] failed to load map for ${ref.name}:`, err);
-        return null;
-      }
-    },
-    [commandCentre, store, dispatch],
-  );
-
-  // Core apply: hand a parsed scene + bundle assets to the resolver.
-  const runScene = useCallback(
-    async (
-      scene: MoorhenScene,
-      assets: SceneBundleAssets = new Map(),
-    ): Promise<SceneResolveResult> => {
-      bundleAssetsRef.current = assets;
-      // Kept for the capture path, which cannot read these back off the view.
-      lastAppliedSuperposeRef.current = scene.superpose;
-      lastAppliedMaskMapsRef.current = scene.maskMaps;
-      lastAppliedDomainsRef.current = scene.domains;
-      const result = await applyScene({
-        scene,
-        molecules,
-        maps,
-        dispatch,
-        fetcher: handleFetchSceneFile,
-        dictionaryFetcher: handleFetchSceneDictionary,
-        dictionaryLoader: handleLoadSceneDictionary,
-        mapFetcher: handleFetchSceneMap,
-      });
-      dispatch(setRequestDrawScene(true));
-      return result;
-    },
-    [
-      molecules,
-      maps,
-      dispatch,
-      handleFetchSceneFile,
-      handleFetchSceneDictionary,
-      handleLoadSceneDictionary,
-      handleFetchSceneMap,
-    ],
-  );
-
-  // Scenes-panel path: parse the editor YAML and apply (with bundle assets
-  // when opened from a .scene.zip). This is the single apply entry — the
-  // summary view drives it too, via the panel's auto-apply.
-  const handleApplyScene = useCallback(
-    (yamlText: string, assets: SceneBundleAssets): Promise<SceneResolveResult> => {
-      return runScene(parseScene(yamlText), assets);
-    },
-    [runScene],
-  );
+  /** Bring an extra job into the view from the project browser: nothing
+   *  about the current member is disturbed and the camera stays where it is. */
+  const importJobFiles = useCallback((jobId: number) => fetchJobFiles(jobId), [fetchJobFiles]);
 
   // Load files when fileSource changes
   useEffect(() => {
     if (!cootInitialized) return;
 
-    // Check if file source changed
     const sourceChanged =
       JSON.stringify(loadedFileSource.current) !== JSON.stringify(fileSource);
     if (!sourceChanged) return;
@@ -714,303 +292,16 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       );
     } else if (fileSource.type === "job") {
       setContentReady(false);
-      fetchJobFiles(fileSource.jobId).then(finish, finish);
+      loadMemberJob(fileSource.jobId).then(finish, finish);
     } else {
       // Nothing to load here: the summary scene is applied by the Scenes
       // panel (auto-apply), so it shares one rendering pathway with
       // hand-edited scenes — and it carries its own camera.
       finish();
     }
+    // The loaders are stable; this runs when the source changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileSource, cootInitialized, cleanupLoadedContent]);
-
-  // Dimension updates are handled by Moorhen's MainContainer automatically
-
-  const fetchFile = async (fileId: number) => {
-    const fileInfo = await apiGet(`files/${fileId}`);
-    if (!fileInfo) {
-      console.warn(`File with ID ${fileId} not found.`);
-      return;
-    }
-    if (COORDINATE_TYPES.has(fileInfo.type)) {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.annotation || fileInfo.job_param_name;
-      // A coordinate file brings the dictionaries of the job it belongs to.
-      const dictionaries = await fetchDictionaryTexts(await fetchCompanionDictionaryFiles(fileId));
-      await fetchMolecule(url, molName, dictionaries);
-    } else if (fileInfo.type === "application/CCP4-mtz-map") {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.name || fileInfo.job_param_name;
-      // subType: 1=normal, 2=difference, 3=anomalous difference
-      const mapSubType = fileInfo.sub_type || 1;
-      await fetchMap(url, molName, mapSubType, fileInfo.annotation || molName);
-    } else if (fileInfo.type === "application/CCP4-map") {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
-      await fetchMapFile(url, molName, {
-        isMask: isMaskSubType(fileInfo.sub_type),
-        description: molName,
-      });
-    }
-  };
-
-  /**
-   * Load a job's best coordinate file, with the job's own dictionaries
-   * attached to that molecule alone, and its maps.
-   *
-   * `asCurrentMember` (the default) is the campaign's own use: the job is the
-   * selected member's, so its first dictionary drives the 2D ligand panel and
-   * the view centres on it. With it false the job is an addition brought in
-   * from the project browser ("load all job outputs"): nothing about the
-   * current member is disturbed and the camera stays where it is.
-   */
-  const fetchJobFiles = async (
-    jobId: number,
-    opts: { asCurrentMember?: boolean } = {},
-  ) => {
-    const asCurrentMember = opts.asCurrentMember !== false;
-    const files = await apiGet(`files/?job=${jobId}`);
-    if (!files || !Array.isArray(files)) return;
-
-    // Filter to only JOB_DIR files (directory=1), exclude imported files (directory=2)
-    const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
-
-    // STEP 1: The job's dictionaries from the database: its own files AND its
-    // inputs (a refinement's ligand usually comes from an earlier acedrg job,
-    // which a filter over this job's own files never saw). They are attached
-    // to this job's molecule only, never to Coot's global store, so a second
-    // job brought into the view keeps its own chemistry for a ligand of the
-    // same name.
-    const ligandDictFiles = await fetchJobDictionaryFiles(jobId);
-    const dictionaries = await fetchDictionaryTexts(ligandDictFiles);
-    if (asCurrentMember) {
-      if (ligandDictFiles.length > 0) {
-        // Use the first dictionary file for 2D display in the control panel
-        const firstDict = ligandDictFiles[0];
-        setLigandDictFileId(firstDict.id);
-        const name = firstDict.name?.replace(/\.cif$/i, "") ||
-                     firstDict.annotation ||
-                     "Ligand";
-        setLigandName(name);
-        setLigandCodes(candidateLigandCodes(dictionaries.map((d) => d.text)));
-      } else {
-        setLigandDictFileId(null);
-        setLigandName(null);
-        setLigandCodes([]);
-      }
-    }
-
-    // STEP 2: Find and load coordinate files
-    // Check for both PDB and mmCIF types
-    const coordFiles = jobOutputFiles.filter((f: { type: string }) => COORDINATE_TYPES.has(f.type));
-    // Prefer mmCIF (.cif) over PDB (.pdb) for coordinates
-    const mmcifFile = coordFiles.find((f: { name: string }) =>
-      f.name.toLowerCase().endsWith(".cif")
-    );
-    const coordFile = mmcifFile || coordFiles[0];
-    if (asCurrentMember) setMemberCoordFileId(coordFile ? coordFile.id : null);
-
-    // Load the single best coordinate file
-    if (coordFile) {
-      const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
-      const molName = coordFile.annotation || coordFile.job_param_name;
-      await fetchMolecule(url, molName, dictionaries, { centre: asCurrentMember });
-    }
-
-    // STEP 3: Load map files (MTZ coefficients and real-space CCP4 maps / masks)
-    for (const file of jobOutputFiles) {
-      if (file.type === "application/CCP4-mtz-map") {
-        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
-        const molName = file.name || file.job_param_name;
-        // subType: 1=normal, 2=difference, 3=anomalous difference
-        const mapSubType = file.sub_type || 1;
-        await fetchMap(url, molName, mapSubType, file.annotation || molName);
-      } else if (file.type === "application/CCP4-map") {
-        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
-        const molName = file.annotation || file.name || file.job_param_name;
-        await fetchMapFile(url, molName, {
-          isMask: isMaskSubType(file.sub_type),
-          description: molName,
-        });
-      }
-    }
-  };
-
-  /** Bring an extra job into the view from the project browser. */
-  const importJobFiles = (jobId: number) => fetchJobFiles(jobId, { asCurrentMember: false });
-
-  const fetchMolecule = async (
-    url: string,
-    molName: string,
-    dictionaries: DictionaryToAttach[] = [],
-    opts: { centre?: boolean } = {},
-  ) => {
-    if (!commandCentre.current) return;
-    const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
-    newMolecule.setBackgroundColour(backgroundColor);
-    newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
-    try {
-      const pdbData = await apiText(url);
-      // The molecule's own dictionaries, attached to it alone, before Moorhen
-      // goes looking for missing monomers (see lib/moorhen-dictionaries).
-      await loadWithDictionaries(newMolecule as any, dictionaries, () =>
-        newMolecule.loadToCootFromString(pdbData, molName),
-      );
-      if (newMolecule.molNo === -1) {
-        throw new Error("Cannot read the fetched molecule...");
-      }
-      newMolecule.uniqueId = url;
-      // Try ribbon representation first (better for protein overview)
-      // Fall back to CBs if ribbons fail (e.g., no protein backbone)
-      try {
-        await newMolecule.addRepresentation("CRs", "/*/*/*/*");
-      } catch {
-        // Ribbons failed, fall back to CBs
-        await newMolecule.addRepresentation("CBs", "/*/*/*/*");
-      }
-
-      // Always try to add ligand representation
-      try {
-        await newMolecule.addRepresentation("ligands", "/*/*/*/*");
-      } catch {
-        console.warn("[fetchMolecule] Ligands representation failed");
-      }
-
-      if (opts.centre !== false) await newMolecule.centreOn("/*/*/*/*", false, true);
-      dispatch(addMolecule(newMolecule));
-    } catch (err) {
-      console.warn(err);
-      console.warn(`Cannot fetch PDB entry from ${url}`);
-    }
-  };
-
-  const fetchMap = async (
-    url: string,
-    mapName: string,
-    mapSubType: number = 1,
-    // The file's own annotation, kept for the panel's tooltip: the contour
-    // rows are labelled by map type ("2Fo-Fc", "Fo-Fc"), which with several
-    // datasets loaded gives several identically-named rows.
-    description?: string,
-  ) => {
-    if (!commandCentre.current) return;
-    // subType: 1=normal, 2=difference, 3=anomalous difference
-    // Both difference and anomalous maps use isDifference=true for contouring
-    const isDiffMap = mapSubType === 2 || mapSubType === 3;
-    try {
-      const mtzData = await apiArrayBuffer(url);
-      const newMap = await MoorhenMap.loadToCootFromMtzData(
-        new Uint8Array(mtzData),
-        mapName,
-        {
-          F: "F",
-          PHI: "PHI",
-          useWeight: false,
-          isDifference: isDiffMap,
-        } as moorhen.selectedMtzColumns,
-        requireMoorhenInstance(moorhenInstanceRef),
-      );
-      newMap.uniqueId = url;
-      // Store the original sub_type for proper labeling and coloring
-      (newMap as any).mapSubType = mapSubType;
-      if (description) (newMap as any).ccp4i2Description = description;
-      // Before addMap: an EM-flagged MTZ map crashes the viewer otherwise.
-      primeEmMapHeaderInfo(newMap);
-      // Set custom colors for anomalous maps (orange/purple instead of green/red)
-      if (mapSubType === 3) {
-        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
-        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 }; // Purple
-      }
-      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map...");
-      dispatch(addMap(newMap));
-      // Only set as active map for non-difference maps (subType 1).
-      // Difference maps (Fo-Fc = 2, anomalous = 3) must never be the
-      // active map because Moorhen refines against the active map.
-      if (!isDiffMap) {
-        dispatch(setActiveMap(newMap));
-      }
-      // Reduce initial contour level to 0.8x for more sensitive screening
-      const state = store.getState() as any;
-      const contourLevels = state.mapContourSettings?.contourLevels || [];
-      const entry = contourLevels.find((c: any) => c.molNo === newMap.molNo);
-      const currentLevel = entry?.contourLevel;
-      if (currentLevel != null && !Number.isNaN(currentLevel)) {
-        const reducedLevel = currentLevel * 0.8;
-        dispatch(setContourLevel({ molNo: newMap.molNo, contourLevel: reducedLevel } as any));
-        newMap.drawMapContour().catch((err: Error) => {
-          console.error("Failed to redraw map contour after level adjustment:", err);
-        });
-      }
-    } catch (err) {
-      console.warn(err);
-      console.warn(`Cannot fetch map from ${url}`);
-    }
-  };
-
-  // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Uses
-  // loadToCootFromMapData (not the MTZ path); masks get the shared translucent
-  // solid defaults and are never the active map.
-  const fetchMapFile = async (
-    url: string,
-    mapName: string,
-    opts: {
-      isMask?: boolean;
-      description?: string;
-      /** The map's row label in the control panel, where its type would mislead
-       *  (a PanDDA event map is neither 2Fo-Fc nor Fo-Fc). */
-      shortLabel?: string;
-      /** Absolute map units (a PanDDA event map's display contour). */
-      contourLevel?: number | null;
-      /** "#rrggbb" */
-      colour?: string;
-      radius?: number;
-    } = {}
-  ): Promise<moorhen.Map | undefined> => {
-    if (!commandCentre.current) return undefined;
-    let newMap: moorhen.Map | undefined;
-    try {
-      // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
-      // (no-op if already float). For masks, also nudge the P1/orthogonal cell
-      // off 90° so coot contours periodically instead of clamping to the cell box.
-      let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
-      if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
-      newMap = await MoorhenMap.loadToCootFromMapData(
-        new Uint8Array(mapData),
-        mapName,
-        false,
-        requireMoorhenInstance(moorhenInstanceRef),
-      );
-      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
-      newMap.uniqueId = url;
-      // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
-      (newMap as any).isCcp4MapFile = true;
-      if (opts.description) (newMap as any).ccp4i2Description = opts.description;
-      if (opts.shortLabel) (newMap as any).ccp4i2ShortLabel = opts.shortLabel;
-      if (opts.isMask) {
-        markMaskMap(newMap);
-      }
-      dispatch(addMap(newMap));
-      if (opts.isMask) {
-        await applyMaskDefaults(dispatch, newMap as any);
-      }
-      const molNo = newMap.molNo;
-      if (opts.radius != null) {
-        dispatch(setMapRadius({ molNo, radius: opts.radius } as never));
-      }
-      const rgb = opts.colour ? hexToRgb01(opts.colour) : null;
-      if (rgb) dispatch(setMapColours({ molNo, rgb } as never));
-      if (opts.contourLevel != null && !Number.isNaN(opts.contourLevel)) {
-        dispatch(setContourLevel({ molNo, contourLevel: opts.contourLevel } as never));
-        newMap.drawMapContour().catch((err: Error) => {
-          console.error("Failed to redraw map contour at the requested level:", err);
-        });
-      }
-      return newMap;
-    } catch (err) {
-      console.warn(err);
-      console.warn(`Cannot fetch map file from ${url}`);
-      return undefined;
-    }
-  };
 
   // Navigate to a site
   const handleGoToSite = useCallback(
@@ -1093,14 +384,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         const dictionaries = evidence.dictionary
           ? await fetchDictionaryTexts([evidence.dictionary])
           : [];
-        await fetchMolecule(fileDownloadUrl(plan.pose.fileId), plan.pose.name, dictionaries, {
+        await fetchMolecule(fileDownloadUrl(plan.pose.fileId), plan.pose.name, {
+          dictionaries,
           centre: false,
         });
       }
       dispatch(setRequestDrawScene(true));
     })().catch((err) => console.warn("[event evidence] could not load:", err));
-    // fetchMapFile and fetchMolecule are closures over refs, and the guard
-    // makes this run once.
+    // The loaders are stable, and the guard makes this run once.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialEvent, cootInitialized, contentReady, fileSource, dispatch]);
 
@@ -1110,17 +401,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       const camera = readCameraState(store.getState() as moorhen.State);
       const newSite: NewCampaignSite = {
         name,
-        origin: Array.from(camera.origin).slice(0, 3) as [
-          number,
-          number,
-          number
-        ],
-        quat: Array.from(camera.quat).slice(0, 4) as [
-          number,
-          number,
-          number,
-          number
-        ],
+        origin: Array.from(camera.origin).slice(0, 3) as [number, number, number],
+        quat: Array.from(camera.quat).slice(0, 4) as [number, number, number, number],
         zoom: camera.zoom,
       };
       await onAddSite(newSite);
@@ -1146,47 +428,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
       if (updatePosition) {
         const camera = readCameraState(store.getState() as moorhen.State);
-        changes.origin = Array.from(camera.origin).slice(0, 3) as [
-          number,
-          number,
-          number
-        ];
-        changes.quat = Array.from(camera.quat).slice(0, 4) as [
-          number,
-          number,
-          number,
-          number
-        ];
+        changes.origin = Array.from(camera.origin).slice(0, 3) as [number, number, number];
+        changes.quat = Array.from(camera.quat).slice(0, 4) as [number, number, number, number];
         changes.zoom = camera.zoom;
       }
 
       await onUpdateSite(siteId, changes);
     },
     [store, onUpdateSite]
-  );
-
-  // Handle map contour level changes
-  // NOTE: This must be synchronous for slider dragging to work smoothly.
-  // The map redraw is fired off without awaiting to prevent blocking.
-  const handleMapContourLevelChange = useCallback(
-    (molNo: number, level: number) => {
-      // Update Redux state - Moorhen's getMapContourParams() reads contourLevel from here
-      // Note: Despite TypeScript def saying 'level', Moorhen internally expects 'contourLevel'
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      dispatch(setContourLevel({ molNo, contourLevel: level } as any));
-
-      // Find the map and redraw its contour (fire-and-forget, don't block)
-      const map = maps.find((m) => m.molNo === molNo);
-      if (map) {
-        map.drawMapContour().catch((err) => {
-          console.error("Failed to redraw map contour:", err);
-        });
-      }
-
-      // Trigger scene redraw
-      dispatch(setRequestDrawScene(true));
-    },
-    [dispatch, maps]
   );
 
   // Record what was found at a site in the selected dataset.
@@ -1395,73 +644,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [molecules, memberCoordFileId, dispatch, setMessage]
   );
 
-  // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
-  // (it builds the per-instance MoorhenInstance from it).
-  const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
-
-  // Where a scene ref's bytes live. Shared by the promoter (the export path)
-  // so it agrees with the fetchers above on what counts as resolvable. The
-  // campaign viewer's refs are fileId or url; a job+param ref, which needs a
-  // project to resolve against, is not something a campaign scene carries.
-  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback(async (ref) => {
-    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
-    if (ref.fileId !== undefined) return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
-    if (ref.url) return ref.url;
-    return null;
-  }, []);
-
-  // Lift the live view back into YAML. The campaign viewer used not to offer
-  // this — it was built to apply scenes, not author them — but a site scene
-  // is exactly the view worth keeping: it is assembled server-side, tuned by
-  // hand here, and otherwise lost when the tab closes.
-  const handleCaptureScene = useCallback(async (): Promise<{
-    scene: MoorhenScene;
-    hints: SceneLiftHints;
-    assets: SceneBundleAssets;
-  }> => {
-    const state = store.getState() as moorhen.State;
-    // sceneSettings carries the effect toggles (SSAO / edge-detect / shadows /
-    // depth-blur / perspective) the lifter folds into hints.effects.
-    const sceneSettingsState = (
-      state as unknown as { sceneSettings: LiftCtx["sceneSettings"] }
-    ).sceneSettings;
-    const activeMapMolNo = (
-      state as unknown as { generalStates?: { activeMap?: moorhen.Map | null } }
-    ).generalStates?.activeMap?.molNo;
-    const { scene, hints } = await liftSceneStraight({
-      molecules,
-      glRef: readCameraState(state),
-      sceneSettings: sceneSettingsState,
-      superpose: lastAppliedSuperposeRef.current,
-      maskMaps: lastAppliedMaskMapsRef.current,
-      domains: lastAppliedDomainsRef.current,
-      projectName: campaign.name,
-      monomerLibraryPath: molecules[0]?.monomerLibraryPath,
-      maps,
-      mapState: collectMapRenderState(state),
-      activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
-      dictSources: dictSourcesRef.current,
-    });
-    return { scene, hints, assets: new Map() as SceneBundleAssets };
-  }, [store, molecules, maps, campaign.name]);
-
-  const handlePromoteSceneToPortable = useCallback(
-    async (
-      yamlText: string,
-      currentAssets: SceneBundleAssets,
-    ): Promise<{ yamlText: string; assets: SceneBundleAssets; warnings: string[] }> => {
-      const { scene: out, assets, warnings } = await promoteSceneToPortable({
-        scene: parseScene(yamlText),
-        existingAssets: currentAssets,
-        resolveUrl: resolveSceneRefUrl,
-        molecules,
-        monomerLibraryPath: molecules[0]?.monomerLibraryPath,
-      });
-      return { yamlText: serialiseScene(out), assets, warnings };
-    },
-    [molecules, resolveSceneRefUrl],
-  );
-
   // Every loaded molecule's source file, by the fileId its uniqueId carries.
   // The scene is where a molecule's provenance lives: the loader names it
   // after the scene's file ref, and that ref says which project it came from.
@@ -1524,7 +706,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     }
   }, [summaryScene]);
 
-  // Custom side panel: campaign Controls + Scenes editor under one Moorhen
+  // The drawer: campaign Controls + Scenes editor under one Moorhen
   // side-panel registration (matching the job/file viewers' tabbed panel).
   const extraSidePanels: Record<string, MoorhenPanel> = {
     campaignControls: {
@@ -1578,46 +760,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     },
   };
 
-  const collectedProps = {
-    glRef,
-    timeCapsuleRef,
-    commandCentre,
-    moorhenInstanceRef,
-    moleculesRef,
-    mapsRef,
-    activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
-    lastHoveredAtom,
-    prevActiveMoleculeRef,
-    monomerLibraryPath,
-    urlPrefix,
-    store,
-    viewOnly: false,
-    extraSidePanels,
-    size,
-  };
-
-  // Show Safari advisory as a non-blocking snackbar
-  const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
-  useEffect(() => {
-    if (isSafari && !isElectronEnv) {
-      setMessage(
-        "Safari may have compatibility issues with the Moorhen viewer. For the best experience, consider using Chrome, Edge, or Firefox.",
-        "warning"
-      );
-    }
-  }, [isSafari, isElectronEnv, setMessage]);
-
-  return (
-    <div ref={moorhenContainerRef}>
-      <MoorhenErrorBoundary fallback={<MoorhenFallback reason="runtime_error" capabilities={capabilities} />}>
-        {store && (
-          <MoorhenInstanceProvider menuSystem={menuSystem}>
-            <MoorhenContainer {...collectedProps} />
-          </MoorhenInstanceProvider>
-        )}
-      </MoorhenErrorBoundary>
-    </div>
-  );
+  return <MoorhenViewerFrame core={core} extraSidePanels={extraSidePanels} />;
 };
 
 export default CampaignMoorhenWrapper;
