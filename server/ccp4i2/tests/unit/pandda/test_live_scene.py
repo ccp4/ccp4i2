@@ -11,7 +11,9 @@ pytest.importorskip("gemmi", reason="needs gemmi")
 
 import ccp4i2
 from ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_report import pandda_campaign_report
-from ccp4i2.wrappers.pandda_campaign.script.pandda_live_scene import live_event_scene, peek_events
+from ccp4i2.wrappers.pandda_campaign.script.pandda_dict import add_lig_alias
+from ccp4i2.wrappers.pandda_campaign.script.pandda_live_scene import (
+    dictionary_for_coot, live_event_scene, peek_events)
 
 from .synthetic_tree import event_record, make_tree
 
@@ -57,7 +59,10 @@ def test_event_scene_names_the_runs_files_by_project_path(run):
     assert paths["event1_map"] == ("CCP4_JOBS/job_3/pandda2_out/processed_datasets/xtal-0001/"
                                    "xtal-0001-event_1_1-BDC_0.2_map.native.ccp4")
     assert paths["zmap"].endswith("xtal-0001/xtal-0001-z_map.native.ccp4")
-    assert all(f["projectId"] == "uuid-1" for f in scene["files"])
+    assert all(f["projectId"] == "uuid-1" for f in scene["files"] if f["name"] != "dict")
+    # The dictionary travels inline, rewritten for Coot (see below)
+    dictionary = next(f for f in scene["files"] if f["name"] == "dict")
+    assert "projectPath" not in dictionary and "data_comp_LIG" in dictionary["cifText"]
     maps = {m["file"]: m for m in scene["maps"]}
     assert maps["zmap"]["visible"] is False
     assert maps["event1_map"]["visible"] is True and maps["event1_map"]["contourLevel"] > 0
@@ -112,3 +117,34 @@ def test_the_report_offers_a_link_per_event():
     assert [l.get("label") for l in links] == ["BAZ2B-x1 event 2 (score 0.900)", "xtal-0002 event 1"]
     assert json.loads(links[0].get("kwargs")) == {"dtag": "xtal-0001", "event_idx": 2}
     assert links[0].get("method") == "eventScene" and links[0].get("projectId") == "4"
+
+
+def test_the_dictionary_is_rewritten_so_coot_knows_lig(tmp_path):
+    """Staging's comp_LIG alias is a copy whose rows still name the true
+    code: PanDDA opens it by block name, Coot registers by comp_id and
+    comp_list, so to Coot the pose's LIG had no dictionary and Moorhen
+    fetched the library's unrelated LIG."""
+    gemmi = pytest.importorskip("gemmi")
+    from .synthetic_tree import DICT_CIF
+    doc = gemmi.cif.read_string(DICT_CIF.format(code="MZ0"))
+    add_lig_alias(doc)
+    path = tmp_path / "dict.cif"
+    path.write_text(doc.as_string())
+    assert set(gemmi.cif.read(str(path))["comp_LIG"].find_values("_chem_comp_atom.comp_id")) == {"MZ0"}
+
+    rewritten = gemmi.cif.read_string(dictionary_for_coot(path))
+    assert list(rewritten["comp_list"].find_values("_chem_comp.id")) == ["MZ0", "LIG"]
+    assert set(rewritten["comp_LIG"].find_values("_chem_comp_atom.comp_id")) == {"LIG"}
+    assert set(rewritten["comp_MZ0"].find_values("_chem_comp_atom.comp_id")) == {"MZ0"}
+    # the file itself is untouched
+    assert set(gemmi.cif.read(str(path))["comp_LIG"].find_values("_chem_comp_atom.comp_id")) == {"MZ0"}
+
+
+def test_a_dictionary_without_an_alias_gets_one(tmp_path):
+    gemmi = pytest.importorskip("gemmi")
+    from .synthetic_tree import DICT_CIF
+    path = tmp_path / "dict.cif"
+    path.write_text(DICT_CIF.format(code="MZ0"))
+    rewritten = gemmi.cif.read_string(dictionary_for_coot(path))
+    assert set(rewritten["comp_LIG"].find_values("_chem_comp_atom.comp_id")) == {"LIG"}
+    assert "LIG" in list(rewritten["comp_list"].find_values("_chem_comp.id"))
