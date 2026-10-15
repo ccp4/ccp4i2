@@ -84,6 +84,65 @@ def peek_events(tree, cache: Optional[Dict[str, List[Dict]]] = None) -> List[Dic
     return events
 
 
+#: What PanDDA names every residue it builds, whatever the dictionary said.
+PANDDA_RESIDUE = "LIG"
+
+
+def dictionary_for_coot(path) -> Optional[str]:
+    """The run's ligand dictionary, rewritten so Coot knows ``LIG``.
+
+    PanDDA builds every pose as residue ``LIG``, and staging gives it a
+    ``comp_LIG`` block to read (pandda_dict.add_lig_alias). PanDDA opens a
+    dictionary by block name; Coot registers compounds by the
+    ``_chem_comp_atom.comp_id`` in the rows and the ``comp_list`` header,
+    which in that alias still name the true code. So to Coot the pose's LIG
+    had no dictionary, and Moorhen fetched the library's ``LIG`` -- a real,
+    unrelated CCD compound -- and drew the pose with its bonds.
+
+    Here the ``comp_LIG`` block's rows say ``LIG`` and ``comp_list`` lists
+    it, beside the true code, unchanged. The file on disk is not touched.
+    None when the file has no restraint block to offer.
+    """
+    import gemmi
+
+    try:
+        doc = gemmi.cif.read(str(path))
+    except Exception:       # noqa: BLE001 - no dictionary is better than no scene
+        return None
+    restraint = [b for b in doc if b.name != "comp_list" and b.find_values("_chem_comp_atom.atom_id")]
+    if not restraint:
+        return None
+    alias = doc.find_block(f"comp_{PANDDA_RESIDUE}")
+    if alias is None:
+        alias = doc.add_copied_block(restraint[0])
+        alias.name = f"comp_{PANDDA_RESIDUE}"
+    atom_ids = alias.find_values("_chem_comp_atom.comp_id")
+    code = atom_ids[0] if len(atom_ids) else None
+    for item in alias:
+        if item.loop is not None:
+            for tag in item.loop.tags:
+                if tag.endswith(".comp_id") or tag == "_chem_comp.id":
+                    column = alias.find_values(tag)
+                    for i in range(len(column)):
+                        column[i] = PANDDA_RESIDUE
+        elif item.pair is not None and (item.pair[0].endswith(".comp_id") or item.pair[0] == "_chem_comp.id"):
+            alias.set_pair(item.pair[0], PANDDA_RESIDUE)
+    header = doc.find_block("comp_list")
+    ids = header.find_values("_chem_comp.id") if header is not None else None
+    if ids is not None and len(ids) and PANDDA_RESIDUE not in list(ids):
+        loop = ids.get_loop()
+        if loop is not None:
+            width = loop.width()
+            rows = [list(loop.values[r * width:(r + 1) * width]) for r in range(loop.length())]
+            id_col = loop.tags.index("_chem_comp.id")
+            values = next((r for r in rows if r[id_col] == code), rows[0])
+            for c, tag in enumerate(loop.tags):
+                if tag in ("_chem_comp.id", "_chem_comp.three_letter_code"):
+                    values[c] = PANDDA_RESIDUE
+            loop.add_row(values)
+    return doc.as_string()
+
+
 def _safe_dtag(dtag: str) -> str:
     dtag = str(dtag)
     if not dtag or "/" in dtag or "\\" in dtag or dtag in (".", ".."):
@@ -96,8 +155,8 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
     """The scene for one event of a run in progress (or finished, before fan-out).
 
     The apo model, the event's map at its display contour and PanDDA's
-    candidate pose with its dictionary, centred on the event; the Z-map is
-    loaded but hidden. With no ``event_idx``, the dataset alone: the apo model
+    candidate pose, centred on the event; the Z-map is loaded but hidden. The
+    ligand's dictionary is attached to the pose and to the apo model both. With no ``event_idx``, the dataset alone: the apo model
     and its Z-map, shown. Files outside the project directory (a link the
     share cannot follow) are left out rather than named.
     """
@@ -132,14 +191,19 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
         paths["EVENTS[0].EVENT_MAP"] = in_project(event.event_map)
         paths["EVENTS[0].POSE"] = in_project(event.pose)
 
+    # The dictionary travels inline, rewritten so Coot knows the pose's LIG.
+    dictionary_text = dictionary_for_coot(outputs.dictionary) if paths["DICT"] else None
+
     def ref(name: str, role: str, kind: str) -> Dict:
+        if role == "DICT" and dictionary_text:
+            return {"name": name, "kind": kind, "cifText": dictionary_text}
         return {"name": name, "kind": kind, "projectPath": paths[role], "projectId": project_uuid}
 
     has_pose = event is not None and paths["EVENTS[0].POSE"] is not None
     if event is None:
         scene = event_scene(dtag, "", project_uuid, {"idx": 0, "position": 0},
                             apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
-                            dictionary=False, ref=ref)
+                            dictionary=paths["DICT"] is not None, ref=ref)
         scene["scene"] = f"{dtag}: Z-map"
         scene.pop("activeMap", None)
         return scene
@@ -157,9 +221,11 @@ def live_event_scene(tree, staged_datasets, project_dir, project_uuid: str, dtag
         "ligand_id": outputs.ligand_id,
         "score": event.score,
     }
+    # The dictionary whenever there is one, pose or not: it rides on the apo
+    # model too, so a ligand built or merged there is read correctly.
     scene = event_scene(dtag, "", project_uuid, record,
                         apo=paths["XYZIN_APO"] is not None, zmap=paths["ZMAP"] is not None,
-                        dictionary=has_pose and paths["DICT"] is not None, ref=ref)
+                        dictionary=paths["DICT"] is not None, ref=ref)
     # The event map is what to look at; the Z-map is there to switch on.
     for entry in scene["maps"]:
         if entry.get("file") == "zmap":
