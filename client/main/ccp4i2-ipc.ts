@@ -353,6 +353,16 @@ export const installIpcHandlers = (
 
   // Reports whether a path already exists, for the New Project page's
   // resulting-directory field.
+  // A viewer window that has just been handed a link by another window
+  // (renderer/lib/viewer-channel.ts) asks to be brought forward: a page
+  // cannot raise its own window from script.
+  ipcMain.on("focus-window", (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    if (!window) return;
+    if (window.isMinimized()) window.restore();
+    window.focus();
+  });
+
   ipcMain.on("check-file-exists", (event, data) => {
     event.reply("message-from-main", {
       message: "check-file-exists",
