@@ -446,6 +446,7 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
           >
             {pushMol && (
               <PushToCCP4i2Panel
+                projectPk={initialProjectPk}
                 molNo={pushMol.molNo ?? undefined}
                 item={pushMol}
                 onClose={() => setPushMol(null)}
