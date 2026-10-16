@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
@@ -21,8 +21,53 @@ interface RestraintsTabProps extends CCP4i2TaskInterfaceProps {
   hasProteinChains: boolean;
   hasNucleotideChains: boolean;
   hasMetalSites: boolean;
+  metalMonomers: string[] | undefined;
+  ligandCodesSelected: any;
+  setLigandCodesSelected: (value: any) => Promise<boolean | Response>;
   xyzinComposition: any;
 }
+
+/** The monomers MetalCoord will restrain, one checkbox each. Nothing chosen
+ *  means all of them, which is what the pipeline does with an empty list; the
+ *  last tick cannot be removed, since "Apply MetalCoord" is how to run none. */
+const MetalMonomerPicker: React.FC<{
+  metalMonomers: string[];
+  ligandCodesSelected: any;
+  setLigandCodesSelected: (value: any) => Promise<boolean | Response>;
+}> = ({ metalMonomers, ligandCodesSelected, setLigandCodesSelected }) => {
+  const chosen = (Array.isArray(ligandCodesSelected) ? ligandCodesSelected : [])
+    .map((code: any) => String(code?._value ?? code))
+    .filter((code: string) => metalMonomers.includes(code));
+  const effective = chosen.length > 0 ? chosen : metalMonomers;
+  const toggle = (code: string) => {
+    const next = effective.includes(code)
+      ? effective.filter((c) => c !== code)
+      : [...effective, code];
+    setLigandCodesSelected(next.length === metalMonomers.length ? [] : next);
+  };
+  return (
+    <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+      <Typography variant="body1">Monomers to restrain:</Typography>
+      {metalMonomers.map((code) => {
+        const checked = effective.includes(code);
+        return (
+          <FormControlLabel
+            key={code}
+            label={code}
+            control={
+              <Checkbox
+                size="small"
+                checked={checked}
+                disabled={checked && effective.length === 1}
+                onChange={() => toggle(code)}
+              />
+            }
+          />
+        );
+      })}
+    </Box>
+  );
+};
 
 export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
   const {
@@ -39,6 +84,9 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
     hasProteinChains,
     hasNucleotideChains,
     hasMetalSites,
+    metalMonomers,
+    ligandCodesSelected,
+    setLigandCodesSelected,
     xyzinComposition,
     ...taskProps
   } = props;
@@ -194,11 +242,34 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
             />
           </>
         )}
-        {/* The other two ways to restrain, alongside jelly-body: refine with no
-            geometric restraints at all, or hold coordinates entirely fixed.
-            Qt gates the restraint sub-frames on all three together
-            (ToggleRestraintsOn/Off take UNRESTRAINED, FIX_XYZ and JELLY_ONLY),
-            so offering only one of them left the other two unreachable. */}
+      </CCP4i2ContainerElement>
+
+      {/* Van der Waals repulsion: its own section, as in the Qt interface,
+          rather than under "Jelly-body", which it has nothing to do with. */}
+      <CCP4i2ContainerElement
+        {...taskProps}
+        itemName=""
+        qualifiers={{ guiLabel: "Van der Waals repulsion restraints" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="VDWR_WEIGHT"
+          qualifiers={{
+            guiLabel: "Van der Waals repulsion restraint weight",
+          }}
+        />
+      </CCP4i2ContainerElement>
+
+      {/* The two ways to refine without the positional restraints configured
+          on this tab: no geometric restraints at all, or coordinates held
+          fixed. Qt's "Infrequently Used Options". */}
+      <CCP4i2ContainerElement
+        {...taskProps}
+        itemName=""
+        qualifiers={{ guiLabel: "Refinement without positional restraints" }}
+        containerHint="FolderLevel"
+      >
         <CCP4i2TaskElement
           {...taskProps}
           itemName="UNRESTRAINED"
@@ -208,13 +279,6 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
           {...taskProps}
           itemName="FIX_XYZ"
           qualifiers={{ guiLabel: "Fix coordinates (refine B-factors only)" }}
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="VDWR_WEIGHT"
-          qualifiers={{
-            guiLabel: "Van der Waals repulsion restraint weight",
-          }}
         />
       </CCP4i2ContainerElement>
 
@@ -227,7 +291,7 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
         }}
         containerHint="FolderLevel"
       >
-        {!hasMetalSites && (
+        {metalMonomers !== undefined && !hasMetalSites && (
           <Typography
             variant="body2"
             sx={{ fontStyle: "italic", fontWeight: "bold" }}
@@ -251,6 +315,13 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
               itemName="metalCoordPipeline.GENERATE_OR_USE"
               qualifiers={{ guiLabel: "Restraints:" }}
             />
+            {metalCoordGenOrUse !== "USE" && hasMetalSites && metalMonomers && (
+              <MetalMonomerPicker
+                metalMonomers={metalMonomers}
+                ligandCodesSelected={ligandCodesSelected}
+                setLigandCodesSelected={setLigandCodesSelected}
+              />
+            )}
             <CCP4i2TaskElement
               {...taskProps}
               itemName="metalCoordPipeline.LINKS"

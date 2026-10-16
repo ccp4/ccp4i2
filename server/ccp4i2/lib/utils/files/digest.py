@@ -362,6 +362,11 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
                 content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
             if gemmi_struct is not None and 'ligands' not in content_dict:
                 content_dict['ligands'] = _extract_ligands(gemmi_struct)
+            # What servalcat_pipe offers MetalCoord: every monomer code with a
+            # metal atom, single ions included (see formats/metal_sites).
+            if gemmi_struct is not None and 'metalMonomers' not in content_dict:
+                from ccp4i2.lib.utils.formats.metal_sites import metal_monomer_codes
+                content_dict['metalMonomers'] = metal_monomer_codes(gemmi_struct)
 
         return content_dict
     except Exception as err:

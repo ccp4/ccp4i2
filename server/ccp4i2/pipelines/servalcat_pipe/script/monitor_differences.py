@@ -31,6 +31,10 @@ def makeAddressStr(cra):
 
 
 def search(st1Cras, st2Cras, output, minCoordDev, minAdpDev):
+    # Imported here as in main(): main's import is local to main, so without
+    # this search() raised NameError on every run, and the caller's
+    # except swallowed it, so the shifts section never appeared.
+    import pandas as pd  # lazy: pip dep, only at execution (worker)
     records = []
     for cra1 in st1Cras:
         for j, cra2 in enumerate(st2Cras):

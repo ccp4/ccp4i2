@@ -116,7 +116,7 @@ class servalcat_pipe_report(Report):
                 cootFold = self.addFold(label='Addition of water molecules using Coot', initiallyOpen=True, brief='Coot')
                 cootFold.addText(text=cootAddWatersNode.text)
                 clearingDiv = self.addDiv()
-            if servalcatReportNode1:
+            if servalcatReportNode1 is not None:
                 summaryFold1 = self.addFold(label='Summary of refinement after addition of water molecules', initiallyOpen=True, brief='Refinement after waters')
                 # Use grid layout to present table and graph side by side
                 left1, right1 = summaryFold1.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
@@ -141,7 +141,7 @@ class servalcat_pipe_report(Report):
                 cootFold = self.addFold(label='Addition of water molecules using Coot', initiallyOpen=True, brief='Coot')
                 cootFold.addText(text = cootAddWatersNode.text)
                 clearingDiv = self.addDiv()
-            if servalcatReportNode1:
+            if servalcatReportNode1 is not None:
                 summaryFold1 = self.addFold(label='Servalcat refinement running after addition of water molecules...', initiallyOpen=True, brief='Refinement after waters')
                 servalcatReport1.addGraphPerCycle(parent=summaryFold1, xmlnode=servalcatReportNode1)
 

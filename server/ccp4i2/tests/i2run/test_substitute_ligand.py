@@ -137,7 +137,10 @@ def _servalcat_r_factors(job_dir):
     assert sub is not None, f"No servalcat_pipe sub-job found in {job_dir}"
     perf = ET.parse(sub / "params.xml").find(".//outputData/PERFORMANCEINDICATOR")
     assert perf is not None, "No PERFORMANCEINDICATOR in servalcat_pipe params.xml"
-    return float(perf.findtext("R1Factor")), float(perf.findtext("R1Free"))
+    # R1 up to Servalcat 0.4.149; a conventional R from 0.4.150 (KPIs RFactor/RFree)
+    if perf.findtext("R1Factor"):
+        return float(perf.findtext("R1Factor")), float(perf.findtext("R1Free"))
+    return float(perf.findtext("RFactor")), float(perf.findtext("RFree"))
 
 
 def _check_aimless_pipe_performance(job_dir):
