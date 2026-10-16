@@ -75,6 +75,10 @@ def test_the_scene_centres_on_the_outlier_with_the_maps(root):
     outlier = op.find(root, "bond", 0)
     scene = op.outlier_scene(outlier, {"XYZOUT": 11, "FPHIOUT": 12, "DIFFPHIOUT": 13}, "uuid")
     assert scene["view"]["centre"]["selection"] == "//A/188/NE2||//A/206/ZN"
+    assert scene["view"]["zoom"] < 1  # closer than Moorhen's default, which shows a crystal
+    # The outlier's atoms are marked with fatter bonds, never spheres, which bury them
+    marker = scene["elements"][0]["representations"][-1]
+    assert marker["style"] == "CBs" and marker["selection"] == "//A/188/NE2||//A/206/ZN"
     assert [m["name"] for m in scene["maps"]] == ["2mFo-DFc", "mFo-DFc"]
     assert scene["maps"][1]["isDifference"] is True
     # No maps recorded: the model alone

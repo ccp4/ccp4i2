@@ -130,13 +130,17 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
             "file": "model",
             "representations": [
                 {"style": "CBs"},
-                # The outlier's own atoms, drawn over the bonds so they stand out
-                {"style": "VdwSpheres", "selection": selection, "colour": "#ff00ff",
-                 "geometry": {"vdwScale": 0.35}},
+                # The outlier's own atoms, drawn again over the bonds in a colour
+                # of their own and a little fatter, so they stand out without
+                # hiding anything: spheres buried the residue and the density
+                {"style": "CBs", "selection": selection, "colour": "#ff00ff",
+                 "geometry": {"bondRadius": 0.3, "ballRadius": 0.4}},
             ],
         }],
         "maps": maps,
+        # Moorhen's zoom of 1 shows a crystal; 0.3 shows a residue and its neighbours
         "view": {"centre": {"file": "model", "selection": selection},
+                 "zoom": 0.3,
                  "slab": {"file": "model", "selection": selection, "pad": 6}},
     }
 
