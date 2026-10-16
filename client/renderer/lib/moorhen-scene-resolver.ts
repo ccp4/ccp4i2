@@ -1300,6 +1300,34 @@ export function geometryToM2tParams(
   return out;
 }
 
+/**
+ * The styles Moorhen draws through coot's bond mesh rather than
+ * MolecularsToTriangles (MoorhenMoleculeRepresentation.getCootSelectionBondBuffers).
+ * Their dimensions come from per-representation cootBondOptions, not
+ * m2tParameters, so honoured geometry has to be mapped differently for them;
+ * mapped as m2tParameters it is silently ignored.
+ */
+const COOT_BOND_STYLES = new Set(["CBs", "CAs", "ligands", "VdwSpheres"]);
+
+/**
+ * Honoured geometry → Moorhen cootBondOptions, for COOT_BOND_STYLES. Coot's
+ * `width` is the bond cylinder radius; the atom ball is `width *
+ * atomRadiusBondRatio` (Moorhen's defaults: 0.1 and 2). Pure, for the same
+ * reason as geometryToM2tParams; the caller applies the result with
+ * representation.setBondOptions, which also turns useDefaultBondOptions off.
+ */
+export function geometryToBondOptions(
+  geom: SceneGeometry,
+  base: moorhen.cootBondOptions,
+): moorhen.cootBondOptions {
+  const out = { ...base };
+  if (typeof geom.bondRadius === "number") out.width = geom.bondRadius;
+  if (typeof geom.ballRadius === "number" && out.width > 0) {
+    out.atomRadiusBondRatio = geom.ballRadius / out.width;
+  }
+  return out;
+}
+
 /** True iff a SceneGeometry carries at least one numeric override. */
 function hasGeometry(geom?: SceneGeometry): geom is SceneGeometry {
   return !!geom && Object.values(geom).some((v) => typeof v === "number");
@@ -1385,9 +1413,14 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
       if (!created) continue;
       const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
       const geomSet = hasGeometry(rep.geometry);
-      // Honoured geometry → m2tParameters. Applied before the redraw so the
-      // rebuilt buffers use the new dimensions.
-      if (geomSet) {
+      // Honoured geometry → the dimensions the style actually reads: coot
+      // bond options for the bond styles, m2tParameters for the rest. Applied
+      // before the redraw so the rebuilt buffers use the new dimensions.
+      if (geomSet && COOT_BOND_STYLES.has(rep.style)) {
+        created.setBondOptions(
+          geometryToBondOptions(rep.geometry as SceneGeometry, molecule.defaultBondOptions),
+        );
+      } else if (geomSet) {
         created.useDefaultM2tParams = false;
         created.setM2tParams(
           geometryToM2tParams(

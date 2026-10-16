@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { ViewInAr } from "@mui/icons-material";
 import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 import { sceneSourceUrl } from "../../lib/scene-source";
+import { showInViewer } from "../../lib/viewer-channel";
 
 /**
  * Report element: a button that opens Moorhen on a scene the job builds
@@ -50,7 +51,9 @@ export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (prop
       startIcon={<ViewInAr fontSize="small" />}
       sx={{ m: 0.5, textTransform: "none" }}
       disabled={!href}
-      onClick={() => href && window.open(href, "_blank", "noopener,noreferrer")}
+      // An open viewer for the same project (or campaign member) takes the
+      // link and applies the scene where it is; otherwise a window opens.
+      onClick={() => href && showInViewer(href)}
     >
       {label}
     </Button>

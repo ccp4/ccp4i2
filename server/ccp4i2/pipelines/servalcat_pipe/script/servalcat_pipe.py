@@ -127,6 +127,52 @@ class servalcat_pipe(CPluginScript):
     # Main pipeline orchestration
     # =========================================================================
 
+    def outlierScene(self, kind, index):
+        """A Moorhen scene centred on one of the final model's geometry
+        outliers (``kind`` and ``index`` within it, as the report's buttons
+        name them): the refined model and its maps from the database, the
+        outlier's atoms marked. See outlier_places."""
+        from . import outlier_places
+        root = outlier_places.read_program_xml(self.workDirectory)
+        if root is None:
+            return {"success": False, "error": "this job has no program.xml to read outliers from"}
+        outlier = outlier_places.find(root, str(kind), int(index))
+        if outlier is None:
+            return {"success": False, "error": f"no {kind} outlier {index} in the final cycle"}
+        job = self._jobRow()
+        if job is None:
+            return {"success": False, "error": "this job is not in the database"}
+        from ccp4i2.db import models
+        file_ids = {f.job_param_name: f.id for f in models.File.objects.filter(
+            job=job, job_param_name__in=("XYZOUT", "FPHIOUT", "DIFFPHIOUT"))}
+        if "XYZOUT" not in file_ids:
+            return {"success": False, "error": "this job recorded no refined model"}
+        try:
+            scene = outlier_places.outlier_scene(outlier, file_ids, str(job.project.uuid))
+        except ValueError as err:
+            return {"success": False, "error": str(err)}
+        return {"success": True, "scene": scene}
+
+    def _jobRow(self):
+        """This job's database row: from the dbHandler context when there is
+        one, else from the jobId its params header records."""
+        import xml.etree.ElementTree as ET
+        from ccp4i2.db import models
+        job_id = self.get_db_job_id() if hasattr(self, "get_db_job_id") else None
+        if not job_id:
+            for name in ("input_params.xml", "params.xml"):
+                path = os.path.join(self.workDirectory, name)
+                if os.path.isfile(path):
+                    try:
+                        job_id = ET.parse(path).getroot().findtext("ccp4i2_header/jobId")
+                    except ET.ParseError:
+                        job_id = None
+                    if job_id:
+                        break
+        if not job_id:
+            return None
+        return models.Job.objects.filter(uuid=job_id).first()
+
     def startProcess(self):
         """Execute the pipeline synchronously through all phases.
 
