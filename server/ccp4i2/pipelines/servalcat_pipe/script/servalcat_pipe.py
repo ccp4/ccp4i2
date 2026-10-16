@@ -326,9 +326,24 @@ class servalcat_pipe(CPluginScript):
             print("[servalcat_pipe] WARNING: MetalCoord not installed, skipping")
             return error
 
-        # Run MetalCoord for each selected ligand code
+        # Run MetalCoord for each selected ligand code. None chosen means every
+        # monomer in the model holding a metal, as the Qt interface defaulted
+        # to: without this an empty list ran nothing, and the job succeeded
+        # with no metal restraints and no word of why.
         metalCoordOutputJsonPaths = []
-        ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
+        ligand_codes_selected = [
+            str(code) for code in self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
+            if str(code).strip()]
+        if not ligand_codes_selected:
+            from ccp4i2.lib.utils.formats.metal_sites import metal_monomer_codes_in_file
+            ligand_codes_selected = metal_monomer_codes_in_file(
+                str(self.container.inputData.XYZIN.fullPath))
+            print("[servalcat_pipe] MetalCoord: no monomers chosen; using the metal "
+                  f"sites in the model: {', '.join(ligand_codes_selected) or 'none'}")
+        if not ligand_codes_selected:
+            self.appendErrorReport(
+                104, 'MetalCoord restraints were asked for, but the model has no metal atoms')
+            return error
 
         for ligand_code in ligand_codes_selected:
             try:

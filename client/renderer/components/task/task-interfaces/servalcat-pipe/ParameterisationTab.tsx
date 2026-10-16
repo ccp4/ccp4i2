@@ -123,38 +123,40 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
                 itemName="OCCUPANCY_INCOMPLETE_TABLE"
               />
             )}
+            {/* Occupancies are refined only for the groups defined above, so
+                the switch lives with them, as it did in the Qt interface. */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexWrap: "wrap",
+              }}
+            >
+              <CCP4i2TaskElement
+                {...taskProps}
+                itemName="OCCUPANCY_REFINEMENT"
+                qualifiers={{
+                  guiLabel:
+                    "Perform refinement of atomic occupancies every",
+                }}
+                sx={{ width: "auto" }}
+              />
+              {isTruthy(occupancyRefinement) && (
+                <>
+                  <Box sx={{ width: "6rem" }}>
+                    <CCP4i2TaskElement
+                      {...taskProps}
+                      itemName="OCCUPANCY_NCYCLE"
+                      qualifiers={{ guiLabel: " " }}
+                    />
+                  </Box>
+                  <Typography variant="body1">cycle.</Typography>
+                </>
+              )}
+            </Box>
           </>
         )}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            flexWrap: "wrap",
-          }}
-        >
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="OCCUPANCY_REFINEMENT"
-            qualifiers={{
-              guiLabel:
-                "Perform refinement of atomic occupancies every",
-            }}
-            sx={{ width: "auto" }}
-          />
-          {isTruthy(occupancyRefinement) && (
-            <>
-              <Box sx={{ width: "6rem" }}>
-                <CCP4i2TaskElement
-                  {...taskProps}
-                  itemName="OCCUPANCY_NCYCLE"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">cycle.</Typography>
-            </>
-          )}
-        </Box>
       </CCP4i2ContainerElement>
     </>
   );

@@ -90,15 +90,14 @@ export const CCP4i2ReportFlotGraphGroup: React.FC<CCP4i2ReportElementProps> = (
       {graphs && graphs.length > 1 && (
         <Autocomplete
           sx={{ mt: 2 }}
-          defaultValue={
-            graphTitles && graphTitles.length > 0 ? graphTitles[0] : "0"
-          }
-          //@ts-ignore
+          // Controlled by the option itself: a title string as the value
+          // matched no option, and clearing passed null to setShown(.id)
+          disableClearable
           options={options}
+          value={options[shown] ?? options[0]}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
           onChange={(ev, newValue) => {
-            //console.log(ev, newValue);
-            //@ts-ignore
-            setShown(newValue.id);
+            if (newValue) setShown(newValue.id);
           }}
           renderInput={(params) => (
             <TextField {...params} size="small" label={groupTitle} />

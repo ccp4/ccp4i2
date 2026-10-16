@@ -366,44 +366,34 @@ class servalcat(CPluginScript):
             if 'FSCaverage' in summary:
                 self.container.outputData.PERFORMANCEINDICATOR.FSCaverage.set(
                     summary['FSCaverage'])
-        elif self.container.inputData.FREERFLAG.isSet():
-            # Try F-based R-factors first, then I-based
-            if 'Rwork' in summary:
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(
-                    summary['Rwork'])
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(
-                    summary.get('Rfree', 0))
-                if 'CCFworkavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCFwork_avg.set(
-                        summary['CCFworkavg'])
-                if 'CCFfreeavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCFfree_avg.set(
-                        summary['CCFfreeavg'])
-            elif 'R1work' in summary:
-                self.container.outputData.PERFORMANCEINDICATOR.R1Factor.set(
-                    summary['R1work'])
-                self.container.outputData.PERFORMANCEINDICATOR.R1Free.set(
-                    summary.get('R1free', 0))
-                if 'CCIworkavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCIwork_avg.set(
-                        summary['CCIworkavg'])
-                if 'CCIfreeavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCIfree_avg.set(
-                        summary['CCIfreeavg'])
         else:
-            # No FreeR flag - use overall R
-            if 'R' in summary:
-                self.container.outputData.PERFORMANCEINDICATOR.R.set(
-                    summary['R'])
-                if 'CCFavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCF_avg.set(
-                        summary['CCFavg'])
-            elif 'R1' in summary:
-                self.container.outputData.PERFORMANCEINDICATOR.R1.set(
-                    summary['R1'])
-                if 'CCIavg' in summary:
-                    self.container.outputData.PERFORMANCEINDICATOR.CCI_avg.set(
-                        summary['CCIavg'])
+            # Servalcat up to 0.4.149 calls the R against intensities R1 (an
+            # I/sigma > 2 cut); from 0.4.150 it reports a conventional R for
+            # intensities too, as Rwork/Rfree/R. Each name goes to its own KPI,
+            # so an R1 is never filed as an R. Which data were used is told by
+            # the CC names (CCI intensities, CCF amplitudes), not the R name.
+            pi = self.container.outputData.PERFORMANCEINDICATOR
+            cc = 'CCI' if ('CCIworkavg' in summary or 'CCIavg' in summary) else 'CCF'
+            if self.container.inputData.FREERFLAG.isSet():
+                for work, free, work_kpi, free_kpi in (
+                        ('Rwork', 'Rfree', 'RFactor', 'RFree'),
+                        ('R1work', 'R1free', 'R1Factor', 'R1Free')):
+                    if work in summary:
+                        getattr(pi, work_kpi).set(summary[work])
+                        if free in summary:
+                            getattr(pi, free_kpi).set(summary[free])
+                        break
+                for suffix in ('work', 'free'):
+                    if f'{cc}{suffix}avg' in summary:
+                        getattr(pi, f'{cc}{suffix}_avg').set(summary[f'{cc}{suffix}avg'])
+            else:
+                # No FreeR flag - use overall R
+                for overall in ('R', 'R1'):
+                    if overall in summary:
+                        getattr(pi, overall).set(summary[overall])
+                        break
+                if f'{cc}avg' in summary:
+                    getattr(pi, f'{cc}_avg').set(summary[f'{cc}avg'])
 
     def makeCommandAndScript(self):
         if str(self.container.controlParameters.DATA_METHOD) == "spa":

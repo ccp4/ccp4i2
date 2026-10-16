@@ -166,6 +166,54 @@ def test_7prg_neutron_basic():
             )
 
 
+def test_7prg_metal_sites_found_without_naming_them():
+    """MetalCoord asked for, no monomer named: the pipeline finds the metal
+    sites in the model itself, as the Qt interface did. It used to run
+    MetalCoord for nothing and succeed with no metal restraints."""
+    with download(redo_cif("7prg")) as cif7prg, download(redo_mtz("7prg")) as mtz7prg:
+        args = ["servalcat_pipe"]
+        args += ["--XYZIN", cif7prg]
+        args += ["--DATA_METHOD", "xtal"]
+        args += ["--HKLIN", f"fullPath={mtz7prg}", "columnLabels=/*/*/[FP,SIGFP]"]
+        args += ["--FREERFLAG", f"fullPath={mtz7prg}", "columnLabels=/*/*/[FREE]"]
+        args += ["--NCYCLES", "1"]
+        args += ["--SCATTERING_FACTORS", "neutron"]
+        args += ["--RUN_METALCOORD", "True"]
+        args += ["--GENERATE_OR_USE", "GENERATE"]
+        args += ["--VALIDATE_IRIS", "False"]
+        args += ["--VALIDATE_BAVERAGE", "False"]
+        args += ["--VALIDATE_RAMACHANDRAN", "False"]
+        args += ["--VALIDATE_MOLPROBITY", "False"]
+        args += ["--RUN_ADP_ANALYSIS", "False"]
+        args += ["--RUN_COORDADPDEV_ANALYSIS", "False"]
+        with i2run(args) as job:
+            assert os.path.isfile(os.path.join(job, "job_1", "CA.json"))
+            assert os.path.isfile(os.path.join(job, "metal_restraints.txt"))
+
+
+def test_8xfm_coordinate_and_adp_shifts(cif8xfm, mtz8xfm):
+    """The shifts analysis, on by default, raised NameError on every run
+    (pandas imported in main() but used in search()), and the error was
+    swallowed, so its section never appeared. Every other test turns it off."""
+    args = ["servalcat_pipe"]
+    args += ["--XYZIN", cif8xfm]
+    args += ["--DATA_METHOD", "xtal"]
+    args += ["--HKLIN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
+    args += ["--NCYCLES", "2"]
+    args += ["--ADD_WATERS", "False"]
+    args += ["--VALIDATE_IRIS", "False"]
+    args += ["--VALIDATE_BAVERAGE", "False"]
+    args += ["--VALIDATE_RAMACHANDRAN", "False"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    args += ["--RUN_ADP_ANALYSIS", "False"]
+    args += ["--RUN_COORDADPDEV_ANALYSIS", "True"]
+    with i2run(args) as job:
+        xml = ET.parse(job / "program.xml")
+        assert xml.find(".//COORD_ADP_DEV/STATISTICS/coordDevMean") is not None
+        assert os.path.isfile(os.path.join(job, "report_coord_adp_dev.csv"))
+
+
 def check_program_xml_pipeline(xml, args):
     def has_two_following_args(arg1, arg2):
         return any(args[i] == arg1 and args[i + 1] == arg2 for i in range(len(args) - 1))
@@ -211,7 +259,9 @@ def check_r_and_cc(
     minCCwork: float = None,
     minCCfree: float = None,
 ):
-    rLabel = "R1" if intensities else "R"
+    # Servalcat up to 0.4.149 calls the R against intensities R1; from
+    # 0.4.150 it is a conventional R under the same names as for amplitudes.
+    rLabel = "R1" if intensities and xml.find(".//data/summary/R1work") is not None else "R"
     ccLabel = "CCI" if intensities else "CCF"
     rworks = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}work")]
     rfrees = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}free")]

@@ -87,7 +87,7 @@ export class CCP4Table implements CCP4TableInterface {
     return result;
   }
 
-  plotOptions(selectedPlot: Plot): null | ChartOptions {
+  plotOptions(selectedPlot: Plot, colours?: ChartColours): null | ChartOptions {
     if (!selectedPlot) return null;
     const result: ChartOptions = {
       animation: false,
@@ -96,7 +96,7 @@ export class CCP4Table implements CCP4TableInterface {
       plugins: {
         title: {
           display: true,
-          text: this.title,
+          text: decodeHTMLEntities(this.title ?? ""),
         },
       },
     };
@@ -172,10 +172,35 @@ export class CCP4Table implements CCP4TableInterface {
       result.aspectRatio = 1;
     }
 
+    if (colours) applyColours(result, colours);
+
     //console.log({ options: result });
     return result;
   }
 }
+
+/** Text and grid colours for a chart, from the app's theme. Chart.js's own
+ *  default text colour (#666) is 2.9:1 against the dark theme's paper, too
+ *  faint to read. */
+export interface ChartColours {
+  text: string;
+  grid: string;
+}
+
+const applyColours = (result: ChartOptions, colours: ChartColours) => {
+  const plugins: any = (result.plugins = result.plugins || {});
+  if (plugins.title) plugins.title.color = colours.text;
+  if (plugins.legend) {
+    plugins.legend.labels = { ...(plugins.legend.labels || {}), color: colours.text };
+  }
+  Object.values(result.scales || {}).forEach((scale: any) => {
+    if (!scale) return;
+    scale.ticks = { ...(scale.ticks || {}), color: colours.text };
+    if (scale.title) scale.title.color = colours.text;
+    scale.grid = { ...(scale.grid || {}), color: colours.grid };
+    scale.border = { ...(scale.border || {}), color: colours.grid };
+  });
+};
 
 export interface Header {
   _: string;
@@ -186,6 +211,11 @@ export interface Data {
   _: string;
   separator?: string;
   id?: string;
+}
+
+export interface LegendPosition {
+  x?: string | number;
+  y?: string | number;
 }
 
 export class Plot {
@@ -208,6 +238,9 @@ export class Plot {
   customXTicks?: string;
   customXLabels?: string;
   showlegend?: "true" | "false";
+  /** Where the legend goes, as fractions of the plot area: x 0 left to 1
+   *  right, y 0 bottom to 1 top (pimple's <legendposition x= y=/>). */
+  legendposition?: LegendPosition | LegendPosition[];
   fixaspectratio?: "true" | "false";
   background?: string;
 }
@@ -453,6 +486,16 @@ const handleLegend = (selectedPlot: Plot, result: ChartOptions) => {
       display: true,
       position: "chartArea",
     };
+    // Chart.js has no "inside, bottom left": legendPlacementPlugin moves the
+    // legend to the corner the report asked for.
+    const position = Array.isArray(selectedPlot.legendposition)
+      ? selectedPlot.legendposition[0]
+      : selectedPlot.legendposition;
+    const x = parseFloat(String(position?.x ?? ""));
+    const y = parseFloat(String(position?.y ?? ""));
+    if (Number.isFinite(x) && Number.isFinite(y)) {
+      (result.plugins as any).legendPlacement = { x, y };
+    }
   }
 };
 
@@ -484,7 +527,7 @@ const installDefaultScales = (selectedPlot: Plot, result: ChartOptions) => {
       position: "bottom",
       title: {
         display: true,
-        text: selectedPlot?.xlabel ? selectedPlot.xlabel : "",
+        text: selectedPlot?.xlabel ? decodeHTMLEntities(selectedPlot.xlabel) : "",
       },
       ticks: {
         callback: (value: string | number, index: number) => {
@@ -503,7 +546,7 @@ const installDefaultScales = (selectedPlot: Plot, result: ChartOptions) => {
       position: "left",
       title: {
         display: true,
-        text: selectedPlot?.ylabel ? selectedPlot.ylabel : "",
+        text: selectedPlot?.ylabel ? decodeHTMLEntities(selectedPlot.ylabel) : "",
       },
       ticks: {
         callback: (value: string | number, index: number) => {
@@ -549,7 +592,7 @@ export const checkForRightAxis = (selectedPlot: Plot, result: ChartOptions) => {
       grid: { display: false },
       title: {
         display: true,
-        text: selectedPlot?.rylabel ? selectedPlot.rylabel : "",
+        text: selectedPlot?.rylabel ? decodeHTMLEntities(selectedPlot.rylabel) : "",
       },
       ticks: {
         callback: (value: string | number, index: number) => {
@@ -920,7 +963,7 @@ export const addTexts = (selectedPlot: Plot, result: ChartOptions) => {
         xValue: parseFloat(text.xpos), // X position (match a data point)
         yValue: parseFloat(text.ypos), // Y position
         backgroundColor: "rgba(0,0,0, 0.0)",
-        content: text["_"],
+        content: decodeHTMLEntities(String(text["_"] ?? "")),
         color: text.colour,
         font: {
           size: 14,
@@ -954,8 +997,9 @@ export const handleOneOverSqrt = (selectedPlot: Plot, result: ChartOptions) => {
   if (!result.scales) result.scales = {};
   if (!result.scales.x) result.scales.x = {};
   result.scales.x.ticks = {
+    // 1/d^2 = 0 is infinite resolution
     callback: (value: any, index: number) =>
-      (1 / Math.sqrt(value)).toPrecision(3), // Hide non-integer labels
+      value > 0 ? (1 / Math.sqrt(value)).toPrecision(3) : "∞",
   };
   if (!result.plugins) result.plugins = {};
   if (!result.plugins) result.plugins = {};
@@ -1244,3 +1288,26 @@ const backgroundImagePlugin = {
 
 // Register the plugin
 Chart.register(backgroundImagePlugin);
+
+// Puts a "chartArea" legend at the fractional position a report gave
+// (plugins.legendPlacement = {x, y}; 0,0 is bottom left), after the legend's
+// own layout and before it is drawn, then moves its click targets with it.
+const legendPlacementPlugin = {
+  id: "legendPlacement",
+  afterUpdate: (chart: any, _args: any, options: any) => {
+    const legend = chart.legend;
+    const area = chart.chartArea;
+    if (!legend || !area || !legend.options?.display) return;
+    if (!Number.isFinite(options?.x) || !Number.isFinite(options?.y)) return;
+    const clamp = (v: number) => Math.min(Math.max(v, 0), 1);
+    const pad = 4;
+    const left = area.left + pad + clamp(options.x) * Math.max(area.width - legend.width - 2 * pad, 0);
+    const top = area.top + pad + (1 - clamp(options.y)) * Math.max(area.height - legend.height - 2 * pad, 0);
+    legend.left = left;
+    legend.top = top;
+    legend.right = left + legend.width;
+    legend.bottom = top + legend.height;
+    legend.adjustHitBoxes();
+  },
+};
+Chart.register(legendPlacementPlugin);
