@@ -29,10 +29,9 @@ import { useRouter } from "next/navigation";
 import { JobHeader } from "./job-header";
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { confirmJobDeletion } from "./job-deletion-details";
-import { useProject } from "../utils";
+import { useProject, useReleaseDeletedJobs } from "../utils";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
-import { useCCP4i2Window } from "../app-context";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
 
@@ -62,7 +61,7 @@ export const JobCard: React.FC<JobCardProps> = ({
   const api = useApi();
   const router = useRouter();
   const deleteDialog = useDeleteDialog();
-  const { jobId, setJobId } = useCCP4i2Window();
+  const releaseDeletedJobs = useReleaseDeletedJobs(job.project);
   const projectId = useMemo(() => {
     return job.project;
   }, [job]);
@@ -187,18 +186,16 @@ export const JobCard: React.FC<JobCardProps> = ({
         plan.additional_dependents.some(
           (dependentJob: Job) => !isTerminalJobStatus(dependentJob.status)
         ),
-      onDelete: (deleteImportedFiles) => {
+      onDelete: (deleteImportedFiles, plan) => {
+        releaseDeletedJobs([job, ...plan.additional_dependents]);
         api
           .delete(`jobs/${job.id}?delete_imported_files=${deleteImportedFiles}`)
-          .then(() => {
-            mutateJobs();
-            if (setJobId && jobId === job.id) setJobId(null);
-          });
+          .then(() => mutateJobs());
       },
     }).catch((error) =>
       console.error("Failed to fetch what deleting the job would remove:", error)
     );
-  }, [api, deleteDialog, job, jobId, setJobId, mutateJobs]);
+  }, [api, deleteDialog, job, releaseDeletedJobs, mutateJobs]);
 
   const renderMenu = (
     <Menu

@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { Job, File as DjangoFile, isTerminalJobStatus } from "../types/models";
 import { doDownload, useApi } from "../api";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDeleteDialog } from "./delete-dialog";
 import {
   Menu,
@@ -40,7 +40,7 @@ import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
 import { useRunCheck } from "./run-check-provider";
 import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
-import { deletesViewedJob, useJob, useProjectJobs } from "../utils";
+import { useJob, useProjectJobs, useReleaseDeletedJobs } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
 import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
 import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
@@ -129,8 +129,8 @@ export const JobMenu: React.FC = () => {
   // Ref to store the current timeout ID for cleanup
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { jobs, mutateJobs } = useProjectJobs(job?.project);
-  const { jobid: viewedJobId } = (useParams() ?? {}) as { jobid?: string };
+  const { mutateJobs } = useProjectJobs(job?.project);
+  const releaseDeletedJobs = useReleaseDeletedJobs(job?.project);
 
   // Function to save annotation immediately
   const saveAnnotation = useCallback(
@@ -457,12 +457,7 @@ export const JobMenu: React.FC = () => {
           ),
         onDelete: async (deleteImportedFiles, plan) => {
           close();
-          // Leave the job page before the job goes, or its hooks refetch a
-          // job that no longer exists.
-          const viewed = jobs?.find((j) => j.id === Number(viewedJobId));
-          if (deletesViewedJob(viewed, [job, ...plan.additional_dependents])) {
-            router.push(`/ccp4i2/project/${job.project}`);
-          }
+          releaseDeletedJobs([job, ...plan.additional_dependents]);
           await api.delete(
             `jobs/${job.id}?delete_imported_files=${deleteImportedFiles}`
           );
@@ -479,7 +474,7 @@ export const JobMenu: React.FC = () => {
         );
       });
     },
-    [api, deleteDialog, job, jobs, viewedJobId, mutateJobs, router, setMessage]
+    [api, deleteDialog, job, releaseDeletedJobs, mutateJobs, setMessage]
   );
 
   const handleExportJob = useCallback(
