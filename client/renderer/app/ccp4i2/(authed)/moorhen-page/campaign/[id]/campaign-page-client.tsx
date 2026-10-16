@@ -1,6 +1,6 @@
 "use client";
 import { Suspense, useMemo, useState, useCallback, useEffect } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
@@ -8,6 +8,7 @@ import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrappe
 import type { MoorhenScene } from "@/types/moorhen-scene";
 import { parseEventParam } from "@/lib/event-evidence";
 import { sceneSourceFromParams } from "@/lib/scene-source";
+import { listenAsViewer } from "@/lib/viewer-channel";
 import type {
   NewCampaignSite,
   SiteEvaluation,
@@ -36,6 +37,11 @@ function CampaignPageContent() {
   );
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
+
+  // Take links for this campaign and member job from other windows
+  // (lib/viewer-channel): the new URL's scene is applied over what is open.
+  const router = useRouter();
+  useEffect(() => listenAsViewer((href) => router.replace(href)), [router]);
 
   const campaignsApi = useCampaignsApi();
   const { data: campaign } = campaignsApi.useCampaign(campaignId);
