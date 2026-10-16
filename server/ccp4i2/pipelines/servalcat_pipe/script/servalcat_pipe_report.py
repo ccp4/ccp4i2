@@ -130,6 +130,7 @@ class servalcat_pipe_report(Report):
             validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
             indentDiv = validationFold.addDiv()
             servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
+            self.addOutlierLinks(parent=indentDiv)
             self.validationReport(parent=indentDiv)
             self.addCoordADPDev()
 
@@ -145,6 +146,29 @@ class servalcat_pipe_report(Report):
                 summaryFold1 = self.addFold(label='Servalcat refinement running after addition of water molecules...', initiallyOpen=True, brief='Refinement after waters')
                 servalcatReport1.addGraphPerCycle(parent=summaryFold1, xmlnode=servalcatReportNode1)
 
+
+    def addOutlierLinks(self, parent=None, limit=12):
+        """The worst geometry outliers as buttons that open Moorhen on each
+        (the job's outlierScene). An open viewer of this project takes the
+        click and moves there, so they can be stepped through."""
+        from ccp4i2.pipelines.servalcat_pipe.script.outlier_places import describe, worst
+        if parent is None:
+            parent = self
+        try:
+            places = worst(self.xmlnode, limit=limit)
+        except Exception:
+            return
+        if not places:
+            return
+        fold = parent.addFold(label="Look at the worst outliers in Moorhen", brief="Outliers in Moorhen",
+                              initiallyOpen=True)
+        fold.addText(text=(
+            f"The {len(places)} outliers with the largest |Z|, of every kind. Each opens the refined "
+            "model and its maps centred on the atoms involved; with a viewer of this project already "
+            "open, the click moves that viewer rather than opening another."))
+        for place in places:
+            fold.addMoorhenLink(label=describe(place), method="outlierScene",
+                                kwargs={"kind": place["kind"], "index": place["index"]})
 
     def validationReport(self, parent=None):
         if parent is None:
