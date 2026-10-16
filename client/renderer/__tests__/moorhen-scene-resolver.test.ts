@@ -12,6 +12,7 @@ import {
   clampRangeToPresent,
   directionToLightPosition,
   expandLsqMatches,
+  geometryToBondOptions,
   geometryToM2tParams,
   isFetchable,
   planDictionaryScopes,
@@ -276,6 +277,27 @@ describe("geometryToM2tParams (honoured geometry → Moorhen m2tParameters)", ()
     expect(out.foo).toBe(1);
     expect(out.cylindersStyleCylinderRadius).toBe(0.2);
     expect("surfaceStyleProbeRadius" in out).toBe(false);
+  });
+});
+
+describe("geometryToBondOptions (honoured geometry → coot bond options)", () => {
+  const base = { smoothness: 2, width: 0.1, atomRadiusBondRatio: 2, showAniso: false, showOrtep: false, showHs: true };
+
+  it("bondRadius is coot's width; ballRadius becomes the ratio to it", () => {
+    const out = geometryToBondOptions({ bondRadius: 0.2, ballRadius: 0.5 }, base);
+    expect(out.width).toBe(0.2);
+    expect(out.atomRadiusBondRatio).toBeCloseTo(2.5, 6);
+    expect(out.showHs).toBe(true); // the rest of the base survives
+  });
+
+  it("ballRadius alone is a ratio to the base width", () => {
+    const out = geometryToBondOptions({ ballRadius: 0.4 }, base);
+    expect(out.width).toBe(0.1);
+    expect(out.atomRadiusBondRatio).toBeCloseTo(4, 6);
+  });
+
+  it("ignores fields the bond styles have no use for", () => {
+    expect(geometryToBondOptions({ probeRadius: 1.4 }, base)).toEqual(base);
   });
 });
 

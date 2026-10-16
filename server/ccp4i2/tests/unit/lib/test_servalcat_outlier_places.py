@@ -76,9 +76,14 @@ def test_the_scene_centres_on_the_outlier_with_the_maps(root):
     scene = op.outlier_scene(outlier, {"XYZOUT": 11, "FPHIOUT": 12, "DIFFPHIOUT": 13}, "uuid")
     assert scene["view"]["centre"]["selection"] == "//A/188/NE2||//A/206/ZN"
     assert scene["view"]["zoom"] < 1  # closer than Moorhen's default, which shows a crystal
-    # The outlier's atoms are marked with fatter bonds, never spheres, which bury them
-    marker = scene["elements"][0]["representations"][-1]
-    assert marker["style"] == "CBs" and marker["selection"] == "//A/188/NE2||//A/206/ZN"
+    # Marked by its residues as fatter sticks and its atoms as fatter balls coloured
+    # whatever their element; never spheres, which bury the residue and its density
+    reps = scene["elements"][0]["representations"]
+    assert [r.get("selection") for r in reps] == [None, "//A/188", "//A/206", "//A/188/NE2", "//A/206/ZN"]
+    assert all(r["style"] == "CBs" for r in reps)
+    assert reps[1]["colour"] == op.MARKER_COLOUR and reps[1]["geometry"] == op.RESIDUE_GEOMETRY
+    assert reps[3]["colour"]["raw"]["applyColourToNonCarbonAtoms"] is True
+    assert reps[3]["geometry"]["ballRadius"] > reps[1]["geometry"]["ballRadius"] > 0.2
     assert [m["name"] for m in scene["maps"]] == ["2mFo-DFc", "mFo-DFc"]
     assert scene["maps"][1]["isDifference"] is True
     # No maps recorded: the model alone

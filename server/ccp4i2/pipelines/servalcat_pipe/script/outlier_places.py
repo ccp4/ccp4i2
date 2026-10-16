@@ -46,6 +46,39 @@ def atom_cid(label: str) -> Optional[str]:
     return f"//{match['chain']}/{match['seq']}{icode}/{match['atom']}"
 
 
+def residue_cid(label: str) -> Optional[str]:
+    """The CID of the residue one of Servalcat's atom labels belongs to."""
+    cid = atom_cid(label)
+    return cid.rsplit("/", 1)[0] if cid else None
+
+
+# The marker, over Moorhen's bonds of radius 0.1 with balls of 0.2: fat enough
+# to enclose them (a representation of the same radii loses the depth test to
+# the one beneath and does not show), the atoms involved fatter still.
+MARKER_COLOUR = "#ff00ff"
+RESIDUE_GEOMETRY = {"bondRadius": 0.16, "ballRadius": 0.32}
+ATOM_GEOMETRY = {"bondRadius": 0.16, "ballRadius": 0.45}
+
+
+def marker_representations(atoms: List[str]) -> List[Dict]:
+    """How an outlier is marked on the model: its residues drawn again as
+    fatter sticks with magenta carbons, element colours kept so the chemistry
+    stays readable; then the atoms involved as fatter magenta balls, whatever
+    their element (a plain colour reaches carbons only, and an outlier's atoms
+    are mostly not carbon: NE2, ZN, O). One representation per CID."""
+    reps = []
+    for cid in dict.fromkeys(c for c in (residue_cid(a) for a in atoms) if c):
+        reps.append({"style": "CBs", "selection": cid, "colour": MARKER_COLOUR,
+                     "geometry": RESIDUE_GEOMETRY})
+    for cid in dict.fromkeys(c for c in (atom_cid(a) for a in atoms) if c):
+        reps.append({"style": "CBs", "selection": cid,
+                     "colour": {"raw": {"ruleType": "molecule", "args": [cid, MARKER_COLOUR],
+                                        "isMultiColourRule": False,
+                                        "applyColourToNonCarbonAtoms": True}},
+                     "geometry": ATOM_GEOMETRY})
+    return reps
+
+
 def final_block(root: ET.Element) -> ET.Element:
     """The refinement whose outliers describe the final model: the
     after-waters run when there was one, else the main one; the root itself
@@ -128,14 +161,7 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
         "files": files,
         "elements": [{
             "file": "model",
-            "representations": [
-                {"style": "CBs"},
-                # The outlier's own atoms, drawn again over the bonds in a colour
-                # of their own and a little fatter, so they stand out without
-                # hiding anything: spheres buried the residue and the density
-                {"style": "CBs", "selection": selection, "colour": "#ff00ff",
-                 "geometry": {"bondRadius": 0.3, "ballRadius": 0.4}},
-            ],
+            "representations": [{"style": "CBs"}] + marker_representations(outlier["atoms"]),
         }],
         "maps": maps,
         # Moorhen's zoom of 1 shows a crystal; 0.3 shows a residue and its neighbours
