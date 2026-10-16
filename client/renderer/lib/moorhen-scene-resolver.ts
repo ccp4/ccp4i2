@@ -1562,10 +1562,11 @@ export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): Pending
 
 /**
  * Turn a domain CID `selection` into colour-rule segments. When the CID is the
- * `//chain/start-end` shape (a concrete chain + numeric range) it is clamped to
- * the residues present and warned about — diagnostic parity with the legacy
- * chain+range form. Any other CID (whole chain `//F`, residue names, atoms,
- * wildcard chains) passes straight through to Coot.
+ * `//chain/start-end` shape (a concrete chain + numeric range), or a single
+ * residue `//chain/N` (read as the range N-N), it is clamped to the residues
+ * present and warned about — diagnostic parity with the legacy chain+range
+ * form. Any other CID (whole chain `//F`, residue names, atoms, wildcard
+ * chains) passes straight through to Coot.
  */
 function selectionToSegments(
   selection: string,
@@ -1576,12 +1577,12 @@ function selectionToSegments(
   fileName: string,
   policy: "clamp-and-log" | "strict",
 ): string[] {
-  const m = /^(\/[^/]*\/([^/*]+))\/(-?\d+)-(-?\d+)$/.exec(selection);
+  const m = /^(\/[^/]*\/([^/*]+))\/(-?\d+)(?:-(-?\d+))?$/.exec(selection);
   if (!m) return [`${selection}^${color}`];
   const prefix = m[1];
   const chainId = m[2];
   const start = parseInt(m[3], 10);
-  const end = parseInt(m[4], 10);
+  const end = m[4] === undefined ? start : parseInt(m[4], 10);
   const present = presentByChain.get(chainId);
   if (!present) {
     log.push({ file: fileName, domain: domainName, message: `chain ${chainId} not present in molecule; skipped` });
@@ -1629,13 +1630,20 @@ function buildByDomainPendingRule(
   const segments: string[] = [];
   for (const d of domains) {
     // Preferred CID form: clamp the //chain/start-end shape (diagnostic parity
-    // with chain+range), pass any other CID straight through.
+    // with chain+range), pass any other CID straight through. A "||"-joined
+    // union (the grammar's join, valid in every selection field) is split
+    // first, one segment per part: the segments are pipe-joined for Coot's
+    // add_colour_rules_multi below, so a "||" left inside a segment would
+    // split there into colourless fragments and lose the whole footprint
+    // but its last range.
     if (d.selection) {
-      segments.push(
-        ...selectionToSegments(
-          d.selection, d.color, d.name, presentByChain, log, fileName, policy,
-        ),
-      );
+      for (const part of splitMultiCid(d.selection)) {
+        segments.push(
+          ...selectionToSegments(
+            part, d.color, d.name, presentByChain, log, fileName, policy,
+          ),
+        );
+      }
       continue;
     }
     if (!d.chain) continue; // neither selection nor chain (invalid; validated upstream)
