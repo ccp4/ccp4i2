@@ -86,8 +86,10 @@ def test_the_scene_centres_on_the_outlier_with_the_maps(root):
     assert reps[3]["geometry"]["ballRadius"] > reps[1]["geometry"]["ballRadius"] > 0.2
     assert [m["name"] for m in scene["maps"]] == ["2mFo-DFc", "mFo-DFc"]
     assert scene["maps"][1]["isDifference"] is True
+    assert scene["activeMap"] == "2mFo-DFc"  # Moorhen's refinement tools need an active map
     # No maps recorded: the model alone
-    assert op.outlier_scene(outlier, {"XYZOUT": 11}, "uuid")["maps"] == []
+    bare = op.outlier_scene(outlier, {"XYZOUT": 11}, "uuid")
+    assert bare["maps"] == [] and "activeMap" not in bare
 
 
 CLIENT_SCHEMA = os.path.join(os.path.dirname(ccp4i2.__file__), "..", "..", "client", "renderer",

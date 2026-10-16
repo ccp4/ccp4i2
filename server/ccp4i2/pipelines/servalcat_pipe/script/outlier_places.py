@@ -155,7 +155,7 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
             if difference:
                 entry["isDifference"] = True
             maps.append(entry)
-    return {
+    scene = {
         "scene": describe(outlier),
         "version": 1,
         "files": files,
@@ -169,6 +169,11 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
                  "zoom": 0.3,
                  "slab": {"file": "model", "selection": selection, "pad": 6}},
     }
+    if maps:
+        # Moorhen's refinement tools act on the active map; without one, its
+        # context menu offers them greyed out. The 2mFo-DFc is the one to fit to.
+        scene["activeMap"] = maps[0]["name"]
+    return scene
 
 
 def read_program_xml(work_directory) -> Optional[ET.Element]:
