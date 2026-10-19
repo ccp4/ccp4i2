@@ -240,12 +240,14 @@ export function VirtualizedMemberProjectsTable({
   const sortedBy = (column: SortColumn) =>
     sort && sameColumn(sort.column, column) ? sort.direction : null;
 
+  // Keyed by project, so a measured row height follows its row when the
+  // order changes rather than staying with the position. Stable across
+  // renders: the virtualiser recomputes every measurement when it changes.
+  const getItemKey = useCallback((index: number) => rows[index]?.id ?? index, [rows]);
   // Set up virtualizer for windowed rendering
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    // Keyed by project, so a measured row height follows its row when the
-    // order changes rather than staying with the position.
-    getItemKey: (index) => rows[index]?.id ?? index,
+    getItemKey,
     getScrollElement: () => parentRef.current,
     // A guess per row from what it will show, so the space kept for rows not
     // yet drawn is close to the truth: a flat 85 px left gaps (or overlaps)
