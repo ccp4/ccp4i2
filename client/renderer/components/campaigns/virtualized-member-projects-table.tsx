@@ -22,6 +22,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TableSortLabel,
   Theme,
   Tooltip,
   Typography,
@@ -36,6 +37,8 @@ import {
   Info as InfoIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
+  ArrowUpward as ArrowUpwardIcon,
+  ArrowDownward as ArrowDownwardIcon,
 } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { apiPost, apiDelete } from "../../api-fetch";
@@ -61,6 +64,13 @@ import {
   matrixSites,
 } from "../../lib/site-matrix";
 import { evaluationNote } from "../../lib/site-verdicts";
+import {
+  SortColumn,
+  SortState,
+  nextSort,
+  sameColumn,
+  sortProjects,
+} from "../../lib/campaign-table-sort";
 
 // Status ID to color mapping (matching legacy CCP4i2)
 
@@ -215,19 +225,37 @@ export function VirtualizedMemberProjectsTable({
       return !was;
     });
   }, []);
+  // Sorting by a column (lib/campaign-table-sort): null keeps the order the
+  // page gives. Rows are sorted before the virtualiser sees them.
+  const [sort, setSort] = useState<SortState | null>(null);
+  const sortSites = useMemo(() => matrixSites(sites), [sites]);
+  const rows = useMemo(
+    () => sortProjects(projects, sort, sortSites),
+    [projects, sort, sortSites]
+  );
+  const sortBy = useCallback(
+    (column: SortColumn) => setSort((current) => nextSort(current, column)),
+    []
+  );
+  const sortedBy = (column: SortColumn) =>
+    sort && sameColumn(sort.column, column) ? sort.direction : null;
+
   // Set up virtualizer for windowed rendering
   const rowVirtualizer = useVirtualizer({
-    count: projects.length,
+    count: rows.length,
+    // Keyed by project, so a measured row height follows its row when the
+    // order changes rather than staying with the position.
+    getItemKey: (index) => rows[index]?.id ?? index,
     getScrollElement: () => parentRef.current,
     // A guess per row from what it will show, so the space kept for rows not
     // yet drawn is close to the truth: a flat 85 px left gaps (or overlaps)
     // that jumped as rows were measured, folded rows being ~56 px and a row
     // of fifteen jobs three lines tall.
     estimateSize: (index) =>
-      estimateRowHeight(projects[index], {
+      estimateRowHeight(rows[index], {
         jobsCollapsed,
         showSubJobs,
-        hasSmiles: hasSmiles(projects[index], smilesMap),
+        hasSmiles: hasSmiles(rows[index], smilesMap),
       }),
     overscan: 5, // Render 5 extra rows above/below viewport
   });
@@ -238,6 +266,12 @@ export function VirtualizedMemberProjectsTable({
   useEffect(() => {
     rowVirtualizer.measure();
   }, [jobsCollapsed, rowVirtualizer]);
+
+  // A new order starts at the top: the rows in view a moment ago are elsewhere.
+  useEffect(() => {
+    rowVirtualizer.scrollToIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
 
   // One column per site when the server sends per-site cells; the chips
   // column otherwise (an older server).
@@ -320,34 +354,72 @@ export function VirtualizedMemberProjectsTable({
             >
               Actions
             </TableCell>
-            <TableCell sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH, true)}>
-              Project Name
+            <TableCell
+              sx={pinnedColumnSx(ACTIONS_COLUMN_WIDTH, true)}
+              sortDirection={sortedBy({ kind: "name" }) ?? false}
+            >
+              <SortHeading column={{ kind: "name" }} sortedBy={sortedBy} sortBy={sortBy}>
+                Project Name
+              </SortHeading>
             </TableCell>
             <TableCell width={120}>Ligand</TableCell>
-            <TableCell align="center" width={96}>Resolution</TableCell>
-            <TableCell align="center" width={96}>R-Factor</TableCell>
-            <TableCell align="center" width={96}>R-Free</TableCell>
+            {(
+              [
+                ["highResLimit", "Resolution"],
+                ["RFactor", "R-Factor"],
+                ["RFree", "R-Free"],
+              ] as const
+            ).map(([key, label]) => (
+              <TableCell
+                key={key}
+                align="center"
+                width={96}
+                sortDirection={sortedBy({ kind: "kpi", key }) ?? false}
+              >
+                <SortHeading column={{ kind: "kpi", key }} sortedBy={sortedBy} sortBy={sortBy}>
+                  {label}
+                </SortHeading>
+              </TableCell>
+            ))}
             {siteColumns ? (
               <>
                 <TableCell
                   align="center"
                   width={EVALUATED_COLUMN_WIDTH}
                   sx={{ verticalAlign: "bottom", px: 0.5 }}
+                  sortDirection={sortedBy({ kind: "evaluated" }) ?? false}
                 >
-                  <Tooltip title="Sites with a verdict in this dataset, of the campaign's sites">
-                    <span>Eval.</span>
+                  <Tooltip title="Sites with a verdict in this dataset, of the campaign's sites; click to sort, most judged first">
+                    <span>
+                      <SortHeading column={{ kind: "evaluated" }} sortedBy={sortedBy} sortBy={sortBy}>
+                        Eval.
+                      </SortHeading>
+                    </span>
                   </Tooltip>
                 </TableCell>
-                {siteColumns.map((site) => (
-                  <TableCell
-                    key={site.id}
-                    align="center"
-                    width={SITE_COLUMN_WIDTH}
-                    sx={{ verticalAlign: "bottom", px: 0, py: 0.5 }}
-                  >
-                    <SiteColumnHeaderContent site={site} />
-                  </TableCell>
-                ))}
+                {siteColumns.map((site) => {
+                  const column: SortColumn = { kind: "site", siteUuid: site.uuid ?? "" };
+                  const direction = sortedBy(column);
+                  return (
+                    <TableCell
+                      key={site.id}
+                      align="center"
+                      width={SITE_COLUMN_WIDTH}
+                      sortDirection={direction ?? false}
+                      onClick={() => sortBy(column)}
+                      sx={{ verticalAlign: "bottom", px: 0, py: 0.5, cursor: "pointer" }}
+                    >
+                      <SiteColumnHeaderContent site={site} />
+                      {/* The heading is vertical text in a narrow column, so
+                          the arrow goes under it rather than beside it. */}
+                      <Box sx={{ height: 16, lineHeight: 0 }}>
+                        {/* As MUI's TableSortLabel: up for ascending (best first) */}
+                        {direction === "asc" && <ArrowUpwardIcon sx={{ fontSize: 14 }} />}
+                        {direction === "desc" && <ArrowDownwardIcon sx={{ fontSize: 14 }} />}
+                      </Box>
+                    </TableCell>
+                  );
+                })}
               </>
             ) : (
               <TableCell width={190}>Sites</TableCell>
@@ -389,7 +461,7 @@ export function VirtualizedMemberProjectsTable({
 
           {/* Virtualized rows */}
           {virtualItems.map((virtualRow) => {
-            const project = projects[virtualRow.index];
+            const project = rows[virtualRow.index];
             return (
               <MemberProjectRow
                 key={project.id}
@@ -428,6 +500,31 @@ export function VirtualizedMemberProjectsTable({
       </Table>
     </TableContainer>
     </Box>
+  );
+}
+
+/** A column heading that sorts the table: best first, then the other way,
+ *  then back to the table's own order. */
+function SortHeading({
+  column,
+  sortedBy,
+  sortBy,
+  children,
+}: {
+  column: SortColumn;
+  sortedBy: (column: SortColumn) => "asc" | "desc" | null;
+  sortBy: (column: SortColumn) => void;
+  children: React.ReactNode;
+}) {
+  const direction = sortedBy(column);
+  return (
+    <TableSortLabel
+      active={direction !== null}
+      direction={direction ?? "asc"}
+      onClick={() => sortBy(column)}
+    >
+      {children}
+    </TableSortLabel>
   );
 }
 
