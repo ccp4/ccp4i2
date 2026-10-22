@@ -997,7 +997,10 @@ class ProjectGroupViewSet(ModelViewSet):
                 sites = group.site_set.annotate(
                     evaluation_count=Count("evaluations")
                 )
-                return Response([self._site_payload(s) for s in sites])
+                # Alphabetical, as the client shows them (a site and its
+                # subsites together; lib.campaign_site_order).
+                from ..lib.campaign_site_order import ordered_sites
+                return Response([self._site_payload(s) for s in ordered_sites(sites)])
 
             fields, error = self._parse_site(request.data)
             if error:

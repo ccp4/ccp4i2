@@ -980,9 +980,9 @@ def _site_view(site) -> dict:
 def _first_site_view(group) -> Optional[dict]:
     """Camera from the campaign's first binding site, if any.
 
-    Reads the ``CampaignSite`` table, ordered by the site's display ``order``
-    (``CampaignSite.Meta``), so "first" here is the first site the user sees
-    in the campaign panel.
+    Reads the ``CampaignSite`` table in display order -- alphabetical by
+    name, as every list of sites is shown (``lib.campaign_site_order``) --
+    so "first" here is the first site the user sees in the campaign panel.
 
     This used to read a ``sites`` JSON attribute on the group. Migration 0024
     moved sites into their own table and ``ProjectGroup.sites`` stopped
@@ -992,10 +992,11 @@ def _first_site_view(group) -> Optional[dict]:
     nothing failed to say so. Reach for a real attribute, not a defaulted
     getattr, precisely so that the next such move breaks loudly.
     """
-    site = group.site_set.first()
-    if site is None:
+    from .campaign_site_order import ordered_sites
+    sites = ordered_sites(group.site_set.all())
+    if not sites:
         return None
-    return _site_view(site)
+    return _site_view(sites[0])
 
 
 # ---------------------------------------------------------------------------

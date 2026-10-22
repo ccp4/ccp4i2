@@ -60,16 +60,40 @@ export const VERDICT_LEGEND: { verdict: SiteVerdict | null; label: string }[] =
   ];
 
 /**
- * The sites that get a column, in the campaign's order.
+ * The order every list of a campaign's sites is shown in: by name,
+ * alphabetically, ignoring case, with numbers taken as numbers ("Site 2"
+ * before "Site 10"). Names are how people group sites -- a site and its
+ * subsites share a stem -- so this puts like with like. Ties (names equal
+ * but for case) fall back to creation order.
+ *
+ * The server's "first site" (the summary scene's camera) follows the same
+ * rule: lib/campaign_site_order.py, pinned to the same examples as here.
+ */
+const siteNameCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
+
+export function compareSites(
+  a: Pick<CampaignSite, "name" | "id">,
+  b: Pick<CampaignSite, "name" | "id">
+): number {
+  return siteNameCollator.compare(a.name ?? "", b.name ?? "") || a.id - b.id;
+}
+
+/** A campaign's sites in display order (a copy; the input is not touched). */
+export function sortSites<T extends Pick<CampaignSite, "name" | "id">>(
+  sites: T[] | undefined
+): T[] {
+  return [...(sites ?? [])].sort(compareSites);
+}
+
+/**
+ * The sites that get a column, in display order (`compareSites`).
  *
  * A site without a uuid cannot be matched to `site_cells` (which are keyed by
  * it), so it gets no column; that only happens against an older server, when
  * the overview falls back to the chips anyway.
  */
 export function matrixSites(sites: CampaignSite[] | undefined): CampaignSite[] {
-  return [...(sites ?? [])]
-    .filter((site) => Boolean(site.uuid))
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || a.id - b.id);
+  return sortSites(sites).filter((site) => Boolean(site.uuid));
 }
 
 /**
