@@ -2308,6 +2308,16 @@ class CPluginScript(CData):
         except Exception:
             pass  # never let discovery stop a job from running
 
+        # On Windows, the console-script launchers in CCP4\Scripts
+        # (modelcraft.exe and friends) carry a bare "#!python.exe" shebang, so
+        # they run whichever python.exe is first on PATH. With a system Python
+        # ahead of CCP4's, modelcraft died silently with "No module named
+        # 'modelcraft'". Put the interpreter running CCP4i2 (CCP4's own) first.
+        if sys.platform == 'win32' and sys.executable:
+            python_dir = os.path.dirname(sys.executable)
+            env['PATH'] = os.pathsep.join(
+                [python_dir] + ([env['PATH']] if env.get('PATH') else []))
+
         # Prepare stdin input
         stdin_input = None
         if self.commandScript:
