@@ -76,6 +76,7 @@ import {
   showMoleculeRepresentations,
   type MoleculeVisibilityMemory,
 } from "../../lib/moorhen-molecule-visibility";
+import { sortSites } from "../../lib/site-matrix";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import { AddLigandButton } from "./add-ligand-button";
 import {
@@ -258,9 +259,13 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     setChoosingSites(false);
     setChosenSiteIds(new Set());
   }, []);
+  // Alphabetical, as every list of sites is (lib/site-matrix): a site and
+  // its subsites sit together. Several sites viewed together keep this
+  // order, so the first of them gives the view its orientation.
+  const orderedSites = useMemo(() => sortSites(sites), [sites]);
   const chosenSites = useMemo(
-    () => sites.filter((site) => chosenSiteIds.has(site.id)),
-    [sites, chosenSiteIds]
+    () => orderedSites.filter((site) => chosenSiteIds.has(site.id)),
+    [orderedSites, chosenSiteIds]
   );
   const [newSiteName, setNewSiteName] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -776,7 +781,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           </Paper>
         ) : (
           <List dense sx={{ flex: 1, overflow: "auto" }}>
-            {sites.map((site) => (
+            {orderedSites.map((site) => (
               <ListItem
                 key={site.id}
                 component="div"
