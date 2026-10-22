@@ -312,6 +312,17 @@ class phasertng_picard(PhilPluginScript):
                     logger.debug("Could not set HKLOUT: %s", e)
                 break
 
+        # Best DAG cards file (for chaining into phasertng_riker)
+        dag_files = sorted(glob.glob(os.path.join(db_dir, "best.*.dag.cards")))
+        if dag_files:
+            try:
+                dest = self._elevate_to_job_dir(dag_files[0])
+                out.DAGOUT.setFullPath(dest)
+                out.DAGOUT.annotation = "Solution state for incremental MR"
+                logger.info("Set DAGOUT to %s", dest)
+            except Exception as e:
+                logger.debug("Could not set DAGOUT: %s", e)
+
         # Generate sigma-A weighted map coefficients from the MR solution
         self._run_sigmaa(work_dir, out)
 
