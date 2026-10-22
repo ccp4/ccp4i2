@@ -795,6 +795,65 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"sites/scene",
+    )
+    def sites_scene(self, request, pk=None):
+        """
+        Build one Moorhen scene for several binding sites taken together.
+
+        For a site and its subsites, or neighbouring sites worth seeing at
+        once. Every dataset judged a hit at any of the sites is drawn once,
+        the pocket is the residues around all of them, and every hit is
+        fitted on one region about their centroid (``lib.campaign_scene.
+        build_sites_scene``). With one id this is ``site_scene``.
+
+        Query parameters:
+            ids: the sites, as comma-separated ids, in the order the view
+                should take its orientation and title from. Required.
+            include=unclear, superpose=none: as for ``site_scene``.
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}``, the
+                same envelope as ``site_scene``; with several sites
+                ``stats["sites"]`` replaces ``stats["site"]`` and each drawn
+                dataset names the sites that claim it.
+        """
+        try:
+            group = self.get_object()
+            raw = [token.strip() for token in request.query_params.get("ids", "").split(",")]
+            raw = [token for token in raw if token]
+            if not raw or not all(token.isdigit() for token in raw):
+                return api_error("ids must be comma-separated site ids", status=400)
+            ids = list(dict.fromkeys(int(token) for token in raw))
+            found = {site.id: site for site in group.site_set.filter(id__in=ids)}
+            missing = [site_id for site_id in ids if site_id not in found]
+            if missing:
+                return api_error(
+                    f"Sites not found in this campaign: {', '.join(map(str, missing))}",
+                    status=404,
+                )
+
+            include = {
+                token.strip()
+                for token in request.query_params.get("include", "").split(",")
+            }
+            return Response(
+                campaign_scene.build_sites_scene(
+                    group,
+                    [found[site_id] for site_id in ids],
+                    include_unclear="unclear" in include,
+                    superpose=request.query_params.get("superpose") != "none",
+                )
+            )
+        except Exception as e:
+            logger.exception(
+                "Failed to build scene for sites of group %s", pk, exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
     @action(detail=True, methods=["post"], )
     def export_pandda(self, request, pk=None):
         """

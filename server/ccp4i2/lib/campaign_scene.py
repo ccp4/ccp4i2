@@ -563,7 +563,7 @@ def _promote_hit(hits: list, stats: dict):
 
 
 def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
-               centre=None) -> list:
+               centre=None, min_radius=None) -> list:
     """Fit every mover onto the reference; return the ``superpose[]`` entries.
 
     Each fit is recorded in ``stats["superpose"]`` with the evidence it
@@ -580,7 +580,9 @@ def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
     """
     entries: list = []
     for hit in movers:
-        fit = superposition.fit_files(ref_path, hit["coord_path"], centre=centre)
+        fit = superposition.fit_files(
+            ref_path, hit["coord_path"], centre=centre, min_radius=min_radius
+        )
         record = {
             "project": hit["project"].name,
             "ok": fit.ok,
@@ -712,12 +714,55 @@ def build_site_scene(group, site, include_unclear: bool = False,
     bound in an adjacent subsite is an observation, not clutter (see
     ``docs/campaign-site-scene-design.md``, "Draw every copy").
     """
+    return build_sites_scene(group, [site], include_unclear, superpose)
+
+
+# How strongly a verdict claims a dataset for a site view: a dataset judged a
+# hit at one chosen site and empty at another is a hit of the view.
+_VERDICT_STRENGTH = {"hit": 3, "unclear": 2, "empty": 1}
+
+
+def _union_cids(structure: gemmi.Structure, positions: list) -> list:
+    """The pocket residues around any of ``positions``, in structure order."""
+    wanted = set()
+    for position in positions:
+        wanted.update(pocket_residue_cids(structure, position))
+    ordered = []
+    for chain in structure[0]:
+        for res in chain:
+            cid = _residue_cid(chain.name, res)
+            if cid in wanted and cid not in ordered:
+                ordered.append(cid)
+    return ordered
+
+
+def build_sites_scene(group, sites: list, include_unclear: bool = False,
+                      superpose: bool = True) -> dict:
+    """Build one scene for several binding sites of a campaign, taken together.
+
+    For a site and its subsites, or neighbouring sites worth seeing at once
+    (docs/campaign-site-scene-design.md, "Several sites in one view"). With
+    one site this is the site view of :func:`build_site_scene`, unchanged.
+    With more:
+
+      * a dataset is in when it is in for *any* chosen site, drawn once, at
+        its strongest verdict across them (hit over unclear over empty), and
+        ``stats["drawn"]`` names the sites that claim it;
+      * the pocket is every residue around any chosen site, drawn once;
+      * every hit is fitted on ONE region -- the CAs around the centroid of
+        the chosen sites, in a sphere that starts wide enough to reach the
+        farthest of them -- so the view has a single frame;
+      * the camera looks at the centroid, oriented as the first site saved
+        its view, and the slab covers the whole pocket.
+    """
     files: list = []
     elements: list = []
     used_names: set = set()
+    single = len(sites) == 1
     stats = {
-        "site": {"id": site.id, "name": site.name},
-        "hits_claimed": 0,        # hit verdicts found at this site
+        "site": {"id": sites[0].id, "name": sites[0].name} if single else None,
+        "sites": [{"id": site.id, "name": site.name} for site in sites],
+        "hits_claimed": 0,        # datasets judged a hit at a chosen site
         "hits_drawn": 0,
         "empty_verdicts": 0,      # somebody looked and found nothing
         "unclear_verdicts": 0,
@@ -729,15 +774,19 @@ def build_site_scene(group, site, include_unclear: bool = False,
         # Per drawn dataset, the distance from the site origin to its nearest
         # fragment-like residue, measured after superposition. A hit whose
         # fragment is far from the site is worth a look; it is not hidden.
-        "drawn": [],              # [{project, verdict, nearest}]
+        "drawn": [],              # [{project, verdict, nearest, sites?}]
         "superpose": [],          # [{project, ok, atoms, radius, rmsd, reason, fallback?}]
     }
+    if single:
+        del stats["sites"]
+    else:
+        del stats["site"]
 
     ref_name, ref_path, ref_element = _parent_reference(
         group, used_names, files, elements, stats
     )
 
-    # -- Membership: the verdicts at this site ------------------------------
+    # -- Membership: the verdicts at the chosen sites -----------------------
     #
     # Only current members. An evaluation outlives the membership it was
     # recorded under (it hangs off the project and the site, not the
@@ -752,19 +801,28 @@ def build_site_scene(group, site, include_unclear: bool = False,
     # One entry per dataset, from what its cell says across reviewers
     # (lib/site_verdicts.py): one reviewer's hit beside another's empty is
     # "to reconcile", whose effective verdict is unclear, so it is drawn only
-    # when unclears are asked for. Ordered by project id so the fallback
-    # exemplar, when one is needed, is the lowest-id hit: stable, arbitrary,
-    # and recorded as such in stats.
+    # when unclears are asked for. Across several sites a dataset keeps its
+    # strongest verdict and the names of the sites that gave it. Ordered by
+    # project id so the fallback exemplar, when one is needed, is the
+    # lowest-id hit: stable, arbitrary, and recorded as such in stats.
     from .site_verdicts import cell_verdicts
-    cells = cell_verdicts(site.evaluations.all())
-    projects = {p.id: p for p in models.Project.objects.filter(
-        id__in=[project_id for project_id, _ in cells])}
+    claims: dict = {}             # project_id -> {"verdict", "sites": [site]}
+    for site in sites:
+        for (project_id, _), cell in cell_verdicts(site.evaluations.all()).items():
+            if project_id not in member_ids:
+                continue
+            verdict = cell["verdict"]
+            claim = claims.setdefault(project_id, {"verdict": verdict, "sites": []})
+            if _VERDICT_STRENGTH.get(verdict, 0) > _VERDICT_STRENGTH.get(claim["verdict"], 0):
+                claim["verdict"] = verdict
+                claim["sites"] = []
+            if verdict == claim["verdict"]:
+                claim["sites"].append(site)
+    projects = {p.id: p for p in models.Project.objects.filter(id__in=list(claims))}
 
     hits: list = []
-    for (project_id, _), cell in sorted(cells.items()):
-        if project_id not in member_ids:
-            continue
-        verdict = cell["verdict"]
+    for project_id, claim in sorted(claims.items()):
+        verdict = claim["verdict"]
         if verdict == Verdict.EMPTY:
             stats["empty_verdicts"] += 1
             continue
@@ -783,6 +841,7 @@ def build_site_scene(group, site, include_unclear: bool = False,
             )
             continue
         hit["verdict"] = verdict
+        hit["sites"] = claim["sites"]
         if verdict == Verdict.UNCLEAR:
             hit["sticks"]["colour"] = UNCLEAR_COLOUR
             stats["unclear_drawn"] += 1
@@ -797,7 +856,14 @@ def build_site_scene(group, site, include_unclear: bool = False,
     if ref_name is None:
         ref_name, ref_path, ref_element, movers = _promote_hit(hits, stats)
 
-    # -- The pocket: the exemplar's residues around the site origin --------
+    positions = [site_position(site) for site in sites]
+    centre = tuple(sum(p[i] for p in positions) / len(positions) for i in range(3))
+    # How far the farthest chosen site lies from the centre: zero for one.
+    spread = max(
+        sum((p[i] - centre[i]) ** 2 for i in range(3)) ** 0.5 for p in positions
+    )
+
+    # -- The pocket: the exemplar's residues around the chosen sites -------
     #
     # Taken from the exemplar alone: it is the frame, it is drawn once, and
     # the pocket from each hit in turn would pile up six copies of the same
@@ -811,7 +877,10 @@ def build_site_scene(group, site, include_unclear: bool = False,
             logger.warning("Could not read exemplar %s: %s", ref_path, exc)
             exemplar = None
         if exemplar is not None:
-            cids = pocket_residue_cids(exemplar, site_position(site))
+            cids = (
+                pocket_residue_cids(exemplar, positions[0]) if single
+                else _union_cids(exemplar, positions)
+            )
             stats["pocket_residues"] = len(cids)
             if cids:
                 pocket_selection = "||".join(cids)
@@ -826,17 +895,20 @@ def build_site_scene(group, site, include_unclear: bool = False,
                     },
                 )
 
-    # -- Fit every hit onto the exemplar, locally, on the site --------------
+    # -- Fit every hit onto the exemplar, locally, on the chosen region -----
     #
     # A global fit distributes its residual over the whole molecule and none
     # of it is guaranteed to land anywhere but the pocket; the frame that
     # must coincide here is the site's. The fit sphere is over-determined,
     # so a site origin saved in an older frame (a few Angstroms off, see the
     # design note) trades a few CAs at one edge for a few at the other.
+    # Several sites share one fit, on a sphere about their centroid that
+    # starts wide enough to take in every one of their pockets.
     superpose_entries: list = []
     if superpose and ref_path is not None:
         superpose_entries = _superpose(
-            ref_name, ref_path, movers, stats, centre=site_position(site)
+            ref_name, ref_path, movers, stats, centre=centre,
+            min_radius=None if single else spread + ENVIRONMENT_RADIUS,
         )
 
     for hit in hits:
@@ -844,21 +916,32 @@ def build_site_scene(group, site, include_unclear: bool = False,
         transform = fit.transform() if fit is not None and fit.ok else None
         nearest = None
         try:
-            nearest = nearest_fragment_distance(
-                gemmi.read_structure(str(hit["coord_path"])), site_position(site), transform
-            )
+            structure = gemmi.read_structure(str(hit["coord_path"]))
+            distances = [
+                nearest_fragment_distance(structure, site_position(site), transform)
+                for site in hit["sites"]
+            ]
+            distances = [d for d in distances if d is not None]
+            nearest = min(distances) if distances else None
         except Exception as exc:  # noqa: BLE001 - a diagnostic, not the picture
             logger.warning("Could not measure %s: %s", hit["coord_path"], exc)
-        stats["drawn"].append(
-            {"project": hit["project"].name, "verdict": hit["verdict"], "nearest": nearest}
-        )
+        entry = {"project": hit["project"].name, "verdict": hit["verdict"], "nearest": nearest}
+        if not single:
+            entry["sites"] = [site.name for site in hit["sites"]]
+        stats["drawn"].append(entry)
 
     # -- Camera: the site's own, with depth clipped to the pocket -----------
     #
     # `origin` sets the camera and `slab` only the clip depth, so both are
     # needed to frame the site (see the grammar). The slab hangs off the
     # pocket residues rather than the origin because it takes a selection.
-    view = _site_view(site)
+    # Several sites: the centroid of their saved origins (Moorhen's
+    # convention, so averaged as stored), seen the way the first was saved.
+    view = _site_view(sites[0])
+    if not single:
+        view["origin"] = [
+            sum(site.origin[i] for site in sites) / len(sites) for i in range(3)
+        ]
     if pocket_selection:
         view["slab"] = {
             "file": ref_name,
@@ -866,8 +949,9 @@ def build_site_scene(group, site, include_unclear: bool = False,
             "pad": ENVIRONMENT_RADIUS,
         }
 
+    title = sites[0].name if single else " + ".join(site.name for site in sites)
     scene = {
-        "scene": f"{group.name} - site {site.name}",
+        "scene": f"{group.name} - site{'' if single else 's'} {title}",
         "version": 1,
         "authoredIn": {"projectName": group.name},
         "files": files,

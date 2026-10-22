@@ -750,3 +750,56 @@ frame in which the number means anything.
 **Not yet exercised against real data.** The tests use synthetic fixtures. The
 performance note above — measure on the 40-dataset demo campaign — is
 untouched.
+
+---
+
+## Several sites in one view
+
+Sites are not always independent pockets. A campaign may save a site and its
+subsites (a groove and the specificity pockets inside it), or two adjacent
+sites whose hits are worth seeing side by side. The single-site view shows one
+of them at a time; the sites view shows any chosen set as one scene.
+
+**Selection is ad hoc, carried in the URL** (`?summary=1&site=12,13,15`). There
+is no stored "site group": the link is the bookmark, and anyone it is shared
+with sees the same selection. If the same selections turn out to be rebuilt
+often, a named group (a table of `(group, name, sites)`) is a small addition
+on top; it is not needed to try the idea.
+
+**API**: `GET projectgroups/{id}/sites/scene/?ids=12,13,15`, with
+`include=unclear` and `superpose=none` as for the single site. Ids are kept in
+the order given (repeats dropped); every one must belong to the campaign or the
+request 404s, naming the strays. One id is exactly the single-site scene --
+`build_site_scene` is `build_sites_scene` with one site -- so the two cannot
+drift apart.
+
+**Membership** is the union over the chosen sites, by verdict alone as before.
+A dataset is drawn once, at its strongest verdict across them (hit over unclear
+over empty): empty in one subsite and a hit in the next is a hit of the view.
+`stats.drawn[].sites` names the sites whose verdicts drew each dataset, and
+`stats.sites` replaces `stats.site`. Counts are per dataset, so a dataset empty
+at every chosen site is one empty verdict, not one per site.
+
+**One frame.** Every hit is fitted on one region: the exemplar's CAs about the
+centroid of the chosen sites, in a sphere that starts at the spread (the
+farthest chosen site from the centroid) plus `ENVIRONMENT_RADIUS`, so that it
+takes in each site's pocket. The fit cap rises to meet that start: a region
+wider than `FIT_RADIUS_MAX` is fitted on the region, not refused. The
+alternative -- fitting each hit on the pocket of the site that claims it -- is
+sharper per subsite, but leaves a view whose hits sit in slightly different
+frames; the chosen design keeps one frame for the whole picture. The
+nearest-fragment diagnostic is still measured from the site that claims each
+hit, not from the centroid.
+
+**Pocket and camera.** The pocket is every exemplar residue around any chosen
+site, once, in structure order, and the slab hangs off it. The camera looks at
+the centroid of the sites' saved origins (averaged as stored, in Moorhen's
+convention), with the first site's saved orientation and zoom; the title lists
+the sites in order. The viewer page does not then "go to" the first site, as it
+does for one, because that would undo the centred view.
+
+**Client.** The binding-sites list has a "view several sites together" mode: a
+row ticks instead of navigating, the per-row controls step aside (there is no
+room for a checkbox beside them), and "View N together" opens the scene in a
+new tab, as viewing one site does. The link is built and read by
+`lib/site-view-link.ts`.
