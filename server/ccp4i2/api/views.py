@@ -1,6 +1,8 @@
 import logging
 import os
+import platform
 import re
+import sys
 from pathlib import Path
 
 from rest_framework.decorators import api_view
@@ -186,14 +188,39 @@ def health_check(request):
         )
 
 
+def _ccp4_version():
+    """The CCP4 suite's version from its ``lib/ccp4/MAJOR_MINOR``, or None.
+
+    ``$CCP4`` is set once ccp4.setup-sh has been sourced; the desktop app may
+    instead just run ccp4-python, whose prefix lies inside the suite
+    (``CCP4/Python311`` on Windows, the suite root elsewhere).
+    """
+    prefix = Path(sys.prefix)
+    for root in (os.environ.get("CCP4"), prefix, prefix.parent):
+        if not root:
+            continue
+        try:
+            return (Path(root) / "lib" / "ccp4" / "MAJOR_MINOR").read_text().strip()
+        except OSError:
+            continue
+    return None
+
+
 def version_info(request):
     """
     Returns version information for the server deployment.
     Build timestamp and git commit are set via environment variables during Docker build.
+    The software versions and the platform are what a bug report needs: the
+    client's "Copy error report" button reads them from here.
     """
+    from .. import __version__
     from ..lib.utils.files import staged_upload
 
     payload = {
+        "version": __version__,
+        "ccp4_version": _ccp4_version(),
+        "python_version": platform.python_version(),
+        "platform": platform.platform(),
         "buildTimestamp": os.environ.get("BUILD_TIMESTAMP", "dev"),
         "gitCommit": os.environ.get("GIT_COMMIT", "unknown"),
     }

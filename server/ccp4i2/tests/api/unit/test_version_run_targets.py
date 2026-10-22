@@ -44,3 +44,12 @@ def test_a_deployment_with_a_program_target_says_so(client, monkeypatch):
     by_name = {t["name"]: t for t in _version(client)["run_targets"]}
     assert by_name["batch"]["runs_programs"] is True and by_name["batch"]["runs_jobs"] is False
     assert "error" in by_name["broken"] and by_name["broken"]["runs_programs"] is False
+
+
+def test_version_names_the_software_and_platform(client):
+    """What a bug report needs (the client's "Copy error report" button)."""
+    import ccp4i2
+    j = _version(client)
+    assert j["version"] == ccp4i2.__version__
+    assert j["python_version"] and j["platform"]
+    assert "ccp4_version" in j  # None without a CCP4 suite (CI)
