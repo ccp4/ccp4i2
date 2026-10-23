@@ -5,6 +5,7 @@ import traceback
 
 from django.core.management.base import BaseCommand
 from ccp4i2.cli.i2run.CCP4i2RunnerDjango import CCP4i2RunnerDjango
+from ccp4i2.lib.utils.stdio import tolerate_unencodable_output
 from xml.etree import ElementTree as ET
 
 # Get an instance of a logger
@@ -49,6 +50,7 @@ class Command(BaseCommand):
         - If present, configure the job but do not execute it
         - Remove the flag before passing args to CCP4i2RunnerDjango
         """
+        tolerate_unencodable_output()
         # Normally the arguments arrive through the parser, in options. The
         # i2run test tier instead sets sys.argv and calls call_command with no
         # arguments (see tests/i2run/utils.py), so fall back to that shape.

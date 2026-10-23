@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain, Menu, session } from "electron";
 import path from "path";
 import fs from "fs";
+import os from "os";
 import Store from "electron-store";
 import detectPort from "detect-port";
 import { fileURLToPath } from "node:url";
@@ -104,10 +105,13 @@ const getDefaultCCP4Dir = () => {
   const roots = isMac
     ? ["/Applications"]
     : isWindows
-      ? ["C:\\CCP4"]
+      ? [os.homedir(), "C:\\CCP4"]
       : ["/opt", "/usr/local"];
   for (const root of roots) {
-    for (const name of listCcp4Dirs(root)) possiblePaths.push(path.join(root, name));
+    for (const name of listCcp4Dirs(root)) {
+      possiblePaths.push(path.join(root, name));
+      if (isWindows) possiblePaths.push(path.join(root, name, "CCP4"));
+    }
   }
   if (!isMac && !isWindows) {
     possiblePaths.push("/opt/ccp4");

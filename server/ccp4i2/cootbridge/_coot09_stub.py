@@ -16,9 +16,55 @@ from __future__ import print_function
 
 import imp
 import os
+import sys
 import traceback
 
 _bridge_dir = os.environ.get("CCP4I2_COOTBRIDGE_DIR")
+
+
+def _coot_python_dir():
+    """Where this Coot's own Python modules (coot_gui.py etc.) live, if
+    COOT_PYTHON_DIR is wrong. CCP4 10 for Windows starts WinCoot 0.9
+    through a coot.setup.bat written for WinCoot 1, which points
+    COOT_PYTHON_DIR at lib\\python3.12; Coot then loads none of its Python
+    modules, so there is no coot_menubar_menu and no CCP4i2 menu."""
+    current = os.environ.get("COOT_PYTHON_DIR")
+    if current and os.path.isfile(os.path.join(current, "coot_gui.py")):
+        return None
+    candidates = []
+    coot_module = sys.modules.get("coot")
+    if getattr(coot_module, "__file__", None):
+        candidates.append(os.path.join(
+            os.path.dirname(os.path.abspath(coot_module.__file__)), "coot"))
+    if os.environ.get("COOT_PREFIX"):
+        candidates.append(os.path.join(
+            os.environ["COOT_PREFIX"], "lib", "python2.7", "site-packages",
+            "coot"))
+    for candidate in candidates:
+        if os.path.isfile(os.path.join(candidate, "coot_load_modules.py")):
+            return candidate
+    return None
+
+
+try:
+    coot_menubar_menu  # noqa: F821
+except NameError:
+    _python_dir = _coot_python_dir()
+    if _python_dir:
+        print("[ccp4i2-cootbridge] COOT_PYTHON_DIR is wrong; loading Coot's "
+              "modules from", _python_dir)
+        os.environ["COOT_PYTHON_DIR"] = _python_dir
+        try:
+            _path = os.path.join(_python_dir, "coot_load_modules.py")
+            _handle = open(_path)
+            try:
+                # dont_inherit: Coot's modules use print statements, which
+                # this file's print_function import would make errors.
+                exec(compile(_handle.read(), _path, "exec", 0, True))
+            finally:
+                _handle.close()
+        except Exception:
+            traceback.print_exc()
 
 ccp4i2_bridge_controller = None
 try:

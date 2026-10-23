@@ -13,6 +13,9 @@ import {
   Alert,
   Chip,
   Button,
+  Dialog,
+  DialogContent,
+  TextField,
 } from "@mui/material";
 import { alpha, Theme } from "@mui/material/styles";
 import {
@@ -22,6 +25,8 @@ import {
   Info as InfoIcon,
   KeyboardArrowDown as KeyboardArrowDownIcon,
   KeyboardArrowRight as KeyboardArrowRightIcon,
+  ContentCopy as ContentCopyIcon,
+  Check as CheckIcon,
 } from "@mui/icons-material";
 import {
   ErrorReport,
@@ -29,7 +34,9 @@ import {
   describeReport,
   parseDiagnosticXml,
 } from "../lib/diagnostic-parse";
+import { fetchServerEnvironment, formatErrorReport } from "../lib/error-report";
 import { darkCustomColors, lightCustomColors } from "../theme/palette";
+import { DialogTitleWithClose } from "./dialog-title-with-close";
 
 /**
  * Surface colours for the diagnostic panel, resolved against the active theme.
@@ -111,6 +118,27 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
         return "warning";
       default:
         return "info";
+    }
+  };
+
+  // The whole report as text, with versions and platform, for the user to
+  // send on. When the clipboard is refused the text opens in a dialog to be
+  // selected by hand instead.
+  const [copied, setCopied] = useState(false);
+  const [reportText, setReportText] = useState<string | null>(null);
+  const handleCopyReport = async () => {
+    const text = formatErrorReport(
+      header,
+      errorReports,
+      await fetchServerEnvironment(),
+      navigator.userAgent
+    );
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setReportText(text);
     }
   };
 
@@ -204,9 +232,45 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
       )}
 
       {/* Error Reports */}
-      <Typography variant="h6" gutterBottom>
-        Error Reports ({errorReports.length})
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Error Reports ({errorReports.length})
+        </Typography>
+        <Button
+          size="small"
+          variant="outlined"
+          onClick={handleCopyReport}
+          startIcon={copied ? <CheckIcon color="success" /> : <ContentCopyIcon />}
+        >
+          {copied ? "Copied" : "Copy error report"}
+        </Button>
+      </Box>
+      <Dialog
+        open={reportText !== null}
+        onClose={() => setReportText(null)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitleWithClose onClose={() => setReportText(null)}>
+          Error report
+        </DialogTitleWithClose>
+        <DialogContent>
+          <TextField
+            value={reportText ?? ""}
+            multiline
+            fullWidth
+            minRows={12}
+            maxRows={24}
+            slotProps={{
+              input: {
+                readOnly: true,
+                sx: { fontFamily: "monospace", fontSize: "0.75rem" },
+              },
+            }}
+            onFocus={(event) => event.target.select()}
+          />
+        </DialogContent>
+      </Dialog>
 
       {errorReports.map((report, index) => {
         const isError = report.severity.toUpperCase() === "ERROR";

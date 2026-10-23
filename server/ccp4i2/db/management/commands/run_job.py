@@ -7,6 +7,7 @@ from django.core.management.base import BaseCommand
 from asgiref.sync import async_to_sync
 from ccp4i2.db.models import Job, Project
 from ccp4i2.lib.async_run_job import run_job_async
+from ccp4i2.lib.utils.stdio import tolerate_unencodable_output
 
 
 
@@ -52,6 +53,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        tolerate_unencodable_output()
         try:
             the_job = self.get_job(options)
         except (Job.DoesNotExist, Project.DoesNotExist) as e:

@@ -38,10 +38,14 @@ from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from . import dnatco_data
 
+# Read in place of ``os.name`` so a test can pick the platform: patching
+# ``os.name`` itself breaks ``pathlib.Path`` on every other platform.
+_WINDOWS = os.name == "nt"
+
 
 def dnatco_launcher_name():
     """The launcher CCP4 ships in its bin/: a shell script, or a batch file on Windows."""
-    return "dnatco.bat" if os.name == "nt" else "dnatco.sh"
+    return "dnatco.bat" if _WINDOWS else "dnatco.sh"
 
 
 def dnatco_js_path():
@@ -74,7 +78,7 @@ def find_dnatco_command():
     reported as "dnatco.sh not found" rather than "node not found".
     """
     launcher = dnatco_launcher_name()
-    if os.name != "nt" and resolve_program(launcher):
+    if not _WINDOWS and resolve_program(launcher):
         return launcher
     if dnatco_js_path() is not None and resolve_program("node"):
         return "node"

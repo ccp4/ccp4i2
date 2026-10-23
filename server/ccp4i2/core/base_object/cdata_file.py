@@ -484,7 +484,9 @@ class CDataFile(CData):
         # directory) is in. Matched in the whole path, a job directory given
         # as the input itself (a previous xia2 run) got its own name twice:
         # relPath CCP4_JOBS/job_3 and baseName job_3, i.e. .../job_3/job_3.
-        jobs_match = re.search(r'(CCP4_JOBS(?:/job_\d+)*)', str(Path(path_str).parent))
+        # as_posix(): on Windows the parent is CCP4_JOBS\job_6, which the
+        # pattern cut to CCP4_JOBS, so every output pointed one level too high.
+        jobs_match = re.search(r'(CCP4_JOBS(?:/job_\d+)*)', Path(path_str).parent.as_posix())
         if jobs_match:
             rel_path = jobs_match.group(1)
             new_basename = Path(path_str).name

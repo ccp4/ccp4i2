@@ -261,19 +261,34 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     };
 
     if (finalConfig.timeout) {
+      // Abort with a reason that names the request: a bare abort() surfaces
+      // only as "signal is aborted without reason", which says nothing about
+      // which call was slow. The caller's own signal is chained, not replaced,
+      // so a caller can still cancel.
       const controller = new AbortController();
+      const timeoutMs = finalConfig.timeout;
       const timeoutId = setTimeout(
-        () => controller.abort(),
-        finalConfig.timeout,
+        () =>
+          controller.abort(
+            new DOMException(
+              `Request timed out after ${timeoutMs} ms: ${normalizedUrl}`,
+              "TimeoutError",
+            ),
+          ),
+        timeoutMs,
       );
+      const callerSignal = requestOptions.signal;
+      const onCallerAbort = () => controller.abort(callerSignal?.reason);
+      if (callerSignal) {
+        if (callerSignal.aborted) onCallerAbort();
+        else callerSignal.addEventListener("abort", onCallerAbort);
+      }
       finalRequestOptions.signal = controller.signal;
       try {
-        const response = await fetch(normalizedUrl, finalRequestOptions);
+        return await fetch(normalizedUrl, finalRequestOptions);
+      } finally {
         clearTimeout(timeoutId);
-        return response;
-      } catch (error) {
-        clearTimeout(timeoutId);
-        throw error;
+        callerSignal?.removeEventListener("abort", onCallerAbort);
       }
     }
 
