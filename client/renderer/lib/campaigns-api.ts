@@ -58,7 +58,10 @@ export interface SiteSceneFit {
 
 /** Counts and diagnostics returned alongside a site scene. */
 export interface SiteSceneStats {
-  site: { id: number; name: string };
+  /** The site, for a one-site scene; a scene of several has `sites`. */
+  site?: { id: number; name: string };
+  /** The sites of a several-sites scene, in the order asked for. */
+  sites?: { id: number; name: string }[];
   hits_claimed: number;
   hits_drawn: number;
   empty_verdicts: number;
@@ -70,7 +73,13 @@ export interface SiteSceneStats {
   pocket_residues: number;
   /** Distance from the site origin to each drawn dataset's nearest fragment,
    *  after superposition: a large value is a verdict worth a second look. */
-  drawn: { project: string; verdict: string; nearest: number | null }[];
+  drawn: {
+    project: string;
+    verdict: string;
+    nearest: number | null;
+    /** In a several-sites scene, the sites whose verdicts drew it. */
+    sites?: string[];
+  }[];
   superpose: SiteSceneFit[];
 }
 
@@ -191,6 +200,23 @@ export function useCampaignsApi() {
       if (options.superpose === false) params.set("superpose", "none");
       const query = params.size ? `?${params.toString()}` : "";
       return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`);
+    },
+
+    /**
+     * Fetch one scene for several binding sites taken together: every
+     * dataset judged a hit at any of them drawn once, the pocket around all
+     * of them, every hit fitted on the one region about their centroid. The
+     * first site gives the view its orientation and leads the title.
+     */
+    async fetchSitesScene(
+      campaignId: number,
+      siteIds: number[],
+      options: { includeUnclear?: boolean; superpose?: boolean } = {}
+    ): Promise<SiteSceneResponse> {
+      const params = new URLSearchParams({ ids: siteIds.join(",") });
+      if (options.includeUnclear) params.set("include", "unclear");
+      if (options.superpose === false) params.set("superpose", "none");
+      return apiGet(`projectgroups/${campaignId}/sites/scene/?${params.toString()}`);
     },
 
     /**

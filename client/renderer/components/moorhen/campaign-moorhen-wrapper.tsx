@@ -25,6 +25,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { moorhen } from "moorhen/types/moorhen";
 import { apiText, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { siteViewHref } from "../../lib/site-view-link";
 import { extractFileIdFromUniqueId, readCameraState } from "../../lib/moorhen-view-state";
 import {
   ProjectGroup,
@@ -333,7 +334,19 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const handleViewSite = useCallback(
     (site: CampaignSite) => {
       window.open(
-        `/ccp4i2/moorhen-page/campaign/${campaign.id}?summary=1&site=${site.id}`,
+        siteViewHref(campaign.id, [site.id]),
+        "_blank"
+      );
+    },
+    [campaign.id]
+  );
+
+  // View several sites as one scene -- a site and its subsites, or
+  // neighbours -- the same way, in the order the panel lists them.
+  const handleViewSites = useCallback(
+    (chosen: CampaignSite[]) => {
+      window.open(
+        siteViewHref(campaign.id, chosen.map((s) => s.id)),
         "_blank"
       );
     },
@@ -767,6 +780,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             sites,
             onGoToSite: handleGoToSite,
             onViewSite: handleViewSite,
+            onViewSites: handleViewSites,
             onSaveCurrentAsSite: handleSaveCurrentAsSite,
             onUpdateSite: handleUpdateSite,
             onDeleteSite: handleDeleteSite,

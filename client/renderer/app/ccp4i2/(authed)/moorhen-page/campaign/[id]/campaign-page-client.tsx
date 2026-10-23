@@ -8,6 +8,7 @@ import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrappe
 import type { MoorhenScene } from "@/types/moorhen-scene";
 import { parseEventParam } from "@/lib/event-evidence";
 import { sceneSourceFromParams } from "@/lib/scene-source";
+import { parseSiteParam } from "@/lib/site-view-link";
 import { listenAsViewer } from "@/lib/viewer-channel";
 import type {
   NewCampaignSite,
@@ -95,15 +96,20 @@ function CampaignPageContent() {
   // recorded there, fitted on its pocket, rather than the whole campaign.
   // Everything downstream (serialise, seed the Scenes panel, auto-apply) is
   // the same, so it goes through the same prop.
-  const summarySiteId = siteParam ? parseInt(siteParam) : null;
+  // `site` names one site, or several -- a site and its subsites, or
+  // neighbours -- viewed as one scene (lib/site-view-link).
+  const summarySiteIds = useMemo(() => parseSiteParam(siteParam), [siteParam]);
+  const summarySiteKey = summarySiteIds.join(",");
   const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
   useEffect(() => {
     if (!summaryMode || campaignId === null) return;
     let cancelled = false;
     const request =
-      summarySiteId !== null
-        ? campaignsApi.fetchSiteScene(campaignId, summarySiteId)
-        : campaignsApi.fetchSummaryScene(campaignId);
+      summarySiteIds.length > 1
+        ? campaignsApi.fetchSitesScene(campaignId, summarySiteIds)
+        : summarySiteIds.length === 1
+          ? campaignsApi.fetchSiteScene(campaignId, summarySiteIds[0])
+          : campaignsApi.fetchSummaryScene(campaignId);
     request
       .then((res) => {
         if (!cancelled) setSummaryScene(res.scene);
@@ -115,7 +121,7 @@ function CampaignPageContent() {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [summaryMode, campaignId, summarySiteId]);
+  }, [summaryMode, campaignId, summarySiteKey]);
 
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
@@ -336,7 +342,9 @@ function CampaignPageContent() {
         fileSource={fileIds}
         summaryScene={summaryMode ? summaryScene : null}
         viewParam={viewParam}
-        initialSiteId={siteParam ? parseInt(siteParam) : null}
+        // Going to one named site; several are framed by their scene, whose
+        // camera looks at their centroid, and going to the first would undo it.
+        initialSiteId={summarySiteIds.length === 1 ? summarySiteIds[0] : null}
         initialEvent={initialEvent}
         sceneSource={sceneSource}
         sites={sites || []}
