@@ -70,6 +70,11 @@ from typing import Dict, Iterable, List, Optional
 
 from ccp4i2.config.preferences import user_preference
 
+# Read in place of ``os.name`` so a test can pretend to be on Windows: patching
+# ``os.name`` itself makes ``pathlib.Path`` build a WindowsPath, which fails
+# everywhere else.
+_WINDOWS = os.name == "nt"
+
 # Programs with an explicit single-executable preference.
 _EXECUTABLE_PREF: Dict[str, str] = {
     "coot": "COOT_EXECUTABLE",
@@ -131,7 +136,7 @@ def _is_executable_file(path: Path) -> bool:
 
 def _candidate_names(name: str) -> List[str]:
     """Executable filenames to try for ``name`` (adds ``.exe`` on Windows)."""
-    if os.name == "nt" and not name.lower().endswith(".exe"):
+    if _WINDOWS and not name.lower().endswith(".exe"):
         return [name, f"{name}.exe"]
     return [name]
 
@@ -145,7 +150,7 @@ def _ccp4_bundled(name: str) -> Optional[str]:
     the Qt CCP4i2 launched it from; the batch file sets up Coot's own
     environment, so it, not ``WinCoot.exe``, is the program.
     """
-    if os.name != "nt" or name != "coot-1":
+    if not _WINDOWS or name != "coot-1":
         return None
     master = os.environ.get("CCP4_MASTER")
     if not master and os.environ.get("CCP4"):
@@ -279,7 +284,7 @@ def make_program_shims(directory, names: Iterable[str] = ()) -> Optional[str]:
     made = 0
     for name, target in resolved.items():
         try:
-            if os.name == "nt":
+            if _WINDOWS:
                 link = shim_dir / f"{name}.bat"
                 link.write_text(f'@echo off\r\n"{target}" %*\r\n')
             else:

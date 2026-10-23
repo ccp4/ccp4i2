@@ -81,7 +81,7 @@ def test_resolve_missing(monkeypatch, tmp_path):
 def test_resolve_wincoot1_from_ccp4_installation(monkeypatch, tmp_path):
     # CCP4 for Windows has no coot-1; Coot 1 is WinCoot1/wincoot.bat beside it.
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
-    monkeypatch.setattr(program_discovery.os, "name", "nt")
+    monkeypatch.setattr(program_discovery, "_WINDOWS", True)
     monkeypatch.setattr(program_discovery.shutil, "which", lambda name: None)
     (tmp_path / "CCP4").mkdir()
     (tmp_path / "WinCoot1").mkdir()
