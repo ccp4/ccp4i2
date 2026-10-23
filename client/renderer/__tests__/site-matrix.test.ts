@@ -199,9 +199,11 @@ describe("siteCellUrl", () => {
 });
 
 describe("matrix columns", () => {
-  it("orders sites and drops those without a uuid", () => {
-    const sites = [site(1, "a", 2), site(2, undefined, 0), site(3, "c", 1)];
-    expect(matrixSites(sites).map((s) => s.id)).toEqual([3, 1]);
+  it("orders sites by name, not by the stored order, and drops those without a uuid", () => {
+    // Site 10 is stored first, but by name (numbers as numbers) comes after
+    // Site 3: the columns follow the names (lib/site-matrix, compareSites).
+    const sites = [site(10, "a", 0), site(2, undefined, 1), site(3, "c", 2)];
+    expect(matrixSites(sites).map((s) => s.id)).toEqual([3, 10]);
   });
 
   it("falls back to chips when the server sends no cells", () => {

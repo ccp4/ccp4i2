@@ -64,6 +64,7 @@ import {
   OpenInNew as OpenInNewIcon,
   VisibilityOutlined,
   VisibilityOffOutlined,
+  Layers as LayersIcon,
 } from "@mui/icons-material";
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
@@ -75,6 +76,7 @@ import {
   showMoleculeRepresentations,
   type MoleculeVisibilityMemory,
 } from "../../lib/moorhen-molecule-visibility";
+import { sortSites } from "../../lib/site-matrix";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import { AddLigandButton } from "./add-ligand-button";
 import {
@@ -108,6 +110,9 @@ interface CampaignControlPanelProps {
    *  Going TO a site moves the camera in what is loaded; VIEWING a site
    *  loads what was found there. Different acts, so different controls. */
   onViewSite?: (site: CampaignSite) => void;
+  /** Open one scene for several sites together -- a site and its subsites,
+   *  or neighbours worth seeing at once. In the order the list shows them. */
+  onViewSites?: (sites: CampaignSite[]) => void;
   onSaveCurrentAsSite: (name: string) => Promise<void>;
   onUpdateSite: (siteId: number, name: string, updatePosition: boolean) => Promise<void>;
   onDeleteSite: (siteId: number) => Promise<void>;
@@ -182,6 +187,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   sites,
   onGoToSite,
   onViewSite,
+  onViewSites,
   onSaveCurrentAsSite,
   onUpdateSite,
   onDeleteSite,
@@ -236,6 +242,31 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   }, [contourLevels]);
 
   const [showAddSiteDialog, setShowAddSiteDialog] = useState(false);
+  // Choosing sites to view together: while on, a row ticks rather than
+  // navigates, and the per-row controls step aside -- the row has no room
+  // for a checkbox beside them.
+  const [choosingSites, setChoosingSites] = useState(false);
+  const [chosenSiteIds, setChosenSiteIds] = useState<Set<number>>(new Set());
+  const toggleChosenSite = useCallback((siteId: number) => {
+    setChosenSiteIds((was) => {
+      const next = new Set(was);
+      if (next.has(siteId)) next.delete(siteId);
+      else next.add(siteId);
+      return next;
+    });
+  }, []);
+  const stopChoosingSites = useCallback(() => {
+    setChoosingSites(false);
+    setChosenSiteIds(new Set());
+  }, []);
+  // Alphabetical, as every list of sites is (lib/site-matrix): a site and
+  // its subsites sit together. Several sites viewed together keep this
+  // order, so the first of them gives the view its orientation.
+  const orderedSites = useMemo(() => sortSites(sites), [sites]);
+  const chosenSites = useMemo(
+    () => orderedSites.filter((site) => chosenSiteIds.has(site.id)),
+    [orderedSites, chosenSiteIds]
+  );
   const [newSiteName, setNewSiteName] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -706,6 +737,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           <Typography variant="caption" sx={{ fontWeight: "bold" }}>
             Binding Sites
           </Typography>
+          <Box sx={{ flex: 1 }} />
+          {onViewSites && sites.length >= 2 && (
+            <Tooltip title="View several sites together: tick them, then view">
+              <IconButton
+                size="small"
+                onClick={() => (choosingSites ? stopChoosingSites() : setChoosingSites(true))}
+                color={choosingSites ? "secondary" : "primary"}
+                aria-pressed={choosingSites}
+                aria-label="View several sites together"
+                sx={{ p: 0.5 }}
+              >
+                <LayersIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip title="Save current view as a site">
             <IconButton
               size="small"
@@ -735,11 +781,11 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           </Paper>
         ) : (
           <List dense sx={{ flex: 1, overflow: "auto" }}>
-            {sites.map((site) => (
+            {orderedSites.map((site) => (
               <ListItem
                 key={site.id}
                 component="div"
-                onClick={() => onGoToSite(site)}
+                onClick={() => (choosingSites ? toggleChosenSite(site.id) : onGoToSite(site))}
                 sx={{
                   bgcolor: "background.paper",
                   mb: 0.5,
@@ -752,10 +798,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                   },
                 }}
               >
+                {choosingSites && (
+                  <Checkbox
+                    size="small"
+                    edge="start"
+                    checked={chosenSiteIds.has(site.id)}
+                    tabIndex={-1}
+                    sx={{ p: 0.5, mr: 0.5 }}
+                    inputProps={{ "aria-label": `Include ${site.name}` }}
+                  />
+                )}
                 <ListItemText
                   primary={site.name}
                   primaryTypographyProps={{ variant: "body2" }}
                 />
+                {!choosingSites && (
                 <ListItemSecondaryAction>
                   <Tooltip title="Go to site">
                     <IconButton
@@ -825,9 +882,30 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                     </IconButton>
                   </Tooltip>
                 </ListItemSecondaryAction>
+                )}
               </ListItem>
             ))}
           </List>
+        )}
+        {choosingSites && onViewSites && sites.length > 0 && (
+          <Stack direction="row" spacing={1} sx={{ mt: 0.5 }}>
+            <Button
+              size="small"
+              variant="contained"
+              disabled={chosenSites.length < 2}
+              onClick={() => {
+                onViewSites(chosenSites);
+                stopChoosingSites();
+              }}
+            >
+              {chosenSites.length < 2
+                ? "Tick two or more"
+                : `View ${chosenSites.length} together`}
+            </Button>
+            <Button size="small" onClick={stopChoosingSites}>
+              Cancel
+            </Button>
+          </Stack>
         )}
       </Box>
 
