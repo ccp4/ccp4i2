@@ -78,6 +78,22 @@ def test_resolve_missing(monkeypatch, tmp_path):
     assert result["source"] == program_discovery.SOURCE_MISSING
 
 
+def test_resolve_wincoot1_from_ccp4_installation(monkeypatch, tmp_path):
+    # CCP4 for Windows has no coot-1; Coot 1 is WinCoot1/wincoot.bat beside it.
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.setattr(program_discovery.os, "name", "nt")
+    monkeypatch.setattr(program_discovery.shutil, "which", lambda name: None)
+    (tmp_path / "CCP4").mkdir()
+    (tmp_path / "WinCoot1").mkdir()
+    (tmp_path / "WinCoot1" / "wincoot.bat").write_text("WinCoot.exe %*\r\n")
+    monkeypatch.delenv("CCP4_MASTER", raising=False)
+    monkeypatch.setenv("CCP4", str(tmp_path / "CCP4"))
+
+    result = program_discovery.discover_program("coot-1")
+    assert result["path"] == str(tmp_path / "WinCoot1" / "wincoot.bat")
+    assert result["source"] == program_discovery.SOURCE_CCP4_BUNDLE
+
+
 def test_precedence_explicit_beats_path(monkeypatch, tmp_path):
     # An explicit COOT_EXECUTABLE must win over a PATH coot.
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))

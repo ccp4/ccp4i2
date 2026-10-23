@@ -17,7 +17,9 @@ Resolution order for a program ``name``:
 3. each directory in the general ``exePaths`` list (the django name for the
    legacy ``EXEPATHLIST``);
 4. ``shutil.which(name)`` — the ``PATH`` default (unchanged behaviour);
-5. ``None`` — caller raises an actionable error.
+5. the place a CCP4 installation keeps a program it does not put on ``PATH``
+   (Coot 1 on Windows: ``$CCP4_MASTER/WinCoot1/wincoot.bat``);
+6. ``None`` — caller raises an actionable error.
 
 Preferences are read via ``config.preferences.user_preference`` (env var >
 ``preferences.json`` ``userPreferences`` bag > default), so cloud deployments
@@ -98,6 +100,7 @@ SOURCE_EXECUTABLE_PREF = "executable_pref"
 SOURCE_SUITE_DIR = "suite_dir"
 SOURCE_EXE_PATHS = "exe_paths"
 SOURCE_PATH = "path"
+SOURCE_CCP4_BUNDLE = "ccp4_bundle"
 SOURCE_MISSING = "missing"
 
 # NB: the set of programs the UI probes is NOT hardcoded here — it is derived
@@ -131,6 +134,26 @@ def _candidate_names(name: str) -> List[str]:
     if os.name == "nt" and not name.lower().endswith(".exe"):
         return [name, f"{name}.exe"]
     return [name]
+
+
+def _ccp4_bundled(name: str) -> Optional[str]:
+    """Where a CCP4 installation keeps ``name`` off ``PATH``, if it does.
+
+    Only Coot 1 on Windows, today: CCP4 for Windows ships no ``coot-1`` at
+    all, but WinCoot 1 beside the suite, started by its ``wincoot.bat``
+    (``$CCP4/../WinCoot1``, ``CCP4_MASTER`` being ``$CCP4/..``). This is where
+    the Qt CCP4i2 launched it from; the batch file sets up Coot's own
+    environment, so it, not ``WinCoot.exe``, is the program.
+    """
+    if os.name != "nt" or name != "coot-1":
+        return None
+    master = os.environ.get("CCP4_MASTER")
+    if not master and os.environ.get("CCP4"):
+        master = os.path.dirname(os.path.normpath(os.environ["CCP4"]))
+    if not master:
+        return None
+    p = Path(master) / "WinCoot1" / "wincoot.bat"
+    return str(p) if p.is_file() else None
 
 
 def resolve_program(name: str) -> Optional[str]:
@@ -179,7 +202,12 @@ def discover_program(name: str) -> Dict[str, Optional[str]]:
     if which:
         return {"name": name, "path": which, "source": SOURCE_PATH}
 
-    # 5. not found
+    # 5. where CCP4 installs it off PATH
+    bundled = _ccp4_bundled(name)
+    if bundled:
+        return {"name": name, "path": bundled, "source": SOURCE_CCP4_BUNDLE}
+
+    # 6. not found
     return {"name": name, "path": None, "source": SOURCE_MISSING}
 
 
