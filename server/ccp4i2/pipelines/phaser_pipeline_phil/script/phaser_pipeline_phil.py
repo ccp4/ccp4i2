@@ -35,7 +35,7 @@ class phaser_pipeline_phil(AsuCompositionFromContext, PhilPluginScript):
     PHIL_PARAMS_FILE = phaser_mr_auto_phil.PHIL_PARAMS_FILE
     PHIL_MODE = phaser_mr_auto_phil.PHIL_MODE
     PHIL_MODE_PATH = phaser_mr_auto_phil.PHIL_MODE_PATH
-    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild", "coot1"]
+    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild", "coot1", "moorhen"]
     ASYNCHRONOUS = False
     LEGACY_PHIL_VALUES = phaser_phil.LEGACY_PHIL_VALUES
     INHERITS_FROM_CONTEXT = phaser_mr_auto_phil.INHERITS_FROM_CONTEXT

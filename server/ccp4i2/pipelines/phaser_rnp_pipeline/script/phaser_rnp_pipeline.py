@@ -18,7 +18,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
         210: {'description': 'Selection yields no atoms'},
         212: {'description': 'Overlapping atom selections'},
     }
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1', 'moorhen']
 
     # ------------------------------------------------------------------
     # Validation

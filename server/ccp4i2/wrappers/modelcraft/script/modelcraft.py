@@ -59,7 +59,7 @@ class modelcraft(CPluginScript):
         203: {"description": "Nothing to start building from"},
     }
     PERFORMANCECLASS = "CRefinementPerformance"
-    WHATNEXT = ["coot_rebuild", "coot1"]
+    WHATNEXT = ["coot_rebuild", "coot1", "moorhen"]
 
     def __init__(self, *args, **kws):
         super(modelcraft, self).__init__(*args, **kws)

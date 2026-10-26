@@ -27,7 +27,7 @@ class phaser_pipeline(CPluginScript):
         211: {'description': 'Exception in harvestFile'},
         111: {'description': 'No ensemble asks for any copies to be placed'},
     }
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1', 'moorhen']
 
     def validity(self):
         error = super().validity()

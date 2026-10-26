@@ -37,7 +37,7 @@ class phaser_ep_phil(AsuCompositionFromContext, PhilPluginScript):
     LEGACY_INPUT_RENAMES = phaser_ep_auto_phil.LEGACY_INPUT_RENAMES
     INHERITS_FROM_CONTEXT = phaser_ep_auto_phil.INHERITS_FROM_CONTEXT
     PHIL_MODE_PATH = phaser_ep_auto_phil.PHIL_MODE_PATH
-    WHATNEXT = ["parrot", "modelcraft", "coot_rebuild", "coot1"]
+    WHATNEXT = ["parrot", "modelcraft", "coot_rebuild", "coot1", "moorhen"]
     ASYNCHRONOUS = False
 
     ERROR_CODES = {

@@ -9,7 +9,7 @@ class cmapcoeff(CPluginScript):
 
     TASKNAME = 'cmapcoeff'
     TASKCOMMAND = 'cmapcoeff'
-    WHATNEXT = [ 'coot_rebuild','coot1' ]
+    WHATNEXT = [ 'coot_rebuild','coot1', 'moorhen' ]
 
     def processInputFiles ( self ):
         list_of_stuff = [ ]

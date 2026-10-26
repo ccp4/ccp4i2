@@ -33,7 +33,7 @@ class phasertng_picard(PhilPluginScript):
     PERFORMANCECLASS = "CRefinementPerformance"
     TASKNAME = "phasertng_picard"
     TASKCOMMAND = "phasertng.picard"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "coot1", "modelcraft", "phasertng_riker"]
+    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "coot1", "moorhen", "modelcraft", "phasertng_riker"]
 
     # PHIL scopes excluded from the GUI.
     #

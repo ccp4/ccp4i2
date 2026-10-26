@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 class phasertng_riker(PhilPluginScript):
     TASKNAME = "phasertng_riker"
     TASKCOMMAND = "phasertng.riker"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "coot1", "modelcraft"]
+    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "coot1", "moorhen", "modelcraft"]
 
     # PHIL scopes excluded from the GUI.
     PHIL_EXCLUDE_SCOPES = [

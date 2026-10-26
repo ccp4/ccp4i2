@@ -7,7 +7,7 @@ class edstats(CPluginScript):
 
     TASKNAME            = 'edstats'
     TASKCOMMAND         = 'edstats'
-    WHATNEXT            = ['coot_rebuild', 'coot1']
+    WHATNEXT            = ['coot_rebuild', 'coot1', 'moorhen']
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]
 
     def processInputFiles(self):
