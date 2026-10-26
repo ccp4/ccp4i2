@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu, session } from "electron";
+import { app, BrowserWindow, ipcMain, session } from "electron";
 import path from "path";
 import fs from "fs";
 import os from "os";
@@ -18,7 +18,7 @@ import { installWillDownloadHandler } from "./ccp4i2-session";
 import { StoreSchema } from "../types/store";
 import { ccp4i2Home } from "./ccp4i2-preferences";
 import { createWindow } from "./ccp4i2-create-window";
-import { setupZoomLevel } from "./ccp4i2-zoom";
+import { installApplicationMenu } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
 import { registerExitHandlers, terminateProcessTree } from "./ccp4i2-process-tree";
 import { initAutoUpdater } from "./ccp4i2-updater";
@@ -262,8 +262,7 @@ app
       setDjangoServer
     );
     installWillDownloadHandler(session.defaultSession);
-    Menu.setApplicationMenu(null);
-    setupZoomLevel(store);
+    installApplicationMenu(store);
     // Set both API_BASE_URL (runtime, for server-side proxy routes) and
     // NEXT_PUBLIC_API_BASE_URL (for any client-side code that needs it)
     process.env.API_BASE_URL = `http://localhost:${djangoServerPort}`;
