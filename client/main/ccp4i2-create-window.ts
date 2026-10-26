@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "node:url";
 import ElectronStore from "electron-store";
 import { StoreSchema } from "../types/store";
+import { zoomAll, zoomStepForKey } from "./ccp4i2-zoom";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // On Linux a window carries its own icon: the dock, the switcher and the title
@@ -49,6 +50,12 @@ export const createWindow = async (
     if (key === "f12" || (primary && input.shift && key === "i") ||
         (isMac && input.meta && input.alt && key === "i")) {
       newWindow.webContents.toggleDevTools();
+      event.preventDefault();
+      return;
+    }
+    const zoom = zoomStepForKey(input, isMac);
+    if (zoom) {
+      zoomAll(store, zoom);
       event.preventDefault();
       return;
     }
