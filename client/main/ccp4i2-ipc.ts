@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron";
+import { zoomAll } from "./ccp4i2-zoom";
 import { startDjangoServer } from "./ccp4i2-django-server";
 import os, { platform } from "node:os";
 import Store from "electron-store";
@@ -564,28 +565,11 @@ export const installIpcHandlers = (
     }
   });
 
-  ipcMain.on("zoom-in", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      const current = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(current + 1);
-      store.set("zoomLevel", current + 1);
-    });
-  });
-
-  ipcMain.on("zoom-out", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      const current = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(current - 1);
-      store.set("zoomLevel", current - 1);
-    });
-  });
-
-  ipcMain.on("zoom-reset", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      win.webContents.setZoomLevel(0);
-      store.set("zoomLevel", 0);
-    });
-  });
+  // The in-app View menu's zoom items; the same helper as the keys and the
+  // macOS menu, so the level is kept however it was changed.
+  ipcMain.on("zoom-in", () => zoomAll(store, "in"));
+  ipcMain.on("zoom-out", () => zoomAll(store, "out"));
+  ipcMain.on("zoom-reset", () => zoomAll(store, "reset"));
 
   // Probe whether this python can actually run the django backend, and reply on
   // "message-from-main" with requirements-exist (carrying the version) or
