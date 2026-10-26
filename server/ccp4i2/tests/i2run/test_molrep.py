@@ -71,3 +71,32 @@ def test_molrep_takes_an_mmcif_model(tmp_path):
     with i2run(args) as job:
         assert (job / "molrep_input.pdb").read_text().startswith(("HEADER", "CRYST1", "ATOM", "REMARK"))
         gemmi.read_pdb(str(job / "XYZOUT.pdb"))
+
+
+def test_molrep_finds_the_space_group_and_uses_it(tmp_path):
+    """Data labelled with the wrong space group of the right Laue group: the
+    first MOLREP tries them all, the pipeline reindexes into the best, and the
+    second MOLREP and the refinement must use the reindexed data (#785).
+    Copying the inputs and then setting the reindexed file's path kept the
+    original file's database id, which wins over the path, so the second MOLREP
+    read the unreindexed data in the wrong group."""
+    relabelled = {}
+    for name, source in (("F_SIGF", "merged_intensities_Xe.mtz"), ("FREERFLAG", "freeR.mtz")):
+        mtz = gemmi.read_mtz_file(demoData("gamma", source))
+        mtz.spacegroup = gemmi.SpaceGroup("P 2 2 2")  # gamma is P 21 21 21
+        path = tmp_path / f"p222_{source}"
+        mtz.write_to_file(str(path))
+        relabelled[name] = str(path)
+    args = ["molrep_pipe"]
+    args += ["--inputData.F_SIGF", relabelled["F_SIGF"]]
+    args += ["--inputData.FREERFLAG", relabelled["FREERFLAG"]]
+    args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
+    args += ["--SG_OPTIONS", "laue"]
+    with i2run(args) as job:
+        xml = ET.parse(job / "program.xml")
+        chosen = xml.findtext(".//MolrepSpaceGroup/laue_group_alternatives/selected") or ""
+        assert gemmi.SpaceGroup(chosen).number == 19, f"chose {chosen!r}"
+        scores = [float(e.text) for e in xml.findall(".//MR_TF/mr_score")]
+        assert scores and scores[-1] > 0.5, scores
+        rfrees = [float(e.text) for e in xml.findall(".//Cycle/r_free")]
+        assert rfrees and rfrees[-1] < 0.3, rfrees
