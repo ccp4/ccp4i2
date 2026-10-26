@@ -42,7 +42,7 @@ class phaser_ep_auto_phil(phaser_phil):
     LEGACY_INPUT_RENAMES = {"PARTIAL_BY": "PARTIALMODELORMAP"}
     INHERITS_FROM_CONTEXT = ("COMP_BY", "ASUFILE", "SEQUENCES", "ASU_PROTEIN_MW", "ASU_NUCLEICACID_MW", "SOLVENT_FRACTION")
     PHIL_MODE_PATH = "phaser.mode"
-    WHATNEXT = ["parrot", "modelcraft", "coot_rebuild"]
+    WHATNEXT = ["parrot", "modelcraft", "coot_rebuild", "coot1"]
 
     PHIL_EXCLUDE_SCOPES = [
         "phaser.sad_mode", "phaser.run_control", "phaser.output_dir",

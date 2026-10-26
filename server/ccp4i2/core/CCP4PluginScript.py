@@ -331,6 +331,19 @@ def describe_signal_exit(returncode):
     return None
 
 
+def _programs_by_need(source) -> tuple:
+    """CPluginScript.programsByNeed, read from a plugin class or instance."""
+    cls = source if isinstance(source, type) else type(source)
+    required = [str(a) for a in (getattr(source, 'AUXILIARY_PROGRAMS', ()) or ()) if a]
+    advisory = [str(a) for a in (getattr(source, 'OPTIONAL_PROGRAMS', ()) or ())
+                if a and str(a) not in required]
+    taskcommand = getattr(source, 'TASKCOMMAND', None)
+    if taskcommand and str(taskcommand) not in required:
+        launches_taskcommand = cls.process is CPluginScript.process
+        (required if launches_taskcommand else advisory).append(str(taskcommand))
+    return required, advisory
+
+
 class CPluginScript(CData):
     """
     Base class for CCP4i2 wrappers and pipelines.
@@ -1443,6 +1456,23 @@ class CPluginScript(CData):
                 names.append(str(name))
         return names
 
+    @classmethod
+    def programsByNeed(cls) -> tuple:
+        """(required, advisory): the programs the task cannot run without, and
+        those it may run. The pre-run check blocks on the first where it can
+        see the executing host, and the "What next" list leaves out a task
+        missing one of them, so the two never disagree.
+
+        AUXILIARY_PROGRAMS is opt-in: declaring one asserts the task cannot
+        work without it. TASKCOMMAND is required only of a plugin that leaves
+        process() to the base class and therefore really does launch it. A
+        plugin overriding process() owns its own execution and may never spawn
+        TASKCOMMAND at all -- crank2 declares 'crank2.py' but runs its pipeline
+        in-process, and buster declares 'refine' but sources $BUSTERDIR/setup.sh
+        to find it -- so for those it stays advisory.
+        """
+        return _programs_by_need(cls)
+
     def _checkProgramAvailable(self, error: CErrorReport) -> None:
         """Pre-flight check that the task's programs can be found.
 
@@ -1466,21 +1496,8 @@ class CPluginScript(CData):
         pass this check and then fail at runtime. Pipelines that declare no
         single TASKCOMMAND (e.g. crank2) can still list their binaries here.
         """
-        # AUXILIARY_PROGRAMS is opt-in: declaring one asserts the task cannot
-        # work without it, so it may block. TASKCOMMAND may only block for a
-        # plugin that leaves process() to the base class and therefore really
-        # does launch it. A plugin overriding process() owns its own execution
-        # and may never spawn TASKCOMMAND at all -- crank2 declares
-        # 'crank2.py' but runs its pipeline in-process, and buster declares
-        # 'refine' but sources $BUSTERDIR/setup.sh to find it -- so for those
-        # the check stays advisory whatever the deployment.
-        required = [str(a) for a in (getattr(self, 'AUXILIARY_PROGRAMS', ()) or ()) if a]
-        advisory = [str(a) for a in (getattr(self, 'OPTIONAL_PROGRAMS', ()) or ())
-                    if a and str(a) not in required]
-        taskcommand = getattr(self, 'TASKCOMMAND', None)
-        if taskcommand and str(taskcommand) not in required:
-            launches_taskcommand = type(self).process is CPluginScript.process
-            (required if launches_taskcommand else advisory).append(str(taskcommand))
+        # the instance's own: a few plugins choose TASKCOMMAND per job
+        required, advisory = _programs_by_need(self)
         if not required and not advisory:
             return
         try:
