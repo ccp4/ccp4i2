@@ -8,7 +8,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { Job, File as DjangoFile, isTerminalJobStatus } from "../types/models";
+import { Job, File as DjangoFile, isStoppableJobStatus, isTerminalJobStatus } from "../types/models";
 import { doDownload, useApi } from "../api";
 import { useRouter } from "next/navigation";
 import { useDeleteDialog } from "./delete-dialog";
@@ -35,6 +35,7 @@ import {
   Download,
   Refresh,
   FolderCopy,
+  StopCircle,
 } from "@mui/icons-material";
 import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
@@ -337,6 +338,26 @@ export const JobMenu: React.FC = () => {
       }
     },
     [job, setJobMenuAnchorEl]
+  );
+
+  // Stop a queued or running job: the server kills its process tree (or asks
+  // the remote target to) and marks it Interrupted. Was reachable only from
+  // Utilities > Running jobs and processes (#773).
+  const isStoppable = Boolean(job && isStoppableJobStatus(job.status));
+  const handleStopJob = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      setJobMenuAnchorEl(null);
+      if (!job) return;
+      try {
+        await api.post<any>(`jobs/${job.id}/cancel/`, {});
+        setMessage(`Job ${job.number} stopped`, "info");
+      } catch (err) {
+        setMessage(`Could not stop job ${job.number}: ${err instanceof Error ? err.message : String(err)}`, "error");
+      }
+      mutateJobs();
+    },
+    [job, api, mutateJobs, setMessage, setJobMenuAnchorEl]
   );
 
   const handleStatusClicked = useCallback(
@@ -649,6 +670,9 @@ export const JobMenu: React.FC = () => {
               <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Model build in Moorhen
             </MenuItem>
           )}
+          <MenuItem key="Stop" disabled={!isStoppable} onClick={handleStopJob}>
+            <StopCircle sx={{ mr: 1 }} /> Stop job
+          </MenuItem>
           <MenuItem
             key="Status"
             //disabled={job.number.includes(".")} // There are cases where we want to set the status of a job that is not top level
