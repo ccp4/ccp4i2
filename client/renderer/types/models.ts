@@ -102,6 +102,17 @@ const TERMINAL_JOB_STATUSES: ReadonlySet<JobStatus> = new Set([
 export const isTerminalJobStatus = (status: number): boolean =>
   TERMINAL_JOB_STATUSES.has(status as JobStatus);
 
+/** Queued or running, here or on a remote target: what "Stop job" can act on
+ *  (the server's jobs/<id>/cancel). */
+const STOPPABLE_JOB_STATUSES: ReadonlySet<JobStatus> = new Set([
+  JobStatus.QUEUED,
+  JobStatus.RUNNING,
+  JobStatus.RUNNING_REMOTELY,
+]);
+
+export const isStoppableJobStatus = (status: number): boolean =>
+  STOPPABLE_JOB_STATUSES.has(status as JobStatus);
+
 export class Job {
   constructor(
     //public children: number[],
