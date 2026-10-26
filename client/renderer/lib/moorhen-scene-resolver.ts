@@ -1460,13 +1460,12 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
       if (pendingRules.length > 0 || geomSet) {
         await molecule.redrawRepresentation(created.uniqueId);
       }
-      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included)
-      // MUST be applied LAST, after any redraw. setNonCustomOpacity rewrites the
-      // alpha of the *current* buffers, but Moorhen's draw()/redraw() rebuild
-      // buffers opaque and do NOT re-apply nonCustomOpacity — so setting it
-      // before the redraw above is silently clobbered when the rebuild lands
-      // (the "transparent while loading, opaque once drawn" flip). Setting it
-      // here, on the final buffers, makes it stick; it requests its own redraw.
+      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included),
+      // applied after any redraw. Moorhen before 1.0.2-dev.g624b7e29e rebuilt
+      // buffers opaque in draw()/redraw() without re-applying nonCustomOpacity,
+      // so setting it before the redraw above was clobbered (the "transparent
+      // while loading, opaque once drawn" flip). Moorhen now re-applies it
+      // (e8a75398f), so the order no longer matters; last is still right.
       if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       dispatch(addCustomRepresentation(created));
       anySucceeded = true;
