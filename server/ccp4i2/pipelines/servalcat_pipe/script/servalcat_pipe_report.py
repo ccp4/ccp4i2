@@ -147,28 +147,49 @@ class servalcat_pipe_report(Report):
                 servalcatReport1.addGraphPerCycle(parent=summaryFold1, xmlnode=servalcatReportNode1)
 
 
-    def addOutlierLinks(self, parent=None, limit=12):
-        """The worst geometry outliers as buttons that open Moorhen on each
-        (the job's outlierScene). An open viewer of this project takes the
-        click and moves there, so they can be stepped through."""
-        from ccp4i2.pipelines.servalcat_pipe.script.outlier_places import describe, worst
+    def addOutlierLinks(self, parent=None, limit=12, per_kind=5, clash_limit=8):
+        """The worst outliers as buttons that open Moorhen on each (the job's
+        outlierScene), a group for each judge of the model: Servalcat's
+        geometry, MolProbity's residues (a group per kind, so one numerous
+        kind does not hide the rest) and clashes, the ADP analysis. An open
+        viewer of this project takes the click and moves there, so they can be
+        stepped through."""
+        from ccp4i2.pipelines.servalcat_pipe.script.outlier_places import (
+            MOLPROBITY_SECTIONS, adp_places, describe, molprobity_places, worst)
         if parent is None:
             parent = self
+        groups = []
         try:
-            places = worst(self.xmlnode, limit=limit)
+            groups.append(("Geometry (Servalcat): largest |Z| first", worst(self.xmlnode, limit=limit)))
         except Exception:
+            pass
+        try:
+            molprobity = molprobity_places(self.xmlnode)
+        except Exception:
+            molprobity = []
+        for _, kind, title, _ in MOLPROBITY_SECTIONS:
+            groups.append((f"MolProbity: {title} outliers",
+                           [p for p in molprobity if p["kind"] == kind][:per_kind]))
+        groups.append(("MolProbity: clashes, largest overlap first",
+                       [p for p in molprobity if p["kind"] == "clash"][:clash_limit]))
+        try:
+            groups.append(("ADPs outside the limits: furthest outside first", adp_places(self.xmlnode)[:limit]))
+        except Exception:
+            pass
+        groups = [(title, found) for title, found in groups if found]
+        if not groups:
             return
-        if not places:
-            return
-        fold = parent.addFold(label="Look at the worst outliers in Moorhen", brief="Outliers in Moorhen",
+        fold = parent.addFold(label="Look at the outliers in Moorhen", brief="Outliers in Moorhen",
                               initiallyOpen=True)
         fold.addText(text=(
-            f"The {len(places)} outliers with the largest |Z|, of every kind. Each opens the refined "
-            "model and its maps centred on the atoms involved; with a viewer of this project already "
-            "open, the click moves that viewer rather than opening another."))
-        for place in places:
-            fold.addMoorhenLink(label=describe(place), method="outlierScene",
-                                kwargs={"kind": place["kind"], "index": place["index"]})
+            "Each opens the refined model and its maps centred on the outlier, its residues and atoms "
+            "marked in magenta; with a viewer of this project already open, the click moves that viewer "
+            "rather than opening another."))
+        for title, found in groups:
+            fold.addText(text=title, tone="heading")
+            for place in found:
+                fold.addMoorhenLink(label=describe(place), method="outlierScene",
+                                    kwargs={"kind": place["kind"], "index": place["index"]})
 
     def validationReport(self, parent=None):
         if parent is None:
