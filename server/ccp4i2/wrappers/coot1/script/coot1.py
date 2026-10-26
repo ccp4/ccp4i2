@@ -91,7 +91,12 @@ class coot1(CPluginScript):
                 self.mergeDictToProjectLib(fileName=dict_file.__str__())
             except Exception:
                 pass
-        return CPluginScript.SUCCEEDED
+        if n_models + n_dicts > 0:
+            return CPluginScript.SUCCEEDED
+        # Nothing was saved: mark the job to delete, as Coot 0.9 (coot_rebuild)
+        # and the Moorhen task do, rather than leave a "Finished" job with no
+        # output in the project.
+        return CPluginScript.MARK_TO_DELETE
 
     def _annotate_model(self, item, path, meta=None):
         item.annotation.set(f"Coot output: {path.name}")
