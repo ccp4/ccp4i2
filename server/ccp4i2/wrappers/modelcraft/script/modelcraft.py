@@ -56,6 +56,7 @@ class modelcraft(CPluginScript):
     ERROR_CODES = {
         201: {"description": "ModelCraft stopped before it produced a model"},
         202: {"description": "PHASES and XYZIN come from different jobs"},
+        203: {"description": "Nothing to start building from"},
     }
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild", "coot1"]
@@ -75,11 +76,29 @@ class modelcraft(CPluginScript):
             use_model_phases = bool(self.container.controlParameters.USE_MODEL_PHASES)
         except Exception:
             use_model_phases = False
+        # ModelCraft starts from phases: refined from the starting model, or
+        # given. Both inputs are optional in the definition, so without this a
+        # job with neither (box unticked and no phases, or ticked and no model)
+        # passed validation and could only fail when run.
+        from ccp4i2.core import CCP4ErrorHandling
+        if not use_model_phases and not inp.PHASES.isSet():
+            error.append(klass=self.TASKNAME, code=203,
+                         details="Starting phases are needed: give a phases file, or tick "
+                                 "'Calculate initial phases by refining the starting model' "
+                                 "and give a starting model.",
+                         name=f"{self.TASKNAME}.container.inputData.PHASES",
+                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        if use_model_phases and not inp.XYZIN.isSet():
+            error.append(klass=self.TASKNAME, code=203,
+                         details="A starting model is needed to calculate the initial phases: "
+                                 "give one, or untick 'Calculate initial phases by refining the "
+                                 "starting model' and give starting phases.",
+                         name=f"{self.TASKNAME}.container.inputData.XYZIN",
+                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
         if not use_model_phases and inp.XYZIN.isSet() and inp.PHASES.isSet():
             from_xyz = str(getattr(inp.XYZIN, "relPath", "") or "")
             from_phs = str(getattr(inp.PHASES, "relPath", "") or "")
             if from_xyz and from_phs and from_xyz != from_phs:
-                from ccp4i2.core import CCP4ErrorHandling
                 error.append(klass=self.TASKNAME, code=202,
                              details=f"PHASES come from {from_phs} but XYZIN from {from_xyz}: phases of "
                                      "one model with the coordinates of another. Take both from the "
