@@ -82,6 +82,13 @@ export interface MoorhenScene {
    *  viewDataSession; lighting/effects live in `hints`. */
   view?: SceneView;
 
+  /** Geometry and text drawn in the scene's space: labels at points, lines
+   *  and arrows between points, spheres and discs (coins) at points. Positions are Å in
+   *  the molecules' frame after superposition; a point may be anchored to a
+   *  selection's centroid instead. Honoured (see
+   *  MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §14). */
+  annotations?: SceneAnnotation[];
+
   /** Advisory render hints — lighting + perceptual effects. A conforming
    *  renderer MAY ignore any of these and still produce a correct image
    *  (see MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §3, §4). */
@@ -667,6 +674,76 @@ export interface SceneSlab {
   selection?: string;
   /** Extra Ångström added to the radius on each side (default 0). */
   pad?: number;
+}
+
+// --------------------------------------------------------------------------
+// Annotations
+// --------------------------------------------------------------------------
+
+/** A point in the scene: [x, y, z] in Å, or the centroid of a selection on a
+ *  loaded coordinates file (taken after superposition). */
+export type ScenePoint = [number, number, number] | SceneAnchor;
+
+export interface SceneAnchor {
+  /** files[] name; the sole molecule if omitted. */
+  file?: string;
+  /** Coot CID; the whole molecule if omitted. */
+  selection?: string;
+}
+
+export type SceneAnnotation = SceneLabel | SceneLine | SceneSphere | SceneDisc;
+
+/** Text floating at a point. */
+export interface SceneLabel {
+  kind: "label";
+  at: ScenePoint;
+  /** `$...$` renders as LaTeX. */
+  text: string;
+  colour?: string;            // hex
+  fontSize?: number;          // px (substituted class)
+}
+
+/** A cylinder between two points, optionally dashed, with arrowheads and a
+ *  banner. */
+export interface SceneLine {
+  kind: "line";
+  from: ScenePoint;
+  to: ScenePoint;
+  radius?: number;            // Å, default 0.1
+  dashed?: boolean;
+  arrows?: "none" | "start" | "end" | "both";
+  colour?: string;            // hex
+  text?: string;
+  textColour?: string;        // hex, defaults to colour
+  fontSize?: number;
+  textAt?: "start" | "middle" | "end";   // default middle
+}
+
+/** A marker seen the same from every angle, with a banner at its centre. A
+ *  renderer with no sphere primitive substitutes a solid marker of the same
+ *  extent. */
+export interface SceneSphere {
+  kind: "sphere";
+  at: ScenePoint;
+  radius: number;             // Å
+  colour?: string;            // hex
+  text?: string;
+  textColour?: string;
+  fontSize?: number;
+}
+
+/** A coin: a short cylinder of `radius` facing along `normal`, with a banner
+ *  on its face. */
+export interface SceneDisc {
+  kind: "disc";
+  at: ScenePoint;
+  normal?: [number, number, number];     // default [0, 0, 1]
+  radius: number;             // Å
+  thickness?: number;         // Å, default 0.3
+  colour?: string;            // hex
+  text?: string;
+  textColour?: string;
+  fontSize?: number;
 }
 
 // --------------------------------------------------------------------------

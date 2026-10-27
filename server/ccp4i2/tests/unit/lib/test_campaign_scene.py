@@ -357,3 +357,13 @@ def test_site_position_is_what_finds_the_pocket(tmp_path):
     assert campaign_scene.pocket_residue_cids(
         st, campaign_scene.site_position(away), radius=20.0
     ) == []
+
+
+# --------------------------------------------------------------------------
+# Site markers (the summary scene's annotations)
+# --------------------------------------------------------------------------
+
+def test_marker_text_counts_hits_in_english():
+    assert campaign_scene._marker_text("S1", 0) == "S1: no hits"
+    assert campaign_scene._marker_text("S1", 1) == "S1: 1 hit"
+    assert campaign_scene._marker_text("S1", 7) == "S1: 7 hits"

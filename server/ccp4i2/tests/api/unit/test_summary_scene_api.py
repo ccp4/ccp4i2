@@ -429,6 +429,63 @@ def test_summary_scene_carries_the_first_site_camera(
     assert view["zoom"] == 0.35
 
 
+def test_summary_scene_puts_a_marker_on_every_site_with_its_hit_count(
+    bypass_api_permissions, test_project_path
+):
+    """Each binding site gets a ``sphere`` annotation at its real-space
+    position whose banner counts the members
+    judged a hit there: only current members, only an effective ``hit``
+    (reviewers disagreeing is not one), and zero spelled out rather than
+    the site left bare."""
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+    members = sorted(
+        (m.project for m in group.memberships.filter(
+            type=models.ProjectGroupMembership.MembershipType.MEMBER)),
+        key=lambda p: p.name,
+    )
+    assert len(members) == 3
+    busy = models.CampaignSite.objects.create(
+        group=group, name="a busy pocket",
+        origin_x=-12.5, origin_y=3.25, origin_z=-28.75,
+        quat=[0.0, 0.0, 0.0, 1.0], zoom=0.35, order=0,
+    )
+    quiet = models.CampaignSite.objects.create(
+        group=group, name="b quiet pocket", origin_x=-1.0, origin_y=-2.0, origin_z=-3.0, order=1,
+    )
+    models.SiteEvaluation.objects.create(project=members[0], site=busy, verdict="hit")
+    models.SiteEvaluation.objects.create(project=members[1], site=busy, verdict="hit")
+    # A third member where reviewers disagree: to reconcile, not a hit.
+    models.SiteEvaluation.objects.create(
+        project=members[2], site=busy, verdict="hit", evaluator="ann")
+    models.SiteEvaluation.objects.create(
+        project=members[2], site=busy, verdict="empty", evaluator="bob")
+    # A hit recorded by a project that is not a member does not count.
+    outsider = models.Project.objects.create(
+        name="outsider", directory=str(test_project_path / "outsider"))
+    models.SiteEvaluation.objects.create(project=outsider, site=quiet, verdict="hit")
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    body = response.json()
+    markers = body["scene"]["annotations"]
+
+    assert [m["text"] for m in markers] == [
+        "a busy pocket: 2 hits", "b quiet pocket: no hits",
+    ]
+    assert all(m["kind"] == "sphere" for m in markers)
+    # site_position negates the stored (view) origin.
+    assert markers[0]["at"] == [12.5, -3.25, 28.75]
+    assert markers[0]["colour"] != markers[1]["colour"]
+    assert body["stats"]["sites"] == [
+        {"id": busy.id, "name": "a busy pocket", "hits": 2},
+        {"id": quiet.id, "name": "b quiet pocket", "hits": 0},
+    ]
+
+
 def test_summary_scene_without_sites_has_no_view(
     bypass_api_permissions, test_project_path
 ):

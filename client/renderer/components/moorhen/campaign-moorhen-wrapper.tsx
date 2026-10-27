@@ -14,6 +14,7 @@
 import {
   removeMolecule,
   removeMap,
+  removeVectorsMatchingIDString,
   setOrigin,
   setQuat,
   setZoom,
@@ -47,6 +48,7 @@ import {
   type EventRef,
 } from "../../lib/event-evidence";
 import type { MoorhenScene } from "../../types/moorhen-scene";
+import { ANNOTATION_VECTOR_PREFIX } from "../../lib/moorhen-scene-resolver";
 import { EMPTY_PROJECT_CONTEXT, ProjectContext } from "../../lib/scene-ref-urls";
 import type { SceneSource } from "../../lib/scene-source";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
@@ -230,6 +232,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       dispatch(removeMap(map));
       map.delete();
     }
+    // The summary scene's site coins go with the content they annotate.
+    dispatch(removeVectorsMatchingIDString(ANNOTATION_VECTOR_PREFIX));
     dispatch(setRequestDrawScene(true));
     // Reset ligand info
     setLigandDictFileId(null);

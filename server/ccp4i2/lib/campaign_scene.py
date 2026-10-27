@@ -688,7 +688,79 @@ def build_summary_scene(group) -> dict:
     if view:
         scene["view"] = view
 
+    annotations, site_stats = _site_markers(group, member_memberships)
+    if annotations:
+        scene["annotations"] = annotations
+    stats["sites"] = site_stats
+
     return {"scene": scene, "stats": stats}
+
+
+# Markers over the binding sites of the summary scene: a sphere, which reads
+# the same from whatever angle shows the site distribution best. A site with
+# hits is warm, a site nobody has found anything at is grey; the banner says
+# which.
+MARKER_HIT_COLOUR = "#e07a5f"
+MARKER_EMPTY_COLOUR = "#9e9e9e"
+MARKER_RADIUS = 1.2        # Angstrom
+
+
+def site_hit_counts(sites, member_ids: set) -> dict:
+    """``{site id: number of current members judged a hit there}``.
+
+    A member counts when its cell's effective verdict at the site, across
+    reviewers (``lib.site_verdicts.cell_verdicts``), is ``hit``: two reviewers
+    disagreeing is "to reconcile", not a hit. Only current members count, for
+    the reason ``build_sites_scene`` gives: an evaluation outlives the
+    membership it was recorded under.
+    """
+    from .site_verdicts import cell_verdicts
+    counts = {}
+    for site in sites:
+        n = 0
+        for (project_id, _), cell in cell_verdicts(site.evaluations.all()).items():
+            if project_id in member_ids and cell["verdict"] == "hit":
+                n += 1
+        counts[site.id] = n
+    return counts
+
+
+def _marker_text(name: str, hits: int) -> str:
+    if hits == 0:
+        return f"{name}: no hits"
+    return f"{name}: {hits} hit" + ("" if hits == 1 else "s")
+
+
+def _site_markers(group, member_memberships) -> tuple:
+    """A ``sphere`` annotation over every binding site of the campaign
+    carrying its name and the number of members judged a hit there, plus
+    ``[{id, name, hits}]`` for ``stats``.
+
+    The marker sits at the site's real-space position (``site_position``: the
+    stored origin is Moorhen's negated view origin). It is drawn in the
+    reference frame the hits are fitted into, which is the frame the sites
+    were saved in, since a site is saved from the campaign viewer looking at
+    the parent or a stand-in for it.
+    """
+    from .campaign_site_order import ordered_sites
+    sites = ordered_sites(group.site_set.all())
+    if not sites:
+        return [], []
+    member_ids = set(member_memberships.values_list("project_id", flat=True))
+    counts = site_hit_counts(sites, member_ids)
+    annotations = []
+    site_stats = []
+    for site in sites:
+        hits = counts.get(site.id, 0)
+        annotations.append({
+            "kind": "sphere",
+            "at": [round(c, 3) for c in site_position(site)],
+            "radius": MARKER_RADIUS,
+            "colour": MARKER_HIT_COLOUR if hits else MARKER_EMPTY_COLOUR,
+            "text": _marker_text(site.name, hits),
+        })
+        site_stats.append({"id": site.id, "name": site.name, "hits": hits})
+    return annotations, site_stats
 
 
 def build_site_scene(group, site, include_unclear: bool = False,
