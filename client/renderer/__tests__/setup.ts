@@ -2,21 +2,25 @@ import "@testing-library/jest-dom/vitest";
 import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
 
-// next/font/google is not executable in vitest — stub every font factory
-// because the theme provider module is transitively imported by utils → api.
-vi.mock("next/font/google", () => {
-  const fontFactory = () => ({
+// next/font is not executable in vitest -- stub its font factories, because
+// the theme provider module is transitively imported by utils -> api.
+// (vi.hoisted: vi.mock calls are lifted above the rest of the module.)
+const { fontFactory } = vi.hoisted(() => ({
+  fontFactory: () => ({
     className: "",
     style: { fontFamily: "sans-serif" },
     variable: "--font-stub",
-  });
-  return new Proxy(
+  }),
+}));
+vi.mock("next/font/local", () => ({ __esModule: true, default: fontFactory }));
+vi.mock("next/font/google", () =>
+  new Proxy(
     { __esModule: true },
     {
       get: (target: any, key: string) => (key in target ? target[key] : fontFactory),
     }
-  );
-});
+  )
+);
 
 // next/navigation: imported transitively by auth/token utilities.
 vi.mock("next/navigation", () => ({
