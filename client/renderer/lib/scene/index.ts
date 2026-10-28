@@ -283,6 +283,9 @@ const STRUCTURED_PRUNE = {
     "hints", // advisory lighting/effects; the resolver doesn't even apply lighting yet
     "maskMaps", // advanced map-derivation recipe; rarely hand-authored, and the
     //             `from:` it feeds is pruned too — the validator still accepts both
+    "annotations", // labels/lines/discs: ~25 properties, which the 100-property
+    //             cap has no room for (the profile sits at 84). A generated scene
+    //             cannot carry them; a hand-written or server-built one can.
   ],
   /** Property names removed wherever they occur. Each is unique to one block in
    *  this schema, so name-matching is unambiguous. */

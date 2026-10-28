@@ -158,6 +158,43 @@ view?: {
   slab?: { file?: string, selection?: string, pad?: number }  # z-depth window for a selection; beats clip
   background?: string  # hex colour #rrggbb or #rrggbbaa
 }
+annotations?: ({
+  kind: "label"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  text: string  # $...$ is LaTeX
+  colour?: string  # hex
+  fontSize?: number  # px
+} | {
+  kind: "line"
+  from: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  to: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  radius?: number  # Å; default 0.1
+  dashed?: boolean
+  arrows?: "none"|"start"|"end"|"both"
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+  textAt?: "start"|"middle"|"end"  # default middle
+} | {
+  kind: "sphere"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  radius: number  # Å
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+} | {
+  kind: "disc"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  normal?: [number, number, number]  # disc axis; default [0, 0, 1]
+  radius: number  # Å
+  thickness?: number  # Å; default 0.3
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+})[]
 hints?: {
   lighting?: {
     direction?: [number, number, number]  # principal directional light vector → Moorhen lightPosition
@@ -200,6 +237,10 @@ resolver?: { onMissingResidues?: "clamp-and-log"|"strict" }
   every representation of that file; a representation's own `colour` overrides it.
 - geometry dimensions are Ångström. `hints` (lighting/effects) are ADVISORY —
   a viewer may ignore them; never rely on them for what must be visible.
+- `annotations` draw text and geometry in space: { kind: label, at, text },
+  { kind: line, from, to, arrows?, text? }, { kind: sphere, at, radius, text? }
+  (a marker for a place), { kind: disc, at, radius, normal?, text? }.
+  A point is [x, y, z] (Å) or { file, selection } (a selection's centroid).
 
 === EXAMPLE (shape only — use the PROJECT/CONTENTS below for real refs) ===
 ```yaml
