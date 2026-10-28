@@ -18,7 +18,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class SIMBAD(CPluginScript):
     TASKNAME = 'SIMBAD'
     ERROR_CODES = {1: {'description' : 'Something not very good has happened.'}}
-    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1']
+    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1', 'moorhen']
     TASKCOMMAND="simbad"
 
     def processInputFiles(self):

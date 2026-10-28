@@ -29,7 +29,7 @@ class phaser_rnp_pipeline_phil(phaser_pipeline_phil):
     TASKNAME = "phaser_rnp_pipeline_phil"
     MR_TASK = "phaser_mr_rnp_phil"
     PHIL_MODE = phaser_mr_rnp_phil.PHIL_MODE
-    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
+    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild", "coot1", "moorhen"]
     #: The identity a fragment of the parent model claims to the target: the
     #: classic pipeline's value, for a structure taken to be isomorphous
     FRAGMENT_IDENTITY = 0.9
