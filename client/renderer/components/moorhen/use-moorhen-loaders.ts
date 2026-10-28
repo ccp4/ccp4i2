@@ -1083,6 +1083,8 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
       sceneSettings: sceneSettingsState,
       vectors: (state as unknown as { vectors?: { vectorsList?: LiftCtx["vectors"] } })
         .vectors?.vectorsList,
+      objects: (state as unknown as { threeDObjects?: { objects?: LiftCtx["objects"] } })
+        .threeDObjects?.objects,
       superpose: lastAppliedSuperposeRef.current,
       maskMaps: lastAppliedMaskMapsRef.current,
       domains: lastAppliedDomainsRef.current,

@@ -183,10 +183,10 @@ frame as the molecules and after any superposition:
 
 A point is \`[x, y, z]\` in Å, or \`{ file, selection }\` for the centroid of a
 selection, which follows the molecule it names. Positions, radii and text are
-**honoured**; \`fontSize\` (px) and a sphere's exact shape are substituted:
-Moorhen draws annotations as vectors (cylinders), so a sphere is a bristle of
-seven cylinders through its centre, and a disc seen edge-on is a line.
-Applying a scene replaces the annotations of the one before it.
+**honoured**; \`fontSize\` (px) and a sphere's exact shape are substituted
+(Moorhen draws a true sphere, and a disc as a coin of \`thickness\` Å, so
+edge-on it is a line). Applying a scene replaces the annotations of the one
+before it.
 
 ## Examples
 
