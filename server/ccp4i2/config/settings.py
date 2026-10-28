@@ -153,6 +153,19 @@ USER_DIR = _preferences.ccp4i2_home()
 USER_DIR.mkdir(parents=True, exist_ok=True)
 MEDIA_ROOT = USER_DIR / "files"
 
+# Built campaign scenes (lib.campaign_scene_cache) are remembered between
+# requests. File-based, not in-process, so an entry outlives gunicorn
+# recycling a worker every hundred requests -- which a summary page of a few
+# hundred datasets, each downloading its coordinates, reaches on its own.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": str(USER_DIR / "cache"),
+        "TIMEOUT": 24 * 60 * 60,
+        "OPTIONS": {"MAX_ENTRIES": 2000},
+    }
+}
+
 # Database configuration (env DATABASE_URL > preferences "database" > SQLite default)
 DATABASE_URL = _preferences.resolve("database", env="DATABASE_URL", prefs=_PREFS)
 

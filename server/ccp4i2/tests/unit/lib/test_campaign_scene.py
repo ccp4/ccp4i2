@@ -367,3 +367,72 @@ def test_marker_text_counts_hits_in_english():
     assert campaign_scene._marker_text("S1", 0) == "S1: no hits"
     assert campaign_scene._marker_text("S1", 1) == "S1: 1 hit"
     assert campaign_scene._marker_text("S1", 7) == "S1: 7 hits"
+
+
+# --------------------------------------------------------------------------
+# Each structure is parsed once, however many steps look at it
+# --------------------------------------------------------------------------
+#
+# A summary of a few hundred datasets used to parse every member's file for
+# ligand detection, again to fit it, and the reference once per member --
+# the bulk of a build that outran the browser's patience. These pin the
+# read-once contract: a parsed structure is accepted and reused.
+
+def _counting_reader(monkeypatch):
+    """Wrap gemmi.read_structure as the scene module sees it, counting paths."""
+    real = gemmi.read_structure
+    reads = []
+
+    def counting(path, *args, **kwargs):
+        reads.append(str(path))
+        return real(path, *args, **kwargs)
+
+    monkeypatch.setattr(campaign_scene.gemmi, "read_structure", counting)
+    return reads
+
+
+def test_detect_ligands_accepts_a_parsed_structure(tmp_path, monkeypatch):
+    pdb = tmp_path / "lig.pdb"
+    _write_pdb(pdb, ligand_code="LIG")
+    structure = gemmi.read_structure(str(pdb))
+    reads = _counting_reader(monkeypatch)
+
+    assert campaign_scene.detect_ligands(pdb, structure=structure) == ["LIG"]
+    assert reads == []
+
+
+def test_superpose_reads_the_reference_once_and_each_mover_once(tmp_path, monkeypatch):
+    ref = tmp_path / "ref.pdb"
+    _write_pdb(ref)
+    movers = []
+    for i in range(3):
+        path = tmp_path / f"m{i}.pdb"
+        _write_pdb(path, ligand_code="LIG")
+        movers.append({"project": type("P", (), {"name": f"m{i}"})(), "name": f"m{i}", "coord_path": path})
+    ref_structure = gemmi.read_structure(str(ref))
+    reads = _counting_reader(monkeypatch)
+    stats = {"superpose": []}
+
+    campaign_scene._superpose("reference", ref, movers, stats)
+    # One read of the reference, one per mover (the fit itself fails on a
+    # one-residue model, which is beside the point here)...
+    assert sorted(reads) == sorted([str(ref)] + [str(m["coord_path"]) for m in movers])
+    assert len(stats["superpose"]) == 3
+    # ...and the movers now carry their structure, so a later step reads nothing.
+    assert all(isinstance(m["structure"], gemmi.Structure) for m in movers)
+    campaign_scene._superpose("reference", ref, movers, stats, reference=ref_structure)
+    assert len(reads) == 4
+
+
+def test_superpose_with_an_unreadable_reference_fails_every_fit_and_says_why(tmp_path):
+    mover = tmp_path / "m.pdb"
+    _write_pdb(mover, ligand_code="LIG")
+    movers = [{"project": type("P", (), {"name": "m"})(), "name": "m", "coord_path": mover}]
+    stats = {"superpose": []}
+
+    entries = campaign_scene._superpose("reference", tmp_path / "missing.pdb", movers, stats)
+
+    assert entries == []
+    assert stats["superpose"][0]["ok"] is False
+    assert "could not read" in stats["superpose"][0]["reason"]
+    assert movers[0]["fit"].ok is False

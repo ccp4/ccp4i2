@@ -24,6 +24,19 @@ import {
 import { Project } from "../types/models";
 import type { MoorhenScene } from "../types/moorhen-scene";
 
+/**
+ * How long to wait for the server to build a scene.
+ *
+ * ``apiGet`` aborts a request after 30 s by default, which is right for a
+ * JSON round trip and wrong for a scene the server assembles on demand: a
+ * summary of a few hundred datasets parses and fits every one of them, and
+ * the first open of a campaign that size took longer than that, so the
+ * browser gave up on a response that was on its way and the page sat empty.
+ * The server now caches a built scene, so this is the ceiling for the first
+ * open after a change, not every open.
+ */
+export const SCENE_BUILD_TIMEOUT_MS = 10 * 60 * 1000;
+
 /** A dataset the summary scene could not include, with the reason. */
 export interface SummarySceneSkip {
   project: string;
@@ -180,7 +193,9 @@ export function useCampaignsApi() {
      * page enters summary mode.
      */
     async fetchSummaryScene(campaignId: number): Promise<SummarySceneResponse> {
-      return apiGet(`projectgroups/${campaignId}/summary_scene`);
+      return apiGet(`projectgroups/${campaignId}/summary_scene`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
     },
 
     /**
@@ -199,7 +214,9 @@ export function useCampaignsApi() {
       if (options.includeUnclear) params.set("include", "unclear");
       if (options.superpose === false) params.set("superpose", "none");
       const query = params.size ? `?${params.toString()}` : "";
-      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`);
+      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
     },
 
     /**
@@ -216,7 +233,9 @@ export function useCampaignsApi() {
       const params = new URLSearchParams({ ids: siteIds.join(",") });
       if (options.includeUnclear) params.set("include", "unclear");
       if (options.superpose === false) params.set("superpose", "none");
-      return apiGet(`projectgroups/${campaignId}/sites/scene/?${params.toString()}`);
+      return apiGet(`projectgroups/${campaignId}/sites/scene/?${params.toString()}`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
     },
 
     /**
