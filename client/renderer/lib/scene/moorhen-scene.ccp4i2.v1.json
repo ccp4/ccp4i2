@@ -903,6 +903,355 @@
       },
       "additionalProperties": false
     },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "label"
+              },
+              "at": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "selection": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ],
+                "description": "[x, y, z] Å, or a selection's centroid"
+              },
+              "text": {
+                "type": "string",
+                "description": "$...$ is LaTeX"
+              },
+              "colour": {
+                "description": "hex",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "fontSize": {
+                "description": "px",
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "kind",
+              "at",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "line"
+              },
+              "from": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "selection": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ],
+                "description": "[x, y, z] Å, or a selection's centroid"
+              },
+              "to": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "selection": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ],
+                "description": "[x, y, z] Å, or a selection's centroid"
+              },
+              "radius": {
+                "description": "Å; default 0.1",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "dashed": {
+                "type": "boolean"
+              },
+              "arrows": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "start",
+                  "end",
+                  "both"
+                ]
+              },
+              "colour": {
+                "description": "hex",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "text": {
+                "description": "banner; $...$ is LaTeX",
+                "type": "string"
+              },
+              "textColour": {
+                "description": "defaults to colour",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "fontSize": {
+                "description": "px",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "textAt": {
+                "description": "default middle",
+                "type": "string",
+                "enum": [
+                  "start",
+                  "middle",
+                  "end"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "sphere"
+              },
+              "at": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "selection": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ],
+                "description": "[x, y, z] Å, or a selection's centroid"
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Å"
+              },
+              "colour": {
+                "description": "hex",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "text": {
+                "description": "banner; $...$ is LaTeX",
+                "type": "string"
+              },
+              "textColour": {
+                "description": "defaults to colour",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "fontSize": {
+                "description": "px",
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "kind",
+              "at",
+              "radius"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "disc"
+              },
+              "at": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string"
+                      },
+                      "selection": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ],
+                "description": "[x, y, z] Å, or a selection's centroid"
+              },
+              "normal": {
+                "description": "disc axis; default [0, 0, 1]",
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Å"
+              },
+              "thickness": {
+                "description": "Å; default 0.3",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "colour": {
+                "description": "hex",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "text": {
+                "description": "banner; $...$ is LaTeX",
+                "type": "string"
+              },
+              "textColour": {
+                "description": "defaults to colour",
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+              },
+              "fontSize": {
+                "description": "px",
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "required": [
+              "kind",
+              "at",
+              "radius"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
     "hints": {
       "type": "object",
       "properties": {

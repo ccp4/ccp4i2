@@ -604,6 +604,90 @@ export const Hints = z
   })
   .strict();
 
+// --- annotations (geometry and text drawn in the scene) --------------------
+
+/**
+ * A point in the scene: real-space Å coordinates, or the centroid of a
+ * selection on a loaded file, taken after superposition so an anchored
+ * annotation follows the molecule it names.
+ */
+const Anchor = z
+  .object({
+    file: z.string().optional(),
+    selection: z.string().optional(),
+  })
+  .strict();
+
+export const Point = z
+  .union([z.tuple([z.number(), z.number(), z.number()]), Anchor])
+  .describe("[x, y, z] Å, or a selection's centroid");
+
+const TextFields = {
+  text: z.string().optional().describe("banner; $...$ is LaTeX"),
+  textColour: HexColour.optional().describe("defaults to colour"),
+  fontSize: z.number().positive().optional().describe("px"),
+};
+
+const Label = z
+  .object({
+    kind: z.literal("label"),
+    at: Point,
+    text: z.string().describe("$...$ is LaTeX"),
+    colour: HexColour.optional().describe("hex"),
+    fontSize: TextFields.fontSize,
+  })
+  .strict();
+
+const Line = z
+  .object({
+    kind: z.literal("line"),
+    from: Point,
+    to: Point,
+    radius: z.number().positive().optional().describe("Å; default 0.1"),
+    dashed: z.boolean().optional(),
+    arrows: z.enum(["none", "start", "end", "both"]).optional(),
+    colour: HexColour.optional().describe("hex"),
+    ...TextFields,
+    textAt: z.enum(["start", "middle", "end"]).optional().describe("default middle"),
+  })
+  .strict();
+
+const Disc = z
+  .object({
+    kind: z.literal("disc"),
+    at: Point,
+    normal: z
+      .tuple([z.number(), z.number(), z.number()])
+      .optional()
+      .describe("disc axis; default [0, 0, 1]"),
+    radius: z.number().positive().describe("Å"),
+    thickness: z.number().positive().optional().describe("Å; default 0.3"),
+    colour: HexColour.optional().describe("hex"),
+    ...TextFields,
+  })
+  .strict();
+
+const Sphere = z
+  .object({
+    kind: z.literal("sphere"),
+    at: Point,
+    radius: z.number().positive().describe("Å"),
+    colour: HexColour.optional().describe("hex"),
+    ...TextFields,
+  })
+  .strict();
+
+/**
+ * Geometry and text drawn in the scene's space: a text label at a point, a
+ * line or arrow between two points, a sphere (a marker seen the same from
+ * every angle) or a disc (a coin) at a point. Honoured class: positions and
+ * radii are Å and the text governs what is seen. A renderer draws them in
+ * the same frame as the molecules, after superposition. The text's font
+ * size is of the substituted class, and so is a sphere's shape: a renderer
+ * with no sphere primitive substitutes a solid marker of the same extent.
+ */
+export const Annotation = z.discriminatedUnion("kind", [Label, Line, Sphere, Disc]);
+
 // --- top-level scene builder ----------------------------------------------
 
 /**
@@ -628,6 +712,7 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
       maps: z.array(SceneMapSchema).optional(),
       activeMap: z.string().optional(),
       view: View.optional(),
+      annotations: z.array(Annotation).optional(),
       hints: Hints.optional(),
       resolver: ResolverOptions.optional(),
     })
@@ -787,6 +872,21 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
         ref(s.view.centre.file, fileNames, ["view", "centre", "file"], "file");
       if (s.view?.slab?.file)
         ref(s.view.slab.file, fileNames, ["view", "slab", "file"], "file");
+      // An anchored point names a coordinates file (atoms to take a centroid
+      // of); a map or dictionary has none.
+      const anchorFile = (pt: unknown, path: (string | number)[]) => {
+        if (Array.isArray(pt) || pt == null) return;
+        const file = (pt as { file?: string }).file;
+        if (file != null) ref(file, coordFileNames, [...path, "file"], "coordinates file");
+      };
+      (s.annotations ?? []).forEach((a, i) => {
+        if (a.kind === "line") {
+          anchorFile(a.from, ["annotations", i, "from"]);
+          anchorFile(a.to, ["annotations", i, "to"]);
+        } else {
+          anchorFile(a.at, ["annotations", i, "at"]);
+        }
+      });
     });
 }
 

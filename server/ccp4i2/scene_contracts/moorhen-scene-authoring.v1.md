@@ -613,6 +613,54 @@ view:
   background: "#ffffff"                  # hex
 ```
 
+## `annotations`
+
+Geometry and text drawn in the scene's space, in the molecules' frame after
+any `superpose`. Four kinds, told apart by `kind`:
+
+| kind | draws | fields |
+|------|-------|--------|
+| `label` | text at a point | `at`, `text`, `colour?`, `fontSize?` |
+| `line` | a cylinder between two points | `from`, `to`, `radius?` (Å, 0.1), `dashed?`, `arrows?` (`none`/`start`/`end`/`both`), `colour?`, `text?`, `textAt?` (`start`/`middle`/`end`), `textColour?`, `fontSize?` |
+| `sphere` | a marker at a point, the same from every angle | `at`, `radius` (Å), `colour?`, `text?`, `textColour?`, `fontSize?` |
+| `disc` | a coin at a point | `at`, `radius` (Å), `thickness?` (Å, 0.3), `normal?` ([0, 0, 1]), `colour?`, `text?`, `textColour?`, `fontSize?` |
+
+Mark a *place* (a binding site, a hotspot) with a `sphere`: the view will be
+turned to whatever angle shows the distribution best, and a sphere reads the
+same from all of them.
+
+A **point** is `[x, y, z]` in Å, or `{ file, selection }`: the centroid of a
+Coot CID on a coordinates file in `files[]`, which follows that molecule when
+it is superposed. `text` wrapped in `$...$` renders as LaTeX.
+
+```yaml
+scene: labelled-site
+version: 1
+files:
+  - { name: prot, pdb: 1ABC }
+elements:
+  - file: prot
+    representations:
+      - { style: CRs, colour: secondary-structure }
+      - { style: CBs, selection: "//A/(LIG)" }
+annotations:
+  - { kind: label, at: { file: prot, selection: "//A/(LIG)" }, text: "fragment 7" }
+  - kind: line
+    from: { file: prot, selection: "//A/57/CA" }
+    to: { file: prot, selection: "//A/(LIG)" }
+    arrows: end
+    dashed: true
+    text: "3.1 Å"
+  - { kind: sphere, at: [12.0, 4.5, -3.2], radius: 1.2, colour: "#e07a5f", text: "Site 1: 7 hits" }
+```
+
+Positions, radii and text are honoured; `fontSize` (px) and a sphere's exact
+shape a renderer may substitute (Moorhen draws a bristle of seven cylinders
+through its centre). Applying a scene **replaces** the previous scene's
+annotations. Vectors are fixed in space: a disc seen edge-on is a line, so
+give `normal` the direction the camera looks along when a coin must read
+from a saved view.
+
 ## `resolver`
 
 Apply-time policy. Currently one option:
