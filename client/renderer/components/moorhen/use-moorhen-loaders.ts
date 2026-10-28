@@ -87,6 +87,7 @@ import {
   SceneLiftHints,
   SceneRefUrlResolver,
 } from "../../lib/moorhen-scene-lifter";
+import type { LiftCtx } from "../../lib/moorhen-scene-lifter";
 import {
   EMPTY_PROJECT_CONTEXT,
   ProjectContext,
@@ -1080,6 +1081,8 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
       molecules,
       glRef: readCameraState(state),
       sceneSettings: sceneSettingsState,
+      vectors: (state as unknown as { vectors?: { vectorsList?: LiftCtx["vectors"] } })
+        .vectors?.vectorsList,
       superpose: lastAppliedSuperposeRef.current,
       maskMaps: lastAppliedMaskMapsRef.current,
       domains: lastAppliedDomainsRef.current,

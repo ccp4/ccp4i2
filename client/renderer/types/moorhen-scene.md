@@ -162,6 +162,43 @@ view?: {
   slab?: { file?: string, selection?: string, pad?: number }  # z-depth window for a selection; beats clip
   background?: string  # hex colour #rrggbb or #rrggbbaa
 }
+annotations?: ({
+  kind: "label"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  text: string  # $...$ is LaTeX
+  colour?: string  # hex
+  fontSize?: number  # px
+} | {
+  kind: "line"
+  from: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  to: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  radius?: number  # Å; default 0.1
+  dashed?: boolean
+  arrows?: "none"|"start"|"end"|"both"
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+  textAt?: "start"|"middle"|"end"  # default middle
+} | {
+  kind: "sphere"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  radius: number  # Å
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+} | {
+  kind: "disc"
+  at: [number, number, number] | { file?: string, selection?: string }  # [x, y, z] Å, or a selection's centroid
+  normal?: [number, number, number]  # disc axis; default [0, 0, 1]
+  radius: number  # Å
+  thickness?: number  # Å; default 0.3
+  colour?: string  # hex
+  text?: string  # banner; $...$ is LaTeX
+  textColour?: string  # defaults to colour
+  fontSize?: number  # px
+})[]
 hints?: {
   lighting?: {
     direction?: [number, number, number]  # principal directional light vector → Moorhen lightPosition
@@ -247,6 +284,26 @@ of that file, and a representation's own `colour` overrides it for that rep.
   a direction vector (+x right, +y up, +z toward the viewer); effects are
   scene-authoritative (an `effects` block fully determines effect state).
 
+## Annotations
+
+`annotations[]` draws geometry and text in the scene's space, in the same
+frame as the molecules and after any superposition:
+
+- `label` — text at a point (`$...$` renders as LaTeX);
+- `line` — a cylinder between two points, optionally `dashed`, with
+  `arrows` and a banner (`text`, placed by `textAt`);
+- `sphere` — a marker of `radius` Å seen the same from every angle, with a
+  banner at its centre: the marker for a place, such as a binding site;
+- `disc` — a coin of `radius` Å facing along `normal`, with a banner on
+  its face.
+
+A point is `[x, y, z]` in Å, or `{ file, selection }` for the centroid of a
+selection, which follows the molecule it names. Positions, radii and text are
+**honoured**; `fontSize` (px) and a sphere's exact shape are substituted:
+Moorhen draws annotations as vectors (cylinders), so a sphere is a bristle of
+seven cylinders through its centre, and a disc seen edge-on is a line.
+Applying a scene replaces the annotations of the one before it.
+
 ## Examples
 
 Minimal portable scene:
@@ -280,6 +337,9 @@ elements:
 hints:
   lighting: { direction: [1, 1, 1], shininess: 24 }
   effects:  { ssao: { enabled: true }, edgeDetect: { enabled: true } }
+annotations:
+  - { kind: label, at: { file: gamma, selection: "//A/750" }, text: "Arg 750" }
+  - { kind: sphere, at: [12.0, 4.5, -3.2], radius: 1.2, text: "Site 1: 7 hits", colour: "#e07a5f" }
 resolver:
   onMissingResidues: clamp-and-log
 ```
