@@ -463,26 +463,23 @@ governs what is seen. Substituted: `fontSize` (px), and a sphere's exact shape.
 The discs are fixed in space, not billboarded, and the format says so rather
 than promising a renderer cannot keep.
 
-**Rendering.** Moorhen 1.0.2 exposes one public, 3D-positioned drawing
-mechanism: the vectors store (`addVectors`), a cylinder between two points with
-an optional text banner, rebuilt by MoorhenWebMG on every store change. Every
-kind lowers to it: a label is a zero-length vector with its banner at the end,
-a disc a cylinder of the disc's radius and `thickness` length along `normal`,
-a sphere a bristle of seven cylinders through its centre, the three axes and
-four body diagonals (`2r` long, `0.55r` thick), whose union is a rounded solid
-from any direction. glTF is no way in: Moorhen 1.0.2 exports meshes as glTF
-and imports none. Moorhen does have
-arbitrary triangulated primitives (`appendOtherData` with `TRIANGLES`,
-`PERFECT_SPHERES`, `TORUSES`, `TEXT` buffers) and draws its own vectors through
-them, but the package exports neither that function nor a `DisplayBuffer`
-constructor, and the one exported mesh route, `drawWithStyleFromMesh`, hangs the
-mesh on a molecule's representation where the next redraw replaces it. The
-format names the sphere anyway: a Moorhen that exports the primitive, or gives
-the vectors slice a sphere draw mode, renders the same scene better.
+**Rendering.** Moorhen draws a scene's annotations through two of its stores.
+Labels and lines go to the vectors store (`addVectors`): a cylinder between
+two points with an optional text banner, rebuilt by MoorhenWebMG on every
+store change; a label is a zero-length vector with its banner at the end.
+Spheres and discs go to the 3D objects store (`addObject`, from Moorhen's 3D
+objects API, upstream PR #716): a sphere is a sphere object, a disc a cylinder
+object of the disc's radius and `thickness` length along `normal`, so the coin
+keeps the thickness the format gives it. Objects have no text of their own, so
+a sphere's or disc's banner is a zero-length vector at the centre or on the
++normal face. Until October 2026 the package exported no sphere primitive and
+a sphere was substituted by a bristle of seven cylinders through its centre;
+the format named the sphere anyway, and now renders it as one.
 
 **Replacement, not accumulation.** The resolver stamps its vectors
 (`uniqueId` prefix `__TAG_SCENE_ANNOTATION`, which also hides them from
-Moorhen's Vectors dialog) and removes every stamped vector before adding the
+Moorhen's Vectors dialog) and its objects (a `source` tag, cleared by
+`removeObjectsByTag`), and removes every stamped one before adding the
 scene's, whether or not the scene has any. Annotations are scene-level, like
 the camera; a banner left over from the previous scene would read as a
 statement about this one. Vectors the user or Moorhen made are untouched.

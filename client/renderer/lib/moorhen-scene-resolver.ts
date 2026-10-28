@@ -60,10 +60,13 @@ import {
   setActiveMap,
   addVectors,
   removeVectorsMatchingIDString,
+  addObject,
+  removeObjectsByTag,
   ColourRule,
   getMultiColourRuleArgs,
 } from "moorhen/react-lib";
 import type { moorhen } from "moorhen/types/moorhen";
+import type { CylinderObject, SphereObject } from "moorhen/types/src/store/threeDObjectsSlice";
 
 // The colour-rule class is exported at runtime as `ColourRule`. The package's
 // types also name it `MoorhenColourRule`, but the bundle does not export that
@@ -894,13 +897,16 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     }
   }
 
-  // 4. Annotations: labels, lines and discs drawn through Moorhen's vectors
-  //    store. The previous scene's are replaced, never accumulated: they are
-  //    scene-level, like the camera, and a stale banner over a new scene would
-  //    read as a statement about it. Vectors Moorhen or the user made are not
-  //    touched (the stamp is ours alone). Anchored points resolve after the
-  //    superposition above, so a label follows the molecule it names.
+  // 4. Annotations: labels and lines drawn through Moorhen's vectors store,
+  //    spheres and discs through its 3D objects store. The previous scene's
+  //    are replaced, never accumulated: they are scene-level, like the
+  //    camera, and a stale banner over a new scene would read as a statement
+  //    about it. Vectors and objects Moorhen or the user made are not touched
+  //    (the id prefix and the tag are ours alone). Anchored points resolve
+  //    after the superposition above, so a label follows the molecule it
+  //    names.
   dispatch(removeVectorsMatchingIDString(ANNOTATION_VECTOR_PREFIX));
+  dispatch(removeObjectsByTag(ANNOTATION_OBJECT_TAGS));
   if (scene.annotations?.length) {
     const resolvePoint = (pt: ScenePoint, path: string): [number, number, number] | null => {
       if (Array.isArray(pt)) return pt;
@@ -920,8 +926,9 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       }
       return sphere.centre;
     };
-    const vectors = annotationsToVectors(scene.annotations, resolvePoint);
+    const { vectors, objects } = annotationsToDrawables(scene.annotations, resolvePoint);
     if (vectors.length) dispatch(addVectors(vectors));
+    objects.forEach((obj) => dispatch(addObject(obj)));
   }
 
   // Scene-level render hints (lighting + effects). Advisory; applied once.
@@ -933,13 +940,15 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 }
 
 // --------------------------------------------------------------------------
-// Annotations → Moorhen vectors
+// Annotations → Moorhen vectors and 3D objects
 // --------------------------------------------------------------------------
 
 /**
- * uniqueId prefix stamped on every vector the resolver makes from a scene's
- * `annotations`, so a re-apply replaces them and the lifter recognises them.
- * It contains `__TAG`, which Moorhen's own Vectors dialog filters out of the
+ * uniqueId prefix stamped on every vector and 3D object the resolver makes
+ * from a scene's `annotations`: `<prefix>:<index>` for the drawable that
+ * carries the annotation, `<prefix>:<index>#label` for a sphere's or disc's
+ * banner. A re-apply replaces them and the lifter orders by the index. It
+ * contains `__TAG`, which Moorhen's own Vectors dialog filters out of the
  * list it offers for editing: these belong to the scene, not to the user.
  */
 export const ANNOTATION_VECTOR_PREFIX = "__TAG_SCENE_ANNOTATION";
@@ -949,22 +958,15 @@ export const ANNOTATION_VECTOR_PREFIX = "__TAG_SCENE_ANNOTATION";
  *  same with every point lowered to [x, y, z], for the lifter. */
 export const ANNOTATION_TAG = "ccp4i2-scene-annotation";
 
+/** Tags on every 3D object the resolver makes. `source` is what a re-apply
+ *  and the campaign page clear by (`removeObjectsByTag`); the lifter reads
+ *  the same `{ authored, lowered }` stamp from the `annotation` tag. */
+export const ANNOTATION_OBJECT_TAGS: Record<string, string> = { source: ANNOTATION_TAG };
+const ANNOTATION_STAMP_TAG = "annotation";
+
 const ANNOTATION_DEFAULT_COLOUR = "#f2c14e";
 const LINE_DEFAULT_RADIUS = 0.1;
 const DISC_DEFAULT_THICKNESS = 0.3;
-/** Moorhen 1.0.2 exports no sphere primitive (the PERFECT_SPHERES buffer type
- *  exists but `appendOtherData` is internal), so a sphere is substituted by a
- *  bristle of cylinders through its centre, a 3D asterisk: the three axes and
- *  the four body diagonals, each `2 * radius` long and this fraction of the
- *  radius thick. Their union is a rounded solid whose silhouette is much the
- *  same from any direction. Upstream, a sphere draw mode on the vectors slice
- *  would let the resolver emit one vector. */
-const SPHERE_ARM_RADIUS_FRACTION = 0.55;
-const D = 1 / Math.sqrt(3);
-const SPHERE_ARMS: Xyz[] = [
-  [1, 0, 0], [0, 1, 0], [0, 0, 1],
-  [D, D, D], [D, D, -D], [D, -D, D], [D, -D, -D],
-];
 /** A label is a zero-length vector: nothing drawn but its banner. The radius
  *  must be truthy or Moorhen substitutes its 0.07 default. */
 const LABEL_STEM_RADIUS = 0.001;
@@ -990,9 +992,24 @@ export interface SceneVector {
   customTags?: string[];
 }
 
+/** The 3D objects (store/threeDObjectsSlice) the resolver makes: a sphere
+ *  for a sphere, a cylinder for a disc (a coin of the authored thickness). */
+export type SceneObject = SphereObject | CylinderObject;
+
+export interface SceneDrawables {
+  vectors: SceneVector[];
+  objects: SceneObject[];
+}
+
 function hexToRgb255(hex: string | undefined, fallback: string): { r: number; g: number; b: number } {
   const rgb = hexToRgb01(hex ?? fallback) ?? hexToRgb01(fallback)!;
   return { r: Math.round(rgb.r * 255), g: Math.round(rgb.g * 255), b: Math.round(rgb.b * 255) };
+}
+
+/** An object colour is `#rrggbbaa`; a scene colour is `#rrggbb`, opaque. */
+function objectColour(hex: string | undefined, fallback: string): string {
+  const valid = hex !== undefined && hexToRgb01(hex) !== null ? hex : fallback;
+  return `${valid.toLowerCase()}ff`;
 }
 
 type Xyz = [number, number, number];
@@ -1005,26 +1022,34 @@ function lowerAnnotation(a: SceneAnnotation, points: Record<string, Xyz>): Scene
 }
 
 /**
- * Turn a scene's `annotations` into Moorhen vectors (points mode). `resolvePoint`
- * lowers a point to coordinates, or returns null (having logged why) to drop
- * the annotation. Pure apart from that callback, so it is unit-testable: the
- * geometry rules live here, the store and gemmi do not.
+ * Turn a scene's `annotations` into Moorhen vectors (points mode) and 3D
+ * objects. `resolvePoint` lowers a point to coordinates, or returns null
+ * (having logged why) to drop the annotation. Pure apart from that callback,
+ * so it is unit-testable: the geometry rules live here, the store and gemmi
+ * do not.
  *
  *  - label:  a zero-length vector whose banner sits at the point.
  *  - line:   a cylinder (dashed if asked) with optional arrowheads and banner.
- *  - sphere: a bristle of cylinders through the point (SPHERE_ARMS); the
- *            banner sits at the centre. Only the first arm carries the
- *            lifter's stamp, so a sphere lifts once.
- *  - disc:   a cylinder of the disc's radius, `thickness` long, centred on the
- *            point along `normal`; the banner sits on its +normal face.
+ *  - sphere: a sphere object at the point. A banner is a zero-length vector
+ *            at its centre.
+ *  - disc:   a cylinder object of the disc's radius, `thickness` long,
+ *            centred on the point along `normal`. A banner is a zero-length
+ *            vector on its +normal face.
+ *
+ * The drawable that carries the annotation (the vector, the sphere, the
+ * cylinder) is stamped for the lifter; a banner vector is not, so a sphere
+ * or disc lifts once. Both carry the index in their uniqueId, so the lifter
+ * can restore the authored order across the two stores.
  */
-export function annotationsToVectors(
+export function annotationsToDrawables(
   annotations: SceneAnnotation[],
   resolvePoint: (pt: ScenePoint, path: string) => Xyz | null,
-): SceneVector[] {
-  const out: SceneVector[] = [];
+): SceneDrawables {
+  const vectors: SceneVector[] = [];
+  const objects: SceneObject[] = [];
   annotations.forEach((a, i) => {
     const path = `annotations[${i}]`;
+    const uniqueId = `${ANNOTATION_VECTOR_PREFIX}:${i}`;
     const colour = hexToRgb255(a.colour, ANNOTATION_DEFAULT_COLOUR);
     const textColour = hexToRgb255(
       a.kind === "label" ? a.colour : a.textColour ?? a.colour,
@@ -1033,25 +1058,39 @@ export function annotationsToVectors(
     const base = {
       coordsMode: "points" as const,
       cidFrom: "", cidTo: "", molFromUniqueId: "", molToUniqueId: "",
-      uniqueId: `${ANNOTATION_VECTOR_PREFIX}:${i}`,
+      uniqueId,
       vectorColour: colour,
       textColour,
       ...(a.fontSize !== undefined ? { labelFontSize: a.fontSize } : {}),
     };
-    const stamp = (points: Record<string, Xyz>) => [
-      ANNOTATION_TAG,
-      JSON.stringify({ authored: a, lowered: lowerAnnotation(a, points) }),
-    ];
+    const stamp = (points: Record<string, Xyz>) =>
+      JSON.stringify({ authored: a, lowered: lowerAnnotation(a, points) });
+    /** A banner at a point: the label vector a sphere or disc hangs its text on. */
+    const banner = (at: Xyz, text: string): SceneVector => ({
+      ...base,
+      uniqueId: `${uniqueId}#label`,
+      labelMode: "end", labelText: text,
+      drawMode: "cylinder", arrowMode: "none", radius: LABEL_STEM_RADIUS,
+      xFrom: at[0], yFrom: at[1], zFrom: at[2], xTo: at[0], yTo: at[1], zTo: at[2],
+    });
+    const objectBase = {
+      uniqueId,
+      colour: objectColour(a.colour, ANNOTATION_DEFAULT_COLOUR),
+      wireframe: false,
+      // The geometry follows from the scene: editing it in place would only
+      // put the two out of step. Deleting stays allowed.
+      locked: true,
+    };
 
     if (a.kind === "label") {
       const at = resolvePoint(a.at, `${path}.at`);
       if (!at) return;
-      out.push({
+      vectors.push({
         ...base,
         labelMode: "end", labelText: a.text,
         drawMode: "cylinder", arrowMode: "none", radius: LABEL_STEM_RADIUS,
         xFrom: at[0], yFrom: at[1], zFrom: at[2], xTo: at[0], yTo: at[1], zTo: at[2],
-        customTags: stamp({ at }),
+        customTags: [ANNOTATION_TAG, stamp({ at })],
       });
       return;
     }
@@ -1060,7 +1099,7 @@ export function annotationsToVectors(
       const from = resolvePoint(a.from, `${path}.from`);
       const to = resolvePoint(a.to, `${path}.to`);
       if (!from || !to) return;
-      out.push({
+      vectors.push({
         ...base,
         labelMode: a.text ? a.textAt ?? "middle" : "none",
         labelText: a.text ?? "",
@@ -1068,7 +1107,7 @@ export function annotationsToVectors(
         arrowMode: a.arrows ?? "none",
         radius: a.radius ?? LINE_DEFAULT_RADIUS,
         xFrom: from[0], yFrom: from[1], zFrom: from[2], xTo: to[0], yTo: to[1], zTo: to[2],
-        customTags: stamp({ from, to }),
+        customTags: [ANNOTATION_TAG, stamp({ from, to })],
       });
       return;
     }
@@ -1076,19 +1115,14 @@ export function annotationsToVectors(
     if (a.kind === "sphere") {
       const at = resolvePoint(a.at, `${path}.at`);
       if (!at) return;
-      SPHERE_ARMS.forEach((n, arm) => {
-        out.push({
-          ...base,
-          uniqueId: arm === 0 ? base.uniqueId : `${base.uniqueId}#${arm}`,
-          labelMode: arm === 0 && a.text ? "middle" : "none",
-          labelText: arm === 0 ? a.text ?? "" : "",
-          drawMode: "cylinder", arrowMode: "none",
-          radius: a.radius * SPHERE_ARM_RADIUS_FRACTION,
-          xFrom: at[0] - n[0] * a.radius, yFrom: at[1] - n[1] * a.radius, zFrom: at[2] - n[2] * a.radius,
-          xTo: at[0] + n[0] * a.radius, yTo: at[1] + n[1] * a.radius, zTo: at[2] + n[2] * a.radius,
-          ...(arm === 0 ? { customTags: stamp({ at }) } : {}),
-        });
+      objects.push({
+        ...objectBase,
+        type: "sphere",
+        origin: at,
+        radius: a.radius,
+        tags: { ...ANNOTATION_OBJECT_TAGS, [ANNOTATION_STAMP_TAG]: stamp({ at }) },
       });
+      if (a.text) vectors.push(banner(at, a.text));
       return;
     }
 
@@ -1099,23 +1133,43 @@ export function annotationsToVectors(
     const len = Math.hypot(n0[0], n0[1], n0[2]);
     const n: Xyz = len > 0 ? [n0[0] / len, n0[1] / len, n0[2] / len] : [0, 0, 1];
     const half = (a.thickness ?? DISC_DEFAULT_THICKNESS) / 2;
-    out.push({
-      ...base,
-      labelMode: a.text ? "end" : "none",
-      labelText: a.text ?? "",
-      drawMode: "cylinder", arrowMode: "none",
+    const face: Xyz = [at[0] + n[0] * half, at[1] + n[1] * half, at[2] + n[2] * half];
+    objects.push({
+      ...objectBase,
+      type: "cylinder",
+      origin: [at[0] - n[0] * half, at[1] - n[1] * half, at[2] - n[2] * half],
+      end: face,
       radius: a.radius,
-      xFrom: at[0] - n[0] * half, yFrom: at[1] - n[1] * half, zFrom: at[2] - n[2] * half,
-      xTo: at[0] + n[0] * half, yTo: at[1] + n[1] * half, zTo: at[2] + n[2] * half,
-      customTags: stamp({ at }),
+      tags: { ...ANNOTATION_OBJECT_TAGS, [ANNOTATION_STAMP_TAG]: stamp({ at }) },
     });
+    if (a.text) vectors.push(banner(face, a.text));
   });
-  return out;
+  return { vectors, objects };
+}
+
+/** The index in a scene-made drawable's uniqueId (`<prefix>:<i>` or
+ *  `<prefix>:<i>#label`), or null for an id that is not the scene's. */
+export function annotationIndexOf(uniqueId: string | undefined): number | null {
+  if (!uniqueId?.startsWith(`${ANNOTATION_VECTOR_PREFIX}:`)) return null;
+  const n = Number.parseInt(uniqueId.slice(ANNOTATION_VECTOR_PREFIX.length + 1), 10);
+  return Number.isFinite(n) ? n : null;
+}
+
+function parseStamp(text: string | undefined): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
+  if (!text) return null;
+  try {
+    const parsed = JSON.parse(text) as { authored?: SceneAnnotation; lowered?: SceneAnnotation };
+    if (!parsed.authored || !parsed.lowered) return null;
+    return { authored: parsed.authored, lowered: parsed.lowered };
+  } catch {
+    return null;
+  }
 }
 
 /**
  * Read the annotation a scene-made vector was built from. Returns null for a
- * vector that is not ours (no stamp) or whose stamp does not parse.
+ * vector that is not ours (no stamp), a banner vector (which belongs to an
+ * object's annotation), or one whose stamp does not parse.
  */
 export function annotationFromVector(vec: {
   uniqueId?: string;
@@ -1123,14 +1177,21 @@ export function annotationFromVector(vec: {
 }): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
   if (!vec.uniqueId?.startsWith(ANNOTATION_VECTOR_PREFIX)) return null;
   const tags = vec.customTags ?? [];
-  if (tags[0] !== ANNOTATION_TAG || !tags[1]) return null;
-  try {
-    const parsed = JSON.parse(tags[1]) as { authored?: SceneAnnotation; lowered?: SceneAnnotation };
-    if (!parsed.authored || !parsed.lowered) return null;
-    return { authored: parsed.authored, lowered: parsed.lowered };
-  } catch {
-    return null;
-  }
+  if (tags[0] !== ANNOTATION_TAG) return null;
+  return parseStamp(tags[1]);
+}
+
+/**
+ * Read the annotation a scene-made 3D object was built from. Returns null
+ * for an object that is not ours (no `source` tag) or whose stamp does not
+ * parse.
+ */
+export function annotationFromObject(obj: {
+  uniqueId?: string;
+  tags?: Record<string, string>;
+}): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
+  if (obj.tags?.source !== ANNOTATION_TAG) return null;
+  return parseStamp(obj.tags[ANNOTATION_STAMP_TAG]);
 }
 
 // --------------------------------------------------------------------------

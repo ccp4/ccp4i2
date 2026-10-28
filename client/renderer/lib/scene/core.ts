@@ -684,7 +684,8 @@ const Sphere = z
  * radii are Å and the text governs what is seen. A renderer draws them in
  * the same frame as the molecules, after superposition. The text's font
  * size is of the substituted class, and so is a sphere's shape: a renderer
- * with no sphere primitive substitutes a solid marker of the same extent.
+ * with no sphere primitive substitutes a solid marker of the same extent
+ * (Moorhen has one and draws it as such).
  */
 export const Annotation = z.discriminatedUnion("kind", [Label, Line, Sphere, Disc]);
 

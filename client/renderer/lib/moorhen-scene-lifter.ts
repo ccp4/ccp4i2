@@ -24,7 +24,7 @@ import type { moorhen } from "moorhen/types/moorhen";
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import { extractProjectPathFromUniqueId } from "./scene-project-path";
-import { annotationFromVector } from "./moorhen-scene-resolver";
+import { annotationFromObject, annotationFromVector, annotationIndexOf } from "./moorhen-scene-resolver";
 import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
@@ -121,6 +121,10 @@ export interface LiftCtx {
    *  in their customTags and are lifted back from it; the user's own vectors
    *  are not a scene's to capture and are left alone. */
   vectors?: { uniqueId?: string; customTags?: string[] }[];
+  /** Moorhen's 3D objects (`store.getState().threeDObjects.objects`): the
+   *  resolver's spheres and discs, stamped in their tags; the user's own
+   *  objects are left alone the same way. */
+  objects?: { uniqueId?: string; tags?: Record<string, string> }[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -245,7 +249,7 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   const hints = liftHints(ctx.glRef, ctx.sceneSettings);
   if (hints) scene.hints = hints;
 
-  const annotations = liftAnnotations(ctx.vectors, scene.files ?? []);
+  const annotations = liftAnnotations(ctx.vectors, ctx.objects, scene.files ?? []);
   if (annotations.length) scene.annotations = annotations;
 
   // Re-emit the last-applied superpose (coot moved the coords; there's no
@@ -1075,17 +1079,20 @@ function liftView(glRef: LiftCtx["glRef"]): SceneView | undefined {
 // --------------------------------------------------------------------------
 
 /**
- * The scene-made vectors, read back as annotations. Each is lifted as it was
- * authored when its anchors still resolve in the lifted scene -- a lifted
- * file is named after its molecule, not after the applied scene's `files[]`
- * entry, so an anchor can dangle -- and otherwise as the same annotation
- * with its points lowered to the coordinates the resolver found.
+ * The scene-made vectors and 3D objects, read back as annotations in the
+ * order they were authored (the index in each uniqueId, since the two stores
+ * are separate lists). Each is lifted as it was authored when its anchors
+ * still resolve in the lifted scene -- a lifted file is named after its
+ * molecule, not after the applied scene's `files[]` entry, so an anchor can
+ * dangle -- and otherwise as the same annotation with its points lowered to
+ * the coordinates the resolver found.
  */
 function liftAnnotations(
   vectors: LiftCtx["vectors"],
+  objects: LiftCtx["objects"],
   files: SceneFileRef[],
 ): SceneAnnotation[] {
-  if (!vectors?.length) return [];
+  if (!vectors?.length && !objects?.length) return [];
   const coordNames = new Set(
     files.filter((f) => f.kind == null || f.kind === "coordinates").map((f) => f.name),
   );
@@ -1097,11 +1104,18 @@ function liftAnnotations(
   const authoredResolves = (a: SceneAnnotation): boolean =>
     a.kind === "line" ? anchorResolves(a.from) && anchorResolves(a.to) : anchorResolves(a.at);
 
-  return vectors.flatMap((vec) => {
+  const found: { index: number; read: NonNullable<ReturnType<typeof annotationFromVector>> }[] = [];
+  (vectors ?? []).forEach((vec) => {
     const read = annotationFromVector(vec);
-    if (!read) return [];
-    return [authoredResolves(read.authored) ? read.authored : read.lowered];
+    if (read) found.push({ index: annotationIndexOf(vec.uniqueId) ?? Number.MAX_SAFE_INTEGER, read });
   });
+  (objects ?? []).forEach((obj) => {
+    const read = annotationFromObject(obj);
+    if (read) found.push({ index: annotationIndexOf(obj.uniqueId) ?? Number.MAX_SAFE_INTEGER, read });
+  });
+  return found
+    .sort((a, b) => a.index - b.index)
+    .map(({ read }) => (authoredResolves(read.authored) ? read.authored : read.lowered));
 }
 
 // --------------------------------------------------------------------------

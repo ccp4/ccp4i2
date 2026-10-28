@@ -1,14 +1,18 @@
 /**
- * Annotations: scene `annotations[]` → Moorhen vectors (resolver) and back
- * (lifter). The geometry rules are pure, so they are tested without a store.
+ * Annotations: scene `annotations[]` → Moorhen vectors and 3D objects
+ * (resolver) and back (lifter). The geometry rules are pure, so they are
+ * tested without a store.
  */
 import { describe, it, expect } from "vitest";
 
 import {
+  ANNOTATION_OBJECT_TAGS,
   ANNOTATION_TAG,
   ANNOTATION_VECTOR_PREFIX,
+  annotationFromObject,
   annotationFromVector,
-  annotationsToVectors,
+  annotationIndexOf,
+  annotationsToDrawables,
 } from "../lib/moorhen-scene-resolver";
 import { liftScene } from "../lib/moorhen-scene-lifter";
 import { parseScene } from "../lib/scene";
@@ -20,7 +24,12 @@ type Xyz = [number, number, number];
 /** Anchors resolve to a fixed point; tuples pass through. */
 const resolveAll = (pt: ScenePoint): Xyz | null => (Array.isArray(pt) ? pt : [1, 2, 3]);
 
-describe("annotationsToVectors", () => {
+/** Lower, and give back just the vectors: the label and line tests' shape. */
+const annotationsToVectors: typeof annotationsToDrawables extends (...a: infer A) => unknown
+  ? (...a: A) => ReturnType<typeof annotationsToDrawables>["vectors"]
+  : never = (...a) => annotationsToDrawables(...a).vectors;
+
+describe("annotationsToDrawables", () => {
   it("a label is a zero-length vector with its banner at the end", () => {
     const [v] = annotationsToVectors(
       [{ kind: "label", at: [5, 6, 7], text: "here", colour: "#ff0000" }],
@@ -59,49 +68,68 @@ describe("annotationsToVectors", () => {
     expect(v.radius).toBe(0.1);
   });
 
-  it("a disc is a cylinder of its radius, `thickness` long, centred along a unit normal", () => {
-    const [v] = annotationsToVectors(
-      [{ kind: "disc", at: [10, 10, 10], radius: 2, thickness: 1, normal: [0, 3, 0], text: "7 hits" }],
+  it("a disc is a cylinder object of its radius, `thickness` long, centred along a unit normal", () => {
+    const { vectors, objects } = annotationsToDrawables(
+      [{ kind: "disc", at: [10, 10, 10], radius: 2, thickness: 1, normal: [0, 3, 0], text: "7 hits",
+         colour: "#E07A5F" }],
       resolveAll,
     );
-    expect([v.xFrom, v.yFrom, v.zFrom]).toEqual([10, 9.5, 10]);
+    expect(objects).toHaveLength(1);
+    const [o] = objects;
+    expect(o.type).toBe("cylinder");
+    if (o.type !== "cylinder") return;
+    expect(o.origin).toEqual([10, 9.5, 10]);
+    expect(o.end).toEqual([10, 10.5, 10]);
+    expect(o.radius).toBe(2);
+    expect(o.colour).toBe("#e07a5fff");          // objects take #rrggbbaa
+    expect(o.locked).toBe(true);
+    expect(o.tags?.source).toBe(ANNOTATION_OBJECT_TAGS.source);
+    expect(o.uniqueId).toBe(`${ANNOTATION_VECTOR_PREFIX}:0`);
+    // The banner is a zero-length vector on the +normal face, not stamped:
+    // the object carries the annotation.
+    expect(vectors).toHaveLength(1);
+    const [v] = vectors;
+    expect([v.xFrom, v.yFrom, v.zFrom]).toEqual([10, 10.5, 10]);
     expect([v.xTo, v.yTo, v.zTo]).toEqual([10, 10.5, 10]);
-    expect(v.radius).toBe(2);
     expect(v.labelMode).toBe("end");
     expect(v.labelText).toBe("7 hits");
+    expect(v.uniqueId).toBe(`${ANNOTATION_VECTOR_PREFIX}:0#label`);
+    expect(annotationFromVector(v)).toBeNull();
+    expect(annotationFromObject(o)).not.toBeNull();
   });
 
-  it("a disc defaults to 0.3 Å thick along z, and a zero normal falls back to z", () => {
-    const [v] = annotationsToVectors(
+  it("a disc defaults to 0.3 Å thick along z, a zero normal falls back to z, and no text means no banner", () => {
+    const { vectors, objects } = annotationsToDrawables(
       [{ kind: "disc", at: [0, 0, 0], radius: 1, normal: [0, 0, 0] }],
       resolveAll,
     );
-    expect(v.zFrom).toBeCloseTo(-0.15);
-    expect(v.zTo).toBeCloseTo(0.15);
-    expect(v.labelMode).toBe("none");
+    const [o] = objects;
+    if (o.type !== "cylinder") throw new Error("expected a cylinder");
+    expect(o.origin[2]).toBeCloseTo(-0.15);
+    expect(o.end[2]).toBeCloseTo(0.15);
+    expect(o.colour).toBe("#f2c14eff");           // the default colour
+    expect(vectors).toHaveLength(0);
   });
 
-  it("a sphere is a bristle of arms through its centre, stamped and labelled once", () => {
-    const vs = annotationsToVectors(
+  it("a sphere is a sphere object at its centre, with its banner there too", () => {
+    const { vectors, objects } = annotationsToDrawables(
       [{ kind: "sphere", at: [10, 20, 30], radius: 2, text: "7 hits", colour: "#0000ff" }],
       resolveAll,
     );
-    expect(vs).toHaveLength(7);
-    // Each arm spans 2r through the point: the axes first, then the diagonals.
-    expect([vs[0].xFrom, vs[0].xTo, vs[0].yFrom, vs[0].zFrom]).toEqual([8, 12, 20, 30]);
-    expect([vs[1].yFrom, vs[1].yTo, vs[1].xFrom]).toEqual([18, 22, 10]);
-    expect([vs[2].zFrom, vs[2].zTo]).toEqual([28, 32]);
-    const d = 2 / Math.sqrt(3);
-    expect([vs[3].xFrom, vs[3].yFrom, vs[3].zFrom]).toEqual([10 - d, 20 - d, 30 - d]);
-    expect([vs[6].xTo, vs[6].yTo, vs[6].zTo]).toEqual([10 + d, 20 - d, 30 - d]);
-    expect(vs.every((v) => v.radius === 2 * 0.55)).toBe(true);
-    expect(vs.every((v) => v.vectorColour.b === 255)).toBe(true);
-    // The banner sits at the centre of the first arm; the others are mute.
-    expect(vs.map((v) => v.labelMode)).toEqual(["middle", ...Array(6).fill("none")]);
-    expect(vs[0].labelText).toBe("7 hits");
-    // Same replace-on-apply prefix on every arm; one stamp, so it lifts once.
-    expect(vs.every((v) => v.uniqueId.startsWith(`${ANNOTATION_VECTOR_PREFIX}:0`))).toBe(true);
-    expect(vs.map((v) => annotationFromVector(v) !== null)).toEqual([true, ...Array(6).fill(false)]);
+    expect(objects).toHaveLength(1);
+    const [o] = objects;
+    expect(o.type).toBe("sphere");
+    if (o.type !== "sphere") return;
+    expect(o.origin).toEqual([10, 20, 30]);
+    expect(o.radius).toBe(2);
+    expect(o.colour).toBe("#0000ffff");
+    expect(o.uniqueId).toBe(`${ANNOTATION_VECTOR_PREFIX}:0`);
+    expect(vectors).toHaveLength(1);
+    expect([vectors[0].xFrom, vectors[0].yFrom, vectors[0].zFrom]).toEqual([10, 20, 30]);
+    expect(vectors[0].labelText).toBe("7 hits");
+    expect(vectors[0].vectorColour.b).toBe(255);
+    expect(vectors[0].uniqueId).toBe(`${ANNOTATION_VECTOR_PREFIX}:0#label`);
+    expect(annotationFromVector(vectors[0])).toBeNull();
   });
 
   it("anchored points are resolved; an unresolvable one drops just its annotation", () => {
@@ -123,9 +151,12 @@ describe("annotationsToVectors", () => {
     expect(vs.map((v) => v.uniqueId)).toEqual([
       `${ANNOTATION_VECTOR_PREFIX}:0`, `${ANNOTATION_VECTOR_PREFIX}:2`,
     ]);
+    expect(vs.map((v) => annotationIndexOf(v.uniqueId))).toEqual([0, 2]);
+    expect(annotationIndexOf(`${ANNOTATION_VECTOR_PREFIX}:7#label`)).toBe(7);
+    expect(annotationIndexOf("user-made")).toBeNull();
   });
 
-  it("stamps each vector with the annotation as authored and as lowered", () => {
+  it("stamps each drawable with the annotation as authored and as lowered", () => {
     const authored: SceneAnnotation = {
       kind: "line", from: { file: "p", selection: "//A/1" }, to: [4, 4, 4], text: "x",
     };
@@ -134,14 +165,24 @@ describe("annotationsToVectors", () => {
     const read = annotationFromVector(v);
     expect(read?.authored).toEqual(authored);
     expect(read?.lowered).toEqual({ ...authored, from: [1, 2, 3] });
+
+    const sphere: SceneAnnotation = { kind: "sphere", at: { file: "p", selection: "//A/1" }, radius: 1 };
+    const [o] = annotationsToDrawables([sphere], resolveAll).objects;
+    const readObj = annotationFromObject(o);
+    expect(readObj?.authored).toEqual(sphere);
+    expect(readObj?.lowered).toEqual({ ...sphere, at: [1, 2, 3] });
   });
 
-  it("annotationFromVector ignores vectors that are not the scene's", () => {
+  it("annotationFromVector and annotationFromObject ignore drawables that are not the scene's", () => {
     expect(annotationFromVector({ uniqueId: "user-made", customTags: [] })).toBeNull();
     expect(annotationFromVector({ uniqueId: `${ANNOTATION_VECTOR_PREFIX}:0`, customTags: ["other"] })).toBeNull();
     expect(
       annotationFromVector({ uniqueId: `${ANNOTATION_VECTOR_PREFIX}:0`, customTags: [ANNOTATION_TAG, "{not json"] }),
     ).toBeNull();
+    expect(annotationFromObject({ uniqueId: "user-made" })).toBeNull();
+    expect(annotationFromObject({ uniqueId: "x", tags: { source: "xpid" } })).toBeNull();
+    expect(annotationFromObject({ uniqueId: "x", tags: { ...ANNOTATION_OBJECT_TAGS } })).toBeNull();
+    expect(annotationFromObject({ uniqueId: "x", tags: { ...ANNOTATION_OBJECT_TAGS, annotation: "{no" } })).toBeNull();
   });
 });
 
@@ -174,11 +215,32 @@ describe("liftScene: annotations", () => {
     expect(() => parseScene(JSON.stringify(scene))).not.toThrow();
   });
 
-  it("lifts a sphere once, not once per arm", () => {
+  it("lifts a sphere from its object once, not again from its banner", () => {
     const sphere: SceneAnnotation = { kind: "sphere", at: [1, 2, 3], radius: 1.2, text: "site" };
-    const arms = annotationsToVectors([sphere], resolveAll);
-    const scene = liftScene({ molecules: [mol], glRef, vectors: arms });
+    const { vectors, objects } = annotationsToDrawables([sphere], resolveAll);
+    expect(vectors).toHaveLength(1);
+    const scene = liftScene({ molecules: [mol], glRef, vectors, objects });
     expect(scene.annotations).toEqual([sphere]);
+  });
+
+  it("restores the authored order across the vectors and objects stores", () => {
+    const authored: SceneAnnotation[] = [
+      { kind: "sphere", at: [1, 2, 3], radius: 1 },
+      { kind: "label", at: [4, 5, 6], text: "a" },
+      { kind: "disc", at: [7, 8, 9], radius: 2 },
+      { kind: "line", from: [0, 0, 0], to: [1, 1, 1] },
+    ];
+    const { vectors, objects } = annotationsToDrawables(authored, resolveAll);
+    const scene = liftScene({ molecules: [mol], glRef, vectors, objects });
+    expect(scene.annotations).toEqual(authored);
+  });
+
+  it("leaves the user's own objects out", () => {
+    const scene = liftScene({
+      molecules: [mol], glRef,
+      objects: [{ uniqueId: "mine", tags: { source: "xpid" } }, { uniqueId: "untagged" }],
+    });
+    expect(scene.annotations).toBeUndefined();
   });
 
   it("leaves the user's own vectors out, and omits the block when there is nothing", () => {
