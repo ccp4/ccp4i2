@@ -105,3 +105,95 @@ def test_every_scene_validates(root):
     for outlier in op.outliers(root):
         jsonschema.validate(op.outlier_scene(outlier, {"XYZOUT": 1, "FPHIOUT": 2, "DIFFPHIOUT": 3}, "u"),
                             schema)
+
+
+# MolProbity's block (validate_protein, nested under Validation) and the ADP
+# analysis, in their real shapes
+MORE_XML = """<SERVALCAT><Validation><Molprobity>
+  <Summary><Ramachandran_outliers>10.92%</Ramachandran_outliers></Summary>
+  <Ramachandran_outliers>
+    <Outlier chain="A" seqnum="16" name="SER" score="0.046"/>
+    <Outlier chain="A" seqnum="19" name="ASP" score="0.017"/>
+  </Ramachandran_outliers>
+  <Nonplanar_omegas><Outlier chain="A" seqnum="63" name="HIS" score="N/A"/></Nonplanar_omegas>
+  <Rotamer_outliers><Outlier chain="B" seqnum=" 100A" name="TYR" score="0.132"/></Rotamer_outliers>
+  <CBeta_outliers>
+    <Outlier chain="A" seqnum="46" name="LYS" score="0.308"/>
+    <Outlier chain="A" seqnum="63" name="HIS" score="0.409"/>
+  </CBeta_outliers>
+  <Side_chain_flips><Outlier chain="D" seqnum="95" name="ASN" score="N/A"/></Side_chain_flips>
+  <Clashes>
+    <Outlier first_atom="A 86 THR CG2" second_atom="A 89 ASN HB3" overlap="-0.6"/>
+    <Outlier first_atom="A 187 CYS O" second_atom="A 188A HIS ND1" overlap="-1.305"/>
+    <Outlier first_atom="garbled" second_atom="A 1 GLY N" overlap="-2.0"/>
+  </Clashes>
+</Molprobity></Validation>
+<ADP_ANALYSIS><outliers>
+  <adp_limit_low>5.00</adp_limit_low><adp_limit_high>100.00</adp_limit_high><iqr_factor>2.00</iqr_factor>
+  <low><data><adp>4.00</adp><atom>A/GLY 3/CA</atom></data></low>
+  <high>
+    <data><adp>150.00</adp><atom>A/LYS 46/NZ</atom></data>
+    <data><adp>120.00</adp><atom>A/LYS 46/CE.B</atom></data>
+  </high>
+</outliers></ADP_ANALYSIS></SERVALCAT>"""
+
+
+@pytest.fixture
+def more():
+    return ET.fromstring(MORE_XML)
+
+
+def test_molprobity_residues_come_section_by_section_worst_first(more):
+    residue_places = [p for p in op.molprobity_places(more) if p["kind"] != "clash"]
+    assert [(p["kind"], p["index"]) for p in residue_places] == [
+        ("rama", 1), ("rama", 0),          # lower probability is worse
+        ("rotamer", 0),
+        ("cbeta", 1), ("cbeta", 0),        # larger deviation is worse
+        ("omega", 0), ("flip", 0)]
+    assert residue_places[2]["residues"] == ["//B/100.A"]   # insertion code, padding stripped
+    assert op.describe(residue_places[0]) == "Ramachandran: A/ASP 19 (p 0.017)"
+    assert op.describe(residue_places[3]) == "Cβ deviation: A/HIS 63 (0.41 Å)"
+    assert op.describe(residue_places[5]) == "Non-planar ω: A/HIS 63"
+    zero = ET.fromstring('<X><Molprobity><Rotamer_outliers><Outlier chain="A" seqnum="5" name="LYS" '
+                         'score="0.0"/></Rotamer_outliers></Molprobity></X>')
+    assert op.describe(op.molprobity_places(zero)[0]) == "Rotamer: A/LYS 5 (p < 0.001)"
+
+
+def test_clashes_name_both_atoms_worst_overlap_first(more):
+    clashes = [p for p in op.molprobity_places(more) if p["kind"] == "clash"]
+    assert [p["index"] for p in clashes] == [1, 0]           # the garbled one is skipped
+    assert clashes[0]["atoms_cids"] == ["//A/187/O", "//A/188.A/ND1"]
+    assert clashes[0]["residues"] == ["//A/187", "//A/188.A"]
+    assert op.describe(clashes[0]) == "Clash: A/CYS 187/O – A/HIS 188A/ND1 (1.30 Å)"
+
+
+def test_adp_outliers_furthest_outside_first(more):
+    found = op.adp_places(more)
+    assert [(p["kind"], p["index"]) for p in found] == [("adp_high", 0), ("adp_high", 1), ("adp_low", 0)]
+    assert found[1]["atoms_cids"] == ["//A/46/CE"]
+    assert op.describe(found[0]) == "B high: A/LYS 46/NZ (B 150.0, limit 100.0)"
+
+
+def test_a_residue_outlier_centres_on_its_residue(more):
+    scene = op.outlier_scene(op.find(more, "rotamer", 0), {"XYZOUT": 1}, "u")
+    assert scene["view"]["centre"]["selection"] == "//B/100.A"
+    assert [r.get("selection") for r in scene["elements"][0]["representations"]] == [None, "//B/100.A"]
+
+
+def test_a_clash_centres_on_its_atoms(more):
+    scene = op.outlier_scene(op.find(more, "clash", 1), {"XYZOUT": 1}, "u")
+    assert scene["view"]["centre"]["selection"] == "//A/187/O||//A/188.A/ND1"
+
+
+def test_no_molprobity_or_adp_block_means_no_places(root):
+    assert op.molprobity_places(root) == [] and op.adp_places(root) == []
+
+
+def test_every_other_scene_validates(more):
+    jsonschema = pytest.importorskip("jsonschema", reason="needs jsonschema")
+    if not os.path.isfile(CLIENT_SCHEMA):
+        pytest.skip("client scene schema not beside this checkout")
+    with open(CLIENT_SCHEMA) as handle:
+        schema = json.load(handle)
+    for place in op.places(more):
+        jsonschema.validate(op.outlier_scene(place, {"XYZOUT": 1, "FPHIOUT": 2}, "u"), schema)

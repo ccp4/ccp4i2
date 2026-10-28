@@ -20,7 +20,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKNAME = 'servalcat_pipe'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'modelcraft']
+    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'moorhen', 'modelcraft']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CServalcatPerformance'
     PURGESEARCHLIST = [
@@ -128,17 +128,18 @@ class servalcat_pipe(CPluginScript):
     # =========================================================================
 
     def outlierScene(self, kind, index):
-        """A Moorhen scene centred on one of the final model's geometry
-        outliers (``kind`` and ``index`` within it, as the report's buttons
-        name them): the refined model and its maps from the database, the
-        outlier's atoms marked. See outlier_places."""
+        """A Moorhen scene centred on one of the final model's outliers
+        (``kind`` and ``index`` within it, as the report's buttons name them:
+        Servalcat's geometry, MolProbity's, or the ADP analysis's): the refined
+        model and its maps from the database, the outlier marked. See
+        outlier_places."""
         from . import outlier_places
         root = outlier_places.read_program_xml(self.workDirectory)
         if root is None:
             return {"success": False, "error": "this job has no program.xml to read outliers from"}
         outlier = outlier_places.find(root, str(kind), int(index))
         if outlier is None:
-            return {"success": False, "error": f"no {kind} outlier {index} in the final cycle"}
+            return {"success": False, "error": f"no {kind} outlier {index} in this job"}
         job = self._jobRow()
         if job is None:
             return {"success": False, "error": "this job is not in the database"}

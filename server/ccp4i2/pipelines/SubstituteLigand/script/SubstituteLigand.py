@@ -34,7 +34,7 @@ class SubstituteLigand(CPluginScript):
 
     TASKNAME = 'SubstituteLigand'
     PERFORMANCECLASS = 'CDataReductionRefinementPerformance'
-    WHATNEXT = ['coot_rebuild', 'coot1']
+    WHATNEXT = ['coot_rebuild', 'coot1', 'moorhen']
 
     ERROR_CODES = {
         201: {'description': 'Failed in SubstituteLigand'},

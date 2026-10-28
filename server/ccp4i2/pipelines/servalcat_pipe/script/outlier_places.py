@@ -12,6 +12,12 @@ Servalcat names atoms gemmi's way, ``G/DC 2012/OP2.A`` (chain, residue name
 and number with any insertion code, atom, and alternate location after the
 dot), in tags atom1..atom4, atomc (a chiral centre) and atom (a plane).
 
+The same goes for the pipeline's other two judges of the model. MolProbity
+(validate_protein's ``Molprobity`` block) names residues, ``chain`` and
+``seqnum`` with any insertion code, and clashes as "A 187 CYS O" pairs; the ADP
+analysis names atoms gemmi's way, like Servalcat. Every place has a kind and an
+index within it, which is all outlierScene is asked for.
+
 A prototype: the selection, the scene and the choice of the worst are here,
 and tested; which outliers deserve a button, and how many, is for the people
 reading the report to say.
@@ -66,11 +72,15 @@ def marker_representations(atoms: List[str]) -> List[Dict]:
     stays readable; then the atoms involved as fatter magenta balls, whatever
     their element (a plain colour reaches carbons only, and an outlier's atoms
     are mostly not carbon: NE2, ZN, O). One representation per CID."""
+    return _markers([residue_cid(a) for a in atoms], [atom_cid(a) for a in atoms])
+
+
+def _markers(residue_cids: List[Optional[str]], atom_cids: List[Optional[str]]) -> List[Dict]:
     reps = []
-    for cid in dict.fromkeys(c for c in (residue_cid(a) for a in atoms) if c):
+    for cid in dict.fromkeys(c for c in residue_cids if c):
         reps.append({"style": "CBs", "selection": cid, "colour": MARKER_COLOUR,
                      "geometry": RESIDUE_GEOMETRY})
-    for cid in dict.fromkeys(c for c in (atom_cid(a) for a in atoms) if c):
+    for cid in dict.fromkeys(c for c in atom_cids if c):
         reps.append({"style": "CBs", "selection": cid,
                      "colour": {"raw": {"ruleType": "molecule", "args": [cid, MARKER_COLOUR],
                                         "isMultiColourRule": False,
@@ -115,7 +125,10 @@ def worst(root: ET.Element, limit: int = 12) -> List[Dict]:
 
 def describe(outlier: Dict) -> str:
     """'Chirality: D/VAL 173 (CA, N, C, CB) (Z -25.2)'; 'Bond: A/HIS 188/NE2 –
-    A/ZN 206/ZN (Z +16.2)'. Atoms of one residue name the residue once."""
+    A/ZN 206/ZN (Z +16.2)'. Atoms of one residue name the residue once.
+    MolProbity's and the ADP analysis's places carry their own label."""
+    if "label" in outlier:
+        return outlier["label"]
     atoms = outlier["atoms"]
     residues = {atom.rsplit("/", 1)[0] for atom in atoms}
     if len(residues) == 1 and len(atoms) > 1:
@@ -128,11 +141,126 @@ def describe(outlier: Dict) -> str:
     return f"{KIND_LABELS.get(outlier['kind'], outlier['kind'])}: {where} (Z {outlier['z']:+.1f})"
 
 
+# MolProbity's residue outliers: section, kind, label, and whether a larger
+# score is worse (a C-beta deviation in Angstrom) or better (the Ramachandran
+# and rotamer probabilities). Non-planar omegas and flips have no score.
+MOLPROBITY_SECTIONS = (
+    ("Ramachandran_outliers", "rama", "Ramachandran", False),
+    ("Rotamer_outliers", "rotamer", "Rotamer", False),
+    ("CBeta_outliers", "cbeta", "C\u03b2 deviation", True),
+    ("Nonplanar_omegas", "omega", "Non-planar \u03c9", False),
+    ("Side_chain_flips", "flip", "Side-chain flip", False),
+)
+_SEQNUM = re.compile(r"^\s*(?P<seq>-?\d+)\s*(?P<icode>[A-Za-z]?)\s*$")
+# "A 187 CYS O", "A 100A ASN HD21", "A 52 SER OG B" (an alternate location last)
+_CLASH_ATOM = re.compile(
+    r"^\s*(?P<chain>\S+)\s+(?P<seq>-?\d+)(?P<icode>[A-Za-z]?)\s+(?P<resname>\S+)\s+(?P<atom>\S+)")
+
+
+def _cid(chain: str, seqnum: str, atom: Optional[str] = None) -> Optional[str]:
+    match = _SEQNUM.match(seqnum or "")
+    if not chain or not chain.strip() or not match:
+        return None
+    icode = f".{match['icode']}" if match["icode"] else ""
+    cid = f"//{chain.strip()}/{match['seq']}{icode}"
+    return f"{cid}/{atom}" if atom else cid
+
+
+def _score(text: Optional[str]) -> float:
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return math.nan
+
+
+def molprobity_places(root: ET.Element) -> List[Dict]:
+    """MolProbity's residue outliers, section by section and worst first
+    within each, then its clashes, worst overlap first. Each place names its
+    residues (and, for a clash, the two atoms) as CIDs."""
+    found = []
+    block = root.find(".//Molprobity")
+    if block is None:
+        return found
+    for section, kind, title, larger_is_worse in MOLPROBITY_SECTIONS:
+        places = []
+        for index, element in enumerate(block.findall(f"./{section}/Outlier")):
+            cid = _cid(element.get("chain", ""), element.get("seqnum", ""))
+            if cid is None:
+                continue
+            score = _score(element.get("score"))
+            where = f"{element.get('chain')}/{element.get('name', '')} {element.get('seqnum', '').strip()}"
+            if math.isnan(score):
+                label = f"{title}: {where}"
+            elif larger_is_worse:
+                label = f"{title}: {where} ({score:.2f} \u00c5)"
+            else:  # a probability, which MolProbity's XML rounds to 0.001
+                label = f"{title}: {where} (p {'< 0.001' if score < 0.0005 else f'{score:.3f}'})"
+            places.append({"kind": kind, "index": index, "label": label, "residues": [cid], "atoms_cids": [],
+                           "score": score})
+        if any(not math.isnan(p["score"]) for p in places):
+            places.sort(key=lambda p: (math.isnan(p["score"]),
+                                       -p["score"] if larger_is_worse else p["score"]))
+        found.extend(places)
+    clashes = []
+    for index, element in enumerate(block.findall("./Clashes/Outlier")):
+        atoms = [_CLASH_ATOM.match(element.get(end, "")) for end in ("first_atom", "second_atom")]
+        if not all(atoms):
+            continue
+        overlap = _score(element.get("overlap"))
+        names = " – ".join(f"{m['chain']}/{m['resname']} {m['seq']}{m['icode']}/{m['atom']}" for m in atoms)
+        clashes.append({
+            "kind": "clash", "index": index,
+            "label": f"Clash: {names}" + ("" if math.isnan(overlap) else f" ({abs(overlap):.2f} \u00c5)"),
+            "residues": [_cid(m["chain"], m["seq"] + m["icode"]) for m in atoms],
+            "atoms_cids": [_cid(m["chain"], m["seq"] + m["icode"], m["atom"]) for m in atoms],
+            "score": overlap})
+    # overlaps are negative: the most negative is the worst
+    clashes.sort(key=lambda p: (math.isnan(p["score"]), -abs(p["score"]) if not math.isnan(p["score"]) else 0))
+    return found + clashes
+
+
+def adp_places(root: ET.Element) -> List[Dict]:
+    """The ADP analysis's atoms outside its limits, furthest outside first,
+    low and high together."""
+    block = root.find(".//ADP_ANALYSIS/outliers")
+    if block is None:
+        return []
+    found = []
+    for side, kind in (("low", "adp_low"), ("high", "adp_high")):
+        limit = _score(block.findtext(f"adp_limit_{side}"))
+        for index, element in enumerate(block.findall(f"./{side}/data")):
+            atom = (element.findtext("atom") or "").strip()
+            adp = _score(element.findtext("adp"))
+            cid = atom_cid(atom)
+            if cid is None or math.isnan(adp):
+                continue
+            beyond = (limit - adp if side == "low" else adp - limit) if not math.isnan(limit) else 0.0
+            label = f"B {side}: {atom} (B {adp:.1f}" + ("" if math.isnan(limit) else f", limit {limit:.1f}") + ")"
+            found.append({"kind": kind, "index": index, "label": label,
+                          "residues": [residue_cid(atom)], "atoms_cids": [cid], "score": beyond})
+    return sorted(found, key=lambda p: -p["score"])
+
+
+def places(root: ET.Element) -> List[Dict]:
+    """Every place to look at: Servalcat's geometry outliers, MolProbity's,
+    and the ADP analysis's."""
+    return outliers(root) + molprobity_places(root) + adp_places(root)
+
+
 def find(root: ET.Element, kind: str, index: int) -> Optional[Dict]:
-    for outlier in outliers(root):
+    for outlier in places(root):
         if outlier["kind"] == kind and outlier["index"] == int(index):
             return outlier
     return None
+
+
+def _place_cids(outlier: Dict):
+    """(residue CIDs, atom CIDs) of a place: from Servalcat's atom labels, or
+    as MolProbity and the ADP analysis places carry them."""
+    if "residues" in outlier:
+        return [c for c in outlier["residues"] if c], [c for c in outlier["atoms_cids"] if c]
+    return ([c for c in (residue_cid(a) for a in outlier["atoms"]) if c],
+            [c for c in (atom_cid(a) for a in outlier["atoms"]) if c])
 
 
 def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) -> Dict:
@@ -140,9 +268,11 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
     outlier's atoms. ``file_ids`` maps XYZOUT (required), FPHIOUT and
     DIFFPHIOUT to database file ids; a viewer that already holds those files
     reuses them, so moving between outliers reloads nothing."""
-    cids = [cid for cid in (atom_cid(a) for a in outlier["atoms"]) if cid]
+    residues, atoms = _place_cids(outlier)
+    # A residue outlier names no atoms: look at the residue
+    cids = atoms or residues
     if not cids:
-        raise ValueError(f"no atoms to look at in {outlier['atoms']}")
+        raise ValueError(f"nothing to look at in {outlier.get('atoms') or outlier.get('label')}")
     selection = "||".join(dict.fromkeys(cids))
     files = [{"name": "model", "fileId": file_ids["XYZOUT"], "projectId": project_uuid}]
     maps = []
@@ -161,7 +291,7 @@ def outlier_scene(outlier: Dict, file_ids: Dict[str, int], project_uuid: str) ->
         "files": files,
         "elements": [{
             "file": "model",
-            "representations": [{"style": "CBs"}] + marker_representations(outlier["atoms"]),
+            "representations": [{"style": "CBs"}] + _markers(residues, atoms),
         }],
         "maps": maps,
         # Moorhen's zoom of 1 shows a crystal; 0.3 shows a residue and its neighbours

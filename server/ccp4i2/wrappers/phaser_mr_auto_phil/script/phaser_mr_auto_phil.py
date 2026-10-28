@@ -39,7 +39,7 @@ class phaser_mr_auto_phil(phaser_phil):
     #: composition; the solutions come as a file, the models do not
     INHERITS_FROM_CONTEXT = ("ENSEMBLES", "FIXENSEMBLES", "COMP_BY", "ASUFILE", "SEQUENCES", "ASU_PROTEIN_MW", "ASU_NUCLEICACID_MW", "SOLVENT_FRACTION")
     PHIL_MODE_PATH = "phaser.mode"
-    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
+    WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild", "coot1", "moorhen"]
 
     #: Beyond what the shims and the mode take out: the driver's own switches
     #: and the "simple" shortcut inputs the ensemble list supersedes.

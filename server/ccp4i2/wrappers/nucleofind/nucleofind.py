@@ -11,7 +11,7 @@ class nucleofind(CPluginScript):
     # ended in "unrecognized arguments: --FPHIIN" and SystemExit(2).
     TASKNAME = "nucleofind"
     TASKCOMMAND = "nucleofind"
-    WHATNEXT = ["coot_rebuild", "coot1"]
+    WHATNEXT = ["coot_rebuild", "coot1", "moorhen"]
 
     def makeCommandAndScript(self):
         inp = self.container.inputData
