@@ -163,11 +163,18 @@ def test_fingerprint_is_stable_while_nothing_changes(campaign):
 def test_a_broken_cache_still_serves_the_scene(
     bypass_api_permissions, campaign, build_counter, real_cache, monkeypatch
 ):
-    def boom(*args, **kwargs):
-        raise RuntimeError("cache is down")
+    class Broken:
+        def get(self, *args, **kwargs):
+            raise RuntimeError("cache is down")
 
-    monkeypatch.setattr(campaign_scene_cache.cache, "get", boom)
-    monkeypatch.setattr(campaign_scene_cache.cache, "set", boom)
+        def set(self, *args, **kwargs):
+            raise RuntimeError("cache is down")
+
+    # Replace the module's cache object rather than patching methods on
+    # Django's proxy: the proxy forwards setattr to whichever backend is
+    # current, and monkeypatch's undo can run after override_settings has
+    # already switched the backend back.
+    monkeypatch.setattr(campaign_scene_cache, "cache", Broken())
     client = APIClient()
     data = _get_summary(client, campaign)
     assert data["stats"]["hits"] == 2
