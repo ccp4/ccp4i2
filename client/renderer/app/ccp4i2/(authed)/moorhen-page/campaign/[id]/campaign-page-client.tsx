@@ -4,6 +4,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
+import { usePopcorn } from "@/providers/popcorn-provider";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
 import type { MoorhenScene } from "@/types/moorhen-scene";
 import { parseEventParam } from "@/lib/event-evidence";
@@ -101,9 +102,14 @@ function CampaignPageContent() {
   const summarySiteIds = useMemo(() => parseSiteParam(siteParam), [siteParam]);
   const summarySiteKey = summarySiteIds.join(",");
   const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
+  const { setMessage } = usePopcorn();
   useEffect(() => {
     if (!summaryMode || campaignId === null) return;
     let cancelled = false;
+    // The server builds the scene on demand and remembers it, so the first
+    // open after a change can take a while on a big campaign; say so rather
+    // than leave an empty viewer.
+    setMessage("Building the campaign scene; a large campaign can take a minute", "info");
     const request =
       summarySiteIds.length > 1
         ? campaignsApi.fetchSitesScene(campaignId, summarySiteIds)
@@ -115,7 +121,12 @@ function CampaignPageContent() {
         if (!cancelled) setSummaryScene(res.scene);
       })
       .catch((err) => {
+        if (cancelled) return;
         console.error("Failed to load campaign summary scene:", err);
+        setMessage(
+          `Could not build the campaign scene: ${err instanceof Error ? err.message : String(err)}`,
+          "error",
+        );
       });
     return () => {
       cancelled = true;

@@ -24,6 +24,7 @@ from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
+from ..lib import campaign_scene_cache
 from ..lib import campaign_events
 from ..lib.utils.jobs import pandda_site_index
 from ..lib import site_verdicts
@@ -41,6 +42,11 @@ def _reviewer(request) -> str:
     if user is None or not getattr(user, "is_authenticated", False):
         return ""
     return (getattr(user, "email", "") or user.get_username() or "")[:150]
+
+
+def _wants_refresh(request) -> bool:
+    """``?refresh=1``: build the scene afresh instead of serving the cached one."""
+    return request.query_params.get("refresh", "").lower() in ("1", "true", "yes")
 
 
 class ProjectGroupViewSet(ModelViewSet):
@@ -737,7 +743,13 @@ class ProjectGroupViewSet(ModelViewSet):
         """
         try:
             group = self.get_object()
-            return Response(campaign_scene.build_summary_scene(group))
+            return Response(
+                campaign_scene_cache.cached_scene(
+                    group, "summary",
+                    lambda: campaign_scene.build_summary_scene(group),
+                    refresh=_wants_refresh(request),
+                )
+            )
         except Exception as e:
             logger.exception(
                 "Failed to build summary scene for group %s", pk, exc_info=e
@@ -780,12 +792,20 @@ class ProjectGroupViewSet(ModelViewSet):
                 token.strip()
                 for token in request.query_params.get("include", "").split(",")
             }
+            include_unclear = "unclear" in include
+            superpose = request.query_params.get("superpose") != "none"
             return Response(
-                campaign_scene.build_site_scene(
-                    group,
-                    site,
-                    include_unclear="unclear" in include,
-                    superpose=request.query_params.get("superpose") != "none",
+                campaign_scene_cache.cached_scene(
+                    group, "site",
+                    lambda: campaign_scene.build_site_scene(
+                        group, site, include_unclear=include_unclear,
+                        superpose=superpose,
+                    ),
+                    params={
+                        "site": site.id, "include_unclear": include_unclear,
+                        "superpose": superpose,
+                    },
+                    refresh=_wants_refresh(request),
                 )
             )
         except Exception as e:
@@ -840,12 +860,20 @@ class ProjectGroupViewSet(ModelViewSet):
                 token.strip()
                 for token in request.query_params.get("include", "").split(",")
             }
+            include_unclear = "unclear" in include
+            superpose = request.query_params.get("superpose") != "none"
             return Response(
-                campaign_scene.build_sites_scene(
-                    group,
-                    [found[site_id] for site_id in ids],
-                    include_unclear="unclear" in include,
-                    superpose=request.query_params.get("superpose") != "none",
+                campaign_scene_cache.cached_scene(
+                    group, "sites",
+                    lambda: campaign_scene.build_sites_scene(
+                        group, [found[site_id] for site_id in ids],
+                        include_unclear=include_unclear, superpose=superpose,
+                    ),
+                    params={
+                        "sites": list(ids), "include_unclear": include_unclear,
+                        "superpose": superpose,
+                    },
+                    refresh=_wants_refresh(request),
                 )
             )
         except Exception as e:

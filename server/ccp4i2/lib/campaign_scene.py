@@ -146,19 +146,30 @@ def _is_fragment_code(code: str) -> bool:
     return code not in COMMON_NON_LIGANDS
 
 
-def coordinate_residue_names(coord_path) -> set:
-    """Return the set of residue names present in a coordinate file."""
+def residue_names(structure: gemmi.Structure) -> set:
+    """Return the set of residue names present in a parsed structure."""
     names: set = set()
-    st = gemmi.read_structure(str(coord_path))
-    for model in st:
+    for model in structure:
         for chain in model:
             for res in chain:
                 names.add(res.name.strip().upper())
     return names
 
 
-def detect_ligands(coord_path, dict_path: Optional[object] = None) -> list:
+def coordinate_residue_names(coord_path) -> set:
+    """Return the set of residue names present in a coordinate file."""
+    return residue_names(gemmi.read_structure(str(coord_path)))
+
+
+def detect_ligands(coord_path, dict_path: Optional[object] = None,
+                   structure: Optional[gemmi.Structure] = None) -> list:
     """Return the ligand codes a dataset should be judged a hit on.
+
+    ``structure`` is the already-parsed ``coord_path``, when the caller has
+    it. A scene builder reads each member's coordinates for this check and
+    again to fit them onto the reference; passing the structure in makes
+    that one parse rather than two, which on a campaign of hundreds of
+    datasets is the difference between a page and a timeout.
 
     A dataset is a hit if its refined coordinates contain a *fragment-like*
     HET residue: anything that isn't a standard amino acid / nucleic acid /
@@ -176,7 +187,10 @@ def detect_ligands(coord_path, dict_path: Optional[object] = None) -> list:
     Returns a sorted list (possibly empty -> not a hit).
     """
     try:
-        coord_names = coordinate_residue_names(coord_path)
+        coord_names = (
+            residue_names(structure) if structure is not None
+            else coordinate_residue_names(coord_path)
+        )
     except Exception as exc:  # noqa: BLE001 - unreadable coords -> not a hit
         logger.warning("Could not read coordinates %s: %s", coord_path, exc)
         return []
@@ -449,7 +463,16 @@ def _resolve_hit(project, used_names: set):
         if disk_dict is not None:
             dict_path = disk_dict
 
-    codes = detect_ligands(coord_file.path, dict_path)
+    # Parsed once here and carried on the hit: the fit onto the reference and
+    # the site distances read the same file, and a campaign of hundreds of
+    # datasets cannot afford to parse each of them three times.
+    try:
+        structure = gemmi.read_structure(str(coord_file.path))
+    except Exception as exc:  # noqa: BLE001 - unreadable coords -> not a hit
+        logger.warning("Could not read coordinates %s: %s", coord_file.path, exc)
+        return None, "no ligand in refined model"
+
+    codes = detect_ligands(coord_file.path, dict_path, structure=structure)
     if not codes:
         return None, "no ligand in refined model"
 
@@ -504,6 +527,7 @@ def _resolve_hit(project, used_names: set):
             "element": element,
             "sticks": sticks,
             "coord_path": coord_file.path,
+            "structure": structure,
             "codes": codes,
         },
         None,
@@ -562,8 +586,17 @@ def _promote_hit(hits: list, stats: dict):
     return exemplar["name"], exemplar["coord_path"], exemplar["element"], hits[1:]
 
 
+def _hit_structure(hit: dict) -> gemmi.Structure:
+    """The hit's parsed coordinates, read on first use and kept on the hit."""
+    structure = hit.get("structure")
+    if structure is None:
+        structure = gemmi.read_structure(str(hit["coord_path"]))
+        hit["structure"] = structure
+    return structure
+
+
 def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
-               centre=None, min_radius=None) -> list:
+               centre=None, min_radius=None, reference=None) -> list:
     """Fit every mover onto the reference; return the ``superpose[]`` entries.
 
     Each fit is recorded in ``stats["superpose"]`` with the evidence it
@@ -577,12 +610,39 @@ def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
     sense, and drawing the dataset in its own frame would be worse than a
     global fit that says what it is. The scene shows the difference too --
     a global fit's provenance carries no ``radius``.
+
+    ``reference`` is the parsed ``ref_path`` when the caller already has
+    it; otherwise it is read here, once, rather than once per mover. Each
+    mover's structure comes from the hit (``_hit_structure``), so a member
+    is parsed a single time however many steps look at it.
     """
     entries: list = []
+    if reference is None:
+        try:
+            reference = gemmi.read_structure(str(ref_path))
+        except Exception as exc:  # noqa: BLE001 - an unreadable reference fails every fit
+            reason = f"could not read coordinates: {exc}"
+            for hit in movers:
+                fit = superposition.FitResult(ok=False, reason=reason)
+                hit["fit"] = fit
+                stats["superpose"].append({
+                    "project": hit["project"].name,
+                    "ok": False, "atoms": fit.atoms, "radius": fit.radius,
+                    "rmsd": fit.rmsd, "reason": reason,
+                })
+            return entries
+
     for hit in movers:
-        fit = superposition.fit_files(
-            ref_path, hit["coord_path"], centre=centre, min_radius=min_radius
-        )
+        try:
+            moving = _hit_structure(hit)
+        except Exception as exc:  # noqa: BLE001 - unreadable file is a failed fit
+            fit = superposition.FitResult(
+                ok=False, reason=f"could not read coordinates: {exc}"
+            )
+        else:
+            fit = superposition.fit_structures(
+                reference, moving, centre=centre, min_radius=min_radius
+            )
         record = {
             "project": hit["project"].name,
             "ok": fit.ok,
@@ -591,8 +651,8 @@ def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
             "rmsd": fit.rmsd,
             "reason": fit.reason,
         }
-        if not fit.ok and centre is not None:
-            fallback = superposition.fit_files(ref_path, hit["coord_path"])
+        if not fit.ok and centre is not None and hit.get("structure") is not None:
+            fallback = superposition.fit_structures(reference, hit["structure"])
             if fallback.ok:
                 record.update(
                     ok=True,
@@ -942,6 +1002,7 @@ def build_sites_scene(group, sites: list, include_unclear: bool = False,
     # side chains. The residue list is spelled out in the scene because a
     # CID cannot express a sphere, and so that a user can edit it.
     pocket_selection = None
+    exemplar = None
     if ref_path is not None:
         try:
             exemplar = gemmi.read_structure(str(ref_path))
@@ -981,6 +1042,7 @@ def build_sites_scene(group, sites: list, include_unclear: bool = False,
         superpose_entries = _superpose(
             ref_name, ref_path, movers, stats, centre=centre,
             min_radius=None if single else spread + ENVIRONMENT_RADIUS,
+            reference=exemplar,
         )
 
     for hit in hits:
@@ -988,7 +1050,7 @@ def build_sites_scene(group, sites: list, include_unclear: bool = False,
         transform = fit.transform() if fit is not None and fit.ok else None
         nearest = None
         try:
-            structure = gemmi.read_structure(str(hit["coord_path"]))
+            structure = _hit_structure(hit)
             distances = [
                 nearest_fragment_distance(structure, site_position(site), transform)
                 for site in hit["sites"]
@@ -1228,16 +1290,25 @@ def build_run_site_scene(group, site: dict, run: Optional[dict] = None,
     # CampaignSite already carries an origin in the right frame. A run site
     # carries a centroid in PanDDA's own reference frame, which is a
     # different thing and cannot be used as if it were this one.
+    exemplar = None
+    if ref_path is not None:
+        try:
+            exemplar = gemmi.read_structure(str(ref_path))
+        except Exception as exc:  # noqa: BLE001 - no pocket beats no scene
+            logger.warning("Could not read exemplar %s: %s", ref_path, exc)
+
     superpose_entries: list = []
     if superpose and ref_path is not None and movers:
-        _superpose(ref_name, ref_path, movers, stats)
+        _superpose(ref_name, ref_path, movers, stats, reference=exemplar)
         points = [p for p in (_member_site_point(e) for e in entries) if p]
         centre = None
         if points:
             centre = [sum(axis) / len(points) for axis in zip(*points)]
             stats["centre"] = centre
         stats["superpose"] = []
-        superpose_entries = _superpose(ref_name, ref_path, movers, stats, centre=centre)
+        superpose_entries = _superpose(
+            ref_name, ref_path, movers, stats, centre=centre, reference=exemplar
+        )
     else:
         points = [p for p in (_member_site_point(e) for e in entries) if p]
         if points:
@@ -1248,11 +1319,6 @@ def build_run_site_scene(group, site: dict, run: Optional[dict] = None,
     # -- The pocket, from the exemplar alone -------------------------------
     pocket_selection = None
     if ref_path is not None and centre is not None:
-        try:
-            exemplar = gemmi.read_structure(str(ref_path))
-        except Exception as exc:  # noqa: BLE001 - no pocket beats no scene
-            logger.warning("Could not read exemplar %s: %s", ref_path, exc)
-            exemplar = None
         if exemplar is not None:
             cids = pocket_residue_cids(exemplar, centre)
             stats["pocket_residues"] = len(cids)
