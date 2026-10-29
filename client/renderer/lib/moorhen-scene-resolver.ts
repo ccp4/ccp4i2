@@ -135,6 +135,14 @@ export type SceneFileFetcher = (
      *  molecule as it loads (text plus the project file it came from, so a
      *  re-captured scene keeps the association). */
     dictionaries?: { text: string; fileId?: number; projectId?: string }[];
+    /** Whether the loader should draw its default look (ribbon + ligands)
+     *  as the molecule arrives. The resolver passes false for every file
+     *  the scene styles through an element: the scene draws what it wants
+     *  and would only hide the defaults again, so computing them is wasted
+     *  Coot and GPU work, and over a campaign of a hundred structures it is
+     *  most of the load time. A file with no element keeps the default look,
+     *  as it always did, or it would arrive invisible. */
+    defaultRepresentations?: boolean;
   },
 ) => Promise<moorhen.Molecule | null>;
 
@@ -221,6 +229,28 @@ export type SceneMapMasker = (args: {
   name: string;
 }) => Promise<moorhen.Map | null>;
 
+/**
+ * A step of applying a scene, reported through `ResolveCtx.onProgress` as
+ * the resolver reaches it, so the UI can say what is loading while a large
+ * scene (a campaign of many structures) comes in. `done` counts the items
+ * of the phase finished so far; `name` is the scene-file (or element) name
+ * about to be worked on.
+ */
+export interface SceneProgress {
+  phase: "dictionaries" | "structures" | "maps" | "representations";
+  done: number;
+  total: number;
+  name?: string;
+}
+
+/** One line for a status bar: "Loading structures 12/100: 7xyz". */
+export function describeSceneProgress(p: SceneProgress): string {
+  const verb = p.phase === "representations" ? "Styling" : "Loading";
+  const what = p.phase === "representations" ? "structures" : p.phase;
+  const tail = p.name ? `: ${p.name}` : "";
+  return `${verb} ${what} ${Math.min(p.done + 1, p.total)}/${p.total}${tail}`;
+}
+
 interface ResolveCtx {
   scene: MoorhenScene;
   molecules: moorhen.Molecule[];
@@ -246,6 +276,9 @@ interface ResolveCtx {
    *  mask recipes are dropped (and any maps[] entry that renders one via
    *  `from:` is dropped too) with a log entry. */
   mapMasker?: SceneMapMasker;
+  /** Optional. Called as each file or element is reached so the caller can
+   *  show what is loading. The resolver does the work regardless. */
+  onProgress?: (progress: SceneProgress) => void;
   /** Live glRef snapshot (zoom, fogClipOffset). Used by `view.clip:
    *  { front, back }` to derive clip/fog the way coot does (clip = zoom*depth,
    *  fog offset by fogClipOffset). Falls back to sane defaults if absent. */
@@ -379,6 +412,13 @@ function resolveViewMolecule(
  */
 export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher, mapMasker } = ctx;
+  const progress = (p: SceneProgress) => {
+    try {
+      ctx.onProgress?.(p);
+    } catch (e) {
+      console.warn("[scene] progress callback failed:", e);
+    }
+  };
   const maps = ctx.maps ?? [];
   const result: SceneResolveResult = {
     unresolvedFiles: [],
@@ -407,7 +447,8 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     load in 1b, or in 1c for a molecule that was already loaded).
   const dictScopes = planDictionaryScopes(scene);
   const dictTexts = new Map<string, string>();
-  for (const fr of dictRefs) {
+  for (const [i, fr] of dictRefs.entries()) {
+    progress({ phase: "dictionaries", done: i, total: dictRefs.length, name: fr.name });
     if (!dictionaryFetcher || !dictionaryLoader) {
       result.unresolvedFiles.push(fr.name);
       continue;
@@ -439,7 +480,12 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     local list so later files can also bind against them.
   const livePool: moorhen.Molecule[] = [...molecules];
   const fileBindings = new Map<string, moorhen.Molecule>();
-  for (const fr of coordRefs) {
+  // Files the scene styles itself. Their loader-default ribbon + ligands
+  // would be hidden again in step 3, so the fetcher is told not to draw
+  // them at all (see SceneFileFetcher).
+  const styledFiles = new Set((scene.elements ?? []).map((e) => e.file));
+  for (const [i, fr] of coordRefs.entries()) {
+    progress({ phase: "structures", done: i, total: coordRefs.length, name: fr.name });
     const existing = matchOneFile(fr, livePool);
     if (existing) {
       fileBindings.set(fr.name, existing);
@@ -449,6 +495,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       try {
         const dictRefByName = new Map(dictRefs.map((d) => [d.name, d]));
         const fetched = await fetcher(fr, {
+          defaultRepresentations: !styledFiles.has(fr.name),
           dictionaries: (dictScopes.byFile.get(fr.name) ?? [])
             .filter((name) => dictTexts.has(name))
             .map((name) => ({
@@ -570,7 +617,9 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   }
 
   // 3. Apply each element to its bound molecule.
-  for (const element of scene.elements ?? []) {
+  const elements = scene.elements ?? [];
+  for (const [i, element] of elements.entries()) {
+    progress({ phase: "representations", done: i, total: elements.length, name: element.file });
     const mol = fileBindings.get(element.file);
     if (!mol) continue; // already noted in unresolvedFiles
 
@@ -600,8 +649,12 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     // showing only `style: ligands`) keeps its loader-default ribbon
     // visible — producing one ghost ribbon per loaded molecule.
     //
-    // We hide rather than remove so the panel's built-in B/R/S toggles
-    // can bring them back if the user wants.
+    // A molecule the scene itself fetched (step 1b) arrives with no
+    // defaults, so this only does work for molecules that were already in
+    // the view. We hide rather than remove so the panel's built-in B/R/S
+    // toggles can bring them back if the user wants (Moorhen's show()
+    // creates the representation when none exists, so the toggles work on
+    // a default-free molecule too).
     try {
       for (const rep of mol.representations ?? []) {
         if (!rep.isCustom && rep.visible) {
@@ -699,8 +752,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   // (which carries the mtz column spec) rather than only a bare files[] name.
 
   // 2.4a File-backed maps.
-  for (const sceneMap of scene.maps ?? []) {
+  const fileMaps = (scene.maps ?? []).filter((m) => m.file != null);
+  for (const [i, sceneMap] of fileMaps.entries()) {
     if (sceneMap.file == null) continue; // from: maps handled in 2.4c
+    progress({ phase: "maps", done: i, total: fileMaps.length, name: sceneMap.name });
     const domain = `map ${sceneMap.name}`;
     const map = await loadMapForFile(sceneMap.file, domain, sceneMap);
     if (!map) continue; // loadMapForFile logged the reason
