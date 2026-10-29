@@ -364,11 +364,27 @@ export const installIpcHandlers = (
     window.focus();
   });
 
+  // Also says what is there, so the New Project page can accept a folder the
+  // user made in advance (#686): an empty directory is fine to create a
+  // project in; one with contents, or a plain file, is not.
   ipcMain.on("check-file-exists", (event, data) => {
+    const exists = fs.existsSync(data.path);
+    let isDirectory = false;
+    let isEmpty = false;
+    if (exists) {
+      try {
+        isDirectory = fs.statSync(data.path).isDirectory();
+        if (isDirectory) isEmpty = fs.readdirSync(data.path).length === 0;
+      } catch {
+        /* unreadable: report it as existing and not empty, the safe answer */
+      }
+    }
     event.reply("message-from-main", {
       message: "check-file-exists",
       path: data.path,
-      exists: fs.existsSync(data.path),
+      exists,
+      isDirectory,
+      isEmpty,
     });
   });
 
