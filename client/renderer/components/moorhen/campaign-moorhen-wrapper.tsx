@@ -49,7 +49,7 @@ import {
   type EventRef,
 } from "../../lib/event-evidence";
 import type { MoorhenScene } from "../../types/moorhen-scene";
-import { ANNOTATION_OBJECT_TAGS, ANNOTATION_VECTOR_PREFIX } from "../../lib/moorhen-scene-resolver";
+import { ANNOTATION_OBJECT_TAGS, ANNOTATION_VECTOR_PREFIX, describeSceneProgress } from "../../lib/moorhen-scene-resolver";
 import { EMPTY_PROJECT_CONTEXT, ProjectContext } from "../../lib/scene-ref-urls";
 import type { SceneSource } from "../../lib/scene-source";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
@@ -454,7 +454,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         }
         if (loadToken.current !== token) return; // the member changed meanwhile
         // JSON is YAML: the scene goes in as the text the scenes panel would take.
-        await handleApplyScene(JSON.stringify(result.scene));
+        await handleApplyScene(JSON.stringify(result.scene), undefined, (p) =>
+          setMessage(describeSceneProgress(p)),
+        );
       } catch (err) {
         setMessage(`Could not open the scene: ${err instanceof Error ? err.message : String(err)}`, "warning");
       }

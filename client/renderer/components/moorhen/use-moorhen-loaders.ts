@@ -56,6 +56,7 @@ import {
   SceneFileFetcher,
   SceneMapFetcher,
   SceneMapMasker,
+  SceneProgress,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import type {
@@ -116,6 +117,14 @@ export interface LoadStructureOptions {
   /** Centre the view on the molecule (default). A second molecule brought
    *  into a live view must not move the camera. */
   centre?: boolean;
+  /** Draw the loader's default look, a ribbon (bonds if there is no
+   *  backbone) plus ligands, as the molecule arrives (default). A scene
+   *  passes false for every molecule it styles itself: Moorhen draws a
+   *  representation the moment it is added, so the defaults would cost a
+   *  Coot mesh and a GPU upload each only to be hidden a moment later. A
+   *  molecule loaded without them is still shown; the Models drawer's
+   *  style toggles create a representation on demand. */
+  defaultRepresentations?: boolean;
 }
 
 export interface MapFileOptions {
@@ -238,19 +247,21 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
         dictSourcesRef.current.set(newMolecule.molNo, provenance);
       }
 
-      // Try ribbon representation first (better for protein overview)
-      // Fall back to CBs if ribbons fail (e.g., no protein backbone)
-      try {
-        await newMolecule.addRepresentation("CRs", "/*/*/*/*");
-      } catch {
-        await newMolecule.addRepresentation("CBs", "/*/*/*/*");
-      }
+      if (opts.defaultRepresentations !== false) {
+        // Try ribbon representation first (better for protein overview)
+        // Fall back to CBs if ribbons fail (e.g., no protein backbone)
+        try {
+          await newMolecule.addRepresentation("CRs", "/*/*/*/*");
+        } catch {
+          await newMolecule.addRepresentation("CBs", "/*/*/*/*");
+        }
 
-      // Always try to add ligand representation
-      try {
-        await newMolecule.addRepresentation("ligands", "/*/*/*/*");
-      } catch {
-        console.warn("[loadStructureFromText] Ligands representation failed");
+        // Always try to add ligand representation
+        try {
+          await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+        } catch {
+          console.warn("[loadStructureFromText] Ligands representation failed");
+        }
       }
 
       if (opts.centre !== false) await newMolecule.centreOn("/*/*/*/*", false, true);
@@ -588,8 +599,12 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
   // unresolvedFiles).
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
     async (ref: SceneFileRef, fetchOpts) => {
-      // The element's own dictionaries, attached as the molecule loads.
-      const loadOpts = { dictionaries: fetchOpts?.dictionaries ?? [] };
+      // The element's own dictionaries, attached as the molecule loads, and
+      // whether to draw the default look (not when the scene styles the file).
+      const loadOpts: LoadStructureOptions = {
+        dictionaries: fetchOpts?.dictionaries ?? [],
+        defaultRepresentations: fetchOpts?.defaultRepresentations,
+      };
       if (ref.bundle) {
         const buf = bundleAssetsRef.current.get(ref.bundle);
         if (!buf) {
@@ -825,6 +840,7 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
     async (
       yamlText: string,
       assets: SceneBundleAssets = new Map(),
+      onProgress?: (progress: SceneProgress) => void,
     ): Promise<SceneResolveResult> => {
       // Refresh the bundle-assets ref so the (stable-identity) fetchers
       // see this apply's assets. Cleared back to empty by the next
@@ -848,6 +864,7 @@ export function useMoorhenLoaders({ core, projectContext, captureProject }: Moor
         dictionaryLoader: handleLoadSceneDictionary,
         mapFetcher: handleFetchSceneMap,
         mapMasker: handleMaskSceneMap,
+        onProgress,
       });
       dispatch(setRequestDrawScene(true));
       return result;

@@ -7,9 +7,13 @@
  * the most failure-prone bit, so it's worth a focused unit test.
  */
 import { describe, it, expect, vi } from "vitest";
+import type { moorhen } from "moorhen/types/moorhen";
+import type { MoorhenScene } from "../types/moorhen-scene";
 import {
+  applyScene,
   buildPendingRules,
   clampRangeToPresent,
+  describeSceneProgress,
   directionToLightPosition,
   expandLsqMatches,
   geometryToBondOptions,
@@ -20,6 +24,7 @@ import {
   resolveClipFogPlanes,
   runSuperpose,
   splitMultiCid,
+  type SceneProgress,
 } from "../lib/moorhen-scene-resolver";
 
 describe("runSuperpose: method matrix → apply_transformation_to_atom_selection", () => {
@@ -528,5 +533,80 @@ describe("planDictionaryScopes (a molecule's dictionaries are its own)", () => {
     });
     expect(plan.global.has("dict-file-11")).toBe(true);
     expect(plan.byFile.get("job7")).toEqual(["dict-file-11"]);
+  });
+});
+
+describe("applyScene: loader defaults and progress", () => {
+  /** The least a fetched molecule needs for the element step to run. */
+  function fakeMolecule(name: string, molNo: number) {
+    return {
+      name,
+      molNo,
+      uniqueId: `fake:${name}`,
+      representations: [] as unknown[],
+    } as unknown as moorhen.Molecule;
+  }
+
+  const scene = {
+    version: 1,
+    files: [
+      { name: "styled", pdb: "1abc" },
+      { name: "plain", pdb: "2xyz" },
+    ],
+    // `styled` has an element (with nothing to draw yet); `plain` has none.
+    elements: [{ file: "styled" }],
+  } as unknown as MoorhenScene;
+
+  it("asks the fetcher not to draw defaults for a file the scene styles, and to draw them otherwise", async () => {
+    const calls: { name: string; defaults?: boolean }[] = [];
+    const fetcher = vi.fn(async (ref: { name: string }, opts?: { defaultRepresentations?: boolean }) => {
+      calls.push({ name: ref.name, defaults: opts?.defaultRepresentations });
+      return fakeMolecule(ref.name, calls.length);
+    });
+    const result = await applyScene({ scene, molecules: [], dispatch: vi.fn(), fetcher: fetcher as never });
+    expect(calls).toEqual([
+      { name: "styled", defaults: false },
+      { name: "plain", defaults: true },
+    ]);
+    expect(result.unresolvedFiles).toEqual([]);
+    expect(result.applied).toEqual([{ file: "styled", molNo: 1, representations: 0 }]);
+  });
+
+  it("reports each structure and element as it is reached", async () => {
+    const seen: SceneProgress[] = [];
+    const fetcher = vi.fn(async (ref: { name: string }) => fakeMolecule(ref.name, 7));
+    await applyScene({
+      scene,
+      molecules: [],
+      dispatch: vi.fn(),
+      fetcher: fetcher as never,
+      onProgress: (p) => seen.push(p),
+    });
+    expect(seen).toEqual([
+      { phase: "structures", done: 0, total: 2, name: "styled" },
+      { phase: "structures", done: 1, total: 2, name: "plain" },
+      { phase: "representations", done: 0, total: 1, name: "styled" },
+    ]);
+  });
+
+  it("a failing progress callback does not stop the apply", async () => {
+    const fetcher = vi.fn(async (ref: { name: string }) => fakeMolecule(ref.name, 1));
+    const result = await applyScene({
+      scene,
+      molecules: [],
+      dispatch: vi.fn(),
+      fetcher: fetcher as never,
+      onProgress: () => { throw new Error("ui gone"); },
+    });
+    expect(result.unresolvedFiles).toEqual([]);
+  });
+
+  it("describeSceneProgress is a one-line status", () => {
+    expect(describeSceneProgress({ phase: "structures", done: 11, total: 100, name: "7xyz" }))
+      .toBe("Loading structures 12/100: 7xyz");
+    expect(describeSceneProgress({ phase: "representations", done: 0, total: 3 }))
+      .toBe("Styling structures 1/3");
+    expect(describeSceneProgress({ phase: "maps", done: 2, total: 2, name: "fofc" }))
+      .toBe("Loading maps 2/2: fofc");
   });
 });
