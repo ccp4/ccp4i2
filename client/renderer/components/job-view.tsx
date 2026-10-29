@@ -37,6 +37,7 @@ import {
 } from "./job-view-tabs";
 import { useTheme } from "../theme/theme-provider";
 import { JudgementPanel } from "./judgement/judgement-panel";
+import { PanelErrorBoundary } from "./panel-error-boundary";
 import { useIsJobEffectivelyActive } from "../providers/recently-started-jobs-context";
 
 export interface JobViewProps {
@@ -269,6 +270,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             pb: 4,
           }}
         >
+         <PanelErrorBoundary name="job's current tab" resetKeys={[jobid, tabValue]}>
           {tabValue == 0 && (
             <TaskProvider>
               <TaskContainer jobId={jobid} />
@@ -377,8 +379,13 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           {tabValue == TAB.JUDGEMENT && (
             <JudgementPanel job={jobWithCurrentStatus} onJobCreated={mutateJobs} />
           )}
+         </PanelErrorBoundary>
         </Box>
-        {tabValue == 3 && jobid && <CCP4i2WhatNext />}
+        {tabValue == 3 && jobid && (
+          <PanelErrorBoundary name="what-next bar" resetKeys={[jobid]}>
+            <CCP4i2WhatNext />
+          </PanelErrorBoundary>
+        )}
       </Stack>
     </>
   );

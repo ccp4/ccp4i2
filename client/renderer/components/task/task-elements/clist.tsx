@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   IconButton,
   Stack,
   Tooltip,
@@ -14,6 +15,7 @@ import { useCCP4i2Window } from "../../../app-context";
 import { ErrorTrigger } from "./error-info";
 import { FieldShell } from "./field-shell";
 import { useContainerList } from "./hooks/useContainerList";
+import { withArticle } from "../../../lib/with-article";
 
 interface CListElementProps extends CCP4i2TaskElementProps {
   initiallyOpen?: boolean;
@@ -68,6 +70,17 @@ export const CListElement: React.FC<CListElementProps> = ({
 
   const borderColor = itemName && item ? validationColor : "divider";
 
+  // A list of one item does not look like a list, and the + in its corner
+  // went unnoticed (#837). A button under the items, named for what it adds
+  // ("Add another map"), says so; the + stays for those used to it.
+  const itemLabel = (
+    item?._subItem?._qualifiers?.guiLabel ||
+    item?._value?.[0]?._qualifiers?.guiLabel ||
+    guiLabel
+  ).toLowerCase();
+  const addLabel =
+    items.length === 0 ? `Add ${withArticle(itemLabel)}` : `Add another ${itemLabel}`;
+
   if (!isVisible) return null;
 
   return (
@@ -93,13 +106,15 @@ export const CListElement: React.FC<CListElementProps> = ({
     >
       <Box>
         {items.length === 0 ? (
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{ fontStyle: "italic", textAlign: "center" }}
-          >
-            No elements in this list
-          </Typography>
+          !isEditable && (
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ fontStyle: "italic", textAlign: "center" }}
+            >
+              No elements in this list
+            </Typography>
+          )
         ) : (
           <Stack spacing={1}>
             {items.map((content: any, index: number) => {
@@ -143,6 +158,16 @@ export const CListElement: React.FC<CListElementProps> = ({
               );
             })}
           </Stack>
+        )}
+        {isEditable && (
+          <Button
+            size="small"
+            startIcon={<Add fontSize="small" />}
+            onClick={() => addItem()}
+            sx={{ mt: items.length === 0 ? 0 : 1, textTransform: "none" }}
+          >
+            {addLabel}
+          </Button>
         )}
       </Box>
     </FieldShell>
