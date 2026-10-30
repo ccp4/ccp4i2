@@ -39,6 +39,40 @@ class ProvideAsuContents(CPluginScript):
         save(self, job)
         return {"success": True, "index": index, "added": added}
 
+    # -- the Matthews table sets the copies -------------------------------
+
+    def scaleCopies(self, multiple):
+        """Set every entry's copies to ``multiple`` times the table's smallest
+        whole set: the copies divided by their common factor, which is what
+        the page's Matthews table counts multiples of. A table holding
+        2 A + 2 B is analysed as multiples of 1 A + 1 B (its current row is
+        2 x): the row 4 x gives 4 A + 4 B and 1 x gives 1 A + 1 B. For
+        2 A + 1 B the set is itself, and 2 x gives 4 A + 2 B (#687). Only a
+        pending job."""
+        from functools import reduce
+        from math import gcd
+        from ccp4i2.lib.utils.jobs.editing import editable_job, save
+        job, why = editable_job(self)
+        if job is None:
+            return {"success": False, "error": why}
+        try:
+            multiple = int(multiple)
+        except (TypeError, ValueError):
+            return {"success": False, "error": f"multiple must be a whole number, not {multiple!r}"}
+        if multiple < 1:
+            return {"success": False, "error": "multiple must be at least 1"}
+        items = self.container.inputData.ASU_CONTENT
+        if len(items) == 0:
+            return {"success": False, "error": "the table is empty"}
+        copies = [int(item.nCopies) if item.nCopies.isSet() and int(item.nCopies) > 0 else 1
+                  for item in items]
+        factor = reduce(gcd, copies)
+        scaled = [n // factor * multiple for n in copies]
+        for item, n in zip(items, scaled):
+            item.nCopies.set(n)
+        save(self, job)
+        return {"success": True, "factor": factor, "copies": scaled}
+
     # -- a file chosen fills the table (any route: the page, the API, i2run) --
 
     SOURCES = ("ASUCONTENTIN", "XYZIN", "SEQIN")

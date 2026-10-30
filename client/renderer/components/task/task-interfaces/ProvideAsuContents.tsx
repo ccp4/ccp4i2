@@ -1,6 +1,7 @@
 import {
   Alert,
   Box,
+  Chip,
   Grid2,
   LinearProgress,
   Stack,
@@ -11,11 +12,17 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob, valueOfItem } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useApi } from "../../../api";
 import { apiPost } from "../../../api-fetch";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 import { usePopcorn } from "../../../providers/popcorn-provider";
+import {
+  MatthewsRow,
+  bestMatthewsRow,
+  commonFactor,
+  copiesOfRows,
+} from "../../../lib/asu-copies";
 
 /**
  * ProvideAsuContents: say what is in the asymmetric unit.
@@ -29,9 +36,120 @@ import { usePopcorn } from "../../../providers/popcorn-provider";
  * there gains copies rather than a duplicate row; Clear on the table starts
  * over. The server does the appending when the file is set
  * (ProvideAsuContents.afterParameterSet), so a job set up any other way (i2run,
- * an agent) fills the same way; this page shows the table it then holds. Last, a reflection file gives the cell for a Matthews estimate of how
- * many copies the crystal holds.
+ * an agent) fills the same way; this page shows the table it then holds.
+ *
+ * Last, a reflection file gives the cell for a Matthews estimate of how many
+ * copies the crystal holds. The estimate is of multiples of the table's
+ * smallest whole set (the copies divided by their common factor), so the
+ * rows stay put while the copies change (#673, #687). Clicking a row sets
+ * every entry's copies to that multiple (the server's scaleCopies, so an
+ * agent can do the same), and when a model or sequence file fills the table,
+ * or the reflections change, the most probable row is applied by default
+ * until the user picks one. An existing AU-contents file is taken as it is.
  */
+
+const MatthewsPicker: React.FC<{
+  results: MatthewsRow[];
+  factor: number;
+  current: number;
+  best: MatthewsRow | null;
+  editable: boolean;
+  onPick: (multiple: number) => void;
+}> = ({ results, factor, current, best, editable, onPick }) => (
+  <Box
+    sx={{
+      p: 1.5,
+      borderRadius: 1,
+      bgcolor: "action.hover",
+      border: 1,
+      borderColor: "divider",
+    }}
+  >
+    <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
+      {factor === 1
+        ? "Matthews analysis: copies of the table's contents per ASU"
+        : `Matthews analysis: copies of the table's contents divided by ${factor}, per ASU`}
+      {editable ? ". Click a row to set the copies." : ""}
+    </Typography>
+    <Stack spacing={1}>
+      {results.map((result) => {
+        const probability = result.prob_matth;
+        const isCurrent = result.nmol_in_asu === current;
+        const isBest = best?.nmol_in_asu === result.nmol_in_asu;
+        const clickable = editable && !isCurrent;
+        return (
+          <Box
+            key={result.nmol_in_asu}
+            role={clickable ? "button" : undefined}
+            tabIndex={clickable ? 0 : undefined}
+            aria-label={clickable ? `Set the copies to ${result.nmol_in_asu} times` : undefined}
+            onClick={clickable ? () => onPick(result.nmol_in_asu) : undefined}
+            onKeyDown={
+              clickable
+                ? (ev) => {
+                    if (ev.key === "Enter" || ev.key === " ") {
+                      ev.preventDefault();
+                      onPick(result.nmol_in_asu);
+                    }
+                  }
+                : undefined
+            }
+            sx={{
+              p: 1,
+              borderRadius: 0.5,
+              bgcolor: isCurrent ? "success.main" : "background.paper",
+              color: isCurrent ? "success.contrastText" : "text.primary",
+              border: isBest && !isCurrent ? 2 : 1,
+              borderColor: isCurrent ? "success.main" : isBest ? "success.main" : "divider",
+              cursor: clickable ? "pointer" : "default",
+              "&:hover": clickable ? { bgcolor: "action.selected" } : undefined,
+              "&:focus-visible": clickable
+                ? { outline: "2px solid", outlineColor: "primary.main" }
+                : undefined,
+            }}
+          >
+            <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Typography variant="body2" fontWeight="medium">
+                  {result.nmol_in_asu} &times;
+                </Typography>
+                {isCurrent && (
+                  <Chip label="current" size="small" color="success" variant="outlined"
+                    sx={{ color: "inherit", borderColor: "currentColor" }} />
+                )}
+                {isBest && !isCurrent && (
+                  <Chip label="best guess" size="small" color="success" variant="outlined" />
+                )}
+              </Stack>
+              <Typography variant="body2" fontWeight="bold">
+                {(probability * 100).toFixed(0)}%
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
+              <Typography variant="caption" sx={{ opacity: isCurrent ? 0.9 : 0.7 }}>
+                {result.percent_solvent.toFixed(1)}% solvent
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={probability * 100}
+                sx={{
+                  flex: 1,
+                  alignSelf: "center",
+                  height: 4,
+                  borderRadius: 2,
+                  bgcolor: isCurrent ? "success.light" : "action.disabledBackground",
+                  "& .MuiLinearProgress-bar": {
+                    bgcolor: isCurrent ? "success.contrastText" : "primary.main",
+                  },
+                }}
+              />
+            </Stack>
+          </Box>
+        );
+      })}
+    </Stack>
+  </Box>
+);
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
@@ -42,6 +160,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem, value: asuContentInValue } = useTaskItem("ASUCONTENTIN");
   const { value: HKLINValue } = useTaskItem("HKLIN");
+  const editable = job.status === 1;
 
   // File digest for HKLIN (used for Matthews calculation)
   // Only fetch when a file has been uploaded (has dbFileId) - otherwise digest endpoint fails
@@ -51,8 +170,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // ASU content is valid when there are no validation errors for it
   const asuContentErrors = getErrors(asuContentItem);
-  const rowCount = asuContentItem?._value?.length ?? 0;
+  const rows: any[] = asuContentItem?._value ?? [];
+  const rowCount = rows.length;
   const isAsuContentValid = asuContentErrors.length === 0 && rowCount > 0;
+
+  // The copies as they stand, and their common factor: Matthews is run on
+  // the contents divided by it, so the table's rows do not move when the
+  // copies change, and the row equal to the factor is the current contents.
+  const copies = useMemo(() => copiesOfRows(rows), [rows]);
+  const factor = useMemo(() => commonFactor(copies), [copies]);
 
   /** Molecular weight of the table's contents; only asked for when they are valid. */
   const { data: molWeight, mutate: mutateMolWeight } = api.objectMethod<any>(
@@ -68,15 +194,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // would still report the weight of what was just removed. Only a valid
   // table has a weight.
   const molWeightValue: number | undefined = isAsuContentValid ? molWeight?.data?.result : undefined;
+  const reducedMolWt: number | undefined = molWeightValue ? molWeightValue / factor : undefined;
 
   /** Matthews analysis: needs the molecular weight and the reflection file's cell. */
   const { data: matthewsAnalysis, mutate: mutateMatthews } = api.objectMethod<any>(
     job.id,
     "ProvideAsuContents.inputData.HKLIN.fileContent",
     "matthewsCoeff",
-    { molWt: molWeightValue },
-    [molWeightValue, HKLINDigest],
-    !!(molWeightValue && HKLINDigest)
+    { molWt: reducedMolWt },
+    [reducedMolWt, HKLINDigest],
+    !!(reducedMolWt && HKLINDigest)
   );
 
   const refreshDerived = useCallback(async () => {
@@ -85,20 +212,93 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     mutateMatthews();
   }, [mutateValidation, mutateMolWeight, mutateMatthews]);
 
+  // Why the Matthews panel is empty, when it is.
+  const matthewsResults: MatthewsRow[] | null =
+    reducedMolWt && matthewsAnalysis?.success ? matthewsAnalysis?.data?.result?.results : null;
+  const best = useMemo(() => bestMatthewsRow(matthewsResults), [matthewsResults]);
+  let matthewsReason: string | null = null;
+  if (!hasHKLINFile) matthewsReason = "Choose a reflection file: its cell sets how many copies fit.";
+  else if (rowCount === 0) matthewsReason = "Add at least one sequence to the table first.";
+  else if (!isAsuContentValid) matthewsReason = "Fix the sequences flagged in the table first.";
+  else if (!reducedMolWt || !HKLINDigest) matthewsReason = "Calculating…";
+  else if (!matthewsResults) matthewsReason = "No Matthews estimate for this cell and contents.";
+
+  /** Set every entry's copies to `multiple` of the smallest whole set. */
+  const applyingRef = useRef(false);
+  const pickMultiple = useCallback(
+    async (multiple: number, how: "chosen" | "default") => {
+      if (applyingRef.current) return;
+      applyingRef.current = true;
+      try {
+        const response: any = await apiPost(`jobs/${job.id}/object_method/`, {
+          object_path: "ProvideAsuContents",
+          method_name: "scaleCopies",
+          args: [multiple],
+          kwargs: {},
+        });
+        const result = response?.data?.result;
+        if (!result?.success) {
+          setMessage(`Could not set the copies: ${result?.error || response?.error || "unknown error"}`);
+          return;
+        }
+        await mutateContainer();
+        await refreshDerived();
+        const row = matthewsResults?.find((r) => r.nmol_in_asu === multiple);
+        const detail = row ? ` (${(row.prob_matth * 100).toFixed(0)}%, ${row.percent_solvent.toFixed(0)}% solvent)` : "";
+        setMessage(
+          how === "default"
+            ? `Copies set to the Matthews best guess, ${multiple} ×${detail}. Click another row to change them.`
+            : `Copies set to ${multiple} ×${detail}`
+        );
+      } catch (err: any) {
+        setMessage(`Could not set the copies: ${err?.message || err}`);
+      } finally {
+        applyingRef.current = false;
+      }
+    },
+    [job.id, mutateContainer, refreshDerived, setMessage, matthewsResults]
+  );
+
+  // The default is the best guess: after a model or sequence file fills the
+  // table, or the reflections change, the most probable multiple is applied
+  // once the analysis is in, unless the user has picked a row. A fresh token
+  // per event, so stale results from before it cannot satisfy it.
+  const userPickedRef = useRef(false);
+  const [autoApplyToken, setAutoApplyToken] = useState(0);
+  const handledTokenRef = useRef(0);
+  const requestDefault = useCallback(() => {
+    if (editable && !userPickedRef.current) setAutoApplyToken((t) => t + 1);
+  }, [editable]);
+  useEffect(() => {
+    if (autoApplyToken === 0 || handledTokenRef.current === autoApplyToken) return;
+    if (!matthewsResults || !best) return;
+    handledTokenRef.current = autoApplyToken;
+    if (best.nmol_in_asu !== factor) pickMultiple(best.nmol_in_asu, "default");
+  }, [autoApplyToken, matthewsResults, best, factor, pickMultiple]);
+
+  const onPick = useCallback(
+    (multiple: number) => {
+      userPickedRef.current = true;
+      pickMultiple(multiple, "chosen");
+    },
+    [pickMultiple]
+  );
+
   /**
    * A source file was chosen. The server added its sequences to the table when
    * the file was set; show the table it now holds, and what was added.
    */
   const fillFrom = useCallback(
-    async (updatedItem: any, fallbackItem: any, note?: string | null) => {
+    async (updatedItem: any, fallbackItem: any, note?: string | null, thenDefault = false) => {
       const chosen = updatedItem ? valueOfItem(updatedItem) : valueOfItem(fallbackItem);
       if (!chosen?.dbFileId && !chosen?.baseName) return; // cleared, not chosen
       const label = chosen?.annotation || chosen?.baseName || "file";
       await mutateContainer();
       await refreshDerived();
       setMessage(note || `Sequences from ${label} added to the table`);
+      if (thenDefault) requestDefault();
     },
-    [mutateContainer, refreshDerived, setMessage]
+    [mutateContainer, refreshDerived, setMessage, requestDefault]
   );
 
   // When ASUCONTENTIN is already set (e.g. imperatively by another task) and the
@@ -122,16 +322,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         .catch((err: any) => setMessage(`Could not fill the table: ${err?.message || err}`));
     }
   }, [asuContentInValue?.dbFileId, rowCount, asuContentInItem, fillFrom, job.id, setMessage]);
-
-  // Why the Matthews panel is empty, when it is.
-  const matthewsResults =
-    molWeightValue && matthewsAnalysis?.success ? matthewsAnalysis?.data?.result?.results : null;
-  let matthewsReason: string | null = null;
-  if (!hasHKLINFile) matthewsReason = "Choose a reflection file: its cell sets how many copies fit.";
-  else if (rowCount === 0) matthewsReason = "Add at least one sequence to the table first.";
-  else if (!isAsuContentValid) matthewsReason = "Fix the sequences flagged in the table first.";
-  else if (!molWeightValue || !HKLINDigest) matthewsReason = "Calculating…";
-  else if (!matthewsResults) matthewsReason = "No Matthews estimate for this cell and contents.";
 
   return (
     <CCP4i2Tabs {...props}>
@@ -192,13 +382,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName="XYZIN"
             qualifiers={{ guiLabel: "A model: every polymer chain is added (fetch a whole PDB entry here, from PDBe, RCSB or AlphaFold)" }}
-            onChange={(updated: any) => fillFrom(updated, null)}
+            onChange={(updated: any) => fillFrom(updated, null, undefined, true)}
           />
           <CCP4i2TaskElement
             {...props}
             itemName="SEQIN"
             qualifiers={{ guiLabel: "One sequence: a file, or fetched from UniProt (a PDB entry gives one chain; use the model slot for all of it)" }}
-            onChange={(updated: any) => fillFrom(updated, null)}
+            onChange={(updated: any) => fillFrom(updated, null, undefined, true)}
           />
         </CCP4i2ContainerElement>
 
@@ -216,7 +406,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 {...props}
                 itemName="HKLIN"
                 qualifiers={{ guiLabel: "Reflections (for the Matthews analysis)" }}
-                onChange={() => mutateHKLINDigest()}
+                onChange={() => {
+                  mutateHKLINDigest();
+                  requestDefault();
+                }}
               />
               {HKLINDigest && (
                 <Stack spacing={1} sx={{ mt: 1 }}>
@@ -231,68 +424,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             </Grid2>
             <Grid2 size={{ xs: 12, sm: 4 }}>
               {matthewsResults ? (
-                <Box
-                  sx={{
-                    p: 1.5,
-                    borderRadius: 1,
-                    bgcolor: "action.hover",
-                    border: 1,
-                    borderColor: "divider",
-                  }}
-                >
-                  <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-                    Matthews analysis: copies of the table's contents per ASU
-                  </Typography>
-                  <Stack spacing={1}>
-                    {matthewsResults.map(
-                      (result: { nmol_in_asu: number; percent_solvent: number; prob_matth: number }) => {
-                        const probability = result.prob_matth;
-                        const isLikely = probability > 0.5;
-                        return (
-                          <Box
-                            key={result.nmol_in_asu}
-                            sx={{
-                              p: 1,
-                              borderRadius: 0.5,
-                              bgcolor: isLikely ? "success.main" : "background.paper",
-                              color: isLikely ? "success.contrastText" : "text.primary",
-                              border: 1,
-                              borderColor: isLikely ? "success.main" : "divider",
-                            }}
-                          >
-                            <Stack direction="row" justifyContent="space-between" alignItems="center">
-                              <Typography variant="body2" fontWeight="medium">
-                                {result.nmol_in_asu} &times; these contents
-                              </Typography>
-                              <Typography variant="body2" fontWeight="bold">
-                                {(probability * 100).toFixed(0)}%
-                              </Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
-                              <Typography variant="caption" sx={{ opacity: isLikely ? 0.9 : 0.7 }}>
-                                {result.percent_solvent.toFixed(1)}% solvent
-                              </Typography>
-                              <LinearProgress
-                                variant="determinate"
-                                value={probability * 100}
-                                sx={{
-                                  flex: 1,
-                                  alignSelf: "center",
-                                  height: 4,
-                                  borderRadius: 2,
-                                  bgcolor: isLikely ? "success.light" : "action.disabledBackground",
-                                  "& .MuiLinearProgress-bar": {
-                                    bgcolor: isLikely ? "success.contrastText" : "primary.main",
-                                  },
-                                }}
-                              />
-                            </Stack>
-                          </Box>
-                        );
-                      }
-                    )}
-                  </Stack>
-                </Box>
+                <MatthewsPicker
+                  results={matthewsResults}
+                  factor={factor}
+                  current={factor}
+                  best={best}
+                  editable={editable}
+                  onPick={onPick}
+                />
               ) : (
                 <Typography variant="body2" color="text.secondary">
                   {matthewsReason}

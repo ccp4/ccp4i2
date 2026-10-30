@@ -1,5 +1,6 @@
 """Tests for moving a project on disk and rebasing its absolute paths."""
 
+import json
 from pathlib import Path
 from shutil import rmtree
 from tempfile import mkdtemp
@@ -74,6 +75,28 @@ def make_project_tree(root: Path, project_root_text: str) -> None:
     (job / "report.html").write_text(
         f"<a href='{project_root_text}/x.pdb'>x</a>\n", encoding="utf-8"
     )
+    # A DUI2 state file, as the dui wrapper copies it into the job: JSON with
+    # no suffix, naming the job's own node directories by absolute path and
+    # the images by a path outside the project (#401). The first must follow
+    # the project; the second is not ours to change.
+    nodes = job / "run_dui2_nodes"
+    nodes.mkdir()
+    (nodes / "run_data").write_text(
+        json.dumps(
+            {
+                "step_list": [
+                    {
+                        "_base_dir": f"{project_root_text}/CCP4_JOBS/job_1/run_dui2_nodes",
+                        "_run_dir": f"{project_root_text}/CCP4_JOBS/job_1/run_dui2_nodes/run_1",
+                        "cmd_dict_ini": {"imageset": "/data/beamline/x_0001.cbf"},
+                    }
+                ],
+                "bigger_lin": 1,
+            },
+            indent=4,
+        ),
+        encoding="utf-8",
+    )
     # Binary: must never be opened for rewriting.
     (job / "HKLOUT.mtz").write_bytes(
         b"MTZ \x00\x00\x00" + project_root_text.encode() + b"\x00padding"
@@ -127,7 +150,7 @@ class PlanRebaseTest(TestCase):
         rewritten = {candidate.path.name for candidate in plan.rewrites}
         self.assertEqual(
             rewritten,
-            {"params.xml", "program.xml", "script.py", "scene_1.scene.xml"},
+            {"params.xml", "program.xml", "script.py", "scene_1.scene.xml", "run_data"},
         )
 
     def test_provenance_is_skipped(self):
@@ -150,8 +173,16 @@ class PlanRebaseTest(TestCase):
         plan = plan_rebase(self.root, self.old_root, new_root)
         rewritten = apply_rebase(plan)
 
-        self.assertEqual(len(rewritten), 4)
+        self.assertEqual(len(rewritten), 5)
         job = self.root / "CCP4_JOBS" / "job_1"
+
+        # DUI2's state follows the project; the images it names do not move.
+        state = json.loads((job / "run_dui2_nodes" / "run_data").read_text())
+        self.assertEqual(
+            state["step_list"][0]["_run_dir"],
+            f"{new_root}/CCP4_JOBS/job_1/run_dui2_nodes/run_1",
+        )
+        self.assertEqual(state["step_list"][0]["cmd_dict_ini"]["imageset"], "/data/beamline/x_0001.cbf")
 
         params = (job / "params.xml").read_text()
         self.assertIn(f"{new_root}/CCP4_JOBS/job_1/INTERRUPT", params)
@@ -242,7 +273,7 @@ class MoveProjectTest(TestCase):
         summary = dry_run_move(self.project, destination)
 
         self.assertEqual(summary["destination"], str(destination))
-        self.assertEqual(len(summary["rewrites"]), 4)
+        self.assertEqual(len(summary["rewrites"]), 5)
         self.assertTrue(self.source.is_dir())
         self.assertFalse(destination.exists())
         self.project.refresh_from_db()
@@ -254,7 +285,7 @@ class MoveProjectTest(TestCase):
 
         self.assertFalse(self.source.exists())
         self.assertTrue(destination.is_dir())
-        self.assertEqual(summary["rewritten"], 4)
+        self.assertEqual(summary["rewritten"], 5)
 
         self.project.refresh_from_db()
         self.assertEqual(self.project.directory, str(destination))
@@ -394,7 +425,7 @@ class MoveProjectTest(TestCase):
             format="json",
         )
         self.assertEqual(preview.status_code, 200, preview.data)
-        self.assertEqual(len(preview.data["data"]["rewrites"]), 4)
+        self.assertEqual(len(preview.data["data"]["rewrites"]), 5)
         self.assertTrue(self.source.is_dir())
 
         moved = client.post(
@@ -403,7 +434,7 @@ class MoveProjectTest(TestCase):
             format="json",
         )
         self.assertEqual(moved.status_code, 200, moved.data)
-        self.assertEqual(moved.data["data"]["rewritten"], 4)
+        self.assertEqual(moved.data["data"]["rewritten"], 5)
         self.assertTrue(destination.is_dir())
         self.assertFalse(self.source.exists())
 
@@ -494,7 +525,7 @@ class RelocateProjectTest(TestCase):
         self.project.refresh_from_db()
         self.assertEqual(self.project.directory, str(self.actual))
         self.assertTrue(summary["directory_was_missing"])
-        self.assertEqual(summary["rewritten"], 4)
+        self.assertEqual(summary["rewritten"], 5)
 
         params = (self.actual / "CCP4_JOBS" / "job_1" / "params.xml").read_text()
         self.assertIn(str(self.actual), params)
@@ -508,7 +539,7 @@ class RelocateProjectTest(TestCase):
     def test_dry_run_changes_nothing(self):
         summary = relocate_project(self.project, self.actual, dry_run=True)
 
-        self.assertEqual(len(summary["rewrites"]), 4)
+        self.assertEqual(len(summary["rewrites"]), 5)
         self.assertEqual(summary["rewritten"], 0)
         self.project.refresh_from_db()
         self.assertEqual(self.project.directory, self.stale)

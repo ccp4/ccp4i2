@@ -28,6 +28,14 @@ interface TaskCategory {
   tasks: string[];
 }
 
+// The single-purpose Import* tasks (ImportCoordinate, ImportSequence,
+// ImportAsuContent, ImportObs, ImportFreeR, ImportMapCoeffs, ImportPhases)
+// are deliberately in no category: each is a subset of a richer task that is
+// (coordinate_selector, ProvideSequence, ProvideAsuContents, import_merged,
+// splitMtz), and two ways to do one thing confused the chooser (#721). They
+// stay registered for scripts (i2run) and appear under Uncategorised in
+// developer mode. ImportDictionary, ImportMap and ImportUnmerged have no
+// richer counterpart and stay listed.
 const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "data_entry",
@@ -41,9 +49,6 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "coordinate_selector",
       "splitMtz",
       "import_serial_pipe",
-      "ImportCoordinate",
-      "ImportSequence",
-      "ImportAsuContent",
       "ImportDictionary",
       "ImportMap",
     ],
@@ -215,11 +220,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "density_calculator",
       "freerflag",
       "matthews",
-      "ImportObs",
       "ImportUnmerged",
-      "ImportMapCoeffs",
-      "ImportFreeR",
-      "ImportPhases",
     ],
   },
   {
