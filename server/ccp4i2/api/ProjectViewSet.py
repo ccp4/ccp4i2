@@ -1541,7 +1541,7 @@ class ProjectViewSet(ModelViewSet):
         Returns:
             JsonResponse: File metadata on success:
                 {
-                    "status": "Success",
+                    "success": true,
                     "data": {
                         "project": "uuid-without-hyphens",
                         "baseName": "filename.pdb",

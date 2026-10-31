@@ -16,6 +16,7 @@ This document is the externally-facing answer to that question. The contract is 
 | --- | --- |
 | Base URL | Relative to deployment, typically `/api/ccp4i2/`. The proxy / ingress prefix (`/api/proxy/ccp4i2/`) is a deployment-specific concern. |
 | Authentication | `Authorization: Bearer <token>`. The bearer-token shape is the contract; how the consumer acquires it is consumer-specific. `@ccp4/ccp4i2-api` includes provider abstractions for the two browser/Electron contexts (`MsalBearerTokenProvider` for cloud, `LocalSessionTokenProvider` for desktop); CLI clients like `i2remote` supply tokens directly (e.g. via `az account get-access-token` or a service-principal credential). The server validates per the configured middleware (LocalSession / AzureAD). |
+| Response envelope | Every contracted action endpoint (the `POST`/`GET` actions below, as opposed to the plain resource reads that return a serializer payload or a list) answers `{ "success": true, "data": <payload> }` on success and `{ "success": false, "error": "<reason>", "details"?: {...} }` on failure, with an HTTP status that says which (2xx / 4xx / 5xx). Consumers test `success`, never the HTTP status alone and never any other key. **The envelope is part of the contract: a change to it is a breaking change**, announced in the release notes (see *Versioning*). History: until 2026-09-28 these actions answered `{ "status": "Success" \| "Failed", ... }`; the #651/#654 refactor moved them to this envelope without a note here, and Materia's `i2remote` read failure on every success. `report_xml` is the one documented exception: `{ "success": true, "xml": "..." }`. |
 | 401/403 response shape | `{success: false, error: string}`. Pattern-matched by `AUTH_ERROR_EVENT` listeners. Stable. |
 | Date format | ISO 8601 strings, UTC (e.g., `"2026-04-29T13:21:24.854154Z"`). Stable. |
 | ID types | `id` is integer (Django PK), unique within a single deployment. `uuid` is a UUID v4 string, globally unique. **Most endpoints address resources by `{id}`** (e.g. `/projects/{id}/`, `/jobs/{id}/`); a small **uuid-addressed surface exists on files** (`/files_by_uuid/{uuid}/`, `/download/`, `/digest/`) for cross-deployment references — the parameter-file format only knows uuids, not deployment-local ids. Both fields are stable. Use `id` for normal in-deployment work; use `uuid` when the reference must survive a deployment boundary or be embedded in cross-system data. |
@@ -205,11 +206,12 @@ Creates a new job that is a parameter-by-parameter copy of this one. Useful for 
 Sets a single parameter on the job's container by dotted object-path. Endpoint and envelope shape are contracted; **`object_path` strings and `value` types are task-specific** and not contracted.
 
 - `object_path` syntax is `container.<section>.<param>[.<sub>...]` where `<section>` is one of `inputData` / `outputData` / `controlParameters`.
-- `value` is JSON whose shape depends on the parameter type: scalars for `CString`/`CFloat`/`CBoolean`; objects for file parameters (typically `{dbFileId: <id>}` referring to an existing `File` row); arrays for `CList` parameters.
+- `value` is JSON whose shape depends on the parameter type: scalars for `CString`/`CFloat`/`CBoolean`; objects for file parameters; arrays for `CList` parameters.
+- **File parameters take an object.** The documented form is the one `GET /projects/{id}/resolve_fileuse/` returns: `{ "dbFileId": "<uuid, no hyphens>", "baseName": "...", "relPath": "...", "project": "<project uuid, no hyphens>" }` (`fullPath` may be present and is ignored when `dbFileId` is). `dbFileId` alone suffices; the file is then recorded as *used* by the job, which is what gives the project its provenance graph. A file that is not in the project can be given as `{ "fullPath": "/absolute/path" }` or as a bare absolute-path string; it is then bound by path, with no `File` row and no use record. **Any other string is refused with 400** (`success: false`), naming the forms above. In particular the i2run CLI's own `fullPath=/path` key-value syntax is not JSON the server reads: before 2026-10-31 it was accepted and written into params.xml as the file's name.
 
 Valid `object_path` values for a given job are discoverable via `GET /jobs/{id}/container/`; per-task parameter type semantics live in `tasks/<taskname>/<taskname>.def.xml` (CCP4i2-internal, not contract).
 
-**Response:** `{ "success": true, "data": { "updated_item": ... } }` on success; error response on validation failure.
+**Response:** `{ "success": true, "data": { "path": ..., "value": ..., "object_type": ..., "file_path"?: ..., "db_file_id"?: ..., "base_name"?: ... } }` on success; `{ "success": false, "error": "<reason>" }` with 400 on a value the parameter cannot take, 404 for no such job.
 
 ### `POST /jobs/{id}/upload_file_param/` — upload content as a file parameter
 
@@ -429,6 +431,11 @@ if (myJob.status === JobStatus.Running) {
 - **Patch / minor changes** to `@ccp4/ccp4i2-api` may add new types, add optional fields, or relax types. Consumers don't need to update.
 - **Major version bumps** are required for: removing a field, renaming a field, changing a field's type in an incompatible way, changing a numeric enum value, changing the 401/403 response shape.
 - The CCP4i2 deployment carries a runtime `version` (visible at `/version/`). Consumers are encouraged to log or display it for debugging — but the type contract is what they build against, not the runtime version.
+
+## Versioning and breaking changes
+
+- **Additive is free.** New endpoints, new fields on a payload, new optional query parameters and new optional request-body keys do not bump the contract version; consumers ignore what they do not know.
+- **Breaking changes** are: removing or renaming a contracted endpoint, field, query parameter or request key; changing a field's type; and **changing the response envelope** (the `success` / `data` / `error` keys, or the HTTP status that accompanies them). Each must (1) be recorded in `CCP4I2_SERVICE_CONTRACT_AUDIT.md`'s migration log with the date and the pull request, (2) be guarded by `server/ccp4i2/tests/api/unit/test_contract.py` so the next change is deliberate, and (3) appear under a **Breaking (API contract)** heading in the GitHub release notes of the first release that carries it (see `docs/RELEASING.md`). The known consumers are listed in the audit document; tell them before the release, not after.
 
 ## Open questions
 

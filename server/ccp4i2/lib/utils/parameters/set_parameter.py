@@ -188,6 +188,51 @@ def _is_a(mimetype, target):
 
 
 
+def file_value_errors(target, value, path):
+    """Where a string given for a file input is not a path, as messages.
+
+    A file input takes a dict (dbFileId or fullPath, as resolve_fileuse
+    returns) or an absolute path. Anything else was written into
+    params.xml as the file's name: the i2 CLI's own "fullPath=/x.pdb"
+    syntax came through set_parameter as baseName
+    "/usr/src/app/fullPath=/x.pdb" with success: true (Materia's i2remote,
+    2026-10-31, and manage.py set_job_parameter's fileUse form). Refused
+    here, naming the forms that work. Lists and composites are checked
+    item by item, field by field.
+    """
+    import os
+    from ccp4i2.core.base_object.fundamental_types import CList
+    if value is None:
+        return []
+    if isinstance(target, (CDataFile, CCP4File.CDataFile)):
+        if not isinstance(value, str):
+            return []
+        text = value.strip()
+        if not text:
+            return []  # clears the input
+        if "=" in text.split(os.sep, 1)[0] or not os.path.isabs(text):
+            return [f"{path} takes a file: give {{\"dbFileId\": <id>}} for a project file "
+                    f"(what resolve_fileuse returns), {{\"fullPath\": <path>}} or an absolute "
+                    f"path, not the text {text[:60]!r}"]
+        return []
+    if isinstance(target, (CList, CCP4Data.CList)) and isinstance(value, list):
+        make = getattr(target, "makeItem", None)
+        if make is None:
+            return []
+        errors = []
+        for i, item_value in enumerate(value):
+            errors += file_value_errors(make(), item_value, f"{path}[{i}]")
+        return errors
+    if isinstance(value, dict):
+        errors = []
+        for key, item_value in value.items():
+            child = getattr(target, key, None)
+            if child is not None and hasattr(child, "objectName"):
+                errors += file_value_errors(child, item_value, f"{path}.{key}")
+        return errors
+    return []
+
+
 def file_type_errors(target, value, path):
     """Where ``value`` puts a project file of the wrong kind into a file
     input, as messages: the rule the interface's file menus apply (the
