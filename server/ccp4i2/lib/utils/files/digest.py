@@ -291,10 +291,31 @@ def _extract_chain_sequences(gemmi_structure):
     for chain in model:
         polymer = chain.get_polymer()
         if polymer and len(polymer) > 0:
-            seq = gemmi.one_letter_code([res.name for res in polymer])
+            seq = "".join(residue_one_letter(res.name) for res in polymer)
             if seq:
                 sequences[chain.name] = seq
     return sequences
+
+
+def residue_one_letter(name):
+    """What a residue in a polymer contributes to its sequence: its one-letter
+    code, a modified residue as its parent (TPO -> T, MSE -> M, PSU -> U),
+    nothing for a tabulated non-residue gemmi left in the polymer (a cap
+    such as ACE or NH2, a sugar, an ion), X for a residue gemmi does not know.
+
+    gemmi.one_letter_code on a list writes X for every non-standard residue,
+    so the chain sequence of 1H1S (phospho-Thr160) came out with an X that
+    the AU-contents table then rejected as an invalid amino acid.
+    """
+    import gemmi
+
+    info = gemmi.find_tabulated_residue(name)
+    if info is None or not info.name:  # an unknown name gives a blank entry, not None
+        return "X"
+    if not (info.is_amino_acid() or info.is_nucleic_acid()):
+        return ""
+    code = info.one_letter_code.upper()
+    return code if code.isalpha() else "X"
 
 
 def _extract_ligands(gemmi_structure):
