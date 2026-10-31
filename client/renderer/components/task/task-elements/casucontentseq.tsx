@@ -246,10 +246,14 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
               // not a second place to type.
               <Box sx={{ px: 1, py: 0.5, borderRadius: 1, border: 1, borderColor: "error.light" }}>
                 <Typography variant="caption" color="error" sx={{ display: "block", mb: 0.5 }}>
-                  {oddLetters.length === 1 ? "Letter" : "Letters"} outside the{" "}
-                  {(polymerType || "PROTEIN").toUpperCase() === "PROTEIN" ? "standard amino acid" : "nucleotide"}{" "}
-                  alphabet: {describeOddLetters(oddLetters, 5)}. A modified residue goes in as its parent (TPO as T).
-                  Click a marked letter to select it in the editor above, then type its replacement or press Delete.
+                  {[
+                    oddLetters.length === 1 ? "Letter" : "Letters",
+                    "outside the",
+                    (polymerType || "PROTEIN").toUpperCase() === "PROTEIN" ? "standard amino acid" : "nucleotide",
+                    `alphabet: ${describeOddLetters(oddLetters, 5)}.`,
+                    "A modified residue goes in as its parent (TPO as T).",
+                    "Click a marked letter to select it in the editor above, then type its replacement or press Delete.",
+                  ].join(" ")}
                 </Typography>
                 <Stack spacing={0.25}>
                   {oddWindows.windows.map((w) => (
