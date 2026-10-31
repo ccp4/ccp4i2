@@ -45,9 +45,11 @@ import {
  * smallest whole set (the copies divided by their common factor), so the
  * rows stay put while the copies change (#673, #687). Clicking a row sets
  * every entry's copies to that multiple (the server's scaleCopies, so an
- * agent can do the same), and when a model or sequence file fills the table,
- * or the reflections change, the most probable row is applied by default
- * until the user picks one. An existing AU-contents file is taken as it is.
+ * agent can do the same). When a sequence file fills the table the most
+ * probable row is applied by default, until the user picks one: a sequence
+ * says nothing about copies. A model does (its chains), and an AU-contents
+ * file is the user's own answer, so both are taken as they are (Martin,
+ * 2026-10-31: 1H1S's 2 + 2 from the model would have become 3 + 3).
  */
 
 const MatthewsPicker: React.FC<{
@@ -267,10 +269,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [job.id, mutateContainer, refreshDerived, setMessage, matthewsResults, names, copies]
   );
 
-  // The default is the best guess: after a model or sequence file fills the
-  // table, or the reflections change, the most probable multiple is applied
-  // once the analysis is in, unless the user has picked a row. A fresh token
-  // per event, so stale results from before it cannot satisfy it.
+  // The default is the best guess, after a sequence file fills the table
+  // only: the most probable multiple is applied once the analysis is in,
+  // unless the user has picked a row. A fresh token per event, so stale
+  // results from before it cannot satisfy it.
   const userPickedRef = useRef(false);
   const [autoApplyToken, setAutoApplyToken] = useState(0);
   const handledTokenRef = useRef(0);
@@ -390,7 +392,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName="XYZIN"
             qualifiers={{ guiLabel: "A model: every polymer chain is added (fetch a whole PDB entry here, from PDBe, RCSB or AlphaFold)" }}
-            onChange={(updated: any) => fillFrom(updated, null, undefined, true)}
+            onChange={(updated: any) => fillFrom(updated, null)}
           />
           <CCP4i2TaskElement
             {...props}
@@ -414,10 +416,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 {...props}
                 itemName="HKLIN"
                 qualifiers={{ guiLabel: "Reflections (for the Matthews analysis)" }}
-                onChange={() => {
-                  mutateHKLINDigest();
-                  requestDefault();
-                }}
+                onChange={() => mutateHKLINDigest()}
               />
               {HKLINDigest && (
                 <Stack spacing={1} sx={{ mt: 1 }}>

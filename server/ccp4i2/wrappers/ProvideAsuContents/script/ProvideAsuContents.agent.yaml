@@ -51,9 +51,12 @@ inputs:
       the table's smallest whole set (the copies divided by their common
       factor), keeping the ratios - 2 A + 1 B with multiple 2 becomes
       4 A + 2 B. The page's table does the same when a row is clicked, and
-      applies the most probable row by default when a model or sequence
-      file fills the table (#687); program.xml's analysis (below) is still
-      of the WHOLE contents as recorded.
+      applies the most probable row by default when a SEQUENCE file fills
+      the table (#687): a sequence says nothing about copies. A model's
+      chain count and an AU-contents file are kept as given; the Matthews
+      prior favours ~50% solvent and would have turned 1H1S's 2 + 2 into
+      3 + 3. program.xml's analysis (below) is still of the WHOLE contents
+      as recorded.
   - param: inputData.HKLIN
     advice: >
       Give it whenever the project has merged data, which before MR it
