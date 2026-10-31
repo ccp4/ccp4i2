@@ -18,7 +18,9 @@ export const SequenceText: React.FC<{
   polymerType: PolymerType;
   maxLength?: number;
   wrap?: boolean;
-}> = ({ sequence, polymerType, maxLength, wrap = false }) => {
+  /** Called with the 1-based position (in the whitespace-free sequence) of a marked letter that was clicked. */
+  onLetterClick?: (position: number) => void;
+}> = ({ sequence, polymerType, maxLength, wrap = false, onLetterClick }) => {
   const seq = (sequence || "").replace(/\s/g, "");
   if (!seq) return null;
   const window = maxLength ? previewWindow(seq, polymerType, maxLength) : null;
@@ -44,10 +46,11 @@ export const SequenceText: React.FC<{
             title={`Not a ${(polymerType || "").toUpperCase() === "PROTEIN" ? "standard amino acid" : "nucleotide"} letter: ${describeOddLetters(
               nonCanonicalLetters(s.text, polymerType).map((o) => ({ ...o, position: o.position + offset + s.start - 1 })),
               5,
-            )}`}
+            )}${onLetterClick ? ". Click to select it in the editor" : ""}`}
           >
             <Box
               component="span"
+              onClick={onLetterClick ? () => onLetterClick(offset + s.start) : undefined}
               sx={{
                 color: "error.main",
                 fontWeight: "bold",
@@ -55,6 +58,7 @@ export const SequenceText: React.FC<{
                 textDecorationStyle: "wavy",
                 bgcolor: "rgba(211, 47, 47, 0.12)",
                 borderRadius: 0.5,
+                cursor: onLetterClick ? "pointer" : undefined,
               }}
             >
               {s.text}

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useJob, valueOfItem } from "../../../utils";
 import { apiGet } from "../../../api-fetch";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { Science } from "@mui/icons-material";
 import { polymerTypeFromMolecule } from "./mmcif-sequence-parser";
 import { SequenceText } from "./sequence-text";
@@ -52,6 +52,34 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   const sequenceValue = item?._value?.sequence?._value || "";
   const seqLength = sequenceValue.replace(/\s/g, "").length;
   const oddLetters = nonCanonicalLetters(sequenceValue, polymerType || "PROTEIN");
+
+  // The marked copy of the sequence cannot be edited (it is a display), so a
+  // click on a marked letter selects that letter in the textarea above: a
+  // typed letter then replaces it and Delete removes it.
+  const editorRef = useRef<HTMLDivElement | null>(null);
+  const selectInEditor = useCallback(
+    (position: number) => {
+      const textarea = editorRef.current?.querySelector("textarea");
+      if (!textarea) return;
+      // position counts letters only; the textarea may hold whitespace too
+      const raw = textarea.value;
+      let seen = 0;
+      let index = -1;
+      for (let i = 0; i < raw.length; i++) {
+        if (/\s/.test(raw[i])) continue;
+        seen += 1;
+        if (seen === position) {
+          index = i;
+          break;
+        }
+      }
+      if (index < 0) return;
+      textarea.focus();
+      textarea.setSelectionRange(index, index + 1);
+      textarea.scrollIntoView?.({ block: "nearest" });
+    },
+    []
+  );
 
   /**
    * A sequence file was chosen for THIS row: replace the row's sequence with
@@ -191,6 +219,7 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
 
             {/* Sequence */}
             <Box
+              ref={editorRef}
               sx={{
                 "& textarea": {
                   fontFamily: "monospace !important",
@@ -217,9 +246,15 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                   {oddLetters.length === 1 ? "Letter" : "Letters"} outside the{" "}
                   {(polymerType || "PROTEIN").toUpperCase() === "PROTEIN" ? "standard amino acid" : "nucleotide"}{" "}
                   alphabet: {describeOddLetters(oddLetters, 5)}. A modified residue goes in as its parent (TPO as T).
+                  Click a marked letter to select it in the editor above, then type its replacement or press Delete.
                 </Typography>
                 <Typography variant="body2" component="div" sx={{ fontSize: "0.8rem", lineHeight: 1.6 }}>
-                  <SequenceText sequence={sequenceValue} polymerType={polymerType || "PROTEIN"} wrap />
+                  <SequenceText
+                    sequence={sequenceValue}
+                    polymerType={polymerType || "PROTEIN"}
+                    wrap
+                    onLetterClick={selectInEditor}
+                  />
                 </Typography>
               </Box>
             )}
