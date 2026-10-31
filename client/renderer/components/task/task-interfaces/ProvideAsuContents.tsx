@@ -362,9 +362,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                     : "not available until the table is valid"}
             </Typography>
             {rowCount > 0 && asuContentErrors.length > 0 && (
-              <Typography variant="body2" color="error">
-                {asuContentErrors.length} problem{asuContentErrors.length === 1 ? "" : "s"} in the table
-              </Typography>
+              <Stack spacing={0}>
+                {asuContentErrors.map((e) => {
+                  // "...ASU_CONTENT[1].sequence" -> the entry's name
+                  const index = Number(/\[(\d+)\]/.exec(e.path)?.[1]);
+                  const name = Number.isFinite(index)
+                    ? asuContentItem?._value?.[index]?._value?.name?._value || `Entry ${index + 1}`
+                    : null;
+                  const text = (e.error?.messages ?? []).join("; ") || "problem";
+                  return (
+                    <Typography key={e.path} variant="body2" color="error">
+                      {name ? `${name}: ${text}` : text}
+                    </Typography>
+                  );
+                })}
+              </Stack>
             )}
           </Stack>
         </CCP4i2ContainerElement>
