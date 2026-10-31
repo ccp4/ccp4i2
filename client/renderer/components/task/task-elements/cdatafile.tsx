@@ -175,11 +175,20 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   // Data and state
   // Poll for files only while the job is active, so task widgets see newly
   // created output files without polling forever once the job is done.
-  const { files: projectFiles } = useProjectFiles(
+  const { files: projectFiles, mutateFiles: refreshProjectFiles } = useProjectFiles(
     job.project,
     ACTIVE_JOB_STATUSES.includes(job.status)
   );
-  const { jobs: projectJobs } = useProject(job.project);
+  const { jobs: projectJobs, mutateJobs: refreshProjectJobs } = useProject(job.project);
+  // Opening the list fetches it again: a pending job does not poll, so a
+  // job set up before a data import never saw the import's files until its
+  // page was reopened (1H1S, 2026-10-31). One request, the same the page
+  // made on mount, on a rare user action; the jobs too, which label the
+  // options with their numbers.
+  const refreshOptions = useCallback(() => {
+    refreshProjectFiles();
+    refreshProjectJobs?.();
+  }, [refreshProjectFiles, refreshProjectJobs]);
   const { data: projects } = api.get<Project[]>("projects");
   // Invalidate, never subscribe: this element renders once per file in a
   // task, and subscribing here fetched a digest and the file's content for
@@ -741,6 +750,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             size="small"
             value={value}
             onChange={handleFileSelect}
+            onOpen={refreshOptions}
             options={[...displayOptions, nullFile]}
             getOptionLabel={getOptionLabel}
             getOptionKey={(option: CCP4i2File) => option.uuid}
