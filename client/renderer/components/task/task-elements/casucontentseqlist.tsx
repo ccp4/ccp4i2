@@ -19,6 +19,7 @@ import {
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Add, Delete, DeleteSweep, Science } from "@mui/icons-material";
+import { SequenceText } from "./sequence-text";
 
 /** Get abbreviated polymer type label */
 const getPolymerTypeLabel = (type: string): string => {
@@ -51,13 +52,6 @@ const getPolymerTypeColor = (
 };
 
 /** Format sequence for preview (first N residues with ellipsis) */
-const formatSequencePreview = (sequence: string, maxLength = 40): string => {
-  if (!sequence) return "";
-  const seq = sequence.replace(/\s/g, "");
-  if (seq.length <= maxLength) return seq;
-  return seq.substring(0, maxLength) + "…";
-};
-
 /**
  * The asymmetric unit's contents as a table: one row per distinct sequence,
  * with its polymer type, length and number of copies. Rows are added and
@@ -266,7 +260,13 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
                       textOverflow: "ellipsis",
                     }}
                   >
-                    {formatSequencePreview(sequence) || "(no sequence)"}
+                    {sequence ? (
+                      // Letters the server rejects are marked, and a long
+                      // sequence's preview is centred on the first of them.
+                      <SequenceText sequence={sequence} polymerType={polymerType} maxLength={40} />
+                    ) : (
+                      "(no sequence)"
+                    )}
                   </TableCell>
                   <TableCell padding="checkbox">
                     <Tooltip title="Remove this sequence">

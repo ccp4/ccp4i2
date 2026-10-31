@@ -12,6 +12,8 @@ import { apiGet } from "../../../api-fetch";
 import { useCallback } from "react";
 import { Science } from "@mui/icons-material";
 import { polymerTypeFromMolecule } from "./mmcif-sequence-parser";
+import { SequenceText } from "./sequence-text";
+import { describeOddLetters, nonCanonicalLetters } from "../../../lib/sequence-letters";
 
 /** Get color for polymer type */
 const getPolymerTypeColor = (
@@ -49,6 +51,7 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   const polymerType = item?._value?.polymerType?._value || "";
   const sequenceValue = item?._value?.sequence?._value || "";
   const seqLength = sequenceValue.replace(/\s/g, "").length;
+  const oddLetters = nonCanonicalLetters(sequenceValue, polymerType || "PROTEIN");
 
   /**
    * A sequence file was chosen for THIS row: replace the row's sequence with
@@ -206,6 +209,20 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                 }}
               />
             </Box>
+            {oddLetters.length > 0 && (
+              // A textarea cannot colour its letters, so the sequence is
+              // shown again with the ones the server rejects marked.
+              <Box sx={{ px: 1, py: 0.5, borderRadius: 1, border: 1, borderColor: "error.light" }}>
+                <Typography variant="caption" color="error" sx={{ display: "block", mb: 0.5 }}>
+                  {oddLetters.length === 1 ? "Letter" : "Letters"} outside the{" "}
+                  {(polymerType || "PROTEIN").toUpperCase() === "PROTEIN" ? "standard amino acid" : "nucleotide"}{" "}
+                  alphabet: {describeOddLetters(oddLetters, 5)}. A modified residue goes in as its parent (TPO as T).
+                </Typography>
+                <Typography variant="body2" component="div" sx={{ fontSize: "0.8rem", lineHeight: 1.6 }}>
+                  <SequenceText sequence={sequenceValue} polymerType={polymerType || "PROTEIN"} wrap />
+                </Typography>
+              </Box>
+            )}
 
             <Divider />
 
