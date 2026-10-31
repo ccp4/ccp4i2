@@ -20,12 +20,14 @@ export const SequenceText: React.FC<{
   wrap?: boolean;
   /** Called with the 1-based position (in the whitespace-free sequence) of a marked letter that was clicked. */
   onLetterClick?: (position: number) => void;
-}> = ({ sequence, polymerType, maxLength, wrap = false, onLetterClick }) => {
+  /** Position of the first letter of `sequence` in the whole, when it is an excerpt. */
+  firstPosition?: number;
+}> = ({ sequence, polymerType, maxLength, wrap = false, onLetterClick, firstPosition = 1 }) => {
   const seq = (sequence || "").replace(/\s/g, "");
   if (!seq) return null;
   const window = maxLength ? previewWindow(seq, polymerType, maxLength) : null;
   const text = window ? window.text : seq;
-  const offset = window ? window.start - 1 : 0;
+  const offset = (window ? window.start - 1 : 0) + firstPosition - 1;
   const segments = sequenceSegments(text, polymerType);
   return (
     <Box

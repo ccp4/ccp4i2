@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   describeOddLetters,
+  errorWindows,
   nonCanonicalLetters,
   previewWindow,
   sequenceSegments,
@@ -62,5 +63,25 @@ describe("previewWindow", () => {
     const w = previewWindow(seq, "PROTEIN", 40);
     expect(w.start + w.text.length - 1).toBe(300);
     expect(w.truncatedAfter).toBe(false);
+  });
+});
+
+describe("errorWindows", () => {
+  it("is empty for a clean sequence", () => {
+    expect(errorWindows("MSTVA", "PROTEIN")).toEqual({ windows: [], more: 0 });
+  });
+  it("excerpts seven residues either side, clipped to the sequence", () => {
+    const seq = "A".repeat(160) + "X" + "A".repeat(139);
+    const { windows } = errorWindows(seq, "PROTEIN");
+    expect(windows).toEqual([{ start: 154, end: 168, text: "A".repeat(7) + "X" + "A".repeat(7) }]);
+    expect(errorWindows("XAAAAAAAAAAAA", "PROTEIN").windows[0]).toEqual({ start: 1, end: 8, text: "XAAAAAAA" });
+  });
+  it("merges neighbouring letters into one excerpt and caps the count", () => {
+    const seq = "A".repeat(20) + "X" + "AAA" + "X" + "A".repeat(20);
+    const { windows } = errorWindows(seq, "PROTEIN");
+    expect(windows).toHaveLength(1);
+    expect(windows[0]).toEqual({ start: 14, end: 32, text: seq.substring(13, 32) });
+    const many = Array.from({ length: 10 }, () => "A".repeat(20) + "X").join("");
+    expect(errorWindows(many, "PROTEIN", 7, 6)).toMatchObject({ more: 4 });
   });
 });

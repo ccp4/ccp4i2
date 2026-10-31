@@ -84,3 +84,40 @@ export function previewWindow(
     truncatedAfter: begin + maxLength < seq.length,
   };
 }
+
+export interface SequenceWindow {
+  /** 1-based position of the first letter shown. */
+  start: number;
+  /** 1-based position of the last letter shown. */
+  end: number;
+  text: string;
+}
+
+/**
+ * Numbered excerpts of the sequence around each rejected letter, `context`
+ * residues either side, neighbours merged into one excerpt. What the row
+ * editor shows instead of the whole sequence: a report of where the
+ * problems are, clearly not a second place to type.
+ */
+export function errorWindows(
+  sequence: string,
+  polymerType: PolymerType,
+  context = 7,
+  max = 6,
+): { windows: SequenceWindow[]; more: number } {
+  const seq = (sequence || "").replace(/\s/g, "");
+  const odd = nonCanonicalLetters(seq, polymerType);
+  const windows: SequenceWindow[] = [];
+  for (const o of odd) {
+    const start = Math.max(1, o.position - context);
+    const end = Math.min(seq.length, o.position + context);
+    const last = windows[windows.length - 1];
+    if (last && start <= last.end + 1) {
+      last.end = Math.max(last.end, end);
+      last.text = seq.substring(last.start - 1, last.end);
+    } else {
+      windows.push({ start, end, text: seq.substring(start - 1, end) });
+    }
+  }
+  return { windows: windows.slice(0, max), more: Math.max(0, windows.length - max) };
+}

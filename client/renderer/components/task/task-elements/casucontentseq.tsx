@@ -13,7 +13,7 @@ import { useCallback, useRef } from "react";
 import { Science } from "@mui/icons-material";
 import { polymerTypeFromMolecule } from "./mmcif-sequence-parser";
 import { SequenceText } from "./sequence-text";
-import { describeOddLetters, nonCanonicalLetters } from "../../../lib/sequence-letters";
+import { describeOddLetters, errorWindows, nonCanonicalLetters } from "../../../lib/sequence-letters";
 
 /** Get color for polymer type */
 const getPolymerTypeColor = (
@@ -52,6 +52,7 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   const sequenceValue = item?._value?.sequence?._value || "";
   const seqLength = sequenceValue.replace(/\s/g, "").length;
   const oddLetters = nonCanonicalLetters(sequenceValue, polymerType || "PROTEIN");
+  const oddWindows = errorWindows(sequenceValue, polymerType || "PROTEIN");
 
   // The marked copy of the sequence cannot be edited (it is a display), so a
   // click on a marked letter selects that letter in the textarea above: a
@@ -239,8 +240,10 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
               />
             </Box>
             {oddLetters.length > 0 && (
-              // A textarea cannot colour its letters, so the sequence is
-              // shown again with the ones the server rejects marked.
+              // A textarea cannot colour its letters, so the places the
+              // server rejects are reported beneath it: a numbered excerpt
+              // around each, like the table's preview, clearly a display and
+              // not a second place to type.
               <Box sx={{ px: 1, py: 0.5, borderRadius: 1, border: 1, borderColor: "error.light" }}>
                 <Typography variant="caption" color="error" sx={{ display: "block", mb: 0.5 }}>
                   {oddLetters.length === 1 ? "Letter" : "Letters"} outside the{" "}
@@ -248,14 +251,47 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                   alphabet: {describeOddLetters(oddLetters, 5)}. A modified residue goes in as its parent (TPO as T).
                   Click a marked letter to select it in the editor above, then type its replacement or press Delete.
                 </Typography>
-                <Typography variant="body2" component="div" sx={{ fontSize: "0.8rem", lineHeight: 1.6 }}>
-                  <SequenceText
-                    sequence={sequenceValue}
-                    polymerType={polymerType || "PROTEIN"}
-                    wrap
-                    onLetterClick={selectInEditor}
-                  />
-                </Typography>
+                <Stack spacing={0.25}>
+                  {oddWindows.windows.map((w) => (
+                    <Stack
+                      key={w.start}
+                      direction="row"
+                      alignItems="baseline"
+                      spacing={1}
+                      sx={{ fontFamily: "monospace", fontSize: "0.8rem", lineHeight: 1.6 }}
+                    >
+                      <Typography
+                        component="span"
+                        sx={{ fontFamily: "inherit", fontSize: "inherit", color: "text.secondary", minWidth: "4ch", textAlign: "right" }}
+                      >
+                        {w.start}
+                      </Typography>
+                      <Typography component="span" sx={{ fontFamily: "inherit", fontSize: "inherit", color: "text.disabled" }}>
+                        {w.start > 1 ? "\u2026" : "\u00a0"}
+                      </Typography>
+                      <SequenceText
+                        sequence={w.text}
+                        polymerType={polymerType || "PROTEIN"}
+                        firstPosition={w.start}
+                        onLetterClick={selectInEditor}
+                      />
+                      <Typography component="span" sx={{ fontFamily: "inherit", fontSize: "inherit", color: "text.disabled" }}>
+                        {w.end < seqLength ? "\u2026" : "\u00a0"}
+                      </Typography>
+                      <Typography
+                        component="span"
+                        sx={{ fontFamily: "inherit", fontSize: "inherit", color: "text.secondary" }}
+                      >
+                        {w.end}
+                      </Typography>
+                    </Stack>
+                  ))}
+                  {oddWindows.more > 0 && (
+                    <Typography variant="caption" color="text.secondary">
+                      and {oddWindows.more} more {oddWindows.more === 1 ? "place" : "places"}
+                    </Typography>
+                  )}
+                </Stack>
               </Box>
             )}
 
