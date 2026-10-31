@@ -111,10 +111,13 @@ const MatthewsPicker: React.FC<{
                 : undefined,
             }}
           >
-            <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={1}>
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <Typography variant="body2" fontWeight="medium">
-                  {result.nmol_in_asu} &times;
+            {/* The heading is what the table would hold, spelled out per
+                entry: a bare multiplier ("2 x") read as "twice the current
+                table" when the chip beside it said "current". */}
+            <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={1} flexWrap="wrap" useFlexGap>
+                <Typography variant="body2" fontWeight="medium" sx={{ wordBreak: "break-word" }}>
+                  {describeCopies(names, copies, result.nmol_in_asu)}
                 </Typography>
                 {isCurrent && (
                   <Chip label="current" size="small" color="success" variant="outlined"
@@ -124,19 +127,13 @@ const MatthewsPicker: React.FC<{
                   <Chip label="best guess" size="small" color="success" variant="outlined" />
                 )}
               </Stack>
-              <Typography variant="body2" fontWeight="bold">
+              <Typography variant="body2" fontWeight="bold" sx={{ flexShrink: 0 }}>
                 {(probability * 100).toFixed(0)}%
               </Typography>
             </Stack>
-            <Typography
-              variant="caption"
-              sx={{ display: "block", opacity: isCurrent ? 0.95 : 0.85, wordBreak: "break-word" }}
-            >
-              {describeCopies(names, copies, result.nmol_in_asu)}
-            </Typography>
             <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
-              <Typography variant="caption" sx={{ opacity: isCurrent ? 0.9 : 0.7 }}>
-                {result.percent_solvent.toFixed(1)}% solvent
+              <Typography variant="caption" sx={{ opacity: isCurrent ? 0.9 : 0.7, whiteSpace: "nowrap" }}>
+                {result.nmol_in_asu} &times; the set &middot; {result.percent_solvent.toFixed(1)}% solvent
               </Typography>
               <LinearProgress
                 variant="determinate"
