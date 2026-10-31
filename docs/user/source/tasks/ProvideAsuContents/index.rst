@@ -55,17 +55,17 @@ Input
    matches the table as it stands is marked *current* and the most
    probable *best guess*. Click a row to set the table's copies to it,
    keeping their ratios (a table of 2 A + 1 B set to the row *2 ×*
-   becomes 4 A + 2 B). When a model or sequence file fills the table, or
-   the reflections change, the best guess is applied for you until you
-   pick a row. Here one copy of the complex leaves 47.4% solvent, the
-   only possibility: two copies would leave none.
+   becomes 4 A + 2 B). When a sequence file fills the table, the best
+   guess is applied for you until you pick a row, because a sequence says
+   nothing about copies. A model's chain count and an existing AU
+   contents file are kept as given. Here one copy of the complex leaves
+   47.4% solvent, the only possibility: two copies would leave none.
 
    The Matthews probability is a prior over known crystals, not evidence
    about yours. It favours around 50% solvent, so a genuinely open crystal
    with 60% solvent can rank below a tighter packing that is wrong. A
    model fetched from the PDB already tells you the copies; if the best
-   guess disagrees with what you know, click the row you know to be
-   right.
+   guess disagrees with what you know, keep the row you know to be right.
 
 Sequences the task cannot use
 =============================
