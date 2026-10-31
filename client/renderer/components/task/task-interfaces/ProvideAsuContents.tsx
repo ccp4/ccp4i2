@@ -22,6 +22,8 @@ import {
   bestMatthewsRow,
   commonFactor,
   copiesOfRows,
+  describeCopies,
+  namesOfRows,
 } from "../../../lib/asu-copies";
 
 /**
@@ -50,12 +52,15 @@ import {
 
 const MatthewsPicker: React.FC<{
   results: MatthewsRow[];
+  /** The table's entry names and copies, so each row can say what it would set. */
+  names: string[];
+  copies: number[];
   factor: number;
   current: number;
   best: MatthewsRow | null;
   editable: boolean;
   onPick: (multiple: number) => void;
-}> = ({ results, factor, current, best, editable, onPick }) => (
+}> = ({ results, names, copies, factor, current, best, editable, onPick }) => (
   <Box
     sx={{
       p: 1.5,
@@ -66,10 +71,8 @@ const MatthewsPicker: React.FC<{
     }}
   >
     <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-      {factor === 1
-        ? "Matthews analysis: copies of the table's contents per ASU"
-        : `Matthews analysis: copies of the table's contents divided by ${factor}, per ASU`}
-      {editable ? ". Click a row to set the copies." : ""}
+      Matthews analysis: what the asymmetric unit could hold
+      {editable ? ". Click a row to set the copies to it." : "."}
     </Typography>
     <Stack spacing={1}>
       {results.map((result) => {
@@ -125,6 +128,12 @@ const MatthewsPicker: React.FC<{
                 {(probability * 100).toFixed(0)}%
               </Typography>
             </Stack>
+            <Typography
+              variant="caption"
+              sx={{ display: "block", opacity: isCurrent ? 0.95 : 0.85, wordBreak: "break-word" }}
+            >
+              {describeCopies(names, copies, result.nmol_in_asu)}
+            </Typography>
             <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
               <Typography variant="caption" sx={{ opacity: isCurrent ? 0.9 : 0.7 }}>
                 {result.percent_solvent.toFixed(1)}% solvent
@@ -178,6 +187,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // the contents divided by it, so the table's rows do not move when the
   // copies change, and the row equal to the factor is the current contents.
   const copies = useMemo(() => copiesOfRows(rows), [rows]);
+  const names = useMemo(() => namesOfRows(rows), [rows]);
   const factor = useMemo(() => commonFactor(copies), [copies]);
 
   /** Molecular weight of the table's contents; only asked for when they are valid. */
@@ -245,10 +255,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         await refreshDerived();
         const row = matthewsResults?.find((r) => r.nmol_in_asu === multiple);
         const detail = row ? ` (${(row.prob_matth * 100).toFixed(0)}%, ${row.percent_solvent.toFixed(0)}% solvent)` : "";
+        const what = describeCopies(names, copies, multiple);
         setMessage(
           how === "default"
-            ? `Copies set to the Matthews best guess, ${multiple} ×${detail}. Click another row to change them.`
-            : `Copies set to ${multiple} ×${detail}`
+            ? `Copies set to the Matthews best guess: ${what}${detail}. Click another row to change them.`
+            : `Copies set to ${what}${detail}`
         );
       } catch (err: any) {
         setMessage(`Could not set the copies: ${err?.message || err}`);
@@ -256,7 +267,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         applyingRef.current = false;
       }
     },
-    [job.id, mutateContainer, refreshDerived, setMessage, matthewsResults]
+    [job.id, mutateContainer, refreshDerived, setMessage, matthewsResults, names, copies]
   );
 
   // The default is the best guess: after a model or sequence file fills the
@@ -426,6 +437,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {matthewsResults ? (
                 <MatthewsPicker
                   results={matthewsResults}
+                  names={names}
+                  copies={copies}
                   factor={factor}
                   current={factor}
                   best={best}

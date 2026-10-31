@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import {
   bestMatthewsRow,
+  describeCopies,
+  namesOfRows,
   commonFactor,
   copiesOfRows,
   scaledCopies,
@@ -45,5 +47,28 @@ describe("bestMatthewsRow", () => {
     expect(bestMatthewsRow(rows)?.nmol_in_asu).toBe(2);
     expect(bestMatthewsRow([])).toBeNull();
     expect(bestMatthewsRow(undefined)).toBeNull();
+  });
+});
+
+describe("namesOfRows", () => {
+  it("reads the names and labels an unnamed row by its position", () => {
+    const named = (name: unknown) => ({ _value: { name: { _value: name } } });
+    expect(namesOfRows([named("Chain_A_C"), named(""), named(undefined)])).toEqual([
+      "Chain_A_C",
+      "Sequence 2",
+      "Sequence 3",
+    ]);
+  });
+});
+
+describe("describeCopies", () => {
+  it("spells out the copies each entry would hold for a multiple", () => {
+    // 2A+2B: the smallest set is 1A+1B, so row 3 means 3 of each
+    expect(describeCopies(["Chain_A_C", "Chain_B_D"], [2, 2], 3)).toBe(
+      "Chain_A_C × 3, Chain_B_D × 3"
+    );
+    // 2A+1B keeps its ratio
+    expect(describeCopies(["A", "B"], [2, 1], 2)).toBe("A × 4, B × 2");
+    expect(describeCopies(["A"], [1], 1)).toBe("A × 1");
   });
 });

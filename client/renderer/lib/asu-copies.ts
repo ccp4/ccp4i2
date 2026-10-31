@@ -49,3 +49,18 @@ export function bestMatthewsRow(rows: MatthewsRow[] | null | undefined): Matthew
   if (!rows || rows.length === 0) return null;
   return rows.reduce((best, row) => (row.prob_matth > best.prob_matth ? row : best), rows[0]);
 }
+
+/** The entry names as the table rows hold them; an unnamed row is "Sequence N". */
+export function namesOfRows(rows: any[]): string[] {
+  return rows.map((row, index) => String(row?._value?.name?._value || `Sequence ${index + 1}`));
+}
+
+/**
+ * What choosing `multiple` of the smallest whole set means for each entry,
+ * spelled out ("Chain_A_C × 2, Chain_B_D × 2"), so a Matthews row says what
+ * the table would hold and not only a multiplier (#687).
+ */
+export function describeCopies(names: string[], copies: number[], multiple: number): string {
+  const scaled = scaledCopies(copies, multiple);
+  return names.map((name, i) => `${name} × ${scaled[i] ?? multiple}`).join(", ");
+}
