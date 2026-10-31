@@ -1,31 +1,78 @@
 {
   "scenario": "../../../tools/scenario_mr.py",
   "project": "BetaBlip",
-  "viewport": [1400, 1600],
-  "draft": true,
+  "viewport": [
+    1400,
+    2000
+  ],
   "shots": [
     {
       "out": "ProvideAsuContents_input.png",
       "job": 8,
-      "tabs": ["Task interface"],
-      "section": "Optionally load existing ASU content file to edit",
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Contents of the asymmetric unit",
       "through": "Solvent analysis",
       "callouts": [
-        "ASU contents",
         {
-          "text": "Click a card to edit"
+          "text": "Click a row to edit it."
         },
         {
           "text": "Molecular weight:"
         },
-        "Reflections (for the Matthews analysis)"
+        "A model: every polymer chain is added (fetch a whole PDB entry here, from PDBe, RCSB or AlphaFold)",
+        "Reflections (for the Matthews analysis)",
+        {
+          "text": "BETA × 1, BLIP × 1",
+          "dynamic": true
+        }
+      ]
+    },
+    {
+      "out": "ProvideAsuContents_problem.png",
+      "job": 13,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Contents of the asymmetric unit",
+      "callouts": [
+        {
+          "text": "YSPVTEKHLTDGMTVRELCS",
+          "dynamic": true
+        },
+        {
+          "text": "BETA: Sequence contains",
+          "dynamic": true
+        }
+      ]
+    },
+    {
+      "out": "ProvideAsuContents_editor.png",
+      "job": 13,
+      "tabs": [
+        "Task interface"
+      ],
+      "click": [
+        "table tbody tr:first-of-type"
+      ],
+      "section": "Sequence Details",
+      "callouts": [],
+      "viewport": [
+        1400,
+        1300
       ]
     },
     {
       "out": "ProvideAsuContents_report.png",
       "job": 2,
-      "tabs": ["Report"],
-      "viewport": [1400, 2600],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
       "settle": 30000,
       "section": {
         "text": "AU content - sequences",
@@ -37,10 +84,10 @@
     }
   ],
   "sources": {
-    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml": "2c93ea6fe79d3a078ee9ef29ef0f84cbe9a61f4c",
-    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.py": "eb053a4ecc3a21d25abfed6236934fb4ba87dc79",
-    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents_report.py": "c79289a1ad0c695962f429dd88fa213d0eea65bf",
-    "client/renderer/components/task/task-interfaces/ProvideAsuContents.tsx": "4c0a6542e043a869d37ccab36db1fa2247ac7f53",
-    "docs/user/tools/scenario_mr.py": "10fc5729c5470ba9addb4e085daf319c9a650fed"
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml": "3d01ef51eca9a0111caab1ea9f2cce1a62b93a34",
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.py": "529b5e89d9b98bf3d2273f5c277fbde524362d9d",
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents_report.py": "1e767bcafc46f7d950536da5a79de9a8362c6a90",
+    "client/renderer/components/task/task-interfaces/ProvideAsuContents.tsx": "d013aaad37018886a440957af141a493e396c62a",
+    "docs/user/tools/scenario_mr.py": "205ddad26c93af5ef97aa1b4f57d90fc8c89b198"
   }
 }

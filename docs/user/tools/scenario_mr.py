@@ -15,7 +15,7 @@ the input figures.
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from scenario_common import clone_last, i2run as _i2run, scratch_home
+from scenario_common import clone_last, i2run as _i2run, scratch_home, set_job_parameter
 
 PROJECT = "BetaBlip"
 DEMO = Path(__file__).resolve().parents[3] / "server/ccp4i2/demo_data/beta_blip"
@@ -97,6 +97,14 @@ def main():
     for task in ("import_merged", "ProvideAsuContents", "phaser_simple_phil",
                  "phaser_pipeline_phil", "modelcraft", "validate_protein"):
         clone_last(PROJECT, task)
+
+    # 13. A second AU-contents clone with a letter the task rejects (an X in
+    # place of beta-lactamase's residue 100), for the pictures of how the
+    # table marks it and where the row editor says it is.
+    beta = sequence("beta.seq")
+    clone_last(PROJECT, "ProvideAsuContents")
+    set_job_parameter(PROJECT, 13, "inputData.ASU_CONTENT[0].sequence",
+                      beta[:99] + "X" + beta[100:])
 
 
 if __name__ == "__main__":
