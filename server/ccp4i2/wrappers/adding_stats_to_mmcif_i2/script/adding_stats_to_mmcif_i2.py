@@ -39,7 +39,8 @@ conversions = {
 class adding_stats_to_mmcif_i2(CPluginScript):
     TASKNAME = 'adding_stats_to_mmcif_i2'
     ERROR_CODES = {203: {'description': 'Input XML file contains neither AIMLESS nor AIMLESS_PIPE nodes'},
-                   204: {'description': 'Failed with adding_stats_to_mmcif'}}
+                   204: {'description': 'Failed with adding_stats_to_mmcif'},
+                   205: {'description': 'No sequence selected in the AU contents: the deposited model needs the full sequence of every chain'}}
 
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
@@ -252,38 +253,29 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             self.getWorkDirectory(), "Sequences.fasta")
         self.container.inputData.ASUCONTENT.writeFasta(self.fastaFilePath)
 
-        # Ensure the input mmCIF has entity_poly_seq records.
-        # Refinement programs (servalcat, refmac) often output minimal mmCIF
-        # lacking this category, which causes adding_stats_to_mmcif to fail.
-        # We surgically add entity_poly_seq to a copy of the original file,
-        # preserving all existing categories (_refine, _reflns, etc.).
-        import gemmi
-        xyzin_path = str(self.container.inputData.XYZIN.fullPath)
-        doc = gemmi.cif.read(xyzin_path)
-        block = doc[0]
-        if len(block.find_loop('_entity_poly_seq.entity_id')) == 0:
-            st = gemmi.read_structure(xyzin_path)
-            st.setup_entities()
-            st.assign_subchains()
-            # setup_entities() may leave full_sequence empty for minimal
-            # mmCIF files; derive it from chain polymer residues.
-            for ent in st.entities:
-                if ent.entity_type == gemmi.EntityType.Polymer \
-                        and len(ent.full_sequence) == 0:
-                    for chain in st[0]:
-                        poly = chain.get_polymer()
-                        if poly and chain.name == ent.name:
-                            ent.full_sequence = [res.name for res in poly]
-                            break
-            loop = block.init_loop('_entity_poly_seq.',
-                                   ['entity_id', 'num', 'mon_id'])
-            for ent in st.entities:
-                if ent.entity_type == gemmi.EntityType.Polymer:
-                    for i, mon in enumerate(ent.full_sequence):
-                        loop.add_row([ent.name, str(i + 1), mon])
+        # Refinement programs write one entity per chain with no sequence.
+        # The deposited model needs one entity per crystallised molecule,
+        # carrying the full expressed sequence from the AU contents, with
+        # every chain assigned to its entity and label_seq_id numbered on
+        # that sequence. adding_stats_to_mmcif cannot be left to add this:
+        # it appends _entity_poly rows one entity at a time and, with more
+        # than one entity, corrupts the loop (see deposition_entities).
+        from .deposition_entities import rebuild_entities
+        asu = self.container.inputData.ASUCONTENT
+        asu.loadFile()
+        sequences = [
+            (str(seq.name), str(seq.sequence), str(seq.polymerType))
+            for seq in asu.fileContent.seqList
+            if asu.isSelected(seq) and str(seq.sequence).strip()]
+        if not sequences:
+            self.appendErrorReport(
+                205, 'no sequences selected in the AU contents')
+            return CPluginScript.FAILED
         self.enrichedMmcifPath = os.path.join(
             self.getWorkDirectory(), "enriched_model.cif")
-        doc.write_file(self.enrichedMmcifPath)
+        self._entity_structure = rebuild_entities(
+            str(self.container.inputData.XYZIN.fullPath),
+            self.enrichedMmcifPath, sequences)
 
         self.coordinatesToUse = self.container.inputData.XYZIN
         return CPluginScript.SUCCEEDED
@@ -371,6 +363,11 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         if not worked:
             self.appendErrorReport(204, "Failed in adding_stats_to_mmcif")
             return CPluginScript.FAILED
+
+        # adding_stats_to_mmcif appends its own _entity_poly rows to the
+        # table rebuild_entities wrote; put gemmi's table back.
+        from .deposition_entities import rewrite_entity_poly
+        rewrite_entity_poly(output_mmcif, self._entity_structure)
 
         # DISABLED: The post-processing patch was rewriting _refine through
         # a dict round-trip which may corrupt the mmCIF and prevent the
