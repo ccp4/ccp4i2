@@ -237,6 +237,70 @@ describe("buildPendingRules cascade (element.colour ↔ representation.colour)",
     expect(buildPendingRules({ ...base, rep: { style: "CRs" } }, "//A")).toEqual([]);
   });
 
+  describe("by-domain with a ||-joined domain selection", () => {
+    // Coot's add_colour_rules_multi splits the data on "|" and then on "^",
+    // so a "||" left inside a segment fragments it into colourless pieces.
+    const molecule = {
+      sequences: [
+        { chain: "B", sequence: Array.from({ length: 259 }, (_, i) => ({ resNum: i + 1 })) },
+      ],
+    };
+    const domains = [
+      { name: "body", selection: "//B/1-1500", color: "#b8bcc2" },
+      { name: "footprint", selection: "//B/11-12||//B/72-73||//B/98||//B/141-149", color: "#1f6fb4" },
+    ];
+
+    it("emits one clamped segment per part and no '||' in the data", () => {
+      const log: unknown[] = [];
+      const rules = buildPendingRules(
+        { ...base, molecule, domains, log, rep: { style: "MolecularSurface", colour: "by-domain" } },
+        "//B",
+      );
+      expect(rules).toHaveLength(1);
+      expect(rules[0].isMultiColourRule).toBe(true);
+      expect(rules[0].multiColourData).toBe(
+        "//B/1-259^#b8bcc2|//B/11-12^#1f6fb4|//B/72-73^#1f6fb4|//B/98-98^#1f6fb4|//B/141-149^#1f6fb4",
+      );
+      expect(rules[0].multiColourData).not.toContain("||");
+      // Only the body range was clamped; every footprint range is present.
+      expect(log).toHaveLength(1);
+    });
+
+    it("clamps and logs each part of the union separately", () => {
+      const log: { message: string }[] = [];
+      const gappy = {
+        sequences: [{ chain: "B", sequence: [10, 11, 12, 72, 141, 142].map((resNum) => ({ resNum })) }],
+      };
+      const rules = buildPendingRules(
+        { ...base, molecule: gappy, domains: [domains[1]], log, rep: { style: "CRs", colour: "by-domain" } },
+        "//B",
+      );
+      // The single residue 98 is absent: it is dropped and logged, not sent blind.
+      expect(rules[0].multiColourData).toBe("//B/11-12^#1f6fb4|//B/72-72^#1f6fb4|//B/141-142^#1f6fb4");
+      expect(log.map((l) => l.message)).toEqual([
+        expect.stringContaining("72-73 resolved to 72-72"),
+        expect.stringContaining("98-98 has no present residues"),
+        expect.stringContaining("141-149 resolved to 141-142"),
+      ]);
+    });
+
+    it("leaves whole-chain, residue-name and atom CIDs untouched", () => {
+      const rules = buildPendingRules(
+        {
+          ...base, molecule, log: [],
+          domains: [
+            { name: "a", selection: "//B", color: "#111111" },
+            { name: "b", selection: "//*/(LIG)", color: "#222222" },
+            { name: "c", selection: "//B/98/CA", color: "#333333" },
+          ],
+          rep: { style: "CRs", colour: "by-domain" },
+        },
+        "//B",
+      );
+      expect(rules[0].multiColourData).toBe("//B^#111111|//*/(LIG)^#222222|//B/98/CA^#333333");
+    });
+  });
+
   // What reaches coot is the rule's own fields: cid + color for a single
   // colour, multiColourData for a multi-colour rule (Moorhen 1.0.1).
   it("a hex colour is a single-colour rule on the representation's CID", () => {
