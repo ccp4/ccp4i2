@@ -882,6 +882,11 @@ class CPluginScript(CData):
                 )
             else:
                 self.paramsFile = fileName
+                try:
+                    self.upgradeLegacyParameters()
+                except Exception as exc:  # a tidy-up must not stop the load
+                    logger.warning("upgradeLegacyParameters failed for %s: %s",
+                                   self.__class__.__name__, exc)
 
         except Exception as e:
             error.append(
@@ -892,6 +897,18 @@ class CPluginScript(CData):
             )
 
         return error
+
+    def upgradeLegacyParameters(self):
+        """Translate values an earlier def.xml allowed into the current ones.
+
+        Called after loadDataFromXml, so a job cloned from a project made
+        with an older CCP4i2 gets values the current def.xml accepts rather
+        than a validation error the interface cannot clear (#860: refmac's
+        HD_INIT lost its NO enumerator in 2025, and a 2024 job cloned in 2026
+        could not run). The default does nothing; a task overrides it for
+        its own parameters, changing only what it recognises.
+        """
+        return None
 
     def loadDataFromEtree(self, element: ET.Element) -> CErrorReport:
         """
