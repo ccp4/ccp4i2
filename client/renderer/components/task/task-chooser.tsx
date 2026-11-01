@@ -156,6 +156,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "coot1",
       "moorhen",
       "nucleofind",
+      "geometry_polish",
     ],
   },
   {

@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>geometry_polish</pluginName>
+    <pluginTitle>Polish geometry for deposition</pluginTitle>
+  </ccp4i2_header>
+  <ccp4i2_body id="geometry_polish">
+
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Refined model</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <toolTip>The model to polish, normally the output of the latest refinement. NCS copies must share residue numbering.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <guiLabel>Map coefficients (2mFo-DFc)</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>1</requiredSubType>
+          <toolTip>The refinement's 2mFo-DFc map coefficients: every change is scored against this map.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <guiLabel>Difference map coefficients (mFo-DFc)</guiLabel>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredSubType>2</requiredSubType>
+          <toolTip>Optional. Reported beside the 2mFo-DFc density for every changed residue.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DICT">
+        <className>CDictDataFile</className>
+        <qualifiers>
+          <guiLabel>Restraint dictionary for non-standard residues</guiLabel>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <toolTip>Needed when the model contains ligands or ions that Coot cannot refine from the monomer library alone.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Polished model</guiLabel>
+          <default><subType>1</subType><contentFlag>1</contentFlag></default>
+        </qualifiers>
+      </content>
+      <content id="CHANGES_CSV">
+        <className>CDataFile</className>
+        <qualifiers>
+          <guiLabel>Per-residue change log (CSV)</guiLabel>
+          <mimeTypeName>text/csv</mimeTypeName>
+          <fileExtensions>csv</fileExtensions>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="DO_ROTAMERS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Repair rotamer outliers</guiLabel>
+          <default>True</default>
+          <toolTip>For every MolProbity rotamer outlier: NCS side-chain transplant, auto-fit, torsion-restrained refinement, then each library rotamer, accepting the first that keeps its density.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DO_RAMA">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Repair Ramachandran outliers</guiLabel>
+          <default>True</default>
+          <toolTip>For every MolProbity Ramachandran outlier: NCS backbone transplant, Ramachandran-restrained refinement and (optionally) peptide flips, keeping the best candidate that removes the outlier.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DO_PEPTIDE_FLIPS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Try peptide flips for Ramachandran outliers</guiLabel>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="DO_CLASHES">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Repair side-chain clashes</guiLabel>
+          <default>True</default>
+          <toolTip>For every MolProbity clash above the overlap threshold with a side-chain partner, try auto-fit and the library rotamers for that side chain.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="USE_NCS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Use NCS copies as donors</guiLabel>
+          <default>True</default>
+          <toolTip>Transplant side chains and backbone windows from the best-scoring NCS copy before trying anything else. Requires the same residue numbering in every copy.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DENSITY_GUARD">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Density guard (fraction of the original density to keep)</guiLabel>
+          <default>0.6</default>
+          <min>0.0</min>
+          <max>1.0</max>
+          <toolTip>A change is accepted only if the new side-chain density is at least this fraction of the original (or within 0.3 sigma of it).</toolTip>
+        </qualifiers>
+      </content>
+      <content id="MIN_DENSITY">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Minimum density to count as supported (sigma)</guiLabel>
+          <default>0.8</default>
+          <min>0.0</min>
+        </qualifiers>
+      </content>
+      <content id="REFINE_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Real-space refinement cycles per trial</guiLabel>
+          <default>200</default>
+          <min>10</min>
+          <toolTip>Torsion-restrained refinement in Coot needs about 200 cycles to converge on a strained side chain; fewer cycles leave it an outlier.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="MAX_CLASH_ROTAMERS">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Library rotamers to try per clash</guiLabel>
+          <default>6</default>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="MIN_CLASH_OVERLAP">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Smallest clash overlap to repair (A)</guiLabel>
+          <default>0.8</default>
+          <min>0.4</min>
+        </qualifiers>
+      </content>
+      <content id="CHAIN_SELECTION">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Only polish these chains (comma-separated, blank for all)</guiLabel>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>
