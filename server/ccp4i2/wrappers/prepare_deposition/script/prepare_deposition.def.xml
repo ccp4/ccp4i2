@@ -1,0 +1,653 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>prepare_deposition</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="prepare_deposition">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <ifAtomSelection>False</ifAtomSelection>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <requiredContentFlag>2</requiredContentFlag>
+                    <guiLabel>Refined model (mmCIF)</guiLabel>
+                    <toolTip>The final refinement's mmCIF output. Choose it first: the task traces it back to the refinement and scaling jobs and fills the files below.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ASUCONTENT">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <toolTip>The AU contents: one sequence per crystallised molecule, the full expressed construct, tags included</toolTip>
+                </qualifiers>
+            </content>
+            <content id="F_SIGF">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="SCALEDUNMERGED">
+                <className>CUnmergedDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Scaled unmerged data</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="DIFFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="DICT_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <guiLabel>Restraint dictionary</guiLabel>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="TLSIN">
+                <className>CTLSDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="CIFSTATSOUT">
+                <className>CMmcifDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Scaling statistics (mmCIF)</guiLabel>
+                    <toolTip>DataStatistics.cif from the scaling job; its _reflns tables go into the model</toolTip>
+                </qualifiers>
+            </content>
+            <content id="AIMLESSXML">
+                <className>CXmlDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Scaling job report (XML)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="REFMACINPUTPARAMSXML">
+                <className>CXmlDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Refinement job parameters</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="SENDTOVALIDATIONSERVER">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Send to the wwPDB validation server</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="USEAIMLESSXML">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Add the scaling statistics</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="INCLUDEUNMERGED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Include the scaled unmerged data</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="USEANOMALOUS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Anomalous pairs were used in refinement</guiLabel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="USE_TWIN">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Intensities (twin refinement) were used</guiLabel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="KEEP_HYDROGENS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Keep riding hydrogens in the deposited model</guiLabel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="DICTIONARY_CHECK">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Fail on PDBx dictionary errors in the written categories</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="REFINEMENT_JOB_DIR">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Refinement job directory</guiLabel>
+                    <toolTip>Filled from the model's lineage; where servalcat's statistics are read when its mmCIF lacks the overall R</toolTip>
+                </qualifiers>
+            </content>
+
+            <content id="TITLE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Title</guiLabel>
+                    <toolTip>The entry's title as it will appear in the PDB</toolTip>
+                </qualifiers>
+            </content>
+            <content id="KEYWORDS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Classification</guiLabel>
+                    <onlyEnumerators>False</onlyEnumerators>
+                    <enumerators>OXIDOREDUCTASE,TRANSFERASE,HYDROLASE,LYASE,ISOMERASE,LIGASE,TRANSLOCASE,DE NOVO PROTEIN,DE NOVO PROTEIN/OXIDOREDUCTASE,DE NOVO PROTEIN/TRANSFERASE,DE NOVO PROTEIN/HYDROLASE,DE NOVO PROTEIN/PROTEIN BINDING,DE NOVO PROTEIN/IMMUNE SYSTEM,PROTEIN BINDING,IMMUNE SYSTEM,SIGNALING PROTEIN,TRANSCRIPTION,TRANSPORT PROTEIN,STRUCTURAL PROTEIN,VIRAL PROTEIN,MEMBRANE PROTEIN,CELL CYCLE,DNA BINDING PROTEIN,RNA BINDING PROTEIN,CHAPERONE,TOXIN,METAL BINDING PROTEIN,UNKNOWN FUNCTION</enumerators>
+                    <toolTip>_struct_keywords.pdbx_keywords. Free text; the list has the common classes. Left blank, a designed entity is classed DE NOVO PROTEIN</toolTip>
+                </qualifiers>
+            </content>
+            <content id="KEYWORD_TEXT">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Keywords</guiLabel>
+                    <toolTip>Comma separated free keywords</toolTip>
+                </qualifiers>
+            </content>
+            <content id="AUTHORS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Deposition authors</guiLabel>
+                </qualifiers>
+                <subItem>
+                    <className>CDepositionAuthor</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="CITATION_PUBLISHED">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>The primary citation is published</guiLabel>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id="CITATION_TITLE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Citation title</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="JOURNAL">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Journal</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="VOLUME">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Volume</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="FIRST_PAGE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>First page</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="LAST_PAGE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Last page</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="YEAR">
+                <className>CInt</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Year</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="DOI">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>DOI</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="PUBMED">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>PubMed id</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CITATION_AUTHORS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Citation authors (blank: same as the deposition authors)</guiLabel>
+                </qualifiers>
+                <subItem>
+                    <className>CDepositionAuthor</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+
+            <content id="CONTACT_SALUTATION">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>Dr.,Prof.,Mr.,Ms.,Mrs.</enumerators>
+                    <default>Dr.</default>
+                    <guiLabel>Salutation</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_FIRST_NAME">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>First name</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_LAST_NAME">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Last name</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_ROLE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>principal investigator/group leader,responsible scientist,investigator</enumerators>
+                    <default>principal investigator/group leader</default>
+                    <guiLabel>Role</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_ORG_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>academic,commercial,government,other</enumerators>
+                    <default>academic</default>
+                    <guiLabel>Organisation type</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_ADDRESS_1">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Address line 1</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_ADDRESS_2">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Address line 2</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_CITY">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>City</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_STATE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>State or province</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_POSTCODE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Postal code</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_COUNTRY">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Country</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_EMAIL">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Email</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_PHONE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Phone</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CONTACT_ORCID">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>ORCID</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="RELATED">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Related entries</guiLabel>
+                </qualifiers>
+                <subItem>
+                    <className>CRelatedEntry</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+
+            <content id="ENTITIES">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Molecules</guiLabel>
+                    <toolTip>One per sequence of the AU contents, in the same order. Fill from the AU contents and describe each segment of the construct.</toolTip>
+                </qualifiers>
+                <subItem>
+                    <className>CEntityMetadata</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="DESIGN_DETAILS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Design provenance</guiLabel>
+                    <toolTip>For a designed protein: how the sequence was made (RFdiffusion backbone, ProteinMPNN sequence, AlphaFold2 filter ...). Goes into the entity details.</toolTip>
+                </qualifiers>
+            </content>
+
+            <content id="SOURCE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>SYNCHROTRON,ROTATING ANODE,SEALED TUBE,FREE ELECTRON LASER,LIQUID ANODE</enumerators>
+                    <default>SYNCHROTRON</default>
+                    <guiLabel>X-ray source</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="SYNCHROTRON_SITE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Synchrotron</guiLabel>
+                    <toolTip>Diamond, ESRF, SLS, APS ... (as the PDB spells it)</toolTip>
+                </qualifiers>
+            </content>
+            <content id="BEAMLINE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Beamline</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="DETECTOR">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>PIXEL,CCD,CMOS,IMAGE PLATE,AREA DETECTOR</enumerators>
+                    <default>PIXEL</default>
+                    <guiLabel>Detector class</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="DETECTOR_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Detector</guiLabel>
+                    <toolTip>DECTRIS PILATUS 6M-F, DECTRIS EIGER2 XE 16M ...</toolTip>
+                </qualifiers>
+            </content>
+            <content id="COLLECTION_DATE">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Collection date</guiLabel>
+                    <toolTip>YYYY-MM-DD</toolTip>
+                </qualifiers>
+            </content>
+            <content id="TEMPERATURE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <default>100.0</default>
+                    <guiLabel>Temperature (K)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="WAVELENGTH">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Wavelength (A)</guiLabel>
+                    <toolTip>Read from the reflection data when blank</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MONOCHROMATOR">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Monochromator</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="PROTOCOL">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>SINGLE WAVELENGTH,SAD,MAD,LAUE</enumerators>
+                    <default>SINGLE WAVELENGTH</default>
+                    <guiLabel>Diffraction protocol</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CRYSTAL_METHOD">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <onlyEnumerators>False</onlyEnumerators>
+                    <enumerators>VAPOR DIFFUSION, SITTING DROP,VAPOR DIFFUSION, HANGING DROP,BATCH MODE,MICROBATCH,LIPIDIC CUBIC PHASE,COUNTER-DIFFUSION,MICRODIALYSIS</enumerators>
+                    <guiLabel>Crystallisation method</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CRYSTAL_TEMP">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Crystallisation temperature (K)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CRYSTAL_PH">
+                <className>CFloat</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>pH</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="CRYSTAL_DETAILS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Crystallisation condition</guiLabel>
+                    <toolTip>0.1 M HEPES pH 7.5, 20% PEG 3350, 0.2 M sodium chloride; cryoprotected in ...</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PHASING_METHOD">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>MR,SAD,MAD,SIR,SIRAS,MIR,MIRAS,AB INITIO,OTHER</enumerators>
+                    <default>MR</default>
+                    <guiLabel>Phasing method</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="STARTING_MODEL">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Starting model</guiLabel>
+                    <toolTip>PDB entries, or the design/predicted model, the structure was solved from: 2JAB; AlphaFold2 model of the design</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PHASING_DETAILS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Phasing details</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="SOFTWARE">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Other software</guiLabel>
+                    <toolTip>Programs the lineage does not record: the MR program, Coot, design and prediction tools</toolTip>
+                </qualifiers>
+                <subItem>
+                    <className>CSoftwareEntry</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+
+            <content id="ASSEMBLY_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>ASU,AUTHOR</enumerators>
+                    <menuText>the asymmetric unit,an assembly I define</menuText>
+                    <default>ASU</default>
+                    <guiLabel>Biological assembly is</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="OLIGOMERIC_COUNT">
+                <className>CInt</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <min>1</min>
+                    <guiLabel>Number of chains in the assembly</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="ASSEMBLY_OPERATORS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Symmetry operators</guiLabel>
+                    <toolTip>Crystallographic operators that complete the assembly from the asymmetric unit, separated by semicolons: -x+1,y,-z</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ASSEMBLY_DETAILS">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Assembly evidence</guiLabel>
+                    <toolTip>PISA, gel filtration, the same assembly as PDB 8PVE ...</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="MMCIFOUT">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                        <annotation>Coordinates for OneDep (mmCIF)</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="CIFREFLECTIONS">
+                <className>CMmcifReflDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Reflections for OneDep (mmCIF)</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="PDFOUT">
+                <className>CPDFDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>wwPDB validation report</annotation>
+                    </default>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="VALIDATIONXML">
+                <className>CEBIValidationXMLDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>wwPDB validation XML</annotation>
+                    </default>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="COOTSCRIPTOUT">
+                <className>CCootHistoryDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>
