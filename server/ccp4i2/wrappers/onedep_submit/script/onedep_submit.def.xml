@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>onedep_submit</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="onedep_submit">
+    <container id="inputData">
+      <content id="MODEL_CIF">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <ifAtomSelection>False</ifAtomSelection>
+          <guiLabel>Model (deposition mmCIF)</guiLabel>
+          <toolTip>The deposition-ready model mmCIF written by the deposition-preparation task: one entity per sequence, refinement statistics, and the descriptive metadata (title, authors, sources). OneDep reads all of that from this file.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SF_CIF">
+        <className>CMmcifReflDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <guiLabel>Reflections (mmCIF)</guiLabel>
+          <toolTip>The structure-factor mmCIF written by the deposition-preparation task.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="EMAIL">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
+          <guiLabel>Depositor e-mail</guiLabel>
+          <toolTip>OneDep sends correspondence about the deposition here.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ORCIDS">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>1</listMinLength>
+          <guiLabel>ORCID iDs with access</guiLabel>
+          <toolTip>One ORCID per line (0000-0000-0000-0000). The first is the depositor; every one listed can open the deposition in the OneDep interface.</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+          <qualifiers>
+            <allowUndefined>False</allowUndefined>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="COUNTRY">
+        <className>CString</className>
+        <qualifiers>
+          <default>United Kingdom</default>
+          <guiLabel>Country</guiLabel>
+          <toolTip>The depositor's country, as OneDep lists it. The task refuses a name OneDep does not know.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="EXPERIMENT_TYPE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>xray,neutron,fiber,ec</enumerators>
+          <menuText>X-ray diffraction,Neutron diffraction,Fiber diffraction,Electron crystallography</menuText>
+          <default>xray</default>
+          <guiLabel>Experiment</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="REPLACE_DEPOSITION_ID">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <guiLabel>Replace files on existing deposition (D_ id)</guiLabel>
+          <toolTip>Leave empty to create a new deposition. Give an existing deposition id (D_1000000000) to replace its model and reflections with these files and have OneDep reprocess them; the deposition must be open to the key's ORCID.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

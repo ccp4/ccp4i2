@@ -108,7 +108,12 @@ class CredentialSpec:
         fields:      the fields, in the order they should be presented.
         signup_url:  where the user obtains the credential. Opened externally.
         validator:   optional callable taking the resolved ``{field: value}``
-                     dict and returning ``(ok, message)``. Runs server-side.
+                     dict and returning ``(ok, message)``, or
+                     ``(ok, message, new_values)`` when the probe itself
+                     replaced the credential (a service that rotates its
+                     token on every use, as OneDep does); the store then
+                     persists ``new_values`` in the layer the credential came
+                     from. Runs server-side.
         kind:        one of ``token_pair``, ``password``, ``key_file``, ``oauth``
                      — currently informational, used by the UI to pick affordances.
         paste_split: True if the dialog should accept a single paste containing
@@ -122,7 +127,7 @@ class CredentialSpec:
     description: str
     fields: Tuple[CredentialField, ...]
     signup_url: str = ""
-    validator: Optional[Callable[[Dict[str, str]], Tuple[bool, str]]] = None
+    validator: Optional[Callable[[Dict[str, str]], tuple]] = None
     kind: str = "token_pair"
     paste_split: bool = False
     # Fields whose *value* may be echoed back as a hint (never secret ones).
@@ -210,10 +215,54 @@ PDB_REDO = CredentialSpec(
 )
 
 
+def _validate_onedep(values: Dict[str, str]) -> Tuple[bool, str, Optional[Dict[str, str]]]:
+    """Probe a OneDep API key, and hand back the key it rotated to.
+
+    OneDep's "Generate Key" value is a refresh token that is consumed by its
+    first use: the probe exchanges it for a new pair, and the old one is dead.
+    So the only honest validation also replaces the credential, which is why
+    this validator returns three values. The wrapper's client module does the
+    work and keeps every token under a private per-user directory, never the
+    job directory.
+    """
+    from ..wrappers.onedep_submit.script import onedep_client
+
+    ok, message, new_key = onedep_client.check_key(values.get("api_key"))
+    return ok, message, ({"api_key": new_key} if new_key else None)
+
+
+ONEDEP = CredentialSpec(
+    name="onedep",
+    label="wwPDB OneDep deposition",
+    description=(
+        "Submitting a structure to the PDB through the OneDep API needs an API "
+        "key from your wwPDB deposition account (Generate Key on the account "
+        "page). The key is tied to your ORCID: every deposition made with it "
+        "is yours. OneDep replaces the key each time it is used, and CCP4i2 "
+        "keeps the replacement; a key used from another machine stops working "
+        "here, so generate a new one when that happens."
+    ),
+    fields=(
+        CredentialField(
+            name="api_key",
+            label="OneDep API key",
+            secret=True,
+            env="ONEDEP_API_KEY",
+            help="From the wwPDB deposition interface: account page, Generate Key.",
+        ),
+    ),
+    signup_url="https://deposit.wwpdb.org/deposition",
+    validator=_validate_onedep,
+    kind="password",
+    paste_split=False,
+)
+
+
 # The registry. Adding a credential = adding a CredentialSpec here; the API and
 # the whole frontend are descriptor-driven and need no change.
 CREDENTIALS: Dict[str, CredentialSpec] = {
     PDB_REDO.name: PDB_REDO,
+    ONEDEP.name: ONEDEP,
 }
 
 
@@ -608,10 +657,50 @@ def validate_credential(
     if spec.validator is None:
         return True, "No validation available for this credential."
     try:
-        return spec.validator(values)
+        outcome = spec.validator(values)
     except Exception as err:  # never let a probe break the caller
         logger.debug("credential validation raised", exc_info=True)
         return False, f"Validation failed ({err.__class__.__name__})."
+    ok, message = outcome[0], outcome[1]
+    new_values = outcome[2] if len(outcome) > 2 else None
+    if ok and new_values:
+        # The probe consumed the credential (token rotation). Keep the
+        # replacement where the original lived, or the user is locked out by
+        # the very check that told them the key was good.
+        if not remember_rotation(name, new_values, scope, scope_id):
+            message += (" The key was rotated by the check but could not be "
+                        "stored here; generate a new key before using it.")
+    return ok, message
+
+
+def remember_rotation(
+    name: str,
+    new_values: Dict[str, str],
+    scope: str = SCOPE_GLOBAL,
+    scope_id: str = "",
+) -> bool:
+    """Replace a credential's fields after the service rotated them.
+
+    Writes to the layer the credential currently comes from: a session value
+    stays in the session, a stored one goes back to the keychain/file. An
+    environment-supplied credential is the deployment's, not ours: nothing is
+    written and False is returned, so the caller can say the key is spent.
+    """
+    spec = get_spec(name)
+    if spec is None or not new_values:
+        return False
+    resolved = resolve_credential(name, scope, scope_id)
+    if resolved.source == "environment":
+        return False
+    merged = dict(resolved.values)
+    merged.update({k: v for k, v in new_values.items() if v})
+    persistence = PERSIST_SESSION if resolved.source == "session" else PERSIST_KEYCHAIN
+    try:
+        set_credential(name, merged, scope, scope_id, persistence=persistence)
+    except Exception:
+        logger.warning("could not store rotated credential %s", name, exc_info=True)
+        return False
+    return True
 
 
 # ---------------------------------------------------------------------------
