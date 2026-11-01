@@ -1161,7 +1161,7 @@ TASKS = {
     ),
     "onedep_submit": Task(
         title="Submit to OneDep (wwPDB deposition)",
-        description="Create a wwPDB OneDep deposition from deposition-ready model and reflection mmCIF files, or replace the files on an existing one",
+        description="Create a wwPDB OneDep deposition from deposition-ready model and reflection mmCIF files (OneDep fills its pages from the model), or replace the files on an existing one (which does not refresh pages already filled)",
         shortTitle="Submit to OneDep",
         searchTerms=("deposition", "wwpdb", "pdb", "onedep", "deposit", "submit"),
         pluginPath="ccp4i2.wrappers.onedep_submit.script.onedep_submit:onedep_submit",

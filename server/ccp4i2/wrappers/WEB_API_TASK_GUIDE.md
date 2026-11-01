@@ -116,6 +116,21 @@ must:
   directory removed at job end on a server. Never the job directory: that is
   exported in project zips.
 
+- **No probe in `runTimeValidity()`.** Step 4's live check is wrong for a
+  rotating credential: `runTimeValidity` runs in the API server when the run
+  dialog opens and again in the job process, so a probe there spends the key
+  up to three times per run, two concurrent jobs invalidate each other, and on
+  an environment-driven server the second probe finds a dead key and the job
+  fails before it starts. Check presence and format only; the Test button in
+  the credential dialog is the one place a probe happens, and the job's single
+  authenticated call is the submission itself. The validator should also skip
+  the probe when the value is the deployment's (`ONEDEP_API_KEY`), since
+  nothing can store the replacement there.
+- **Keep what the service hands back beside the key.** OneDep routes a key to
+  a regional site and scopes the rotated token to it. A non-secret,
+  `required=False` field (`site_host`) carries that, filled by rotation and
+  never demanded of the user; `make_config` points the next run at it.
+
 The test for all three is `tests/unit/config/test_credentials_rotation.py`.
 
 ## Step 3 — Read it in the wrapper

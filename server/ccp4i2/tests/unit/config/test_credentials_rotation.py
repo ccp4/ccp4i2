@@ -40,12 +40,46 @@ def _rotating(monkeypatch, new_key="rotated-key", ok=True):
     return calls
 
 
-def test_onedep_is_registered_with_one_secret_field():
+def test_onedep_is_registered_with_one_secret_field_and_an_optional_site():
     spec = cred.get_spec("onedep")
     assert spec is not None
-    assert [f.name for f in spec.fields] == ["api_key"]
-    assert spec.fields[0].secret is True
+    assert [f.name for f in spec.fields] == ["api_key", "site_host"]
+    assert spec.fields[0].secret is True and spec.fields[0].required is True
     assert spec.fields[0].env == "ONEDEP_API_KEY"
+    assert spec.fields[1].secret is False and spec.fields[1].required is False
+
+
+def test_the_credential_is_complete_without_the_optional_site(home):
+    cred.set_credential("onedep", {"api_key": "k"})
+    assert cred.get_credential("onedep") == {"api_key": "k"}
+    descriptor = cred.describe_credential("onedep")
+    assert descriptor["isSet"] is True
+    assert [f["required"] for f in descriptor["fields"]] == [True, False]
+
+
+def test_rotation_carries_the_site_with_the_key(home, monkeypatch):
+    cred.set_credential("onedep", {"api_key": "first"})
+    spec = cred.ONEDEP
+    monkeypatch.setitem(cred.CREDENTIALS, "onedep", cred.CredentialSpec(
+        **{**spec.__dict__, "validator": lambda values: (
+            True, "ok", {"api_key": "second", "site_host": "https://deposit-pdbe.wwpdb.org/deposition"})}))
+    ok, _ = cred.validate_credential("onedep")
+    assert ok
+    assert cred.get_credential("onedep") == {
+        "api_key": "second", "site_host": "https://deposit-pdbe.wwpdb.org/deposition"}
+    assert cred.describe_credential("onedep")["hint"] == "tion"
+
+
+def test_the_deployment_key_is_not_probed(home, monkeypatch):
+    """A probe would spend a key nothing here can replace."""
+    monkeypatch.setenv("ONEDEP_API_KEY", "deployment-key")
+    called = []
+    from ccp4i2.wrappers.onedep_submit.script import onedep_client
+    monkeypatch.setattr(onedep_client, "check_key",
+                        lambda *a, **k: called.append(1) or (True, "probed", None))
+    ok, message = cred.validate_credential("onedep")
+    assert ok and not called
+    assert "not probed" in message
 
 
 def test_validation_persists_the_rotated_key_in_the_file_store(home, monkeypatch):

@@ -74,7 +74,7 @@
         <qualifiers>
           <allowUndefined>True</allowUndefined>
           <guiLabel>Replace files on existing deposition (D_ id)</guiLabel>
-          <toolTip>Leave empty to create a new deposition. Give an existing deposition id (D_1000000000) to replace its model and reflections with these files and have OneDep reprocess them; the deposition must be open to the key's ORCID.</toolTip>
+          <toolTip>Leave empty to create a new deposition. Give an existing deposition id (D_1000000000) to replace its model and reflections with these files and have OneDep reprocess them; the deposition must be open to the key's ORCID. Two things to know: OneDep reads the descriptive metadata (title, authors, sources, data collection) from the model only when a deposition is first populated, so replacing the files does not refresh pages already filled in the interface (create a new deposition for that); and each file is removed from the server before its replacement is uploaded, so a failed upload leaves the deposition without that file until the task is re-run.</toolTip>
         </qualifiers>
       </content>
     </container>

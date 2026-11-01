@@ -6,12 +6,21 @@ exercised with a fake client and no network. ``onedep_lib`` itself is imported
 lazily: the task plugin must import on a server with neither CCP4 nor the
 optional ``ccp4i2[deposition]`` extra installed.
 
-Two facts about OneDep shape this module:
+Three facts about OneDep shape this module:
 
 * The DepUI "Generate Key" value is a long-lived *refresh* token bound to the
-  depositor's ORCID. Every use rotates it: the old key dies and a new pair
-  comes back. So a key can never be validated "read-only", and whoever holds
-  the key must be told the replacement. :func:`check_key` returns it.
+  depositor's ORCID. Every authenticated call rotates it: the old key dies and
+  a new pair comes back. So a key can never be probed "read-only", two
+  processes sharing one key invalidate each other, and whoever holds the key
+  must be told the replacement. :func:`check_key` and
+  :func:`rotated_credential` return it; the task makes exactly one
+  authenticated call per job, the submission itself.
+* The central host (deposit.wwpdb.org) redirects to a regional site
+  (deposit-pdbe, deposit-rcsb, ...) and the library exchanges the key for one
+  scoped to that site, recording the site on the config. The site is kept
+  with the key so the next run talks to the right host from the start.
+  Whether the central host would accept a site-scoped refresh token is
+  unverified, which is the reason not to rely on it.
 * The server's quick upload check answers ``Bad model file`` within seconds,
   with no per-file detail, when an mmCIF category is split into two places in
   the block (a trap gemmi's ``set_pair`` lays by appending at the end).
@@ -21,6 +30,7 @@ Two facts about OneDep shape this module:
 
 import logging
 import os
+import shutil
 import stat
 import tempfile
 import time
@@ -65,7 +75,11 @@ class OneDepUnreachable(OneDepError):
 
 
 class OneDepProcessingError(OneDepError):
-    """OneDep processed the upload and rejected it."""
+    """OneDep processed the upload and rejected it, or answered with an error."""
+
+
+class OneDepRequestError(OneDepError):
+    """OneDep refused a request outright (HTTP 4xx): wrong id, not ours, gone."""
 
 
 class OneDepMissing(OneDepError):
@@ -142,46 +156,79 @@ def private_dir(base=None):
 
 
 def ephemeral_dir():
-    """A private directory that exists only for one job (hosted deployments)."""
+    """A private directory that exists only for one job or one probe."""
     return Path(tempfile.mkdtemp(prefix="ccp4i2-onedep-"))
 
 
-def make_config(api_key, base):
+def make_config(api_key, base, hostname=None):
     """A DepositConfig that keeps every token and session under ``base``.
 
     ``api_key`` is used as the refresh token; the library writes the rotated
-    pair into ``base/config.toml`` (0600, its own doing) and session state into
-    ``base/sessions``.
+    pair into ``base/config.toml`` and session state into ``base/sessions``.
+    ``hostname`` is the deposition site the key was last rotated against;
+    without it the central host is used and the library follows its redirect.
     """
     config_mod = lib().config
     base = Path(base)
-    return config_mod.DepositConfig.load(
+    overrides = dict(
         refresh_token=api_key,
         config_path=base / "config.toml",
         session_dir=base / "sessions",
         schema_cache_dir=base / "schemas",
     )
+    if hostname:
+        overrides["hostname"] = hostname
+    return config_mod.DepositConfig.load(**overrides)
 
 
-def rotated_key(config, original):
-    """The refresh token now on disk for ``config``'s site, if it changed.
+def secure_config(config):
+    """Make the library's config file owner-readable only.
+
+    onedep_lib writes config.toml with the default umask (0644); only the 0700
+    directory protects it. Tighten the file itself whenever we have written it.
+    """
+    path = Path(config.config_path)
+    if path.exists():
+        try:
+            os.chmod(str(path), stat.S_IRUSR | stat.S_IWUSR)
+        except OSError:
+            logger.debug("could not chmod %s", path, exc_info=True)
+
+
+def _read_toml(path):
+    try:
+        import tomllib
+    except ImportError:  # Python < 3.11: onedep_lib depends on tomli there
+        import tomli as tomllib
+    try:
+        with open(path, "rb") as handle:
+            return tomllib.load(handle)
+    except (FileNotFoundError, NotADirectoryError):
+        return {}
+
+
+def rotated_credential(config, original):
+    """The key OneDep rotated to, and the site it is scoped to, if it changed.
 
     After any authenticated call the library has replaced the key it was given
-    (on disk and on ``config`` itself, so compare with ``original``, the key
-    the caller started from); this reads the replacement back so the caller
-    can store it. None when nothing is on disk or it is still ``original``.
+    (on disk, and on ``config`` itself, so compare with ``original``, the key
+    the caller started from) and may have moved ``config.hostname`` to the
+    regional site. The on-disk TOML is read directly rather than through
+    ``DepositConfig.load``, which would merge ``ONEDEP_REFRESH_TOKEN`` from the
+    environment and report a deployment's token as the rotation.
+
+    Returns ``{"api_key": ..., "site_host": ...}`` or None.
     """
     config_mod = lib().config
-    try:
-        reloaded = config_mod.DepositConfig.load(config_path=config.config_path,
-                                                 hostname=config.hostname)
-    except Exception:
-        logger.debug("could not reload onedep config", exc_info=True)
+    host = config.hostname
+    key = config_mod._hostname_to_fqdn_key(host)
+    if not key:
         return None
-    token = reloaded.refresh_token
-    if not token or token == original:
+    entry = _read_toml(config.config_path).get("auths", {}).get(key)
+    token = entry.get("refresh_token") if isinstance(entry, dict) else None
+    if not token or not isinstance(token, str) or token == original:
         return None
-    return token
+    return {"api_key": token, "site_host": host}
 
 
 # ---------------------------------------------------------------------------
@@ -189,12 +236,14 @@ def rotated_key(config, original):
 # ---------------------------------------------------------------------------
 
 
-def check_key(api_key, base=None, _check=None):
+def check_key(api_key, base=None, _check=None, hostname=None):
     """Probe a DepUI key against OneDep.
 
-    Returns ``(ok, message, new_key)``. ``new_key`` is the rotated refresh
-    token when the probe succeeded and the library rotated it, else None.
-    The message never contains the key.
+    Returns ``(ok, message, new_values)``. ``new_values`` is the rotated
+    credential (key and site) when the probe succeeded and the library
+    rotated it, else None. The probe runs in a throwaway directory removed
+    afterwards: the rotated key goes back to the credential store, nothing
+    needs to persist here. The message never contains the key.
     """
     api_key = (api_key or "").strip()
     if not api_key:
@@ -204,25 +253,42 @@ def check_key(api_key, base=None, _check=None):
     except OneDepMissing as err:
         return False, str(err), None
 
-    base = Path(base) if base else private_dir()
-    config = make_config(api_key, base)
-    check = _check or onedep.dsp.check_auth_key
+    own_base = base is None
+    base = Path(base) if base else ephemeral_dir()
     try:
-        ok = bool(check(config))
-    except Exception as err:  # the library wraps most things; be safe
-        return False, f"Could not check the key ({err.__class__.__name__}).", None
-    if not ok:
-        return False, (
-            "OneDep rejected this key. Keys are single-use until rotated: if "
-            "this one was used elsewhere, generate a new one in the deposition "
-            "interface."
-        ), None
-    return True, "Key accepted by OneDep.", rotated_key(config, api_key)
+        config = make_config(api_key, base, hostname=hostname)
+        check = _check or onedep.dsp.check_auth_key
+        try:
+            ok = bool(check(config))
+        except Exception as err:  # the library wraps most things; be safe
+            return False, f"Could not check the key ({err.__class__.__name__}).", None
+        secure_config(config)
+        if not ok:
+            return False, (
+                "OneDep rejected this key. Keys are single-use until rotated: if "
+                "this one was used elsewhere, generate a new one in the deposition "
+                "interface."
+            ), None
+        return True, "Key accepted by OneDep.", rotated_credential(config, api_key)
+    finally:
+        if own_base:
+            shutil.rmtree(str(base), ignore_errors=True)
 
 
 # ---------------------------------------------------------------------------
 # Submission
 # ---------------------------------------------------------------------------
+
+
+def _is_error_object(status):
+    """A DepositError (code/message) rather than a DepositStatus (status)."""
+    return not hasattr(status, "status") and hasattr(status, "message")
+
+
+def _error_text(status):
+    code = getattr(status, "code", "")
+    message = getattr(status, "message", "") or ""
+    return "OneDep error %s: %s" % (code, message) if code else "OneDep error: %s" % message
 
 
 def wait_for_processing(get_status, sleep=time.sleep, log=print, clock=time.monotonic,
@@ -234,7 +300,9 @@ def wait_for_processing(get_status, sleep=time.sleep, log=print, clock=time.mono
     Returns the final status object. Prints on change (and a heartbeat every
     ten minutes), backs off between polls, resets the interval when the status
     changes, survives transient failures, and gives up only after
-    ``max_failures`` consecutive ones or ``timeout`` seconds.
+    ``max_failures`` consecutive ones or ``timeout`` seconds. A DepositError
+    answer (the API's error shape, with no status) is terminal and raises
+    OneDepProcessingError.
     """
     delay = initial
     failures = 0
@@ -258,6 +326,8 @@ def wait_for_processing(get_status, sleep=time.sleep, log=print, clock=time.mono
             delay = min(delay * backoff, maximum)
             continue
 
+        if _is_error_object(status):
+            raise OneDepProcessingError(_error_text(status))
         state = getattr(status, "status", None)
         key = (state, getattr(status, "step", None), getattr(status, "details", None))
         now = clock()
@@ -307,8 +377,9 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
     """Create (or refresh) a OneDep deposition and wait for processing.
 
     Returns a dict: ``dep_id``, ``site_url``, ``session_id``, ``files``
-    (list of {name, type, remote_id}), ``status``, ``details``.
-    Raises OneDepAuthError / OneDepUnreachable / OneDepProcessingError.
+    (list of {name, type, remote_id}), ``status``, ``details``, ``replaced``.
+    Raises OneDepAuthError / OneDepUnreachable / OneDepRequestError /
+    OneDepProcessingError.
     """
     onedep = lib()
     enums = onedep.enums
@@ -317,7 +388,7 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
     country = country_from_name(country_name)
     exp_type = enums.ExperimentType(experiment_type)
 
-    def auth_wrapped(fn, *args, **kwargs):
+    def guarded(fn, *args, **kwargs):
         try:
             return fn(*args, **kwargs)
         except exceptions.AuthError as err:
@@ -327,14 +398,29 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
         except exceptions.ApiUnreachableError as err:
             raise OneDepUnreachable(
                 "Could not reach OneDep (%s)." % err, dep_id=replace_dep_id) from err
+        except exceptions.ApiError as err:
+            code = getattr(err, "status_code", None)
+            if code in (403, 404) and replace_dep_id:
+                raise OneDepRequestError(
+                    "OneDep answered HTTP %s for deposition %s: it does not exist, "
+                    "or it is not open to the ORCID this key belongs to."
+                    % (code, replace_dep_id), dep_id=replace_dep_id) from err
+            if code in (401, 403):
+                raise OneDepAuthError(
+                    "OneDep refused the request (HTTP %s): %s" % (code, err),
+                    dep_id=replace_dep_id) from err
+            raise OneDepRequestError(
+                "OneDep refused the request (HTTP %s): %s" % (code, err),
+                dep_id=replace_dep_id) from err
 
     result = {"dep_id": None, "site_url": None, "session_id": None, "files": [],
-              "status": None, "details": ""}
+              "status": None, "details": "", "replaced": bool(replace_dep_id)}
 
     if replace_dep_id:
-        # Replace the files on an existing deposition: upload with overwrite
-        # (the library removes the server's file of the same type first), then
-        # ask OneDep to process. No local session is needed for this path.
+        # Replace the files on an existing deposition. overwrite=True makes the
+        # library delete the server's file of the same type before uploading,
+        # so a failed upload leaves the deposition without that file until the
+        # task is re-run. No local session is needed for this path.
         if _api_client is not None:
             client = _api_client
         else:
@@ -344,15 +430,22 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
             client = HttpApiClient(config, auth_provider=TokenStore(config))
         dep_id = replace_dep_id
         result["dep_id"] = dep_id
-        dep = auth_wrapped(client.get_deposition, dep_id)
+        dep = guarded(client.get_deposition, dep_id)
         result["site_url"] = getattr(dep, "site_url", None)
+        log("Replacing the files on deposition %s; each file is removed from the "
+            "server before its replacement is uploaded" % dep_id)
         for label, path in (("model", model_path), ("sf", sf_path)):
             log("Uploading %s as %s (replacing)" % (os.path.basename(path), types[label].value))
-            uploaded = auth_wrapped(client.upload_file, dep_id, path, types[label], overwrite=True)
+            uploaded = guarded(client.upload_file, dep_id, path, types[label], overwrite=True)
             result["files"].append({"name": os.path.basename(path), "type": types[label].value,
                                     "remote_id": getattr(uploaded, "file_id", None)})
-        auth_wrapped(client.process, dep_id)
-        get_status = lambda: auth_wrapped(client.get_status, dep_id)  # noqa: E731
+        started = guarded(client.process, dep_id)
+        if _is_error_object(started):
+            # Do not go on to poll: get_status would hand back the previous
+            # processing's "finished" and the failure would pass as success.
+            raise OneDepProcessingError(_error_text(started), dep_id=dep_id,
+                                        site_url=result["site_url"])
+        get_status = lambda: guarded(client.get_status, dep_id)  # noqa: E731
     else:
         dep = onedep.dsp.deposit_init(
             email=email, users=list(orcids), country=country, config=config,
@@ -366,7 +459,7 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
             log("check: %s %s" % (getattr(issue, "severity", ""), getattr(issue, "message", "")))
         log("Creating the deposition and uploading %s and %s"
             % (os.path.basename(model_path), os.path.basename(sf_path)))
-        dep_id = auth_wrapped(dep.deposit)
+        dep_id = guarded(dep.deposit)
         result["dep_id"] = dep_id
         result["site_url"] = dep.site_url
         client = dep._api_client
@@ -379,12 +472,12 @@ def submit(model_path, sf_path, email, orcids, country_name, config,
             for label, path in (("model", model_path), ("sf", sf_path)):
                 result["files"].append({"name": os.path.basename(path),
                                         "type": types[label].value, "remote_id": None})
-        get_status = lambda: auth_wrapped(dep.get_status)  # noqa: E731
+        get_status = lambda: guarded(dep.get_status)  # noqa: E731
 
     log("OneDep deposition %s" % dep_id)
     try:
         status = wait_for_processing(get_status, sleep=sleep, log=log)
-    except OneDepUnreachable as err:
+    except OneDepError as err:
         err.dep_id = dep_id
         err.site_url = result["site_url"]
         raise

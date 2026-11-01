@@ -9,6 +9,9 @@ who is depositing. The depositor finishes the remaining pages in the OneDep
 web interface.
 
 The API key is a credential (config/credentials.py), never a task parameter.
+OneDep rotates it on every use, so this task makes exactly one authenticated
+call per job (the submission) and stores the key it was rotated to; there is
+deliberately no network probe at submission time.
 """
 
 import os
@@ -47,13 +50,14 @@ class onedep_submit(CPluginScript):
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     ERROR_CODES = {
         200: {'description': 'OneDep needs an API key before it can submit'},
-        201: {'description': 'OneDep rejected the API key'},
+        201: {'description': 'The OneDep API key cannot be used'},
         202: {'description': 'Depositor details are incomplete or malformed'},
         203: {'description': 'The onedep_lib package is not installed'},
         204: {'description': 'OneDep rejected the API key during the run'},
         205: {'description': 'Lost contact with OneDep'},
         206: {'description': 'OneDep rejected the uploaded files'},
         207: {'description': 'Unexpected error while talking to OneDep'},
+        208: {'description': 'OneDep refused the request'},
     }
 
     def __init__(self, *args, **kws):
@@ -64,8 +68,11 @@ class onedep_submit(CPluginScript):
     # Credential
     # ------------------------------------------------------------------
 
+    def _credential(self):
+        return credentials.get_credential('onedep')
+
     def _key(self):
-        found = credentials.get_credential('onedep')
+        found = self._credential()
         return found['api_key'] if found else None
 
     def validity(self):
@@ -107,7 +114,15 @@ class onedep_submit(CPluginScript):
         return error
 
     def runTimeValidity(self):
-        """Once, at submission: is the library here, does OneDep accept the key?"""
+        """Once, at submission: is the library here, is the country known?
+
+        Deliberately no network probe of the key. OneDep rotates the key on
+        every use, and this method runs in the API server and again in the
+        job process, so a probe here would spend the key before the job
+        used it (and two jobs would invalidate each other). The Test button
+        in the credential dialog is the one place a probe happens; the job's
+        single authenticated call is the submission itself.
+        """
         error = super().runTimeValidity()
         if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
             return error
@@ -124,12 +139,6 @@ class onedep_submit(CPluginScript):
             error.append(klass=self.TASKNAME, code=202, details=str(err),
                          name=f'{self.TASKNAME}.container.controlParameters.COUNTRY',
                          severity=CCP4ErrorHandling.SEVERITY_ERROR)
-            return error
-        ok, message = credentials.validate_credential('onedep')
-        if not ok:
-            error.append(klass=self.TASKNAME, code=201, details=message,
-                         name=f'{self.TASKNAME}.container.inputData.{CREDENTIAL_ERROR_PATH}',
-                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
 
     # ------------------------------------------------------------------
@@ -140,8 +149,8 @@ class onedep_submit(CPluginScript):
         """Where onedep_lib keeps its config and session for this run.
 
         Per-user and outside the project on a desktop; a throwaway directory
-        on a hosted server, removed in processOutputFiles, so a rotated token
-        never persists where other users' jobs run.
+        on a hosted server, removed once the rotated key has been read back,
+        so a token never persists where other users' jobs run.
         """
         from . import onedep_client
 
@@ -159,7 +168,6 @@ class onedep_submit(CPluginScript):
         print('ERROR:', message)
         sys.stdout.flush()
         self.appendErrorReport(code, message, severity=CCP4ErrorHandling.SEVERITY_ERROR)
-        self._cleanup()
         return CPluginScript.FAILED
 
     def _write_xml(self, result=None, error=None):
@@ -168,6 +176,8 @@ class onedep_submit(CPluginScript):
             for tag in ('dep_id', 'site_url', 'session_id', 'status', 'details'):
                 if result.get(tag):
                     etree.SubElement(root, tag.upper()).text = str(result[tag])
+            if result.get('replaced'):
+                etree.SubElement(root, 'REPLACED').text = '1'
             files = etree.SubElement(root, 'FILES')
             for f in result.get('files', []):
                 node = etree.SubElement(files, 'FILE')
@@ -182,10 +192,12 @@ class onedep_submit(CPluginScript):
     def startProcess(self):
         from . import onedep_client
 
-        key = self._key()
-        if key is None:
+        found = self._credential()
+        if not found:
             return self._fail(200, 'No OneDep API key is configured. Set one in '
                                    'Preferences -> Credentials, or via ONEDEP_API_KEY.')
+        key = found['api_key']
+        site_host = found.get('site_host') or None
         try:
             onedep_client.lib()
         except onedep_client.OneDepMissing as err:
@@ -201,40 +213,57 @@ class onedep_submit(CPluginScript):
         experiment = _text(cpar.EXPERIMENT_TYPE) or 'xray'
         replace = _text(cpar.REPLACE_DEPOSITION_ID) or None
 
-        self._write_xml({'files': [], 'dep_id': replace})
+        self._write_xml({'files': [], 'dep_id': replace, 'replaced': bool(replace)})
         base = self._state_dir()
-        config = onedep_client.make_config(key, base)
+        config = onedep_client.make_config(key, base, hostname=site_host)
 
         def log(line):
             print(line)
             sys.stdout.flush()
 
+        outcome = None
         try:
             result = onedep_client.submit(model, sf, email, orcids, country, config,
                                           experiment_type=experiment, replace_dep_id=replace,
                                           log=log)
         except onedep_client.OneDepAuthError as err:
-            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url}, error=str(err))
-            return self._fail(204, f'{err} The key is rotated on every use: if it was '
-                                   'used from another machine since it was set here, '
-                                   'generate a new one in the OneDep interface.')
+            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url,
+                             'replaced': bool(replace)}, error=str(err))
+            outcome = (204, f'{err} The key is rotated on every use: if it was used '
+                            'from another machine since it was set here, generate a '
+                            'new one in the OneDep interface.')
         except onedep_client.OneDepUnreachable as err:
-            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url}, error=str(err))
+            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url,
+                             'replaced': bool(replace)}, error=str(err))
             where = f' Deposition {err.dep_id} exists at OneDep;' if err.dep_id else ''
-            return self._fail(205, f'{err}{where} open it in the deposition interface '
-                                   'to see how processing ended. Nothing is lost at the '
-                                   'OneDep end.')
+            outcome = (205, f'{err}{where} open it in the deposition interface to see '
+                            'how processing ended. Nothing is lost at the OneDep end.')
+        except onedep_client.OneDepRequestError as err:
+            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url,
+                             'replaced': bool(replace)}, error=str(err))
+            outcome = (208, str(err))
         except onedep_client.OneDepProcessingError as err:
-            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url}, error=str(err))
-            return self._fail(206, f'{err} Deposition {err.dep_id} is open in the OneDep '
-                                   'interface; fix the files and re-run this task with its '
-                                   'id in "Replace files on existing deposition".')
+            self._write_xml({'dep_id': err.dep_id, 'site_url': err.site_url,
+                             'replaced': bool(replace)}, error=str(err))
+            outcome = (206, f'{err} Deposition {err.dep_id} is open in the OneDep '
+                            'interface; fix the files and re-run this task with its id '
+                            'in "Replace files on existing deposition".')
         except Exception as err:
-            self._write_xml(error=f'{err.__class__.__name__}: {err}')
-            return self._fail(207, f'Unexpected error while talking to OneDep '
-                                   f'({err.__class__.__name__}: {err}).')
+            self._write_xml({'replaced': bool(replace)},
+                            error=f'{err.__class__.__name__}: {err}')
+            outcome = (207, f'Unexpected error while talking to OneDep '
+                            f'({err.__class__.__name__}: {err}).')
         finally:
+            # Before anything is removed: the key OneDep rotated to lives in
+            # the state directory, and losing it leaves the stored key dead
+            # for the re-run, whichever way this run ended.
+            onedep_client.secure_config(config)
             self._remember_rotated_key(key, config)
+            if outcome is not None:
+                self._cleanup()
+
+        if outcome is not None:
+            return self._fail(*outcome)
 
         self._write_xml(result)
         self._result = result
@@ -242,21 +271,33 @@ class onedep_submit(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def _remember_rotated_key(self, old_key, config):
-        """Store the key OneDep rotated to, if the store is writable.
+        """Store the key (and site) OneDep rotated to, if the store is writable.
 
-        Best effort and silent on failure: on a hosted server the store is
-        environment-driven and the user generates a new key next time, which
-        the task description says.
+        Says so in the log when it could not: on a hosted server the store is
+        environment-driven and the user generates a new key next time.
         """
         from . import onedep_client
 
         try:
-            new_key = onedep_client.rotated_key(config, old_key)
-            if new_key:
-                credentials.remember_rotation('onedep', {'api_key': new_key})
+            rotated = onedep_client.rotated_credential(config, old_key)
         except Exception:
-            print('WARNING: could not store the rotated OneDep key; generate a new '
-                  'key before the next submission.')
+            rotated = None
+            print('WARNING: could not read the rotated OneDep key back; generate a '
+                  'new key before the next submission.')
+        if not rotated:
+            return False
+        try:
+            stored = credentials.remember_rotation('onedep', rotated)
+        except Exception:
+            stored = False
+        if not stored:
+            print('WARNING: OneDep rotated the API key but the credential store '
+                  'could not keep the new one; generate a new key before the next '
+                  'submission.')
+        else:
+            print('OneDep rotated the API key; the new key has been stored.')
+        sys.stdout.flush()
+        return stored
 
     def processOutputFiles(self):
         self._cleanup()

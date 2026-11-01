@@ -88,6 +88,10 @@ class CredentialField:
                   ``userPreferences`` key consulted for legacy read-through, so
                   a user who hand-set ``PDB_REDO_TOKEN_ID`` keeps working.
         help:     one-line hint shown under the input.
+        required: False for a field the credential is complete without (a
+                  value the service hands back alongside the secret, such as
+                  the site a rotated token is scoped to). The dialog does not
+                  demand it and ``complete`` ignores it.
     """
 
     name: str
@@ -95,6 +99,7 @@ class CredentialField:
     secret: bool
     env: str
     help: str = ""
+    required: bool = True
 
 
 @dataclass(frozen=True)
@@ -227,8 +232,15 @@ def _validate_onedep(values: Dict[str, str]) -> Tuple[bool, str, Optional[Dict[s
     """
     from ..wrappers.onedep_submit.script import onedep_client
 
-    ok, message, new_key = onedep_client.check_key(values.get("api_key"))
-    return ok, message, ({"api_key": new_key} if new_key else None)
+    api_key = (values.get("api_key") or "").strip()
+    if api_key and api_key == (os.environ.get("ONEDEP_API_KEY") or "").strip():
+        # The deployment's key: a probe would spend it and nothing here can
+        # store the replacement. Report it as configured, unprobed.
+        return True, ("Key supplied by the deployment environment; not probed, "
+                      "because a probe would rotate it."), None
+    ok, message, new_values = onedep_client.check_key(
+        api_key, hostname=(values.get("site_host") or None))
+    return ok, message, new_values
 
 
 ONEDEP = CredentialSpec(
@@ -250,11 +262,24 @@ ONEDEP = CredentialSpec(
             env="ONEDEP_API_KEY",
             help="From the wwPDB deposition interface: account page, Generate Key.",
         ),
+        # Filled in by rotation, not by the user: the regional deposition site
+        # (deposit-pdbe, deposit-rcsb, ...) the rotated key is scoped to.
+        # Whether the central host accepts a site-scoped refresh token is
+        # unverified, so the next run is pointed at this site directly.
+        CredentialField(
+            name="site_host",
+            label="Deposition site",
+            secret=False,
+            env="ONEDEP_SITE_HOST",
+            help="Set automatically from the site OneDep routed the key to; leave empty.",
+            required=False,
+        ),
     ),
     signup_url="https://deposit.wwpdb.org/deposition",
     validator=_validate_onedep,
     kind="password",
     paste_split=False,
+    hint_field="site_host",
 )
 
 
@@ -471,7 +496,7 @@ def resolve_credential(
     return Resolved(
         values=values,
         source=source,
-        complete=all(values.get(f.name) for f in spec.fields),
+        complete=all(values.get(f.name) for f in spec.fields if f.required),
     )
 
 
@@ -761,6 +786,7 @@ def describe_credential(
                 "secret": f.secret,
                 "help": f.help,
                 "isSet": bool(resolved.values.get(f.name)),
+                "required": f.required,
             }
             for f in spec.fields
         ],

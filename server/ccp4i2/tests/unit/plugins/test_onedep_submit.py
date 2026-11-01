@@ -237,32 +237,119 @@ def test_consecutive_failures_give_up_as_unreachable():
 # ---------------------------------------------------------------------------
 
 
-def test_check_key_reports_the_rotated_key(tmp_path):
+def _rotate_to(config, refresh, site=None):
+    """What the library does on a successful call: rotate, maybe move site, persist."""
+    from onedep_lib.auths.token import TokenStore
+    store = TokenStore(config)
+    if site:
+        config.hostname = site
+    store._store_tokens_for_key(onedep_lib.config._hostname_to_fqdn_key(config.hostname),
+                               "access", refresh)
+
+
+def test_check_key_reports_the_rotated_key_and_its_site(tmp_path):
     def fake_check(config):
-        # what the library does on a successful probe: rotate and persist
-        from onedep_lib.auths.token import TokenStore
-        TokenStore(config).store_tokens("access", "rotated-refresh")
+        _rotate_to(config, "rotated-refresh", "https://deposit-pdbe.wwpdb.org/deposition")
         return True
 
-    ok, message, new_key = onedep_client.check_key("the-key", base=tmp_path, _check=fake_check)
+    ok, message, new = onedep_client.check_key("the-key", base=tmp_path, _check=fake_check)
     assert ok
-    assert new_key == "rotated-refresh"
+    assert new == {"api_key": "rotated-refresh",
+                   "site_host": "https://deposit-pdbe.wwpdb.org/deposition"}
     assert "the-key" not in message and "rotated-refresh" not in message
-    # the token landed in our private directory, not anywhere else
-    assert (tmp_path / "config.toml").exists()
+    # the token landed where we said, owner-readable only
+    toml = tmp_path / "config.toml"
+    assert toml.exists()
+    import stat
+    assert stat.S_IMODE(toml.stat().st_mode) == 0o600
+
+
+def test_check_key_probes_in_a_throwaway_directory_by_default(tmp_path, monkeypatch):
+    probe_dir = tmp_path / "probe"
+    probe_dir.mkdir()
+    monkeypatch.setattr(onedep_client, "ephemeral_dir", lambda: probe_dir)
+    seen = {}
+
+    def fake_check(config):
+        seen["path"] = str(config.config_path)
+        _rotate_to(config, "rotated-refresh")
+        return True
+
+    ok, _, new = onedep_client.check_key("the-key", _check=fake_check)
+    assert ok and new["api_key"] == "rotated-refresh"
+    assert seen["path"].startswith(str(probe_dir))
+    assert not probe_dir.exists()           # nothing persists after the probe
 
 
 def test_check_key_rejection_mentions_single_use(tmp_path):
-    ok, message, new_key = onedep_client.check_key("the-key", base=tmp_path,
-                                                   _check=lambda config: False)
-    assert not ok and new_key is None
+    ok, message, new = onedep_client.check_key("the-key", base=tmp_path,
+                                               _check=lambda config: False)
+    assert not ok and new is None
     assert "generate a new one" in message
     assert "the-key" not in message
 
 
 def test_check_key_without_a_key():
-    ok, message, new_key = onedep_client.check_key("")
-    assert not ok and new_key is None
+    ok, message, new = onedep_client.check_key("")
+    assert not ok and new is None
+
+
+def test_rotated_credential_ignores_environment_tokens(tmp_path, monkeypatch):
+    """Only the file's token is a rotation; a deployment's env token is not."""
+    monkeypatch.setenv("ONEDEP_REFRESH_TOKEN", "env-token")
+    config = onedep_client.make_config("the-key", tmp_path)
+    assert onedep_client.rotated_credential(config, "the-key") is None
+    _rotate_to(config, "file-token")
+    assert onedep_client.rotated_credential(config, "the-key")["api_key"] == "file-token"
+
+
+def test_make_config_targets_the_stored_site(tmp_path):
+    config = onedep_client.make_config("k", tmp_path,
+                                       hostname="https://deposit-pdbe.wwpdb.org/deposition")
+    assert config.hostname == "https://deposit-pdbe.wwpdb.org/deposition"
+    assert onedep_client.make_config("k", tmp_path).hostname.startswith("https://deposit.wwpdb.org")
+
+
+# ---------------------------------------------------------------------------
+# Error shapes from the API
+# ---------------------------------------------------------------------------
+
+
+def test_a_deposit_error_answer_ends_the_wait():
+    from onedep_lib.apis.deposit.models import DepositError
+    answers = [_status("running", "a"), DepositError(code="E42", message="session expired")]
+    with pytest.raises(onedep_client.OneDepProcessingError) as err:
+        onedep_client.wait_for_processing(lambda: answers.pop(0), sleep=lambda s: None,
+                                          log=lambda s: None, clock=lambda: 0.0)
+    assert "E42" in str(err.value) and "session expired" in str(err.value)
+
+
+def test_replace_fails_when_process_itself_answers_with_an_error(files, config, tmp_path):
+    from onedep_lib.apis.deposit.models import DepositError
+
+    class RefusingProcess(FakeClient):
+        def process(self, dep_id):
+            self.calls.append(("process", dep_id))
+            return DepositError(code="E1", message="cannot process")
+
+    # a stale "finished" from the previous processing must not be read as success
+    client = RefusingProcess([_status("finished", "Processing done.")])
+    with pytest.raises(onedep_client.OneDepProcessingError) as err:
+        _submit(client, files, config, tmp_path, replace_dep_id=DEP_ID)
+    assert "cannot process" in str(err.value)
+    assert ("status", DEP_ID) not in client.calls
+
+
+def test_replace_of_a_missing_or_foreign_deposition_is_explained(files, config, tmp_path):
+    class NotFound(FakeClient):
+        def get_deposition(self, dep_id):
+            raise onedep_lib.exceptions.ApiError("not found", 404)
+
+    client = NotFound([_status("finished", "x")])
+    with pytest.raises(onedep_client.OneDepRequestError) as err:
+        _submit(client, files, config, tmp_path, replace_dep_id=DEP_ID)
+    assert "404" in str(err.value) and DEP_ID in str(err.value)
+    assert "ORCID" in str(err.value)
 
 
 # ---------------------------------------------------------------------------
@@ -274,13 +361,15 @@ def test_check_key_without_a_key():
 def home(tmp_path, monkeypatch):
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
     monkeypatch.setattr(cred, "_keyring", lambda: None)
-    monkeypatch.delenv("ONEDEP_API_KEY", raising=False)
-    monkeypatch.delenv(cred._session_env_key(cred._storage_key("onedep"), "api_key"),
-                       raising=False)
+    for field in cred.ONEDEP.fields:
+        monkeypatch.delenv(field.env, raising=False)
+        monkeypatch.delenv(cred._session_env_key(cred._storage_key("onedep"), field.name),
+                           raising=False)
     return tmp_path
 
 
 def _plugin(tmp_path, files):
+    (tmp_path / "job").mkdir(exist_ok=True)
     plugin = get_plugin_class("onedep_submit")(workDirectory=str(tmp_path / "job"), name="a")
     inp = plugin.container.inputData
     inp.MODEL_CIF.setFullPath(files[0])
@@ -321,6 +410,90 @@ def test_validity_rejects_a_malformed_orcid_and_deposition_id(home, files, tmp_p
     assert reports
     text = reports[0]["details"]
     assert "ORCID" in text and "D_" in text
+
+
+def test_run_time_validity_never_probes_the_key(home, files, tmp_path, monkeypatch):
+    """A probe rotates the key; the only authenticated call per job is the submission."""
+    cred.set_credential("onedep", {"api_key": "k"})
+
+    def forbidden(*a, **k):
+        raise AssertionError("runTimeValidity probed the credential")
+
+    monkeypatch.setattr(cred, "validate_credential", forbidden)
+    monkeypatch.setattr(onedep_client, "check_key", forbidden)
+    plugin = _plugin(tmp_path, files)
+    cpar = plugin.container.controlParameters
+    cpar.EMAIL.set("who@example.org")
+    cpar.ORCIDS.set(["0000-0002-3595-9807"])
+    codes = [r["code"] for r in plugin.runTimeValidity()._reports]
+    assert 201 not in codes
+
+
+def test_run_time_validity_rejects_an_unknown_country(home, files, tmp_path):
+    cred.set_credential("onedep", {"api_key": "k"})
+    plugin = _plugin(tmp_path, files)
+    cpar = plugin.container.controlParameters
+    cpar.EMAIL.set("who@example.org")
+    cpar.ORCIDS.set(["0000-0002-3595-9807"])
+    cpar.COUNTRY.set("Narnia")
+    assert 202 in [r["code"] for r in plugin.runTimeValidity()._reports]
+
+
+def _run_with_fake_submit(plugin, monkeypatch, outcome):
+    """Drive startProcess with a submit() that rotates the key, then does `outcome`."""
+    def fake_submit(model, sf, email, orcids, country, config, **kw):
+        _rotate_to(config, "rotated-by-run", "https://deposit-pdbe.wwpdb.org/deposition")
+        if isinstance(outcome, Exception):
+            raise outcome
+        return outcome
+
+    monkeypatch.setattr(onedep_client, "submit", fake_submit)
+    cpar = plugin.container.controlParameters
+    cpar.EMAIL.set("who@example.org")
+    cpar.ORCIDS.set(["0000-0002-3595-9807"])
+    return plugin.startProcess()
+
+
+def test_a_failed_run_still_keeps_the_rotated_key(home, files, tmp_path, monkeypatch, capsys):
+    """The ephemeral state dir must not be removed before the rotated key is read back."""
+    cred.set_credential("onedep", {"api_key": "first"})
+    monkeypatch.delenv("CCP4I2_LOCAL_SESSION_TOKEN", raising=False)   # hosted: ephemeral dir
+    plugin = _plugin(tmp_path, files)
+    rc = _run_with_fake_submit(plugin, monkeypatch,
+                               onedep_client.OneDepProcessingError("rejected", dep_id=DEP_ID))
+    assert rc == plugin.FAILED
+    assert cred.get_credential("onedep") == {"api_key": "rotated-by-run",
+                                             "site_host": "https://deposit-pdbe.wwpdb.org/deposition"}
+    assert plugin._ephemeral is None       # and the state dir is gone afterwards
+    assert "new key has been stored" in capsys.readouterr().out
+
+
+def test_a_successful_run_keeps_the_rotated_key_too(home, files, tmp_path, monkeypatch):
+    cred.set_credential("onedep", {"api_key": "first"})
+    plugin = _plugin(tmp_path, files)
+    rc = _run_with_fake_submit(plugin, monkeypatch, {
+        "dep_id": DEP_ID, "site_url": SITE, "session_id": "s", "files": [],
+        "status": "finished", "details": "Processing done.", "replaced": False})
+    assert rc == plugin.SUCCEEDED
+    assert cred.get_credential("onedep")["api_key"] == "rotated-by-run"
+
+
+def test_an_environment_key_cannot_be_rotated_and_the_log_says_so(home, files, tmp_path,
+                                                                     monkeypatch, capsys):
+    monkeypatch.setenv("ONEDEP_API_KEY", "deployment-key")
+    plugin = _plugin(tmp_path, files)
+    rc = _run_with_fake_submit(plugin, monkeypatch, {
+        "dep_id": DEP_ID, "site_url": SITE, "session_id": "s", "files": [],
+        "status": "finished", "details": "done", "replaced": False})
+    assert rc == plugin.SUCCEEDED
+    assert cred.get_credential("onedep")["api_key"] == "deployment-key"
+    assert "WARNING" in capsys.readouterr().out
+
+
+def test_the_report_escapes_what_the_server_said():
+    from ccp4i2.wrappers.onedep_submit.script.onedep_submit_report import safe
+    assert safe("<b>Bad</b> & worse") == "&lt;b&gt;Bad&lt;/b&gt; &amp; worse"
+    assert safe(None) == ""
 
 
 def test_the_key_never_appears_in_the_params_xml(home, files, tmp_path):
