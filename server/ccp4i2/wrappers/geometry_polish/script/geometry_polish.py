@@ -94,7 +94,8 @@ class geometry_polish(CPluginScript):
             xyzin, str(inp.FPHIOUT.fullPath), workdir, options=options, diff_mtz=diff_mtz,
             dict_path=dict_path, progress=self._say, snapshot=self._write_xml)
 
-        # Coot writes its scratch files in the working directory.
+        # Coot writes its scratch files in the working directory. The trial
+        # files are kept when the polish fails: they are what explains a crash.
         original_cwd = os.getcwd()
         os.chdir(workdir)
         try:
@@ -108,11 +109,11 @@ class geometry_polish(CPluginScript):
             return self._fail(201, "Geometry polish failed ({}: {})".format(type(exc).__name__, exc))
         finally:
             os.chdir(original_cwd)
-            self._tidy(workdir)
 
         self._write_xml(polisher.state())
         if not os.path.exists(xyzout):
             return self._fail(202, "The polished model {} was not written".format(xyzout))
+        self._tidy(workdir)
         out.XYZOUT.annotation.set("Polished model: {} changes, {} items for review".format(
             len(polisher.changes), len(polisher.review)))
         out.CHANGES_CSV.annotation.set("Per-residue change log of the geometry polish")
@@ -121,8 +122,8 @@ class geometry_polish(CPluginScript):
     # ---- plumbing -----------------------------------------------------------
 
     def _tidy(self, workdir):
-        """Remove the per-trial scratch files and Coot's backups; the job keeps
-        only the outputs, the program XML and the log."""
+        """Remove the per-trial scratch files and Coot's backups after a
+        successful run; the job keeps the outputs, the program XML and the log."""
         for name in ("polish_trial.pdb", "polish_trial_in.pdb", "polish_window.pdb",
                      "polish_neighbourhood.pdb", "polish_current.pdb", "polish_input.pdb"):
             try:
@@ -142,7 +143,11 @@ class geometry_polish(CPluginScript):
         return CPluginScript.FAILED
 
     def _write_xml(self, state):
-        """Program XML for the (running) report: summaries, stages, changes, review."""
+        """Program XML for the (running) report: summaries, stages, changes, review.
+
+        Written to a temporary file and moved into place, so a report polling
+        the file never reads a half-written document.
+        """
         root = etree.Element("geometry_polish")
         summary = etree.SubElement(root, "summary")
         for tag in ("before", "after"):
@@ -151,20 +156,16 @@ class geometry_polish(CPluginScript):
                 node = etree.SubElement(summary, tag)
                 for key, value in numbers.items():
                     node.set(key, "" if value is None else str(value))
-        stages = etree.SubElement(root, "stages")
-        for stage in state.get("stages", []):
-            node = etree.SubElement(stages, "stage")
-            for key, value in stage.items():
-                node.set(key, str(value))
-        changes = etree.SubElement(root, "changes")
-        for change in state.get("changes", []):
-            node = etree.SubElement(changes, "change")
-            for key, value in change.items():
-                node.set(key, str(value))
-        review = etree.SubElement(root, "review")
-        for item in state.get("review", []):
-            node = etree.SubElement(review, "item")
-            for key, value in item.items():
-                node.set(key, str(value))
-        with open(self.makeFileName("PROGRAMXML"), "w") as handle:
+        for parent, child, rows in (("stages", "stage", state.get("stages", [])),
+                                    ("changes", "change", state.get("changes", [])),
+                                    ("review", "item", state.get("review", []))):
+            holder = etree.SubElement(root, parent)
+            for row in rows:
+                node = etree.SubElement(holder, child)
+                for key, value in row.items():
+                    node.set(key, str(value))
+        target = self.makeFileName("PROGRAMXML")
+        temporary = target + "_tmp"
+        with open(temporary, "w") as handle:
             CCP4Utils.writeXML(handle, etree.tostring(root, pretty_print=True))
+        shutil.move(temporary, target)

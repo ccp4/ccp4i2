@@ -5,16 +5,22 @@ Three tools, three roles:
 * MolProbity (molprobity.rotalyze / ramalyze / clashscore) is the judge. It is
   what the wwPDB validation report runs, so a residue it no longer flags is a
   residue the report will not flag either.
-* gemmi reads the maps and the model, scores density at atoms, finds clashes
+* gemmi reads the maps and the model, scores density at atoms, finds contacts
   and transplants side chains or backbone windows between NCS copies.
 * Coot's headless API ("chapi") does the building: auto-fit rotamer, library
   rotamers, peptide flips and torsion- or Ramachandran-restrained real-space
   refinement.
 
-Every candidate change is accepted only if MolProbity stops flagging the
-residue, no new heavy-atom contact appears, and the 2mFo-DFc density at the
-moved atoms is kept (see :func:`density_ok`). What cannot be fixed that way is
-listed for a human rather than forced.
+A candidate change moves a small window of residues (Coot's TRIPLE or
+QUINTUPLE refinement moves the neighbours too). It is accepted only when,
+over everything that moved, MolProbity stops flagging the target without
+flagging anything new, no new contact or clash appears, and the 2mFo-DFc
+density at both side chains and backbone is kept (see :func:`density_ok`).
+What cannot be fixed that way is listed for a human rather than forced.
+
+Residues are identified by (chain, number, insertion code) throughout, and
+windows are taken by position in the chain, so insertion codes and numbering
+gaps cannot make two residues collide.
 
 Only the standard library is imported at module level: gemmi, numpy and
 coot_headless_api are execution-time dependencies and every task plugin must
@@ -22,13 +28,14 @@ import with none of them present.
 """
 import csv
 import os
-import re
 import subprocess
-import tempfile
 import time
 
-BACKBONE = {"N", "CA", "C", "O", "CB"}
 BB_ONLY = ("N", "CA", "C", "O")
+# Atoms a side-chain transplant leaves alone: the backbone and the CB it is
+# superposed on. For density the CB counts as side chain, so an alanine has
+# something to score.
+TRANSPLANT_KEEP = {"N", "CA", "C", "O", "CB"}
 # Side-chain atoms for the clash stage: anything not on this list, so HA and
 # the amide H count as backbone and a GLY never has a side chain to move.
 BACKBONE_H = {"N", "CA", "C", "O", "H", "HA", "HA2", "HA3"}
@@ -40,14 +47,51 @@ MOLPROBITY_TOOLS = ("molprobity.rotalyze", "molprobity.ramalyze", "molprobity.cl
 
 ROTAMER_LIBRARY_TRIALS = 8          # library rotamers tried for a strained side chain
 NCS_DONORS = 3                      # best NCS copies tried before anything else
-ABSOLUTE_SLACK = 0.3                # sigma a change may lose outright
+ABSOLUTE_SLACK = 0.3                # sigma a change may lose outright (above MIN_DENSITY)
 CONTACT_DISTANCE = 2.4              # A; a new heavy-atom contact closer than this vetoes a change
 TORSION_WEIGHTS = (5.0, 10.0, 20.0)
 RAMA_WEIGHT = 10.0
+RAMA_MARGIN = 2                     # Ramachandran is scored this many residues beyond what moved
+NEIGHBOURHOOD_RADIUS = 6.0          # A; residues this close to a moved one are re-scored for clashes
 
 
 class PolishError(RuntimeError):
     """A tool the polish depends on is missing or failed outright."""
+
+
+# --------------------------------------------------------------------------
+# Residue keys
+# --------------------------------------------------------------------------
+
+def rkey(chain, num, icode=""):
+    """The (chain, number, insertion code) key of a residue; blank icode is ''."""
+    return (str(chain), int(num), (icode or "").strip())
+
+
+def residue_key(chain_name, residue):
+    return rkey(chain_name, residue.seqid.num, residue.seqid.icode)
+
+
+def key_label(key, resname=""):
+    """'SER A 100A' style label for logs and reports."""
+    chain, num, icode = key
+    return "{} {} {}{}".format(resname, chain, num, icode).strip()
+
+
+def parse_residue_field(field):
+    """MolProbity's fixed-width residue field: `` A1005A LYS``, ``AB  11  SER``.
+
+    Columns: 0-1 chain (right-justified), 2-5 residue number, 6 insertion
+    code, 8-10 residue name. Whitespace splitting breaks on 4-digit numbers
+    and on 2-character chains, which is why this is positional.
+    """
+    if len(field) < 11:
+        return None
+    try:
+        num = int(field[2:6])
+    except ValueError:
+        return None
+    return rkey(field[0:2].strip(), num, field[6:7]), field[8:11].strip()
 
 
 # --------------------------------------------------------------------------
@@ -76,19 +120,8 @@ def run_tool(name, pdb_path):
     return done.stdout
 
 
-_RESIDUE_KEY = re.compile(r"\s*(\S+)\s+(-?\d+)\S*\s+(\S+)")
-
-
-def _residue_key(text):
-    """(chain, resno, resname) from the residue field MolProbity prints."""
-    found = _RESIDUE_KEY.match(text)
-    if not found:
-        return None
-    return found.group(1), int(found.group(2)), found.group(3)
-
-
 def parse_rotalyze(text):
-    """{(chain, resno): {score, evaluation, rotamer, resname}} from rotalyze output.
+    """{key: {score, evaluation, rotamer, resname}} from rotalyze output.
 
     Lines are ``residue:occupancy:score%:chi1:chi2:chi3:chi4:evaluation:rotamer``.
     """
@@ -99,20 +132,21 @@ def parse_rotalyze(text):
         parts = line.split(":")
         if len(parts) < 9:
             continue
-        key = _residue_key(parts[0])
-        if key is None:
+        parsed = parse_residue_field(parts[0])
+        if parsed is None:
             continue
         try:
             score = float(parts[2])
         except ValueError:
             continue
-        result[(key[0], key[1])] = dict(score=score, evaluation=parts[7].strip(),
-                                        rotamer=parts[8].strip(), resname=key[2])
+        key, resname = parsed
+        result[key] = dict(score=score, evaluation=parts[7].strip(), rotamer=parts[8].strip(),
+                           resname=resname)
     return result
 
 
 def parse_ramalyze(text):
-    """{(chain, resno): {score, evaluation, type, resname}} from ramalyze output.
+    """{key: {score, evaluation, type, resname}} from ramalyze output.
 
     Lines are ``residue:score%:phi:psi:evaluation:type``.
     """
@@ -123,30 +157,39 @@ def parse_ramalyze(text):
         parts = line.split(":")
         if len(parts) < 6:
             continue
-        key = _residue_key(parts[0])
-        if key is None:
+        parsed = parse_residue_field(parts[0])
+        if parsed is None:
             continue
         try:
             score = float(parts[1])
         except ValueError:
             continue
-        result[(key[0], key[1])] = dict(score=score, evaluation=parts[4].strip(),
-                                        type=parts[5].strip(), resname=key[2])
+        key, resname = parsed
+        result[key] = dict(score=score, evaluation=parts[4].strip(), type=parts[5].strip(),
+                           resname=resname)
     return result
 
 
-_CLASH_LINE = re.compile(
-    r"\s*(\S+)\s+(-?\d+)\S?\s+(\S+)\s+(\S+)\s+(\S+)\s+(-?\d+)\S?\s+(\S+)\s+(\S+)\s*:([\d.]+)")
-
-
 def parse_clash_line(line):
-    """One clashscore contact line, e.g. `` C 117  PHE  HB3  C 138  SER  HB3 :1.153``."""
-    found = _CLASH_LINE.match(line)
-    if not found:
+    """One clashscore contact line, positionally.
+
+    `` C1106  PHE  HB3  C1127A SER  HB3 :1.068`` and
+    ``CX 116  PHE  HB3 CX 137A SER  HB3 :1.068``: residue field (11), space,
+    atom (4), space, residue field (11), space, atom (4), `` :overlap``.
+    """
+    if len(line) < 35 or ":" not in line:
         return None
-    return dict(chain1=found.group(1), resno1=int(found.group(2)), resname1=found.group(3),
-                atom1=found.group(4), chain2=found.group(5), resno2=int(found.group(6)),
-                resname2=found.group(7), atom2=found.group(8), overlap=float(found.group(9)))
+    first = parse_residue_field(line[0:11])
+    second = parse_residue_field(line[17:28])
+    if first is None or second is None:
+        return None
+    try:
+        overlap = float(line.split(":")[-1])
+    except ValueError:
+        return None
+    (key1, resname1), (key2, resname2) = first, second
+    return dict(key1=key1, resname1=resname1, atom1=line[11:16].strip(),
+                key2=key2, resname2=resname2, atom2=line[28:33].strip(), overlap=overlap)
 
 
 def parse_clashscore(text):
@@ -158,7 +201,7 @@ def parse_clashscore(text):
                 score = float(line.split("=")[1])
             except (IndexError, ValueError):
                 pass
-        elif ":" in line and line[:1] == " ":
+        elif ":" in line and not line.startswith(("Bad", "Using", "Adding")):
             clash = parse_clash_line(line)
             if clash:
                 clashes.append(clash)
@@ -167,7 +210,18 @@ def parse_clashscore(text):
 
 def clash_pair(clash):
     """The unordered residue pair a clash belongs to."""
-    return tuple(sorted([(clash["chain1"], clash["resno1"]), (clash["chain2"], clash["resno2"])]))
+    return tuple(sorted([clash["key1"], clash["key2"]]))
+
+
+def clash_id(clash):
+    """The unordered atom pair of a clash, for diffing two clash lists."""
+    return tuple(sorted([(clash["key1"], clash["atom1"]), (clash["key2"], clash["atom2"])]))
+
+
+def new_clashes(before, after, threshold):
+    """Clashes at or above ``threshold`` in ``after`` that ``before`` did not have."""
+    known = {clash_id(c) for c in before}
+    return [c for c in after if c["overlap"] >= threshold and clash_id(c) not in known]
 
 
 def rotalyze(pdb_path):
@@ -203,17 +257,17 @@ def summarize(pdb_path):
 def density_ok(before, after, guard_fraction, min_density, slack=ABSOLUTE_SLACK):
     """Does a change keep enough of the density it started with?
 
-    Accepted when the density is within ``slack`` sigma of the original, or
-    when it stays above both ``min_density`` and ``guard_fraction`` of the
-    original. The second clause is what let strained side chains in strong
-    density (4 sigma) move to a rotamer at 2.5 sigma, while a side chain at
-    1 sigma may not drop below 0.8.
+    The result must stay above ``min_density`` and either within ``slack``
+    sigma of the original or above ``guard_fraction`` of it. The fraction is
+    what let strained side chains in strong density (4 sigma) move to a
+    rotamer at 2.5 sigma; the floor stops a side chain at 1 sigma dropping
+    below 0.8, and stops the slack excusing a fall from 0.5 to 0.2.
     """
-    if after != after:  # NaN: nothing to score (no side-chain atoms)
+    if after != after or before != before:  # NaN: no atoms to score
         return True
-    if before != before:
-        return True
-    return after >= before - slack or after >= max(min_density, guard_fraction * before)
+    if after < min_density:
+        return False
+    return after >= before - slack or after >= guard_fraction * before
 
 
 # --------------------------------------------------------------------------
@@ -223,18 +277,29 @@ def density_ok(before, after, guard_fraction, min_density, slack=ABSOLUTE_SLACK)
 _map_cache = {}
 
 
+def map_labels(labels):
+    """(amplitude, phase) column labels of a map-coefficient MTZ, or Nones."""
+    f_label = "F" if "F" in labels else next((l for l in labels if l.startswith("F")), None)
+    phi_label = "PHI" if "PHI" in labels else next((l for l in labels if l.startswith("PH")), None)
+    return f_label, phi_label
+
+
+def mtz_labels(mtz_path):
+    import gemmi
+    labels = [c.label for c in gemmi.read_mtz_file(mtz_path).columns]
+    f_label, phi_label = map_labels(labels)
+    if f_label is None or phi_label is None:
+        raise PolishError("{} has no F,PHI columns (found {})".format(mtz_path, ",".join(labels)))
+    return f_label, phi_label
+
+
 def load_map(mtz_path, sample_rate=3.0):
     """Sigma-scaled map from an F,PHI mini-MTZ (cached per path)."""
     import gemmi
     if mtz_path in _map_cache:
         return _map_cache[mtz_path]
-    mtz = gemmi.read_mtz_file(mtz_path)
-    labels = [c.label for c in mtz.columns]
-    f_label = "F" if "F" in labels else next((l for l in labels if l.startswith("F")), None)
-    phi_label = "PHI" if "PHI" in labels else next((l for l in labels if l.startswith("PH")), None)
-    if f_label is None or phi_label is None:
-        raise PolishError("{} has no F,PHI columns (found {})".format(mtz_path, ",".join(labels)))
-    grid = mtz.transform_f_phi_to_map(f_label, phi_label, sample_rate=sample_rate)
+    f_label, phi_label = mtz_labels(mtz_path)
+    grid = gemmi.read_mtz_file(mtz_path).transform_f_phi_to_map(f_label, phi_label, sample_rate=sample_rate)
     grid.normalize()
     _map_cache[mtz_path] = grid
     return grid
@@ -255,18 +320,62 @@ def write_structure(st, path):
         st.write_pdb(path)
 
 
-def find_residue(st, chain_id, resno):
+def chain_residues(st, chain_id):
     chain = st[0].find_chain(chain_id)
-    if chain is None:
+    return list(chain) if chain is not None else None
+
+
+def locate(st, key):
+    """Index of a residue in its chain, or None."""
+    residues = chain_residues(st, key[0])
+    if residues is None:
         return None
-    for res in chain:
-        if res.seqid.num == resno:
-            return res
+    for index, res in enumerate(residues):
+        if residue_key(key[0], res) == key:
+            return index
     return None
+
+
+def residue_at(st, chain_id, index):
+    residues = chain_residues(st, chain_id)
+    if residues is None or index < 0 or index >= len(residues):
+        return None
+    return residues[index]
+
+
+def find_residue(st, chain_id, resno, icode=""):
+    index = locate(st, rkey(chain_id, resno, icode))
+    return None if index is None else residue_at(st, chain_id, index)
+
+
+def find_by_key(st, key):
+    return find_residue(st, key[0], key[1], key[2])
+
+
+def window(st, chain_id, centre, before, after):
+    """Chain positions centre-before..centre+after, clamped to the chain."""
+    residues = chain_residues(st, chain_id)
+    if residues is None:
+        return []
+    return list(range(max(0, centre - before), min(len(residues), centre + after + 1)))
+
+
+def keys_at(st, chain_id, indices):
+    return [residue_key(chain_id, residue_at(st, chain_id, i)) for i in indices]
 
 
 def polymer_chains(st):
     return [ch.name for ch in st[0] if ch.get_polymer()]
+
+
+def is_amino_acid(resname):
+    import gemmi
+    info = gemmi.find_tabulated_residue(resname)
+    return bool(info and info.is_amino_acid())
+
+
+def has_altlocs(residue):
+    return any(atom.altloc != "\0" for atom in residue)
 
 
 def residue_density(grid, residue, keep=lambda atom: True):
@@ -278,18 +387,18 @@ def residue_density(grid, residue, keep=lambda atom: True):
 
 
 def sidechain_density(grid, residue):
-    return residue_density(grid, residue, lambda a: a.name not in BACKBONE and a.element.name != "H")
+    return residue_density(grid, residue, lambda a: a.name not in BB_ONLY and a.element.name != "H")
 
 
 def backbone_density(grid, residue):
     return residue_density(grid, residue, lambda a: a.name in BB_ONLY)
 
 
-def clash_contacts(st, chain_id, resno, dist=CONTACT_DISTANCE):
+def clash_contacts(st, key, dist=CONTACT_DISTANCE):
     """Heavy-atom contacts closer than ``dist`` involving one residue.
 
     Symmetry aware; adjacent residues ignored. Returns a set of
-    (other chain, other resno, atom, other atom) so two models can be compared.
+    (other key, atom, other atom) so two models can be compared.
     """
     import gemmi
     ns = gemmi.NeighborSearch(st[0], st.cell, 5.0).populate(include_h=False)
@@ -298,17 +407,16 @@ def clash_contacts(st, chain_id, resno, dist=CONTACT_DISTANCE):
     found = set()
     for contact in cs.find_contacts(ns):
         for a, b in ((contact.partner1, contact.partner2), (contact.partner2, contact.partner1)):
-            if a.chain.name == chain_id and a.residue.seqid.num == resno:
-                found.add((b.chain.name, b.residue.seqid.num, a.atom.name, b.atom.name))
+            if residue_key(a.chain.name, a.residue) == key:
+                found.add((residue_key(b.chain.name, b.residue), a.atom.name, b.atom.name))
     return found
 
 
-def copy_positions(src, dst, include_backbone=True):
-    """Move ``dst``'s atoms onto ``src``'s positions, adding atoms ``dst`` lacks."""
+def copy_positions(src, dst):
+    """Move every atom of ``dst`` onto ``src``'s position, adding atoms ``dst``
+    lacks (with ``dst``'s own occupancy and B)."""
     import gemmi
     for atom in src:
-        if not include_backbone and atom.name in BACKBONE:
-            continue
         target = dst.find_atom(atom.name, "*")
         if target is not None:
             target.pos = atom.pos
@@ -317,99 +425,147 @@ def copy_positions(src, dst, include_backbone=True):
             new_atom.name = atom.name
             new_atom.element = atom.element
             new_atom.pos = atom.pos
-            new_atom.occ = atom.occ
             anchor = dst.find_atom("CB", "*") or dst.find_atom("CA", "*")
+            new_atom.occ = anchor.occ if anchor is not None else atom.occ
             new_atom.b_iso = anchor.b_iso if anchor is not None else atom.b_iso
             dst.add_atom(new_atom)
 
 
-def transplant_sidechain(st, chain_id, resno, donor_chain, window=1):
-    """Copy the donor copy's side chain onto the target after superposing the
-    local backbone (N, CA, C, O, CB of resno-window..resno+window).
+def copy_window(src_st, dst_st, chain_id, indices):
+    """Bring every atom of the given chain positions (matched by key) from one model into another."""
+    for index in indices:
+        dst = residue_at(dst_st, chain_id, index)
+        if dst is None:
+            continue
+        src = find_by_key(src_st, residue_key(chain_id, dst))
+        if src is not None and src.name == dst.name:
+            copy_positions(src, dst)
 
+
+def _paired(st, chain_id, index, donor_chain):
+    """(target residue, donor residue with the same number, icode and name) or None."""
+    target = residue_at(st, chain_id, index)
+    if target is None:
+        return None
+    key = residue_key(chain_id, target)
+    donor = find_residue(st, donor_chain, key[1], key[2])
+    if donor is None or donor.name != target.name:
+        return None
+    return target, donor
+
+
+def transplant_sidechain(st, chain_id, resno, donor_chain, icode="", flank=1):
+    """Copy the donor copy's side chain onto the target after superposing the
+    local backbone (N, CA, C, O, CB of the residue and ``flank`` neighbours).
+
+    Keeps the target's occupancies. Refuses residues with alternate
+    conformations on either side, since a transplant would mix them.
     Returns the superposition rmsd, or None when the copies cannot be paired.
     """
     import gemmi
+    index = locate(st, rkey(chain_id, resno, icode))
+    if index is None:
+        return None
+    pair = _paired(st, chain_id, index, donor_chain)
+    if pair is None:
+        return None
+    target, donor = pair
+    if has_altlocs(target) or has_altlocs(donor):
+        return None
     target_pos, donor_pos = [], []
-    for n in range(resno - window, resno + window + 1):
-        tr, dr = find_residue(st, chain_id, n), find_residue(st, donor_chain, n)
-        if tr is None or dr is None:
-            if n == resno:
-                return None
+    for i in window(st, chain_id, index, flank, flank):
+        neighbours = _paired(st, chain_id, i, donor_chain)
+        if neighbours is None:
             continue
-        for name in ("N", "CA", "C", "O", "CB"):
-            ta, da = tr.find_atom(name, "*"), dr.find_atom(name, "*")
+        for name in TRANSPLANT_KEEP:
+            ta, da = neighbours[0].find_atom(name, "*"), neighbours[1].find_atom(name, "*")
             if ta is not None and da is not None:
                 target_pos.append(ta.pos)
                 donor_pos.append(da.pos)
     if len(target_pos) < 4:
         return None
-    tr, dr = find_residue(st, chain_id, resno), find_residue(st, donor_chain, resno)
-    if tr.name != dr.name:
-        return None
     sup = gemmi.superpose_positions(target_pos, donor_pos)
-    for da in dr:
-        if da.name in BACKBONE or da.element.name == "H":
+    anchor = target.find_atom("CB", "*") or target.find_atom("CA", "*")
+    for da in donor:
+        if da.name in TRANSPLANT_KEEP or da.element.name == "H":
             continue
         new_pos = gemmi.Position(sup.transform.apply(da.pos))
-        ta = tr.find_atom(da.name, "*")
+        ta = target.find_atom(da.name, "*")
         if ta is not None:
             ta.pos = new_pos
         else:
             atom = gemmi.Atom()
-            atom.name, atom.element, atom.pos, atom.occ = da.name, da.element, new_pos, 1.0
-            anchor = tr.find_atom("CB", "*")
+            atom.name, atom.element, atom.pos = da.name, da.element, new_pos
+            atom.occ = anchor.occ if anchor is not None else 1.0
             atom.b_iso = anchor.b_iso if anchor is not None else da.b_iso
-            tr.add_atom(atom)
+            target.add_atom(atom)
     return sup.rmsd
 
 
-def transplant_backbone_window(st, chain_id, start, end, donor_chain, flank=2):
-    """Replace residues start..end of the target with the donor copy's atoms after
-    superposing on the flanking residues' backbone. Returns rmsd or None."""
+def transplant_backbone_indices(st, chain_id, lo, hi, donor_chain, flank=2):
+    """Replace all atoms of chain positions lo..hi with the donor copy's,
+    superposed on the backbone of ``flank`` residues either side.
+    Returns rmsd or None."""
     import gemmi
+    residues = chain_residues(st, chain_id)
+    if residues is None:
+        return None
     target_pos, donor_pos = [], []
-    for n in list(range(start - flank, start)) + list(range(end + 1, end + flank + 1)):
-        tr, dr = find_residue(st, chain_id, n), find_residue(st, donor_chain, n)
-        if tr is None or dr is None:
+    flanks = [i for i in range(lo - flank, lo) if i >= 0] + \
+             [i for i in range(hi + 1, hi + flank + 1) if i < len(residues)]
+    for i in flanks:
+        pair = _paired(st, chain_id, i, donor_chain)
+        if pair is None:
             continue
         for name in BB_ONLY:
-            ta, da = tr.find_atom(name, "*"), dr.find_atom(name, "*")
+            ta, da = pair[0].find_atom(name, "*"), pair[1].find_atom(name, "*")
             if ta is not None and da is not None:
                 target_pos.append(ta.pos)
                 donor_pos.append(da.pos)
     if len(target_pos) < 6:
         return None
     pairs = []
-    for n in range(start, end + 1):
-        tr, dr = find_residue(st, chain_id, n), find_residue(st, donor_chain, n)
-        if tr is None or dr is None or tr.name != dr.name:
+    for i in range(lo, hi + 1):
+        pair = _paired(st, chain_id, i, donor_chain)
+        if pair is None or has_altlocs(pair[0]) or has_altlocs(pair[1]):
             return None
-        pairs.append((tr, dr))
+        pairs.append(pair)
     sup = gemmi.superpose_positions(target_pos, donor_pos)
-    for tr, dr in pairs:
-        for da in dr:
+    for target, donor in pairs:
+        for da in donor:
             if da.element.name == "H":
                 continue
-            ta = tr.find_atom(da.name, "*")
+            ta = target.find_atom(da.name, "*")
             if ta is not None:
                 ta.pos = gemmi.Position(sup.transform.apply(da.pos))
     return sup.rmsd
 
 
-def write_window(st, chain_id, lo, hi, path):
-    """A PDB holding residues lo..hi of one chain: enough for rotalyze/ramalyze."""
+def transplant_backbone_window(st, chain_id, start, end, donor_chain, flank=2):
+    """Number-based wrapper of :func:`transplant_backbone_indices`."""
+    lo, hi = locate(st, rkey(chain_id, start)), locate(st, rkey(chain_id, end))
+    if lo is None or hi is None:
+        return None
+    return transplant_backbone_indices(st, chain_id, lo, hi, donor_chain, flank)
+
+
+def _mini_structure(st):
     import gemmi
     mini = gemmi.Structure()
     mini.cell = st.cell
     mini.spacegroup_hm = st.spacegroup_hm
+    return mini
+
+
+def write_index_window(st, chain_id, lo, hi, path):
+    """A PDB holding chain positions lo..hi of one chain: enough for rotalyze/ramalyze."""
+    import gemmi
+    mini = _mini_structure(st)
     model = gemmi.Model("1")
     chain = gemmi.Chain(chain_id)
-    source = st[0].find_chain(chain_id)
-    if source is not None:
-        for res in source:
-            if lo <= res.seqid.num <= hi:
-                chain.add_residue(res)
+    residues = chain_residues(st, chain_id) or []
+    for index in range(max(0, lo), min(len(residues), hi + 1)):
+        chain.add_residue(residues[index])
     model.add_chain(chain)
     mini.add_model(model)
     mini.setup_entities()
@@ -417,29 +573,50 @@ def write_window(st, chain_id, lo, hi, path):
     return path
 
 
-def write_neighbourhood(st, residues, path, radius=6.0):
-    """A PDB holding every residue with an atom within ``radius`` of the given
-    (chain, resno) residues: enough for clashscore to re-score those contacts."""
+def write_window(st, chain_id, lo, hi, path):
+    """A PDB holding residues numbered lo..hi of one chain (every insertion code)."""
+    import gemmi
+    mini = _mini_structure(st)
+    model = gemmi.Model("1")
+    chain = gemmi.Chain(chain_id)
+    for res in chain_residues(st, chain_id) or []:
+        if lo <= res.seqid.num <= hi:
+            chain.add_residue(res)
+    model.add_chain(chain)
+    mini.add_model(model)
+    mini.setup_entities()
+    mini.write_pdb(path)
+    return path
+
+
+def neighbourhood_keys(st, keys, radius=NEIGHBOURHOOD_RADIUS):
+    """Keys of every residue with an atom within ``radius`` of the given residues."""
     import gemmi
     ns = gemmi.NeighborSearch(st[0], st.cell, max(5.0, radius)).populate(include_h=False)
     keep = set()
-    for chain_id, resno in residues:
-        res = find_residue(st, chain_id, resno)
+    for key in keys:
+        res = find_by_key(st, key)
         if res is None:
             continue
-        keep.add((chain_id, resno))
+        keep.add(key)
         for atom in res:
             for mark in ns.find_atoms(atom.pos, "\0", radius=radius):
                 cra = mark.to_cra(st[0])
-                keep.add((cra.chain.name, cra.residue.seqid.num))
-    mini = gemmi.Structure()
-    mini.cell = st.cell
-    mini.spacegroup_hm = st.spacegroup_hm
+                keep.add(residue_key(cra.chain.name, cra.residue))
+    return keep
+
+
+def write_neighbourhood(st, keys, path, radius=NEIGHBOURHOOD_RADIUS, selection=None):
+    """A PDB holding the residues around ``keys`` (or exactly ``selection`` when
+    given, so two models can be scored on the same residue set)."""
+    import gemmi
+    keep = selection if selection is not None else neighbourhood_keys(st, keys, radius)
+    mini = _mini_structure(st)
     model = gemmi.Model("1")
     for source in st[0]:
         chain = gemmi.Chain(source.name)
         for res in source:
-            if (source.name, res.seqid.num) in keep:
+            if residue_key(source.name, res) in keep:
                 chain.add_residue(res)
         if len(chain) > 0:
             model.add_chain(chain)
@@ -478,6 +655,12 @@ def monomer_dictionary(resname):
     return path if os.path.exists(path) else None
 
 
+def coot_cid(key):
+    """MMDB selection for one residue: ``//A/100`` or ``//A/100.A`` with an icode."""
+    chain, num, icode = key
+    return "//{}/{}{}".format(chain, num, "." + icode if icode else "")
+
+
 class CootSession:
     """One Coot molecules container holding the model and the refinement map.
 
@@ -496,15 +679,20 @@ class CootSession:
         reader = getattr(mc, "read_coordinates", None) or mc.read_pdb
         self.mc = mc
         self.imol = reader(pdb_path)
-        self.imap = mc.read_mtz(map_mtz, "F", "PHI", "", False, False)
+        if self.imol < 0:
+            raise PolishError("Coot could not read {}".format(pdb_path))
+        f_label, phi_label = mtz_labels(map_mtz)
+        self.imap = mc.read_mtz(map_mtz, f_label, phi_label, "", False, False)
+        if self.imap < 0:
+            raise PolishError("Coot could not read map coefficients {} as {},{}".format(
+                map_mtz, f_label, phi_label))
         mc.set_imol_refinement_map(self.imap)
 
-    def auto_fit(self, chain_id, resno):
-        return self.mc.auto_fit_rotamer(self.imol, chain_id, resno, "", "", self.imap)
+    def auto_fit(self, key):
+        return self.mc.auto_fit_rotamer(self.imol, key[0], key[1], key[2], "", self.imap)
 
-    def set_rotamer(self, chain_id, resno, number):
-        return bool(self.mc.set_residue_to_rotamer_number(
-            self.imol, "//{}/{}".format(chain_id, resno), "", number))
+    def set_rotamer(self, key, number):
+        return bool(self.mc.set_residue_to_rotamer_number(self.imol, coot_cid(key), "", number))
 
     def use_torsion_restraints(self, weight):
         self.mc.set_use_torsion_restraints(True)
@@ -514,14 +702,12 @@ class CootSession:
         self.mc.set_use_rama_plot_restraints(True)
         self.mc.set_rama_plot_restraints_weight(weight)
 
-    def refine_triple(self, chain_id, resno, cycles):
-        return self.mc.refine_residues(self.imol, chain_id, resno, "", "", "TRIPLE", cycles)
+    def refine(self, key, mode, cycles):
+        """Real-space refine around a residue: mode TRIPLE (n-1..n+1) or QUINTUPLE (n-2..n+2)."""
+        return self.mc.refine_residues(self.imol, key[0], key[1], key[2], "", mode, cycles)
 
-    def refine_range(self, chain_id, lo, hi, cycles):
-        return self.mc.refine_residue_range(self.imol, chain_id, lo, hi, cycles)
-
-    def flip_peptide(self, chain_id, resno):
-        return bool(self.mc.flip_peptide_using_cid(self.imol, "//{}/{}".format(chain_id, resno), ""))
+    def flip_peptide(self, key):
+        return bool(self.mc.flip_peptide_using_cid(self.imol, coot_cid(key), ""))
 
     def write(self, path):
         self.mc.write_coordinates(self.imol, path)
@@ -551,6 +737,73 @@ class Options:
             if not hasattr(self, key):
                 raise TypeError("unknown option {}".format(key))
             setattr(self, key, value)
+
+
+class Verdict:
+    """What the judge found for one candidate."""
+
+    def __init__(self):
+        self.ok = True
+        self.reasons = []
+        self.favoured = 0
+        self.mean_sidechain = float("nan")
+        self.target_rot = None
+        self.target_rama = None
+        self.clashes = []
+
+    def veto(self, reason):
+        self.ok = False
+        self.reasons.append(reason)
+
+    def __str__(self):
+        return "ok" if self.ok else "no: " + "; ".join(self.reasons)
+
+
+def judge(base, trial, target_key, guard, min_density, min_overlap):
+    """Score a candidate against the baseline over everything that moved.
+
+    ``base`` and ``trial`` are the dicts :meth:`Polisher._observe` builds:
+    per-key (side-chain density, backbone density, contacts), rotalyze and
+    ramalyze entries over the window, and the neighbourhood clash list.
+    Pure, so it can be tested without Coot or MolProbity.
+    """
+    verdict = Verdict()
+    verdict.target_rot = trial["rot"].get(target_key)
+    verdict.target_rama = trial["ram"].get(target_key)
+    verdict.clashes = trial["clashes"]
+    side_values = []
+    for key in base["keys"]:
+        if key not in trial["density"]:
+            verdict.veto("{} missing".format(key_label(key)))
+            continue
+        side0, back0, contacts0 = base["density"][key][0], base["density"][key][1], base["contacts"][key]
+        side1, back1, contacts1 = trial["density"][key][0], trial["density"][key][1], trial["contacts"][key]
+        if side1 == side1:
+            side_values.append(side1)
+        if not density_ok(side0, side1, guard, min_density):
+            verdict.veto("side-chain density {} {:.2f} -> {:.2f}".format(key_label(key), side0, side1))
+        if not density_ok(back0, back1, guard, min_density):
+            verdict.veto("backbone density {} {:.2f} -> {:.2f}".format(key_label(key), back0, back1))
+        if contacts1 - contacts0:
+            verdict.veto("new contact at {}".format(key_label(key)))
+        entry = trial["rot"].get(key)
+        if key != target_key and entry and entry["evaluation"] == "OUTLIER" \
+                and base["rot"].get(key, {}).get("evaluation") != "OUTLIER":
+            verdict.veto("new rotamer outlier {}".format(key_label(key)))
+    for key, entry in trial["ram"].items():
+        if entry["evaluation"] == "OUTLIER" and key != target_key \
+                and base["ram"].get(key, {}).get("evaluation") != "OUTLIER":
+            verdict.veto("new Ramachandran outlier {}".format(key_label(key)))
+    verdict.favoured = sum(1 for key in base["keys"]
+                           if trial["ram"].get(key, {}).get("evaluation") == "Favored")
+    verdict.mean_sidechain = sum(side_values) / len(side_values) if side_values else float("nan")
+    added = new_clashes(base["clashes"], trial["clashes"], min_overlap)
+    if added:
+        worst = max(added, key=lambda c: c["overlap"])
+        verdict.veto("new clash {} {} - {} {} ({:.2f})".format(
+            key_label(worst["key1"], worst["resname1"]), worst["atom1"],
+            key_label(worst["key2"], worst["resname2"]), worst["atom2"], worst["overlap"]))
+    return verdict
 
 
 class Polisher:
@@ -606,13 +859,14 @@ class Polisher:
         self.say(note)
         self._snapshot()
 
-    def _record(self, stage, chain_id, resno, resname, action, before, after, detail=""):
-        self.changes.append(dict(stage=stage, chain=chain_id, resno=resno, resname=resname,
+    def _record(self, stage, key, resname, action, before, after, detail=""):
+        self.changes.append(dict(stage=stage, chain=key[0], resno=key[1], icode=key[2], resname=resname,
                                  action=action, density_before=_r(before), density_after=_r(after),
                                  detail=detail))
 
-    def _review(self, kind, chain_id, resno, resname, detail=""):
-        self.review.append(dict(kind=kind, chain=chain_id, resno=resno, resname=resname, detail=detail))
+    def _review(self, kind, key, resname, detail=""):
+        self.review.append(dict(kind=kind, chain=key[0], resno=key[1], icode=key[2], resname=resname,
+                                detail=detail))
 
     def _selected(self, chain_id):
         return self.opt.chains is None or chain_id in self.opt.chains
@@ -677,36 +931,42 @@ class Polisher:
             name, targets, fixed, time.time() - started))
         self._snapshot()
 
-    # ---- evaluation helpers ----------------------------------------------------
+    # ---- observing a model where a candidate moves atoms ------------------------
 
-    def _rot_window(self, st, chain_id, resno):
-        path = write_window(st, chain_id, resno - 1, resno + 1, self._path("polish_window.pdb"))
-        return rotalyze(path).get((chain_id, resno))
+    def _observe(self, st, chain_id, moved, selection=None):
+        """Everything the judge compares, for one model over chain positions ``moved``."""
+        lo, hi = moved[0], moved[-1]
+        keys = keys_at(st, chain_id, moved)
+        rot = rotalyze(write_index_window(st, chain_id, lo - 1, hi + 1, self._path("polish_window.pdb")))
+        ram = ramalyze(write_index_window(st, chain_id, lo - RAMA_MARGIN - 1, hi + RAMA_MARGIN + 1,
+                                          self._path("polish_window.pdb")))
+        density, contacts = {}, {}
+        for key in keys:
+            res = find_by_key(st, key)
+            if res is None:
+                continue
+            density[key] = (sidechain_density(self.grid, res), backbone_density(self.grid, res))
+            contacts[key] = clash_contacts(st, key)
+        if selection is None:
+            selection = neighbourhood_keys(st, keys)
+        _, clashes = clashscore(write_neighbourhood(st, keys, self._path("polish_neighbourhood.pdb"),
+                                                    selection=selection))
+        return dict(keys=keys, lo=lo, hi=hi, rot=rot, ram=ram, density=density, contacts=contacts,
+                    clashes=clashes, selection=selection)
 
-    def _rama_window(self, st, chain_id, resno):
-        path = write_window(st, chain_id, resno - 3, resno + 3, self._path("polish_window.pdb"))
-        return ramalyze(path), rotalyze(path)
+    def _judge(self, trial_st, chain_id, base, target_key):
+        trial = self._observe(trial_st, chain_id, list(range(base["lo"], base["hi"] + 1)), base["selection"])
+        return judge(base, trial, target_key, self.opt.guard, self.opt.min_density, self.opt.min_overlap)
 
-    def _donors_for(self, chain_id, resno, resname, scores, favoured_only=False):
-        """Other chains' copies of this residue, best MolProbity score first."""
-        rank = {"Favored": 0, "Allowed": 1}
-        donors = []
-        for other in polymer_chains(self.st):
-            if other == chain_id:
-                continue
-            entry = scores.get((other, resno))
-            res = find_residue(self.st, other, resno)
-            if entry is None or res is None or res.name != resname:
-                continue
-            if entry["evaluation"] not in rank:
-                continue
-            if favoured_only and entry["evaluation"] != "Favored":
-                continue
-            donors.append((rank[entry["evaluation"]], -entry["score"], other))
-        donors.sort()
-        return [d[2] for d in donors[:NCS_DONORS]]
+    def _accept(self, trial_st, chain_id, base):
+        copy_window(trial_st, self.st, chain_id, range(base["lo"], base["hi"] + 1))
 
     # ---- stage 1: rotamers --------------------------------------------------
+
+    def _still_outlier(self, key):
+        index = locate(self.st, key)
+        entry = rotalyze(write_index_window(self.st, key[0], index, index, self._path("polish_window.pdb"))).get(key)
+        return entry is not None and entry["evaluation"] == "OUTLIER"
 
     def stage_rotamers(self):
         rot0 = rotalyze(self.cur)
@@ -714,16 +974,24 @@ class Polisher:
                          if v["evaluation"] == "OUTLIER" and self._selected(k[0]))
         self.say("{} rotamer outliers".format(len(targets)))
         fixed = 0
-        for index, (chain_id, resno) in enumerate(targets, 1):
-            res0 = find_residue(self.st, chain_id, resno)
-            if res0 is None:
+        for position, key in enumerate(targets, 1):
+            index = locate(self.st, key)
+            if index is None:
                 continue
-            resname = res0.name
+            res0 = residue_at(self.st, key[0], index)
+            label = key_label(key, res0.name)
+            if position > 1 and not self._still_outlier(key):
+                fixed += 1
+                self._record("rotamers", key, res0.name, "resolved by a neighbour's change",
+                             float("nan"), float("nan"))
+                self.say("[{}/{}] {}: no longer an outlier".format(position, len(targets), label))
+                continue
             d0 = sidechain_density(self.grid, res0)
-            self.say("[{}/{}] {} {}{} density {:.2f}".format(index, len(targets), resname, chain_id, resno, d0))
+            self.say("[{}/{}] {} density {:.2f}".format(position, len(targets), label, d0))
+            base = self._observe(self.st, key[0], window(self.st, key[0], index, 1, 1))
             trials = []
-            if self.opt.use_ncs:
-                for donor in self._donors_for(chain_id, resno, resname, rot0):
+            if self.opt.use_ncs and not has_altlocs(res0):
+                for donor in self._donors_for(key, res0.name, rot0):
                     trials.append(("ncs_" + donor, dict(donor=donor, weight=TORSION_WEIGHTS[0])))
             trials.append(("autofit", dict(autofit=True)))
             for weight in TORSION_WEIGHTS:
@@ -734,155 +1002,156 @@ class Polisher:
             accepted = None
             for name, how in trials:
                 try:
-                    outcome = self._rotamer_trial(chain_id, resno, how)
+                    trial_st = self._sidechain_trial(key, how)
                 except PolishError:
                     raise
                 except Exception as exc:
                     self.say("   {}: failed ({}: {})".format(name, type(exc).__name__, exc))
                     continue
-                if outcome is None:
-                    break           # no such library rotamer: nothing further to try
-                trial_st, d1, new_contacts, evaluation = outcome
-                tried.append("{}:{:.2f}:{}".format(name, d1, evaluation["evaluation"] if evaluation else "?"))
-                ok = (evaluation is not None and evaluation["evaluation"] != "OUTLIER"
-                      and not new_contacts
-                      and density_ok(d0, d1, self.opt.guard, self.opt.min_density))
-                if ok:
-                    copy_positions(find_residue(trial_st, chain_id, resno), res0)
-                    accepted = (name, d1, evaluation["rotamer"])
+                if trial_st is None:
+                    if "rotamer" in how:
+                        break       # no such library rotamer: nothing further to try
+                    continue
+                verdict = self._judge(trial_st, key[0], base, key)
+                entry = verdict.target_rot
+                if entry is None or entry["evaluation"] == "OUTLIER":
+                    verdict.veto("still an outlier")
+                d1 = sidechain_density(self.grid, find_by_key(trial_st, key))
+                tried.append("{}:{:.2f}:{}".format(name, d1, entry["evaluation"] if entry else "?"))
+                self.say("   {}: {}".format(name, verdict))
+                if verdict.ok:
+                    self._accept(trial_st, key[0], base)
+                    accepted = (name, d1, entry["rotamer"])
                     break
             if accepted:
                 fixed += 1
-                self._record("rotamers", chain_id, resno, resname, accepted[0], d0, accepted[1],
+                self._record("rotamers", key, res0.name, accepted[0], d0, accepted[1],
                              "now {}".format(accepted[2]))
-                self._commit("   fixed {}{} {} via {} ({:.2f} -> {:.2f})".format(
-                    chain_id, resno, resname, accepted[0], d0, accepted[1]))
+                self._commit("   fixed {} via {} ({:.2f} -> {:.2f})".format(label, accepted[0], d0, accepted[1]))
             else:
-                self._review("rotamer outlier kept", chain_id, resno, resname,
+                self._review("rotamer outlier kept", key, res0.name,
                              "density {:.2f}; tried {}".format(d0, " ".join(tried) or "nothing"))
-                self.say("   left {}{} {}: {}".format(chain_id, resno, resname, " ".join(tried)))
+                self.say("   left {}: {}".format(label, " ".join(tried)))
                 self._snapshot()
         return len(targets), fixed
 
-    def _rotamer_trial(self, chain_id, resno, how):
-        """Build one candidate for a side chain and score it.
+    def _donors_for(self, key, resname, scores, favoured_only=False):
+        """Other chains' copies of this residue, best MolProbity score first."""
+        rank = {"Favored": 0, "Allowed": 1}
+        donors = []
+        for other in polymer_chains(self.st):
+            if other == key[0]:
+                continue
+            other_key = rkey(other, key[1], key[2])
+            entry = scores.get(other_key)
+            res = find_by_key(self.st, other_key)
+            if entry is None or res is None or res.name != resname or has_altlocs(res):
+                continue
+            if entry["evaluation"] not in rank:
+                continue
+            if favoured_only and entry["evaluation"] != "Favored":
+                continue
+            donors.append((rank[entry["evaluation"]], -entry["score"], other))
+        donors.sort()
+        return [d[2] for d in donors[:NCS_DONORS]]
 
-        Returns (structure, density, new contacts, rotalyze entry), or None when
-        the requested library rotamer does not exist.
+    def _sidechain_trial(self, key, how):
+        """Build one candidate for a side chain: the whole refined triple.
+
+        Returns the trial structure, or None when the requested library rotamer
+        does not exist or the NCS transplant could not be made.
         """
         start = self.cur
         if "donor" in how:
             st = read_structure(self.cur)
-            if transplant_sidechain(st, chain_id, resno, how["donor"]) is None:
-                return (st, float("nan"), set(), None)
+            if transplant_sidechain(st, key[0], key[1], how["donor"], icode=key[2]) is None:
+                return None
             start = self._path("polish_trial_in.pdb")
             st.write_pdb(start)
         coot = self._coot(start)
         if how.get("autofit"):
-            coot.auto_fit(chain_id, resno)
+            coot.auto_fit(key)
         if "rotamer" in how:
-            if not coot.set_rotamer(chain_id, resno, how["rotamer"]):
+            if not coot.set_rotamer(key, how["rotamer"]):
                 return None
         if "weight" in how:
             coot.use_torsion_restraints(how["weight"])
-        coot.refine_triple(chain_id, resno, self.opt.cycles)
-        path = coot.write(self._path("polish_trial.pdb"))
-        st = read_structure(path)
-        res = find_residue(st, chain_id, resno)
-        d1 = sidechain_density(self.grid, res)
-        new_contacts = clash_contacts(st, chain_id, resno) - clash_contacts(self.st, chain_id, resno)
-        evaluation = self._rot_window(st, chain_id, resno)
-        return st, d1, new_contacts, evaluation
+        coot.refine(key, "TRIPLE", self.opt.cycles)
+        return read_structure(coot.write(self._path("polish_trial.pdb")))
 
     # ---- stage 2: Ramachandran ------------------------------------------------
 
     def stage_rama(self):
         ram0 = ramalyze(self.cur)
-        rot_now = rotalyze(self.cur)
         targets = sorted(k for k, v in ram0.items()
                          if v["evaluation"] == "OUTLIER" and self._selected(k[0]))
         self.say("{} Ramachandran outliers".format(len(targets)))
         fixed = 0
-        for index, (chain_id, resno) in enumerate(targets, 1):
-            res0 = find_residue(self.st, chain_id, resno)
-            if res0 is None:
+        for position, key in enumerate(targets, 1):
+            index = locate(self.st, key)
+            if index is None:
                 continue
-            resname = res0.name
-            window = range(resno - 2, resno + 3)
-            d0 = self._window_density(self.st, chain_id, window)
-            base = self._window_contacts(self.st, chain_id, window)
-            self.say("[{}/{}] {} {}{} backbone density {:.2f}".format(
-                index, len(targets), resname, chain_id, resno, d0))
+            res0 = residue_at(self.st, key[0], index)
+            label = key_label(key, res0.name)
+            base = self._observe(self.st, key[0], window(self.st, key[0], index, 2, 2))
+            if position > 1 and base["ram"].get(key, {}).get("evaluation") != "OUTLIER":
+                fixed += 1
+                self._record("ramachandran", key, res0.name, "resolved by a neighbour's change",
+                             float("nan"), float("nan"))
+                self.say("[{}/{}] {}: no longer an outlier".format(position, len(targets), label))
+                continue
+            d0 = base["density"][key][1]
+            self.say("[{}/{}] {} backbone density {:.2f}".format(position, len(targets), label, d0))
             candidates = []
-            if self.opt.use_ncs:
-                for donor in self._donors_for(chain_id, resno, resname, ram0, favoured_only=True):
+            if self.opt.use_ncs and not has_altlocs(res0):
+                for donor in self._donors_for(key, res0.name, ram0, favoured_only=True):
                     candidates.append(("ncs_" + donor, dict(donor=donor)))
             candidates.append(("rama_refine", dict(rama=True)))
             if self.opt.do_flips:
-                candidates.append(("flip_before", dict(flip=resno - 1)))
-                candidates.append(("flip_after", dict(flip=resno)))
+                before = residue_at(self.st, key[0], index - 1) if index > 0 else None
+                if before is not None:
+                    candidates.append(("flip_before", dict(flip=residue_key(key[0], before))))
+                candidates.append(("flip_after", dict(flip=key)))
             scored = []
             for name, how in candidates:
                 try:
-                    outcome = self._rama_trial(chain_id, resno, how)
+                    trial_st = self._backbone_trial(key, index, how)
                 except PolishError:
                     raise
                 except Exception as exc:
                     self.say("   {}: failed ({}: {})".format(name, type(exc).__name__, exc))
                     continue
-                if outcome is None:
+                if trial_st is None:
                     continue
-                st, ram, rot = outcome
-                outliers = [m for m in window if ram.get((chain_id, m), {}).get("evaluation") == "OUTLIER"]
-                favoured = sum(1 for m in window if ram.get((chain_id, m), {}).get("evaluation") == "Favored")
-                new_rot = [m for m in window
-                           if rot.get((chain_id, m), {}).get("evaluation") == "OUTLIER"
-                           and rot_now.get((chain_id, m), {}).get("evaluation") != "OUTLIER"]
-                d1 = self._window_density(st, chain_id, window)
-                new_contacts = self._window_contacts(st, chain_id, window) - base
-                ok = not outliers and not new_rot and not new_contacts and d1 >= d0 - ABSOLUTE_SLACK
-                self.say("   {}: outliers {} favoured {} new rotamer outliers {} density {:.2f} contacts {} -> {}".format(
-                    name, len(outliers), favoured, len(new_rot), d1, len(new_contacts), "ok" if ok else "no"))
-                if ok:
-                    scored.append(((favoured, d1), name, st, d1))
+                verdict = self._judge(trial_st, key[0], base, key)
+                entry = verdict.target_rama
+                if entry is None or entry["evaluation"] == "OUTLIER":
+                    verdict.veto("still an outlier")
+                if verdict.target_rot is not None and verdict.target_rot["evaluation"] == "OUTLIER" \
+                        and base["rot"].get(key, {}).get("evaluation") != "OUTLIER":
+                    verdict.veto("new rotamer outlier at the target")
+                self.say("   {}: {}".format(name, verdict))
+                if verdict.ok:
+                    scored.append(((verdict.favoured, _nz(verdict.mean_sidechain)), name, trial_st))
             if scored:
                 scored.sort(key=lambda item: item[0], reverse=True)
-                _, name, st, d1 = scored[0]
-                for m in window:
-                    src, dst = find_residue(st, chain_id, m), find_residue(self.st, chain_id, m)
-                    if src is not None and dst is not None:
-                        copy_positions(src, dst)
+                _, name, trial_st = scored[0]
+                self._accept(trial_st, key[0], base)
+                d1 = backbone_density(self.grid, find_by_key(self.st, key))
                 fixed += 1
-                self._record("ramachandran", chain_id, resno, resname, name, d0, d1)
-                self._commit("   fixed {}{} {} via {} ({:.2f} -> {:.2f})".format(
-                    chain_id, resno, resname, name, d0, d1))
+                self._record("ramachandran", key, res0.name, name, d0, d1)
+                self._commit("   fixed {} via {} ({:.2f} -> {:.2f})".format(label, name, d0, d1))
             else:
-                self._review("Ramachandran outlier kept", chain_id, resno, resname,
+                self._review("Ramachandran outlier kept", key, res0.name,
                              "backbone density {:.2f}; no candidate removed it without cost".format(d0))
                 self._snapshot()
         return len(targets), fixed
 
-    def _window_density(self, st, chain_id, window):
-        values = []
-        for m in window:
-            res = find_residue(st, chain_id, m)
-            if res is not None:
-                values.append(backbone_density(self.grid, res))
-        values = [v for v in values if v == v]
-        return sum(values) / len(values) if values else float("nan")
-
-    def _window_contacts(self, st, chain_id, window):
-        found = set()
-        for m in window:
-            for contact in clash_contacts(st, chain_id, m):
-                found.add((m,) + contact)
-        return found
-
-    def _rama_trial(self, chain_id, resno, how):
+    def _backbone_trial(self, key, index, how):
         start = self.cur
         if "donor" in how:
             st = read_structure(self.cur)
-            if transplant_backbone_window(st, chain_id, resno - 1, resno + 1, how["donor"]) is None:
+            if transplant_backbone_indices(st, key[0], index - 1, index + 1, how["donor"]) is None:
                 return None
             start = self._path("polish_trial_in.pdb")
             st.write_pdb(start)
@@ -890,20 +1159,15 @@ class Polisher:
         if how.get("rama"):
             coot.use_rama_restraints(RAMA_WEIGHT)
         if "flip" in how:
-            if not coot.flip_peptide(chain_id, how["flip"]):
+            if not coot.flip_peptide(how["flip"]):
                 return None
-        coot.refine_range(chain_id, resno - 2, resno + 2, max(50, self.opt.cycles // 2))
-        path = coot.write(self._path("polish_trial.pdb"))
-        st = read_structure(path)
-        ram, rot = self._rama_window(st, chain_id, resno)
-        return st, ram, rot
+        coot.refine(key, "QUINTUPLE", max(50, self.opt.cycles // 2))
+        return read_structure(coot.write(self._path("polish_trial.pdb")))
 
     # ---- stage 3: clashes -------------------------------------------------------
 
     def stage_clashes(self):
         score, clashes = clashscore(self.cur)
-        rot_now = rotalyze(self.cur)
-        ram_now = ramalyze(self.cur)
         seen, targets = set(), []
         for clash in clashes:
             if clash["overlap"] < self.opt.min_overlap:
@@ -913,99 +1177,101 @@ class Polisher:
                 continue
             seen.add(pair)
             partners = []
-            if clash["atom1"] not in BACKBONE_H and clash["resname1"] != "GLY" and self._selected(clash["chain1"]):
-                partners.append((clash["chain1"], clash["resno1"]))
-            if clash["atom2"] not in BACKBONE_H and clash["resname2"] != "GLY" and self._selected(clash["chain2"]):
-                partners.append((clash["chain2"], clash["resno2"]))
+            for side in ("1", "2"):
+                key, resname, atom = clash["key" + side], clash["resname" + side], clash["atom" + side]
+                if atom in BACKBONE_H or resname == "GLY" or not self._selected(key[0]):
+                    continue
+                if not is_amino_acid(resname):
+                    continue        # ligands and ions are not rotamer problems
+                res = find_by_key(self.st, key)
+                if res is None or has_altlocs(res):
+                    continue
+                partners.append((key, resname))
             targets.append((pair, partners, clash))
         self.say("clashscore {}; {} pairs with overlap >= {}".format(score, len(targets), self.opt.min_overlap))
         fixed = 0
-        for index, (pair, partners, clash) in enumerate(targets, 1):
-            label = "{}{}-{}{}".format(pair[0][0], pair[0][1], pair[1][0], pair[1][1])
+        for position, (pair, partners, clash) in enumerate(targets, 1):
+            label = "{} {} - {} {}".format(key_label(clash["key1"], clash["resname1"]), clash["atom1"],
+                                           key_label(clash["key2"], clash["resname2"]), clash["atom2"])
             if not partners:
-                self._review("clash left for refinement", pair[0][0], pair[0][1], clash["resname1"],
-                             "backbone-backbone overlap {:.2f} with {}{}".format(
-                                 clash["overlap"], pair[1][0], pair[1][1]))
+                self._review("clash left for refinement", clash["key1"], clash["resname1"],
+                             "overlap {:.2f} with {} {}; no movable side chain".format(
+                                 clash["overlap"], key_label(clash["key2"], clash["resname2"]), clash["atom2"]))
                 continue
-            self.say("[{}/{}] {} overlap {:.2f}".format(index, len(targets), label, clash["overlap"]))
+            self.say("[{}/{}] {} overlap {:.2f}".format(position, len(targets), label, clash["overlap"]))
             done = False
-            for chain_id, resno in partners:
-                res0 = find_residue(self.st, chain_id, resno)
-                if res0 is None:
-                    continue
+            for key, resname in partners:
+                index = locate(self.st, key)
+                res0 = residue_at(self.st, key[0], index)
                 d0 = sidechain_density(self.grid, res0)
+                base = self._observe(self.st, key[0], window(self.st, key[0], index, 1, 1))
+                if self._pair_overlap(base["clashes"], pair) < self.opt.min_overlap:
+                    done = True     # already resolved by an earlier change
+                    self.say("   no longer clashing")
+                    break
                 trials = [("autofit", dict(autofit=True))]
                 trials += [("rotamer{}".format(k), dict(rotamer=k, weight=TORSION_WEIGHTS[0]))
                            for k in range(self.opt.max_clash_rotamers)]
                 for name, how in trials:
                     try:
-                        outcome = self._rotamer_trial(chain_id, resno, how)
+                        trial_st = self._sidechain_trial(key, how)
                     except PolishError:
                         raise
                     except Exception as exc:
                         self.say("   {}: failed ({}: {})".format(name, type(exc).__name__, exc))
                         continue
-                    if outcome is None:
+                    if trial_st is None:
                         break
-                    st, d1, new_contacts, evaluation = outcome
-                    if not density_ok(d0, d1, self.opt.guard, self.opt.min_density) or new_contacts:
+                    verdict = self._judge(trial_st, key[0], base, key)
+                    entry = verdict.target_rot
+                    if entry is None or entry["evaluation"] == "OUTLIER":
+                        verdict.veto("rotamer outlier")
+                    worst = self._pair_overlap(verdict.clashes, pair)
+                    if worst >= self.opt.min_overlap:
+                        verdict.veto("still overlapping {:.2f}".format(worst))
+                    self.say("   {} {}: {}".format(key_label(key, resname), name, verdict))
+                    if not verdict.ok:
                         continue
-                    if evaluation is None or evaluation["evaluation"] == "OUTLIER":
-                        continue
-                    if self._pair_overlap(st, pair) >= self.opt.min_overlap:
-                        continue
-                    if self._new_outliers(st, chain_id, resno, rot_now, ram_now):
-                        continue
-                    copy_positions(find_residue(st, chain_id, resno), res0)
+                    self._accept(trial_st, key[0], base)
+                    d1 = sidechain_density(self.grid, find_by_key(self.st, key))
                     fixed += 1
-                    self._record("clashes", chain_id, resno, res0.name, name, d0, d1,
-                                 "overlap {:.2f} with {}{}".format(clash["overlap"], *(
-                                     pair[1] if pair[0] == (chain_id, resno) else pair[0])))
-                    self._commit("   fixed {} via {}{} {} ({:.2f} -> {:.2f})".format(
-                        label, chain_id, resno, name, d0, d1))
+                    other = clash["key2"] if clash["key1"] == key else clash["key1"]
+                    other_name = clash["resname2"] if clash["key1"] == key else clash["resname1"]
+                    self._record("clashes", key, resname, name, d0, d1,
+                                 "overlap {:.2f} with {}".format(clash["overlap"], key_label(other, other_name)))
+                    self._commit("   fixed {} via {} {} ({:.2f} -> {:.2f})".format(
+                        label, key_label(key, resname), name, d0, d1))
                     done = True
                     break
                 if done:
                     break
             if not done:
-                self._review("clash kept", pair[0][0], pair[0][1], clash["resname1"],
-                             "overlap {:.2f} with {}{}; no side-chain fix kept the density".format(
-                                 clash["overlap"], pair[1][0], pair[1][1]))
+                self._review("clash kept", clash["key1"], clash["resname1"],
+                             "overlap {:.2f} with {} {}; no side-chain fix kept the density".format(
+                                 clash["overlap"], key_label(clash["key2"], clash["resname2"]), clash["atom2"]))
                 self.say("   left {}".format(label))
                 self._snapshot()
         return len(targets), fixed
 
-    def _pair_overlap(self, st, pair):
-        path = write_neighbourhood(st, list(pair), self._path("polish_neighbourhood.pdb"))
-        _, clashes = clashscore(path)
+    @staticmethod
+    def _pair_overlap(clashes, pair):
         worst = 0.0
         for clash in clashes:
             if clash_pair(clash) == pair:
                 worst = max(worst, clash["overlap"])
         return worst
 
-    def _new_outliers(self, st, chain_id, resno, rot_now, ram_now):
-        ram, rot = self._rama_window(st, chain_id, resno)
-        for m in range(resno - 1, resno + 2):
-            if (rot.get((chain_id, m), {}).get("evaluation") == "OUTLIER"
-                    and rot_now.get((chain_id, m), {}).get("evaluation") != "OUTLIER"):
-                return True
-            if (ram.get((chain_id, m), {}).get("evaluation") == "OUTLIER"
-                    and ram_now.get((chain_id, m), {}).get("evaluation") != "OUTLIER"):
-                return True
-        return False
-
     # ---- wrap-up --------------------------------------------------------------
 
     def finish_review(self):
         rot, ram = rotalyze(self.cur), ramalyze(self.cur)
-        listed = {(item["chain"], item["resno"], item["kind"]) for item in self.review}
-        for (chain_id, resno), v in sorted(rot.items()):
-            if v["evaluation"] == "OUTLIER" and (chain_id, resno, "rotamer outlier kept") not in listed:
-                self._review("rotamer outlier", chain_id, resno, v["resname"], "still an outlier after polish")
-        for (chain_id, resno), v in sorted(ram.items()):
-            if v["evaluation"] == "OUTLIER" and (chain_id, resno, "Ramachandran outlier kept") not in listed:
-                self._review("Ramachandran outlier", chain_id, resno, v["resname"], "still an outlier after polish")
+        listed = {(item["chain"], item["resno"], item["icode"], item["kind"]) for item in self.review}
+        for key, v in sorted(rot.items()):
+            if v["evaluation"] == "OUTLIER" and key + ("rotamer outlier kept",) not in listed:
+                self._review("rotamer outlier", key, v["resname"], "still an outlier after polish")
+        for key, v in sorted(ram.items()):
+            if v["evaluation"] == "OUTLIER" and key + ("Ramachandran outlier kept",) not in listed:
+                self._review("Ramachandran outlier", key, v["resname"], "still an outlier after polish")
 
     def write_changes_csv(self, path, original_path):
         """Every residue whose atoms moved, with density and MolProbity status before and after."""
@@ -1014,7 +1280,7 @@ class Polisher:
         ram0, ram1 = ramalyze(self._path("polish_input.pdb")), ramalyze(self.cur)
         by_key = {}
         for change in self.changes:
-            by_key.setdefault((change["chain"], change["resno"]), []).append(
+            by_key.setdefault((change["chain"], change["resno"], change["icode"]), []).append(
                 "{}:{}".format(change["stage"], change["action"]))
         rows = changed_residue_rows(st0, st1, self.grid, self.diff_grid, rot0, rot1, ram0, ram1, by_key)
         write_changes(path, rows)
@@ -1025,7 +1291,8 @@ def changed_residue_rows(st0, st1, grid, diff_grid, rot0, rot1, ram0, ram1, acti
     rows = []
     for chain in st0[0]:
         for r0 in chain:
-            r1 = find_residue(st1, chain.name, r0.seqid.num)
+            key = residue_key(chain.name, r0)
+            r1 = find_by_key(st1, key)
             if r1 is None or r0.name != r1.name:
                 continue
             shift = 0.0
@@ -1035,8 +1302,8 @@ def changed_residue_rows(st0, st1, grid, diff_grid, rot0, rot1, ram0, ram1, acti
                     shift = max(shift, atom.pos.dist(other.pos))
             if shift < 0.05:
                 continue
-            key = (chain.name, r0.seqid.num)
-            row = dict(chain=chain.name, resno=r0.seqid.num, resname=r0.name, max_shift=round(shift, 2),
+            row = dict(chain=chain.name, resno=r0.seqid.num, icode=key[2], resname=r0.name,
+                       max_shift=round(shift, 2),
                        action=" ".join(actions.get(key, [])) or "refined neighbour",
                        density_before=_r(sidechain_density(grid, r0)),
                        density_after=_r(sidechain_density(grid, r1)),
@@ -1051,9 +1318,9 @@ def changed_residue_rows(st0, st1, grid, diff_grid, rot0, rot1, ram0, ram1, acti
     return rows
 
 
-CHANGES_COLUMNS = ("chain", "resno", "resname", "max_shift", "action", "density_before", "density_after",
-                   "diff_density_before", "diff_density_after", "rotamer_before", "rotamer_after",
-                   "rama_before", "rama_after")
+CHANGES_COLUMNS = ("chain", "resno", "icode", "resname", "max_shift", "action", "density_before",
+                   "density_after", "diff_density_before", "diff_density_after", "rotamer_before",
+                   "rotamer_after", "rama_before", "rama_after")
 
 
 def write_changes(path, rows):
@@ -1070,6 +1337,10 @@ def _r(value):
     if value is None or value != value:
         return ""
     return round(float(value), 2)
+
+
+def _nz(value):
+    return 0.0 if value != value else value
 
 
 def _fmt(summary):

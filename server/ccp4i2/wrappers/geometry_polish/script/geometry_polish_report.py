@@ -15,6 +15,11 @@ STAGE_LABELS = {"rotamers": "Rotamer outliers", "ramachandran": "Ramachandran ou
                 "clashes": "Side-chain clashes"}
 
 
+def _residue(node):
+    """'SER 100A' from a change or review node."""
+    return "{} {}{}".format(node.get("resname", ""), node.get("resno", ""), node.get("icode", "")).strip()
+
+
 def _attr(node, name):
     if node is None:
         return ""
@@ -72,7 +77,7 @@ class geometry_polish_report(Report):
                           "MolProbity flag without adding a contact.", tone="info")
         table = fold.addTable()
         table.addData(title="Chain", data=[c.get("chain", "") for c in changes])
-        table.addData(title="Residue", data=["{} {}".format(c.get("resname", ""), c.get("resno", "")) for c in changes])
+        table.addData(title="Residue", data=[_residue(c) for c in changes])
         table.addData(title="Stage", data=[STAGE_LABELS.get(c.get("stage"), c.get("stage", "")) for c in changes])
         table.addData(title="Action", data=[c.get("action", "") for c in changes])
         table.addData(title="Density before", data=[c.get("density_before", "") for c in changes])
@@ -92,5 +97,5 @@ class geometry_polish_report(Report):
         table = fold.addTable()
         table.addData(title="Kind", data=[i.get("kind", "") for i in items])
         table.addData(title="Chain", data=[i.get("chain", "") for i in items])
-        table.addData(title="Residue", data=["{} {}".format(i.get("resname", ""), i.get("resno", "")) for i in items])
+        table.addData(title="Residue", data=[_residue(i) for i in items])
         table.addData(title="Detail", data=[i.get("detail", "") for i in items])
