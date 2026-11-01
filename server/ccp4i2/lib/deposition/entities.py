@@ -76,10 +76,21 @@ def rebuild_entities_document(path_in, sequences):
     return doc, rebuild_entities_in(doc, sequences)
 
 
-def rebuild_entities_in(doc, sequences):
-    """Rebuild the entities of the first block of ``doc`` in place; returns the Structure."""
+MIN_IDENTITY = 0.3
+
+
+def rebuild_entities_in(doc, sequences, min_identity=MIN_IDENTITY, warnings=None):
+    """Rebuild the entities of the first block of ``doc`` in place; returns the Structure.
+
+    A polymer chain is assigned to the AU-contents sequence it aligns to
+    best, provided the identity reaches ``min_identity``; a chain below that
+    (a peptide ligand, a chain the AU contents forgot) keeps an entity of its
+    own with its modelled sequence, and a line is appended to ``warnings``.
+    """
     if not sequences:
         raise ValueError("rebuild_entities needs at least one sequence")
+    if warnings is None:
+        warnings = []
     block = doc[0]
     st = gemmi.make_structure_from_block(block)
     st.setup_entities()
@@ -94,11 +105,28 @@ def rebuild_entities_in(doc, sequences):
         alignment = gemmi.align_sequence_to_polymer(ent.full_sequence, poly, ent.polymer_type)
         return alignment.calculate_identity()
 
+    unassigned = []
     for chain in st[0]:
         poly = chain.get_polymer()
         if len(poly) == 0:
             continue
-        best = max(polymers, key=lambda ent: identity(ent, poly))
+        scored = [(identity(ent, poly), ent) for ent in polymers]
+        score, best = max(scored, key=lambda t: t[0])
+        if score < min_identity:
+            # Its own entity, with the sequence as modelled.
+            own = gemmi.Entity(str(len(polymers) + len(others) + len(unassigned) + 1))
+            own.entity_type = gemmi.EntityType.Polymer
+            own.polymer_type = poly.check_polymer_type()
+            own.full_sequence = [r.name for r in poly]
+            own.subchains = [poly.subchain_id()]
+            for res in poly:
+                res.entity_id = own.name
+            unassigned.append(own)
+            warnings.append("chain %s matches no AU-contents sequence (best identity %.0f%%); "
+                            "it is deposited as its own entity with its modelled sequence -- "
+                            "add it to the AU contents if it is a crystallised molecule"
+                            % (chain.name, 100 * score))
+            continue
         # Entity.subchains is returned by value from the binding: assign, don't append.
         best.subchains = best.subchains + [poly.subchain_id()]
         for res in poly:
@@ -109,7 +137,7 @@ def rebuild_entities_in(doc, sequences):
                 if res.subchain in ent.subchains:
                     res.entity_id = ent.name
 
-    st.entities = gemmi.EntityList(polymers + others)
+    st.entities = gemmi.EntityList(polymers + unassigned + others)
     st.assign_label_seq_id(force=True)
 
     groups = gemmi.MmcifOutputGroups(False)

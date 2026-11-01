@@ -98,58 +98,173 @@ def parse_fasta(text, accession=""):
     return db_code, sequence
 
 
+MATCH, MISMATCH, GAP_OPEN, GAP_EXTEND = 2, -1, -4, -1
+
+
 def align_pairs(construct, reference):
     """Residue-by-residue alignment of two one-letter strings.
 
     Returns a list of ``(construct_pos, construct_res, ref_pos, ref_res)``
     with 1-based positions; a gap on either side is ``(None, None)`` there.
-    End gaps are free, so a reference that covers only the middle of the
-    construct does not drag the ends into a bad alignment.
+
+    Gotoh (affine gaps) with free end gaps on both sequences: a reference
+    that covers only the middle of the construct is not dragged over the
+    flanks, a construct that stops before the reference does is not charged
+    for what it lacks, and one long insertion beats a scatter of short ones
+    (so a StrepTag inserted in place of two residues reads as fifteen
+    inserted residues plus two substitutions, as the archive records it,
+    rather than as single matching residues fished out of the tag).
     """
-    construct = "".join(str(construct).split()).upper()
-    reference = "".join(str(reference).split()).upper()
-    scoring = gemmi.AlignmentScoring()
-    result = gemmi.align_string_sequences(list(construct), list(reference), [], scoring)
+    a = "".join(str(construct).split()).upper()
+    b = "".join(str(reference).split()).upper()
+    n, m = len(a), len(b)
+    if n == 0 or m == 0:
+        return [(i + 1, c, None, None) for i, c in enumerate(a)] + \
+               [(None, None, j + 1, r) for j, r in enumerate(b)]
+    neg = float("-inf")
+    # M: a[i] aligned to b[j]; X: gap in b (construct-only); Y: gap in a (reference-only)
+    M = [[neg] * (m + 1) for _ in range(n + 1)]
+    X = [[neg] * (m + 1) for _ in range(n + 1)]
+    Y = [[neg] * (m + 1) for _ in range(n + 1)]
+    M[0][0] = 0.0
+    for i in range(1, n + 1):
+        X[i][0] = 0.0   # free leading gap in the reference
+    for j in range(1, m + 1):
+        Y[0][j] = 0.0   # free leading gap in the construct
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            sub = MATCH if a[i - 1] == b[j - 1] else MISMATCH
+            M[i][j] = max(M[i - 1][j - 1], X[i - 1][j - 1], Y[i - 1][j - 1]) + sub
+            # trailing gaps are free: at the last column/row an extension costs nothing
+            xo, xe = (0.0, 0.0) if j == m else (GAP_OPEN, GAP_EXTEND)
+            yo, ye = (0.0, 0.0) if i == n else (GAP_OPEN, GAP_EXTEND)
+            X[i][j] = max(M[i - 1][j] + xo, X[i - 1][j] + xe, Y[i - 1][j] + xo)
+            Y[i][j] = max(M[i][j - 1] + yo, Y[i][j - 1] + ye, X[i][j - 1] + yo)
+    i, j = n, m
+    state = max(("M", M[n][m]), ("X", X[n][m]), ("Y", Y[n][m]), key=lambda t: t[1])[0]
     pairs = []
-    ci = ri = 0
-    # Expand the CIGAR ("12M3I...") into per-residue operations.
-    count = ""
-    for ch in result.cigar_str():
-        if ch.isdigit():
-            count += ch
+    while i > 0 or j > 0:
+        if i == 0:
+            pairs.append((None, None, j, b[j - 1]))
+            j -= 1
             continue
-        n = int(count or "1")
-        count = ""
-        for _ in range(n):
-            if ch == "M":
-                pairs.append((ci + 1, construct[ci], ri + 1, reference[ri]))
-                ci += 1
-                ri += 1
-            elif ch == "I":
-                pairs.append((ci + 1, construct[ci], None, None))
-                ci += 1
-            elif ch == "D":
-                pairs.append((None, None, ri + 1, reference[ri]))
-                ri += 1
+        if j == 0:
+            pairs.append((i, a[i - 1], None, None))
+            i -= 1
+            continue
+        if state == "M":
+            pairs.append((i, a[i - 1], j, b[j - 1]))
+            sub = MATCH if a[i - 1] == b[j - 1] else MISMATCH
+            target = M[i][j] - sub
+            i, j = i - 1, j - 1
+            state = "M" if M[i][j] == target else ("X" if X[i][j] == target else "Y")
+        elif state == "X":
+            pairs.append((i, a[i - 1], None, None))
+            xo, xe = (0.0, 0.0) if j == m else (GAP_OPEN, GAP_EXTEND)
+            target = X[i][j]
+            i -= 1
+            if M[i][j] + xo == target:
+                state = "M"
+            elif X[i][j] + xe == target:
+                state = "X"
+            else:
+                state = "Y"
+        else:
+            pairs.append((None, None, j, b[j - 1]))
+            yo, ye = (0.0, 0.0) if i == n else (GAP_OPEN, GAP_EXTEND)
+            target = Y[i][j]
+            j -= 1
+            if M[i][j] + yo == target:
+                state = "M"
+            elif Y[i][j] + ye == target:
+                state = "Y"
+            else:
+                state = "X"
+    pairs.reverse()
     return pairs
 
 
+MIN_FLANK = 3
+
+
+def trim_flanks(pairs, min_flank=MIN_FLANK):
+    """The same alignment with a first or last aligned run shorter than
+    ``min_flank`` residues unaligned: a lone matching residue at the edge of a
+    gap is a coincidence of the alignment, not a mapping, and its residues
+    are better reported as a cloning artifact than as a one-residue segment."""
+    pairs = list(pairs)
+    for side in (1, -1):
+        seq = pairs if side == 1 else pairs[::-1]
+        run, i = 0, 0
+        while i < len(seq) and (seq[i][0] is None or seq[i][2] is None):
+            i += 1
+        start = i
+        while i < len(seq) and seq[i][0] is not None and seq[i][2] is not None:
+            run += 1
+            i += 1
+        # the run must be followed by a gap for it to count as a flank piece
+        if 0 < run < min_flank and i < len(seq):
+            fixed = []
+            for k, p in enumerate(seq):
+                if start <= k < start + run:
+                    fixed.append((p[0], p[1], None, None))
+                    fixed.append((None, None, p[2], p[3]))
+                else:
+                    fixed.append(p)
+            seq = fixed
+        pairs = seq if side == 1 else seq[::-1]
+    return unalign_terminal_mismatches(pairs)
+
+
+def unalign_terminal_mismatches(pairs):
+    """Mismatched residues before the first identical pair and after the
+    last are not a mapping to the reference: the construct's own junction
+    (LQ where the gene reads MK; the RS a vector leaves behind). They come
+    back as construct-only and reference-only positions."""
+    aligned = [k for k, p in enumerate(pairs) if p[0] is not None and p[2] is not None]
+    matches = [k for k in aligned if pairs[k][1] == pairs[k][3]]
+    if not matches:
+        return pairs
+    first, last = matches[0], matches[-1]
+    out = []
+    for k, p in enumerate(pairs):
+        if k in aligned and (k < first or k > last):
+            out.append((p[0], p[1], None, None))
+            out.append((None, None, p[2], p[3]))
+        else:
+            out.append(p)
+    return out
+
+
 def gapless_segments(pairs):
-    """Maximal runs of aligned residues with a constant offset:
-    ``[(construct_beg, construct_end, ref_beg, ref_end), ...]``."""
-    segments = []
+    """Maximal runs of aligned residues with a constant offset, each cut
+    back to its first and last identical residues:
+    ``[(construct_beg, construct_end, ref_beg, ref_end), ...]``.
+
+    A substitution inside a run (L33H) stays inside it; one at the edge of
+    a gap (the P and G that replace Q141-K142 beside an inserted tag) is
+    reported as a difference but does not start a mapped stretch.
+    """
+    runs = []
     current = None
     for cpos, cres, rpos, rres in pairs:
         if cpos is None or rpos is None:
             current = None
             continue
         offset = rpos - cpos
-        if current and current[3] == offset:
-            current[1] = cpos
+        if current and current[0] == offset:
+            current[1].append((cpos, rpos, cres == rres))
             continue
-        current = [cpos, cpos, rpos, offset]
-        segments.append(current)
-    return [(c0, c1, r0, r0 + (c1 - c0)) for c0, c1, r0, _ in segments]
+        current = [offset, [(cpos, rpos, cres == rres)]]
+        runs.append(current)
+    segments = []
+    for _offset, members in runs:
+        matched = [m for m in members if m[2]]
+        if not matched:
+            continue
+        (c0, r0, _), (c1, r1, _) = matched[0], matched[-1]
+        segments.append((c0, c1, r0, r1))
+    return segments
 
 
 def _parse_mutations(text):
@@ -189,6 +304,11 @@ def differences(pairs, engineered="", segment_bounds=None):
         elif cpos is not None:
             if first_c < cpos < last_c:
                 out.append((cpos, cres, None, None, DIF_INSERTION))
+            else:
+                # Construct residues the reference does not cover, at the
+                # ends of the segment: the junction with whatever the user
+                # cloned on, not a mapping to anything.
+                out.append((cpos, cres, None, None, DIF_CLONING))
         else:
             if any(p[2] is not None and p[2] < rpos for p in aligned) and \
                     any(p[2] is not None and p[2] > rpos for p in aligned):
@@ -211,7 +331,7 @@ class Reference:
         self.end = int(end)
         self.engineered = engineered
         piece = self.construct[self.beg - 1:self.end]
-        pairs = align_pairs(piece, self.ref_sequence)
+        pairs = trim_flanks(align_pairs(piece, self.ref_sequence))
         shift = self.beg - 1
         self.pairs = [(c + shift if c else None, cr, r, rr) for c, cr, r, rr in pairs]
         self.segments = gapless_segments(self.pairs)
@@ -268,14 +388,41 @@ def three_letter(one):
         return "UNK"
 
 
-def reference_tables(references, strands, entry_id="XXXX", extra_difs=()):
+def auth_numbering(structure):
+    """``{chain: {label_seq_id: auth_seq_num}}`` from a structure whose
+    residues carry ``label_seq`` (after ``assign_label_seq_id``); the author
+    numbering is what ``pdbx_auth_*`` items record, and it need not equal
+    the construct numbering (Ahir3252: author 11 is construct 1)."""
+    out = {}
+    for chain in structure[0]:
+        mapping = out.setdefault(chain.name, {})
+        for res in chain:
+            if res.label_seq is not None:
+                mapping.setdefault(res.label_seq, res.seqid.num)
+    return out
+
+
+def _auth(auth_map, chain, label, fallback=None):
+    """The author number for a construct position; the nearest modelled
+    neighbour's offset when the position itself is not modelled."""
+    mapping = (auth_map or {}).get(chain) or {}
+    if label in mapping:
+        return mapping[label]
+    if mapping:
+        nearest = min(mapping, key=lambda k: abs(k - label))
+        return mapping[nearest] + (label - nearest)
+    return fallback if fallback is not None else label
+
+
+def reference_tables(references, strands, entry_id="XXXX", extra_difs=(), auth_map=None):
     """The three categories as ``{category: (tags, rows)}``.
 
     ``references`` is a list of :class:`Reference` (any number per entity);
     ``strands`` maps entity id to its chain ids; ``extra_difs`` is
     ``[(entity_id, construct_pos, construct_res, details)]`` for residues no
     reference covers (tags, linkers), reported against the entity's first
-    reference so OneDep sees them.
+    reference so OneDep sees them; ``auth_map`` (from :func:`auth_numbering`)
+    gives the author numbering of each chain.
     """
     struct_ref = []
     struct_ref_seq = []
@@ -292,7 +439,8 @@ def reference_tables(references, strands, entry_id="XXXX", extra_difs=()):
                 align_id += 1
                 first_align_for.setdefault((ref.entity_id, chain), align_id)
                 struct_ref_seq.append((align_id, ref_id, entry_id, chain, c0, "?", c1, "?",
-                                       ref.accession, r0, "?", r1, "?", c0, c1))
+                                       ref.accession, r0, "?", r1, "?",
+                                       _auth(auth_map, chain, c0), _auth(auth_map, chain, c1)))
             aid = first_align_for.get((ref.entity_id, chain))
             for cpos, cres, rpos, rres, details in ref.diffs:
                 ordinal += 1
@@ -300,7 +448,7 @@ def reference_tables(references, strands, entry_id="XXXX", extra_difs=()):
                     aid, entry_id, three_letter(cres) if cres else "?", chain,
                     cpos if cpos else "?", "?", ref.db_name, ref.accession,
                     three_letter(rres) if rres else "?", rpos if rpos else "?",
-                    details, cpos if cpos else "?", ordinal))
+                    details, _auth(auth_map, chain, cpos) if cpos else "?", ordinal))
     for entity_id, cpos, cres, details in extra_difs:
         for chain in strands.get(str(entity_id), []):
             aid = first_align_for.get((str(entity_id), chain))
@@ -310,7 +458,7 @@ def reference_tables(references, strands, entry_id="XXXX", extra_difs=()):
             ordinal += 1
             struct_ref_seq_dif.append((
                 aid, entry_id, three_letter(cres), chain, cpos, "?", ref.db_name,
-                ref.accession, "?", "?", details, cpos, ordinal))
+                ref.accession, "?", "?", details, _auth(auth_map, chain, cpos), ordinal))
     return {
         "_struct_ref": (
             ["id", "db_name", "db_code", "pdbx_db_accession", "entity_id",

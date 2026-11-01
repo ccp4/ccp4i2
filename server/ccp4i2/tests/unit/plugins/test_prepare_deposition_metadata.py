@@ -87,6 +87,7 @@ def _fetch(accession):
 
 BASE_SPEC = {
     "title": "A toy for the deposition tests",
+    "keywords": "OXIDOREDUCTASE",
     "authors": [{"name": "Lewis, C."}, {"name": "Noble, M.E.M.", "orcid": "0000-0002-3595-9807"}],
     "contact": {"first_name": "Martin", "last_name": "Noble", "email": "m@example.org",
                 "country": "United Kingdom"},
@@ -147,8 +148,9 @@ def test_engineered_segment_records_every_difference(tmp_path):
     assert refs == [("1", "UNP", "TOY_PROT", "P00000", "1")]
     seqs = _rows(block, "_struct_ref_seq", ["pdbx_strand_id", "seq_align_beg", "seq_align_end",
                                              "db_align_beg", "db_align_end"])
-    # Two gapless stretches per chain: before and after the insertion.
-    assert sorted(seqs)[:2] == [("A", "27", "33", "16", "22"), ("A", "9", "23", "1", "15")]
+    # Two gapless stretches per chain: before and after the insertion (the
+    # four glycines are ambiguous; the aligner takes the last as the gene's).
+    assert sorted(seqs)[:2] == [("A", "26", "33", "15", "22"), ("A", "9", "22", "1", "14")]
     difs = {(r[0], r[1], r[2]): r[3] for r in _rows(
         block, "_struct_ref_seq_dif", ["pdbx_pdb_strand_id", "seq_num", "mon_id", "details"])}
     assert difs[("A", "10", "GLN")] == DIF_CONFLICT          # K2Q, not declared
@@ -168,7 +170,8 @@ def test_engineered_segment_records_every_difference(tmp_path):
 def test_a_de_novo_design_references_the_entry_itself(tmp_path):
     design = "MSEEALKRLAEEAIKLAKEGNPEEARKLLEEAVRLAEEALK"
     doc, block, st = _prepared(tmp_path, construct=design)
-    spec = dict(BASE_SPEC, design_details="RFdiffusion backbone, ProteinMPNN sequence, AF2 pLDDT 92",
+    spec = dict(BASE_SPEC, keywords=None,
+                design_details="RFdiffusion backbone, ProteinMPNN sequence, AF2 pLDDT 92",
                 software=[{"name": "RFdiffusion", "version": "1.1", "classification": "model building"},
                           {"name": "ProteinMPNN", "classification": "model building"}],
                 entities=[{"entity_id": "1", "description": "designed helical bundle",
@@ -189,7 +192,7 @@ def test_a_de_novo_design_references_the_entry_itself(tmp_path):
     assert gen == [("synthetic construct", "32630", "Escherichia coli", "?")]
     assert _rows(block, "_entity", ["src_method", "details"]) == [("man", spec["design_details"])]
     sw = _rows(block, "_software", ["name", "classification"])
-    assert ("RFdiffusion", "model building") in sw and ("refmac", "refinement") in sw
+    assert ("RFdiffusion", "model building") in sw and ("REFMAC", "refinement") in sw
 
 
 def test_a_synthesised_peptide_is_a_synthetic_source(tmp_path):
@@ -219,9 +222,12 @@ def test_a_chimera_of_designed_and_natural_segments(tmp_path):
                                           {"beg": n + 4, "end": len(construct), "kind": "natural",
                                            "organism": "Thermus thermophilus", "taxid": 274,
                                            "gene": "ilvC", "uniprot": "P00000"}]}])
+    # A chimera's classification is the depositor's call: one term, the rest in the text.
+    spec["keywords"] = "PROTEIN BINDING"
+    spec["keyword_text"] = "de novo binder, fusion"
     metadata.write_metadata(block, st, spec, fetch=_fetch)
     assert mmcif_edit.split_categories(block) == []
-    assert gemmi.cif.as_string(block.find_value("_struct_keywords.pdbx_keywords")) == "DE NOVO PROTEIN"
+    assert gemmi.cif.as_string(block.find_value("_struct_keywords.pdbx_keywords")) == "PROTEIN BINDING"
     gen = _rows(block, "_entity_src_gen", ["pdbx_src_id", "pdbx_seq_type", "pdbx_beg_seq_num",
                                            "pdbx_end_seq_num", "pdbx_gene_src_scientific_name",
                                            "pdbx_gene_src_gene"])
@@ -264,7 +270,7 @@ def test_statistics_merge_replaces_the_model_tables(tmp_path):
     written = statistics.merge_statistics(block, stats)
     assert written == ["_reflns", "_reflns_shell"]
     assert gemmi.cif.as_string(block.find_value("_reflns.d_resolution_high")) == "2.10"
-    assert len(block.find_mmcif_category("_reflns_shell.")) == 2
+    assert len(block.find_mmcif_category("_reflns_shell.")) == 1   # the outermost shell only
     assert gemmi.cif.as_string(block.find_value("_cell.length_a")) == "50"  # the model's, untouched
     assert mmcif_edit.split_categories(block) == []
     xml = statistics.cifstats_to_xml(stats)
@@ -274,7 +280,7 @@ def test_statistics_merge_replaces_the_model_tables(tmp_path):
 
 def test_reference_alignment_and_fasta_parsing():
     ref = Reference("1", "UNP", "TOY", "P0", REFERENCE, CONSTRUCT, 9, 33, "D8H")
-    assert ref.segments == [(9, 23, 1, 15), (27, 36, 16, 25)] or ref.segments[0] == (9, 23, 1, 15)
+    assert ref.segments == [(9, 22, 1, 14), (26, 33, 15, 22)]
     details = {d[4] for d in ref.diffs}
     assert {DIF_CONFLICT, DIF_ENGINEERED, DIF_INSERTION} <= details
     assert parse_fasta(">sp|Q5SJ03|ILVC_THET8 Ketol-acid\nMKIYY\nEHD\n", "Q5SJ03") == ("ILVC_THET8", "MKIYYEHD")

@@ -28,8 +28,9 @@ class prepare_deposition_report(Report):
             self.addSanitiseReport(self)
             self.addMetadataSummary(self)
             self.addSequenceAlignmentReport(self)
-            self.addText(text="Files sent to the wwPDB validation server; the report appears "
-                              "here when it is ready.", tone="emphasis")
+            if self.xmlnode.find('.//Validation') is not None:
+                self.addText(text="Files sent to the wwPDB validation server; the report appears "
+                                  "here when it is ready.", tone="emphasis")
         else:
             self.addDiv()
             self.addDefaultReport(self)

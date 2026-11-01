@@ -14,6 +14,7 @@ declares this module in its ``Task.dataTypes`` (core/tasks.py).
 """
 from ccp4i2.core.base_object.class_metadata import content
 from ccp4i2.core.CCP4Data import CData
+from ccp4i2.lib.deposition.vocab import STARTING_MODEL_SOURCES, STARTING_MODEL_TYPES
 
 SEGMENT_KINDS = ["natural", "engineered", "designed", "scaffold", "synthetic_peptide",
                  "tag", "linker"]
@@ -136,3 +137,23 @@ class CSoftwareEntry(CData):
     VERSION = content("CString", allowUndefined=True, guiLabel="Version")
     CLASSIFICATION = content("CString", onlyEnumerators=True, default="other",
                              enumerators=SOFTWARE_CLASSES, guiLabel="Used for")
+
+
+class CStartingModel(CData):
+    """One model the structure was solved or refined from
+    (``_pdbx_initial_refinement_model``): a PDB entry, a predicted model, a design."""
+
+    class Meta:
+        contents_order = ["TYPE", "SOURCE", "ACCESSION", "DETAILS", "ENTITY_IDS"]
+        qualifiers = {"allowUndefined": True, "guiLabel": "Starting model"}
+
+    TYPE = content("CString", onlyEnumerators=True, default="experimental model",
+                   enumerators=list(STARTING_MODEL_TYPES), guiLabel="Kind")
+    SOURCE = content("CString", onlyEnumerators=True, default="PDB",
+                     enumerators=list(STARTING_MODEL_SOURCES), guiLabel="Source")
+    ACCESSION = content("CString", allowUndefined=True, guiLabel="Accession",
+                        toolTip="2JAB; AF-Q5SJ03-F1; blank for an in-house model")
+    DETAILS = content("CString", allowUndefined=True, guiLabel="Details",
+                      toolTip="in-house AHIR dimer; RFdiffusion design model")
+    ENTITY_IDS = content("CString", allowUndefined=True, guiLabel="For molecules",
+                         toolTip="Entity ids this model was used for, comma separated; blank = all")

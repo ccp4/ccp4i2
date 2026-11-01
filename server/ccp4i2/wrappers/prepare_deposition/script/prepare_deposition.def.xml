@@ -153,7 +153,14 @@
             <content id="KEEP_HYDROGENS">
                 <className>CBoolean</className>
                 <qualifiers>
-                    <guiLabel>Keep riding hydrogens in the deposited model</guiLabel>
+                    <guiLabel>Keep riding hydrogens in the deposited model (the refined and validated model has them)</guiLabel>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="KEEP_ALL_SHELLS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <guiLabel>Write every resolution shell of the scaling statistics (default: the outermost only)</guiLabel>
                     <default>False</default>
                 </qualifiers>
             </content>
@@ -186,9 +193,9 @@
                 <qualifiers>
                     <allowUndefined>True</allowUndefined>
                     <guiLabel>Classification</guiLabel>
-                    <onlyEnumerators>False</onlyEnumerators>
-                    <enumerators>OXIDOREDUCTASE,TRANSFERASE,HYDROLASE,LYASE,ISOMERASE,LIGASE,TRANSLOCASE,DE NOVO PROTEIN,DE NOVO PROTEIN/OXIDOREDUCTASE,DE NOVO PROTEIN/TRANSFERASE,DE NOVO PROTEIN/HYDROLASE,DE NOVO PROTEIN/PROTEIN BINDING,DE NOVO PROTEIN/IMMUNE SYSTEM,PROTEIN BINDING,IMMUNE SYSTEM,SIGNALING PROTEIN,TRANSCRIPTION,TRANSPORT PROTEIN,STRUCTURAL PROTEIN,VIRAL PROTEIN,MEMBRANE PROTEIN,CELL CYCLE,DNA BINDING PROTEIN,RNA BINDING PROTEIN,CHAPERONE,TOXIN,METAL BINDING PROTEIN,UNKNOWN FUNCTION</enumerators>
-                    <toolTip>_struct_keywords.pdbx_keywords. Free text; the list has the common classes. Left blank, a designed entity is classed DE NOVO PROTEIN</toolTip>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>ANTIBIOTIC,ANTIFUNGAL PROTEIN,ANTIMICROBIAL PROTEIN,ANTITOXIN,ANTITUMOR PROTEIN,ANTIVIRAL PROTEIN,APOPTOSIS,BIOSYNTHETIC PROTEIN,BLOOD CLOTTING,CELL ADHESION,CELL CYCLE,CELL INVASION,CHAPERONE,CIRCADIAN CLOCK PROTEIN,CONTRACTILE PROTEIN,CYTOKINE,CYTOSOLIC PROTEIN,DE NOVO PROTEIN,DNA,DNA BINDING PROTEIN,DNA/RNA,ELECTRON TRANSPORT,ENDOCYTOSIS,EXOCYTOSIS,FLAVOPROTEIN,FLUORESCENT PROTEIN,GENE REGULATION,HORMONE,HYDROLASE,IMMUNE SYSTEM,ISOMERASE,LIGASE,LIPID BINDING PROTEIN,LIPID TRANSPORT,LUMINESCENT PROTEIN,LYASE,MEMBRANE PROTEIN,METAL BINDING PROTEIN,METAL TRANSPORT,MOTOR PROTEIN,NEUROPEPTIDE,NUCLEAR PROTEIN,ONCOPROTEIN,OXIDOREDUCTASE,OXYGEN STORAGE,OXYGEN TRANSPORT,PEPTIDE BINDING PROTEIN,PHOTOSYNTHESIS,PLANT PROTEIN,PROTEIN BINDING,PROTEIN FIBRIL,PROTEIN TRANSPORT,PROTON TRANSPORT,RECOMBINATION,REPLICATION,RIBOSOME,RNA,RNA BINDING PROTEIN,SIGNALING PROTEIN,SPLICING,STRUCTURAL GENOMICS,STRUCTURAL PROTEIN,SUGAR BINDING PROTEIN,SURFACTANT PROTEIN,TOXIN,TRANSCRIPTION,TRANSFERASE,TRANSLATION,TRANSLOCASE,TRANSPORT PROTEIN,UNKNOWN FUNCTION,VIRAL PROTEIN,VIRUS,VIRUS LIKE PARTICLE</enumerators>
+                    <toolTip>One term from OneDep's classification list (_struct_keywords.pdbx_keywords). Left blank, a wholly designed entry is classed DE NOVO PROTEIN; anything else needs a choice. Further terms go in the keywords.</toolTip>
                 </qualifiers>
             </content>
             <content id="KEYWORD_TEXT">
@@ -507,9 +514,8 @@
                 <className>CString</className>
                 <qualifiers>
                     <allowUndefined>True</allowUndefined>
-                    <onlyEnumerators>False</onlyEnumerators>
-                    <enumerators>VAPOR DIFFUSION, SITTING DROP,VAPOR DIFFUSION, HANGING DROP,BATCH MODE,MICROBATCH,LIPIDIC CUBIC PHASE,COUNTER-DIFFUSION,MICRODIALYSIS</enumerators>
                     <guiLabel>Crystallisation method</guiLabel>
+                    <toolTip>As the PDB spells it (the values contain commas, so no menu): VAPOR DIFFUSION, SITTING DROP; VAPOR DIFFUSION, HANGING DROP; BATCH MODE; MICROBATCH; LIPIDIC CUBIC PHASE; COUNTER-DIFFUSION; MICRODIALYSIS</toolTip>
                 </qualifiers>
             </content>
             <content id="CRYSTAL_TEMP">
@@ -558,6 +564,26 @@
                     <guiLabel>Phasing details</guiLabel>
                 </qualifiers>
             </content>
+            <content id="STARTING_MODELS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Starting models</guiLabel>
+                    <toolTip>Every model the structure was solved or refined from: PDB entries, predicted or designed models, in-house models (_pdbx_initial_refinement_model)</toolTip>
+                </qualifiers>
+                <subItem>
+                    <className>CStartingModel</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="LIGAND_OF_INTEREST">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>Ligand of interest</guiLabel>
+                    <toolTip>Three-letter code of the ligand the study is about (the inhibitor, the substrate); blank when none, and tick "No ligand of interest" in OneDep</toolTip>
+                </qualifiers>
+            </content>
             <content id="SOFTWARE">
                 <className>CList</className>
                 <qualifiers>
@@ -595,6 +621,15 @@
                     <allowUndefined>True</allowUndefined>
                     <guiLabel>Symmetry operators</guiLabel>
                     <toolTip>Crystallographic operators that complete the assembly from the asymmetric unit, separated by semicolons: -x+1,y,-z</toolTip>
+                </qualifiers>
+            </content>
+            <content id="ASSEMBLY_EVIDENCE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>none,gel filtration,light scattering,homology,equilibrium centrifugation,mass spectrometry,SAXS,immunoprecipitation,isothermal titration calorimetry,cross-linking,native gel electrophoresis,microscopy,assay for oligomerization,scanning transmission electron microscopy,surface plasmon resonance,fluorescence resonance energy transfer,NMR relaxation study,electron microscopy</enumerators>
+                    <default>none</default>
+                    <guiLabel>Experimental support for the assembly</guiLabel>
                 </qualifiers>
             </content>
             <content id="ASSEMBLY_DETAILS">

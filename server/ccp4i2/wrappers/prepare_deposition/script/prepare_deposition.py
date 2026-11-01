@@ -83,6 +83,7 @@ class prepare_deposition(CPluginScript):
                 for ds in mtz.datasets:
                     if ds.wavelength and 0.1 < ds.wavelength < 5.0:
                         out['wavelength'] = round(ds.wavelength, 5)
+                        break
             except Exception as err:
                 out['wavelength_error'] = str(err)
         return out
@@ -99,12 +100,24 @@ class prepare_deposition(CPluginScript):
             missing.append('at least one author')
         if not str(ctrl.CONTACT_LAST_NAME).strip() or not str(ctrl.CONTACT_EMAIL).strip():
             missing.append('the contact author name and email')
+        if not _text(ctrl.KEYWORDS) and not self._all_designed():
+            missing.append('a classification (one term; only a wholly designed entry defaults '
+                           'to DE NOVO PROTEIN)')
         if missing:
             error.append(klass=self.TASKNAME, code=207,
                          details='Still needed: ' + ', '.join(missing),
                          name='%s.container.controlParameters.TITLE' % self.TASKNAME,
                          severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
+
+    def _all_designed(self):
+        """True when every segment of every molecule is designed (tags and
+        linkers aside), so DE NOVO PROTEIN is the classification."""
+        from ccp4i2.lib.deposition.metadata import default_keywords
+        try:
+            return default_keywords(self._metadata_spec().get('entities')) is not None
+        except Exception:
+            return False
 
     # -- the work --------------------------------------------------------
 
@@ -136,14 +149,18 @@ class prepare_deposition(CPluginScript):
             problems.append(cell_problem)
 
         # 2. One entity per crystallised molecule, label_seq_id on the construct.
-        st = rebuild_entities_in(doc, sequences)
+        entity_warnings = []
+        st = rebuild_entities_in(doc, sequences, warnings=entity_warnings)
+        for w in entity_warnings:
+            print('WARNING: %s' % w)
         block = doc[0]
 
         # 3. Data reduction statistics.
         stats_path = self._statistics_path()
         if stats_path:
             try:
-                written = statistics.merge_statistics(block, stats_path)
+                written = statistics.merge_statistics(
+                    block, stats_path, all_shells=bool(ctrl.KEEP_ALL_SHELLS))
                 print('Merged scaling statistics: %s' % ', '.join(written))
                 self.xmlroot.append(statistics.cifstats_to_xml(stats_path))
             except Exception as err:
@@ -151,8 +168,8 @@ class prepare_deposition(CPluginScript):
                 return CPluginScript.FAILED
         elif inp.AIMLESSXML.isSet() and bool(ctrl.USEAIMLESSXML):
             self._aimless_xml_to_report()
-            print('WARNING: Aimless XML statistics are shown in the report but only an mmCIF '
-                  'DataStatistics file is merged into the model')
+            print('WARNING: the scaling job has no DataStatistics.cif; its Aimless XML statistics '
+                  'are shown in the report but not merged into the model (enter them in OneDep)')
 
         # 4. The descriptive metadata.
         spec = self._metadata_spec()
@@ -161,7 +178,10 @@ class prepare_deposition(CPluginScript):
         except ValueError as err:
             self.appendErrorReport(204, str(err))
             return CPluginScript.FAILED
-        self._report_metadata(spec, warnings)
+        self._report_metadata(spec, entity_warnings + warnings)
+        if mmcif_edit.value_of(block, '_diffrn_radiation_wavelength.wavelength') is None:
+            problems.append('no wavelength: the model has none and neither the Experiment page '
+                            'nor the reflection data gave one')
 
         # 5. The gates: no split category, no problem left, dictionary clean.
         split = mmcif_edit.split_categories(block)
@@ -192,16 +212,21 @@ class prepare_deposition(CPluginScript):
             self.xmlroot.append(sequenceAlignment(str(inp.XYZIN.fullPath), inp.ASUCONTENT))
         except Exception as err:
             print('Sequence alignment check failed (non-fatal): %s' % err)
-        self.flushXml()
         if bool(ctrl.SENDTOVALIDATIONSERVER):
+            etree.SubElement(self.xmlroot, 'Validation').set('sent', 'true')
+            self.flushXml()
             self._validate(model_out, str(out.CIFREFLECTIONS.fullPath))
+        else:
+            self.flushXml()
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
         out = self.container.outputData
-        with open(str(out.COOTSCRIPTOUT.fullPath), 'w') as script:
-            script.write(COOT_SCRIPT.format(xml=str(out.VALIDATIONXML.fullPath)))
-        out.COOTSCRIPTOUT.annotation = 'Coot script to review the validation issues'
+        # The Coot script reads the validation XML: only when there is one.
+        if os.path.exists(str(out.VALIDATIONXML.fullPath)):
+            with open(str(out.COOTSCRIPTOUT.fullPath), 'w') as script:
+                script.write(COOT_SCRIPT.format(xml=str(out.VALIDATIONXML.fullPath)))
+            out.COOTSCRIPTOUT.annotation = 'Coot script to review the validation issues'
         return CPluginScript.SUCCEEDED
 
     # -- pieces ----------------------------------------------------------
@@ -294,9 +319,16 @@ class prepare_deposition(CPluginScript):
                 for ds in gemmi.read_mtz_file(str(inp.F_SIGF.fullPath)).datasets:
                     if ds.wavelength and 0.1 < ds.wavelength < 5.0:
                         wavelength = round(ds.wavelength, 5)
+                        break   # the first plausible one; HKL_base carries a dummy
             except Exception:
                 wavelength = None
         method = s(ctrl.PHASING_METHOD)
+        starting_models = [{'type': s(f(m, 'TYPE')) or 'experimental model',
+                            'source': s(f(m, 'SOURCE')) or 'PDB',
+                            'accession': s(f(m, 'ACCESSION')), 'details': s(f(m, 'DETAILS')),
+                            'entity_ids': s(f(m, 'ENTITY_IDS'))}
+                           for m in ctrl.STARTING_MODELS
+                           if s(f(m, 'ACCESSION')) or s(f(m, 'DETAILS'))]
         return {
             'title': s(ctrl.TITLE), 'keywords': s(ctrl.KEYWORDS), 'keyword_text': s(ctrl.KEYWORD_TEXT),
             'authors': authors,
@@ -329,10 +361,14 @@ class prepare_deposition(CPluginScript):
                         'ph': n(ctrl.CRYSTAL_PH), 'details': s(ctrl.CRYSTAL_DETAILS)},
             'software': software,
             'phasing': {'method': method, 'starting_model': s(ctrl.STARTING_MODEL),
-                        'details': s(ctrl.PHASING_DETAILS)} if method else {},
+                        'starting_models': starting_models,
+                        'details': s(ctrl.PHASING_DETAILS)} if method else {'starting_models': starting_models},
+            'ligand_of_interest': s(ctrl.LIGAND_OF_INTEREST),
             'assembly': {'mode': 'author' if s(ctrl.ASSEMBLY_MODE) == 'AUTHOR' else 'asu',
                          'oligomeric_count': int(ctrl.OLIGOMERIC_COUNT) if ctrl.OLIGOMERIC_COUNT.isSet() else None,
-                         'operators': s(ctrl.ASSEMBLY_OPERATORS) or '', 'details': s(ctrl.ASSEMBLY_DETAILS)},
+                         'operators': s(ctrl.ASSEMBLY_OPERATORS) or '',
+                         'evidence': s(ctrl.ASSEMBLY_EVIDENCE) or 'none',
+                         'details': s(ctrl.ASSEMBLY_DETAILS)},
         }
 
     def _lineage_software(self):
@@ -374,10 +410,11 @@ class prepare_deposition(CPluginScript):
             refmac_flag = 3 if bool(ctrl.USE_TWIN) else 4
         merged = str(inp.F_SIGF.fullPath)
         if int(inp.F_SIGF.contentFlag) != refmac_flag or inp.FREERFLAG.isSet():
+            mini = [['F_SIGF', int(inp.F_SIGF.contentFlag)], ['F_SIGF', refmac_flag]]
+            mini += [[name, 1] for name in ('FREERFLAG', 'FPHIOUT', 'DIFFPHIOUT')
+                     if getattr(inp, name).isSet()]   # an unset file makes makeHklin0 raise
             self.hklin, self.columns, error = self.makeHklin0(
-                miniMtzsIn=[['F_SIGF', int(inp.F_SIGF.contentFlag)], ['F_SIGF', refmac_flag],
-                            ['FREERFLAG', 1], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]],
-                hklin='mergedForMakingCif')
+                miniMtzsIn=mini, hklin='mergedForMakingCif')
             if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
                 self.appendErrorReport(202, 'could not merge the reflection files')
                 return CPluginScript.FAILED
@@ -457,9 +494,15 @@ class prepare_deposition(CPluginScript):
             '%s A' % exp.get('wavelength') if exp.get('wavelength') else None) if v))
         item('Software', ', '.join('%s %s' % (sw['name'], sw.get('version') or '')
                                    for sw in spec.get('software', [])))
-        item('Assembly', '%s%s' % (spec['assembly'].get('mode'),
-                                   ' x%s' % spec['assembly'].get('oligomeric_count')
-                                   if spec['assembly'].get('oligomeric_count') else ''))
+        item('Assembly', '%s%s; evidence: %s' % (
+            spec['assembly'].get('mode'),
+            ' x%s' % spec['assembly'].get('oligomeric_count') if spec['assembly'].get('oligomeric_count') else '',
+            spec['assembly'].get('evidence')))
+        item('Starting models', '; '.join(
+            '%s / %s / %s' % (m.get('type'), m.get('source'), m.get('accession') or m.get('details'))
+            for m in spec.get('phasing', {}).get('starting_models', [])))
+        item('Ligand of interest', spec.get('ligand_of_interest') or
+             'none: tick "No ligand of interest" on OneDep\'s Ligands page')
         for w in warnings:
             etree.SubElement(node, 'Warning').text = w
             print('WARNING: %s' % w)

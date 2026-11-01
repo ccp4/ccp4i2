@@ -2,8 +2,10 @@
 
 Aimless (through aimless_pipe) writes ``DataStatistics.cif`` with the
 ``_reflns`` and ``_reflns_shell`` categories OneDep wants in the model file;
-older jobs have them only in the Aimless XML. Either way the statistics are
-copied into the model block category by category, each written once.
+those are copied into the model block category by category, each written
+once. Older scaling jobs have the statistics only in the Aimless XML: that is
+shown in the report but not merged into the model (OneDep's form takes them
+by hand), which the task says in its log.
 """
 from lxml import etree
 
@@ -16,9 +18,64 @@ STATISTICS_CATEGORIES = ("_reflns", "_reflns_shell")
 _SHELL_ORDINAL = "pdbx_ordinal"
 
 
-def merge_statistics(model_block, stats_path):
+# Aimless writes the "_all" statistics items (by policy: no weak-reflection
+# cut was made) but OneDep's form reads the "_obs" ones -- unique counts,
+# Rmerge and I/sigma per shell came up blank on the Ahir3252 deposition, and
+# number_unique_all was not read at all. Both are written: the _obs item is
+# copied from its _all twin when absent.
+OBS_FROM_ALL = {
+    "_reflns_shell": (("number_unique_obs", "number_unique_all"),
+                      ("Rmerge_I_obs", "Rmerge_I_all"),
+                      ("meanI_over_sigI_obs", "pdbx_netI_over_sigmaI_all"),
+                      ("percent_possible_obs", "percent_possible_all"),
+                      ("number_measured_obs", "number_measured_all")),
+    "_reflns": (("number_obs", "number_all"),
+                ("pdbx_Rmerge_I_obs", "pdbx_Rmerge_I_all"),
+                ("pdbx_netI_over_sigmaI", "pdbx_netI_over_sigmaI_all"),
+                ("percent_possible_obs", "percent_possible_all")),
+}
+
+
+def with_obs_items(tags, rows, category):
+    """``(tags, rows)`` with the _obs items OneDep reads added from their
+    _all twins where the file lacks them."""
+    tags = list(tags)
+    rows = [list(r) for r in rows]
+    for obs, all_ in OBS_FROM_ALL.get(category, ()):
+        if obs in tags or all_ not in tags:
+            continue
+        src = tags.index(all_)
+        tags.append(obs)
+        for row in rows:
+            row.append(row[src])
+    return tags, rows
+
+
+def outer_shell(tags, rows):
+    """The one row with the highest resolution (smallest d_res_high),
+    renumbered 1: the shell OneDep's form expects, rather than every Aimless
+    bin from 80 A outwards (each low-resolution bin raised a warning)."""
+    if "d_res_high" not in tags or len(rows) <= 1:
+        return rows
+    col = tags.index("d_res_high")
+
+    def d_high(row):
+        try:
+            return float(row[col])
+        except ValueError:
+            return float("inf")
+
+    best = list(min(rows, key=d_high))
+    if "pdbx_ordinal" in tags:
+        best[tags.index("pdbx_ordinal")] = "1"
+    return [best]
+
+
+def merge_statistics(model_block, stats_path, all_shells=False):
     """Copy the statistics categories from ``stats_path`` into ``model_block``,
-    replacing any the model already has. Returns the categories written."""
+    replacing any the model already has, with the _obs items OneDep reads and
+    (unless ``all_shells``) only the outermost resolution shell. Returns the
+    categories written."""
     import gemmi
 
     stats_block = gemmi.cif.read(str(stats_path))[0]
@@ -27,6 +84,9 @@ def merge_statistics(model_block, stats_path):
         tags, rows = category_rows(stats_block, category)
         if not rows:
             continue
+        tags, rows = with_obs_items(tags, rows, category)
+        if category == "_reflns_shell" and not all_shells:
+            rows = outer_shell(tags, rows)
         # Values come across as CIF tokens already (quoted as needed); write
         # them back verbatim rather than re-quoting.
         if category == "_reflns" and len(rows) == 1:

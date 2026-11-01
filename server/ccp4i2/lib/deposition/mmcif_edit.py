@@ -155,14 +155,34 @@ def replace_pairs(block, category, items):
     _move_tail_to(block, position, len(names))
 
 
+def rewrite_category(block, category, tags, rows):
+    """Write a category back from raw CIF tokens, in place: as pairs for one
+    row, as a loop otherwise."""
+    if len(rows) == 1:
+        replace_pairs(block, category, [(t, None) for t in tags])
+        for tag, token in zip(tags, rows[0]):
+            block.set_pair("%s.%s" % (category, tag), token)
+    else:
+        replace_loop(block, category, tags, [["?"] * len(tags)])
+        loop = block.find_loop("%s.%s" % (category, tags[0])).get_loop()
+        loop.set_all_values([[row[j] for row in rows] for j in range(len(tags))])
+
+
 def set_pairs_in_place(block, category, items):
     """Set pairs of an existing pair-style category without moving it: an
     existing tag is replaced where it is, a new tag is appended at the end of
     the block and then moved in beside the category's last item.
 
     ``_refine`` is the case: the refinement program wrote it and the new items
-    (starting model, method) must join it, not trail the atom table.
+    (starting model, method) must join it, not trail the atom table. A
+    category written as a one-row loop is first rewritten as pairs (gemmi's
+    set_pair on a looped tag would replace the whole loop with that one pair).
     """
+    tags, rows = category_rows(block, category)
+    if rows and block.find_loop("%s.%s" % (category, tags[0])):
+        if len(rows) > 1:
+            raise ValueError("%s has %d rows; cannot set single values on it" % (category, len(rows)))
+        rewrite_category(block, category, tags, rows)
     for name, value in items:
         tag = "%s.%s" % (category, name)
         if block.find_pair_item(tag) is not None:

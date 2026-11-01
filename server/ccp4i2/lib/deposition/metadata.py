@@ -48,6 +48,7 @@ from .mmcif_edit import (
     split_categories,
     value_of,
 )
+from .vocab import ASSEMBLY_EVIDENCE, CLASSIFICATIONS, canonical_software_name
 
 # How a segment of a construct came to be. The first-class cases are natural,
 # engineered-from-natural, and designed: a world with many de novo proteins
@@ -82,6 +83,8 @@ WRITTEN_CATEGORIES = (
     "_diffrn_radiation", "_diffrn_radiation_wavelength", "_exptl", "_exptl_crystal",
     "_exptl_crystal_grow", "_software", "_refine_hist", "_phasing", "_pdbx_phasing_MR",
     "_pdbx_struct_assembly", "_pdbx_struct_assembly_gen", "_pdbx_struct_oper_list",
+    "_pdbx_struct_assembly_auth_evidence", "_pdbx_initial_refinement_model",
+    "_pdbx_entity_instance_feature",
 )
 
 NONPOLYMER_NAMES = {
@@ -257,11 +260,17 @@ def _bare_reference(entity_id, db_name, db_code, accession, sequence, seg):
 
 
 def default_keywords(entity_specs):
-    """``DE NOVO PROTEIN`` when any segment is designed; nothing otherwise."""
+    """``DE NOVO PROTEIN`` when every molecule is designed (tags and linkers
+    aside); nothing otherwise, because the classification is one term from
+    OneDep's list and a chimera's function class is the depositor's call."""
+    kinds = set()
     for ent in entity_specs or []:
         for seg in ent.get("segments") or []:
-            if str(seg.get("kind", "")).lower() in (DESIGNED, SCAFFOLD):
-                return DE_NOVO_KEYWORD
+            kind = str(seg.get("kind", NATURAL)).lower()
+            if kind not in (TAG, LINKER):
+                kinds.add(kind)
+    if kinds and kinds <= {DESIGNED, SCAFFOLD}:
+        return DE_NOVO_KEYWORD
     return None
 
 
@@ -287,7 +296,14 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         raise ValueError("a deposition needs a title")
     replace_pairs(block, "_struct", [("entry_id", entry_id), ("title", title),
                                      ("pdbx_CASP_flag", "N")])
-    keywords = _get(spec, "keywords") or default_keywords(spec.get("entities")) or "?"
+    keywords = _get(spec, "keywords") or default_keywords(spec.get("entities"))
+    if not keywords:
+        raise ValueError("a classification (one term from OneDep's list, such as "
+                         "OXIDOREDUCTASE or DE NOVO PROTEIN) is needed")
+    keywords = str(keywords).strip().upper()
+    if keywords not in CLASSIFICATIONS:
+        raise ValueError("classification %r is not one term of OneDep's list; put the rest "
+                         "in the keywords text" % keywords)
     replace_pairs(block, "_struct_keywords", [("entry_id", entry_id), ("pdbx_keywords", keywords),
                                               ("text", _get(spec, "keyword_text"))])
 
@@ -373,17 +389,27 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
     replace_loop(block, "_pdbx_entity_nonpoly", ["entity_id", "name", "comp_id"], nonpoly_rows)
     replace_loop(block, "_entity_src_gen", GEN_TAGS, gen_rows)
     replace_loop(block, "_pdbx_entity_src_syn", SYN_TAGS, syn_rows)
-    for category, (tags, rows) in sr.reference_tables(references, strands, entry_id, extra_difs).items():
+    tables = sr.reference_tables(references, strands, entry_id, extra_difs,
+                                 auth_map=sr.auth_numbering(structure))
+    for category, (tags, rows) in tables.items():
         replace_loop(block, category, tags, rows)
 
     # --- experiment -----------------------------------------------------
     exp = spec.get("experiment") or {}
     wavelength_id = value_of(block, "_diffrn_radiation_wavelength.id")
     wavelength = _get(exp, "wavelength") or value_of(block, "_diffrn_radiation_wavelength.wavelength")
-    if wavelength_id is None or _get(exp, "wavelength"):
+    n_wavelengths = len(block.find_mmcif_category("_diffrn_radiation_wavelength."))
+    if n_wavelengths > 1:
+        # MAD: every wavelength stays as the refinement program wrote it.
+        if _get(exp, "wavelength"):
+            warnings.append("the model carries %d wavelengths; the form's %s was not written over them"
+                            % (n_wavelengths, _get(exp, "wavelength")))
+    elif wavelength_id is None or _get(exp, "wavelength"):
         replace_pairs(block, "_diffrn_radiation_wavelength", [("id", wavelength_id or 1),
                                                               ("wavelength", wavelength)])
         wavelength_id = wavelength_id or "1"
+    if not wavelength:
+        warnings.append("no wavelength: the model has none and the form gave none")
     replace_pairs(block, "_diffrn", [("id", 1), ("crystal_id", 1),
                                      ("ambient_temp", _get(exp, "temperature")),
                                      ("ambient_temp_details", None)])
@@ -424,11 +450,17 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         name = _get(sw, "name")
         if not name:
             continue
-        key = (name.lower(), str(_get(sw, "version", "")).lower())
+        canonical = canonical_software_name(name)
+        if canonical is None:
+            # OneDep drops a name outside its software list silently; say so instead.
+            warnings.append("software %r is not in OneDep's software list and was not "
+                            "written" % name)
+            continue
+        key = canonical.lower()   # the form's row wins over the file's (it comes first)
         if key in seen:
             continue
         seen.add(key)
-        rows.append((len(rows) + 1, name, _get(sw, "version"), _get(sw, "classification", "other")))
+        rows.append((len(rows) + 1, canonical, _get(sw, "version"), _get(sw, "classification", "other")))
     if rows:
         replace_loop(block, "_software", ["pdbx_ordinal", "name", "version", "classification"], rows)
 
@@ -446,7 +478,18 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         ("number_atoms_total", n_atoms)])
     phasing = spec.get("phasing") or {}
     method = _get(phasing, "method")
-    refine_items = [("pdbx_starting_model", _get(phasing, "starting_model"))]
+    models = [m for m in (phasing.get("starting_models") or []) if _get(m, "accession") or _get(m, "details")]
+    polymer_ids = [e.name for e in structure.entities if e.entity_type == gemmi.EntityType.Polymer]
+    model_rows = []
+    for i, m in enumerate(models, start=1):
+        model_rows.append((i, _get(m, "entity_ids") or ",".join(polymer_ids),
+                           _get(m, "type", "experimental model"), _get(m, "source", "PDB"),
+                           _get(m, "accession"), _get(m, "details")))
+    replace_loop(block, "_pdbx_initial_refinement_model",
+                 ["id", "entity_id_list", "type", "source_name", "accession_code", "details"], model_rows)
+    summary = _get(phasing, "starting_model") or "; ".join(
+        _get(m, "accession") or _get(m, "details") for m in models) or None
+    refine_items = [("pdbx_starting_model", summary)]
     if method:
         replace_pairs(block, "_phasing", [("method", method)])
         refine_items.append(("pdbx_method_to_determine_struct",
@@ -454,7 +497,7 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         if method == "MR":
             replace_pairs(block, "_pdbx_phasing_MR", [
                 ("entry_id", entry_id), ("method_rotation", None), ("method_translation", None),
-                ("model_details", _get(phasing, "details", _get(phasing, "starting_model")))])
+                ("model_details", _get(phasing, "details", summary))])
     if block.find_mmcif_category("_refine."):
         set_pairs_in_place(block, "_refine", [(k, v) for k, v in refine_items if v])
 
@@ -467,9 +510,34 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
     operators = [t.strip() for t in (raw if isinstance(raw, (list, tuple)) else str(raw).split(";"))
                  if str(t).strip()]
     tables = assembly_tables(structure, asym_ids, _get(asm, "mode", "asu"),
-                             _get(asm, "oligomeric_count"), operators, _get(asm, "details"))
+                             _get(asm, "oligomeric_count"), operators)
     for category, (tags, rows) in tables.items():
         replace_loop(block, category, tags, rows)
+    evidence = str(_get(asm, "evidence", "none")).strip()
+    if evidence not in ASSEMBLY_EVIDENCE:
+        warnings.append("assembly evidence %r is not in the dictionary's list; wrote 'none'"
+                        % evidence)
+        evidence = "none"
+    replace_loop(block, "_pdbx_struct_assembly_auth_evidence",
+                 ["id", "assembly_id", "experimental_support", "details"],
+                 [(1, 1, evidence, _get(asm, "details"))])
+
+    # --- ligand of interest -----------------------------------------------
+    ligand = str(_get(spec, "ligand_of_interest", "") or "").strip().upper()
+    feature_rows = []
+    if ligand:
+        for chain in structure[0]:
+            for res in chain:
+                if res.name.upper() == ligand:
+                    feature_rows.append((len(feature_rows) + 1, "SUBJECT OF INVESTIGATION",
+                                         res.subchain, chain.name, res.seqid.num,
+                                         res.label_seq if res.label_seq is not None else None,
+                                         res.name, res.name, None))
+        if not feature_rows:
+            warnings.append("ligand of interest %s is not in the model; nothing written" % ligand)
+    replace_loop(block, "_pdbx_entity_instance_feature",
+                 ["ordinal", "feature_type", "asym_id", "auth_asym_id", "auth_seq_num", "seq_num",
+                  "comp_id", "auth_comp_id", "details"], feature_rows)
 
     split = split_categories(block)
     if split:

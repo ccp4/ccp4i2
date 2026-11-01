@@ -16,6 +16,7 @@ interface LineageResult {
   paths: Record<string, string>;
   params: Record<string, boolean | string>;
   warnings: string[];
+  software?: { name: string; version?: string; classification?: string }[];
 }
 
 interface SuggestedEntity {
@@ -112,6 +113,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       for (const [param, val] of Object.entries(result.params)) {
         await setParameter({ object_path: `${taskName}.controlParameters.${param}`, value: val });
       }
+      // Program versions the scaling job recorded (Aimless, Pointless) become
+      // software rows, once each; the writer spells them as OneDep does.
+      const known = new Set(
+        (container?.controlParameters?.SOFTWARE?._value ?? []).map((row: any) =>
+          String(row?._value?.NAME?._value ?? "").toLowerCase()
+        )
+      );
+      for (const sw of result.software ?? []) {
+        if (!sw.name || known.has(sw.name.toLowerCase())) continue;
+        known.add(sw.name.toLowerCase());
+        await api.post(`jobs/${props.job.id}/add_list_item/`, {
+          object_path: "controlParameters.SOFTWARE",
+          values: { NAME: sw.name, VERSION: sw.version ?? "", CLASSIFICATION: sw.classification ?? "other" },
+        });
+      }
       await mutateContainer();
       setBusy(false);
       const label = result.refinement_task_name ?? "refinement";
@@ -122,7 +138,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           (result.warnings.length ? `. Note: ${result.warnings.join(". ")}` : ""),
       });
     },
-    [callPluginMethod, setParameter, mutateContainer, fileItemToParameterArg, filesByUuid, projectJobs, projects, taskName]
+    [api, callPluginMethod, container, setParameter, mutateContainer, fileItemToParameterArg, filesByUuid, projectJobs, projects, props.job.id, taskName]
   );
 
   // One Molecule record per AU-contents sequence, added through the list
@@ -200,6 +216,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement itemName="USEAIMLESSXML" {...props} />
             <CCP4i2TaskElement itemName="INCLUDEUNMERGED" {...props} />
             <CCP4i2TaskElement itemName="KEEP_HYDROGENS" {...props} />
+            <CCP4i2TaskElement itemName="KEEP_ALL_SHELLS" {...props} />
             <CCP4i2TaskElement itemName="DICTIONARY_CHECK" {...props} />
             <CCP4i2TaskElement itemName="SENDTOVALIDATIONSERVER" {...props} qualifiers={{ toolTip: "Needs internet access; takes some minutes" }} />
           </CCP4i2ContainerElement>
@@ -287,7 +304,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement itemName="PHASING_METHOD" {...props} />
             <CCP4i2TaskElement itemName="STARTING_MODEL" {...props} />
             <CCP4i2TaskElement itemName="PHASING_DETAILS" {...props} />
+            <CCP4i2TaskElement itemName="STARTING_MODELS" {...props} />
             <CCP4i2TaskElement itemName="SOFTWARE" {...props} />
+          </CCP4i2ContainerElement>
+          <CCP4i2ContainerElement {...props} itemName="" qualifiers={{ guiLabel: "Ligands" }} containerHint="FolderLevel">
+            <CCP4i2TaskElement itemName="LIGAND_OF_INTEREST" {...props} />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
 
@@ -296,6 +317,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement itemName="ASSEMBLY_MODE" {...props} />
             <CCP4i2TaskElement itemName="OLIGOMERIC_COUNT" {...props} />
             <CCP4i2TaskElement itemName="ASSEMBLY_OPERATORS" {...props} />
+            <CCP4i2TaskElement itemName="ASSEMBLY_EVIDENCE" {...props} />
             <CCP4i2TaskElement itemName="ASSEMBLY_DETAILS" {...props} />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>

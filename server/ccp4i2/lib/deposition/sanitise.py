@@ -21,7 +21,7 @@ from collections import namedtuple
 
 import gemmi
 
-from .mmcif_edit import category_rows, replace_loop, replace_pairs, set_pairs_in_place, value_of
+from .mmcif_edit import category_rows, replace_pairs, rewrite_category, set_pairs_in_place, value_of
 
 Fix = namedtuple("Fix", "program found did")
 
@@ -125,26 +125,14 @@ def fix_refmac(block):
         old = gemmi.cif.as_string(rows[0][idx])
         if old != "1":
             rows[0][idx] = "1"
-            _rewrite_category(block, "_diffrn_radiation_wavelength", tags, rows)
+            rewrite_category(block, "_diffrn_radiation_wavelength", tags, rows)
             rtags, rrows = category_rows(block, "_diffrn_radiation")
             if rrows and "wavelength_id" in rtags:
                 rrows[0][rtags.index("wavelength_id")] = "1"
-                _rewrite_category(block, "_diffrn_radiation", rtags, rrows)
+                rewrite_category(block, "_diffrn_radiation", rtags, rrows)
             fixes.append(Fix("refmac", "_diffrn_radiation_wavelength.id %s" % old,
                              "renamed it 1 (and _diffrn_radiation.wavelength_id with it)"))
     return fixes
-
-
-def _rewrite_category(block, category, tags, rows):
-    """Write a category back from raw tokens, as pairs for one row."""
-    if len(rows) == 1:
-        replace_pairs(block, category, [(t, None) for t in tags])
-        for tag, token in zip(tags, rows[0]):
-            block.set_pair("%s.%s" % (category, tag), token)
-    else:
-        replace_loop(block, category, tags, [["?"] * len(tags)])
-        loop = block.find_loop("%s.%s" % (category, tags[0])).get_loop()
-        loop.set_all_values([[row[j] for row in rows] for j in range(len(tags))])
 
 
 def _has_value(block, tag):
@@ -161,10 +149,20 @@ def servalcat_overall_statistics(job_dir):
     the conventional pair. Returns ``{"R_work", "R_free", "keys": (work, free),
     "source": path}`` or None.
     """
+    # The job's own file first (a bare servalcat job); else the newest among
+    # the pipeline's direct sub-jobs, which is the refinement that wrote the
+    # final XYZOUT (servalcat_pipe runs its cycles in job_N_1, job_N_2, ...).
     candidates = []
-    for root, _dirs, files in os.walk(str(job_dir)):
-        if "refined_stats.json" in files:
-            path = os.path.join(root, "refined_stats.json")
+    own = os.path.join(str(job_dir), "refined_stats.json")
+    if os.path.exists(own):
+        candidates.append((float("inf"), own))
+    try:
+        subdirs = [os.path.join(str(job_dir), d) for d in os.listdir(str(job_dir))]
+    except OSError:
+        subdirs = []
+    for sub in subdirs:
+        path = os.path.join(sub, "refined_stats.json")
+        if os.path.isdir(sub) and os.path.exists(path):
             candidates.append((os.path.getmtime(path), path))
     for _mtime, path in sorted(candidates, reverse=True):
         try:
@@ -215,23 +213,34 @@ def _harvest_servalcat_r(block, refinement_job_dir):
             "them (wwPDB would report PDB-R NotAvailable and skip the EDS analysis)."
             % (" directory %s" % refinement_job_dir if refinement_job_dir else ""))
         return fixes, problems
-    items = [("ls_R_factor_R_work", "%.4f" % stats["R_work"])]
-    if stats["R_free"] is not None:
-        items.append(("ls_R_factor_R_free", "%.4f" % stats["R_free"]))
-    counts = _sum_shell_counts(block)
-    for key, value in counts.items():
-        items.append((key, value))
-    set_pairs_in_place(block, "_refine", items)
     work_key, free_key = stats["keys"]
-    note = ""
+    counts = _sum_shell_counts(block)
     if work_key.startswith("R1"):
-        note = " (servalcat's intensity-based R1, I/sigma > 2 cut: say so in the deposition)"
-    fixes.append(Fix("servalcat", "_refine without overall R-work/R-free",
-                     "wrote R-work %.4f%s from %s of %s%s" % (
-                         stats["R_work"],
-                         " / R-free %.4f" % stats["R_free"] if stats["R_free"] is not None else "",
-                         "/".join(k for k in (work_key, free_key) if k),
-                         os.path.basename(stats["source"]), note)))
+        # The intensity-based R1 (I/sigma > 2 cut) is not an R-work: it goes
+        # where the dictionary keeps an R on intensities, and the file still
+        # has no overall R-work, which the report says.
+        items = [("ls_R_I_factor_obs", "%.4f" % stats["R_work"])]
+        items += list(counts.items())
+        set_pairs_in_place(block, "_refine", items)
+        fixes.append(Fix("servalcat", "_refine without overall R-work/R-free; the job reports only "
+                         "the intensity-based R1 (%s)" % "/".join(k for k in (work_key, free_key) if k),
+                         "wrote R1 %.4f%s into _refine.ls_R_I_factor_obs from %s; no R-work/R-free "
+                         "could be written -- expect wwPDB to report PDB-R NotAvailable" % (
+                             stats["R_work"],
+                             " (R1-free %.4f)" % stats["R_free"] if stats["R_free"] is not None else "",
+                             os.path.basename(stats["source"]))))
+    else:
+        items = [("ls_R_factor_R_work", "%.4f" % stats["R_work"])]
+        if stats["R_free"] is not None:
+            items.append(("ls_R_factor_R_free", "%.4f" % stats["R_free"]))
+        items += list(counts.items())
+        set_pairs_in_place(block, "_refine", items)
+        fixes.append(Fix("servalcat", "_refine without overall R-work/R-free",
+                         "wrote R-work %.4f%s from %s of %s" % (
+                             stats["R_work"],
+                             " / R-free %.4f" % stats["R_free"] if stats["R_free"] is not None else "",
+                             "/".join(k for k in (work_key, free_key) if k),
+                             os.path.basename(stats["source"]))))
     if counts:
         fixes.append(Fix("servalcat", "_refine without reflection counts",
                          "summed _refine_ls_shell: " + ", ".join("%s=%s" % kv for kv in counts.items())))
@@ -272,7 +281,7 @@ def fix_buster(block):
     return fixes
 
 
-def general_checks(block, keep_hydrogens=False):
+def general_checks(block, keep_hydrogens=True):
     """Fixes and problems every deposition file gets: ``_exptl.method``,
     ``_refine.pdbx_refine_id``, a wavelength, occupancies, altlocs, hydrogens,
     anisotropic displacement parameters consistent with the model.
@@ -288,9 +297,9 @@ def general_checks(block, keep_hydrogens=False):
     if block.find_mmcif_category("_refine.") and block.find_pair_item("_refine.pdbx_refine_id") is None:
         set_pairs_in_place(block, "_refine", [("pdbx_refine_id", "X-RAY DIFFRACTION")])
         fixes.append(Fix("any", "_refine without pdbx_refine_id", "set X-RAY DIFFRACTION"))
-    if value_of(block, "_diffrn_radiation_wavelength.wavelength") is None:
-        problems.append("no wavelength in the model (_diffrn_radiation_wavelength): give one "
-                        "on the Experiment page")
+    # No wavelength here is not a problem yet: the task writes it from the
+    # form or the reflection data (a PDB-format model never carries one), and
+    # checks for it after that.
 
     st = gemmi.make_structure_from_block(block)
     st.setup_entities()
@@ -322,9 +331,13 @@ def general_checks(block, keep_hydrogens=False):
         groups.atoms = True
         st.update_mmcif_block(block, groups)
         fixes.append(Fix("any", "%d hydrogen atoms (riding)" % n_h,
-                         "removed them; tick 'keep hydrogens' to deposit them"))
+                         "removed them as asked; note that the R-factors and restraint counts in "
+                         "_refine were computed with them present"))
         st = gemmi.make_structure_from_block(block)
         st.setup_entities()
+    elif n_h:
+        fixes.append(Fix("any", "%d hydrogen atoms (riding)" % n_h,
+                         "kept: the deposited model is the refined and validated one"))
     anisotrop = block.find_mmcif_category("_atom_site_anisotrop.")
     has_tls = bool(block.find_mmcif_category("_pdbx_refine_tls."))
     if anisotrop and anisou == 0:
@@ -340,7 +353,7 @@ def general_checks(block, keep_hydrogens=False):
     return fixes, problems, st
 
 
-def sanitise(doc, refinement_job_dir=None, keep_hydrogens=False):
+def sanitise(doc, refinement_job_dir=None, keep_hydrogens=True):
     """Run every fixer on ``doc`` in place.
 
     Returns ``(program, fixes, problems, structure)``.
