@@ -185,15 +185,15 @@ def test_inherited_header_is_stripped_and_named():
     assert "_entry.id 1ABC" in text
 
 
-def test_hydrogens_are_removed_unless_asked_to_keep():
+def test_hydrogens_are_kept_unless_asked_to_strip():
+    # The deposited model is the refined and validated one: hydrogens stay.
     doc = gemmi.cif.read_string(REFMAC)
     _p, fixes, _problems, st = sanitise.sanitise(doc)
-    assert "hydrogen" in _found(fixes)
-    assert st[0].count_atom_sites() == 8
+    assert "kept" in _found(fixes) and st[0].count_atom_sites() == 9
     doc = gemmi.cif.read_string(REFMAC)
-    _p, fixes, _problems, st = sanitise.sanitise(doc, keep_hydrogens=True)
-    assert "hydrogen" not in _found(fixes)
-    assert st[0].count_atom_sites() == 9
+    _p, fixes, _problems, st = sanitise.sanitise(doc, keep_hydrogens=False)
+    assert "computed with them present" in _found(fixes)
+    assert st[0].count_atom_sites() == 8
 
 
 def test_bad_occupancy_is_a_problem_not_a_fix():
@@ -205,10 +205,12 @@ def test_bad_occupancy_is_a_problem_not_a_fix():
     assert any("occupancy" in p for p in problems)
 
 
-def test_missing_wavelength_is_a_problem():
+def test_missing_wavelength_is_not_a_problem_at_this_stage():
+    # A PDB-format model never carries one; the task writes it from the form
+    # or the reflection data and checks afterwards.
     doc = gemmi.cif.read_string(HEADER + "_refine.entry_id 1ABC\n" + ATOMS.format(occ="1.00"))
     _p, _fixes, problems, _st = sanitise.sanitise(doc)
-    assert any("wavelength" in p for p in problems)
+    assert not any("wavelength" in p for p in problems)
 
 
 def _servalcat_job(tmp_path, summary):
@@ -240,13 +242,24 @@ def test_servalcat_overall_r_is_harvested_when_absent(tmp_path):
     assert split_categories(block) == []
 
 
-def test_servalcat_r1_is_used_and_flagged_when_it_is_all_there_is(tmp_path):
+def test_servalcat_r1_goes_to_the_intensity_r_item_not_r_work(tmp_path):
     job = _servalcat_job(tmp_path, {"R1work": 0.17, "R1free": 0.21})
     doc = gemmi.cif.read_string(SERVALCAT)
     _p, fixes, problems, _st = sanitise.sanitise(doc, refinement_job_dir=str(job))
     assert problems == []
-    assert gemmi.cif.as_string(doc[0].find_value("_refine.ls_R_factor_R_work")) == "0.1700"
-    assert "R1" in _found(fixes) and "say so" in _found(fixes)
+    assert doc[0].find_value("_refine.ls_R_factor_R_work") is None
+    assert gemmi.cif.as_string(doc[0].find_value("_refine.ls_R_I_factor_obs")) == "0.1700"
+    assert "R1" in _found(fixes) and "NotAvailable" in _found(fixes)
+
+
+def test_servalcat_stats_come_from_the_job_not_the_newest_file_anywhere(tmp_path):
+    job = _servalcat_job(tmp_path, {"Rwork": 0.2000, "Rfree": 0.2400})
+    deeper = job / "job_6_1" / "scratch"
+    deeper.mkdir()
+    (deeper / "refined_stats.json").write_text(json.dumps([{"data": {"summary": {"Rwork": 0.01, "Rfree": 0.02}}}]))
+    doc = gemmi.cif.read_string(SERVALCAT)
+    sanitise.sanitise(doc, refinement_job_dir=str(job))
+    assert gemmi.cif.as_string(doc[0].find_value("_refine.ls_R_factor_R_work")) == "0.2000"
 
 
 def test_servalcat_without_any_r_is_refused(tmp_path):
