@@ -8,6 +8,7 @@ program XML the report reads, and registers the outputs.
 """
 import os
 import pathlib
+import shutil
 import sys
 
 from lxml import etree
@@ -107,6 +108,7 @@ class geometry_polish(CPluginScript):
             return self._fail(201, "Geometry polish failed ({}: {})".format(type(exc).__name__, exc))
         finally:
             os.chdir(original_cwd)
+            self._tidy(workdir)
 
         self._write_xml(polisher.state())
         if not os.path.exists(xyzout):
@@ -117,6 +119,17 @@ class geometry_polish(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     # ---- plumbing -----------------------------------------------------------
+
+    def _tidy(self, workdir):
+        """Remove the per-trial scratch files and Coot's backups; the job keeps
+        only the outputs, the program XML and the log."""
+        for name in ("polish_trial.pdb", "polish_trial_in.pdb", "polish_window.pdb",
+                     "polish_neighbourhood.pdb", "polish_current.pdb", "polish_input.pdb"):
+            try:
+                os.remove(os.path.join(workdir, name))
+            except OSError:
+                pass
+        shutil.rmtree(os.path.join(workdir, "coot-backup"), ignore_errors=True)
 
     def _say(self, text):
         print(text)
