@@ -365,7 +365,7 @@ class prepare_deposition(CPluginScript):
                         'details': s(ctrl.PHASING_DETAILS)} if method else {'starting_models': starting_models},
             'ligand_of_interest': s(ctrl.LIGAND_OF_INTEREST),
             'assembly': {'mode': 'author' if s(ctrl.ASSEMBLY_MODE) == 'AUTHOR' else 'asu',
-                         'oligomeric_count': int(ctrl.OLIGOMERIC_COUNT) if ctrl.OLIGOMERIC_COUNT.isSet() else None,
+                         'oligomeric_count': int(_positive(ctrl.OLIGOMERIC_COUNT)) if _positive(ctrl.OLIGOMERIC_COUNT) else None,
                          'operators': s(ctrl.ASSEMBLY_OPERATORS) or '',
                          'evidence': s(ctrl.ASSEMBLY_EVIDENCE) or 'none',
                          'details': s(ctrl.ASSEMBLY_DETAILS)},
