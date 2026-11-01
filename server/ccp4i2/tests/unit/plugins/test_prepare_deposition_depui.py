@@ -53,9 +53,11 @@ def test_software_names_follow_onedep_spelling_and_the_rest_is_reported(tmp_path
         {"name": "ProteinMPNN", "classification": "model building"}])
     warnings = metadata.write_metadata(block, st, spec, fetch=_fetch)
     names = [r[0] for r in _rows(block, "_software", ["name"])]
-    assert names == ["REFMAC", "Aimless", "ProteinMPNN"]
+    # Unverified names are written (the archive records what was used), with a warning.
+    assert names == ["REFMAC", "Aimless", "my_script.py", "ProteinMPNN"]
     assert any("CCP4i2" in w and "not written" in w for w in warnings)
-    assert any("my_script.py" in w for w in warnings)
+    assert any("my_script.py" in w and "Communication tab" in w for w in warnings)
+    assert any("ProteinMPNN" in w for w in warnings)
     assert vocab.canonical_software_name("Refmacat") == "REFMAC"
     assert vocab.canonical_software_name("ccp4i2") is None
 
@@ -166,7 +168,9 @@ def test_the_def_xml_lists_are_the_vocabulary():
 
     container = DefXmlParser().parse_def_xml(locate_def_xml("prepare_deposition"))
     ctrl = container.controlParameters
-    assert list(ctrl.KEYWORDS.get_qualifier("enumerators")) == list(vocab.CLASSIFICATIONS)
-    assert list(ctrl.ASSEMBLY_EVIDENCE.get_qualifier("enumerators")) == list(vocab.ASSEMBLY_EVIDENCE)
+    # The def.xml holds no lists for these: the plugin gives them their menus
+    # from the one source (see test_prepare_deposition_vocabulary).
+    assert not ctrl.KEYWORDS.get_qualifier("enumerators")
+    assert not ctrl.ASSEMBLY_EVIDENCE.get_qualifier("enumerators")
     sub = ctrl.STARTING_MODELS.get_qualifier("subItem")
     assert sub["class"].__name__ == "CStartingModel"

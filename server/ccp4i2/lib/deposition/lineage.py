@@ -6,6 +6,46 @@ Django models are imported lazily: this runs on the server, from a
 """
 
 REFINEMENT_TASKS = ("prosmart_refmac", "servalcat_pipe", "buster")
+FLAG_NAMES = ("USEANOMALOUS", "USE_TWIN")
+
+
+def refinement_flags(job_dir):
+    """``{"USEANOMALOUS": bool, "USE_TWIN": bool}`` (whichever are found)
+    from the refinement job's saved parameters, never from its plugin.
+
+    A pipeline (prosmart_refmac, servalcat_pipe) keeps the refmac settings
+    in a sub-container or in a sub-job's parameters, so the files are
+    searched for the elements wherever they sit: the job's own
+    input_params.xml / params.xml first, then its sub-jobs' (job_N_1 ...).
+    Never raises: a shape it does not know yields nothing.
+    """
+    from pathlib import Path
+
+    from lxml import etree
+
+    found = {}
+    job_dir = Path(str(job_dir))
+    candidates = [job_dir / "params.xml", job_dir / "input_params.xml"]
+    try:
+        for sub in sorted(job_dir.iterdir()):
+            if sub.is_dir() and sub.name.startswith("job_"):
+                candidates += [sub / "params.xml", sub / "input_params.xml"]
+    except OSError:
+        pass
+    for path in candidates:
+        if len(found) == len(FLAG_NAMES):
+            break
+        try:
+            root = etree.parse(str(path)).getroot()
+        except (OSError, etree.XMLSyntaxError):
+            continue
+        for name in FLAG_NAMES:
+            if name in found:
+                continue
+            node = next(iter(root.iter(name)), None)
+            if node is not None and node.text is not None and node.text.strip():
+                found[name] = node.text.strip().lower() in ("true", "1", "yes")
+    return found
 
 
 def trace_xyzin_lineage(file_uuid):
@@ -63,16 +103,12 @@ def trace_xyzin_lineage(file_uuid):
             result["files"][f.job_param_name] = str(f.uuid)
 
     if ref_job.task_name != "buster":
-        try:
-            from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
-
-            ctrl = get_job_plugin(ref_job).container.controlParameters
-            if hasattr(ctrl, "USEANOMALOUS"):
-                result["params"]["USEANOMALOUS"] = bool(ctrl.USEANOMALOUS)
-            if hasattr(ctrl, "USE_TWIN"):
-                result["params"]["USE_TWIN"] = bool(ctrl.USE_TWIN)
-        except Exception as err:
-            result["warnings"].append("Could not read refinement control parameters: %s" % err)
+        found = refinement_flags(ref_job.directory)
+        result["params"].update(found)
+        if not found:
+            result["warnings"].append(
+                "Could not find the refinement's anomalous/twin settings; check them on the "
+                "Files page")
 
     f_sigf_uuid = result["files"].get("F_SIGF")
     if not f_sigf_uuid:

@@ -193,8 +193,6 @@
                 <qualifiers>
                     <allowUndefined>True</allowUndefined>
                     <guiLabel>Classification</guiLabel>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>ANTIBIOTIC,ANTIFUNGAL PROTEIN,ANTIMICROBIAL PROTEIN,ANTITOXIN,ANTITUMOR PROTEIN,ANTIVIRAL PROTEIN,APOPTOSIS,BIOSYNTHETIC PROTEIN,BLOOD CLOTTING,CELL ADHESION,CELL CYCLE,CELL INVASION,CHAPERONE,CIRCADIAN CLOCK PROTEIN,CONTRACTILE PROTEIN,CYTOKINE,CYTOSOLIC PROTEIN,DE NOVO PROTEIN,DNA,DNA BINDING PROTEIN,DNA/RNA,ELECTRON TRANSPORT,ENDOCYTOSIS,EXOCYTOSIS,FLAVOPROTEIN,FLUORESCENT PROTEIN,GENE REGULATION,HORMONE,HYDROLASE,IMMUNE SYSTEM,ISOMERASE,LIGASE,LIPID BINDING PROTEIN,LIPID TRANSPORT,LUMINESCENT PROTEIN,LYASE,MEMBRANE PROTEIN,METAL BINDING PROTEIN,METAL TRANSPORT,MOTOR PROTEIN,NEUROPEPTIDE,NUCLEAR PROTEIN,ONCOPROTEIN,OXIDOREDUCTASE,OXYGEN STORAGE,OXYGEN TRANSPORT,PEPTIDE BINDING PROTEIN,PHOTOSYNTHESIS,PLANT PROTEIN,PROTEIN BINDING,PROTEIN FIBRIL,PROTEIN TRANSPORT,PROTON TRANSPORT,RECOMBINATION,REPLICATION,RIBOSOME,RNA,RNA BINDING PROTEIN,SIGNALING PROTEIN,SPLICING,STRUCTURAL GENOMICS,STRUCTURAL PROTEIN,SUGAR BINDING PROTEIN,SURFACTANT PROTEIN,TOXIN,TRANSCRIPTION,TRANSFERASE,TRANSLATION,TRANSLOCASE,TRANSPORT PROTEIN,UNKNOWN FUNCTION,VIRAL PROTEIN,VIRUS,VIRUS LIKE PARTICLE</enumerators>
                     <toolTip>One term from OneDep's classification list (_struct_keywords.pdbx_keywords). Left blank, a wholly designed entry is classed DE NOVO PROTEIN; anything else needs a choice. Further terms go in the keywords.</toolTip>
                 </qualifiers>
             </content>
@@ -295,8 +293,6 @@
             <content id="CONTACT_SALUTATION">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>Dr.,Prof.,Mr.,Ms.,Mrs.</enumerators>
                     <default>Dr.</default>
                     <guiLabel>Salutation</guiLabel>
                 </qualifiers>
@@ -318,8 +314,6 @@
             <content id="CONTACT_ROLE">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>principal investigator/group leader,responsible scientist,investigator</enumerators>
                     <default>principal investigator/group leader</default>
                     <guiLabel>Role</guiLabel>
                 </qualifiers>
@@ -327,8 +321,6 @@
             <content id="CONTACT_ORG_TYPE">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>academic,commercial,government,other</enumerators>
                     <default>academic</default>
                     <guiLabel>Organisation type</guiLabel>
                 </qualifiers>
@@ -432,8 +424,6 @@
             <content id="SOURCE">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>SYNCHROTRON,ROTATING ANODE,SEALED TUBE,FREE ELECTRON LASER,LIQUID ANODE</enumerators>
                     <default>SYNCHROTRON</default>
                     <guiLabel>X-ray source</guiLabel>
                 </qualifiers>
@@ -456,8 +446,6 @@
             <content id="DETECTOR">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>PIXEL,CCD,CMOS,IMAGE PLATE,AREA DETECTOR</enumerators>
                     <default>PIXEL</default>
                     <guiLabel>Detector class</guiLabel>
                 </qualifiers>
@@ -504,8 +492,6 @@
             <content id="PROTOCOL">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>SINGLE WAVELENGTH,SAD,MAD,LAUE</enumerators>
                     <default>SINGLE WAVELENGTH</default>
                     <guiLabel>Diffraction protocol</guiLabel>
                 </qualifiers>
@@ -515,7 +501,7 @@
                 <qualifiers>
                     <allowUndefined>True</allowUndefined>
                     <guiLabel>Crystallisation method</guiLabel>
-                    <toolTip>As the PDB spells it (the values contain commas, so no menu): VAPOR DIFFUSION, SITTING DROP; VAPOR DIFFUSION, HANGING DROP; BATCH MODE; MICROBATCH; LIPIDIC CUBIC PHASE; COUNTER-DIFFUSION; MICRODIALYSIS</toolTip>
+                    <toolTip>The method as the PDB lists it</toolTip>
                 </qualifiers>
             </content>
             <content id="CRYSTAL_TEMP">
@@ -543,9 +529,7 @@
             <content id="PHASING_METHOD">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MR,SAD,MAD,SIR,SIRAS,MIR,MIRAS,AB INITIO,OTHER</enumerators>
-                    <default>MR</default>
+                    <default>MOLECULAR REPLACEMENT</default>
                     <guiLabel>Phasing method</guiLabel>
                 </qualifiers>
             </content>
@@ -626,8 +610,6 @@
             <content id="ASSEMBLY_EVIDENCE">
                 <className>CString</className>
                 <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>none,gel filtration,light scattering,homology,equilibrium centrifugation,mass spectrometry,SAXS,immunoprecipitation,isothermal titration calorimetry,cross-linking,native gel electrophoresis,microscopy,assay for oligomerization,scanning transmission electron microscopy,surface plasmon resonance,fluorescence resonance energy transfer,NMR relaxation study,electron microscopy</enumerators>
                     <default>none</default>
                     <guiLabel>Experimental support for the assembly</guiLabel>
                 </qualifiers>

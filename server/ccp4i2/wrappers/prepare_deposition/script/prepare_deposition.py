@@ -16,6 +16,43 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
+# Controlled form fields and the mmCIF item whose values they take.
+FIELD_ITEMS = {
+    'KEYWORDS': '_struct_keywords.pdbx_keywords',
+    'PHASING_METHOD': '_refine.pdbx_method_to_determine_struct',
+    'PROTOCOL': '_diffrn_radiation.pdbx_diffrn_protocol',
+    'SOURCE': '_diffrn_source.source',
+    'SYNCHROTRON_SITE': '_diffrn_source.pdbx_synchrotron_site',
+    'BEAMLINE': '_diffrn_source.pdbx_synchrotron_beamline',
+    'DETECTOR': '_diffrn_detector.detector',
+    'DETECTOR_TYPE': '_diffrn_detector.type',
+    'CRYSTAL_METHOD': '_exptl_crystal_grow.method',
+    'CONTACT_COUNTRY': '_pdbx_contact_author.country',
+    'CONTACT_SALUTATION': '_pdbx_contact_author.name_salutation',
+    'CONTACT_ROLE': '_pdbx_contact_author.role',
+    'CONTACT_ORG_TYPE': '_pdbx_contact_author.organization_type',
+    'ASSEMBLY_EVIDENCE': '_pdbx_struct_assembly_auth_evidence.experimental_support',
+}
+# Sub-items of the form's lists that are controlled the same way (their
+# menus come from the types module, which reads the vendored copy).
+LIST_FIELD_ITEMS = {
+    'SOFTWARE': {'CLASSIFICATION': '_software.classification'},
+    'RELATED': {'DB_NAME': '_pdbx_database_related.db_name',
+                'CONTENT_TYPE': '_pdbx_database_related.content_type'},
+    'STARTING_MODELS': {'TYPE': '_pdbx_initial_refinement_model.type',
+                        'SOURCE': '_pdbx_initial_refinement_model.source_name'},
+}
+FIELD_LABELS = {
+    'KEYWORDS': 'Classification', 'PHASING_METHOD': 'Phasing method',
+    'PROTOCOL': 'Diffraction protocol', 'SOURCE': 'X-ray source', 'SYNCHROTRON_SITE': 'Synchrotron',
+    'BEAMLINE': 'Beamline', 'DETECTOR': 'Detector class', 'DETECTOR_TYPE': 'Detector',
+    'CRYSTAL_METHOD': 'Crystallisation method', 'CONTACT_COUNTRY': 'Country',
+    'CONTACT_SALUTATION': 'Salutation', 'CONTACT_ROLE': 'Role',
+    'CONTACT_ORG_TYPE': 'Organisation type', 'ASSEMBLY_EVIDENCE': 'Assembly evidence',
+    'SOFTWARE': 'Software row', 'RELATED': 'Related entry', 'STARTING_MODELS': 'Starting model',
+}
+
+
 class prepare_deposition(CPluginScript):
     TASKNAME = 'prepare_deposition'
     ERROR_CODES = {
@@ -33,14 +70,36 @@ class prepare_deposition(CPluginScript):
     def __init__(self, *args, **kws):
         super().__init__(*args, **kws)
         self.xmlroot = etree.Element('prepare_deposition')
+        self._apply_vocabulary()
+
+    def _apply_vocabulary(self):
+        """Give every controlled form field its menu from the one source of
+        allowed values (ccp4i2.lib.deposition.enumerations). The def.xml
+        carries no lists of its own for these fields: the values contain
+        commas ("VAPOR DIFFUSION, SITTING DROP", "Korea, Republic Of") that
+        a def.xml enumerator list cannot hold, and two copies would drift."""
+        from ccp4i2.lib.deposition import enumerations
+
+        ctrl = getattr(self.container, 'controlParameters', None)
+        if ctrl is None:
+            return
+        for field, item in FIELD_ITEMS.items():
+            obj = getattr(ctrl, field, None)
+            values = enumerations.allowed(item)
+            if obj is None or not values:
+                continue
+            obj.set_qualifier('enumerators', list(values))
+            obj.set_qualifier('onlyEnumerators', True)
 
     # -- interactive helpers (plugin_method) -------------------------------
 
     def trace_xyzin_lineage(self, file_uuid):
         """What the task interface calls when a model is chosen: the files and
         settings of the refinement and scaling jobs, plus the refinement job
-        directory and the program versions found."""
+        directory and the program versions found (each once, in OneDep's
+        spelling)."""
         from ccp4i2.lib.deposition.lineage import trace_xyzin_lineage
+        from ccp4i2.lib.deposition.vocab import canonical_software_name
         from ccp4i2.db.models import Job
 
         result = trace_xyzin_lineage(file_uuid)
@@ -50,17 +109,26 @@ class prepare_deposition(CPluginScript):
                 result['params']['REFINEMENT_JOB_DIR'] = str(Job.objects.get(id=job_id).directory)
             except Job.DoesNotExist:
                 pass
+        unique, seen = [], set()
+        for sw in result.get('software', []):
+            name = canonical_software_name(sw.get('name'))
+            if name and name.lower() not in seen:
+                seen.add(name.lower())
+                unique.append(dict(sw, name=name))
+        result['software'] = unique
         return result
 
     def suggest_metadata(self):
         """What can be pre-filled from the inputs: one molecule per AU-contents
-        sequence (name, length, copies) and the wavelength. Never raises."""
+        sequence, with proposed segments, and the wavelength. Never raises."""
         try:
             return self._suggest_metadata()
         except Exception as exc:  # pragma: no cover - guard rail
             return {'ok': False, 'error': '%s: %s' % (type(exc).__name__, exc)}
 
     def _suggest_metadata(self):
+        from ccp4i2.lib.deposition.segments import propose_segments
+
         inp = self.container.inputData
         out = {'ok': True, 'entities': [], 'wavelength': None}
         if inp.ASUCONTENT.isSet():
@@ -70,9 +138,14 @@ class prepare_deposition(CPluginScript):
                 if not asu.isSelected(seq):
                     continue
                 sequence = ''.join(str(seq.sequence).split())
+                description = str(getattr(seq, 'description', '') or '') or str(seq.name)
+                proposal = propose_segments(sequence, str(seq.name), description)
                 out['entities'].append({
                     'SEQUENCE_NAME': str(seq.name),
-                    'DESCRIPTION': str(getattr(seq, 'description', '') or seq.name),
+                    'DESCRIPTION': description,
+                    'SEGMENTS': proposal['segments'],
+                    'notes': proposal['notes'],
+                    'sequence': sequence,
                     'length': len(sequence),
                     'copies': int(getattr(seq, 'nCopies', 1) or 1),
                 })
@@ -88,26 +161,184 @@ class prepare_deposition(CPluginScript):
                 out['wavelength_error'] = str(err)
         return out
 
+    def fill_form(self, software=None):
+        """Fill the form from the AU contents (molecule records with proposed
+        segments), the given program versions and the reflection data, and
+        save the job's parameters. Idempotent: a molecule whose sequence name
+        already has a record, a program already listed (by OneDep spelling),
+        a wavelength already set are left alone, so a second click, a stale
+        page or a re-run of the lineage trace adds nothing.
+
+        Decided here, against the parameters as saved, not in the browser
+        against a cached copy. Returns what was added. Never raises.
+        """
+        try:
+            return self._fill_form(software or [])
+        except Exception as exc:  # pragma: no cover - guard rail
+            return {'ok': False, 'error': '%s: %s' % (type(exc).__name__, exc)}
+
+    def _fill_form(self, software):
+        from ccp4i2.lib.deposition.vocab import canonical_software_name
+
+        work = self.getWorkDirectory()
+        if os.path.exists(os.path.join(work, 'params.xml')):
+            return {'ok': False, 'error': 'the job has run; clone it to change its parameters'}
+        ctrl = self.container.controlParameters
+        suggestion = self._suggest_metadata()
+        added = {'entities': [], 'software': [], 'wavelength': None, 'notes': []}
+
+        have = {(_text(_field(e, 'SEQUENCE_NAME')) or '') for e in ctrl.ENTITIES}
+        for ent in suggestion['entities']:
+            if ent['SEQUENCE_NAME'] in have:
+                continue
+            have.add(ent['SEQUENCE_NAME'])
+            item = ctrl.ENTITIES.addItem()
+            item.SEQUENCE_NAME.set(ent['SEQUENCE_NAME'])
+            item.DESCRIPTION.set(ent['DESCRIPTION'])
+            for seg in ent['SEGMENTS']:
+                row = item.SEGMENTS.addItem()
+                row.BEG.set(seg['BEG'])
+                row.END.set(seg['END'])
+                row.KIND.set(seg['KIND'])
+            added['entities'].append(ent['SEQUENCE_NAME'])
+            added['notes'].extend('%s: %s' % (ent['SEQUENCE_NAME'], n) for n in ent['notes'])
+
+        listed = set()
+        for row in ctrl.SOFTWARE:
+            name = canonical_software_name(_text(_field(row, 'NAME')))
+            if name:
+                listed.add(name.lower())
+        for sw in software:
+            name = canonical_software_name(sw.get('name'))
+            if not name or name.lower() in listed:
+                continue
+            listed.add(name.lower())
+            row = ctrl.SOFTWARE.addItem()
+            row.NAME.set(name)
+            if sw.get('version'):
+                row.VERSION.set(str(sw['version']))
+            row.CLASSIFICATION.set(sw.get('classification') or 'data scaling')
+            added['software'].append(name)
+
+        if suggestion.get('wavelength') and not _text(ctrl.WAVELENGTH):
+            ctrl.WAVELENGTH.set(suggestion['wavelength'])
+            added['wavelength'] = suggestion['wavelength']
+
+        if added['entities'] or added['software'] or added['wavelength']:
+            self.saveDataToXml(os.path.join(work, 'input_params.xml'))
+        added['ok'] = True
+        return added
+
+    def find_references(self, sequence_name, beg=None, end=None):
+        """UniProt accessions of PDB entities like a molecule's segment, for
+        the user to choose from (RCSB sequence search). Never fills anything
+        in and never raises; offline it says so."""
+        from ccp4i2.lib.deposition.segments import find_references
+
+        for ent in self._suggest_metadata()['entities']:
+            if ent['SEQUENCE_NAME'] == sequence_name:
+                seq = ent['sequence']
+                piece = seq[(int(beg) - 1 if beg else 0):(int(end) if end else len(seq))]
+                return find_references(piece)
+        return {'ok': False, 'error': 'no AU-contents sequence named %r' % sequence_name}
+
     # -- validation ----------------------------------------------------------
 
+    def _error(self, error, field, details, code=207, severity=CCP4ErrorHandling.SEVERITY_ERROR):
+        error.append(klass=self.TASKNAME, code=code, details=details,
+                     name='%s.container.controlParameters.%s' % (self.TASKNAME, field),
+                     severity=severity)
+
     def validity(self):
+        """Every problem on its own field, so the interface marks the field
+        that is wrong: what is missing, a controlled value OneDep would
+        reject (with the values it accepts), an author not in the PDB's
+        form, a duplicated molecule record, and the warnings (a program the
+        DepUI may not list, a wavelength that does not fit the source)."""
+        from ccp4i2.lib.deposition import enumerations
+        from ccp4i2.lib.deposition.vocab import (
+            UNKNOWN, author_problem, phasing_method, software_name, wavelength_consistency)
+
         error = super().validity()
         ctrl = self.container.controlParameters
-        missing = []
-        if not str(ctrl.TITLE).strip():
-            missing.append('a title')
+        WARN = CCP4ErrorHandling.SEVERITY_WARNING
+
+        if not _text(ctrl.TITLE):
+            self._error(error, 'TITLE', 'Title: needed')
         if not any(_text(_field(a, 'NAME')) for a in ctrl.AUTHORS):
-            missing.append('at least one author')
-        if not str(ctrl.CONTACT_LAST_NAME).strip() or not str(ctrl.CONTACT_EMAIL).strip():
-            missing.append('the contact author name and email')
+            self._error(error, 'AUTHORS', 'Deposition authors: at least one is needed')
+        if not _text(ctrl.CONTACT_LAST_NAME):
+            self._error(error, 'CONTACT_LAST_NAME', 'Contact author: last name needed')
+        if not _text(ctrl.CONTACT_EMAIL):
+            self._error(error, 'CONTACT_EMAIL', 'Contact author: email needed')
         if not _text(ctrl.KEYWORDS) and not self._all_designed():
-            missing.append('a classification (one term; only a wholly designed entry defaults '
-                           'to DE NOVO PROTEIN)')
-        if missing:
-            error.append(klass=self.TASKNAME, code=207,
-                         details='Still needed: ' + ', '.join(missing),
-                         name='%s.container.controlParameters.TITLE' % self.TASKNAME,
-                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
+            self._error(error, 'KEYWORDS', 'Classification: choose one term (only a wholly '
+                                           'designed entry defaults to DE NOVO PROTEIN)')
+
+        for list_name, label in (('AUTHORS', 'Deposition authors'),
+                                 ('CITATION_AUTHORS', 'Citation authors')):
+            for i, author in enumerate(getattr(ctrl, list_name)):
+                problem = author_problem(_text(_field(author, 'NAME')))
+                if problem:
+                    self._error(error, '%s[%d].NAME' % (list_name, i), '%s: %s' % (label, problem))
+
+        def check(field, item, value, label, fixer=None):
+            if value is None:
+                return
+            ok = fixer(value) if fixer else enumerations.canonical(item, value)
+            if ok is None:
+                values = enumerations.allowed(item) or ()
+                shown = ', '.join(values[:12]) + (' ... (%d in all)' % len(values) if len(values) > 12 else '')
+                self._error(error, field, "%s: '%s' is not a value OneDep accepts; choose one of %s"
+                            % (label, value, shown))
+
+        for field, item in FIELD_ITEMS.items():
+            fixer = None
+            if field == 'PHASING_METHOD':
+                fixer = phasing_method
+            elif field == 'PROTOCOL':
+                fixer = lambda v: 'SINGLE WAVELENGTH' if str(v).upper() == 'SAD' else enumerations.canonical(item, v)
+            check(field, item, _text(getattr(ctrl, field)), FIELD_LABELS.get(field, field), fixer)
+
+        for list_name, sub_items in LIST_FIELD_ITEMS.items():
+            for i, row in enumerate(getattr(ctrl, list_name)):
+                for sub, item in sub_items.items():
+                    check('%s[%d].%s' % (list_name, i, sub), item, _text(_field(row, sub)),
+                          '%s %d %s' % (FIELD_LABELS.get(list_name, list_name), i + 1, sub.lower()))
+
+        source = _text(ctrl.SOURCE) or 'SYNCHROTRON'
+        site, beamline = _text(ctrl.SYNCHROTRON_SITE), _text(ctrl.BEAMLINE)
+        if source == 'SYNCHROTRON' and site and beamline:
+            csite = enumerations.canonical('_diffrn_source.pdbx_synchrotron_site', site)
+            cline = enumerations.canonical('_diffrn_source.pdbx_synchrotron_beamline', beamline)
+            if csite and cline and enumerations.source_type(csite, cline) is None:
+                self._error(error, 'BEAMLINE', 'Beamline: %s %s is not a combination OneDep lists '
+                                               '(no "%s BEAMLINE %s")' % (csite, cline, csite.upper(), cline))
+        consistency = wavelength_consistency(source, _text(ctrl.WAVELENGTH))
+        if consistency:
+            self._error(error, 'WAVELENGTH', 'Wavelength: ' + consistency, severity=WARN)
+
+        names = {}
+        for i, row in enumerate(ctrl.SOFTWARE):
+            spelling, status = software_name(_text(_field(row, 'NAME')))
+            if spelling is None:
+                continue
+            if spelling.lower() in names:
+                self._error(error, 'SOFTWARE[%d].NAME' % i, 'Other software: %s is listed twice; '
+                            'only the first row is written' % spelling, severity=WARN)
+            names[spelling.lower()] = i
+            if status == UNKNOWN:
+                self._error(error, 'SOFTWARE[%d].NAME' % i, 'Other software: %s may not be in the '
+                            "DepUI's list; it is written, but you may have to choose it there or "
+                            'mention it in the Communication tab' % spelling, severity=WARN)
+
+        seen = set()
+        for i, ent in enumerate(ctrl.ENTITIES):
+            name = _text(_field(ent, 'SEQUENCE_NAME'))
+            if name and name in seen:
+                self._error(error, 'ENTITIES[%d].SEQUENCE_NAME' % i,
+                            "Molecules: '%s' has two records; delete one" % name)
+            seen.add(name)
         return error
 
     def _all_designed(self):
@@ -191,6 +422,11 @@ class prepare_deposition(CPluginScript):
             messages = self._dictionary_check(block)
             if messages:
                 problems.append('PDBx dictionary: ' + '; '.join(messages[:10]))
+        # The same source of allowed values the form and validity() use.
+        from ccp4i2.lib.deposition import enumerations
+        from ccp4i2.lib.deposition.metadata import WRITTEN_CATEGORIES
+        for item, value in enumerations.violations(block, WRITTEN_CATEGORIES):
+            problems.append("%s = '%s' is not a value OneDep accepts" % (item, value))
         if problems:
             self._report_problems(problems)
             self.flushXml()
@@ -307,11 +543,10 @@ class prepare_deposition(CPluginScript):
                 'segments': segments,
             })
         software = [{'name': s(f(sw, 'NAME')), 'version': s(f(sw, 'VERSION')),
-                     'classification': s(f(sw, 'CLASSIFICATION')) or 'other'}
+                     'classification': s(f(sw, 'CLASSIFICATION')) or 'data processing'}
                     for sw in ctrl.SOFTWARE if s(f(sw, 'NAME'))]
         software.extend(self._lineage_software())
-        software.append({'name': 'CCP4i2', 'version': _ccp4i2_version(),
-                         'classification': 'data processing'})
+
         wavelength = n(ctrl.WAVELENGTH)
         if wavelength is None and inp.F_SIGF.isSet():
             try:

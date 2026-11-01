@@ -14,7 +14,14 @@ declares this module in its ``Task.dataTypes`` (core/tasks.py).
 """
 from ccp4i2.core.base_object.class_metadata import content
 from ccp4i2.core.CCP4Data import CData
-from ccp4i2.lib.deposition.vocab import STARTING_MODEL_SOURCES, STARTING_MODEL_TYPES
+# The menus of the list sub-items come from the vendored copy of the
+# allowed values (a module, so no file is read at import); the unit tests
+# check it agrees with the CCP4 list the rest of the task reads.
+from ccp4i2.lib.deposition._enumerations_data import ENUMERATIONS as _ENUM
+
+
+def _menu(item):
+    return list(_ENUM[item])
 
 SEGMENT_KINDS = ["natural", "engineered", "designed", "scaffold", "synthetic_peptide",
                  "tag", "linker"]
@@ -28,8 +35,7 @@ SEGMENT_KIND_LABELS = [
     "Linker",
 ]
 
-SOFTWARE_CLASSES = ["data collection", "data reduction", "data scaling", "phasing",
-                    "model building", "refinement", "data processing", "other"]
+SOFTWARE_CLASSES = _menu("_software.classification")
 
 
 class CDepositionAuthor(CData):
@@ -53,13 +59,12 @@ class CRelatedEntry(CData):
         contents_order = ["DB_NAME", "DB_ID", "CONTENT_TYPE", "DETAILS"]
         qualifiers = {"allowUndefined": True, "guiLabel": "Related entry"}
 
-    DB_NAME = content("CString", enumerators=["PDB", "EMDB", "BMRB"], onlyEnumerators=True,
-                      default="PDB", guiLabel="Database")
+    DB_NAME = content("CString", enumerators=_menu("_pdbx_database_related.db_name"),
+                      onlyEnumerators=True, default="PDB", guiLabel="Database")
     DB_ID = content("CString", allowUndefined=False, guiLabel="Entry", toolTip="8PVE, EMD-17963")
     CONTENT_TYPE = content(
         "CString", onlyEnumerators=True, default="unspecified", guiLabel="Relationship",
-        enumerators=["unspecified", "re-refinement", "split", "associated EM volume",
-                     "complete structure", "other"])
+        enumerators=_menu("_pdbx_database_related.content_type"))
     DETAILS = content("CString", allowUndefined=True, guiLabel="Details",
                       toolTip="Same engineered AHIR by cryoEM; the DARPin alone")
 
@@ -135,7 +140,7 @@ class CSoftwareEntry(CData):
     NAME = content("CString", allowUndefined=False, guiLabel="Program",
                    toolTip="RFdiffusion, ProteinMPNN, AlphaFold2, Phaser, Coot ...")
     VERSION = content("CString", allowUndefined=True, guiLabel="Version")
-    CLASSIFICATION = content("CString", onlyEnumerators=True, default="other",
+    CLASSIFICATION = content("CString", onlyEnumerators=True, default="model building",
                              enumerators=SOFTWARE_CLASSES, guiLabel="Used for")
 
 
@@ -148,9 +153,9 @@ class CStartingModel(CData):
         qualifiers = {"allowUndefined": True, "guiLabel": "Starting model"}
 
     TYPE = content("CString", onlyEnumerators=True, default="experimental model",
-                   enumerators=list(STARTING_MODEL_TYPES), guiLabel="Kind")
+                   enumerators=_menu("_pdbx_initial_refinement_model.type"), guiLabel="Kind")
     SOURCE = content("CString", onlyEnumerators=True, default="PDB",
-                     enumerators=list(STARTING_MODEL_SOURCES), guiLabel="Source")
+                     enumerators=_menu("_pdbx_initial_refinement_model.source_name"), guiLabel="Source")
     ACCESSION = content("CString", allowUndefined=True, guiLabel="Accession",
                         toolTip="2JAB; AF-Q5SJ03-F1; blank for an in-house model")
     DETAILS = content("CString", allowUndefined=True, guiLabel="Details",

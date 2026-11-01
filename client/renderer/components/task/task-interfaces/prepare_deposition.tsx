@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
-import { Alert, Button, LinearProgress, Paper, Typography } from "@mui/material";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { Alert, Button, LinearProgress, List, ListItemButton, ListItemText, Paper, TextField, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
@@ -19,18 +19,27 @@ interface LineageResult {
   software?: { name: string; version?: string; classification?: string }[];
 }
 
-interface SuggestedEntity {
-  SEQUENCE_NAME: string;
-  DESCRIPTION: string;
-  length: number;
-  copies: number;
+interface ReferenceHit {
+  pdb_entity: string;
+  uniprot: string;
+  identity: number | null;
+  coverage: number | null;
+  description: string | null;
 }
 
-interface Suggestion {
+interface ReferenceResult {
   ok: boolean;
   error?: string;
-  entities: SuggestedEntity[];
+  hits: ReferenceHit[];
+}
+
+interface FillResult {
+  ok: boolean;
+  error?: string;
+  entities: string[];
+  software: string[];
   wavelength: number | null;
+  notes: string[];
 }
 
 type Status = {
@@ -63,7 +72,24 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { data: projects } = api.get<Project[]>("projects");
   const [status, setStatus] = useState<Status>(null);
   const [busy, setBusy] = useState(false);
+  // A ref as well as state: two clicks inside one render both see busy=false.
+  const busyRef = useRef(false);
+  const [refQuery, setRefQuery] = useState("");
+  const [refHits, setRefHits] = useState<ReferenceHit[] | null>(null);
   const taskName = props.job.task_name;
+
+  /** Runs one action at a time; a second click while it runs is ignored. */
+  const exclusive = useCallback(async (action: () => Promise<void>) => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+    setBusy(true);
+    try {
+      await action();
+    } finally {
+      busyRef.current = false;
+      setBusy(false);
+    }
+  }, []);
 
   const filesByUuid = useMemo(() => {
     const map = new Map<string, any>();
@@ -113,20 +139,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       for (const [param, val] of Object.entries(result.params)) {
         await setParameter({ object_path: `${taskName}.controlParameters.${param}`, value: val });
       }
-      // Program versions the scaling job recorded (Aimless, Pointless) become
-      // software rows, once each; the writer spells them as OneDep does.
-      const known = new Set(
-        (container?.controlParameters?.SOFTWARE?._value ?? []).map((row: any) =>
-          String(row?._value?.NAME?._value ?? "").toLowerCase()
-        )
-      );
-      for (const sw of result.software ?? []) {
-        if (!sw.name || known.has(sw.name.toLowerCase())) continue;
-        known.add(sw.name.toLowerCase());
-        await api.post(`jobs/${props.job.id}/add_list_item/`, {
-          object_path: "controlParameters.SOFTWARE",
-          values: { NAME: sw.name, VERSION: sw.version ?? "", CLASSIFICATION: sw.classification ?? "other" },
-        });
+      // Program versions the scaling job recorded become software rows. The
+      // server decides what is new against the saved parameters (in OneDep's
+      // spelling), so tracing the same model twice adds nothing.
+      if ((result.software ?? []).length) {
+        await callPluginMethod("fill_form", { software: result.software });
       }
       await mutateContainer();
       setBusy(false);
@@ -138,49 +155,54 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           (result.warnings.length ? `. Note: ${result.warnings.join(". ")}` : ""),
       });
     },
-    [api, callPluginMethod, container, setParameter, mutateContainer, fileItemToParameterArg, filesByUuid, projectJobs, projects, props.job.id, taskName]
+    [callPluginMethod, setParameter, mutateContainer, fileItemToParameterArg, filesByUuid, projectJobs, projects, taskName]
   );
 
-  // One Molecule record per AU-contents sequence, added through the list
-  // endpoint so each row is a typed CEntityMetadata with its fields set.
-  const fillMolecules = useCallback(async () => {
-    setBusy(true);
-    setStatus(null);
-    const suggestion: Suggestion | null = await callPluginMethod("suggest_metadata", {});
-    if (!suggestion || !suggestion.ok) {
-      setBusy(false);
-      setStatus({ type: "warning", message: suggestion?.error ?? "Nothing could be suggested" });
-      return;
-    }
-    const existing = container?.controlParameters?.ENTITIES?._value?.length ?? 0;
-    let added = 0;
-    if (existing === 0) {
-      for (const ent of suggestion.entities) {
-        await api.post(`jobs/${props.job.id}/add_list_item/`, {
-          object_path: "controlParameters.ENTITIES",
-          values: { SEQUENCE_NAME: ent.SEQUENCE_NAME, DESCRIPTION: ent.DESCRIPTION },
+  // One Molecule record per AU-contents sequence, with proposed segments
+  // (tag, protein), and the wavelength. Decided on the server against the
+  // saved parameters: a sequence that already has a record is skipped, so
+  // filling twice changes nothing.
+  const fillForm = useCallback(
+    () =>
+      exclusive(async () => {
+        setStatus(null);
+        await mutateContainer();
+        const added: FillResult | null = await callPluginMethod("fill_form", {});
+        await mutateContainer();
+        if (!added || !added.ok) {
+          setStatus({ type: "warning", message: added?.error ?? "Nothing could be filled in" });
+          return;
+        }
+        const parts: string[] = [];
+        if (added.entities.length) parts.push(`molecule record(s) for ${added.entities.join(", ")}`);
+        if (added.wavelength) parts.push(`wavelength ${added.wavelength} A`);
+        setStatus({
+          type: parts.length ? "success" : "info",
+          message: parts.length
+            ? `Added ${parts.join(" and ")}. ${added.notes.join(". ")}`
+            : "Every AU-contents sequence already has a record; nothing added.",
         });
-        added += 1;
-      }
-    }
-    if (suggestion.wavelength) {
-      await setParameter({
-        object_path: `${taskName}.controlParameters.WAVELENGTH`,
-        value: suggestion.wavelength,
-      });
-    }
-    await mutateContainer();
-    setBusy(false);
-    setStatus({
-      type: "success",
-      message:
-        added > 0
-          ? `Added ${added} molecule record(s) from the AU contents; now describe each one's segments.`
-          : existing > 0
-          ? "Molecule records already exist; nothing added."
-          : "The AU contents has no selected sequence.",
-    });
-  }, [api, callPluginMethod, container, mutateContainer, props.job.id, setParameter, taskName]);
+      }),
+    [callPluginMethod, exclusive, mutateContainer]
+  );
+
+  // Find UniProt accessions for an AU-contents sequence: offered, never filled in.
+  const findReferences = useCallback(
+    () =>
+      exclusive(async () => {
+        setRefHits(null);
+        const result: ReferenceResult | null = await callPluginMethod("find_references", {
+          sequence_name: refQuery,
+        });
+        if (!result || !result.ok) {
+          setStatus({ type: "warning", message: result?.error ?? "The search could not be run" });
+          return;
+        }
+        setRefHits(result.hits);
+        if (!result.hits.length) setStatus({ type: "info", message: "No similar entries found." });
+      }),
+    [callPluginMethod, exclusive, refQuery]
+  );
 
   if (!container) return <LinearProgress />;
 
@@ -273,9 +295,43 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               synthesised peptide, a tag or a linker. A designed protein needs only its name
               and one designed segment.
             </Typography>
-            <Button variant="outlined" size="small" onClick={fillMolecules} disabled={busy} sx={{ mb: 1 }}>
+            <Button variant="outlined" size="small" onClick={fillForm} disabled={busy} sx={{ mb: 1 }}>
               Fill from the AU contents
             </Button>
+            <Typography variant="body2" sx={{ mt: 1 }}>
+              Find UniProt references for a sequence (RCSB search; you choose, nothing is filled in):
+            </Typography>
+            <TextField
+              size="small"
+              label="AU-contents sequence name"
+              value={refQuery}
+              onChange={(e) => setRefQuery(e.target.value)}
+              sx={{ mr: 1, mt: 0.5 }}
+            />
+            <Button variant="outlined" size="small" onClick={findReferences} disabled={busy || !refQuery} sx={{ mt: 0.5 }}>
+              Find UniProt reference
+            </Button>
+            {refHits && refHits.length > 0 && (
+              <List dense>
+                {refHits.map((hit) => (
+                  <ListItemButton
+                    key={`${hit.pdb_entity}-${hit.uniprot}`}
+                    onClick={() => {
+                      navigator.clipboard?.writeText(hit.uniprot);
+                      setStatus({
+                        type: "info",
+                        message: `${hit.uniprot} copied: paste it into the UniProt field of the segment it belongs to.`,
+                      });
+                    }}
+                  >
+                    <ListItemText
+                      primary={`${hit.uniprot} (via PDB ${hit.pdb_entity})`}
+                      secondary={`${hit.description ?? ""} identity ${hit.identity ?? "?"} coverage ${hit.coverage ?? "?"}`}
+                    />
+                  </ListItemButton>
+                ))}
+              </List>
+            )}
             <CCP4i2TaskElement itemName="ENTITIES" {...props} />
             <CCP4i2TaskElement itemName="DESIGN_DETAILS" {...props} />
           </CCP4i2ContainerElement>
