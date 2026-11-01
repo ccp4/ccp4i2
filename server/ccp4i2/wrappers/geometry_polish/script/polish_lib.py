@@ -257,17 +257,24 @@ def summarize(pdb_path):
 def density_ok(before, after, guard_fraction, min_density, slack=ABSOLUTE_SLACK):
     """Does a change keep enough of the density it started with?
 
-    The result must stay above ``min_density`` and either within ``slack``
-    sigma of the original or above ``guard_fraction`` of it. The fraction is
-    what let strained side chains in strong density (4 sigma) move to a
-    rotamer at 2.5 sigma; the floor stops a side chain at 1 sigma dropping
-    below 0.8, and stops the slack excusing a fall from 0.5 to 0.2.
+    A residue that starts above ``min_density`` must stay above it and either
+    within ``slack`` sigma of the original or above ``guard_fraction`` of it.
+    The fraction is what let strained side chains in strong density (4 sigma)
+    move to a rotamer at 2.5 sigma; the floor stops a side chain at 1 sigma
+    dropping below 0.8.
+
+    A residue that starts below the floor (a disordered surface side chain,
+    or a flank the refinement merely jiggles) may not lose more than half the
+    slack: it cannot be made to clear a floor it never reached, but a fall
+    from 0.5 to 0.2 is still refused.
     """
     if after != after or before != before:  # NaN: no atoms to score
         return True
-    if after < min_density:
-        return False
-    return after >= before - slack or after >= guard_fraction * before
+    if before >= min_density:
+        if after < min_density:
+            return False
+        return after >= before - slack or after >= guard_fraction * before
+    return after >= before - slack / 2.0
 
 
 # --------------------------------------------------------------------------

@@ -110,8 +110,10 @@ def test_new_clashes_diff_is_by_atom_pair_and_threshold():
     (4.0, 2.0, False),     # lost half of strong density
     (1.0, 0.85, True),     # within the absolute slack and above the floor
     (1.0, 0.6, False),     # below the minimum
-    (0.5, 0.2, False),     # the slack does not excuse falling below the floor
-    (0.3, 0.1, False),     # nor does a weak start
+    (0.5, 0.2, False),     # a weak side chain may not lose more than half the slack
+    (0.3, 0.1, False),     # nor may a weaker one
+    (0.66, 0.66, True),    # a weak flank that did not move is not a veto
+    (0.26, 0.23, True),    # nor one that jiggled
     (2.0, float("nan"), True),
 ])
 def test_density_guard(before, after, ok):
