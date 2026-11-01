@@ -1,4 +1,78 @@
 from ccp4i2.report.CCP4ReportParser import Report
+from ccp4i2.report.svg import inline_svg
+
+
+def coverage_from_alignment(align_seq, align_model, align_match):
+    """Per-residue coverage of a construct by a model chain, from the three
+    gapped alignment strings the sequence check writes.
+
+    Returns ``(length, modelled, mismatches, unmodelled_runs)``: the
+    construct length, the set of construct positions the model covers with
+    the same residue, the set it covers with a different residue, and the
+    runs ``[(first, last), ...]`` of construct positions no model residue
+    covers. Positions are 1-based on the construct.
+    """
+    modelled, mismatches = set(), set()
+    pos = 0
+    for s, m, k in zip(align_seq or "", align_model or "", align_match or ""):
+        if s == "-":
+            continue  # a model residue the construct lacks: not on this axis
+        pos += 1
+        if m == "-":
+            continue
+        if k == "|":
+            modelled.add(pos)
+        else:
+            mismatches.add(pos)
+    length = pos
+    runs = []
+    start = None
+    for p in range(1, length + 1):
+        covered = p in modelled or p in mismatches
+        if not covered and start is None:
+            start = p
+        if covered and start is not None:
+            runs.append((start, p - 1))
+            start = None
+    if start is not None:
+        runs.append((start, length))
+    return length, modelled, mismatches, runs
+
+
+def describe_runs(runs):
+    """``1-10, 275-300, 483-484`` (a single position is written once)."""
+    return ", ".join("%d-%d" % r if r[0] != r[1] else "%d" % r[0] for r in runs)
+
+
+def coverage_track_svg(length, modelled, mismatches, width=600, height=14):
+    """An SVG strip along the construct: covered positions filled, mismatches
+    in a distinct colour, gaps left empty. Drawn as runs, so a 500-residue
+    chain is a handful of rectangles."""
+    if length <= 0:
+        return ""
+    scale = float(width) / length
+    parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" '
+             'viewBox="0 0 %d %d">' % (width, height, width, height),
+             '<rect x="0" y="2" width="%d" height="%d" fill="#e0e0e0" stroke="#9e9e9e" '
+             'stroke-width="0.5"/>' % (width, height - 4)]
+    for positions, colour in ((modelled, "#4caf50"), (mismatches, "#ff9800")):
+        for first, last in _runs(sorted(positions)):
+            x = (first - 1) * scale
+            w = max((last - first + 1) * scale, 0.5)
+            parts.append('<rect x="%.2f" y="2" width="%.2f" height="%d" fill="%s"/>'
+                         % (x, w, height - 4, colour))
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def _runs(positions):
+    runs = []
+    for p in positions:
+        if runs and runs[-1][1] == p - 1:
+            runs[-1][1] = p
+        else:
+            runs.append([p, p])
+    return [tuple(r) for r in runs]
 
 
 class modelASUCheck_report(Report):
@@ -12,7 +86,15 @@ class modelASUCheck_report(Report):
         self.addAlignReport(xmlnode, initiallyOpen=False, parent=self)
 
     def addAlignSummary(self, xml, parent=None):
-        """Add compact progress bar summary of sequence alignments."""
+        """Per chain, a coverage track along the construct and a caption
+        saying which residues are unmodelled.
+
+        A progress bar of matches over length was what this used to draw,
+        and it read as "the missing residues are at the C-terminus": for a
+        chain missing its tag, an internal loop and two C-terminal residues
+        the bar showed one block missing at the end. The track puts every
+        gap where it is.
+        """
         if parent is None:
             parent = self
         alignNodes = xml.findall('.//SequenceAlignment/Alignment')
@@ -26,28 +108,27 @@ class modelASUCheck_report(Report):
         for node in alignNodes:
             chain = node.findtext('ChainID', '')
             identity = node.findtext('identity', '')
-            try:
-                matches = int(node.findtext('match_count', '0'))
-            except (ValueError, TypeError):
-                matches = 0
-            try:
-                seq_len = int(node.findtext('seq_length', '0'))
-            except (ValueError, TypeError):
-                seq_len = 0
-            lbl = f'Chain {chain}'
+            length, modelled, mismatches, runs = coverage_from_alignment(
+                node.findtext('align_1', ''), node.findtext('align_2', ''),
+                node.findtext('align_match', ''))
+            if length == 0:
+                summaryFold.addText(text='Chain %s: no alignment' % chain, tone='warning')
+                continue
+            covered = len(modelled) + len(mismatches)
+            caption = 'Chain %s: %d of %d residues modelled' % (chain, covered, length)
             if identity:
-                lbl += f' ({identity}% id)'
-            summaryFold.addProgress(
-                value=matches,
-                max=seq_len if seq_len > 0 else matches,
-                label=lbl,
-            )
+                caption += ' (%s%% identity)' % identity
+            if runs:
+                caption += '; unmodelled %s' % describe_runs(runs)
+            if mismatches:
+                caption += '; %d residue(s) differ from the construct' % len(mismatches)
+            summaryFold.addText(text=caption, tone='emphasis' if not runs else 'info')
+            summaryFold.append(inline_svg(coverage_track_svg(length, modelled, mismatches)))
         if nonMatchedNodes:
             chains = sorted(set(
                 n.findtext('ChainID', '?') for n in nonMatchedNodes))
-            summaryFold.append(
-                '<p style="color:orange;">Unmatched model chains: '
-                + ', '.join(chains) + '</p>')
+            summaryFold.addText(text='Unmatched model chains: ' + ', '.join(chains),
+                                tone='warning')
 
     def addAlignReport(self, xml, initiallyOpen=False, parent=None):
         if parent is None:
