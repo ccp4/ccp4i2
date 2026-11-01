@@ -48,7 +48,24 @@ from .mmcif_edit import (
     split_categories,
     value_of,
 )
-from .vocab import ASSEMBLY_EVIDENCE, CLASSIFICATIONS, canonical_software_name
+from . import enumerations
+from .vocab import (
+    UNKNOWN,
+    assembly_evidence,
+    classifications,
+    phasing_method,
+    software_name,
+    unverified_software_warning,
+    wavelength_consistency,
+)
+
+
+def _controlled(item, value):
+    """The PDB spelling of a controlled value when there is an obvious one,
+    else the value as given (the enumeration gate after writing names it)."""
+    if value is None:
+        return None
+    return enumerations.canonical(item, value) or value
 
 # How a segment of a construct came to be. The first-class cases are natural,
 # engineered-from-natural, and designed: a world with many de novo proteins
@@ -301,7 +318,7 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         raise ValueError("a classification (one term from OneDep's list, such as "
                          "OXIDOREDUCTASE or DE NOVO PROTEIN) is needed")
     keywords = str(keywords).strip().upper()
-    if keywords not in CLASSIFICATIONS:
+    if keywords not in classifications():
         raise ValueError("classification %r is not one term of OneDep's list; put the rest "
                          "in the keywords text" % keywords)
     replace_pairs(block, "_struct_keywords", [("entry_id", entry_id), ("pdbx_keywords", keywords),
@@ -336,17 +353,24 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
             "id", "name_salutation", "name_first", "name_last", "role", "organization_type",
             "address_1", "address_2", "city", "state_province", "postal_code", "country",
             "email", "phone", "identifier_ORCID"], [(
-                1, _get(contact, "salutation"), _get(contact, "first_name"), contact["last_name"],
-                _get(contact, "role", "principal investigator/group leader"),
-                _get(contact, "organization_type", "academic"),
+                1, _controlled("_pdbx_contact_author.name_salutation", _get(contact, "salutation")),
+                _get(contact, "first_name"), contact["last_name"],
+                _controlled("_pdbx_contact_author.role",
+                            _get(contact, "role", "principal investigator/group leader")),
+                _controlled("_pdbx_contact_author.organization_type",
+                            _get(contact, "organization_type", "academic")),
                 _get(contact, "address_1"), _get(contact, "address_2"), _get(contact, "city"),
-                _get(contact, "state"), _get(contact, "postal_code"), _get(contact, "country"),
+                _get(contact, "state"), _get(contact, "postal_code"),
+                _controlled("_pdbx_contact_author.country", _get(contact, "country")),
                 _get(contact, "email"), _get(contact, "phone"), _get(contact, "orcid"))])
     related = [r for r in (spec.get("related") or []) if _get(r, "db_id")]
     if related:
         replace_loop(block, "_pdbx_database_related", ["db_name", "db_id", "content_type", "details"],
-                     [(_get(r, "db_name", "PDB"), str(r["db_id"]).upper(),
-                       _get(r, "content_type", "unspecified"), _get(r, "details")) for r in related])
+                     [(_controlled("_pdbx_database_related.db_name", _get(r, "db_name", "PDB")),
+                       str(r["db_id"]).upper(),
+                       _controlled("_pdbx_database_related.content_type",
+                                   _get(r, "content_type", "unspecified")),
+                       _get(r, "details")) for r in related])
 
     # --- entities and their sources -------------------------------------
     entity_rows, nonpoly_rows, names_rows = [], [], []
@@ -413,30 +437,43 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
     replace_pairs(block, "_diffrn", [("id", 1), ("crystal_id", 1),
                                      ("ambient_temp", _get(exp, "temperature")),
                                      ("ambient_temp_details", None)])
-    source = _get(exp, "source", "SYNCHROTRON")
-    site, beamline = _get(exp, "site"), _get(exp, "beamline")
-    source_type = _get(exp, "source_type") or (
-        "%s BEAMLINE %s" % (site.upper(), beamline) if site and beamline and source == "SYNCHROTRON"
-        else None)
+    source = _controlled("_diffrn_source.source", _get(exp, "source", "SYNCHROTRON"))
+    site = _controlled("_diffrn_source.pdbx_synchrotron_site", _get(exp, "site"))
+    beamline = _controlled("_diffrn_source.pdbx_synchrotron_beamline", _get(exp, "beamline"))
+    source_type = _get(exp, "source_type")
+    if not source_type and source == "SYNCHROTRON" and site and beamline:
+        source_type = enumerations.source_type(site, beamline)
+        if source_type is None:
+            warnings.append("%s beamline %s is not a combination OneDep lists; choose the "
+                            "source type in OneDep" % (site, beamline))
+    consistency = wavelength_consistency(source, wavelength)
+    if consistency:
+        warnings.append(consistency)
     replace_pairs(block, "_diffrn_source", [
         ("diffrn_id", 1), ("source", source), ("type", source_type),
         ("pdbx_synchrotron_site", site if source == "SYNCHROTRON" else None),
         ("pdbx_synchrotron_beamline", beamline if source == "SYNCHROTRON" else None),
         ("pdbx_wavelength_list", wavelength)])
     replace_pairs(block, "_diffrn_detector", [
-        ("diffrn_id", 1), ("detector", _get(exp, "detector")), ("type", _get(exp, "detector_type")),
+        ("diffrn_id", 1), ("detector", _controlled("_diffrn_detector.detector", _get(exp, "detector"))),
+        ("type", _controlled("_diffrn_detector.type", _get(exp, "detector_type"))),
         ("pdbx_collection_date", _get(exp, "collection_date")), ("details", None)])
     replace_pairs(block, "_diffrn_radiation", [
         ("diffrn_id", 1), ("wavelength_id", wavelength_id),
         ("pdbx_monochromatic_or_laue_m_l", "M"), ("monochromator", _get(exp, "monochromator")),
-        ("pdbx_diffrn_protocol", _get(exp, "protocol", "SINGLE WAVELENGTH")),
+        # A SAD experiment is one wavelength: the protocol list has no SAD.
+        ("pdbx_diffrn_protocol", _controlled(
+            "_diffrn_radiation.pdbx_diffrn_protocol",
+            "SINGLE WAVELENGTH" if str(_get(exp, "protocol", "")).upper() == "SAD"
+            else _get(exp, "protocol", "SINGLE WAVELENGTH"))),
         ("pdbx_scattering_type", "x-ray")])
     vm, solvent = matthews(structure)
     replace_pairs(block, "_exptl_crystal", [("id", 1), ("density_Matthews", vm),
                                             ("density_percent_sol", solvent), ("description", None)])
     crystal = spec.get("crystal") or {}
     replace_pairs(block, "_exptl_crystal_grow", [
-        ("crystal_id", 1), ("method", _get(crystal, "method")), ("temp", _get(crystal, "temp")),
+        ("crystal_id", 1), ("method", _controlled("_exptl_crystal_grow.method", _get(crystal, "method"))),
+        ("temp", _get(crystal, "temp")),
         ("pH", _get(crystal, "ph")), ("pdbx_details", _get(crystal, "details"))])
     set_pairs_in_place(block, "_exptl", [("entry_id", entry_id), ("method", "X-RAY DIFFRACTION"),
                                          ("crystals_number", 1)])
@@ -450,17 +487,22 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         name = _get(sw, "name")
         if not name:
             continue
-        canonical = canonical_software_name(name)
+        canonical, status = software_name(name)
         if canonical is None:
-            # OneDep drops a name outside its software list silently; say so instead.
-            warnings.append("software %r is not in OneDep's software list and was not "
-                            "written" % name)
+            warnings.append("software %r is not written: OneDep has no use for it" % name)
             continue
         key = canonical.lower()   # the form's row wins over the file's (it comes first)
         if key in seen:
             continue
         seen.add(key)
-        rows.append((len(rows) + 1, canonical, _get(sw, "version"), _get(sw, "classification", "other")))
+        if status == UNKNOWN:
+            warnings.append(unverified_software_warning(canonical))
+        classification = _controlled("_software.classification", _get(sw, "classification"))
+        if not enumerations.is_allowed("_software.classification", classification) or not classification:
+            warnings.append("software %s: classification %r is not one OneDep accepts; wrote "
+                            "'data processing'" % (canonical, classification))
+            classification = "data processing"
+        rows.append((len(rows) + 1, canonical, _get(sw, "version"), classification))
     if rows:
         replace_loop(block, "_software", ["pdbx_ordinal", "name", "version", "classification"], rows)
 
@@ -477,13 +519,19 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         ("pdbx_number_atoms_ligand", n_ligand), ("pdbx_number_atoms_solvent", n_water),
         ("number_atoms_total", n_atoms)])
     phasing = spec.get("phasing") or {}
-    method = _get(phasing, "method")
+    method = phasing_method(_get(phasing, "method"))
+    if _get(phasing, "method") and method is None:
+        warnings.append("phasing method %r is not one OneDep accepts; none written"
+                        % _get(phasing, "method"))
     models = [m for m in (phasing.get("starting_models") or []) if _get(m, "accession") or _get(m, "details")]
     polymer_ids = [e.name for e in structure.entities if e.entity_type == gemmi.EntityType.Polymer]
     model_rows = []
     for i, m in enumerate(models, start=1):
         model_rows.append((i, _get(m, "entity_ids") or ",".join(polymer_ids),
-                           _get(m, "type", "experimental model"), _get(m, "source", "PDB"),
+                           _controlled("_pdbx_initial_refinement_model.type",
+                                       _get(m, "type", "experimental model")),
+                           _controlled("_pdbx_initial_refinement_model.source_name",
+                                       _get(m, "source", "PDB")),
                            _get(m, "accession"), _get(m, "details")))
     replace_loop(block, "_pdbx_initial_refinement_model",
                  ["id", "entity_id_list", "type", "source_name", "accession_code", "details"], model_rows)
@@ -491,10 +539,12 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
         _get(m, "accession") or _get(m, "details") for m in models) or None
     refine_items = [("pdbx_starting_model", summary)]
     if method:
-        replace_pairs(block, "_phasing", [("method", method)])
-        refine_items.append(("pdbx_method_to_determine_struct",
-                             "MOLECULAR REPLACEMENT" if method == "MR" else method))
-        if method == "MR":
+        # _phasing.method is a ucode (no spaces): the short form of the same method.
+        short = {"MOLECULAR REPLACEMENT": "MR", "AB INITIO PHASING": "AB_INITIO",
+                 "FOURIER SYNTHESIS": "FOURIER"}.get(method, method)
+        replace_pairs(block, "_phasing", [("method", short)])
+        refine_items.append(("pdbx_method_to_determine_struct", method))
+        if method == "MOLECULAR REPLACEMENT":
             replace_pairs(block, "_pdbx_phasing_MR", [
                 ("entry_id", entry_id), ("method_rotation", None), ("method_translation", None),
                 ("model_details", _get(phasing, "details", summary))])
@@ -514,7 +564,7 @@ def write_metadata(block, structure, spec, entry_id="XXXX", fetch=sr.fetch_unipr
     for category, (tags, rows) in tables.items():
         replace_loop(block, category, tags, rows)
     evidence = str(_get(asm, "evidence", "none")).strip()
-    if evidence not in ASSEMBLY_EVIDENCE:
+    if evidence not in assembly_evidence():
         warnings.append("assembly evidence %r is not in the dictionary's list; wrote 'none'"
                         % evidence)
         evidence = "none"
