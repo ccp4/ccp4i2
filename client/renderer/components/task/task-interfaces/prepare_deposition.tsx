@@ -7,6 +7,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { useApi } from "../../../api";
 import { Project } from "../../../types/models";
+import { DepositionSequenceView, SequenceView } from "./prepare-deposition-sequence-view";
 
 interface LineageResult {
   success: boolean;
@@ -204,6 +205,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [callPluginMethod, exclusive, refQuery]
   );
 
+  // The sequence pictures re-read the server whenever the saved records change.
+  const fetchView = useCallback(
+    (name: string) => callPluginMethod("sequence_view", { sequence_name: name }) as Promise<SequenceView | null>,
+    [callPluginMethod]
+  );
+  const entityRows: { name: string; description: string }[] = (
+    container?.controlParameters?.ENTITIES?._value ?? []
+  ).map((row: any) => ({
+    name: String(row?._value?.SEQUENCE_NAME?._value ?? ""),
+    description: String(row?._value?.DESCRIPTION?._value ?? ""),
+  }));
+  const entitiesKey = JSON.stringify(container?.controlParameters?.ENTITIES?._value ?? []);
+
   if (!container) return <LinearProgress />;
 
   return (
@@ -311,6 +325,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Button variant="outlined" size="small" onClick={findReferences} disabled={busy || !refQuery} sx={{ mt: 0.5 }}>
               Find UniProt reference
             </Button>
+            {entityRows.map((row, i) =>
+              row.name ? (
+                <DepositionSequenceView
+                  key={`${row.name}-${i}`}
+                  sequenceName={row.name}
+                  title={`Molecule ${i + 1}: ${row.description || row.name}`}
+                  refreshKey={entitiesKey}
+                  fetchView={fetchView}
+                />
+              ) : null
+            )}
             {refHits && refHits.length > 0 && (
               <List dense>
                 {refHits.map((hit) => (

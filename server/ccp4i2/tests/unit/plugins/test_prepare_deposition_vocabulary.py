@@ -370,3 +370,77 @@ def test_refinement_flags_are_found_in_a_pipeline_shaped_job(tmp_path):
     (job / "input_params.xml").write_text("not xml")
     assert refinement_flags(job) == {"USEANOMALOUS": True}
     assert refinement_flags(tmp_path / "missing") == {}
+
+
+# --- the Molecules tab's sequence picture ----------------------------------------
+
+def test_sequence_analysis_gamma_gapped_and_overlapping():
+    from ccp4i2.lib.deposition.segments import analyse_segments
+
+    gamma = analyse_segments(GAMMA, [
+        {"BEG": "1", "END": "15", "KIND": "tag"},
+        {"BEG": "16", "END": "134", "KIND": "natural", "UNIPROT": "O43747"}])
+    assert gamma["length"] == 134 and gamma["uncovered"] == [] and gamma["overlaps"] == []
+    assert gamma["problems"] == []
+    assert [(s["KIND"], s["BEG"], s["END"], s["length"], s["reference"]) for s in gamma["segments"]] == \
+        [("tag", 1, 15, 15, "none"), ("natural", 16, 134, 119, "O43747")]
+    assert gamma["segments"][0]["first"] == "MHHHH" and gamma["segments"][1]["last"] == "PQSWQ"
+
+    gapped = analyse_segments(GAMMA, [{"BEG": 1, "END": 15, "KIND": "tag"},
+                                      {"BEG": 21, "END": 140, "KIND": "natural"}])
+    assert gapped["uncovered"] == [(16, 20)]
+    joined = " | ".join(gapped["problems"])
+    assert "past the sequence end" in joined and "needs a UniProt accession" in joined
+    assert "covered by no segment: 16-20" in joined
+
+    overlapping = analyse_segments(GAMMA, [{"BEG": 1, "END": 20, "KIND": "tag"},
+                                           {"BEG": 16, "END": 134, "KIND": "designed"}])
+    assert overlapping["overlaps"] == [(16, 20, [0, 1])]
+    assert overlapping["uncovered"] == []
+    assert any("16-20 are in segments 1 and 2" in p for p in overlapping["problems"])
+
+
+def test_sequence_view_reads_the_saved_records_and_never_writes(plugin, monkeypatch, tmp_path):
+    ctrl = _filled(plugin)
+    ent = ctrl.ENTITIES.addItem()
+    ent.SEQUENCE_NAME.set("gamma")
+    for beg, end, kind in ((1, 15, "tag"), (16, 134, "natural")):
+        seg = ent.SEGMENTS.addItem()
+        seg.BEG.set(beg)
+        seg.END.set(end)
+        seg.KIND.set(kind)
+
+    class Seq:
+        def __init__(self, name, sequence):
+            self.name, self.sequence, self.polymerType = name, sequence, "PROTEIN"
+
+    class Asu:
+        def isSet(self):
+            return True
+
+        def loadFile(self):
+            pass
+
+        class fileContent:
+            seqList = [Seq("gamma", GAMMA)]
+
+    monkeypatch.setattr(plugin.container.inputData, "ASUCONTENT", Asu(), raising=False)
+    view = plugin.sequence_view("gamma")
+    assert view["ok"] and view["sequence"] == GAMMA
+    assert [(s["KIND"], s["BEG"], s["END"]) for s in view["segments"]] == [("tag", 1, 15), ("natural", 16, 134)]
+    assert view["uncovered"] == [] and view["modelled"] is None
+    assert view["problems"] == ["segment 2 (16-134 natural): a natural segment needs a UniProt accession"]
+    missing = plugin.sequence_view("beta")
+    assert missing["ok"] is False and "no sequence found for beta" in missing["error"]
+    assert not os.path.exists(os.path.join(str(tmp_path), "input_params.xml"))
+
+
+def test_modelled_positions_mark_the_unmodelled_tag(tmp_path):
+    from ccp4i2.lib.deposition.segments import modelled_positions
+    from ccp4i2.tests.unit.plugins.test_prepare_deposition_metadata import _toy_model
+
+    construct = GAMMA[:40]
+    path = _toy_model(tmp_path / "m.cif", construct, start=16, skip=(30,))
+    covered = modelled_positions(construct, path)
+    assert covered[0] == 16 and 30 not in covered and covered[-1] == 40
+    assert modelled_positions(construct, tmp_path / "missing.cif") is None

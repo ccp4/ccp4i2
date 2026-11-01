@@ -242,6 +242,46 @@ class prepare_deposition(CPluginScript):
                 return find_references(piece)
         return {'ok': False, 'error': 'no AU-contents sequence named %r' % sequence_name}
 
+    def sequence_view(self, sequence_name):
+        """What the Molecules tab draws for one molecule record: its
+        AU-contents sequence, its segments as saved, the uncovered and
+        overlapping ranges, each segment's problems, and (when the model is
+        set) the positions modelled in at least one chain. Read-only: never
+        writes parameters. Never raises."""
+        try:
+            return self._sequence_view(sequence_name)
+        except Exception as exc:  # pragma: no cover - guard rail
+            return {'ok': False, 'error': '%s: %s' % (type(exc).__name__, exc)}
+
+    def _sequence_view(self, sequence_name):
+        from ccp4i2.lib.deposition.segments import analyse_segments, modelled_positions
+
+        inp, ctrl = self.container.inputData, self.container.controlParameters
+        sequence, polymer_type = None, 'PROTEIN'
+        if inp.ASUCONTENT.isSet():
+            asu = inp.ASUCONTENT
+            asu.loadFile()
+            for seq in asu.fileContent.seqList:
+                if str(seq.name) == str(sequence_name):
+                    sequence = ''.join(str(seq.sequence).split()).upper()
+                    polymer_type = str(seq.polymerType)
+                    break
+        if sequence is None:
+            return {'ok': False, 'error': 'no sequence found for %s' % sequence_name}
+        segments = []
+        for ent in ctrl.ENTITIES:
+            if _text(_field(ent, 'SEQUENCE_NAME')) == str(sequence_name):
+                for seg in (_field(ent, 'SEGMENTS') or []):
+                    segments.append({key: _text(_field(seg, key)) for key in
+                                     ('BEG', 'END', 'KIND', 'UNIPROT', 'PDB_ID')})
+                break
+        view = analyse_segments(sequence, segments)
+        view.update({'ok': True, 'name': str(sequence_name), 'sequence': sequence,
+                     'modelled': None})
+        if inp.XYZIN.isSet() and os.path.exists(str(inp.XYZIN.fullPath)):
+            view['modelled'] = modelled_positions(sequence, str(inp.XYZIN.fullPath), polymer_type)
+        return view
+
     # -- validation ----------------------------------------------------------
 
     def _error(self, error, field, details, code=207, severity=CCP4ErrorHandling.SEVERITY_ERROR):

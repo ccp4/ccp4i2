@@ -184,3 +184,105 @@ def find_references(sequence, max_hits=5, timeout=20, session=None):
         return {"ok": True, "hits": hits[:max_hits]}
     except Exception as err:  # offline, DNS, JSON: an answer, never a crash
         return {"ok": False, "error": "%s: %s" % (type(err).__name__, err)}
+
+
+# Kinds whose segment needs a database reference to be described.
+NEEDS_REFERENCE = {"natural": "UniProt accession", "engineered": "UniProt accession",
+                   "scaffold": "PDB entry"}
+
+
+def _runs(positions):
+    runs = []
+    for p in sorted(positions):
+        if runs and runs[-1][1] == p - 1:
+            runs[-1][1] = p
+        else:
+            runs.append([p, p])
+    return [tuple(r) for r in runs]
+
+
+def analyse_segments(sequence, segments):
+    """How a list of segments covers a sequence, for display.
+
+    ``segments`` are dicts with ``BEG``, ``END``, ``KIND`` and optionally
+    ``UNIPROT``/``PDB_ID``. Returns ``{"length", "segments": [...],
+    "uncovered": [(beg, end)], "overlaps": [(beg, end, [i, j])],
+    "problems": [str]}``; each segment comes back with its index, length,
+    the first and last residues, its reference ("none" when it has none)
+    and its own problems. Never raises.
+    """
+    seq = "".join(str(sequence or "").split()).upper()
+    n = len(seq)
+    rows, problems = [], []
+    owners = {}
+    for i, seg in enumerate(segments or []):
+        try:
+            beg, end = int(seg.get("BEG") or 0), int(seg.get("END") or 0)
+        except (TypeError, ValueError):
+            beg, end = 0, 0
+        kind = str(seg.get("KIND") or "natural")
+        reference = (seg.get("UNIPROT") or seg.get("PDB_ID") or "").strip() or "none"
+        own = []
+        if beg < 1 or end < beg:
+            own.append("range %s-%s is not a valid range" % (beg, end))
+        if end > n:
+            own.append("ends at %d, past the sequence end (%d)" % (end, n))
+        if kind in NEEDS_REFERENCE and reference == "none":
+            own.append("a %s segment needs a %s" % (kind, NEEDS_REFERENCE[kind]))
+        lo, hi = max(beg, 1), min(end, n)
+        for p in range(lo, hi + 1):
+            owners.setdefault(p, []).append(i)
+        piece = seq[lo - 1:hi] if hi >= lo else ""
+        rows.append({"index": i, "BEG": beg, "END": end, "KIND": kind,
+                     "length": max(0, end - beg + 1), "first": piece[:5], "last": piece[-5:],
+                     "reference": reference, "problems": own})
+        problems.extend("segment %d (%d-%d %s): %s" % (i + 1, beg, end, kind, p) for p in own)
+    uncovered = _runs(p for p in range(1, n + 1) if p not in owners)
+    overlapping = {}
+    for p, who in owners.items():
+        if len(who) > 1:
+            overlapping.setdefault(tuple(who), []).append(p)
+    overlaps = []
+    for who, positions in overlapping.items():
+        for beg, end in _runs(positions):
+            overlaps.append((beg, end, list(who)))
+    overlaps.sort()
+    if uncovered:
+        problems.append("residues covered by no segment: " +
+                        ", ".join("%d-%d" % r if r[0] != r[1] else "%d" % r[0] for r in uncovered))
+    for beg, end, who in overlaps:
+        problems.append("residues %d-%d are in segments %s" % (
+            beg, end, " and ".join(str(w + 1) for w in who)))
+    return {"length": n, "segments": rows, "uncovered": uncovered, "overlaps": overlaps,
+            "problems": problems}
+
+
+def modelled_positions(sequence, model_path, polymer_type="PROTEIN"):
+    """Positions of ``sequence`` (1-based) modelled in at least one chain of
+    the model that aligns to it (identity 30% or more). Never raises."""
+    try:
+        import gemmi
+
+        from .entities import residue_kind
+        from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report import coverage_from_alignment
+
+        kind, ptype = residue_kind(polymer_type)
+        full = gemmi.expand_one_letter_sequence("".join(str(sequence).split()).upper(), kind)
+        st = gemmi.read_structure(str(model_path))
+        st.setup_entities()
+        covered = set()
+        for chain in st[0]:
+            poly = chain.get_polymer()
+            if len(poly) == 0:
+                continue
+            result = gemmi.align_sequence_to_polymer(full, poly, ptype, gemmi.AlignmentScoring())
+            if result.calculate_identity() < 30:
+                continue
+            _n, modelled, mismatched, _runs_ = coverage_from_alignment(
+                result.add_gaps(gemmi.one_letter_code(full), 1),
+                result.add_gaps(gemmi.one_letter_code(poly.extract_sequence()), 2),
+                result.match_string)
+            covered |= modelled | mismatched
+        return sorted(covered)
+    except Exception:
+        return None
