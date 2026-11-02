@@ -276,7 +276,7 @@ TASKS = {
         description="Sanitise the refined model, add the data statistics, the entities and the "
                     "descriptive metadata OneDep reads, write the reflections mmCIF and validate",
         shortTitle="Prepare deposition",
-        searchTerms=("onedep", "wwpdb", "pdb", "deposit", "mmcif", "validation"),
+        searchTerms=("wwpdb", "pdbx", "submission", "authors", "harvest", "validation"),
         pluginPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition:prepare_deposition",
         defXmlPath="wrappers/prepare_deposition/script/prepare_deposition.def.xml",
         reportPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition_report:prepare_deposition_report",
