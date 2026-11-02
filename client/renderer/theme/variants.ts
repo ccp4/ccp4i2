@@ -27,6 +27,16 @@ declare module "@mui/material/Toolbar" {
 }
 
 export const createComponentVariants = (theme: Theme): Components => ({
+  // The find-in-page bar (providers/find-in-page-provider.tsx) is rendered
+  // outside every dialog. A dialog's focus trap pulled focus straight back,
+  // so Cmd/Ctrl+F over a file preview opened a bar nothing could be typed
+  // into (#861). Focus may now leave a dialog; it still opens focused and
+  // closes on Escape.
+  MuiDialog: {
+    defaultProps: {
+      disableEnforceFocus: true,
+    },
+  },
   MuiTooltip: {
     defaultProps: {
       disableInteractive: true,

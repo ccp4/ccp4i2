@@ -7,6 +7,26 @@ from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
+def upgrade_legacy_hd_init(controlParameters):
+    """HD_INIT NO, as jobs before 2025 recorded it, becomes HD_INIT_TOGGLE off.
+
+    Until the Refmacat neutron work (ccp4i2 PR #39, 2025-02) HD_INIT had the
+    enumerators NO, DEUTERIUM and MIXTURE, NO meaning no H/D initialisation.
+    That PR moved "whether" into HD_INIT_TOGGLE and left HD_INIT with "how",
+    so a job from before then fails validation with "Value 'NO' not in allowed
+    values" and cannot be run again (#860). Returns True if anything changed.
+    """
+    hd_init = getattr(controlParameters, "HD_INIT", None)
+    toggle = getattr(controlParameters, "HD_INIT_TOGGLE", None)
+    if hd_init is None or toggle is None:
+        return False
+    if not hd_init.isSet() or str(hd_init) != "NO":
+        return False
+    toggle.set(False)
+    hd_init.set(hd_init.get_qualifier("default") or "MIXTURE")
+    return True
+
+
 class refmac(CPluginScript):
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
@@ -18,6 +38,9 @@ class refmac(CPluginScript):
                     203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.SEVERITY_WARNING},
                     204:  {'description': 'Program completed without generating XMLOUT.' },
                     }
+
+    def upgradeLegacyParameters(self):
+        upgrade_legacy_hd_init(self.container.controlParameters)
 
     def runTimeValidity(self):
         """Pre-flight validation including monomer dictionary coverage."""
