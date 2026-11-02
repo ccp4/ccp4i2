@@ -70,7 +70,8 @@ class servalcat_report(Report):
         progressGraph = parent.addFlotGraph(
             title="Refinement results",
             xmlnode=self.xmlnode,
-            style="height:250px;width:400px;float:left;")
+            style="height:250px;width:400px;float:left;",
+            downloadable=True)
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         spa_refinement = False
@@ -145,7 +146,8 @@ class servalcat_report(Report):
             progressGraph2 = parent.addFlotGraph(
                 title="Deviation from standard geometry",
                 xmlnode=self.xmlnode,
-                style="height:250px;width:400px;float:left;")
+                style="height:250px;width:400px;float:left;",
+                downloadable=True)
             progressGraph2.addData(title="Cycle", select=".//cycle/Ncyc")
             progressGraph2.addData(title="RMSD_bond", select=".//cycle/geom/summary/rmsd/Bond_distances_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSD_angle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
@@ -403,7 +405,8 @@ class servalcat_report(Report):
             internalId=graphCCtitle,
             outputXml=self.outputXml,
             label=graphCCtitle,
-            style=galleryGraphStyle)
+            style=galleryGraphStyle,
+            downloadable=True)
         n_icols = 0
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/fsc_FC_full')) > 0:  # SPA refinement
@@ -463,7 +466,8 @@ class servalcat_report(Report):
                 outputXml=self.outputXml,
                 label=graphRtitle,
                 style=galleryGraphStyle,
-                initiallyDrawn=True)
+                initiallyDrawn=True,
+                downloadable=True)
             plotR = graphR.addPlotObject()
             graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             if len(xmlnode.findall('.//cycle[last()]/data/binned/Rcmplx_FC_full')) > 0: # SPA refinement
@@ -506,7 +510,8 @@ class servalcat_report(Report):
                 internalId=graphNtitle,
                 outputXml=self.outputXml,
                 label=graphNtitle,
-                style=galleryGraphStyle)
+                style=galleryGraphStyle,
+                downloadable=True)
             graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
             avail_n_work = False
@@ -634,7 +639,8 @@ class servalcat_report(Report):
                 internalId=graphCmplTitle,
                 outputXml=self.outputXml,
                 label=graphCmplTitle,
-                style=galleryGraphStyle)
+                style=galleryGraphStyle,
+                downloadable=True)
             graphCmpl.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             graphCmpl.addData(title="Completeness(%)", select=".//cycle[last()]/data/binned/./Cmpl")
             plotCmpl = graphCmpl.addPlotObject()
@@ -669,7 +675,8 @@ class servalcat_report(Report):
                 internalId=graphMnOCTitle,
                 outputXml=self.outputXml,
                 label=graphMnOCTitle,
-                style=galleryGraphStyle)
+                style=galleryGraphStyle,
+                downloadable=True)
             graphMnOC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             graphMnOC.addData(title=MnO, select=f".//cycle[last()]/data/binned/./{MnO}")
             graphMnOC.addData(title=MnC, select=f".//cycle[last()]/data/binned/./{MnC}")
@@ -702,7 +709,8 @@ class servalcat_report(Report):
                 internalId=graphDtitle,
                 outputXml=self.outputXml,
                 label=graphDtitle,
-                style=galleryGraphStyle)
+                style=galleryGraphStyle,
+                downloadable=True)
             graphD.addData(title="Resolution(&Aring;)", select=f".//cycle[last()]/data/{MnD_parent}/./d_min_4ssqll")
             graphD.addData(title="Mean|D0*FC0|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD0FC0")
             graphD.addData(title="Mean|D1*FCbulk|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD1FCbulk")
@@ -750,7 +758,8 @@ class servalcat_report(Report):
             twinGraph = divLeft.addFlotGraph(
                 title="Twin fraction vs cycle",
                 xmlnode=self.xmlnode,
-                style="height:250px;width:400px;float:left;")
+                style="height:250px;width:400px;float:left;",
+                downloadable=True)
             twinGraph.addData(title="Cycle", data=cycles_list)
             for i, twin_op in enumerate(twin_operators):
                 twinGraph.addData(

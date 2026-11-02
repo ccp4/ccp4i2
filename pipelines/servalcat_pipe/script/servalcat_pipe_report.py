@@ -223,7 +223,8 @@ class servalcat_pipe_report(Report):
                 graph_per_resi = adpFold.addFlotGraph(
                     title="B values for individual residues",
                     select=".//ADP_ANALYSIS/chains",
-                    style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
+                    style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;",
+                    downloadable=True)
                 for i, chain in enumerate(chains):
                     resi_list = df[df["chain"] == chain]["resi"].tolist()
                     adp_list = df[df["chain"] == chain]["adp"].tolist()
@@ -248,7 +249,7 @@ class servalcat_pipe_report(Report):
 
         headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
         headerDiv.append("B-value histogram for all and individual chains")
-        ch_graph = adpFold.addFlotGraph ( title="B-value histograms", select=".//ADP_ANALYSIS/chains", style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;" )
+        ch_graph = adpFold.addFlotGraph ( title="B-value histograms", select=".//ADP_ANALYSIS/chains", style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;", downloadable=True )
         for i, chain in enumerate(self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain")):
             chain_name = chain.get('name')
             ch_graph.addData ( title = "B-value_" + chain_name, select = "chain[@name='" + chain_name + "']/histogram/bin/adp" )
