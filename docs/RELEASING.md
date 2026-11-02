@@ -169,6 +169,15 @@ with `CSC_IDENTITY_AUTO_DISCOVERY=false`.
 - **Optionally yank the superseded finals.** `3.0.0`/`3.0.1` can be *yanked* on
   PyPI (PEP 592) so normal resolution won't pick them, without deleting them
   (exact pins still work). Alpha apps are unaffected (they pin exact anyway).
+- **API contract changes go in the release notes.** Before tagging, diff
+  `docs/CCP4I2_SERVICE_CONTRACT.md` and its audit log against the previous
+  tag (`git diff v<prev>..HEAD -- docs/CCP4I2_SERVICE_CONTRACT*.md`). If a
+  contracted endpoint, field or the response envelope changed shape, edit the
+  GitHub Release's generated notes to add a **Breaking (API contract)** heading
+  naming each change, and tell the consumers the audit document lists
+  (Materia's `i2remote`). The 2026-09-28 envelope change
+  (`{"status": "Success"}` to `{"success": true}`) shipped without this and
+  broke a consumer silently; the contract's *Versioning* section is the rule.
 - **Backend build needs no CCP4.** `server/ccp4i2/__init__.py` imports only the
   standard library, so the wheel builds on a bare runner.
 

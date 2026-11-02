@@ -19,6 +19,7 @@ import {
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Add, Delete, DeleteSweep, Science } from "@mui/icons-material";
+import { SequenceText } from "./sequence-text";
 
 /** Get abbreviated polymer type label */
 const getPolymerTypeLabel = (type: string): string => {
@@ -51,13 +52,6 @@ const getPolymerTypeColor = (
 };
 
 /** Format sequence for preview (first N residues with ellipsis) */
-const formatSequencePreview = (sequence: string, maxLength = 40): string => {
-  if (!sequence) return "";
-  const seq = sequence.replace(/\s/g, "");
-  if (seq.length <= maxLength) return seq;
-  return seq.substring(0, maxLength) + "…";
-};
-
 /**
  * The asymmetric unit's contents as a table: one row per distinct sequence,
  * with its polymer type, length and number of copies. Rows are added and
@@ -76,7 +70,7 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const selectedObjectPathRef = useRef<string | null>(null);
 
-  const { useTaskItem, setParameter, mutateContainer, getValidationColor } =
+  const { useTaskItem, setParameter, mutateContainer, getValidationColor, getErrors } =
     useJob(job.id);
 
   const { item, update: updateList } = useTaskItem(itemName);
@@ -208,6 +202,9 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
           <TableBody>
             {rows.map((row: any, index: number) => {
               const color = getValidationColor(row);
+              // What is wrong with this entry, for the row itself: the page's
+              // count ("1 problem in the table") did not say which row (#687).
+              const problems = getErrors(row).flatMap((e) => e.error?.messages ?? []);
               const name = row._value?.name?._value || `Sequence ${index + 1}`;
               const polymerType = row._value?.polymerType?._value || "";
               const description = row._value?.description?._value || "";
@@ -221,14 +218,24 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
                   onClick={() => openRow(index)}
                   sx={{
                     cursor: "pointer",
-                    "& td:first-of-type": {
-                      borderLeft: color !== "inherit" ? `4px solid ${color}` : undefined,
-                    },
+                    // A palette token resolves in borderLeftColor, not inside a
+                    // "4px solid error.light" shorthand string, which the
+                    // browser dropped: no row was ever marked.
+                    "& td:first-of-type": problems.length
+                      ? { borderLeft: 4, borderLeftStyle: "solid", borderLeftColor: color }
+                      : undefined,
                   }}
                 >
                   <TableCell>
-                    <Tooltip title={description || ""} placement="top-start">
-                      <Typography variant="body2" fontWeight="medium">
+                    <Tooltip
+                      title={problems.length ? problems.join("; ") : description || ""}
+                      placement="top-start"
+                    >
+                      <Typography
+                        variant="body2"
+                        fontWeight="medium"
+                        color={problems.length ? "error" : undefined}
+                      >
                         {name}
                       </Typography>
                     </Tooltip>
@@ -253,7 +260,13 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
                       textOverflow: "ellipsis",
                     }}
                   >
-                    {formatSequencePreview(sequence) || "(no sequence)"}
+                    {sequence ? (
+                      // Letters the server rejects are marked, and a long
+                      // sequence's preview is centred on the first of them.
+                      <SequenceText sequence={sequence} polymerType={polymerType} maxLength={40} />
+                    ) : (
+                      "(no sequence)"
+                    )}
                   </TableCell>
                   <TableCell padding="checkbox">
                     <Tooltip title="Remove this sequence">
