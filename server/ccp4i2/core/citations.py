@@ -137,6 +137,7 @@ TASK_CITES: Dict[str, List[str]] = {
     "moorhen": ["coot"],  # Moorhen is Coot's engine (libcootapi) in the browser
     "coot_rsr_morph": ["coot"],
     "coot_script_lines": ["coot"],
+    "geometry_polish": ["coot", "molprobity"],
     # --- acedrg variants.
     "acedrgNew": ["acedrg"],
     "AcedrgLink": ["acedrg"],

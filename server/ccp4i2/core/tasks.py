@@ -1090,6 +1090,16 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.mtzutils.script.mtzutils:mtzutils",
         defXmlPath="wrappers/mtzutils/script/mtzutils.def.xml",
     ),
+    "geometry_polish": Task(
+        title="Polish geometry for deposition",
+        description="Repair MolProbity rotamer outliers, Ramachandran outliers and side-chain clashes using NCS copies, Coot and the maps, accepting only what the density supports.",
+        shortTitle="Geometry polish",
+        searchTerms=("validation", "rebuild", "sidechain", "flip", "cleanup", "pdb"),
+        pluginPath="ccp4i2.wrappers.geometry_polish.script.geometry_polish:geometry_polish",
+        defXmlPath="wrappers/geometry_polish/script/geometry_polish.def.xml",
+        reportPath="ccp4i2.wrappers.geometry_polish.script.geometry_polish_report:geometry_polish_report",
+        runningReport=True,
+    ),
     "nucleofind": Task(
         title="Predict regions of nucleic acids with NucleoFind",
         description="Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.",
