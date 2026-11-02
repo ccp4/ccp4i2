@@ -198,7 +198,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "export",
     title: "Export and Deposition",
-    tasks: ["prepare_deposition", "mergeMtz"],
+    tasks: ["prepare_deposition", "onedep_submit", "mergeMtz"],
   },
   {
     icon: "expt_data_utility",

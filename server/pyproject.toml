@@ -78,6 +78,11 @@ science = [
     "scipy",               # modelASUCheck (Hungarian assignment)
     "pandas",              # servalcat_pipe difference monitoring
 ]
+# wwPDB OneDep client for the Submit-to-OneDep task (wrappers/onedep_submit).
+# Pure Python; imported lazily, the task reports a clear error without it.
+deposition = [
+    "onedep_lib>=1.1",
+]
 # Test/lint toolchain — not needed at runtime. `pip install ccp4i2[dev]`.
 dev = [
     "jsonschema",         # scene contract validation in tests (scene_contracts/*.json)

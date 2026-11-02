@@ -1159,6 +1159,17 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper:pdb_extract_wrapper",
         defXmlPath="pipelines/PrepareDeposit/wrappers/pdb_extract_wrapper/script/pdb_extract_wrapper.def.xml",
     ),
+    "onedep_submit": Task(
+        title="Submit to OneDep (wwPDB deposition)",
+        description="Create a wwPDB OneDep deposition from deposition-ready model and reflection mmCIF files (OneDep fills its pages from the model), or replace the files on an existing one (which does not refresh pages already filled)",
+        shortTitle="Submit to OneDep",
+        searchTerms=("upload", "depui", "rcsb", "pdbe", "pdbj", "release"),
+        pluginPath="ccp4i2.wrappers.onedep_submit.script.onedep_submit:onedep_submit",
+        defXmlPath="wrappers/onedep_submit/script/onedep_submit.def.xml",
+        reportPath="ccp4i2.wrappers.onedep_submit.script.onedep_submit_report:onedep_submit_report",
+        runningReport=True,
+        ccp4_free=True,
+    ),
     "pdb_redo_api": Task(
         title="PDB-REDO Web services",
         description="Refine structures using PDB-REDO Web service",

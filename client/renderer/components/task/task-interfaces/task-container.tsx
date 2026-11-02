@@ -90,6 +90,7 @@ import NautilusBuildRefineInterface from "./nautilus_build_refine";
 import NewProjectFromMergedInterface from "./newProject_fromMerged";
 import PairefInterface from "./pairef";
 import ParrotInterface from "./parrot";
+import OnedepSubmitInterface from "./onedep_submit";
 import PdbRedoApiInterface from "./pdb_redo_api";
 import PrepareDepositionInterface from "./prepare_deposition";
 import PdbsetUiInterface from "./pdbset_ui";
@@ -250,6 +251,7 @@ const TASK_INTERFACES: Record<
   newProject_fromMerged: NewProjectFromMergedInterface,
   pairef: PairefInterface,
   parrot: ParrotInterface,
+  onedep_submit: OnedepSubmitInterface,
   pdb_redo_api: PdbRedoApiInterface,
   prepare_deposition: PrepareDepositionInterface,
   pdbset_ui: PdbsetUiInterface,
