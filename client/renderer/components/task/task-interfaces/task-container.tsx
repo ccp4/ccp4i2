@@ -91,6 +91,7 @@ import NewProjectFromMergedInterface from "./newProject_fromMerged";
 import PairefInterface from "./pairef";
 import ParrotInterface from "./parrot";
 import PdbRedoApiInterface from "./pdb_redo_api";
+import PrepareDepositionInterface from "./prepare_deposition";
 import PdbsetUiInterface from "./pdbset_ui";
 import PdbviewEditInterface from "./pdbview_edit";
 import PhaserEnsemblerInterface from "./phaser_ensembler";
@@ -250,6 +251,7 @@ const TASK_INTERFACES: Record<
   pairef: PairefInterface,
   parrot: ParrotInterface,
   pdb_redo_api: PdbRedoApiInterface,
+  prepare_deposition: PrepareDepositionInterface,
   pdbset_ui: PdbsetUiInterface,
   pdbview_edit: PdbviewEditInterface,
   phaser_ensembler: PhaserEnsemblerInterface,

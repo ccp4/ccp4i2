@@ -269,6 +269,21 @@ TASKS = {
         defXmlPath="wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.def.xml",
         reportPath="ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report:adding_stats_to_mmcif_i2_report",
         runningReport=True,
+        successor="prepare_deposition",
+    ),
+    "prepare_deposition": Task(
+        title="Prepare files for deposition",
+        description="Sanitise the refined model, add the data statistics, the entities and the "
+                    "descriptive metadata OneDep reads, write the reflections mmCIF and validate",
+        shortTitle="Prepare deposition",
+        searchTerms=("wwpdb", "pdbx", "submission", "authors", "harvest", "validation"),
+        pluginPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition:prepare_deposition",
+        defXmlPath="wrappers/prepare_deposition/script/prepare_deposition.def.xml",
+        reportPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition_report:prepare_deposition_report",
+        runningReport=True,
+        # gemmi only, but the reflections are merged with CCP4's cad through
+        # makeHklin0 and the validation step calls the wwPDB service: a worker job.
+        dataTypes=("ccp4i2.wrappers.prepare_deposition.script.prepare_deposition_types",),
     ),
     "aimless": Task(
         shortTitle="AIMLESS",
