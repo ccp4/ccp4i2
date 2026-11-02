@@ -159,11 +159,11 @@ export function assessPython(pythonPath: string): Suitability {
 export const listCcp4Dirs = (root: string): string[] => {
   let names: string[] = [];
   try {
-    names = fs.readdirSync(root).filter((n) => /^ccp4-\d+/.test(n));
+    names = fs.readdirSync(root).filter((n) => /^ccp4-\d+/i.test(n));
   } catch {
     return [];
   }
-  const num = (n: string) => parseInt(n.replace(/^ccp4-/, ""), 10) || 0;
+  const num = (n: string) => parseInt(n.replace(/^ccp4-/i, ""), 10) || 0;
   return names.sort((a, b) => num(b) - num(a));
 };
 

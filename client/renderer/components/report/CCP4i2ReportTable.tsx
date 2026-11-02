@@ -28,22 +28,50 @@ interface CellData {
   isHeader: boolean;
 }
 
+interface HeaderCell {
+  html: string;
+  text: string;
+  span: number;
+}
+
 export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
   props
 ) => {
   const theme = useTheme();
   const [data, setData] = useState<Record<string, CellData>[]>([]);
   const [columns, setColumns] = useState<TableColumn[]>([]);
+  // Header rows as written, spans and all: a grouped heading ("RMSD
+  // (bond/angle/chiral)" over Bond, Angle, Chiral) spans its columns, and
+  // reading it as one column put every heading after it over the wrong data.
+  const [headerRows, setHeaderRows] = useState<HeaderCell[][]>([]);
 
   useEffect(() => {
     let newData: Record<string, CellData>[] = [];
     let newColumns: TableColumn[] = [];
+    const newHeaderRows: HeaderCell[][] = [];
     const transposeAttr = $(props.item).attr("transpose");
     const isHeaderRow = transposeAttr === "False";
 
     $(props.item)
       .find("tr")
       .each((_iRow, tableRow) => {
+        // For transpose="False" mode, rows of th elements are the column headings
+        if (isHeaderRow && $(tableRow).find("td").length === 0) {
+          const headerRow: HeaderCell[] = [];
+          $(tableRow)
+            .find("th")
+            .each((_i, cell) => {
+              const span = parseInt($(cell).attr("colspan") || "1", 10);
+              headerRow.push({
+                html: cell.innerHTML,
+                text: $(cell).text(),
+                span: Number.isFinite(span) && span > 0 ? span : 1,
+              });
+            });
+          if (headerRow.length > 0) newHeaderRows.push(headerRow);
+          return;
+        }
+
         const dataItem: Record<string, CellData> = {};
         let colIndex = 0;
 
@@ -53,19 +81,6 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
           .each((_i, cell) => {
             const $cell = $(cell);
             const isHeader = cell.tagName.toLowerCase() === "th";
-
-            // For transpose="False" mode, th elements in header rows define columns
-            if (isHeaderRow && isHeader) {
-              while (colIndex >= newColumns.length) {
-                newColumns.push({ key: "", title: "", titleText: "" });
-              }
-              newColumns[colIndex] = {
-                key: "col_" + colIndex,
-                title: cell.innerHTML,
-                titleText: $cell.text(),
-              };
-            }
-
             dataItem["col_" + colIndex] = {
               html: $cell.html() || "",
               text: $cell.text(),
@@ -79,6 +94,31 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
           newData.push(dataItem);
         }
       });
+
+    // One column per spanned position. Its title, for the CSV, joins every
+    // heading above it: "RMSD (bond/angle/chiral) Bond".
+    if (newHeaderRows.length > 0) {
+      const nColumns = Math.max(
+        ...newHeaderRows.map((row) => row.reduce((n, cell) => n + cell.span, 0))
+      );
+      const titles: string[][] = Array.from({ length: nColumns }, () => []);
+      const htmls: string[] = Array(nColumns).fill("");
+      newHeaderRows.forEach((row) => {
+        let position = 0;
+        row.forEach((cell) => {
+          for (let k = 0; k < cell.span && position + k < nColumns; k++) {
+            if (cell.text.trim()) titles[position + k].push(cell.text.trim());
+            if (cell.html.trim()) htmls[position + k] = cell.html;
+          }
+          position += cell.span;
+        });
+      });
+      newColumns = titles.map((parts, iCol) => ({
+        key: "col_" + iCol,
+        title: htmls[iCol],
+        titleText: parts.join(" "),
+      }));
+    }
 
     // If no explicit columns were defined, create them from the data
     if (newColumns.length === 0 && newData.length > 0) {
@@ -94,6 +134,7 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
 
     setData(newData);
     setColumns(newColumns);
+    setHeaderRows(newHeaderRows);
   }, [props.job, props.item]);
 
   const downloadCSV = useCallback(() => {
@@ -198,27 +239,33 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
         <Table size="small">
           {hasColumnTitles && (
             <TableHead>
-              <TableRow
-                sx={{
-                  bgcolor: alpha(theme.palette.primary.main, 0.08),
-                  "& .MuiTableCell-head": {
-                    fontWeight: 600,
-                    color: "text.primary",
-                    borderBottom: 2,
-                    borderColor: "primary.main",
-                    whiteSpace: "pre-line",
-                    py: 1.5,
-                    px: 2,
-                  },
-                }}
-              >
-                {columns.map((col) => (
-                  <TableCell
-                    key={col.key}
-                    dangerouslySetInnerHTML={{ __html: col.title }}
-                  />
-                ))}
-              </TableRow>
+              {headerRows.map((headerRow, iHeaderRow) => (
+                <TableRow
+                  key={iHeaderRow}
+                  sx={{
+                    bgcolor: alpha(theme.palette.primary.main, 0.08),
+                    "& .MuiTableCell-head": {
+                      fontWeight: 600,
+                      color: "text.primary",
+                      // The rule goes under the last heading row only
+                      borderBottom: iHeaderRow === headerRows.length - 1 ? 2 : 0,
+                      borderColor: "primary.main",
+                      whiteSpace: "pre-line",
+                      py: iHeaderRow === headerRows.length - 1 ? 1.5 : 0.75,
+                      px: 2,
+                    },
+                  }}
+                >
+                  {headerRow.map((cell, iCell) => (
+                    <TableCell
+                      key={iCell}
+                      colSpan={cell.span > 1 ? cell.span : undefined}
+                      align={cell.span > 1 ? "center" : undefined}
+                      dangerouslySetInnerHTML={{ __html: cell.html }}
+                    />
+                  ))}
+                </TableRow>
+              ))}
             </TableHead>
           )}
           <TableBody>

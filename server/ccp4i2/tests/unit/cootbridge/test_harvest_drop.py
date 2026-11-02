@@ -101,3 +101,15 @@ def test_moorhen_start_process_without_database_returns_at_once(tmp_path):
     plugin = moorhen(parent=None, workDirectory=str(tmp_path))
     assert plugin.makeCommandAndScript() == CPluginScript.SUCCEEDED
     assert plugin.startProcess() == CPluginScript.SUCCEEDED
+
+
+def test_coot1_harvest_of_empty_session_marks_job_for_deletion(tmp_path):
+    """Coot 1 with nothing saved ends "To delete", as Coot 0.9 (coot_rebuild)
+    and the Moorhen task do, not "Finished" with no output (alpha tracker)."""
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
+    from ccp4i2.wrappers.coot1.script.coot1 import coot1
+
+    (tmp_path / "COOT_FILE_DROP").mkdir()
+    plugin = coot1(parent=None, workDirectory=str(tmp_path))
+    assert plugin.processOutputFiles() == CPluginScript.MARK_TO_DELETE
+    assert len(plugin.container.outputData.XYZOUT) == 0

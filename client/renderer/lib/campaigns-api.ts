@@ -24,6 +24,19 @@ import {
 import { Project } from "../types/models";
 import type { MoorhenScene } from "../types/moorhen-scene";
 
+/**
+ * How long to wait for the server to build a scene.
+ *
+ * ``apiGet`` aborts a request after 30 s by default, which is right for a
+ * JSON round trip and wrong for a scene the server assembles on demand: a
+ * summary of a few hundred datasets parses and fits every one of them, and
+ * the first open of a campaign that size took longer than that, so the
+ * browser gave up on a response that was on its way and the page sat empty.
+ * The server now caches a built scene, so this is the ceiling for the first
+ * open after a change, not every open.
+ */
+export const SCENE_BUILD_TIMEOUT_MS = 10 * 60 * 1000;
+
 /** A dataset the summary scene could not include, with the reason. */
 export interface SummarySceneSkip {
   project: string;
@@ -58,7 +71,10 @@ export interface SiteSceneFit {
 
 /** Counts and diagnostics returned alongside a site scene. */
 export interface SiteSceneStats {
-  site: { id: number; name: string };
+  /** The site, for a one-site scene; a scene of several has `sites`. */
+  site?: { id: number; name: string };
+  /** The sites of a several-sites scene, in the order asked for. */
+  sites?: { id: number; name: string }[];
   hits_claimed: number;
   hits_drawn: number;
   empty_verdicts: number;
@@ -70,7 +86,13 @@ export interface SiteSceneStats {
   pocket_residues: number;
   /** Distance from the site origin to each drawn dataset's nearest fragment,
    *  after superposition: a large value is a verdict worth a second look. */
-  drawn: { project: string; verdict: string; nearest: number | null }[];
+  drawn: {
+    project: string;
+    verdict: string;
+    nearest: number | null;
+    /** In a several-sites scene, the sites whose verdicts drew it. */
+    sites?: string[];
+  }[];
   superpose: SiteSceneFit[];
 }
 
@@ -171,7 +193,9 @@ export function useCampaignsApi() {
      * page enters summary mode.
      */
     async fetchSummaryScene(campaignId: number): Promise<SummarySceneResponse> {
-      return apiGet(`projectgroups/${campaignId}/summary_scene`);
+      return apiGet(`projectgroups/${campaignId}/summary_scene`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
     },
 
     /**
@@ -190,7 +214,28 @@ export function useCampaignsApi() {
       if (options.includeUnclear) params.set("include", "unclear");
       if (options.superpose === false) params.set("superpose", "none");
       const query = params.size ? `?${params.toString()}` : "";
-      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`);
+      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
+    },
+
+    /**
+     * Fetch one scene for several binding sites taken together: every
+     * dataset judged a hit at any of them drawn once, the pocket around all
+     * of them, every hit fitted on the one region about their centroid. The
+     * first site gives the view its orientation and leads the title.
+     */
+    async fetchSitesScene(
+      campaignId: number,
+      siteIds: number[],
+      options: { includeUnclear?: boolean; superpose?: boolean } = {}
+    ): Promise<SiteSceneResponse> {
+      const params = new URLSearchParams({ ids: siteIds.join(",") });
+      if (options.includeUnclear) params.set("include", "unclear");
+      if (options.superpose === false) params.set("superpose", "none");
+      return apiGet(`projectgroups/${campaignId}/sites/scene/?${params.toString()}`, {
+        timeout: SCENE_BUILD_TIMEOUT_MS,
+      });
     },
 
     /**

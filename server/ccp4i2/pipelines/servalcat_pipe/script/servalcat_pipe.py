@@ -20,7 +20,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKNAME = 'servalcat_pipe'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'modelcraft']
+    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'moorhen', 'modelcraft']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CServalcatPerformance'
     PURGESEARCHLIST = [
@@ -126,6 +126,53 @@ class servalcat_pipe(CPluginScript):
     # =========================================================================
     # Main pipeline orchestration
     # =========================================================================
+
+    def outlierScene(self, kind, index):
+        """A Moorhen scene centred on one of the final model's outliers
+        (``kind`` and ``index`` within it, as the report's buttons name them:
+        Servalcat's geometry, MolProbity's, or the ADP analysis's): the refined
+        model and its maps from the database, the outlier marked. See
+        outlier_places."""
+        from . import outlier_places
+        root = outlier_places.read_program_xml(self.workDirectory)
+        if root is None:
+            return {"success": False, "error": "this job has no program.xml to read outliers from"}
+        outlier = outlier_places.find(root, str(kind), int(index))
+        if outlier is None:
+            return {"success": False, "error": f"no {kind} outlier {index} in this job"}
+        job = self._jobRow()
+        if job is None:
+            return {"success": False, "error": "this job is not in the database"}
+        from ccp4i2.db import models
+        file_ids = {f.job_param_name: f.id for f in models.File.objects.filter(
+            job=job, job_param_name__in=("XYZOUT", "FPHIOUT", "DIFFPHIOUT"))}
+        if "XYZOUT" not in file_ids:
+            return {"success": False, "error": "this job recorded no refined model"}
+        try:
+            scene = outlier_places.outlier_scene(outlier, file_ids, str(job.project.uuid))
+        except ValueError as err:
+            return {"success": False, "error": str(err)}
+        return {"success": True, "scene": scene}
+
+    def _jobRow(self):
+        """This job's database row: from the dbHandler context when there is
+        one, else from the jobId its params header records."""
+        import xml.etree.ElementTree as ET
+        from ccp4i2.db import models
+        job_id = self.get_db_job_id() if hasattr(self, "get_db_job_id") else None
+        if not job_id:
+            for name in ("input_params.xml", "params.xml"):
+                path = os.path.join(self.workDirectory, name)
+                if os.path.isfile(path):
+                    try:
+                        job_id = ET.parse(path).getroot().findtext("ccp4i2_header/jobId")
+                    except ET.ParseError:
+                        job_id = None
+                    if job_id:
+                        break
+        if not job_id:
+            return None
+        return models.Job.objects.filter(uuid=job_id).first()
 
     def startProcess(self):
         """Execute the pipeline synchronously through all phases.
@@ -326,9 +373,24 @@ class servalcat_pipe(CPluginScript):
             print("[servalcat_pipe] WARNING: MetalCoord not installed, skipping")
             return error
 
-        # Run MetalCoord for each selected ligand code
+        # Run MetalCoord for each selected ligand code. None chosen means every
+        # monomer in the model holding a metal, as the Qt interface defaulted
+        # to: without this an empty list ran nothing, and the job succeeded
+        # with no metal restraints and no word of why.
         metalCoordOutputJsonPaths = []
-        ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
+        ligand_codes_selected = [
+            str(code) for code in self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
+            if str(code).strip()]
+        if not ligand_codes_selected:
+            from ccp4i2.lib.utils.formats.metal_sites import metal_monomer_codes_in_file
+            ligand_codes_selected = metal_monomer_codes_in_file(
+                str(self.container.inputData.XYZIN.fullPath))
+            print("[servalcat_pipe] MetalCoord: no monomers chosen; using the metal "
+                  f"sites in the model: {', '.join(ligand_codes_selected) or 'none'}")
+        if not ligand_codes_selected:
+            self.appendErrorReport(
+                104, 'MetalCoord restraints were asked for, but the model has no metal atoms')
+            return error
 
         for ligand_code in ligand_codes_selected:
             try:

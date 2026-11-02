@@ -53,6 +53,8 @@ export interface CredentialFieldDescriptor {
   secret: boolean;
   help: string;
   isSet: boolean;
+  /** False for a field the service fills in itself (absent on old servers). */
+  required?: boolean;
 }
 
 export interface CredentialDescriptor {
@@ -148,7 +150,9 @@ export const CredentialDialog: React.FC<CredentialDialogProps> = ({
   const complete = useMemo(
     () =>
       Boolean(descriptor) &&
-      descriptor!.fields.every((f) => (values[f.name] ?? "").trim().length > 0),
+      descriptor!.fields
+        .filter((f) => f.required !== false)
+        .every((f) => (values[f.name] ?? "").trim().length > 0),
     [descriptor, values]
   );
 

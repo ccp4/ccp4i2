@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { ViewInAr } from "@mui/icons-material";
 import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 import { sceneSourceUrl } from "../../lib/scene-source";
+import { showInViewer } from "../../lib/viewer-channel";
 
 /**
  * Report element: a button that opens Moorhen on a scene the job builds
@@ -14,6 +15,8 @@ import { sceneSourceUrl } from "../../lib/scene-source";
  *   method    — the job's plugin method that builds the scene ("eventScene")
  *   kwargs    — its keyword arguments, as JSON
  *   projectId — project integer PK, for the viewer page's route
+ *   campaignId, jobId — present together: open the campaign viewer on that
+ *               member job and apply the scene there
  */
 export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (props) => {
   const { label, href } = useMemo(() => {
@@ -25,13 +28,19 @@ export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (prop
     } catch {
       kwargs = {};
     }
+    const campaignId = parseInt(el.attr("campaignId") || "", 10);
+    const memberJobId = parseInt(el.attr("jobId") || "", 10);
+    const target =
+      Number.isFinite(campaignId) && Number.isFinite(memberJobId)
+        ? { campaignId, jobId: memberJobId }
+        : null;
     return {
       label: el.attr("label") || "Open in Moorhen",
       href: sceneSourceUrl(projectId, {
         jobId: props.job.id,
         method: el.attr("method") || "",
         kwargs,
-      }),
+      }, target),
     };
   }, [props.item, props.job]);
 
@@ -42,7 +51,9 @@ export const CCP4i2ReportMoorhenLink: React.FC<CCP4i2ReportElementProps> = (prop
       startIcon={<ViewInAr fontSize="small" />}
       sx={{ m: 0.5, textTransform: "none" }}
       disabled={!href}
-      onClick={() => href && window.open(href, "_blank", "noopener,noreferrer")}
+      // An open viewer for the same project (or campaign member) takes the
+      // link and applies the scene where it is; otherwise a window opens.
+      onClick={() => href && showInViewer(href)}
     >
       {label}
     </Button>

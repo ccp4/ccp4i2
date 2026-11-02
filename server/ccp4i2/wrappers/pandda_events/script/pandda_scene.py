@@ -44,7 +44,13 @@ def _base(name: str, ref: RefMaker, dtag: str, *, apo: bool, zmap: bool,
     scene: Dict = {"scene": name, "version": 1, "files": [], "elements": [], "maps": []}
     if apo:
         scene["files"].append(ref("apo", "XYZIN_APO", "coordinates"))
-        scene["elements"].append({"file": "apo", "representations": [{"style": "CRs"}, {"style": "CBs"}]})
+        element = {"file": "apo", "representations": [{"style": "CRs"}, {"style": "CBs"}]}
+        # The ligand's dictionary goes on the protein as well as on the pose:
+        # a pose merged into the model (or a ligand built in it) is then read
+        # with the right chemistry. Per molecule, never global.
+        if dictionary:
+            element["dictionaries"] = ["dict"]
+        scene["elements"].append(element)
     if dictionary:
         scene["files"].append(ref("dict", "DICT", "dictionary"))
     if zmap:

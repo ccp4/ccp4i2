@@ -58,10 +58,15 @@ import {
   showMap,
   hideMap,
   setActiveMap,
+  addVectors,
+  removeVectorsMatchingIDString,
+  addObject,
+  removeObjectsByTag,
   ColourRule,
   getMultiColourRuleArgs,
 } from "moorhen/react-lib";
 import type { moorhen } from "moorhen/types/moorhen";
+import type { CylinderObject, SphereObject } from "moorhen/types/src/store/threeDObjectsSlice";
 
 // The colour-rule class is exported at runtime as `ColourRule`. The package's
 // types also name it `MoorhenColourRule`, but the bundle does not export that
@@ -71,6 +76,8 @@ import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import { extractProjectPathFromUniqueId } from "./scene-project-path";
 import {
   MoorhenScene,
+  SceneAnnotation,
+  ScenePoint,
   SceneColour,
   SceneColourSelection,
   SceneDomain,
@@ -128,6 +135,14 @@ export type SceneFileFetcher = (
      *  molecule as it loads (text plus the project file it came from, so a
      *  re-captured scene keeps the association). */
     dictionaries?: { text: string; fileId?: number; projectId?: string }[];
+    /** Whether the loader should draw its default look (ribbon + ligands)
+     *  as the molecule arrives. The resolver passes false for every file
+     *  the scene styles through an element: the scene draws what it wants
+     *  and would only hide the defaults again, so computing them is wasted
+     *  Coot and GPU work, and over a campaign of a hundred structures it is
+     *  most of the load time. A file with no element keeps the default look,
+     *  as it always did, or it would arrive invisible. */
+    defaultRepresentations?: boolean;
   },
 ) => Promise<moorhen.Molecule | null>;
 
@@ -214,6 +229,28 @@ export type SceneMapMasker = (args: {
   name: string;
 }) => Promise<moorhen.Map | null>;
 
+/**
+ * A step of applying a scene, reported through `ResolveCtx.onProgress` as
+ * the resolver reaches it, so the UI can say what is loading while a large
+ * scene (a campaign of many structures) comes in. `done` counts the items
+ * of the phase finished so far; `name` is the scene-file (or element) name
+ * about to be worked on.
+ */
+export interface SceneProgress {
+  phase: "dictionaries" | "structures" | "maps" | "representations";
+  done: number;
+  total: number;
+  name?: string;
+}
+
+/** One line for a status bar: "Loading structures 12/100: 7xyz". */
+export function describeSceneProgress(p: SceneProgress): string {
+  const verb = p.phase === "representations" ? "Styling" : "Loading";
+  const what = p.phase === "representations" ? "structures" : p.phase;
+  const tail = p.name ? `: ${p.name}` : "";
+  return `${verb} ${what} ${Math.min(p.done + 1, p.total)}/${p.total}${tail}`;
+}
+
 interface ResolveCtx {
   scene: MoorhenScene;
   molecules: moorhen.Molecule[];
@@ -239,6 +276,9 @@ interface ResolveCtx {
    *  mask recipes are dropped (and any maps[] entry that renders one via
    *  `from:` is dropped too) with a log entry. */
   mapMasker?: SceneMapMasker;
+  /** Optional. Called as each file or element is reached so the caller can
+   *  show what is loading. The resolver does the work regardless. */
+  onProgress?: (progress: SceneProgress) => void;
   /** Live glRef snapshot (zoom, fogClipOffset). Used by `view.clip:
    *  { front, back }` to derive clip/fog the way coot does (clip = zoom*depth,
    *  fog offset by fogClipOffset). Falls back to sane defaults if absent. */
@@ -372,6 +412,13 @@ function resolveViewMolecule(
  */
 export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher, mapMasker } = ctx;
+  const progress = (p: SceneProgress) => {
+    try {
+      ctx.onProgress?.(p);
+    } catch (e) {
+      console.warn("[scene] progress callback failed:", e);
+    }
+  };
   const maps = ctx.maps ?? [];
   const result: SceneResolveResult = {
     unresolvedFiles: [],
@@ -400,7 +447,8 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     load in 1b, or in 1c for a molecule that was already loaded).
   const dictScopes = planDictionaryScopes(scene);
   const dictTexts = new Map<string, string>();
-  for (const fr of dictRefs) {
+  for (const [i, fr] of dictRefs.entries()) {
+    progress({ phase: "dictionaries", done: i, total: dictRefs.length, name: fr.name });
     if (!dictionaryFetcher || !dictionaryLoader) {
       result.unresolvedFiles.push(fr.name);
       continue;
@@ -432,7 +480,12 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     local list so later files can also bind against them.
   const livePool: moorhen.Molecule[] = [...molecules];
   const fileBindings = new Map<string, moorhen.Molecule>();
-  for (const fr of coordRefs) {
+  // Files the scene styles itself. Their loader-default ribbon + ligands
+  // would be hidden again in step 3, so the fetcher is told not to draw
+  // them at all (see SceneFileFetcher).
+  const styledFiles = new Set((scene.elements ?? []).map((e) => e.file));
+  for (const [i, fr] of coordRefs.entries()) {
+    progress({ phase: "structures", done: i, total: coordRefs.length, name: fr.name });
     const existing = matchOneFile(fr, livePool);
     if (existing) {
       fileBindings.set(fr.name, existing);
@@ -442,6 +495,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       try {
         const dictRefByName = new Map(dictRefs.map((d) => [d.name, d]));
         const fetched = await fetcher(fr, {
+          defaultRepresentations: !styledFiles.has(fr.name),
           dictionaries: (dictScopes.byFile.get(fr.name) ?? [])
             .filter((name) => dictTexts.has(name))
             .map((name) => ({
@@ -563,7 +617,9 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   }
 
   // 3. Apply each element to its bound molecule.
-  for (const element of scene.elements ?? []) {
+  const elements = scene.elements ?? [];
+  for (const [i, element] of elements.entries()) {
+    progress({ phase: "representations", done: i, total: elements.length, name: element.file });
     const mol = fileBindings.get(element.file);
     if (!mol) continue; // already noted in unresolvedFiles
 
@@ -593,8 +649,12 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     // showing only `style: ligands`) keeps its loader-default ribbon
     // visible — producing one ghost ribbon per loaded molecule.
     //
-    // We hide rather than remove so the panel's built-in B/R/S toggles
-    // can bring them back if the user wants.
+    // A molecule the scene itself fetched (step 1b) arrives with no
+    // defaults, so this only does work for molecules that were already in
+    // the view. We hide rather than remove so the panel's built-in B/R/S
+    // toggles can bring them back if the user wants (Moorhen's show()
+    // creates the representation when none exists, so the toggles work on
+    // a default-free molecule too).
     try {
       for (const rep of mol.representations ?? []) {
         if (!rep.isCustom && rep.visible) {
@@ -692,8 +752,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   // (which carries the mtz column spec) rather than only a bare files[] name.
 
   // 2.4a File-backed maps.
-  for (const sceneMap of scene.maps ?? []) {
+  const fileMaps = (scene.maps ?? []).filter((m) => m.file != null);
+  for (const [i, sceneMap] of fileMaps.entries()) {
     if (sceneMap.file == null) continue; // from: maps handled in 2.4c
+    progress({ phase: "maps", done: i, total: fileMaps.length, name: sceneMap.name });
     const domain = `map ${sceneMap.name}`;
     const map = await loadMapForFile(sceneMap.file, domain, sceneMap);
     if (!map) continue; // loadMapForFile logged the reason
@@ -890,12 +952,301 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     }
   }
 
+  // 4. Annotations: labels and lines drawn through Moorhen's vectors store,
+  //    spheres and discs through its 3D objects store. The previous scene's
+  //    are replaced, never accumulated: they are scene-level, like the
+  //    camera, and a stale banner over a new scene would read as a statement
+  //    about it. Vectors and objects Moorhen or the user made are not touched
+  //    (the id prefix and the tag are ours alone). Anchored points resolve
+  //    after the superposition above, so a label follows the molecule it
+  //    names.
+  dispatch(removeVectorsMatchingIDString(ANNOTATION_VECTOR_PREFIX));
+  dispatch(removeObjectsByTag(ANNOTATION_OBJECT_TAGS));
+  if (scene.annotations?.length) {
+    const resolvePoint = (pt: ScenePoint, path: string): [number, number, number] | null => {
+      if (Array.isArray(pt)) return pt;
+      const { mol, error } = resolveViewMolecule(pt.file, fileBindings);
+      if (error || !mol) {
+        result.log.push({ file: pt.file ?? "", domain: path, message: `cannot anchor: ${error}` });
+        return null;
+      }
+      const cid = pt.selection ?? "/*/*/*/*";
+      const sphere = selectionBoundingSphere(mol, cid);
+      if (!sphere) {
+        result.log.push({
+          file: pt.file ?? "", domain: path,
+          message: `anchor: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+        });
+        return null;
+      }
+      return sphere.centre;
+    };
+    const { vectors, objects } = annotationsToDrawables(scene.annotations, resolvePoint);
+    if (vectors.length) dispatch(addVectors(vectors));
+    objects.forEach((obj) => dispatch(addObject(obj)));
+  }
+
   // Scene-level render hints (lighting + effects). Advisory; applied once.
   if (scene.hints) applyHints(scene.hints, dispatch);
 
   dispatch(setRequestDrawScene(true));
 
   return result;
+}
+
+// --------------------------------------------------------------------------
+// Annotations → Moorhen vectors and 3D objects
+// --------------------------------------------------------------------------
+
+/**
+ * uniqueId prefix stamped on every vector and 3D object the resolver makes
+ * from a scene's `annotations`: `<prefix>:<index>` for the drawable that
+ * carries the annotation, `<prefix>:<index>#label` for a sphere's or disc's
+ * banner. A re-apply replaces them and the lifter orders by the index. It
+ * contains `__TAG`, which Moorhen's own Vectors dialog filters out of the
+ * list it offers for editing: these belong to the scene, not to the user.
+ */
+export const ANNOTATION_VECTOR_PREFIX = "__TAG_SCENE_ANNOTATION";
+
+/** First customTags entry on a scene-made vector. The second is
+ *  `JSON.stringify({ authored, lowered })`: the annotation as written and the
+ *  same with every point lowered to [x, y, z], for the lifter. */
+export const ANNOTATION_TAG = "ccp4i2-scene-annotation";
+
+/** Tags on every 3D object the resolver makes. `source` is what a re-apply
+ *  and the campaign page clear by (`removeObjectsByTag`); the lifter reads
+ *  the same `{ authored, lowered }` stamp from the `annotation` tag. */
+export const ANNOTATION_OBJECT_TAGS: Record<string, string> = { source: ANNOTATION_TAG };
+const ANNOTATION_STAMP_TAG = "annotation";
+
+const ANNOTATION_DEFAULT_COLOUR = "#f2c14e";
+const LINE_DEFAULT_RADIUS = 0.1;
+const DISC_DEFAULT_THICKNESS = 0.3;
+/** A label is a zero-length vector: nothing drawn but its banner. The radius
+ *  must be truthy or Moorhen substitutes its 0.07 default. */
+const LABEL_STEM_RADIUS = 0.001;
+
+/** The subset of Moorhen's MoorhenVector (store/vectorsSlice) the resolver
+ *  fills. Spelled out here because the package exports the slice's actions,
+ *  not its types, under a stable path. */
+export interface SceneVector {
+  coordsMode: "points";
+  labelMode: "none" | "start" | "end" | "middle";
+  labelText: string;
+  drawMode: "cylinder" | "dashedcylinder";
+  arrowMode: "none" | "start" | "end" | "both";
+  xFrom: number; yFrom: number; zFrom: number;
+  xTo: number; yTo: number; zTo: number;
+  cidFrom: string; cidTo: string;
+  molFromUniqueId: string; molToUniqueId: string;
+  uniqueId: string;
+  vectorColour: { r: number; g: number; b: number };
+  textColour: { r: number; g: number; b: number };
+  radius?: number;
+  labelFontSize?: number;
+  customTags?: string[];
+}
+
+/** The 3D objects (store/threeDObjectsSlice) the resolver makes: a sphere
+ *  for a sphere, a cylinder for a disc (a coin of the authored thickness). */
+export type SceneObject = SphereObject | CylinderObject;
+
+export interface SceneDrawables {
+  vectors: SceneVector[];
+  objects: SceneObject[];
+}
+
+function hexToRgb255(hex: string | undefined, fallback: string): { r: number; g: number; b: number } {
+  const rgb = hexToRgb01(hex ?? fallback) ?? hexToRgb01(fallback)!;
+  return { r: Math.round(rgb.r * 255), g: Math.round(rgb.g * 255), b: Math.round(rgb.b * 255) };
+}
+
+/** An object colour is `#rrggbbaa`; a scene colour is `#rrggbb`, opaque. */
+function objectColour(hex: string | undefined, fallback: string): string {
+  const valid = hex !== undefined && hexToRgb01(hex) !== null ? hex : fallback;
+  return `${valid.toLowerCase()}ff`;
+}
+
+type Xyz = [number, number, number];
+
+/** `annotation` with every point lowered to coordinates: what the lifter
+ *  falls back to when the anchors' files are not in the lifted scene. */
+function lowerAnnotation(a: SceneAnnotation, points: Record<string, Xyz>): SceneAnnotation {
+  if (a.kind === "line") return { ...a, from: points.from, to: points.to };
+  return { ...a, at: points.at };
+}
+
+/**
+ * Turn a scene's `annotations` into Moorhen vectors (points mode) and 3D
+ * objects. `resolvePoint` lowers a point to coordinates, or returns null
+ * (having logged why) to drop the annotation. Pure apart from that callback,
+ * so it is unit-testable: the geometry rules live here, the store and gemmi
+ * do not.
+ *
+ *  - label:  a zero-length vector whose banner sits at the point.
+ *  - line:   a cylinder (dashed if asked) with optional arrowheads and banner.
+ *  - sphere: a sphere object at the point. A banner is a zero-length vector
+ *            at its centre.
+ *  - disc:   a cylinder object of the disc's radius, `thickness` long,
+ *            centred on the point along `normal`. A banner is a zero-length
+ *            vector on its +normal face.
+ *
+ * The drawable that carries the annotation (the vector, the sphere, the
+ * cylinder) is stamped for the lifter; a banner vector is not, so a sphere
+ * or disc lifts once. Both carry the index in their uniqueId, so the lifter
+ * can restore the authored order across the two stores.
+ */
+export function annotationsToDrawables(
+  annotations: SceneAnnotation[],
+  resolvePoint: (pt: ScenePoint, path: string) => Xyz | null,
+): SceneDrawables {
+  const vectors: SceneVector[] = [];
+  const objects: SceneObject[] = [];
+  annotations.forEach((a, i) => {
+    const path = `annotations[${i}]`;
+    const uniqueId = `${ANNOTATION_VECTOR_PREFIX}:${i}`;
+    const colour = hexToRgb255(a.colour, ANNOTATION_DEFAULT_COLOUR);
+    const textColour = hexToRgb255(
+      a.kind === "label" ? a.colour : a.textColour ?? a.colour,
+      ANNOTATION_DEFAULT_COLOUR,
+    );
+    const base = {
+      coordsMode: "points" as const,
+      cidFrom: "", cidTo: "", molFromUniqueId: "", molToUniqueId: "",
+      uniqueId,
+      vectorColour: colour,
+      textColour,
+      ...(a.fontSize !== undefined ? { labelFontSize: a.fontSize } : {}),
+    };
+    const stamp = (points: Record<string, Xyz>) =>
+      JSON.stringify({ authored: a, lowered: lowerAnnotation(a, points) });
+    /** A banner at a point: the label vector a sphere or disc hangs its text on. */
+    const banner = (at: Xyz, text: string): SceneVector => ({
+      ...base,
+      uniqueId: `${uniqueId}#label`,
+      labelMode: "end", labelText: text,
+      drawMode: "cylinder", arrowMode: "none", radius: LABEL_STEM_RADIUS,
+      xFrom: at[0], yFrom: at[1], zFrom: at[2], xTo: at[0], yTo: at[1], zTo: at[2],
+    });
+    const objectBase = {
+      uniqueId,
+      colour: objectColour(a.colour, ANNOTATION_DEFAULT_COLOUR),
+      wireframe: false,
+      // The geometry follows from the scene: editing it in place would only
+      // put the two out of step. Deleting stays allowed.
+      locked: true,
+    };
+
+    if (a.kind === "label") {
+      const at = resolvePoint(a.at, `${path}.at`);
+      if (!at) return;
+      vectors.push({
+        ...base,
+        labelMode: "end", labelText: a.text,
+        drawMode: "cylinder", arrowMode: "none", radius: LABEL_STEM_RADIUS,
+        xFrom: at[0], yFrom: at[1], zFrom: at[2], xTo: at[0], yTo: at[1], zTo: at[2],
+        customTags: [ANNOTATION_TAG, stamp({ at })],
+      });
+      return;
+    }
+
+    if (a.kind === "line") {
+      const from = resolvePoint(a.from, `${path}.from`);
+      const to = resolvePoint(a.to, `${path}.to`);
+      if (!from || !to) return;
+      vectors.push({
+        ...base,
+        labelMode: a.text ? a.textAt ?? "middle" : "none",
+        labelText: a.text ?? "",
+        drawMode: a.dashed ? "dashedcylinder" : "cylinder",
+        arrowMode: a.arrows ?? "none",
+        radius: a.radius ?? LINE_DEFAULT_RADIUS,
+        xFrom: from[0], yFrom: from[1], zFrom: from[2], xTo: to[0], yTo: to[1], zTo: to[2],
+        customTags: [ANNOTATION_TAG, stamp({ from, to })],
+      });
+      return;
+    }
+
+    if (a.kind === "sphere") {
+      const at = resolvePoint(a.at, `${path}.at`);
+      if (!at) return;
+      objects.push({
+        ...objectBase,
+        type: "sphere",
+        origin: at,
+        radius: a.radius,
+        tags: { ...ANNOTATION_OBJECT_TAGS, [ANNOTATION_STAMP_TAG]: stamp({ at }) },
+      });
+      if (a.text) vectors.push(banner(at, a.text));
+      return;
+    }
+
+    // disc
+    const at = resolvePoint(a.at, `${path}.at`);
+    if (!at) return;
+    const n0 = a.normal ?? [0, 0, 1];
+    const len = Math.hypot(n0[0], n0[1], n0[2]);
+    const n: Xyz = len > 0 ? [n0[0] / len, n0[1] / len, n0[2] / len] : [0, 0, 1];
+    const half = (a.thickness ?? DISC_DEFAULT_THICKNESS) / 2;
+    const face: Xyz = [at[0] + n[0] * half, at[1] + n[1] * half, at[2] + n[2] * half];
+    objects.push({
+      ...objectBase,
+      type: "cylinder",
+      origin: [at[0] - n[0] * half, at[1] - n[1] * half, at[2] - n[2] * half],
+      end: face,
+      radius: a.radius,
+      tags: { ...ANNOTATION_OBJECT_TAGS, [ANNOTATION_STAMP_TAG]: stamp({ at }) },
+    });
+    if (a.text) vectors.push(banner(face, a.text));
+  });
+  return { vectors, objects };
+}
+
+/** The index in a scene-made drawable's uniqueId (`<prefix>:<i>` or
+ *  `<prefix>:<i>#label`), or null for an id that is not the scene's. */
+export function annotationIndexOf(uniqueId: string | undefined): number | null {
+  if (!uniqueId?.startsWith(`${ANNOTATION_VECTOR_PREFIX}:`)) return null;
+  const n = Number.parseInt(uniqueId.slice(ANNOTATION_VECTOR_PREFIX.length + 1), 10);
+  return Number.isFinite(n) ? n : null;
+}
+
+function parseStamp(text: string | undefined): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
+  if (!text) return null;
+  try {
+    const parsed = JSON.parse(text) as { authored?: SceneAnnotation; lowered?: SceneAnnotation };
+    if (!parsed.authored || !parsed.lowered) return null;
+    return { authored: parsed.authored, lowered: parsed.lowered };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Read the annotation a scene-made vector was built from. Returns null for a
+ * vector that is not ours (no stamp), a banner vector (which belongs to an
+ * object's annotation), or one whose stamp does not parse.
+ */
+export function annotationFromVector(vec: {
+  uniqueId?: string;
+  customTags?: string[];
+}): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
+  if (!vec.uniqueId?.startsWith(ANNOTATION_VECTOR_PREFIX)) return null;
+  const tags = vec.customTags ?? [];
+  if (tags[0] !== ANNOTATION_TAG) return null;
+  return parseStamp(tags[1]);
+}
+
+/**
+ * Read the annotation a scene-made 3D object was built from. Returns null
+ * for an object that is not ours (no `source` tag) or whose stamp does not
+ * parse.
+ */
+export function annotationFromObject(obj: {
+  uniqueId?: string;
+  tags?: Record<string, string>;
+}): { authored: SceneAnnotation; lowered: SceneAnnotation } | null {
+  if (obj.tags?.source !== ANNOTATION_TAG) return null;
+  return parseStamp(obj.tags[ANNOTATION_STAMP_TAG]);
 }
 
 // --------------------------------------------------------------------------
@@ -1300,6 +1651,34 @@ export function geometryToM2tParams(
   return out;
 }
 
+/**
+ * The styles Moorhen draws through coot's bond mesh rather than
+ * MolecularsToTriangles (MoorhenMoleculeRepresentation.getCootSelectionBondBuffers).
+ * Their dimensions come from per-representation cootBondOptions, not
+ * m2tParameters, so honoured geometry has to be mapped differently for them;
+ * mapped as m2tParameters it is silently ignored.
+ */
+const COOT_BOND_STYLES = new Set(["CBs", "CAs", "ligands", "VdwSpheres"]);
+
+/**
+ * Honoured geometry → Moorhen cootBondOptions, for COOT_BOND_STYLES. Coot's
+ * `width` is the bond cylinder radius; the atom ball is `width *
+ * atomRadiusBondRatio` (Moorhen's defaults: 0.1 and 2). Pure, for the same
+ * reason as geometryToM2tParams; the caller applies the result with
+ * representation.setBondOptions, which also turns useDefaultBondOptions off.
+ */
+export function geometryToBondOptions(
+  geom: SceneGeometry,
+  base: moorhen.cootBondOptions,
+): moorhen.cootBondOptions {
+  const out = { ...base };
+  if (typeof geom.bondRadius === "number") out.width = geom.bondRadius;
+  if (typeof geom.ballRadius === "number" && out.width > 0) {
+    out.atomRadiusBondRatio = geom.ballRadius / out.width;
+  }
+  return out;
+}
+
 /** True iff a SceneGeometry carries at least one numeric override. */
 function hasGeometry(geom?: SceneGeometry): geom is SceneGeometry {
   return !!geom && Object.values(geom).some((v) => typeof v === "number");
@@ -1385,9 +1764,14 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
       if (!created) continue;
       const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
       const geomSet = hasGeometry(rep.geometry);
-      // Honoured geometry → m2tParameters. Applied before the redraw so the
-      // rebuilt buffers use the new dimensions.
-      if (geomSet) {
+      // Honoured geometry → the dimensions the style actually reads: coot
+      // bond options for the bond styles, m2tParameters for the rest. Applied
+      // before the redraw so the rebuilt buffers use the new dimensions.
+      if (geomSet && COOT_BOND_STYLES.has(rep.style)) {
+        created.setBondOptions(
+          geometryToBondOptions(rep.geometry as SceneGeometry, molecule.defaultBondOptions),
+        );
+      } else if (geomSet) {
         created.useDefaultM2tParams = false;
         created.setM2tParams(
           geometryToM2tParams(
@@ -1427,13 +1811,12 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
       if (pendingRules.length > 0 || geomSet) {
         await molecule.redrawRepresentation(created.uniqueId);
       }
-      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included)
-      // MUST be applied LAST, after any redraw. setNonCustomOpacity rewrites the
-      // alpha of the *current* buffers, but Moorhen's draw()/redraw() rebuild
-      // buffers opaque and do NOT re-apply nonCustomOpacity — so setting it
-      // before the redraw above is silently clobbered when the rebuild lands
-      // (the "transparent while loading, opaque once drawn" flip). Setting it
-      // here, on the final buffers, makes it stick; it requests its own redraw.
+      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included),
+      // applied after any redraw. Moorhen before 1.0.2-dev.g624b7e29e rebuilt
+      // buffers opaque in draw()/redraw() without re-applying nonCustomOpacity,
+      // so setting it before the redraw above was clobbered (the "transparent
+      // while loading, opaque once drawn" flip). Moorhen now re-applies it
+      // (e8a75398f), so the order no longer matters; last is still right.
       if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       dispatch(addCustomRepresentation(created));
       anySucceeded = true;

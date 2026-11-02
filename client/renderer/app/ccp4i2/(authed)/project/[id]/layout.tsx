@@ -1,5 +1,6 @@
 "use client";
 import { PropsWithChildren, use, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   Paper,
   Stack,
@@ -14,6 +15,7 @@ import { useCCP4i2Window } from "@/app-context";
 import { CCP4i2DirectoryViewer } from "@/components/directory-viewer";
 import { useProject } from "@/utils";
 import { ClassicJobList } from "@/components/classic-jobs-list";
+import { PanelErrorBoundary } from "@/components/panel-error-boundary";
 import { DraggableContext } from "@/providers/draggable-context";
 import { FilePreviewProvider } from "@/providers/file-preview-context";
 import { JobMenuProvider } from "@/providers/job-context-menu";
@@ -37,6 +39,8 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
 
   const { id } = use(props.params);
   const { project } = useProject(parseInt(id));
+  // A page that failed to draw gets a fresh start on navigation.
+  const pathname = usePathname();
 
   useEffect(() => {
     const asyncFunc = async () => {
@@ -106,14 +110,20 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                             }}
                           >
                             {mobileTabValue === 0 && project && (
-                              <ClassicJobList projectId={project.id} />
+                              <PanelErrorBoundary name="job list" resetKeys={[project.id]}>
+                                <ClassicJobList projectId={project.id} />
+                              </PanelErrorBoundary>
                             )}
                             {mobileTabValue === 1 && project && (
-                              <CCP4i2DirectoryViewer projectId={project.id} />
+                              <PanelErrorBoundary name="project directory" resetKeys={[project.id]}>
+                                <CCP4i2DirectoryViewer projectId={project.id} />
+                              </PanelErrorBoundary>
                             )}
                             {mobileTabValue === 2 && (
                               <Box sx={{ height: "100%" }}>
-                                {props.children}
+                                <PanelErrorBoundary name="page" resetKeys={[pathname]}>
+                                  {props.children}
+                                </PanelErrorBoundary>
                               </Box>
                             )}
                           </Box>
@@ -136,10 +146,14 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                               <Tab value={1} label="Project directory" />
                             </Tabs>
                             {leftTabValue === 0 && project && (
-                              <ClassicJobList projectId={project.id} />
+                              <PanelErrorBoundary name="job list" resetKeys={[project.id]}>
+                                <ClassicJobList projectId={project.id} />
+                              </PanelErrorBoundary>
                             )}
                             {leftTabValue === 1 && project && (
-                              <CCP4i2DirectoryViewer projectId={project.id} />
+                              <PanelErrorBoundary name="project directory" resetKeys={[project.id]}>
+                                <CCP4i2DirectoryViewer projectId={project.id} />
+                              </PanelErrorBoundary>
                             )}
                           </Stack>
                         </Panel>
@@ -164,7 +178,9 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                           />
                         </PanelResizeHandle>
                         <Panel id="project-content" order={2} defaultSize={70} minSize={20}>
-                          {props.children}
+                          <PanelErrorBoundary name="page" resetKeys={[pathname]}>
+                            {props.children}
+                          </PanelErrorBoundary>
                         </Panel>
                       </PanelGroup>
                     )}

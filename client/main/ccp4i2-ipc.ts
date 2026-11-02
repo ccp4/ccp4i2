@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron";
+import { zoomAll } from "./ccp4i2-zoom";
 import { startDjangoServer } from "./ccp4i2-django-server";
 import os, { platform } from "node:os";
 import Store from "electron-store";
@@ -353,11 +354,37 @@ export const installIpcHandlers = (
 
   // Reports whether a path already exists, for the New Project page's
   // resulting-directory field.
+  // A viewer window that has just been handed a link by another window
+  // (renderer/lib/viewer-channel.ts) asks to be brought forward: a page
+  // cannot raise its own window from script.
+  ipcMain.on("focus-window", (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    if (!window) return;
+    if (window.isMinimized()) window.restore();
+    window.focus();
+  });
+
+  // Also says what is there, so the New Project page can accept a folder the
+  // user made in advance (#686): an empty directory is fine to create a
+  // project in; one with contents, or a plain file, is not.
   ipcMain.on("check-file-exists", (event, data) => {
+    const exists = fs.existsSync(data.path);
+    let isDirectory = false;
+    let isEmpty = false;
+    if (exists) {
+      try {
+        isDirectory = fs.statSync(data.path).isDirectory();
+        if (isDirectory) isEmpty = fs.readdirSync(data.path).length === 0;
+      } catch {
+        /* unreadable: report it as existing and not empty, the safe answer */
+      }
+    }
     event.reply("message-from-main", {
       message: "check-file-exists",
       path: data.path,
-      exists: fs.existsSync(data.path),
+      exists,
+      isDirectory,
+      isEmpty,
     });
   });
 
@@ -554,28 +581,11 @@ export const installIpcHandlers = (
     }
   });
 
-  ipcMain.on("zoom-in", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      const current = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(current + 1);
-      store.set("zoomLevel", current + 1);
-    });
-  });
-
-  ipcMain.on("zoom-out", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      const current = win.webContents.getZoomLevel();
-      win.webContents.setZoomLevel(current - 1);
-      store.set("zoomLevel", current - 1);
-    });
-  });
-
-  ipcMain.on("zoom-reset", (event, _data) => {
-    BrowserWindow.getAllWindows().forEach((win) => {
-      win.webContents.setZoomLevel(0);
-      store.set("zoomLevel", 0);
-    });
-  });
+  // The in-app View menu's zoom items; the same helper as the keys and the
+  // macOS menu, so the level is kept however it was changed.
+  ipcMain.on("zoom-in", () => zoomAll(store, "in"));
+  ipcMain.on("zoom-out", () => zoomAll(store, "out"));
+  ipcMain.on("zoom-reset", () => zoomAll(store, "reset"));
 
   // Probe whether this python can actually run the django backend, and reply on
   // "message-from-main" with requirements-exist (carrying the version) or

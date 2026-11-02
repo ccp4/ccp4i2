@@ -99,6 +99,10 @@ class pandda_campaign(CPluginScript):
         # Events of finished datasets, by dtag (pandda_live_scene.peek_events):
         # kept across report writes so each reads only what finished since.
         self._peek_cache = {}
+        # Where each dataset's events are looked at: the campaign this run
+        # belongs to and each member's current-model job, from the database
+        # once per dataset (_campaign_views).
+        self._member_views = None
 
     # -- interface-time methods, through the generic object_method endpoint --
     #
@@ -126,7 +130,7 @@ class pandda_campaign(CPluginScript):
         return result.to_dict() if hasattr(result, "to_dict") else {
             "success": result.success, "data": result.data, "error": result.error}
 
-    def eventScene(self, dtag, event_idx=None):
+    def eventScene(self, dtag, event_idx=None, apo_file_id=None):
         """A Moorhen scene of one event (or, with no ``event_idx``, of one
         dataset's Z-map), built from this run's own tree.
 
@@ -134,7 +138,8 @@ class pandda_campaign(CPluginScript):
         after it ends until fan-out delivers the receipts. The scene names
         the run's files by their path in the project: the database records
         none of them. Built on request because it reads the event map to
-        choose a contour.
+        choose a contour. ``apo_file_id`` puts a database file (the member's
+        current model, on the campaign page) in the apo model's place.
         """
         from .pandda_live_scene import live_event_scene
         job = self._job_row()
@@ -144,7 +149,8 @@ class pandda_campaign(CPluginScript):
             scene = live_event_scene(
                 self._out_dir(), Path(self.workDirectory) / 'staging' / 'datasets',
                 job.project.directory, str(job.project.uuid), dtag,
-                None if event_idx in (None, '') else int(event_idx))
+                None if event_idx in (None, '') else int(event_idx),
+                None if apo_file_id in (None, '') else int(apo_file_id))
         except ValueError as e:
             return {"success": False, "error": str(e)}
         return {"success": True, "scene": scene}
@@ -775,10 +781,35 @@ class pandda_campaign(CPluginScript):
             return
         node = ET.SubElement(root, 'peek', total=str(len(events)),
                              datasets=str(len(self._peek_cache)))
+        views = self._campaign_views()
+        if views.get('campaign') is not None:
+            node.set('campaign', str(views['campaign']))
         for event in events[:self.PEEK_LIMIT]:
             item = ET.SubElement(node, 'event', dtag=event['dtag'], idx=str(event['event_idx']))
             if event['score'] is not None:
                 item.set('score', f"{event['score']:.3f}")
+            member = views['members'].get(event['dtag'])
+            if member:
+                item.set('member_project', str(member[0]))
+                if member[1] is not None:
+                    item.set('member_job', str(member[1]))
+
+    def _campaign_views(self) -> dict:
+        """Where an event is looked at on the campaign page (see
+        pandda_campaign_views). Read from the database once and kept for
+        the plugin's life; a dataset's current model can change, so a fresh
+        report (a new plugin instance) reads again. Not the process that
+        ran: the manifest comes from the job directory."""
+        from .pandda_campaign_views import campaign_views
+        if self._member_views is not None:
+            return self._member_views
+        manifest = self._manifest
+        if manifest is None:
+            manifest_path = Path(self.workDirectory) / 'manifest.json'
+            if manifest_path.is_file():
+                manifest = json.loads(manifest_path.read_text())
+        self._member_views = campaign_views(self._job_row(), manifest)
+        return self._member_views
 
     def _write_program_xml(self, state: str, failure: str = ''):
         root = ET.Element('pandda_campaign')

@@ -11,12 +11,13 @@ from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 # mmdb2 imported lazily below — only needed for optional molprobity SEGID sanitization
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
+from ccp4i2.wrappers.refmac.script.refmac import upgrade_legacy_hd_init
 
 
 class prosmart_refmac(CPluginScript):
 
     TASKNAME = 'prosmart_refmac'
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1', 'moorhen']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CRefinementPerformance'
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
@@ -41,6 +42,10 @@ class prosmart_refmac(CPluginScript):
         self.refmacMonitors = {}
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
+
+    def upgradeLegacyParameters(self):
+        # The pipeline includes refmac.def.xml, so it holds refmac's HD_INIT
+        upgrade_legacy_hd_init(self.container.controlParameters)
 
     def validity(self):
         error = super(prosmart_refmac, self).validity()

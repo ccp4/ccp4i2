@@ -1,6 +1,7 @@
 import { Editor } from "@monaco-editor/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CCP4Table, parseXML, Plot } from "./ChartLib";
+import { CCP4Table, ChartColours, parseXML, Plot } from "./ChartLib";
+import { useTheme as useMuiTheme } from "@mui/material/styles";
 
 import {
   Chart as ChartJS,
@@ -131,6 +132,19 @@ export const CCP4i2ApplicationOutputView: React.FC<
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editedOptions, setEditedOptions] = useState<ChartOptions | null>(null);
   const { mode } = useTheme();
+  const muiTheme = useMuiTheme();
+  const chartColours: ChartColours = useMemo(
+    () => ({
+      text: muiTheme.palette.text.secondary,
+      grid: muiTheme.palette.divider,
+    }),
+    [muiTheme]
+  );
+
+  // Edits made in the options editor belong to the plot they were made on
+  useEffect(() => {
+    setEditedOptions(null);
+  }, [selectedPlot]);
 
   const chartRef = useRef<any>(null);
 
@@ -423,7 +437,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
 
   const chartArgs: ChartArgs | null = useMemo(() => {
     if (selectedPlot && table) {
-      const options: ChartOptions | null = table.plotOptions(selectedPlot);
+      const options: ChartOptions | null = table.plotOptions(selectedPlot, chartColours);
       const data: ChartData<"bar" | "scatter"> | null =
         table.plotData(selectedPlot);
       if (!options || !data) {
@@ -432,7 +446,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
       return { data, options };
     }
     return null;
-  }, [selectedPlot, table]);
+  }, [selectedPlot, table, chartColours]);
 
   // Ramachandran (and any fixed-aspect Phi/Psi) plots are forced square by
   // Chart.js (maintainAspectRatio + aspectRatio:1). A short fixed-height Card
@@ -465,8 +479,17 @@ export const CCP4i2ApplicationOutputView: React.FC<
           title={
             allPlots &&
             selectedPlot &&
+            allPlots.length === 1 ? (
+              // One plot: nothing to choose, so no chooser (it was shown
+              // disabled, and looked broken)
+              <Typography variant="subtitle1">
+                {selectedPlot.title || "Unnamed plot"}
+              </Typography>
+            ) : allPlots &&
+            selectedPlot &&
             allPlots.length > 0 && (
               <Autocomplete
+                disableClearable
                 sx={{
                   px: 0,
                   py: 0,
@@ -475,9 +498,9 @@ export const CCP4i2ApplicationOutputView: React.FC<
                 getOptionKey={(option) => allPlots.indexOf(option)}
                 getOptionLabel={(option) => option.title || "Unnamed plot"}
                 onChange={(event, newValue) => {
-                  setSelectedPlot(newValue);
+                  if (newValue) setSelectedPlot(newValue);
                 }}
-                disabled={allPlots.length === 1}
+                isOptionEqualToValue={(option, value) => option === value}
                 value={selectedPlot}
                 renderInput={(params) => (
                   <TextField {...params} size="small" label="Plot" />

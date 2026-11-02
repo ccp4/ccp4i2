@@ -2,8 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { maybeStage } from "./lib/staged-upload";
 import $ from "jquery";
 import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
+import { useParams, useRouter } from "next/navigation";
 
 import { useApi } from "./api";
+import { useCCP4i2Window } from "./app-context";
 import {
   Job,
   JobTreeNode,
@@ -767,6 +769,32 @@ export const deletesViewedJob = (
   deleted.some(
     (job) => job.id === viewed.id || viewed.number.startsWith(`${job.number}.`)
   );
+
+/**
+ * Let go of jobs before they are deleted: leave the page of one, and clear the
+ * window's job, which the toolbar, app bar, run check and drag provider go on
+ * fetching after its page has gone. Holding either sends a burst of 404s.
+ */
+export const useReleaseDeletedJobs = (projectId: number | null | undefined) => {
+  const router = useRouter();
+  const { jobid } = (useParams() ?? {}) as { jobid?: string };
+  const { jobId: windowJobId, setJobId } = useCCP4i2Window();
+  const { jobs } = useProjectJobs(projectId);
+
+  return useCallback(
+    (deleted: JobRef[]) => {
+      const find = (id: number | null | undefined) =>
+        jobs?.find((job) => job.id === id);
+      if (deletesViewedJob(find(Number(jobid)), deleted)) {
+        router.push(`/ccp4i2/project/${projectId}`);
+      }
+      if (deletesViewedJob(find(windowJobId), deleted)) {
+        setJobId?.(null);
+      }
+    },
+    [jobs, jobid, windowJobId, setJobId, router, projectId]
+  );
+};
 
 /**
  * Custom hook to fetch and manage project-related data.

@@ -18,7 +18,7 @@ LOGFILE_NAME = 'log.txt'
 class AMPLE(CPluginScript):
     ERROR_CODES = {201: {'description': 'AMPLE produced no molecular-replacement solution'}}
     TASKNAME = 'AMPLE'
-    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1']
+    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1', 'moorhen']
     TASKCOMMAND = "ample"
 
     def makeCommandAndScript(self):

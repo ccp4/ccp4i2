@@ -655,7 +655,9 @@ describe("LLM authoring brief (generated from the contract)", () => {
         brief +
         "\n──────────────────────────────────────────",
     );
-    expect(chars).toBeLessThan(8000); // vs ~38000 for the .md
+    // ~7.9k before `annotations` (a three-branch union, ~1.2k); still a fifth
+    // of the prose grammar.
+    expect(chars).toBeLessThan(10000); // vs ~38000 for the .md
   });
 
   it("teaches the CURRENT format (not the stale grammar)", () => {

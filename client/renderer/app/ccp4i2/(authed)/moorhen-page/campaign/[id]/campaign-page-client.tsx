@@ -1,12 +1,16 @@
 "use client";
 import { Suspense, useMemo, useState, useCallback, useEffect } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
+import { usePopcorn } from "@/providers/popcorn-provider";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
 import type { MoorhenScene } from "@/types/moorhen-scene";
 import { parseEventParam } from "@/lib/event-evidence";
+import { sceneSourceFromParams } from "@/lib/scene-source";
+import { parseSiteParam } from "@/lib/site-view-link";
+import { listenAsViewer } from "@/lib/viewer-channel";
 import type {
   NewCampaignSite,
   SiteEvaluation,
@@ -25,8 +29,21 @@ function CampaignPageContent() {
   // Optional: a PanDDA event whose evidence to load (a filled matrix box)
   const eventParam = searchParams?.get("event");
   const initialEvent = useMemo(() => parseEventParam(eventParam), [eventParam]);
+  // Optional: a scene a job builds on request (a PanDDA report's "open in
+  // Moorhen" button), applied over the member's model once it is in view.
+  const sceneKey = ["sceneJob", "sceneMethod", "sceneArgs"].map((k) => searchParams?.get(k) ?? "").join("\n");
+  const sceneSource = useMemo(
+    () => (searchParams ? sceneSourceFromParams(searchParams) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [sceneKey],
+  );
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
+
+  // Take links for this campaign and member job from other windows
+  // (lib/viewer-channel): the new URL's scene is applied over what is open.
+  const router = useRouter();
+  useEffect(() => listenAsViewer((href) => router.replace(href)), [router]);
 
   const campaignsApi = useCampaignsApi();
   const { data: campaign } = campaignsApi.useCampaign(campaignId);
@@ -80,27 +97,42 @@ function CampaignPageContent() {
   // recorded there, fitted on its pocket, rather than the whole campaign.
   // Everything downstream (serialise, seed the Scenes panel, auto-apply) is
   // the same, so it goes through the same prop.
-  const summarySiteId = siteParam ? parseInt(siteParam) : null;
+  // `site` names one site, or several -- a site and its subsites, or
+  // neighbours -- viewed as one scene (lib/site-view-link).
+  const summarySiteIds = useMemo(() => parseSiteParam(siteParam), [siteParam]);
+  const summarySiteKey = summarySiteIds.join(",");
   const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
+  const { setMessage } = usePopcorn();
   useEffect(() => {
     if (!summaryMode || campaignId === null) return;
     let cancelled = false;
+    // The server builds the scene on demand and remembers it, so the first
+    // open after a change can take a while on a big campaign; say so rather
+    // than leave an empty viewer.
+    setMessage("Building the campaign scene; a large campaign can take a minute", "info");
     const request =
-      summarySiteId !== null
-        ? campaignsApi.fetchSiteScene(campaignId, summarySiteId)
-        : campaignsApi.fetchSummaryScene(campaignId);
+      summarySiteIds.length > 1
+        ? campaignsApi.fetchSitesScene(campaignId, summarySiteIds)
+        : summarySiteIds.length === 1
+          ? campaignsApi.fetchSiteScene(campaignId, summarySiteIds[0])
+          : campaignsApi.fetchSummaryScene(campaignId);
     request
       .then((res) => {
         if (!cancelled) setSummaryScene(res.scene);
       })
       .catch((err) => {
+        if (cancelled) return;
         console.error("Failed to load campaign summary scene:", err);
+        setMessage(
+          `Could not build the campaign scene: ${err instanceof Error ? err.message : String(err)}`,
+          "error",
+        );
       });
     return () => {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [summaryMode, campaignId, summarySiteId]);
+  }, [summaryMode, campaignId, summarySiteKey]);
 
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
@@ -321,8 +353,11 @@ function CampaignPageContent() {
         fileSource={fileIds}
         summaryScene={summaryMode ? summaryScene : null}
         viewParam={viewParam}
-        initialSiteId={siteParam ? parseInt(siteParam) : null}
+        // Going to one named site; several are framed by their scene, whose
+        // camera looks at their centroid, and going to the first would undo it.
+        initialSiteId={summarySiteIds.length === 1 ? summarySiteIds[0] : null}
         initialEvent={initialEvent}
+        sceneSource={sceneSource}
         sites={sites || []}
         onAddSite={handleAddSite}
         onUpdateSite={handleUpdateSite}

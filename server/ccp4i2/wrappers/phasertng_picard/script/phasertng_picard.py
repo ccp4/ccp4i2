@@ -33,7 +33,7 @@ class phasertng_picard(PhilPluginScript):
     PERFORMANCECLASS = "CRefinementPerformance"
     TASKNAME = "phasertng_picard"
     TASKCOMMAND = "phasertng.picard"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft", "phasertng_riker"]
+    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "coot1", "moorhen", "modelcraft", "phasertng_riker"]
 
     # PHIL scopes excluded from the GUI.
     #
@@ -311,6 +311,17 @@ class phasertng_picard(PhilPluginScript):
                 except Exception as e:
                     logger.debug("Could not set HKLOUT: %s", e)
                 break
+
+        # Best DAG cards file (for chaining into phasertng_riker)
+        dag_files = sorted(glob.glob(os.path.join(db_dir, "best.*.dag.cards")))
+        if dag_files:
+            try:
+                dest = self._elevate_to_job_dir(dag_files[0])
+                out.DAGOUT.setFullPath(dest)
+                out.DAGOUT.annotation = "Solution state for incremental MR"
+                logger.info("Set DAGOUT to %s", dest)
+            except Exception as e:
+                logger.debug("Could not set DAGOUT: %s", e)
 
         # Generate sigma-A weighted map coefficients from the MR solution
         self._run_sigmaa(work_dir, out)

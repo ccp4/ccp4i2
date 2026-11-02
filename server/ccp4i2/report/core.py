@@ -377,6 +377,8 @@ class Container(ReportClass):
             method: A plugin method ending in ``Scene`` that returns
                 ``{"success": True, "scene": {...}}`` (see actions.MoorhenLink)
             kwargs: Its keyword arguments
+            campaignId, jobId: open the campaign viewer on that member job
+                and apply the scene there (both or neither)
         """
         from ccp4i2.report.actions import MoorhenLink
         obj = MoorhenLink(
@@ -385,6 +387,8 @@ class Container(ReportClass):
             method=method,
             kwargs=kwargs,
             projectId=kw.get('projectId', self.jobInfo.get('project_pk')),
+            campaignId=kw.get('campaignId'),
+            jobId=kw.get('jobId'),
         )
         self.children.append(obj)
         return obj

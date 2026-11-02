@@ -21,7 +21,7 @@ import { MoorhenControlPanel } from "./moorhen-control-panel";
 import { MoorhenSessionPanel } from "./moorhen-session-panel";
 import type { MoorhenSessionApi } from "../../hooks/use-moorhen-session";
 import { MoorhenScenesPanel, SceneBundleAssets } from "./moorhen-scenes-panel";
-import type { SceneResolveResult } from "../../lib/moorhen-scene-resolver";
+import type { SceneProgress, SceneResolveResult } from "../../lib/moorhen-scene-resolver";
 import type { SceneLiftHints } from "../../lib/moorhen-scene-lifter";
 import type { MoorhenScene } from "../../types/moorhen-scene";
 
@@ -39,6 +39,7 @@ export interface MoorhenCcp4i2TabbedPanelProps {
   onApplyScene: (
     yamlText: string,
     assets: SceneBundleAssets,
+    onProgress?: (progress: SceneProgress) => void,
   ) => Promise<SceneResolveResult>;
   onCaptureScene: () => Promise<{
     scene: MoorhenScene;

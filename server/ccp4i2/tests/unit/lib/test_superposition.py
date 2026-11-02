@@ -166,6 +166,36 @@ def test_cap_reached_without_enough_cas_is_a_failure_not_a_bad_fit():
     assert "8 shared CA" in result.reason
 
 
+def test_min_radius_starts_the_sphere_wider_for_a_region():
+    """Several sites fitted as one: the sphere starts wide enough to reach the
+    farthest of them, even where the default start already had enough CAs."""
+    cas = _helix_cas(30)
+    centre = (0.0, 0.0, 20.0)
+    result = fit_structures(_structure(cas), _structure(_moved(cas)), centre, min_radius=22.0)
+    assert result.ok, result.reason
+    assert result.radius == 22.0
+    default = fit_structures(_structure(cas), _structure(_moved(cas)), centre)
+    assert result.atoms > default.atoms
+    _assert_inverts(result)
+
+
+def test_min_radius_below_the_start_changes_nothing():
+    cas = _helix_cas(30)
+    centre = (0.0, 0.0, 20.0)
+    result = fit_structures(_structure(cas), _structure(_moved(cas)), centre, min_radius=4.0)
+    assert result.radius == FIT_RADIUS_START
+
+
+def test_min_radius_past_the_cap_raises_the_cap_to_meet_it():
+    """A region wider than the cap is fitted on the region, not refused --
+    and a region that still cannot find enough CAs fails at its own radius."""
+    near = [(i + 1, (8.0 * math.cos(i), 8.0 * math.sin(i), 2.0 * i - 7.0)) for i in range(8)]
+    result = fit_structures(_structure(near), _structure(_moved(near)), (0.0, 0.0, 0.0),
+                            min_radius=FIT_RADIUS_MAX + 7.0)
+    assert not result.ok
+    assert result.radius == FIT_RADIUS_MAX + 7.0
+
+
 def test_numbering_mismatch_fails_safely():
     cas = _helix_cas(30)
     renumbered = [(n + 100, p) for n, p in _moved(cas)]

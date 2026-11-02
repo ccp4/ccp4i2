@@ -155,6 +155,7 @@ def fit_structures(
     reference: gemmi.Structure,
     moving: gemmi.Structure,
     centre: Optional[Tuple[float, float, float]] = None,
+    min_radius: Optional[float] = None,
 ) -> FitResult:
     """Fit ``moving`` onto ``reference`` on the CAs they share.
 
@@ -162,6 +163,11 @@ def fit_structures(
     both structures. With one it is local: the reference's CAs within a
     sphere about that point, grown from ``FIT_RADIUS_START`` until the
     *shared* set reaches ``MIN_FIT_CAS`` or the cap is hit.
+
+    ``min_radius`` starts the sphere larger, for a region rather than a
+    point -- several sites fitted as one, whose sphere must reach the
+    farthest of them. The cap rises to meet it: a region wider than the cap
+    is still fitted on the region, not refused.
 
     Residues are matched by (chain, seqid), so numbering must correspond.
     When it does not, the intersection collapses and the count gate trips,
@@ -182,12 +188,13 @@ def fit_structures(
         keys, radius = shared, None
     else:
         origin = gemmi.Position(*centre)
-        radius = FIT_RADIUS_START
+        radius = max(FIT_RADIUS_START, min_radius or 0.0)
+        cap = max(FIT_RADIUS_MAX, radius)
         while True:
             keys = [k for k in shared if ref_cas[k].dist(origin) <= radius]
             if len(keys) >= MIN_FIT_CAS:
                 break
-            if radius >= FIT_RADIUS_MAX:
+            if radius >= cap:
                 return FitResult(
                     ok=False,
                     atoms=len(keys),
@@ -197,7 +204,7 @@ def fit_structures(
                         f"of the site (need {MIN_FIT_CAS})"
                     ),
                 )
-            radius = min(radius + FIT_RADIUS_STEP, FIT_RADIUS_MAX)
+            radius = min(radius + FIT_RADIUS_STEP, cap)
 
     ref_pos, mov_pos = _paired(ref_cas, mov_cas, keys)
     result, retained = _fit_with_rejection(ref_pos, mov_pos)
@@ -212,7 +219,7 @@ def fit_structures(
     )
 
 
-def fit_files(reference_path, moving_path, centre=None) -> FitResult:
+def fit_files(reference_path, moving_path, centre=None, min_radius=None) -> FitResult:
     """:func:`fit_structures` over two coordinate files.
 
     An unreadable file is a failed fit, not an exception: the scene still
@@ -223,4 +230,4 @@ def fit_files(reference_path, moving_path, centre=None) -> FitResult:
         moving = gemmi.read_structure(str(moving_path))
     except Exception as exc:  # noqa: BLE001 - any read failure is "cannot fit"
         return FitResult(ok=False, reason=f"could not read coordinates: {exc}")
-    return fit_structures(reference, moving, centre)
+    return fit_structures(reference, moving, centre, min_radius)

@@ -79,6 +79,7 @@ const SOURCE_LABEL: Record<string, string> = {
   suite_dir: "suite directory",
   exe_paths: "extra search path",
   path: "PATH",
+  ccp4_bundle: "CCP4 installation",
   missing: "not found",
 };
 

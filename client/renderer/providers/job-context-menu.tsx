@@ -8,9 +8,9 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { Job, File as DjangoFile, isTerminalJobStatus } from "../types/models";
+import { Job, File as DjangoFile, isStoppableJobStatus, isTerminalJobStatus } from "../types/models";
 import { doDownload, useApi } from "../api";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDeleteDialog } from "./delete-dialog";
 import {
   Menu,
@@ -35,12 +35,13 @@ import {
   Download,
   Refresh,
   FolderCopy,
+  StopCircle,
 } from "@mui/icons-material";
 import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
 import { useRunCheck } from "./run-check-provider";
 import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
-import { deletesViewedJob, useJob, useProjectJobs } from "../utils";
+import { useJob, useProjectJobs, useReleaseDeletedJobs } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
 import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
 import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
@@ -129,8 +130,8 @@ export const JobMenu: React.FC = () => {
   // Ref to store the current timeout ID for cleanup
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { jobs, mutateJobs } = useProjectJobs(job?.project);
-  const { jobid: viewedJobId } = (useParams() ?? {}) as { jobid?: string };
+  const { mutateJobs } = useProjectJobs(job?.project);
+  const releaseDeletedJobs = useReleaseDeletedJobs(job?.project);
 
   // Function to save annotation immediately
   const saveAnnotation = useCallback(
@@ -339,6 +340,26 @@ export const JobMenu: React.FC = () => {
     [job, setJobMenuAnchorEl]
   );
 
+  // Stop a queued or running job: the server kills its process tree (or asks
+  // the remote target to) and marks it Interrupted. Was reachable only from
+  // Utilities > Running jobs and processes (#773).
+  const isStoppable = Boolean(job && isStoppableJobStatus(job.status));
+  const handleStopJob = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      setJobMenuAnchorEl(null);
+      if (!job) return;
+      try {
+        await api.post<any>(`jobs/${job.id}/cancel/`, {});
+        setMessage(`Job ${job.number} stopped`, "info");
+      } catch (err) {
+        setMessage(`Could not stop job ${job.number}: ${err instanceof Error ? err.message : String(err)}`, "error");
+      }
+      mutateJobs();
+    },
+    [job, api, mutateJobs, setMessage, setJobMenuAnchorEl]
+  );
+
   const handleStatusClicked = useCallback(
     (ev: SyntheticEvent) => {
       if (!job) return;
@@ -457,12 +478,7 @@ export const JobMenu: React.FC = () => {
           ),
         onDelete: async (deleteImportedFiles, plan) => {
           close();
-          // Leave the job page before the job goes, or its hooks refetch a
-          // job that no longer exists.
-          const viewed = jobs?.find((j) => j.id === Number(viewedJobId));
-          if (deletesViewedJob(viewed, [job, ...plan.additional_dependents])) {
-            router.push(`/ccp4i2/project/${job.project}`);
-          }
+          releaseDeletedJobs([job, ...plan.additional_dependents]);
           await api.delete(
             `jobs/${job.id}?delete_imported_files=${deleteImportedFiles}`
           );
@@ -479,7 +495,7 @@ export const JobMenu: React.FC = () => {
         );
       });
     },
-    [api, deleteDialog, job, jobs, viewedJobId, mutateJobs, router, setMessage]
+    [api, deleteDialog, job, releaseDeletedJobs, mutateJobs, setMessage]
   );
 
   const handleExportJob = useCallback(
@@ -654,6 +670,9 @@ export const JobMenu: React.FC = () => {
               <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Model build in Moorhen
             </MenuItem>
           )}
+          <MenuItem key="Stop" disabled={!isStoppable} onClick={handleStopJob}>
+            <StopCircle sx={{ mr: 1 }} /> Stop job
+          </MenuItem>
           <MenuItem
             key="Status"
             //disabled={job.number.includes(".")} // There are cases where we want to set the status of a job that is not top level

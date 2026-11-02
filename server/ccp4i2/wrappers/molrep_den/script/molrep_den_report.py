@@ -6,10 +6,14 @@ class molrep_den_report(Report):
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
     results = self.addResults()
-    graph = results.addGraph( title="Best TF peak vs RF peak No" , select="/MolrepResult/RFpeaks/RFpeak" )
+    # Relative to the program.xml root (MolrepResult): an absolute path on an
+    # element raises, and failed every molrep report (#786). A FlotGraph, as
+    # every other report uses: the base Graph writes nothing out, so this graph
+    # had never been seen. The element is TF_sig; "Tf_sig" selected nothing.
+    graph = results.addFlotGraph( title="Best TF peak vs RF peak No" , select="RFpeaks/RFpeak" )
     graph.addData (title="RF_peak_No"  , select="RF" )
     graph.addData (title="Score" , select="Score" )
-    graph.addData (title="Tf_sig" , select="Tf_sig" )
+    graph.addData (title="TF_sig" , select="TF_sig" )
     graph.addPlot ( plot = '''<plot>
 <title>Best TF peak score vs RF peak No</title>
 <plottype>xy</plottype>
@@ -35,11 +39,11 @@ class molrep_den_report(Report):
     table = fold.addTable(select=".//RFpeaks/RFpeak")
     for title,select in  [[ "RF" ,"RF" ],
                           [ "TF"  , "TF" ],
-                          [ "Tf_sig" , "Tf_sig" ],
+                          [ "TF_sig" , "TF_sig" ],
                           [ "TFcntrst" ,"TFcntrst" ],
                           [ "PFind" , "PFind" ],
                           [ "PF" , "PF"],
-                          [ "PFmin" , "PFmin" ],
+                          [ "PFmod" , "PFmod" ],
                           [ "wRfac" , "wRfac" ],
                           [ "Score" , "Score" ],
                           [ "Cntrst" , "Cntrst" ],

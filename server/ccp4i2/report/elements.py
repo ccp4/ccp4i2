@@ -7,6 +7,8 @@ These are the most commonly used elements in task report scripts.
 
 from __future__ import annotations
 
+import html
+import re
 import xml.etree.ElementTree as etree
 from io import StringIO
 from typing import Any, Callable
@@ -294,18 +296,35 @@ class BaseTable(ReportClass):
 # JavaScript-Enhanced Table class
 
 
+# HTML that report code writes but XML does not accept: a named entity
+# (&Aring;, &nbsp;) and an unclosed <br>. Either one made the whole cell fail to
+# parse, so it was escaped and shown literally: "Critical<br>distance
+# (&Aring;)". The five XML entities are left for the parser.
+_NAMED_ENTITY = re.compile(r'&([A-Za-z][A-Za-z0-9]*);')
+_XML_ENTITIES = {'amp', 'lt', 'gt', 'quot', 'apos'}
+_UNCLOSED_BR = re.compile(r'<br\s*>', re.IGNORECASE)
+
+
+def _as_xml_fragment(content: str) -> str:
+    content = _UNCLOSED_BR.sub('<br/>', content)
+    return _NAMED_ENTITY.sub(
+        lambda m: m.group(0) if m.group(1) in _XML_ENTITIES else html.unescape(m.group(0)),
+        content)
+
+
 def _set_cell_content(cell_element: etree.Element, content: str) -> None:
     """Set table cell content, preserving inline HTML if present.
 
     If content contains valid XML/HTML markup (e.g. <i>, <b>, <br/>),
     it is embedded as child elements. Otherwise it is set as plain text,
-    letting ElementTree handle entity encoding automatically.
+    letting ElementTree handle entity encoding automatically. HTML named
+    entities and <br> are accepted too (see _as_xml_fragment).
     """
     if not content:
         cell_element.text = content or ""
         return
     try:
-        parsed = etree.fromstring('<_w>' + content + '</_w>')
+        parsed = etree.fromstring('<_w>' + _as_xml_fragment(content) + '</_w>')
         cell_element.text = parsed.text
         for child in parsed:
             cell_element.append(child)
@@ -367,6 +386,17 @@ class Table(BaseTable):
                         th.set('colspan', str(span))
                     headtr.append(th)
             head.append(headtr)
+            # The subtitles under a grouped title ("Bond", "Angle", "Chiral"
+            # under "RMSD"), one per column. Without this row they were lost,
+            # and a reader taking one column per heading misplaced the rest.
+            if hassubhead:
+                subtr = etree.Element('tr')
+                for i in range(len(self.coltitle)):
+                    th = etree.Element('th')
+                    if self.colsubtitle[i] is not None:
+                        _set_cell_content(th, self.colsubtitle[i])
+                    subtr.append(th)
+                head.append(subtr)
             tbody = etree.Element('tbody')
             if len(self.coldata) > 0:
                 for i in range(len(self.coldata[0])):

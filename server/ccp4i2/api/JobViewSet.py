@@ -1992,15 +1992,21 @@ class JobViewSet(ModelViewSet):
                 "value": "/path/to/new/file.pdb"
             }
 
-        Response Format:
+        Response Format (the contract's envelope, docs/CCP4I2_SERVICE_CONTRACT.md):
             {
-                "status": "Success",
+                "success": true,
                 "data": {
-                    "object_path": "inputData.XYZIN.fileName",
-                    "value_set": true,
-                    "message": "Parameter set successfully"
+                    "path": "inputData.XYZIN",
+                    "value": {...},
+                    "object_type": "CPdbDataFile",
+                    "file_path": "/path/to/file.pdb",
+                    "db_file_id": "uuid",
+                    "base_name": "file.pdb"
                 }
             }
+            or {"success": false, "error": "...", "details": {...}} with 400
+            (a value the parameter cannot take; a file input given a string
+            that is not an absolute path), 404 (no such job).
 
         Example:
             POST /api/jobs/123/set_parameter/
@@ -2105,7 +2111,7 @@ class JobViewSet(ModelViewSet):
 
         Response Format:
             {
-                "status": "Success",
+                "success": true,
                 "data": {
                     "path": "inputData.XYZIN",
                     "value": "/path/to/file.pdb",
@@ -2173,7 +2179,7 @@ class JobViewSet(ModelViewSet):
 
         Response Format:
             {
-                "status": "Success",
+                "success": true,
                 "updated_item": {
                     "parameter_name": "XYZIN",
                     "file_path": "/uploaded/file/path",

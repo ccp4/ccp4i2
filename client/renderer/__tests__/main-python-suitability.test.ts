@@ -57,6 +57,15 @@ describe("listCcp4Dirs", () => {
     fs.rmSync(root, { recursive: true, force: true });
   });
 
+  it("matches regardless of case, as the Windows installer names it CCP4-10", () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "ccp4roots-"));
+    for (const n of ["CCP4-10", "ccp4-20260702", "CCP4"]) {
+      fs.mkdirSync(path.join(root, n));
+    }
+    expect(listCcp4Dirs(root)).toEqual(["ccp4-20260702", "CCP4-10"]);
+    fs.rmSync(root, { recursive: true, force: true });
+  });
+
   it("an unreadable root is simply empty", () => {
     expect(listCcp4Dirs("/no/such/root")).toEqual([]);
   });

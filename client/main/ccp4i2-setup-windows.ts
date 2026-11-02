@@ -51,13 +51,16 @@ export function ccp4_setup_windows(CCP4Dir) {
   // Set CCP4_BIN
   process.env.CCP4_BIN = path.join(CCP4, "bin");
 
-  // Modify PATH variable
+  // Modify PATH variable. Like ccp4.setup.bat (%PATH:CCP4=C__4%), keep the
+  // inherited PATH but defuse any other CCP4 installation on it. Dropping it
+  // entirely loses C:\Windows\System32, and CCP4's own batch files (coot.BAT
+  // via ccp4.setup.bat) then fail with "'findstr' is not recognized".
   const newPath = [
     path.join(CCP4, "nodejs"),
     path.join(CCP4, "bin"),
     path.join(CCP4, "etc"),
     path.join(CCP4, "Scripts"),
-    //process.env.PATH.replace("CCP4", "C__4"),
+    ...(process.env.PATH ? [process.env.PATH.replace(/CCP4/gi, "C__4")] : []),
   ].join(path.delimiter);
   process.env.PATH = newPath;
 

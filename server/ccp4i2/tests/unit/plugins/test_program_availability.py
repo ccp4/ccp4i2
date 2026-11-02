@@ -274,3 +274,60 @@ def test_registry_offers_no_program_a_setting_cannot_reach():
     # Programs that a task reaches through the preferences stay listed.
     assert 'i2Dimple' in declared.get('dimple', [])
     assert 'phasertng_picard' in declared.get('phasertng.picard', [])
+
+
+# ── "What next": a suggestion the pre-run check would refuse is not offered ──
+# Coot 0.9 (coot_rebuild) is not in CCP4 10 and Coot 1 (coot1) is not in CCP4 9,
+# so a list naming both should offer the one that is there (#838).
+
+class _Coot09(CPluginScript):
+    TASKNAME = 'coot09'
+    TASKCOMMAND = 'coot'
+
+
+class _Coot1(CPluginScript):
+    TASKNAME = 'coot1x'
+    TASKCOMMAND = 'coot-1'
+
+
+@pytest.fixture
+def ccp4_10(monkeypatch):
+    """Coot 1 on the path, Coot 0.9 nowhere."""
+    from ccp4i2.lib.utils.navigation import what_next
+    plugins = {'coot_rebuild': _Coot09, 'coot1': _Coot1, 'selfdriving': _SelfDrivingPipeline,
+               'needshelpers': _NeedsHelpers}
+    monkeypatch.setattr(what_next, 'get_plugin_class', plugins.__getitem__)
+    monkeypatch.setattr('ccp4i2.config.program_discovery.resolve_program',
+                        lambda name: '/ccp4/bin/coot-1' if name == 'coot-1' else None)
+    return what_next
+
+
+def test_only_the_coot_that_is_installed_is_offered(authoritative, ccp4_10):
+    assert ccp4_10._can_run_here('coot1')
+    assert not ccp4_10._can_run_here('coot_rebuild')
+
+
+def test_a_missing_helper_withdraws_the_suggestion(authoritative, ccp4_10):
+    assert not ccp4_10._can_run_here('needshelpers')
+
+
+def test_a_program_the_task_may_never_launch_does_not(authoritative, ccp4_10):
+    assert ccp4_10._can_run_here('selfdriving')
+
+
+def test_everything_is_offered_where_we_cannot_see_the_job_host(not_authoritative, ccp4_10):
+    assert ccp4_10._can_run_here('coot_rebuild')
+
+
+def test_a_task_that_cannot_be_checked_is_offered(authoritative, ccp4_10):
+    assert ccp4_10._can_run_here('no_such_task')
+
+
+def test_programs_by_need_reads_the_instance_too():
+    """A few plugins choose TASKCOMMAND per job (arcimboldo, SIMBAD): the
+    pre-run check reads the instance's, the class method the class's."""
+    plugin = _PlainWrapper.__new__(_PlainWrapper)
+    plugin.TASKCOMMAND = 'chosen-at-run-time'
+    from ccp4i2.core.CCP4PluginScript import _programs_by_need
+    assert _programs_by_need(plugin) == (['chosen-at-run-time'], [])
+    assert _PlainWrapper.programsByNeed() == (['no-such-program-xyzzy'], [])

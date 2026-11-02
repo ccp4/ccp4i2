@@ -51,36 +51,7 @@ import { FIELD_SPACING } from "./field-sizes";
 import { ExpandableSection } from "./expandable-section";
 import { BrowseProjectFilesDialog } from "./browse-project-files-dialog";
 import { useContainerField } from "./hooks/useContainerField";
-
-/**
- * Content flag conversion capability mapping.
- * Defines which content types can be converted to which target types.
- * Mirrors CAN_CONVERT_TO from server/ccp4i2/core/CCP4XtalData.py
- *
- * Content flags: IPAIR=1, FPAIR=2, IMEAN=3, FMEAN=4
- */
-const CAN_CONVERT_TO: Record<number, number[]> = {
-  1: [1, 2, 3, 4], // IPAIR can convert to IPAIR, FPAIR, IMEAN, FMEAN
-  2: [2, 4],       // FPAIR can convert to FPAIR, FMEAN
-  3: [3, 4],       // IMEAN can convert to IMEAN, FMEAN
-  4: [4],          // FMEAN can convert to FMEAN only
-};
-
-/**
- * Check if a file's content type can be converted to any of the required types.
- * @param fileContent The file's content flag (1-4)
- * @param requiredFlags Array of required content flags
- * @returns true if the file can provide data in any required format
- */
-const canConvertToRequired = (
-  fileContent: number | null | undefined,
-  requiredFlags: number[]
-): boolean => {
-  if (fileContent == null) return false;
-  const convertibleTo = CAN_CONVERT_TO[fileContent];
-  if (!convertibleTo) return false;
-  return requiredFlags.some((required) => convertibleTo.includes(required));
-};
+import { canConvertToRequired } from "../../../lib/content-flags";
 
 /**
  * Shared look for the boxed group of file-source buttons (file system /
@@ -175,11 +146,20 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   // Data and state
   // Poll for files only while the job is active, so task widgets see newly
   // created output files without polling forever once the job is done.
-  const { files: projectFiles } = useProjectFiles(
+  const { files: projectFiles, mutateFiles: refreshProjectFiles } = useProjectFiles(
     job.project,
     ACTIVE_JOB_STATUSES.includes(job.status)
   );
-  const { jobs: projectJobs } = useProject(job.project);
+  const { jobs: projectJobs, mutateJobs: refreshProjectJobs } = useProject(job.project);
+  // Opening the list fetches it again: a pending job does not poll, so a
+  // job set up before a data import never saw the import's files until its
+  // page was reopened (1H1S, 2026-10-31). One request, the same the page
+  // made on mount, on a rare user action; the jobs too, which label the
+  // options with their numbers.
+  const refreshOptions = useCallback(() => {
+    refreshProjectFiles();
+    refreshProjectJobs?.();
+  }, [refreshProjectFiles, refreshProjectJobs]);
   const { data: projects } = api.get<Project[]>("projects");
   // Invalidate, never subscribe: this element renders once per file in a
   // task, and subscribing here fetched a digest and the file's content for
@@ -260,7 +240,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         const hasValidContentFlag =
           !fileConfig.requiredContentFlag ||
           fileConfig.requiredContentFlag.length === 0 ||
-          canConvertToRequired(file.content, fileConfig.requiredContentFlag);
+          canConvertToRequired(file.content, fileConfig.requiredContentFlag, file.type);
         return isValidType && isNotParentJob && hasValidContentFlag;
       })
       .sort((a, b) => compareJobNumbers(a.job, b.job));
@@ -741,6 +721,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             size="small"
             value={value}
             onChange={handleFileSelect}
+            onOpen={refreshOptions}
             options={[...displayOptions, nullFile]}
             getOptionLabel={getOptionLabel}
             getOptionKey={(option: CCP4i2File) => option.uuid}

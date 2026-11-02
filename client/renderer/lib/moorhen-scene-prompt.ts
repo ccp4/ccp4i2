@@ -29,6 +29,10 @@ const SCENE_CONVENTIONS = [
   "  every representation of that file; a representation's own `colour` overrides it.",
   "- geometry dimensions are Ångström. `hints` (lighting/effects) are ADVISORY —",
   "  a viewer may ignore them; never rely on them for what must be visible.",
+  "- `annotations` draw text and geometry in space: { kind: label, at, text },",
+  "  { kind: line, from, to, arrows?, text? }, { kind: sphere, at, radius, text? }",
+  "  (a marker for a place), { kind: disc, at, radius, normal?, text? }.",
+  "  A point is [x, y, z] (Å) or { file, selection } (a selection's centroid).",
 ].join("\n");
 
 const WORKED_EXAMPLE = [

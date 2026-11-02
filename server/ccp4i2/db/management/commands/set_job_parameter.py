@@ -70,6 +70,7 @@ class Command(BaseCommand):
 
         # Check if value is a fileUse reference (explicit or auto-detected)
         is_fileuse = value_str.startswith("fileUse=") or is_fileuse_pattern(value_str)
+        resolved_file = None
 
         if is_fileuse:
             # Resolve fileUse reference to actual file metadata
@@ -94,11 +95,17 @@ class Command(BaseCommand):
                     f"  Resolved to: {file_data.get('baseName')} ({file_data.get('fullPath')})"
                 )
 
-            # Convert to fullPath= format for set_parameter
-            value_str = f"fullPath={file_data.get('fullPath')}"
+            # The resolved file itself (dbFileId, baseName, relPath, project) is
+            # set, as the interface sets a project file, and recorded as a use.
+            # The string "fullPath=<path>" this used to pass is i2run's own
+            # syntax, which set_parameter does not read: it became the file's
+            # name, "<cwd>/fullPath=<path>" (2026-10-31).
+            resolved_file = file_data
 
         try:
-            if value_type == "int":
+            if resolved_file is not None:
+                value = resolved_file
+            elif value_type == "int":
                 value = int(value_str)
             elif value_type == "float":
                 value = float(value_str)

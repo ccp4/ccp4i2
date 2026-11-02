@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense, useMemo } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import MoorhenLoader from "@/components/moorhen/client-side-moorhen-loader";
 import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { sceneSourceFromParams } from "@/lib/scene-source";
+import { listenAsViewer } from "@/lib/viewer-channel";
 
 // Project-scoped Moorhen page: the project (pk from the route) provides context
 // for scene authoring (the prompt manifest) and job+param file resolution. It
@@ -28,6 +29,11 @@ function ProjectMoorhenContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [sceneKey],
   );
+
+  // Take links other windows send this project's viewer (lib/viewer-channel):
+  // replacing the URL changes the scene source, which the open viewer applies.
+  const router = useRouter();
+  useEffect(() => listenAsViewer((href) => router.replace(href)), [router]);
 
   return (
     <ClientStoreProvider>

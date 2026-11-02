@@ -24,9 +24,12 @@ import type { moorhen } from "moorhen/types/moorhen";
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import { extractProjectPathFromUniqueId } from "./scene-project-path";
+import { annotationFromObject, annotationFromVector, annotationIndexOf } from "./moorhen-scene-resolver";
 import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
+  SceneAnnotation,
+  ScenePoint,
   SceneColour,
   SceneColourSelection,
   SceneDomain,
@@ -113,6 +116,15 @@ export interface LiftCtx {
    *  no remembered domains there is nothing for `by-domain` to refer to, and
    *  the rule is lifted as the per-selection list it amounts to instead. */
   domains?: SceneDomain[];
+  /** Moorhen's vectors (`store.getState().vectors.vectorsList`). The ones
+   *  the resolver made from a scene's `annotations` carry that annotation
+   *  in their customTags and are lifted back from it; the user's own vectors
+   *  are not a scene's to capture and are left alone. */
+  vectors?: { uniqueId?: string; customTags?: string[] }[];
+  /** Moorhen's 3D objects (`store.getState().threeDObjects.objects`): the
+   *  resolver's spheres and discs, stamped in their tags; the user's own
+   *  objects are left alone the same way. */
+  objects?: { uniqueId?: string; tags?: Record<string, string> }[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -236,6 +248,9 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
 
   const hints = liftHints(ctx.glRef, ctx.sceneSettings);
   if (hints) scene.hints = hints;
+
+  const annotations = liftAnnotations(ctx.vectors, ctx.objects, scene.files ?? []);
+  if (annotations.length) scene.annotations = annotations;
 
   // Re-emit the last-applied superpose (coot moved the coords; there's no
   // transform to capture). Keep only entries whose move + onto files survived
@@ -1057,6 +1072,50 @@ function liftView(glRef: LiftCtx["glRef"]): SceneView | undefined {
   if (typeof glRef.fogStart === "number") view.fogStart = glRef.fogStart;
   if (typeof glRef.fogEnd === "number") view.fogEnd = glRef.fogEnd;
   return Object.keys(view).length > 0 ? view : undefined;
+}
+
+// --------------------------------------------------------------------------
+// Annotations
+// --------------------------------------------------------------------------
+
+/**
+ * The scene-made vectors and 3D objects, read back as annotations in the
+ * order they were authored (the index in each uniqueId, since the two stores
+ * are separate lists). Each is lifted as it was authored when its anchors
+ * still resolve in the lifted scene -- a lifted file is named after its
+ * molecule, not after the applied scene's `files[]` entry, so an anchor can
+ * dangle -- and otherwise as the same annotation with its points lowered to
+ * the coordinates the resolver found.
+ */
+function liftAnnotations(
+  vectors: LiftCtx["vectors"],
+  objects: LiftCtx["objects"],
+  files: SceneFileRef[],
+): SceneAnnotation[] {
+  if (!vectors?.length && !objects?.length) return [];
+  const coordNames = new Set(
+    files.filter((f) => f.kind == null || f.kind === "coordinates").map((f) => f.name),
+  );
+  const anchorResolves = (pt: ScenePoint): boolean => {
+    if (Array.isArray(pt)) return true;
+    if (pt.file != null) return coordNames.has(pt.file);
+    return coordNames.size === 1;
+  };
+  const authoredResolves = (a: SceneAnnotation): boolean =>
+    a.kind === "line" ? anchorResolves(a.from) && anchorResolves(a.to) : anchorResolves(a.at);
+
+  const found: { index: number; read: NonNullable<ReturnType<typeof annotationFromVector>> }[] = [];
+  (vectors ?? []).forEach((vec) => {
+    const read = annotationFromVector(vec);
+    if (read) found.push({ index: annotationIndexOf(vec.uniqueId) ?? Number.MAX_SAFE_INTEGER, read });
+  });
+  (objects ?? []).forEach((obj) => {
+    const read = annotationFromObject(obj);
+    if (read) found.push({ index: annotationIndexOf(obj.uniqueId) ?? Number.MAX_SAFE_INTEGER, read });
+  });
+  return found
+    .sort((a, b) => a.index - b.index)
+    .map(({ read }) => (authoredResolves(read.authored) ? read.authored : read.lowered));
 }
 
 // --------------------------------------------------------------------------

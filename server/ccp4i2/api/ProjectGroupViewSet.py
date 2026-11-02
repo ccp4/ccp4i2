@@ -24,6 +24,7 @@ from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
+from ..lib import campaign_scene_cache
 from ..lib import campaign_events
 from ..lib.utils.jobs import pandda_site_index
 from ..lib import site_verdicts
@@ -41,6 +42,11 @@ def _reviewer(request) -> str:
     if user is None or not getattr(user, "is_authenticated", False):
         return ""
     return (getattr(user, "email", "") or user.get_username() or "")[:150]
+
+
+def _wants_refresh(request) -> bool:
+    """``?refresh=1``: build the scene afresh instead of serving the cached one."""
+    return request.query_params.get("refresh", "").lower() in ("1", "true", "yes")
 
 
 class ProjectGroupViewSet(ModelViewSet):
@@ -737,7 +743,13 @@ class ProjectGroupViewSet(ModelViewSet):
         """
         try:
             group = self.get_object()
-            return Response(campaign_scene.build_summary_scene(group))
+            return Response(
+                campaign_scene_cache.cached_scene(
+                    group, "summary",
+                    lambda: campaign_scene.build_summary_scene(group),
+                    refresh=_wants_refresh(request),
+                )
+            )
         except Exception as e:
             logger.exception(
                 "Failed to build summary scene for group %s", pk, exc_info=e
@@ -780,18 +792,93 @@ class ProjectGroupViewSet(ModelViewSet):
                 token.strip()
                 for token in request.query_params.get("include", "").split(",")
             }
+            include_unclear = "unclear" in include
+            superpose = request.query_params.get("superpose") != "none"
             return Response(
-                campaign_scene.build_site_scene(
-                    group,
-                    site,
-                    include_unclear="unclear" in include,
-                    superpose=request.query_params.get("superpose") != "none",
+                campaign_scene_cache.cached_scene(
+                    group, "site",
+                    lambda: campaign_scene.build_site_scene(
+                        group, site, include_unclear=include_unclear,
+                        superpose=superpose,
+                    ),
+                    params={
+                        "site": site.id, "include_unclear": include_unclear,
+                        "superpose": superpose,
+                    },
+                    refresh=_wants_refresh(request),
                 )
             )
         except Exception as e:
             logger.exception(
                 "Failed to build scene for site %s of group %s", site_id, pk,
                 exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"sites/scene",
+    )
+    def sites_scene(self, request, pk=None):
+        """
+        Build one Moorhen scene for several binding sites taken together.
+
+        For a site and its subsites, or neighbouring sites worth seeing at
+        once. Every dataset judged a hit at any of the sites is drawn once,
+        the pocket is the residues around all of them, and every hit is
+        fitted on one region about their centroid (``lib.campaign_scene.
+        build_sites_scene``). With one id this is ``site_scene``.
+
+        Query parameters:
+            ids: the sites, as comma-separated ids, in the order the view
+                should take its orientation and title from. Required.
+            include=unclear, superpose=none: as for ``site_scene``.
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}``, the
+                same envelope as ``site_scene``; with several sites
+                ``stats["sites"]`` replaces ``stats["site"]`` and each drawn
+                dataset names the sites that claim it.
+        """
+        try:
+            group = self.get_object()
+            raw = [token.strip() for token in request.query_params.get("ids", "").split(",")]
+            raw = [token for token in raw if token]
+            if not raw or not all(token.isdigit() for token in raw):
+                return api_error("ids must be comma-separated site ids", status=400)
+            ids = list(dict.fromkeys(int(token) for token in raw))
+            found = {site.id: site for site in group.site_set.filter(id__in=ids)}
+            missing = [site_id for site_id in ids if site_id not in found]
+            if missing:
+                return api_error(
+                    f"Sites not found in this campaign: {', '.join(map(str, missing))}",
+                    status=404,
+                )
+
+            include = {
+                token.strip()
+                for token in request.query_params.get("include", "").split(",")
+            }
+            include_unclear = "unclear" in include
+            superpose = request.query_params.get("superpose") != "none"
+            return Response(
+                campaign_scene_cache.cached_scene(
+                    group, "sites",
+                    lambda: campaign_scene.build_sites_scene(
+                        group, [found[site_id] for site_id in ids],
+                        include_unclear=include_unclear, superpose=superpose,
+                    ),
+                    params={
+                        "sites": list(ids), "include_unclear": include_unclear,
+                        "superpose": superpose,
+                    },
+                    refresh=_wants_refresh(request),
+                )
+            )
+        except Exception as e:
+            logger.exception(
+                "Failed to build scene for sites of group %s", pk, exc_info=e,
             )
             return api_error(str(e), status=500)
 
@@ -938,7 +1025,10 @@ class ProjectGroupViewSet(ModelViewSet):
                 sites = group.site_set.annotate(
                     evaluation_count=Count("evaluations")
                 )
-                return Response([self._site_payload(s) for s in sites])
+                # Alphabetical, as the client shows them (a site and its
+                # subsites together; lib.campaign_site_order).
+                from ..lib.campaign_site_order import ordered_sites
+                return Response([self._site_payload(s) for s in ordered_sites(sites)])
 
             fields, error = self._parse_site(request.data)
             if error:

@@ -57,9 +57,11 @@ import { SceneGenerateError } from "./use-scene-nl-capability";
 import { sceneMarkers } from "../../lib/scene/yaml-markers";
 import { serialiseSceneWithComments } from "../../lib/moorhen-scene";
 import type { MoorhenScene } from "../../types/moorhen-scene";
-import type {
-  SceneResolveResult,
-  SceneResolveLogEntry,
+import {
+  describeSceneProgress,
+  type SceneProgress,
+  type SceneResolveResult,
+  type SceneResolveLogEntry,
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneLiftHints } from "../../lib/moorhen-scene-lifter";
 
@@ -99,6 +101,7 @@ interface MoorhenScenesPanelProps {
   onApplyScene: (
     yamlText: string,
     assets: SceneBundleAssets,
+    onProgress?: (progress: SceneProgress) => void,
   ) => Promise<SceneResolveResult>;
   /** Capture the current view as a scene + lift hints + bundle assets.
    *  The lifter may inline non-portable molecule coords/dicts into the
@@ -385,7 +388,11 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
       }
 
       try {
-        const result = await onApplyScene(text, assetsRef.current);
+        // Say what is loading as it loads: a campaign scene brings in many
+        // structures and the panel would otherwise sit silent for the duration.
+        const result = await onApplyScene(text, assetsRef.current, (p) => {
+          setMessage({ severity: "info", text: describeSceneProgress(p) });
+        });
         const repTotal = result.applied.reduce((sum, a) => sum + a.representations, 0);
         const severity: Severity =
           result.unresolvedFiles.length > 0 || repTotal === 0 ? "warning" : "success";

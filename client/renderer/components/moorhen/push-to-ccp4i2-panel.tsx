@@ -17,6 +17,9 @@ import { serialiseMolecule } from "../../lib/moorhen-serialise";
 
 interface PushToCCP4i2Props {
   project?: ProjectInfo;
+  /** The project the page belongs to, when it has one: preselected unless
+   *  the item's own provenance names a project. */
+  projectPk?: number | null;
   molNo?: number;
   item?: moorhen.Molecule | moorhen.Map | null;
   itemMetadata?: ItemMetadata;
@@ -27,6 +30,7 @@ type ProjectInfoOrNull = ProjectInfo | null;
 
 export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   project,
+  projectPk,
   molNo,
   item,
   itemMetadata,
@@ -51,22 +55,20 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
 
   const effectiveMetadata = itemMetadata || fetchedMetadata;
 
-  // Set initial project based on metadata.projectName if available
+  // Set initial project: the one the item's provenance names, else the one
+  // the page belongs to. Provenance comes from the file's proxy download URL,
+  // which a molecule loaded another way (a scene, a session) does not carry.
   useEffect(() => {
-    if (
-      effectiveMetadata &&
-      effectiveMetadata.projectName &&
-      Array.isArray(projects) &&
-      projects.length > 0
-    ) {
-      const matchedProject = projects.find(
-        (proj) => proj.name === effectiveMetadata.projectName
-      );
-      if (matchedProject && selectedProject?.id !== matchedProject.id) {
-        setSelectedProject(matchedProject);
-      }
+    if (!Array.isArray(projects) || projects.length === 0) return;
+    const matchedProject =
+      (effectiveMetadata?.projectName &&
+        projects.find((proj) => proj.name === effectiveMetadata.projectName)) ||
+      (projectPk != null && projects.find((proj) => proj.id === projectPk)) ||
+      undefined;
+    if (matchedProject && selectedProject?.id !== matchedProject.id) {
+      setSelectedProject(matchedProject);
     }
-  }, [effectiveMetadata, projects]);
+  }, [effectiveMetadata, projects, projectPk]);
 
   const { data: jobs, mutate: mutateJobs } = api.get<JobInfo[]>(
     `jobs/?project=${selectedProject?.id}`

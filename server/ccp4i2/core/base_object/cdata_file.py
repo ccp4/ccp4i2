@@ -13,6 +13,7 @@ File path handling:
 """
 
 from typing import Optional, Any
+import os
 from pathlib import Path
 import logging
 
@@ -224,6 +225,30 @@ class CDataFile(CData):
         """Set the file content object."""
         self._content = value
 
+    def _forget_record_if_another_file(self, path: str) -> None:
+        """Pointed at a different file, stop naming the old database record.
+
+        getFullPath() prefers dbFileId to the path, so a file object that held
+        a database file -- autopopulated from an earlier job, or copied with
+        copyData -- went on resolving to the OLD file after setFullPath named a
+        new one. molrep_pipe's second MOLREP read the unreindexed data that way
+        (#785), and an upload recorded the old file's checksum (#817). The id,
+        and any content read from the old file, go when the path names another
+        file; both stay when it is the same file, so setting an id and then its
+        own path is unaffected.
+        """
+        db_file_id = getattr(self, 'dbFileId', None)
+        if db_file_id is None or not (hasattr(db_file_id, 'isSet') and db_file_id.isSet()):
+            return
+        try:
+            previous = self.getFullPath()
+        except Exception:
+            previous = None
+        if path and previous and os.path.realpath(str(previous)) == os.path.realpath(path):
+            return
+        db_file_id.unSet()
+        self._content = None
+
     def setFullPath(self, path: str):
         """Set the full path of the file.
 
@@ -235,6 +260,7 @@ class CDataFile(CData):
             path: Full file path as a string
         """
         path = str(path)  # In case a Path object is passed
+        self._forget_record_if_another_file(path)
         logger.debug(
             "[setFullPath] Called for %s, input path: %s, hasattr baseName: %s",
             self.name if hasattr(self, 'name') else 'unnamed',
@@ -484,7 +510,9 @@ class CDataFile(CData):
         # directory) is in. Matched in the whole path, a job directory given
         # as the input itself (a previous xia2 run) got its own name twice:
         # relPath CCP4_JOBS/job_3 and baseName job_3, i.e. .../job_3/job_3.
-        jobs_match = re.search(r'(CCP4_JOBS(?:/job_\d+)*)', str(Path(path_str).parent))
+        # as_posix(): on Windows the parent is CCP4_JOBS\job_6, which the
+        # pattern cut to CCP4_JOBS, so every output pointed one level too high.
+        jobs_match = re.search(r'(CCP4_JOBS(?:/job_\d+)*)', Path(path_str).parent.as_posix())
         if jobs_match:
             rel_path = jobs_match.group(1)
             new_basename = Path(path_str).name

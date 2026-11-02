@@ -296,12 +296,17 @@ export const useIsJobEffectivelyActive = (
 ): boolean => {
   const context = useContext(RecentlyStartedJobsContext);
 
-  // Update observed status when it changes
+  // Update observed status when it changes. Depend on the (stable) updater,
+  // not on `context`: the context value changes whenever startedJobs does, so
+  // two callers reporting different statuses for one job (job tree vs job
+  // endpoint, polled apart) would each re-run on the other's write and
+  // overwrite it forever -- "Maximum update depth exceeded".
+  const updateJobObservedStatus = context?.updateJobObservedStatus;
   useEffect(() => {
-    if (context && jobId && jobStatus !== undefined) {
-      context.updateJobObservedStatus(jobId, jobStatus);
+    if (updateJobObservedStatus && jobId && jobStatus !== undefined) {
+      updateJobObservedStatus(jobId, jobStatus);
     }
-  }, [context, jobId, jobStatus]);
+  }, [updateJobObservedStatus, jobId, jobStatus]);
 
   // If no context (provider not mounted), fall back to status-only check
   if (!context) {

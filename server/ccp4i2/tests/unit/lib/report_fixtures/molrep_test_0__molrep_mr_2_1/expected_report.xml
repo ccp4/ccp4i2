@@ -1,14 +1,323 @@
-<CCP4i2Reportmolrep_mr_report class="" style="overflow:auto;">
-  <CCP4i2ReportTitle class="" style="" title1="Report generation failed" title2="Report generation failed" />
-  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-    <CCP4i2ReportGeneric class="" style="">
-      <p style="font-size: 14">No report because: <em>Report generation failed</em>
-      </p>
-      <pre style="font-size: 11px; color: #666; margin-top: 10px; white-space: pre-wrap;">Task: molrep_mr
-Job: 2.1
-Error: cannot use absolute path on element
-
-See server logs for full traceback.</pre>
-    </CCP4i2ReportGeneric>
-  </CCP4i2ReportDiv>
+<CCP4i2Reportmolrep_mr_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="molrep_mr" title2="11:40 28-Jul-2021" />
+  <CCP4i2ReportResults class="" style="">
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="Best TF peak vs RF peak No" id="data_FlotGraph_0" style="display:none;">
+        <headers>RF_peak_No Score TF_sig </headers>
+        <data>1.0 0.6865 18.13 
+2.0 0.7094 19.11 
+3.0 0.3431 3.007 
+4.0 0.3385 2.772 
+5.0 0.3417 3.282 
+6.0 0.3506 3.336 
+7.0 0.3385 2.81 
+8.0 0.3424 2.702 
+9.0 0.3443 2.433 
+10.0 0.3447 3.088 
+11.0 0.3428 2.352 
+12.0 0.3466 2.847 
+13.0 0.3432 2.582 
+14.0 0.3322 2.693 
+15.0 0.3478 3.005 
+16.0 0.3358 2.254 
+17.0 0.3403 2.836 
+18.0 0.3396 2.414 
+</data>
+        <plot>
+          <title>Best TF peak score vs RF peak No</title>
+          <plottype>xy</plottype>
+          <plotline xcol="1" ycol="2">
+            <linestyle>.</linestyle>
+            <markeredgewidth>0</markeredgewidth>
+            <colour>blue</colour>
+          </plotline>
+        </plot>
+        <plot>
+          <title>TF/sig(TF) vs RF peak No</title>
+          <plottype>xy</plottype>
+          <plotline xcol="1" ycol="3">
+            <linestyle>.</linestyle>
+            <markeredgewidth>0</markeredgewidth>
+            <colour>red</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportFold class="" style="" label="Show details" initiallyOpen="False" brief="Show details">
+      <CCP4i2ReportTable class="" style="" transpose="False">
+        <table>
+          <thead>
+            <tr>
+              <th>RF</th>
+              <th>TF</th>
+              <th>TF_sig</th>
+              <th>TFcntrst</th>
+              <th>PFind</th>
+              <th>PF</th>
+              <th>PFmod</th>
+              <th>wRfac</th>
+              <th>Score</th>
+              <th>Cntrst</th>
+              <th>For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>18.13</td>
+              <td>25.148</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.443</td>
+              <td>0.6865</td>
+              <td>0.0</td>
+              <td>0.6865</td>
+            </tr>
+            <tr>
+              <td>2.0</td>
+              <td>1.0</td>
+              <td>19.11</td>
+              <td>25.837</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.428</td>
+              <td>0.7094</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>3.0</td>
+              <td>4.0</td>
+              <td>3.007</td>
+              <td>1.83</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.625</td>
+              <td>0.3431</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>4.0</td>
+              <td>6.0</td>
+              <td>2.772</td>
+              <td>1.994</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.629</td>
+              <td>0.3385</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>5.0</td>
+              <td>1.0</td>
+              <td>3.282</td>
+              <td>2.23</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.625</td>
+              <td>0.3417</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>6.0</td>
+              <td>1.0</td>
+              <td>3.336</td>
+              <td>2.029</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.623</td>
+              <td>0.3506</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>7.0</td>
+              <td>6.0</td>
+              <td>2.81</td>
+              <td>2.19</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.627</td>
+              <td>0.3385</td>
+              <td>0.0</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>8.0</td>
+              <td>3.0</td>
+              <td>2.702</td>
+              <td>1.461</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.625</td>
+              <td>0.3424</td>
+              <td>35.71</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>9.0</td>
+              <td>7.0</td>
+              <td>2.433</td>
+              <td>2.154</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.622</td>
+              <td>0.3443</td>
+              <td>32.22</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>10.0</td>
+              <td>1.0</td>
+              <td>3.088</td>
+              <td>2.099</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.62</td>
+              <td>0.3447</td>
+              <td>31.02</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>11.0</td>
+              <td>15.0</td>
+              <td>2.352</td>
+              <td>1.957</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.624</td>
+              <td>0.3428</td>
+              <td>31.02</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>12.0</td>
+              <td>3.0</td>
+              <td>2.847</td>
+              <td>2.085</td>
+              <td>0.99</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.625</td>
+              <td>0.3466</td>
+              <td>30.86</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>13.0</td>
+              <td>10.0</td>
+              <td>2.582</td>
+              <td>1.985</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.623</td>
+              <td>0.3432</td>
+              <td>31.9</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>14.0</td>
+              <td>6.0</td>
+              <td>2.693</td>
+              <td>1.071</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.629</td>
+              <td>0.3322</td>
+              <td>32.72</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>15.0</td>
+              <td>2.0</td>
+              <td>3.005</td>
+              <td>2.154</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.623</td>
+              <td>0.3478</td>
+              <td>32.29</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>16.0</td>
+              <td>11.0</td>
+              <td>2.254</td>
+              <td>3.117</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.626</td>
+              <td>0.3358</td>
+              <td>30.34</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>17.0</td>
+              <td>6.0</td>
+              <td>2.836</td>
+              <td>1.532</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.623</td>
+              <td>0.3403</td>
+              <td>30.34</td>
+              <td>0.7094</td>
+            </tr>
+            <tr>
+              <td>18.0</td>
+              <td>9.0</td>
+              <td>2.414</td>
+              <td>2.088</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>1.0</td>
+              <td>0.626</td>
+              <td>0.3396</td>
+              <td>30.57</td>
+              <td>0.7094</td>
+            </tr>
+          </tbody>
+        </table>
+      </CCP4i2ReportTable>
+    </CCP4i2ReportFold>
+  </CCP4i2ReportResults>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_97ffc046-ef98-11eb-82cf-08002705bc84" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="11:40 28-Jul-2021" finishtime="11:40 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="11:40 28-Jul-2021" finishtime="11:40 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="">
+      <CCP4i2ReportReference class="" style="" articleTitle="Molecular replacement with MOLREP." source="Acta Crystallogr D Biol Crystallogr. 2010 Jan;66(Pt 1):22-5. doi:" authorList="['Vagin A', 'Teplyakov A']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="Model preparation in MOLREP and examples of model improvement using X-ray data." source="Acta Crystallogr D Biol Crystallogr. 2008 Jan;64(Pt 1):33-9. Epub 2007 Dec 5." authorList="['Lebedev AA', 'Vagin AA', 'Murshudov GN']" />
+    </CCP4i2ReportReferenceGroup>
+  </CCP4i2ReportFold>
 </CCP4i2Reportmolrep_mr_report>

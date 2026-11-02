@@ -48,6 +48,10 @@ export interface VersionInfo {
   version: string;
   /** CCP4 suite version baked into the deployment. */
   ccp4_version?: string;
+  /** Version of the Python running the server (``3.11.9``). */
+  python_version?: string;
+  /** The server's operating system, as ``platform.platform()`` names it. */
+  platform?: string;
   /** Build timestamp (ISO 8601) of the running image, if available. */
   build_timestamp?: Iso8601;
   /** Short git commit hash of the running image, if available. */

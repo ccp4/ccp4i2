@@ -116,7 +116,7 @@ class servalcat_pipe_report(Report):
                 cootFold = self.addFold(label='Addition of water molecules using Coot', initiallyOpen=True, brief='Coot')
                 cootFold.addText(text=cootAddWatersNode.text)
                 clearingDiv = self.addDiv()
-            if servalcatReportNode1:
+            if servalcatReportNode1 is not None:
                 summaryFold1 = self.addFold(label='Summary of refinement after addition of water molecules', initiallyOpen=True, brief='Refinement after waters')
                 # Use grid layout to present table and graph side by side
                 left1, right1 = summaryFold1.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
@@ -130,6 +130,7 @@ class servalcat_pipe_report(Report):
             validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
             indentDiv = validationFold.addDiv()
             servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
+            self.addOutlierLinks(parent=indentDiv)
             self.validationReport(parent=indentDiv)
             self.addCoordADPDev()
 
@@ -141,10 +142,54 @@ class servalcat_pipe_report(Report):
                 cootFold = self.addFold(label='Addition of water molecules using Coot', initiallyOpen=True, brief='Coot')
                 cootFold.addText(text = cootAddWatersNode.text)
                 clearingDiv = self.addDiv()
-            if servalcatReportNode1:
+            if servalcatReportNode1 is not None:
                 summaryFold1 = self.addFold(label='Servalcat refinement running after addition of water molecules...', initiallyOpen=True, brief='Refinement after waters')
                 servalcatReport1.addGraphPerCycle(parent=summaryFold1, xmlnode=servalcatReportNode1)
 
+
+    def addOutlierLinks(self, parent=None, limit=12, per_kind=5, clash_limit=8):
+        """The worst outliers as buttons that open Moorhen on each (the job's
+        outlierScene), a group for each judge of the model: Servalcat's
+        geometry, MolProbity's residues (a group per kind, so one numerous
+        kind does not hide the rest) and clashes, the ADP analysis. An open
+        viewer of this project takes the click and moves there, so they can be
+        stepped through."""
+        from ccp4i2.pipelines.servalcat_pipe.script.outlier_places import (
+            MOLPROBITY_SECTIONS, adp_places, describe, molprobity_places, worst)
+        if parent is None:
+            parent = self
+        groups = []
+        try:
+            groups.append(("Geometry (Servalcat): largest |Z| first", worst(self.xmlnode, limit=limit)))
+        except Exception:
+            pass
+        try:
+            molprobity = molprobity_places(self.xmlnode)
+        except Exception:
+            molprobity = []
+        for _, kind, title, _ in MOLPROBITY_SECTIONS:
+            groups.append((f"MolProbity: {title} outliers",
+                           [p for p in molprobity if p["kind"] == kind][:per_kind]))
+        groups.append(("MolProbity: clashes, largest overlap first",
+                       [p for p in molprobity if p["kind"] == "clash"][:clash_limit]))
+        try:
+            groups.append(("ADPs outside the limits: furthest outside first", adp_places(self.xmlnode)[:limit]))
+        except Exception:
+            pass
+        groups = [(title, found) for title, found in groups if found]
+        if not groups:
+            return
+        fold = parent.addFold(label="Look at the outliers in Moorhen", brief="Outliers in Moorhen",
+                              initiallyOpen=True)
+        fold.addText(text=(
+            "Each opens the refined model and its maps centred on the outlier, its residues and atoms "
+            "marked in magenta; with a viewer of this project already open, the click moves that viewer "
+            "rather than opening another."))
+        for title, found in groups:
+            fold.addText(text=title, tone="heading")
+            for place in found:
+                fold.addMoorhenLink(label=describe(place), method="outlierScene",
+                                    kwargs={"kind": place["kind"], "index": place["index"]})
 
     def validationReport(self, parent=None):
         if parent is None:

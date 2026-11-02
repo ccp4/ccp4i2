@@ -19,9 +19,14 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  IconButton,
+  Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import { TextDecrease, TextIncrease } from "@mui/icons-material";
 import { DialogTitleWithClose } from "../components/dialog-title-with-close";
+import { readFontSize, stepFontSize, writeFontSize } from "../lib/preview-font-size";
 import { apiArrayBuffer, apiBlob, apiJson } from "../api-fetch";
 import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
@@ -150,6 +155,13 @@ export const FilePreviewProvider: React.FC<PropsWithChildren> = ({
 const FilePreviewDialog: React.FC = () => {
   const { contentSpecification, setContentSpecification } =
     useFilePreviewContext();
+  // Text size buttons (#790): the chosen size is kept per browser.
+  const [fontSize, setFontSize] = useState<number>(readFontSize);
+  const changeFontSize = (direction: 1 | -1) => {
+    const next = stepFontSize(fontSize, direction);
+    setFontSize(next);
+    writeFontSize(next);
+  };
   const [previewContent, setPreviewContent] = useState<string | null>("");
   const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
   const [dictDigest, setDictDigest] = useState<DictDigest | null>(null);
@@ -355,6 +367,16 @@ const FilePreviewDialog: React.FC = () => {
     doDownload(url, name);
   };
 
+  // The font-size buttons apply to the Monaco branch below and nothing else.
+  const isTextPreview =
+    !isBinary &&
+    contentSpecification != null &&
+    !["image", "dict-preview", "molblock", "molblock-raw", "csv", "clustalw"].includes(
+      contentSpecification.language
+    ) &&
+    !(contentSpecification.language === "coord-digest" && (coordDigest || !previewContent)) &&
+    !(contentSpecification.language === "mtz" && mtzData);
+
   const monacoLanguage = useMemo(() => {
     switch (contentSpecification?.language) {
       case "clustal":
@@ -445,11 +467,47 @@ const FilePreviewDialog: React.FC = () => {
                 ? mode === "dark" ? "mmcif-dark" : "mmcif-light"
                 : mode === "dark" ? "vs-dark" : "light"
             }
-            options={{ readOnly: true, wordWrap: "on" }}
+            options={{
+              readOnly: true,
+              wordWrap: "on",
+              fontSize,
+              mouseWheelZoom: true,
+            }}
           />
         )}
       </DialogContent>
       <DialogActions>
+        {isTextPreview && (
+          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mr: "auto" }}>
+            <Tooltip title="Smaller text">
+              <span>
+                <IconButton
+                  size="small"
+                  aria-label="Smaller text"
+                  disabled={stepFontSize(fontSize, -1) === fontSize}
+                  onClick={() => changeFontSize(-1)}
+                >
+                  <TextDecrease fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+            <Typography variant="caption" sx={{ minWidth: 36, textAlign: "center" }}>
+              {fontSize}px
+            </Typography>
+            <Tooltip title="Larger text">
+              <span>
+                <IconButton
+                  size="small"
+                  aria-label="Larger text"
+                  disabled={stepFontSize(fontSize, 1) === fontSize}
+                  onClick={() => changeFontSize(1)}
+                >
+                  <TextIncrease fontSize="small" />
+                </IconButton>
+              </span>
+            </Tooltip>
+          </Stack>
+        )}
         <Button
           onClick={handleDownload}
           disabled={!contentSpecification?.url}

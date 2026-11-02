@@ -442,3 +442,57 @@ Decisions worth recording:
 - **Round trip:** like `ssm`/`lsq`, the coordinates move inside coot, so capture re-emits the
   last-applied block (§10); a matrix entry re-applies to the same picture exactly, where a
   recipe re-derives one.
+
+## 14. `annotations` — geometry and text in the scene's space (shipped)
+
+A scene could say what to draw of the molecules and where to look, but not
+*point at* anything: no label, no arrow, no marker for a place that is not an
+atom. The first need was the campaign summary view, which wants a coin at each
+binding site carrying the number of confirmed hits there.
+
+**Shape.** One top-level `annotations[]`, a `kind`-discriminated union of
+`label` (text at a point), `line` (cylinder between two points, optional
+`dashed`, `arrows`, banner), `sphere` (`radius`, banner: the marker for a
+place, since it reads the same from whatever angle suits the view) and `disc`
+(a coin: `radius`, `thickness`, `normal`, banner). A **point** is `[x, y, z]` in Å or `{ file, selection }`, the centroid
+of a selection resolved *after* superposition so it follows its molecule. In
+the portable core: it is Moorhen-meaningful and carries no deployment reference.
+
+**Conformance.** Honoured: positions and radii have a unit, and the text
+governs what is seen. Substituted: `fontSize` (px), and a sphere's exact shape.
+The discs are fixed in space, not billboarded, and the format says so rather
+than promising a renderer cannot keep.
+
+**Rendering.** Moorhen draws a scene's annotations through two of its stores.
+Labels and lines go to the vectors store (`addVectors`): a cylinder between
+two points with an optional text banner, rebuilt by MoorhenWebMG on every
+store change; a label is a zero-length vector with its banner at the end.
+Spheres and discs go to the 3D objects store (`addObject`, from Moorhen's 3D
+objects API, upstream PR #716): a sphere is a sphere object, a disc a cylinder
+object of the disc's radius and `thickness` length along `normal`, so the coin
+keeps the thickness the format gives it. Objects have no text of their own, so
+a sphere's or disc's banner is a zero-length vector at the centre or on the
++normal face. Until October 2026 the package exported no sphere primitive and
+a sphere was substituted by a bristle of seven cylinders through its centre;
+the format named the sphere anyway, and now renders it as one.
+
+**Replacement, not accumulation.** The resolver stamps its vectors
+(`uniqueId` prefix `__TAG_SCENE_ANNOTATION`, which also hides them from
+Moorhen's Vectors dialog) and its objects (a `source` tag, cleared by
+`removeObjectsByTag`), and removes every stamped one before adding the
+scene's, whether or not the scene has any. Annotations are scene-level, like
+the camera; a banner left over from the previous scene would read as a
+statement about this one. Vectors the user or Moorhen made are untouched.
+
+**Round trip.** Each stamped vector carries the annotation in `customTags`
+(`ccp4i2-scene-annotation`, then `{ authored, lowered }`). The lifter re-emits
+`authored` when its anchors still resolve against the lifted `files[]` (a
+lifted file is named after its molecule, not after the applied scene's entry),
+else `lowered`, the same annotation with coordinates in place of anchors.
+
+**Strict profile.** Pruned (`STRUCTURED_PRUNE.topLevel`). The union adds about
+twenty-five properties and the profile sat at 84 of Azure's 100. The validator
+and the grammar brief carry it; a hand-written or server-built scene uses it, a
+constrained generation cannot yet. Lifting the cap, or a leaner authoring
+subset, is open.
+

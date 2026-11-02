@@ -323,7 +323,16 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
       slotProps={{ paper: { style: { minWidth: 600 } } }}
     >
       <DialogContent>
-        <DialogTitle>Confirm Task Execution</DialogTitle>
+        {/* With blocking errors there is nothing to confirm: say so, and offer
+            only Close (#787, #586) rather than Cancel beside a dead Confirm. */}
+        <DialogTitle>
+          {hasBlockingIssues ? "This job cannot run yet" : "Confirm Task Execution"}
+        </DialogTitle>
+        {hasBlockingIssues && (
+          <div style={{ margin: "0 0 0.5rem 0", fontSize: "0.9rem" }}>
+            Fix the problems marked in red, then press Run again.
+          </div>
+        )}
         {hasSeriousIssues && (
           <div style={{ margin: "0.5rem 0" }}>
             {Object.entries(seriousIssues).map(([key, issueSet]) => {
@@ -390,10 +399,14 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
           </div>
         )}
         <DialogActions>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleConfirm} disabled={hasBlockingIssues}>
-            Confirm
-          </Button>
+          {hasBlockingIssues ? (
+            <Button onClick={handleCancel}>Close</Button>
+          ) : (
+            <>
+              <Button onClick={handleCancel}>Cancel</Button>
+              <Button onClick={handleConfirm}>Confirm</Button>
+            </>
+          )}
         </DialogActions>
       </DialogContent>
     </Dialog>

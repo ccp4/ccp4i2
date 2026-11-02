@@ -75,11 +75,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const hasNucleotideChains =
     Array.isArray(xyzinComposition?.nucleics) &&
     xyzinComposition.nucleics.length > 0;
-  const hasMetalSites =
-    Array.isArray(xyzinComposition?.ligands) &&
-    xyzinComposition.ligands.some(
-      (l: any) => l.isMetal || l.type === "metal"
-    );
+  // Monomer codes holding a metal atom, single ions included (the digest's
+  // metalMonomers; the composition's ligand list leaves ions out). Undefined
+  // until the digest has arrived, so "none found" is not said too early.
+  const metalMonomers: string[] | undefined = Array.isArray(xyzinDigest?.metalMonomers)
+    ? xyzinDigest.metalMonomers
+    : undefined;
+  const hasMetalSites = (metalMonomers?.length ?? 0) > 0;
+  const { value: ligandCodesSelected, forceUpdate: setLigandCodesSelected } =
+    useTaskItem("metalCoordPipeline.LIGAND_CODES_SELECTED");
 
   // Derived state
   const isXtal = dataMethod === "xtal";
@@ -135,6 +139,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             hasProteinChains={hasProteinChains}
             hasNucleotideChains={hasNucleotideChains}
             hasMetalSites={hasMetalSites}
+            metalMonomers={metalMonomers}
+            ligandCodesSelected={ligandCodesSelected}
+            setLigandCodesSelected={setLigandCodesSelected}
             xyzinComposition={xyzinComposition}
           />
         </CCP4i2Tab>

@@ -79,7 +79,7 @@ _CLIPPER_READ_PROBE = (
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
-    WHATNEXT = [ 'coot_rebuild', 'coot1' ]
+    WHATNEXT = [ 'coot_rebuild', 'coot1', 'moorhen' ]
 
     def process(self):
         log_string = ''

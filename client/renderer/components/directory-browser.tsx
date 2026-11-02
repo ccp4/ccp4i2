@@ -45,6 +45,12 @@ export interface DirectoryBrowserProps {
   /** Lists again whenever this changes (e.g. a job's status). */
   revision?: string | number;
   fileFilter?: (item: FileSystemItem) => boolean;
+  /**
+   * What a click on an entry does, beyond opening or closing a folder.
+   * Without one, clicking a file opens its menu (#788): the menu was only
+   * reachable by right-click or the three dots that appear on hover, and a
+   * click on a file did nothing.
+   */
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
 }
 
@@ -216,14 +222,16 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
         alignItems: "center",
         height: ROW_HEIGHT,
         pl: `${depth * INDENT}px`,
-        cursor: "context-menu",
+        cursor: item.type === "file" ? "pointer" : "default",
         borderRadius: 1,
         "&:hover": { backgroundColor: "action.hover", "& .menu-button": { opacity: 1 } },
       }}
       onClick={(event) => {
         event.stopPropagation();
         onActivate(event);
-        onItemClick?.(item, event);
+        if (onItemClick) onItemClick(item, event);
+        else if (item.type === "file")
+          handleMenuOpen(item, event.currentTarget as HTMLElement);
       }}
       onContextMenu={(event) => {
         event.preventDefault();

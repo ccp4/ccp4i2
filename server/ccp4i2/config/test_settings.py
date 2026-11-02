@@ -88,6 +88,11 @@ os.environ.setdefault("CCP4I2_HOME", str(USER_DIR))
 CCP4I2_PROJECTS_DIR = USER_DIR / "test_projects"
 CCP4I2_PROJECTS_DIR.mkdir(exist_ok=True)
 
+# No cache under test: each test builds its own campaign, and sqlite reuses
+# ids after a flush, so a scene cached by one test could be served to the
+# next. The scene-cache tests switch a real backend on with override_settings.
+CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+
 print(f"Test Settings Loaded:")
 print(f"  Database: {DATABASES['default']['NAME']}")
 print(f"  Projects: {CCP4I2_PROJECTS_DIR}")

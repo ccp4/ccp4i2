@@ -57,8 +57,10 @@ inputs:
   - param: controlParameters.F_SIGF_OR_I_SIGI
     advice: >
       The default is I_SIGI. When HKLIN holds intensities, Servalcat then
-      refines against them and reports R1 and CC(I) instead of R
-      (R1work/R1free in program.xml, KPI R1Free). Leave it at I_SIGI unless
+      refines against them and reports CC(I). Up to Servalcat 0.4.149 it
+      reports R1 in place of R (R1work/R1free in program.xml, KPI R1Free);
+      from 0.4.150 a conventional R (Rwork/Rfree, KPI RFree), on amplitudes
+      derived from the intensities. Leave it at I_SIGI unless
       you need an R-free to compare with a REFMAC job on the same data; for
       that, set F_SIGF so that both report R on amplitudes. With
       amplitude-only data the setting does nothing (servalcat.py lines
@@ -120,13 +122,11 @@ inputs:
       refinement: the final model (see the traps).
   - param: controlParameters.OCCUPANCY_REFINEMENT
     advice: >
-      The box is ticked by default, but it does nothing unless
-      OCCUPANCY_GROUPS is also True with groups defined
-      (servalcat.def.xml lines 497-515; servalcat.py line 606).
-      With the defaults no occupancy is refined: CDK2_NU6102 1.1 refined.log
-      line 172 shows 0 occupancy parameters.
-      To refine the occupancies of alternative conformations or of a
-      ligand, define the groups.
+      Off by default, and acted on only when OCCUPANCY_GROUPS is also True
+      with groups defined (servalcat.py, "Occupancy refinement"): with the
+      defaults no occupancy is refined. To refine the occupancies of
+      alternative conformations or of a ligand, define the groups and set
+      this as well.
 
 results:
   RFREE_START:
@@ -135,8 +135,9 @@ results:
     type: float
     optional: true
     meaning: >
-      R-free of the input model (cycle 0), on amplitudes. Present only for
-      amplitude refinement with a Free R set. CDK2_NU6102 1 0.2889; 1tf6
+      R-free of the input model (cycle 0), on amplitudes. Present with a
+      Free R set for amplitude refinement, and from Servalcat 0.4.150 for
+      intensity refinement too. CDK2_NU6102 1 0.2889; 1tf6
       0.3393; PanDDA baz2b 5e9l 0.2843.
   RFREE:
     file: program.xml
@@ -341,12 +342,6 @@ results:
   #   servalcat_pipe.validity() (servalcat_pipe.py lines 78-104) requires
   #   RES_MIN but not them. A spa job without half maps therefore passes
   #   validation and then fails in Servalcat.
-  # FINDING (placeholder): servalcat.py lines 363-364 and 374-375 set the
-  #   KPI RFree / R1Free to 0 when the summary lacks a free R
-  #   (summary.get('Rfree', 0)). With Servalcat 0.4.142 this cannot happen:
-  #   sigmaa.py writes work and free together. The judgement reads
-  #   program.xml, not KPIs, so it would not see the 0. The facade's KPI
-  #   listing would. The default should be dropped.
   # FINDING: with ADD_WATERS the second refinement is stored under
   #   ./SERVALCAT_WATERS (servalcat_pipe.py lines 608 and 621), and the job's
   #   KPIs come from it (lines 1072 and 1089-1090). The end-of-run results
@@ -558,7 +553,8 @@ traps:
     derivative's 3.1 A data instead of the 2.5 A native: see import_merged.)
   - >
     R1 is not R. With intensities, which is the default (F_SIGF_OR_I_SIGI
-    I_SIGI), the report, the KPI (R1Free) and program.xml all give R1: an R
+    I_SIGI), Servalcat up to 0.4.149 gives R1 in the report, the KPI
+    (R1Free) and program.xml (0.4.150 and later give a conventional R): an R
     on sqrt(I) for reflections with I/sigma >= 2, with the weak data left
     out. Never set an R1-free beside a REFMAC R-free (an R on all
     amplitudes) to choose the "better" refinement. To compare like with

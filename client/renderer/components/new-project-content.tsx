@@ -32,6 +32,26 @@ import {
   AUTO_RUN_FOR_TYPE,
 } from "./file-drop-zone";
 
+/** What the main process found at the project's resulting path. */
+export interface ExistingPath {
+  exists: boolean;
+  isDirectory: boolean;
+  isEmpty: boolean;
+}
+
+/**
+ * Why a project cannot be created at a path, or "" when it can. A directory
+ * the user made in advance is accepted while it is empty (#686): Qt-era
+ * users habitually make the folder first, and were refused with "Directory
+ * already exists" for it.
+ */
+export function describeExistingPath(existing: ExistingPath): string {
+  if (!existing.exists) return "";
+  if (!existing.isDirectory) return "A file with this name already exists";
+  if (!existing.isEmpty) return "Directory already exists and is not empty";
+  return "";
+}
+
 export const NewProjectContent: React.FC = () => {
   const api = useApi();
   const router = useRouter();
@@ -44,7 +64,13 @@ export const NewProjectContent: React.FC = () => {
     null
   );
   const [makeDefault, setMakeDefault] = useState(false);
-  const [directoryExists, setDirectoryExists] = useState(true);
+  // What is at the resulting path, from the main process. A directory the
+  // user made in advance is fine so long as it is empty (#686).
+  const [existing, setExisting] = useState<ExistingPath>({
+    exists: true,
+    isDirectory: false,
+    isEmpty: false,
+  });
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
   const [tags, setTags] = useState<number[]>([]);
@@ -87,7 +113,11 @@ export const NewProjectContent: React.FC = () => {
             );
           }
           if (data.message === "check-file-exists") {
-            setDirectoryExists(data.exists);
+            setExisting({
+              exists: Boolean(data.exists),
+              isDirectory: Boolean(data.isDirectory),
+              isEmpty: Boolean(data.isEmpty),
+            });
           }
           if (data.message === "choose-project-parent-directory") {
             // Local to this page unless "make this the default" is then
@@ -98,7 +128,8 @@ export const NewProjectContent: React.FC = () => {
         }
       );
     } else {
-      setDirectoryExists(false); // Assume directory does not exist in web mode
+      // Assume the directory does not exist in web mode
+      setExisting({ exists: false, isDirectory: false, isEmpty: false });
     }
   }, []);
 
@@ -448,17 +479,20 @@ export const NewProjectContent: React.FC = () => {
 
   let nameError = "";
   if (name.length === 0) nameError = "Name is required";
-  else if (!name.match("^[A-z0-9_-]+$"))
+  else if (!name.match("^[A-Za-z0-9_-]+$"))
     nameError =
       "Name can only contain letters, numbers, underscores, and hyphens";
   else if (projects?.find((p) => p.name === name))
     nameError = "Name is already taken";
 
-  const directoryError = useMemo(() => {
-    if (name.length > 0 && directoryExists)
-      return "Directory already exists";
-    return "";
-  }, [directoryExists, name.length]);
+  const directoryError = useMemo(
+    () => (name.length > 0 ? describeExistingPath(existing) : ""),
+    [existing, name.length]
+  );
+  const directoryNote =
+    name.length > 0 && existing.exists && existing.isDirectory && existing.isEmpty
+      ? "This empty directory already exists and will be used"
+      : "";
 
   return (
     <Container maxWidth="sm" sx={{ my: 3 }}>
@@ -519,7 +553,7 @@ export const NewProjectContent: React.FC = () => {
             value={directory}
             disabled={true}
             error={directoryError.length > 0}
-            helperText={directoryError}
+            helperText={directoryError || directoryNote}
             sx={{ flexGrow: 1 }}
           />
         </Stack>

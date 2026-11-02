@@ -24,14 +24,14 @@ def routes(monkeypatch, tmp_path):
 
 
 def test_launcher_name_is_per_platform(monkeypatch):
-    monkeypatch.setattr(dnatco.os, "name", "posix")
+    monkeypatch.setattr(dnatco, "_WINDOWS", False)
     assert dnatco.dnatco_launcher_name() == "dnatco.sh"
-    monkeypatch.setattr(dnatco.os, "name", "nt")
+    monkeypatch.setattr(dnatco, "_WINDOWS", True)
     assert dnatco.dnatco_launcher_name() == "dnatco.bat"
 
 
 def test_posix_prefers_the_launcher_script(monkeypatch, routes, tmp_path):
-    monkeypatch.setattr(dnatco.os, "name", "posix")
+    monkeypatch.setattr(dnatco, "_WINDOWS", False)
     routes["resolvable"] = {"dnatco.sh", "node"}
     routes["js"] = tmp_path / "dnatco.js"
     # Both routes available: the relocatable launcher wins.
@@ -39,7 +39,7 @@ def test_posix_prefers_the_launcher_script(monkeypatch, routes, tmp_path):
 
 
 def test_posix_falls_back_to_node(monkeypatch, routes, tmp_path):
-    monkeypatch.setattr(dnatco.os, "name", "posix")
+    monkeypatch.setattr(dnatco, "_WINDOWS", False)
     routes["resolvable"] = {"node"}
     routes["js"] = tmp_path / "dnatco.js"
     assert dnatco.find_dnatco_command() == "node"
@@ -48,7 +48,7 @@ def test_posix_falls_back_to_node(monkeypatch, routes, tmp_path):
 def test_windows_never_picks_the_batch_file_when_node_can_run_it(monkeypatch, routes, tmp_path):
     # CreateProcess cannot execute a .bat, and a job is spawned with no shell,
     # so on Windows the node route is the one that actually works.
-    monkeypatch.setattr(dnatco.os, "name", "nt")
+    monkeypatch.setattr(dnatco, "_WINDOWS", True)
     routes["resolvable"] = {"dnatco.bat", "node"}
     routes["js"] = tmp_path / "dnatco.js"
     assert dnatco.find_dnatco_command() == "node"
@@ -56,9 +56,9 @@ def test_windows_never_picks_the_batch_file_when_node_can_run_it(monkeypatch, ro
 
 def test_missing_install_is_named_after_the_launcher(monkeypatch, routes):
     # Nothing resolves: report "dnatco.sh not found", not "node not found".
-    monkeypatch.setattr(dnatco.os, "name", "posix")
+    monkeypatch.setattr(dnatco, "_WINDOWS", False)
     assert dnatco.find_dnatco_command() == "dnatco.sh"
-    monkeypatch.setattr(dnatco.os, "name", "nt")
+    monkeypatch.setattr(dnatco, "_WINDOWS", True)
     assert dnatco.find_dnatco_command() == "dnatco.bat"
 
 

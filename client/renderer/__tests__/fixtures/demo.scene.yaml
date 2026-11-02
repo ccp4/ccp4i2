@@ -50,5 +50,11 @@ hints:
   lighting: { direction: [1.0, 1.0, 1.0], shininess: 24 } # +x right, +y up, +z toward viewer → upper-right-front
   effects: { ssao: { enabled: true }, edgeDetect: { enabled: true } }
 
+# Geometry and text in the scene's space (honoured): a label anchored to a
+# residue, which follows the molecule, and a marker at a point.
+annotations:
+  - { kind: label, at: { file: gamma, selection: "//A/750" }, text: "Arg 750" }
+  - { kind: sphere, at: [12.0, 4.5, -3.2], radius: 1.2, colour: "#e07a5f", text: "Site 1: 7 hits" }
+
 resolver:
   onMissingResidues: clamp-and-log

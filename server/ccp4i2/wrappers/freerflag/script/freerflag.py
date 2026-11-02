@@ -351,7 +351,6 @@ class freerflag(CPluginScript):
           print('Error writing cell parameters',e)
 
       annotation += title
-      print("Annotation", annotation)
       self.container.outputData.FREEROUT.annotation.set(annotation)
 
       return CPluginScript.SUCCEEDED

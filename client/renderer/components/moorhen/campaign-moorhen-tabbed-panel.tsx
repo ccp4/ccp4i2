@@ -19,7 +19,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 
 import { CampaignControlPanel } from "./campaign-control-panel";
 import { MoorhenScenesPanel, SceneBundleAssets } from "./moorhen-scenes-panel";
-import type { SceneResolveResult } from "../../lib/moorhen-scene-resolver";
+import type { SceneProgress, SceneResolveResult } from "../../lib/moorhen-scene-resolver";
 
 export interface CampaignMoorhenTabbedPanelProps {
   /** Everything the campaign control panel needs, forwarded verbatim. */
@@ -28,6 +28,7 @@ export interface CampaignMoorhenTabbedPanelProps {
   onApplyScene: (
     yamlText: string,
     assets: SceneBundleAssets,
+    onProgress?: (progress: SceneProgress) => void,
   ) => Promise<SceneResolveResult>;
   /** Lift the current view into the editor (the Capture button). */
   onCaptureScene?: React.ComponentProps<typeof MoorhenScenesPanel>["onCaptureScene"];

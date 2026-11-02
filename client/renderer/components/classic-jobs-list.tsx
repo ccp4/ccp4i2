@@ -54,7 +54,7 @@ import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-conte
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { confirmJobDeletion } from "./job-deletion-details";
 import { useSet } from "../hooks";
-import { deletesViewedJob } from "../utils";
+import { useReleaseDeletedJobs } from "../utils";
 
 // =============================================================================
 // Types
@@ -403,6 +403,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const navigate = useRouter();
   const api = useApi();
   const deleteDialog = useDeleteDialog();
+  const releaseDeletedJobs = useReleaseDeletedJobs(projectId);
 
   // Search/filter
   const [filterText, setFilterText] = useState<string | null>(null);
@@ -572,13 +573,10 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
         isBlocked: (plan) => plan.has_active_dependents,
         onDelete: async (deleteImportedFiles, plan) => {
           exitSelectMode();
-          const deleted = [
+          releaseDeletedJobs([
             ...jobIds.map((id) => lookups.jobsById.get(id)!),
             ...plan.additional_dependents,
-          ];
-          if (deletesViewedJob(lookups.jobsById.get(Number(jobid)), deleted)) {
-            navigate.push(`/ccp4i2/project/${projectId}`);
-          }
+          ]);
           await api.post("jobs/bulk_delete/", {
             job_ids: jobIds,
             delete_imported_files: deleteImportedFiles,
@@ -596,9 +594,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     mutateJobTree,
     exitSelectMode,
     lookups.jobsById,
-    jobid,
-    navigate,
-    projectId,
+    releaseDeletedJobs,
   ]);
 
   if (isLoading) {

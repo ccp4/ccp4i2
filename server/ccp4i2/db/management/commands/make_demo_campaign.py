@@ -172,6 +172,26 @@ def _site_origin_from_ligand(pdb_path, code):
     ]
 
 
+def create_site_at(group, name, centre):
+    """A campaign site centred on ``centre`` (real space, the parent's frame).
+
+    ``origin`` is Moorhen's view origin, the NEGATED centre (CampaignSite), and
+    ``position`` negates it back. Storing the centre itself as the origin put
+    the demo site at its mirror image through zero, 50 A from the pocket, so
+    no PanDDA event ever matched it.
+    """
+    from ccp4i2.db import models
+
+    return models.CampaignSite.objects.create(
+        group=group,
+        name=name,
+        origin_x=-centre[0],
+        origin_y=-centre[1],
+        origin_z=-centre[2],
+        order=0,
+    )
+
+
 class Command(BaseCommand):
     help = (
         "Create a demo fragment-screening campaign from public PDBe data, with "
@@ -447,14 +467,7 @@ class Command(BaseCommand):
                 )
 
                 if site_origin:
-                    models.CampaignSite.objects.create(
-                        group=group,
-                        name=FALLBACK_SITE_NAME,
-                        origin_x=site_origin[0],
-                        origin_y=site_origin[1],
-                        origin_z=site_origin[2],
-                        order=0,
-                    )
+                    create_site_at(group, FALLBACK_SITE_NAME, site_origin)
 
                 member_projects = []
                 for entry in members:

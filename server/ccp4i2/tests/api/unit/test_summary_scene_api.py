@@ -398,20 +398,23 @@ def test_summary_scene_carries_the_first_site_camera(
     on reading the old attribute through a defaulted getattr. Nothing raised;
     scenes simply came back with no camera, so the viewer opened on whatever
     it happened to be looking at. Assert the camera is there, and that it is
-    the first site's by display order rather than by insertion.
+    the first site's in display order -- alphabetical by name, as every list
+    of sites is shown (lib/campaign_site_order) -- rather than by insertion
+    or by the stored ``order``.
     """
     test_project_path.mkdir(parents=True, exist_ok=True)
     group = _build_campaign(test_project_path)
 
-    # Added second but ordered first: pins ordering, not insertion order.
+    # Created first and stored first, but second by name: pins the display
+    # order, not insertion and not the `order` column.
     models.CampaignSite.objects.create(
         group=group, name="second pocket",
-        origin_x=1.0, origin_y=2.0, origin_z=3.0, order=1,
+        origin_x=1.0, origin_y=2.0, origin_z=3.0, order=0,
     )
     models.CampaignSite.objects.create(
         group=group, name="main pocket",
         origin_x=12.5, origin_y=-3.25, origin_z=28.75,
-        quat=[0.0, 0.0, 0.0, 1.0], zoom=0.35, order=0,
+        quat=[0.0, 0.0, 0.0, 1.0], zoom=0.35, order=1,
     )
 
     client = APIClient()
@@ -424,6 +427,63 @@ def test_summary_scene_carries_the_first_site_camera(
     assert view["origin"] == [12.5, -3.25, 28.75]
     assert view["quat"] == [0.0, 0.0, 0.0, 1.0]
     assert view["zoom"] == 0.35
+
+
+def test_summary_scene_puts_a_marker_on_every_site_with_its_hit_count(
+    bypass_api_permissions, test_project_path
+):
+    """Each binding site gets a ``sphere`` annotation at its real-space
+    position whose banner counts the members
+    judged a hit there: only current members, only an effective ``hit``
+    (reviewers disagreeing is not one), and zero spelled out rather than
+    the site left bare."""
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+    members = sorted(
+        (m.project for m in group.memberships.filter(
+            type=models.ProjectGroupMembership.MembershipType.MEMBER)),
+        key=lambda p: p.name,
+    )
+    assert len(members) == 3
+    busy = models.CampaignSite.objects.create(
+        group=group, name="a busy pocket",
+        origin_x=-12.5, origin_y=3.25, origin_z=-28.75,
+        quat=[0.0, 0.0, 0.0, 1.0], zoom=0.35, order=0,
+    )
+    quiet = models.CampaignSite.objects.create(
+        group=group, name="b quiet pocket", origin_x=-1.0, origin_y=-2.0, origin_z=-3.0, order=1,
+    )
+    models.SiteEvaluation.objects.create(project=members[0], site=busy, verdict="hit")
+    models.SiteEvaluation.objects.create(project=members[1], site=busy, verdict="hit")
+    # A third member where reviewers disagree: to reconcile, not a hit.
+    models.SiteEvaluation.objects.create(
+        project=members[2], site=busy, verdict="hit", evaluator="ann")
+    models.SiteEvaluation.objects.create(
+        project=members[2], site=busy, verdict="empty", evaluator="bob")
+    # A hit recorded by a project that is not a member does not count.
+    outsider = models.Project.objects.create(
+        name="outsider", directory=str(test_project_path / "outsider"))
+    models.SiteEvaluation.objects.create(project=outsider, site=quiet, verdict="hit")
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    body = response.json()
+    markers = body["scene"]["annotations"]
+
+    assert [m["text"] for m in markers] == [
+        "a busy pocket: 2 hits", "b quiet pocket: no hits",
+    ]
+    assert all(m["kind"] == "sphere" for m in markers)
+    # site_position negates the stored (view) origin.
+    assert markers[0]["at"] == [12.5, -3.25, 28.75]
+    assert markers[0]["colour"] != markers[1]["colour"]
+    assert body["stats"]["sites"] == [
+        {"id": busy.id, "name": "a busy pocket", "hits": 2},
+        {"id": quiet.id, "name": "b quiet pocket", "hits": 0},
+    ]
 
 
 def test_summary_scene_without_sites_has_no_view(
@@ -465,3 +525,23 @@ def test_summary_scene_empty_campaign(bypass_api_permissions, test_project_path)
     assert data["stats"]["parent_present"] is False
     assert data["scene"]["files"] == []
     assert data["scene"]["elements"] == []
+
+
+def test_sites_are_listed_alphabetically(bypass_api_permissions, test_project_path):
+    """GET sites/ lists them by name, numbers as numbers, whatever order they
+    were created or stored in: a site and its subsites come out together."""
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+    for order, name in enumerate(
+        ["Pocket_B", "Site 10", "Pocket_A_Trp", "Other", "Site 2", "Pocket_A"]
+    ):
+        models.CampaignSite.objects.create(
+            group=group, name=name, origin_x=0.0, origin_y=0.0, origin_z=0.0,
+            order=order,
+        )
+
+    response = APIClient().get(f"/api/ccp4i2/projectgroups/{group.id}/sites/")
+    assert response.status_code == 200, response.content
+    assert [s["name"] for s in response.json()] == [
+        "Other", "Pocket_A", "Pocket_A_Trp", "Pocket_B", "Site 2", "Site 10",
+    ]
