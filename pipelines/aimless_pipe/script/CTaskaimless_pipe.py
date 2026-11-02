@@ -311,7 +311,7 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                          'than the THRESHOLD set here or by default. KEEP and REMOVE options are unconditional'\
                          ])
         self.createLine(['widget','LATTICE_CENTERING_THRESHOLD',
-                         'label','Probability threshold for removing centred lattice reflections'],
+                         'label','Score threshold for removing centred lattice reflections'],
                         toggleFunction=[self.displayThreshold,
                                         ['KEEP_LATTICE_CENTERING', 'REMOVE_LATTICE_CENTERING']])
 
