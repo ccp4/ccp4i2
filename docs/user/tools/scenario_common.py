@@ -87,3 +87,14 @@ def last_job_dir(project: str, task: str) -> Path:
         "print('DIR=' + str(job.directory))\n")],
         check=True, env={**os.environ, **DJANGO}, capture_output=True, text=True).stdout
     return Path(next(line[4:] for line in out.splitlines() if line.startswith("DIR=")))
+
+
+def set_job_parameter(project: str, number: str, path: str, value: str):
+    """Set one parameter of a job by its number, as the interface would
+    (manage.py set_job_parameter). For an unrun clone that is to show a
+    state a run never reaches: a sequence with a letter the task rejects."""
+    subprocess.run([sys.executable, "manage.py", "set_job_parameter",
+                    "-pn", project, "-jn", str(number), "--path", path,
+                    "--value", value],
+                   check=True, env={**os.environ, **DJANGO},
+                   stdout=subprocess.DEVNULL)
