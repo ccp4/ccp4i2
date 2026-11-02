@@ -106,10 +106,14 @@ the format.
 | `cifText` | inline dictionary CIF | yes |
 | `fileId` | ccp4i2 file id; fetches with no project qualifier | this deployment only |
 | `job` + `param` (+ `projectId` or `projectName`) | a job's output by role | this deployment only |
+| `projectPath` (+ `projectId` or `projectName`) | a file in the project directory the database does not record (a running job's); relative, no `..` | this deployment only |
 | `relativeUrl` | origin-relative loader URL | this deployment only; never author it |
 
 Prefer `job` + `param` or `fileId` inside a project: they survive project
 moves. A strict-portable export lowers deployment refs to `bundle` or `url`.
+There is no ref for a file on disk: the old `path` was renamed `relativeUrl`
+and now fails validation. Bundle a local file in a `.scene.zip`, or reach it
+through the project.
 
 ## Changing the format
 

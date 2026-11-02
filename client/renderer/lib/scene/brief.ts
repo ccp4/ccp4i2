@@ -121,11 +121,15 @@ Each \`files[]\` entry sets **exactly one** source:
 | \`relativeUrl\` | origin-relative URL (\`/api/…\`) | within one deployment |
 | \`fileId\` (+\`projectId\`) | ccp4i2 project file | within one deployment |
 | \`job\`+\`param\` (+\`projectId\`) | ccp4i2 job output | within one deployment |
+| \`projectPath\` (+\`projectId\`) | file in the project directory the database does not record (a running job's); relative, no \`..\` | within one deployment |
 
 The resolver matches a ref against an already-loaded molecule by its loader URL
 (or by \`fileId\` extracted from it); a \`pdb\`/\`url\`/\`bundle\`/\`job+param\` ref is
 fetched if not present. A molecule's identity is its loader URL, never a bare
 path — so \`relativeUrl\` matches loaded molecules, it does not read local files.
+There is no field for a file on disk: the old \`path\` field was renamed
+\`relativeUrl\` and now fails validation. For a local file, bundle it in a
+\`.scene.zip\` or reference it through the project.
 
 ## Selections (Coot CIDs)
 
