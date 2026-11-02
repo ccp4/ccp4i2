@@ -269,6 +269,21 @@ TASKS = {
         defXmlPath="wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.def.xml",
         reportPath="ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report:adding_stats_to_mmcif_i2_report",
         runningReport=True,
+        successor="prepare_deposition",
+    ),
+    "prepare_deposition": Task(
+        title="Prepare files for deposition",
+        description="Sanitise the refined model, add the data statistics, the entities and the "
+                    "descriptive metadata OneDep reads, write the reflections mmCIF and validate",
+        shortTitle="Prepare deposition",
+        searchTerms=("wwpdb", "pdbx", "submission", "authors", "harvest", "validation"),
+        pluginPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition:prepare_deposition",
+        defXmlPath="wrappers/prepare_deposition/script/prepare_deposition.def.xml",
+        reportPath="ccp4i2.wrappers.prepare_deposition.script.prepare_deposition_report:prepare_deposition_report",
+        runningReport=True,
+        # gemmi only, but the reflections are merged with CCP4's cad through
+        # makeHklin0 and the validation step calls the wwPDB service: a worker job.
+        dataTypes=("ccp4i2.wrappers.prepare_deposition.script.prepare_deposition_types",),
     ),
     "aimless": Task(
         shortTitle="AIMLESS",
@@ -1075,6 +1090,16 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.mtzutils.script.mtzutils:mtzutils",
         defXmlPath="wrappers/mtzutils/script/mtzutils.def.xml",
     ),
+    "geometry_polish": Task(
+        title="Polish geometry for deposition",
+        description="Repair MolProbity rotamer outliers, Ramachandran outliers and side-chain clashes using NCS copies, Coot and the maps, accepting only what the density supports.",
+        shortTitle="Geometry polish",
+        searchTerms=("validation", "rebuild", "sidechain", "flip", "cleanup", "pdb"),
+        pluginPath="ccp4i2.wrappers.geometry_polish.script.geometry_polish:geometry_polish",
+        defXmlPath="wrappers/geometry_polish/script/geometry_polish.def.xml",
+        reportPath="ccp4i2.wrappers.geometry_polish.script.geometry_polish_report:geometry_polish_report",
+        runningReport=True,
+    ),
     "nucleofind": Task(
         title="Predict regions of nucleic acids with NucleoFind",
         description="Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.",
@@ -1143,6 +1168,17 @@ TASKS = {
         shortTitle="PDB Extract",
         pluginPath="ccp4i2.pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper:pdb_extract_wrapper",
         defXmlPath="pipelines/PrepareDeposit/wrappers/pdb_extract_wrapper/script/pdb_extract_wrapper.def.xml",
+    ),
+    "onedep_submit": Task(
+        title="Submit to OneDep (wwPDB deposition)",
+        description="Create a wwPDB OneDep deposition from deposition-ready model and reflection mmCIF files (OneDep fills its pages from the model), or replace the files on an existing one (which does not refresh pages already filled)",
+        shortTitle="Submit to OneDep",
+        searchTerms=("upload", "depui", "rcsb", "pdbe", "pdbj", "release"),
+        pluginPath="ccp4i2.wrappers.onedep_submit.script.onedep_submit:onedep_submit",
+        defXmlPath="wrappers/onedep_submit/script/onedep_submit.def.xml",
+        reportPath="ccp4i2.wrappers.onedep_submit.script.onedep_submit_report:onedep_submit_report",
+        runningReport=True,
+        ccp4_free=True,
     ),
     "pdb_redo_api": Task(
         title="PDB-REDO Web services",
