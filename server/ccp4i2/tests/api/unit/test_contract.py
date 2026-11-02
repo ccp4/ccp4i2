@@ -295,3 +295,58 @@ def test_auth_error_response_shape_is_stable():
     assert body["success"] is False
     assert isinstance(body["error"], str)
     assert response.status_code == 403
+
+
+def test_action_response_envelope_is_stable():
+    """Every contracted action answers ``{success: true, data}`` or
+    ``{success: false, error, details?}``, through these two helpers.
+    The #651/#654 refactor (2026-09-28) moved the actions here from
+    ``{"status": "Success", ...}`` with no contract note, and Materia's
+    i2remote read failure on every success. A change to this shape is a
+    breaking change (contract: *Versioning and breaking changes*).
+    """
+    from ccp4i2.lib.response.result import api_error, api_success
+
+    ok = api_success({"path": "inputData.XYZIN"})
+    assert ok.status_code == 200
+    assert ok.data == {"success": True, "data": {"path": "inputData.XYZIN"}}
+    assert "status" not in ok.data
+
+    created = api_success({"id": 1}, status=201)
+    assert created.status_code == 201
+    assert created.data["success"] is True
+
+    bad = api_error("no such parameter", status=400, details={"path": "inputData.NOPE"})
+    assert bad.status_code == 400
+    assert bad.data["success"] is False
+    assert bad.data["error"] == "no such parameter"
+    assert bad.data["details"] == {"path": "inputData.NOPE"}
+    assert "status" not in bad.data
+
+    plain = api_error("gone", status=404)
+    assert plain.data["success"] is False and plain.data["error"] == "gone"
+
+
+def test_set_parameter_refuses_a_file_value_that_is_not_a_path():
+    """A file input takes the dict ``resolve_fileuse`` returns (``dbFileId``
+    ...), ``{"fullPath": ...}`` or an absolute path. The i2 CLI's own
+    ``fullPath=/x`` key-value syntax is not one of these: it was accepted
+    with ``success: true`` and written into params.xml as the file's name
+    (Materia, 2026-10-31). The check is a pure function on the target item.
+    """
+    from ccp4i2.core.base_object.cdata_file import CDataFile
+    from ccp4i2.lib.utils.parameters.set_parameter import file_value_errors
+
+    target = CDataFile()
+    refused = file_value_errors(target, "fullPath=/mnt/data/XYZOUT.pdb", "inputData.XYZIN")
+    assert len(refused) == 1
+    assert "dbFileId" in refused[0] and "fullPath" in refused[0] and "absolute" in refused[0]
+    assert file_value_errors(target, "XYZOUT.pdb", "inputData.XYZIN"), "a relative path is refused"
+
+    for accepted in ("/mnt/data/XYZOUT.pdb", "", None,
+                     {"dbFileId": "abc"}, {"fullPath": "/mnt/data/XYZOUT.pdb"}):
+        assert file_value_errors(target, accepted, "inputData.XYZIN") == [], accepted
+
+    # Not a file input: strings of any shape are the field's own business.
+    from ccp4i2.core.base_object.fundamental_types import CString
+    assert file_value_errors(CString(), "fullPath=/x", "controlParameters.TITLE") == []
