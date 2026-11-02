@@ -156,6 +156,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "coot1",
       "moorhen",
       "nucleofind",
+      "geometry_polish",
     ],
   },
   {
@@ -198,7 +199,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "export",
     title: "Export and Deposition",
-    tasks: ["adding_stats_to_mmcif_i2", "mergeMtz"],
+    tasks: ["prepare_deposition", "onedep_submit", "mergeMtz"],
   },
   {
     icon: "expt_data_utility",
@@ -240,7 +241,8 @@ const TASK_CATEGORIES: TaskCategory[] = [
 ];
 
 const DEPRECATED_TASKS: Record<string, string> = {
-  PrepareDeposit: "Superseded by adding_stats_to_mmcif_i2 — do not use",
+  PrepareDeposit: "Superseded by prepare_deposition — do not use",
+  adding_stats_to_mmcif_i2: "Superseded by prepare_deposition — do not use",
 };
 
 type TaskInfo = {
