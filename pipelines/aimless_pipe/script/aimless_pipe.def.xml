@@ -1128,9 +1128,9 @@
       <content id="LATTICE_CENTERING_THRESHOLD">
         <className>CFloat</className>
         <qualifiers>
-          <default>0.35</default>
+          <default>0.1</default>
           <guiLabel>None</guiLabel>
-          <toolTip>Probility threshold for removing centred lattice reflections </toolTip>
+          <toolTip>Score threshold for removing centred lattice reflections </toolTip>
           <charWidth>7</charWidth>
         </qualifiers>
       </content>
