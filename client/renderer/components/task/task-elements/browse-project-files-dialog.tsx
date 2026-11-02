@@ -41,6 +41,7 @@ import {
 import { useTheme } from "../../../theme/theme-provider";
 import { useProjectJobs } from "../../../utils";
 import SearchField from "../../search-field";
+import { canConvertToRequired } from "../../../lib/content-flags";
 
 // ---------------------------------------------------------------------------
 // Shared sub-components (compact list items identical to hierarchy browser)
@@ -354,24 +355,6 @@ export interface BrowseProjectFilesDialogProps {
   fileTypeLabel?: string;
 }
 
-/** Content-flag conversion table (mirrors CAN_CONVERT_TO from CCP4XtalData). */
-const CAN_CONVERT_TO: Record<number, number[]> = {
-  1: [1, 2, 3, 4],
-  2: [2, 4],
-  3: [3, 4],
-  4: [4],
-};
-
-const canConvertToRequired = (
-  fileContent: number | null | undefined,
-  requiredFlags: number[]
-): boolean => {
-  if (fileContent == null) return false;
-  const convertibleTo = CAN_CONVERT_TO[fileContent];
-  if (!convertibleTo) return false;
-  return requiredFlags.some((r) => convertibleTo.includes(r));
-};
-
 export const BrowseProjectFilesDialog: React.FC<
   BrowseProjectFilesDialogProps
 > = ({
@@ -450,7 +433,7 @@ export const BrowseProjectFilesDialog: React.FC<
     // Filter by content flag convertibility
     if (requiredContentFlag && requiredContentFlag.length > 0) {
       result = result.filter((f) =>
-        canConvertToRequired(f.content, requiredContentFlag)
+        canConvertToRequired(f.content, requiredContentFlag, f.type)
       );
     }
 

@@ -91,6 +91,48 @@ Three requirements:
 Import the service's auth helper *lazily* inside the function so
 `config/credentials.py` stays importable without the wrapper tree.
 
+## Step 2b — When the probe consumes the credential (token rotation)
+
+Some services rotate a credential on every use. OneDep's API key (the DepUI
+"Generate Key" value) is a refresh token: the first authenticated call
+exchanges it for a new pair and the old key is dead. Two consequences the
+`onedep` credential (`wrappers/onedep_submit/`) handles, and any such service
+must:
+
+- **The validator must hand back the replacement.** Return
+  `(ok, message, new_values)`; `validate_credential` persists `new_values`
+  through `remember_rotation()` in the layer the credential came from (a
+  session value stays in the session, a stored one goes back to the keychain
+  or 0600 file). The two-value form still works for everything else.
+- **An environment-supplied credential cannot be rewritten.** On a hosted
+  deployment the key is the deployment's, so `remember_rotation` returns False
+  and the message says the key is now spent. Document for users that a key is
+  single-use per job there and they generate a new one next time. The wrapper
+  does the same write-back after a run, best effort, and says so in the log
+  when it could not.
+- **Keep the library's own state private.** A client library that writes
+  rotated tokens to a config file must be pointed at a per-user directory
+  (`ccp4i2_home()/<service>/`, mode 0700) on a desktop, or a temporary
+  directory removed at job end on a server. Never the job directory: that is
+  exported in project zips.
+
+- **No probe in `runTimeValidity()`.** Step 4's live check is wrong for a
+  rotating credential: `runTimeValidity` runs in the API server when the run
+  dialog opens and again in the job process, so a probe there spends the key
+  up to three times per run, two concurrent jobs invalidate each other, and on
+  an environment-driven server the second probe finds a dead key and the job
+  fails before it starts. Check presence and format only; the Test button in
+  the credential dialog is the one place a probe happens, and the job's single
+  authenticated call is the submission itself. The validator should also skip
+  the probe when the value is the deployment's (`ONEDEP_API_KEY`), since
+  nothing can store the replacement there.
+- **Keep what the service hands back beside the key.** OneDep routes a key to
+  a regional site and scopes the rotated token to it. A non-secret,
+  `required=False` field (`site_host`) carries that, filled by rotation and
+  never demanded of the user; `make_config` points the next run at it.
+
+The test for all three is `tests/unit/config/test_credentials_rotation.py`.
+
 ## Step 3 — Read it in the wrapper
 
 ```python

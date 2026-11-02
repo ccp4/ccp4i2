@@ -26,7 +26,7 @@ NON_CITABLE = frozenset({
     "ProvideSequence", "ProvideTLS",
     # format converters / column shims — no citable upstream program
     "coordinate_selector", "add_substructure", "splitMtz", "mergeMtz", "cad_copy_column",
-    "TestObsConversions", "adding_stats_to_mmcif_i2", "cif2mtz", "convert2mtz",
+    "TestObsConversions", "adding_stats_to_mmcif_i2", "prepare_deposition", "onedep_submit", "cif2mtz", "convert2mtz",
     "x2mtz", "scalepack2mtz", "mtzutils", "mtzheader", "hklin2cif",
     "add_fractional_coords", "editbfac", "pdbview_edit", "chltofom",
     "cmapcoeff", "coot_script_lines",
@@ -137,6 +137,7 @@ TASK_CITES: Dict[str, List[str]] = {
     "moorhen": ["coot"],  # Moorhen is Coot's engine (libcootapi) in the browser
     "coot_rsr_morph": ["coot"],
     "coot_script_lines": ["coot"],
+    "geometry_polish": ["coot", "molprobity"],
     # --- acedrg variants.
     "acedrgNew": ["acedrg"],
     "AcedrgLink": ["acedrg"],
