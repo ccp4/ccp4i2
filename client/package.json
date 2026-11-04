@@ -113,7 +113,7 @@
     "@types/xml2js": "^0.4.14",
     "@vitejs/plugin-react": "^4.4.1",
     "concurrently": "latest",
-    "electron": "^33.4.11",
+    "electron": "^45.2.2",
     "electron-builder": "latest",
     "install": "^0.13.0",
     "jsdom": "^26.1.0",
@@ -135,7 +135,7 @@
         "channel": "alpha"
       }
     ],
-    "electronVersion": "33.4.11",
+    "electronVersion": "45.2.2",
     "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
     "files": [
@@ -196,8 +196,7 @@
         {
           "target": "nsis",
           "arch": [
-            "x64",
-            "ia32"
+            "x64"
           ]
         }
       ],
