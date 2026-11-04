@@ -49,11 +49,14 @@ Go to **[Releases](https://github.com/ccp4/ccp4i2/releases)** and pick the lates
 build marked **Pre-release** (the latest `v3.1.0a…` alpha), then download the
 installer for your OS — no GitHub login needed:
 
-| OS | Asset |
-|---|---|
-| macOS | `.dmg` |
-| Windows | `.exe` installer |
-| Linux | `.deb` (Ubuntu/Debian — **recommended**) or `.AppImage` (portable) |
+| OS | Asset | Minimum version |
+|---|---|---|
+| macOS | `.dmg` | macOS 13 (Ventura), Apple Silicon |
+| Windows | `.exe` installer | Windows 10 |
+| Linux | `.deb` (Ubuntu/Debian — **recommended**) or `.AppImage` (portable) | x86_64 |
+
+The minimums are Electron's (the app ships Chromium), so they rise over time;
+the macOS floor is stamped into the app as `LSMinimumSystemVersion`.
 
 > During the alpha, releases are **pre-releases**, so they won't appear under
 > "Latest release" — pick the top entry tagged *Pre-release* on the Releases
