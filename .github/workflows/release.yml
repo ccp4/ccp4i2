@@ -161,6 +161,7 @@ jobs:
               client/release/*.yml
               !client/release/builder-debug.yml
               client/release/*.blockmap
+              client/release/unpacked/*
           - os: windows-latest
             script: package-win
             glob: |
@@ -168,6 +169,7 @@ jobs:
               client/release/*.yml
               !client/release/builder-debug.yml
               client/release/*.blockmap
+              client/release/unpacked/*
           - os: ubuntu-latest
             script: package-linux-x64
             # the channel yml (alpha-linux.yml / latest-linux.yml) drives
@@ -178,6 +180,7 @@ jobs:
               client/release/*.deb
               client/release/*.yml
               !client/release/builder-debug.yml
+              client/release/unpacked/*
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
@@ -378,6 +381,15 @@ jobs:
         run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS} --publish never
         working-directory: client
 
+      # The same build, without an installer: electron-builder's unpacked tree
+      # (release/mac-*/ccp4i2x.app, win-unpacked, linux-unpacked) archived as
+      # ccp4i2x-<version>-<platform>-<arch>.{tar.gz,zip}. This is what a
+      # distribution (CCP4's) drops into its own tree so the app is runnable
+      # once unpacked. The macOS .app inside is the signed+notarised one.
+      - name: Pack the unpacked app tree
+        shell: bash
+        run: client/scripts/pack-unpacked.sh
+
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
@@ -428,3 +440,14 @@ jobs:
             `sudo apt install ./ccp4i2-django_*.deb`. The `.AppImage` is a
             portable fallback (disables its sandbox automatically on such
             kernels; no `sysctl` needed).
+
+            **Unpacked trees (for integrators, e.g. a CCP4 distribution):**
+            `ccp4i2x-<version>-<platform>-<arch>.tar.gz` / `.zip` hold the
+            same build as a plain directory, runnable once unpacked with no
+            installer: `ccp4i2x.app` on macOS, `ccp4i2x\ccp4i2x.exe` on
+            Windows, `ccp4i2x/ccp4i2x.sh` on Linux (it sorts out the Chromium
+            sandbox; `sudo ccp4i2x/setup-sandbox.sh` once after unpacking
+            keeps the sandbox on Ubuntu 24.04+). Each has a README.txt. The
+            backend is not inside: the tree expects `ccp4i2==<version>`
+            installed in the CCP4's `ccp4-python`, and asks for the CCP4
+            location on first launch if it cannot find one.

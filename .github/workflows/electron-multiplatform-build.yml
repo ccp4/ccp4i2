@@ -98,11 +98,22 @@ jobs:
         run: npm run package-mac -- --publish never
         working-directory: client
 
-      - name: Upload macOS artifact
+      # Also the unpacked tree as ccp4i2x-<version>-<platform>-<arch> archive
+      # (what a distribution needs; see client/scripts/pack-unpacked.sh).
+      # Per-push builds carry package.json's 0.0.1, so name them by commit.
+      - name: Pack the unpacked app tree
+        shell: bash
+        env:
+          UNPACKED_VERSION: dev-${{ github.sha }}
+        run: client/scripts/pack-unpacked.sh
+
+      - name: Upload macOS artifacts (dmg + unpacked app)
         uses: actions/upload-artifact@v4
         with:
           name: macOS-dmg
-          path: client/release/*.dmg
+          path: |
+            client/release/*.dmg
+            client/release/unpacked/*
 
   build-win:
     needs: changes
@@ -129,12 +140,22 @@ jobs:
         run: npm run package-win -- --publish never
         working-directory: client
 
-      - name: Upload Windows artifacts
+      # Also the unpacked tree as ccp4i2x-<version>-<platform>-<arch> archive
+      # (what a distribution needs; see client/scripts/pack-unpacked.sh).
+      # Per-push builds carry package.json's 0.0.1, so name them by commit.
+      - name: Pack the unpacked app tree
+        shell: bash
+        env:
+          UNPACKED_VERSION: dev-${{ github.sha }}
+        run: client/scripts/pack-unpacked.sh
+
+      - name: Upload Windows artifacts (installer + unpacked tree)
         uses: actions/upload-artifact@v4
         with:
           name: windows-installers
           path: |
             client/release/*.exe
+            client/release/unpacked/*
 
   build-linux:
     needs: changes
@@ -161,13 +182,23 @@ jobs:
         run: npm run package-linux-x64 -- --publish never
         working-directory: client
 
-      - name: List release contents
-        run: ls -lh client/release
+      # Also the unpacked tree as ccp4i2x-<version>-<platform>-<arch> archive
+      # (what a distribution needs; see client/scripts/pack-unpacked.sh).
+      # Per-push builds carry package.json's 0.0.1, so name them by commit.
+      - name: Pack the unpacked app tree
+        shell: bash
+        env:
+          UNPACKED_VERSION: dev-${{ github.sha }}
+        run: client/scripts/pack-unpacked.sh
 
-      - name: Upload Linux artifacts (AppImage + deb)
+      - name: List release contents
+        run: ls -lh client/release client/release/unpacked
+
+      - name: Upload Linux artifacts (AppImage + deb + unpacked tree)
         uses: actions/upload-artifact@v4
         with:
           name: linux-appimages
           path: |
             client/release/*.AppImage
             client/release/*.deb
+            client/release/unpacked/*
