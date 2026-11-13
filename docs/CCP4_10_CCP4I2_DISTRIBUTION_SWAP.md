@@ -152,8 +152,28 @@ distributed out-of-band.
 
 ## 5. Electron frontend
 
-Distribute the CI-built, signed apps via download links (keeps the CCP4
-distribution lean). Three things to get right:
+Two routes, both built by the same CI job on every release:
+
+- **Installers** (`.dmg`, `.exe`, `.deb`/`.AppImage`) via download links, for
+  users installing the app themselves.
+- **Unpacked trees** (`ccp4i2x-<version>-<platform>-<arch>.tar.gz`/`.zip`,
+  made by `client/scripts/pack-unpacked.sh`): the same signed build as a plain
+  directory, runnable once unpacked with no installer. This is the form a CCP4
+  distribution drops into its own tree. macOS gets `ccp4i2x.app`; Windows
+  `ccp4i2x\ccp4i2x.exe`; Linux `ccp4i2x/ccp4i2x.sh`, a launcher that keeps
+  the Chromium sandbox where the kernel allows and otherwise passes
+  `--no-sandbox`. On kernels that restrict unprivileged user namespaces
+  (Ubuntu 24.04+, Debian 13) the sandbox needs `chrome-sandbox` setuid root,
+  which only a root step can arrange: `ccp4i2x/setup-sandbox.sh` does it and
+  belongs in the distribution's install step (it is what the `.deb`'s postinst
+  does). The tree expects `ccp4i2==<version>` already in `ccp4-python`.
+
+  Still to do on the app side for a tree that lives inside CCP4: locate CCP4
+  from the app's own path rather than `$CCP4`/`PATH`/common roots, never
+  offer to pip-install the backend, and disable electron-updater (it would
+  otherwise try to replace the app in place from GitHub Releases).
+
+Three things to get right either way:
 
 1. Genuine signing **and notarization** on all three platforms (macOS Gatekeeper
    in particular).
