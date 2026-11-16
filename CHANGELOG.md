@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.7.1] - 2026-11-16
+
+- Updated Windows bat files with Python 3.11 paths
+
 ## [2.7.0] - 2026-10-12
 
 - Replaced Lidia with Layla for sketching ligands
