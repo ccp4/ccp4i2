@@ -261,9 +261,20 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # 22, as the desktop build jobs use: Electron 45 and its tooling
+          # declare node >=22.12.
+          node-version: '22'
           cache: npm
           cache-dependency-path: client/package-lock.json
+
+      # The client links @ccp4/ccp4i2-api from packages/, and npm ci runs that
+      # package's prepare script (tsc) in its own directory, where only its
+      # own devDependencies are on PATH. Without this step tsc is not found
+      # ("sh: 1: tsc: not found", exit 127). The desktop build workflows do
+      # the same.
+      - name: Install ccp4i2-api devDeps (so prepare can run tsc)
+        working-directory: packages/ccp4i2-api
+        run: npm ci
 
       - name: Install
         working-directory: client
