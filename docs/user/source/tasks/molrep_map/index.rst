@@ -41,8 +41,7 @@ Input
    Figure 1: Place in cryo-EM map, input
 
 In Figure 1 the model to place **(1)**, which may be restricted to some chains
-or residues with the atom selection under it (the arrow at the right of the
-field), and the cryo-EM map **(2)**. If you have the two half maps from the
+or residues with the atom selection under it (**Select atoms**), and the cryo-EM map **(2)**. If you have the two half maps from the
 reconstruction, give them as well **(3)**: the placement itself always uses
 the full map, but the half maps are cut to the same box as the full map and
 written out for the recommended hand, which lets refinement validate against

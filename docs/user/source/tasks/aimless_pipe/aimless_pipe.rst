@@ -47,8 +47,8 @@ automatically.
 
 Input reflection files are specified here, either from earlier jobs,
 or from outside the project. They should contain unmerged reflections, ie
-the output from an integration program **(1.1)**. The **+** button adds
-further files. File formats recognised are: unmerged
+the output from an integration program **(1.1)**. The **Add another**
+button under the list adds further files. File formats recognised are: unmerged
 MTZ, from Mosflm or DIALS; files from XDS, XDS_ASCII.HKL (scaled) or
 INTEGRATE.HKL (unscaled); .raw files from SAINT (Bruker); Scalepack
 files (.sca); ShelX files; and mmCIF reflection files from the PDB (a

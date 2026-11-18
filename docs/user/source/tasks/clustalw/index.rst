@@ -26,7 +26,7 @@ Input
    Figure 1: ClustalW input
 
 Give the sequences either as a list of sequence files **(1)** (Figure 1),
-adding one row per sequence with **+**, or as one alignment file to realign.
+adding one row per sequence with **Add another**, or as one alignment file to realign.
 Put the target first: the tasks that use the alignment take its first sequence
 as the target unless told otherwise. The supported formats are described in
 the `Model data documentation <../../general/model_data.html>`__; CCP4i2

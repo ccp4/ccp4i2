@@ -4104,6 +4104,113 @@ class CPdbDataFile(CDataFile):
         except Exception:
             return -1
 
+    @staticmethod
+    def selectionSyntaxError(selection_string: str) -> Optional[str]:
+        """Why *selection_string* cannot be parsed, or None if it can.
+
+        Parses only; reads no file, so it is cheap enough for validity().
+        An empty string selects everything and is not an error.
+        """
+        from ccp4i2.core.coordinate_selection import parse_selection
+        try:
+            parse_selection(selection_string or "")
+        except Exception as e:  # ParseError, or ValueError from the tokenizer
+            return str(e) or type(e).__name__
+        return None
+
+    def usesAtomSelection(self) -> bool:
+        """Whether this file's task offers an atom selection on it (ifAtomSelection)."""
+        try:
+            return bool(self.get_qualifier('ifAtomSelection'))
+        except Exception:
+            return False
+
+    def validity(self):
+        """Refuse a selection the selection parser cannot read.
+
+        Only where the task offers a selection (ifAtomSelection): elsewhere
+        the user has no way to see or fix it. Whether the selection matches
+        any atoms needs the file read, so that is left to the run-time check
+        (CPluginScript._checkAtomSelections).
+        """
+        report = super().validity()
+        if not self.usesAtomSelection() or not self.isSelectionSet():
+            return report
+        text = str(self.selection.text.value).strip()
+        problem = self.selectionSyntaxError(text)
+        if problem is not None:
+            from ccp4i2.core.base_object.error_reporting import SEVERITY_ERROR
+            report.append(
+                klass=self.__class__.__name__,
+                code=420,
+                details=f"The atom selection '{text}' cannot be read: {problem}",
+                name=self.object_path(),
+                severity=SEVERITY_ERROR,
+            )
+        return report
+
+    def selectionSummary(self, selection_string: str = None) -> dict:
+        """What a selection picks out of this file, for the selection preview.
+
+        Counts atoms and residues per chain, splitting the residues into
+        polymer (amino and nucleic acids), water and other (ligands, ions,
+        sugars), because a user who ticks a chain may not expect its waters
+        and ligands to come with it.
+
+        Args:
+            selection_string: The selection; this file's own when None.
+
+        Returns:
+            A dict: ``status`` is ``"ok"``, ``"syntax"`` (``error`` says why)
+            or ``"unavailable"`` (no file, or it cannot be read). When ok:
+            ``nAtoms``, ``nResidues``, ``polymer``, ``water``, ``other`` and
+            ``chains``, a list of the same counts per chain, with ``id``.
+        """
+        if selection_string is None:
+            selection_string = (str(self.selection.text.value or "")
+                                if self.isSelectionSet() else "")
+        selection_string = selection_string.strip()
+        problem = self.selectionSyntaxError(selection_string)
+        if problem is not None:
+            return {"status": "syntax", "error": problem}
+        try:
+            content = self.fileContent
+            if content is None:
+                return {"status": "unavailable"}
+            _, atoms = content.interpretSelection(selection_string)
+        except Exception as e:
+            logger.debug("selectionSummary: %s", e)
+            return {"status": "unavailable"}
+
+        from ccp4i2.core.coordinate_selection.evaluator import (
+            AMINO_ACIDS, NUCLEIC_ACIDS)
+        chains = {}   # chain id -> counts, in file order
+        residues = {}  # residue key -> kind
+        for model, chain, residue, _atom in atoms:
+            counts = chains.setdefault(chain.name, {
+                "id": chain.name, "nAtoms": 0, "nResidues": 0,
+                "polymer": 0, "water": 0, "other": 0})
+            counts["nAtoms"] += 1
+            key = (model.num if hasattr(model, "num") else str(model.name),
+                   chain.name, str(residue.seqid), residue.name)
+            if key in residues:
+                continue
+            name = residue.name.strip().upper()
+            if residue.is_water():
+                kind = "water"
+            elif name in AMINO_ACIDS or name in NUCLEIC_ACIDS:
+                kind = "polymer"
+            else:
+                kind = "other"
+            residues[key] = kind
+            counts["nResidues"] += 1
+            counts[kind] += 1
+
+        chain_list = list(chains.values())
+        total = {k: sum(c[k] for c in chain_list)
+                 for k in ("nAtoms", "nResidues", "polymer", "water", "other")}
+        return {"status": "ok", **total, "chains": chain_list}
+
     def _introspect_content_flag(self) -> Optional[int]:
         """Auto-detect contentFlag by determining if file is PDB or mmCIF format.
 

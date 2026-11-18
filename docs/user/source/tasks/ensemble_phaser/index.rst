@@ -32,8 +32,8 @@ Input
    Figure 1: Phaser ensembler input
 
 In Figure 1 the models to superpose **(1)**: two or more, adding one row per
-model with **+**. Each model's atom selection (the arrow at the end of its row)
-chooses the chains to use. The sequence identity **(2)** is written into
+model with **Add another**. Each model's atom selection (**Select atoms** under
+its row) chooses the chains to use. The sequence identity **(2)** is written into
 the ensemble's header for Phaser, which uses it to estimate the model's
 error; give the identity of the models to the target. An alignment of the
 models' sequences **(3)** is optional: without it the superposition

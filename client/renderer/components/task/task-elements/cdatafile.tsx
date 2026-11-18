@@ -13,6 +13,7 @@ import {
   AutocompleteChangeReason,
   Avatar,
   Box,
+  Button,
   Divider,
   IconButton,
   LinearProgress,
@@ -96,6 +97,23 @@ export interface CCP4i2DataFileElementProps
   forceExpanded?: boolean;
   /** Additional icon-menu items from subtype widgets (inserted before separator) */
   iconMenuItems?: IconMenuItem[];
+  /**
+   * Whether the children are shown, for a caller that owns that state
+   * (with onExpandedChange). Left undefined, the element keeps its own.
+   */
+  expanded?: boolean;
+  onExpandedChange?: (expanded: boolean) => void;
+  /**
+   * Show and hide the children with a labelled button under the row, in place
+   * of the bare chevron at its end, which nobody took for "atom selection"
+   * (#876, #671). `summary` is shown beside the button while the children are
+   * hidden, so a choice made in them stays visible.
+   */
+  childrenToggle?: {
+    showLabel: string;
+    hideLabel: string;
+    summary?: ReactNode;
+  };
 }
 
 /** Get a friendly file type label */
@@ -123,6 +141,9 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   hasValidationError: overrideValidationError,
   forceExpanded = false,
   iconMenuItems,
+  expanded: controlledExpanded,
+  onExpandedChange,
+  childrenToggle,
 }) => {
   const api = useApi();
   const { fileItemToParameterArg, mutateContainer, mutateFileDigest, mutateFileContent } =
@@ -251,7 +272,15 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const computedValidationError = hasError;
   const hasValidationError = overrideValidationError ?? computedValidationError;
   const hasChildren = React.Children.toArray(children).length > 0;
-  const isExpanded = hasValidationError || isManuallyExpanded || forceExpanded;
+  const isForcedOpen = hasValidationError || forceExpanded;
+  const isExpanded = isForcedOpen || (controlledExpanded ?? isManuallyExpanded);
+  const setExpanded = useCallback(
+    (next: boolean) => {
+      if (onExpandedChange) onExpandedChange(next);
+      else setIsManuallyExpanded(next);
+    },
+    [onExpandedChange]
+  );
 
   const guiLabel =
     qualifiers?.guiLabel ?? item?._objectPath?.split(".").at(-1) ?? "";
@@ -459,8 +488,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   );
 
   const handleToggle = useCallback(() => {
-    if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
-  }, [hasValidationError]);
+    if (!isForcedOpen) setExpanded(!isExpanded);
+  }, [isForcedOpen, isExpanded, setExpanded]);
 
   // Open the shared file context menu with cdatafile-specific extra items
   const handleIconContextMenu = useCallback(
@@ -774,29 +803,34 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             </Tooltip>
           )}
 
-          {hasChildren && (
+          {hasChildren && !childrenToggle && (
             <Tooltip
               title={
                 hasValidationError
                   ? "Options expanded due to validation error"
-                  : isExpanded
-                    ? "Collapse options"
-                    : "Expand options"
+                  : isForcedOpen
+                    ? "Options are always shown here"
+                    : isExpanded
+                      ? "Collapse options"
+                      : "Expand options"
               }
             >
-              <IconButton
-                onClick={handleToggle}
-                size="small"
-                disabled={hasValidationError}
-                sx={{
-                  transition: "transform 0.2s ease-in-out",
-                  transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
-                  opacity: hasValidationError ? 0.6 : 1,
-                }}
-                aria-label={isExpanded ? "Collapse options" : "Expand options"}
-              >
-                <ChevronRightIcon fontSize="small" />
-              </IconButton>
+              {/* span: a disabled button fires no events for the tooltip */}
+              <span>
+                <IconButton
+                  onClick={handleToggle}
+                  size="small"
+                  disabled={isForcedOpen}
+                  sx={{
+                    transition: "transform 0.2s ease-in-out",
+                    transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                    opacity: isForcedOpen ? 0.6 : 1,
+                  }}
+                  aria-label={isExpanded ? "Collapse options" : "Expand options"}
+                >
+                  <ChevronRightIcon fontSize="small" />
+                </IconButton>
+              </span>
             </Tooltip>
           )}
 
@@ -804,12 +838,46 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         </Stack>
       </Stack>
 
+      {/* Labelled show/hide button, in place of the chevron */}
+      {hasChildren && childrenToggle && (
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={1}
+          sx={{ ml: 5, minWidth: 0 }}
+        >
+          <Button
+            size="small"
+            onClick={handleToggle}
+            disabled={isForcedOpen}
+            aria-expanded={isExpanded}
+            startIcon={
+              <ChevronRightIcon
+                fontSize="small"
+                sx={{
+                  transition: "transform 0.2s ease-in-out",
+                  transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                }}
+              />
+            }
+            sx={{ textTransform: "none", flexShrink: 0 }}
+          >
+            {isExpanded ? childrenToggle.hideLabel : childrenToggle.showLabel}
+          </Button>
+          {!isExpanded && childrenToggle.summary && (
+            <Box sx={{ minWidth: 0, overflow: "hidden" }}>
+              {childrenToggle.summary}
+            </Box>
+          )}
+        </Stack>
+      )}
+
       {/* Expandable children */}
       {hasChildren && (
         <ExpandableSection
           expanded={isExpanded}
-          onToggle={(expanded) => setIsManuallyExpanded(expanded)}
-          forceExpanded={hasValidationError || forceExpanded}
+          onToggle={setExpanded}
+          forceExpanded={isForcedOpen}
           hasError={hasValidationError}
           hideTitle
           forceExpandedTitle="Required Options (Error)"

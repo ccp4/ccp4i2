@@ -18,6 +18,8 @@ import SelectAllIcon from "@mui/icons-material/SelectAll";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useJob } from "../../../utils";
+import { useApi } from "../../../api";
+import { chainsFromSelection } from "../../../lib/atom-selection";
 import { CSimpleDataFileElement } from "./csimpledatafile";
 import { IconMenuItem } from "./cdatafile";
 
@@ -219,35 +221,96 @@ function buildSelectionString(
   return mainExpr;
 }
 
-/**
- * Build a human-readable summary of the current selection.
- */
-function buildSelectionSummary(
-  selectedChains: Set<string>,
-  allChains: string[],
-  includedCategories: Set<string>,
-  excludedCategories: Set<string>,
-  selectedLigands: Set<string>,
-  selectedResidueNames: Set<string>
-): string {
-  const parts: string[] = [];
-  if (selectedChains.size < allChains.length) {
-    parts.push(`${selectedChains.size}/${allChains.length} chains`);
-  }
-  if (includedCategories.size > 0) {
-    parts.push(`include ${Array.from(includedCategories).join(", ")}`);
-  }
-  if (excludedCategories.size > 0) {
-    parts.push(`exclude ${Array.from(excludedCategories).join(", ")}`);
-  }
-  if (selectedLigands.size > 0) {
-    parts.push(`${selectedLigands.size} ligand(s)`);
-  }
-  if (selectedResidueNames.size > 0) {
-    parts.push(`${selectedResidueNames.size} residue type(s)`);
-  }
-  return parts.length > 0 ? `Selecting: ${parts.join(", ")}` : "Selecting: all atoms";
+/** Counts from CPdbDataFile.selectionSummary on the server. */
+interface SelectionCounts {
+  nAtoms: number;
+  nResidues: number;
+  polymer: number;
+  water: number;
+  other: number;
 }
+interface SelectionSummary extends Partial<SelectionCounts> {
+  status: "ok" | "syntax" | "unavailable";
+  error?: string;
+  chains?: (SelectionCounts & { id: string })[];
+}
+
+/** `value`, once it has stopped changing for `delayMs`. */
+function useDebouncedValue<T>(value: T, delayMs: number): T {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delayMs);
+    return () => clearTimeout(id);
+  }, [value, delayMs]);
+  return debounced;
+}
+
+const plural = (n: number, word: string) =>
+  `${n.toLocaleString()} ${word}${n === 1 ? "" : "s"}`;
+
+/** "120 polymer, 2 other, 85 water": the residue kinds a chain contributes. */
+function residueKinds(c: SelectionCounts): string {
+  const kinds: string[] = [];
+  if (c.polymer) kinds.push(`${c.polymer.toLocaleString()} polymer`);
+  if (c.other) kinds.push(`${c.other.toLocaleString()} ligand/other`);
+  if (c.water) kinds.push(`${c.water.toLocaleString()} water`);
+  return kinds.join(", ");
+}
+
+/**
+ * What the selection picks out of the file: atoms and residues, and per
+ * chain which kinds of residue (#876: ticking a chain brings its waters and
+ * ligands too, which people do not expect). `compact` is the one-line form
+ * shown beside the button while the selection is hidden.
+ */
+export const SelectionPreview: React.FC<{
+  summary: SelectionSummary | undefined;
+  compact?: boolean;
+}> = ({ summary, compact = false }) => {
+  if (!summary || summary.status === "unavailable") return null;
+  if (summary.status === "syntax") {
+    return (
+      <Typography variant="caption" color="error" sx={{ display: "block" }}>
+        Cannot read this selection{compact ? "" : `: ${summary.error}`}
+      </Typography>
+    );
+  }
+  if (!summary.nAtoms) {
+    return (
+      <Typography variant="caption" color="error" sx={{ display: "block" }}>
+        Selects no atoms{compact ? "" : ": the task cannot run with it"}
+      </Typography>
+    );
+  }
+  const headline = `Selects ${plural(summary.nAtoms, "atom")} in ${plural(
+    summary.nResidues ?? 0,
+    "residue"
+  )}`;
+  if (compact) {
+    return (
+      <Typography variant="caption" color="text.secondary" noWrap>
+        {headline}
+      </Typography>
+    );
+  }
+  return (
+    <Box>
+      <Typography variant="caption" sx={{ display: "block", fontWeight: 500 }}>
+        {headline}
+      </Typography>
+      {(summary.chains ?? []).map((c) => (
+        <Typography
+          key={c.id}
+          variant="caption"
+          color="text.secondary"
+          sx={{ display: "block" }}
+        >
+          Chain {c.id}: {residueKinds(c)} ({plural(c.nAtoms, "atom")})
+        </Typography>
+      ))}
+    </Box>
+  );
+};
 
 /**
  * CPdbDataFileElement - Renders a CPdbDataFile selector with selection builder.
@@ -273,8 +336,11 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     return `${item?._objectPath}.selection.text`;
   }, [item]);
 
-  const { value: selectionString, update: updateSelectionString } =
-    useTaskItem(selectionItemName);
+  const {
+    item: selectionItem,
+    value: selectionString,
+    update: updateSelectionString,
+  } = useTaskItem(selectionItemName);
 
   // Fetch the digest only when there is a file AND the atom-selection
   // builder can appear (the ifAtomSelection qualifier): its composition
@@ -303,7 +369,9 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const [residueRanges, setResidueRanges] = useState<
     Record<string, [string, string]>
   >({});
-  const [isBuilderExpanded, setIsBuilderExpanded] = useState(false);
+  // Whether the selection is shown under the file row. null until the user
+  // decides: then it opens by itself when the job already has a selection.
+  const [showSelection, setShowSelection] = useState<boolean | null>(null);
   const [manualEdit, setManualEdit] = useState(false);
   // Whether the user has used the builder in this session. Until they have,
   // the builder's string (all chains, no filters) is not a choice anyone
@@ -333,12 +401,21 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const hasLigands = ligands.length > 0;
   const hasResidueNames = Object.keys(residueNameCounts).length > 0;
 
-  // Initialize selections when digest loads
+  // Initialize selections when digest loads. A selection the job already has
+  // that names whole chains ticks just those, so the boxes agree with it.
   useEffect(() => {
     if (chains.length > 0 && selectedChains.size === 0) {
-      setSelectedChains(new Set(chains));
+      setSelectedChains(
+        chainsFromSelection(selectionString, chains) ?? new Set(chains)
+      );
     }
   }, [chains]);
+
+  const hasSelectionSet = Boolean(String(selectionString ?? "").trim());
+  // Open by itself for a job that has a selection, and stay open after.
+  useEffect(() => {
+    if (showSelection === null && hasSelectionSet) setShowSelection(true);
+  }, [showSelection, hasSelectionSet]);
 
   // Reset enhanced selections when file changes
   const prevFileId = useRef(value?.dbFileId);
@@ -385,6 +462,36 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     selectedResidueNames,
     hasContent,
   ]);
+
+  // The selection as it stands: the builder's once it has been used, else
+  // what was typed or what the job already had.
+  const effectiveSelection =
+    manualEdit || !builderUsed ? localSelectionText : generatedSelection;
+  const previewSelection = useDebouncedValue(effectiveSelection.trim(), 400);
+
+  // Preview: what the selection picks out of the file, counted by the server
+  // with the same parser the task will use (CPdbDataFile.selectionSummary).
+  // object_method wants "task.inputData.X", not "task.container.inputData.X".
+  const api = useApi();
+  const methodPath = (item?._objectPath || "").replace(".container.", ".");
+  const { data: summaryResponse } = api.objectMethod<any>(
+    job.id,
+    methodPath,
+    "selectionSummary",
+    {},
+    [value?.dbFileId, previewSelection],
+    // Only when there is something to show: a selection, or the builder open.
+    // Each call reads the file, and a task can have many model inputs.
+    Boolean(
+      hasFile &&
+        wantsComposition &&
+        methodPath &&
+        (previewSelection || (showSelection ?? hasSelectionSet))
+    ),
+    [previewSelection]
+  );
+  const selectionSummary: SelectionSummary | undefined =
+    summaryResponse?.data?.result;
 
   // Update backend when selection changes (debounced effect)
   useEffect(() => {
@@ -467,6 +574,13 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     },
     []
   );
+
+  // Handle atom filter (all / backbone / sidechain)
+  const handleAtomFilter = useCallback((keyword: string | null) => {
+    setAtomFilter(keyword);
+    setManualEdit(false);
+    setBuilderUsed(true);
+  }, []);
 
   // Handle residue range change
   const handleRangeChange = useCallback(
@@ -572,67 +686,62 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   // Should show selection builder?
   // Only offer atom selection when ifAtomSelection is explicitly enabled in the
   // task .def.xml qualifiers (matching ccp4i2-classic behaviour).
-  const showSelectionBuilder = overriddenQualifiers.ifAtomSelection && hasContent;
+  const offersSelection = Boolean(overriddenQualifiers.ifAtomSelection);
+  const showSelectionBuilder = offersSelection && hasContent;
+  const isSelectionShown = showSelection ?? hasSelectionSet;
 
-  // Force expanded if selection is set, atom selection is enabled, or builder is open
-  const forceExpanded = overriddenQualifiers.ifAtomSelection && (isBuilderExpanded || (!!selectionString && selectionString.length > 0));
-
-  // Build icon context menu items for "Select atoms" (classic ccp4i2 behaviour)
+  // "Select atoms" in the file icon's menu (classic ccp4i2 behaviour)
   const iconMenuItems = useMemo((): IconMenuItem[] => {
-    if (!overriddenQualifiers.ifAtomSelection) return [];
+    if (!offersSelection) return [];
     return [
       {
         label: "Select atoms",
         icon: <SelectAllIcon fontSize="small" />,
-        onClick: () => setIsBuilderExpanded((prev) => !prev),
+        onClick: () => setShowSelection(!isSelectionShown),
         divider: true,
         checkable: true,
-        checked: isBuilderExpanded,
+        checked: isSelectionShown,
       },
     ];
-  }, [overriddenQualifiers.ifAtomSelection, isBuilderExpanded]);
+  }, [offersSelection, isSelectionShown]);
+
+  // Beside the button while the selection is hidden: the selection itself
+  // and what it picks out, so a choice made earlier is never out of sight.
+  const collapsedSummary = hasSelectionSet ? (
+    <Stack direction="row" spacing={1} alignItems="center" sx={{ minWidth: 0 }}>
+      <Typography
+        variant="caption"
+        noWrap
+        sx={{ fontFamily: "monospace", minWidth: 0 }}
+        title={String(selectionString)}
+      >
+        {String(selectionString)}
+      </Typography>
+      <SelectionPreview summary={selectionSummary} compact />
+    </Stack>
+  ) : undefined;
 
   if (!inferredVisibility) return null;
 
   return (
-    <CSimpleDataFileElement {...props} forceExpanded={forceExpanded} iconMenuItems={iconMenuItems}>
+    <CSimpleDataFileElement
+      {...props}
+      iconMenuItems={iconMenuItems}
+      expanded={isSelectionShown}
+      onExpandedChange={setShowSelection}
+      childrenToggle={
+        offersSelection
+          ? {
+              showLabel: hasSelectionSet ? "Show atom selection" : "Select atoms",
+              hideLabel: "Hide atom selection",
+              summary: collapsedSummary,
+            }
+          : undefined
+      }
+    >
       {showSelectionBuilder && (
         <Stack spacing={1} sx={{ mt: 1 }}>
-          {/* Selection Builder Header */}
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="subtitle2" color="text.secondary">
-              Atom Selection
-            </Typography>
-            <IconButton
-              size="small"
-              onClick={() => setIsBuilderExpanded(!isBuilderExpanded)}
-            >
-              {isBuilderExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </IconButton>
-          </Stack>
-
-          {/* Collapsed view: just the text field */}
-          {!isBuilderExpanded && (
-            <TextField
-              size="small"
-              fullWidth
-              value={localSelectionText}
-              onChange={(e) => handleManualTextChange(e.target.value)}
-              placeholder="e.g., protein and not solvent"
-              disabled={job.status !== 1}
-              InputProps={{
-                sx: { fontFamily: "monospace", fontSize: "0.85rem" },
-              }}
-            />
-          )}
-
-          {/* Expanded view: full builder */}
-          <Collapse in={isBuilderExpanded}>
-            <Stack spacing={2} sx={{ p: 1, bgcolor: "action.hover", borderRadius: 1 }}>
+            <Stack spacing={1.5} sx={{ p: 1, bgcolor: "action.hover", borderRadius: 1 }}>
               {/* Chain Selection */}
               <Box>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
@@ -751,19 +860,21 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
               <Divider />
 
-              {/* Category Filters */}
-              <Box>
-                <Typography variant="caption" fontWeight="medium" sx={{ mb: 0.5 }}>
-                  Include / Exclude Categories
-                </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap">
+              {/* Residue kinds (include / exclude) and atoms, two short rows */}
+              <Stack spacing={0.75}>
+                <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" useFlexGap>
+                  <Tooltip title="Click a kind to keep only it (blue), again to leave it out (red), again to clear">
+                    <Typography variant="caption" fontWeight="medium" sx={{ minWidth: 56 }}>
+                      Residues
+                    </Typography>
+                  </Tooltip>
                   {CATEGORY_OPTIONS.map((cat) => {
                     const isIncluded = includedCategories.has(cat.keyword);
                     const isExcluded = excludedCategories.has(cat.keyword);
                     return (
                       <Chip
                         key={cat.key}
-                        label={cat.label}
+                        label={isExcluded ? `not ${cat.label.toLowerCase()}` : cat.label}
                         size="small"
                         variant={isIncluded || isExcluded ? "filled" : "outlined"}
                         color={isIncluded ? "primary" : isExcluded ? "error" : "default"}
@@ -782,38 +893,24 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                     );
                   })}
                 </Stack>
-                <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: "block" }}>
-                  Click to cycle: none → include (blue) → exclude (red) → none
-                </Typography>
-              </Box>
-
-              {/* Atom Level Filters */}
-              <Box>
-                <Typography variant="caption" fontWeight="medium" sx={{ mb: 0.5 }}>
-                  Atom Filter
-                </Typography>
-                <Stack direction="row" spacing={1}>
-                  <Chip
-                    label="All atoms"
-                    size="small"
-                    variant={atomFilter === null ? "filled" : "outlined"}
-                    color={atomFilter === null ? "primary" : "default"}
-                    onClick={() => setAtomFilter(null)}
-                    disabled={job.status !== 1}
-                  />
-                  {ATOM_OPTIONS.map((opt) => (
+                <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" useFlexGap>
+                  <Typography variant="caption" fontWeight="medium" sx={{ minWidth: 56 }}>
+                    Atoms
+                  </Typography>
+                  {[{ key: "all", label: "All atoms", keyword: null as string | null },
+                    ...ATOM_OPTIONS].map((opt) => (
                     <Chip
                       key={opt.key}
                       label={opt.label}
                       size="small"
                       variant={atomFilter === opt.keyword ? "filled" : "outlined"}
                       color={atomFilter === opt.keyword ? "primary" : "default"}
-                      onClick={() => setAtomFilter(opt.keyword)}
+                      onClick={() => handleAtomFilter(opt.keyword)}
                       disabled={job.status !== 1}
                     />
                   ))}
                 </Stack>
-              </Box>
+              </Stack>
 
               {/* Ligand Picker */}
               {hasLigands && (
@@ -917,18 +1014,10 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
               <Divider />
 
-              {/* Selection Summary */}
-              <Typography variant="caption" color="text.secondary">
-                {buildSelectionSummary(
-                  selectedChains, chains, includedCategories, excludedCategories,
-                  selectedLigands, selectedResidueNames
-                )}
-              </Typography>
-
-              {/* Generated Selection String */}
+              {/* The selection string, built or typed */}
               <Box>
                 <Typography variant="caption" fontWeight="medium" sx={{ mb: 0.5 }}>
-                  Selection String
+                  Selection string
                 </Typography>
                 <TextField
                   size="small"
@@ -936,35 +1025,45 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                   multiline
                   minRows={1}
                   maxRows={3}
-                  value={manualEdit ? localSelectionText : generatedSelection}
+                  value={effectiveSelection}
                   onChange={(e) => handleManualTextChange(e.target.value)}
-                  placeholder="e.g., protein and not solvent"
+                  placeholder="All atoms"
                   disabled={job.status !== 1}
+                  error={
+                    selectionSummary?.status === "syntax" ||
+                    (selectionSummary?.status === "ok" && !selectionSummary.nAtoms)
+                  }
                   InputProps={{
                     sx: { fontFamily: "monospace", fontSize: "0.85rem" },
                   }}
                   helperText={
                     manualEdit
-                      ? "Manually edited - UI controls disabled"
-                      : "Auto-generated from selections above"
+                      ? "Typed by hand. Using a choice above replaces it."
+                      : !builderUsed && hasSelectionSet
+                        ? "This job's selection. Using a choice above replaces it."
+                        : "Built from the choices above, or type your own (CCP4 selection syntax)."
                   }
                 />
               </Box>
+
+              <SelectionPreview summary={selectionSummary} />
             </Stack>
-          </Collapse>
         </Stack>
       )}
 
-      {/* Fallback: just show text input if no digest */}
-      {overriddenQualifiers.ifAtomSelection && !hasContent && (
-        <CCP4i2TaskElement
-          {...props}
-          itemName={selectionItemName}
-          qualifiers={{
-            ...useTaskItem(selectionItemName).item?._qualifiers,
-            guiLabel: "Selection string",
-          }}
-        />
+      {/* Fallback: just the text input and the preview if there is no digest */}
+      {offersSelection && !hasContent && (
+        <Stack spacing={0.5}>
+          <CCP4i2TaskElement
+            {...props}
+            itemName={selectionItemName}
+            qualifiers={{
+              ...selectionItem?._qualifiers,
+              guiLabel: "Selection string",
+            }}
+          />
+          <SelectionPreview summary={selectionSummary} />
+        </Stack>
       )}
     </CSimpleDataFileElement>
   );

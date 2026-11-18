@@ -47,7 +47,7 @@ in the MDM2 data.
   that model. The program is told to use the columns ``F`` and ``PHI`` of
   the joined file.
 * **Atomic model (3).** The coordinates to identify. A selection can be
-  made from the arrow at the end of the row, to give the program only part
+  made with **Select atoms** under the row, to give the program only part
   of the model; it is the selected atoms that are read. Only the main chain
   is used (the code notes that side chains are not used), so a model with
   the wrong side chains, or none, is fine.

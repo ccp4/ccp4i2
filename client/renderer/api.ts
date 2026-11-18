@@ -465,9 +465,11 @@ export function useApi() {
       enabled: boolean = true,
       args: any[] = [],
     ): SWRResponse<T> {
-      // Build a cache key that includes all dependencies
+      // Build a cache key that includes all dependencies. The object path is
+      // part of it: two files asked the same method with the same deps would
+      // otherwise share one cached answer.
       const swrKey = enabled && jobId
-        ? [`jobs/${jobId}/object_method`, methodName, ...deps]
+        ? [`jobs/${jobId}/object_method`, objectPath, methodName, ...deps]
         : null;
 
       const fetcher = async ([url]: [string]) => {
