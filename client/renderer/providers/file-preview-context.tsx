@@ -120,7 +120,21 @@ export interface EditorContentSpecification {
   url: string;
   title: string;
   language: string;
+  /**
+   * The running job this text file belongs to, when it should be shown live:
+   * read again every few seconds until whoever opened it clears this (#611).
+   * See useJobFilePreview.
+   */
+  liveJobId?: number;
 }
+
+/** How often a live preview reads its file again. */
+const LIVE_PREVIEW_INTERVAL_MS = 3000;
+
+/** Whether an editor is scrolled to (within a line or so of) its end. */
+const isScrolledToEnd = (editor: any): boolean =>
+  editor.getScrollTop() + editor.getLayoutInfo().height >=
+  editor.getScrollHeight() - 30;
 
 interface FilePreviewDialogProps {
   contentSpecification: EditorContentSpecification | null;
@@ -174,6 +188,95 @@ const FilePreviewDialog: React.FC = () => {
   // Object URL minted for image previews; revoked when the dialog content changes.
   const objectUrlRef = useRef<string | null>(null);
   const { mode } = useTheme();
+
+  // Live previews (#611). The editor replaces its whole text when the value
+  // changes, which scrolls to the top, so the place is noted before each new
+  // read and restored after: the end is followed if the reader was there,
+  // otherwise their place is kept.
+  const editorRef = useRef<any>(null);
+  // The file whose text the editor is showing, once its place has been set.
+  const shownUrlRef = useRef<string | null>(null);
+  // Where to put the reader when the next text for `url` is shown.
+  const pendingScrollRef = useRef<{ url: string; top: number; atEnd: boolean } | null>(null);
+  const latestTextRef = useRef<string | null>(null);
+  const isLive =
+    contentSpecification?.liveJobId !== undefined &&
+    contentSpecification.language === "text";
+
+  /** Note the reader's place in `url` before its text is replaced. */
+  const noteScroll = (url: string) => {
+    const editor = editorRef.current;
+    if (!editor || shownUrlRef.current !== url) return;
+    pendingScrollRef.current = {
+      url,
+      top: editor.getScrollTop(),
+      atEnd: isScrolledToEnd(editor),
+    };
+  };
+
+  /** Put the reader where the last note says, once the text is in. */
+  const applyPendingScroll = () => {
+    const editor = editorRef.current;
+    const pending = pendingScrollRef.current;
+    if (!editor || !pending || pending.url !== contentSpecification?.url) return;
+    if (!editor.getValue()) return; // the text has not arrived yet
+    pendingScrollRef.current = null;
+    shownUrlRef.current = pending.url;
+    if (pending.atEnd) editor.revealLine(editor.getModel()?.getLineCount() ?? 1);
+    else editor.setScrollTop(pending.top);
+  };
+
+  // A new file opens at its top, or at its newest lines if it is live; the
+  // same file read again (the final read when a job stops) keeps its place.
+  useEffect(() => {
+    const url = contentSpecification?.url;
+    if (!url) {
+      // Closed: the editor unmounts with the dialog's content.
+      editorRef.current = null;
+      shownUrlRef.current = null;
+      pendingScrollRef.current = null;
+      return;
+    }
+    if (shownUrlRef.current === url) {
+      noteScroll(url);
+    } else {
+      shownUrlRef.current = null;
+      pendingScrollRef.current = { url, top: 0, atEnd: isLive };
+    }
+  }, [contentSpecification]);
+
+  // Read a live file again every few seconds, one read at a time.
+  useEffect(() => {
+    if (!isLive || !contentSpecification) return;
+    const url = contentSpecification.url;
+    let cancelled = false;
+    let inFlight = false;
+    const id = setInterval(async () => {
+      if (inFlight) return;
+      inFlight = true;
+      try {
+        const text = new TextDecoder("utf-8").decode(await apiArrayBuffer(url));
+        if (cancelled || text === latestTextRef.current) return;
+        noteScroll(url);
+        setPreviewContent(text);
+      } catch (error) {
+        console.debug("Live preview read failed:", error);
+      } finally {
+        inFlight = false;
+      }
+    }, LIVE_PREVIEW_INTERVAL_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, [isLive, contentSpecification]);
+
+  // New text is in the editor by now (a child's effects run before its
+  // parent's), so put the reader back.
+  useEffect(() => {
+    latestTextRef.current = previewContent;
+    applyPendingScroll();
+  }, [previewContent]);
 
   const compactCifPreview = (parsed: Record<string, any>): string => {
     const compact: Record<string, any> = {};
@@ -473,10 +576,42 @@ const FilePreviewDialog: React.FC = () => {
               fontSize,
               mouseWheelZoom: true,
             }}
+            onMount={(editor) => {
+              editorRef.current = editor;
+              applyPendingScroll();
+            }}
           />
         )}
       </DialogContent>
       <DialogActions>
+        {isLive && (
+          <Tooltip title="The job is still running: the file is read again every few seconds. Scroll to the end to follow it.">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={0.75}
+              sx={{ mr: isTextPreview ? 2 : "auto" }}
+              aria-live="polite"
+            >
+              <Box
+                sx={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  bgcolor: "success.main",
+                  animation: "livePulse 1.6s ease-in-out infinite",
+                  "@keyframes livePulse": {
+                    "0%, 100%": { opacity: 1 },
+                    "50%": { opacity: 0.3 },
+                  },
+                }}
+              />
+              <Typography variant="caption" color="text.secondary">
+                Updating while the job runs
+              </Typography>
+            </Stack>
+          </Tooltip>
+        )}
         {isTextPreview && (
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mr: "auto" }}>
             <Tooltip title="Smaller text">

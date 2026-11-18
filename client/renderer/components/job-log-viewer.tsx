@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import DirectoryBrowser, { FileSystemItem } from "./directory-browser";
 import { FileSystemFileMenu } from "./file-system-file-menu";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
-import { useFilePreviewContext } from "../providers/file-preview-context";
+import { useJobFilePreview } from "../hooks/use-job-file-preview";
 
 interface JobLogViewerProps {
   job: Job;
@@ -14,9 +14,8 @@ interface JobLogViewerProps {
 
 export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
   // Lists the job's own folders, re-listing the open ones while it runs
-  const { endpoint, pollInterval, revision } = useJobDirectory(job);
+  const { endpoint, pollInterval, revision, isJobActive } = useJobDirectory(job);
   const { closeMenu } = useFileSystemFileBrowser();
-  const { setContentSpecification } = useFilePreviewContext();
 
   // Clean up virtual anchor when component unmounts
   useEffect(() => {
@@ -58,27 +57,8 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
     return logExtensions.some((ext) => item.name.toLowerCase().endsWith(ext));
   }, []);
 
-  const handleFileSelect = (menuNode: FileSystemItem) => {
-    // Handle file selection if needed, e.g., preview or download
-    if (menuNode.type !== "directory") {
-      // Set the preview node or perform any action needed
-      const composite_path = `/api/proxy/ccp4i2/projects/${
-        project.id
-      }/project_file?path=${encodeURIComponent(
-        menuNode?.path.slice(project.directory.length + 1) || ""
-      )}`;
-
-      setContentSpecification({
-        url: composite_path,
-        title: menuNode.name || "Preview",
-        language: menuNode.name.endsWith(".json")
-          ? "json"
-          : menuNode.name.endsWith(".xml")
-          ? "xml"
-          : "text",
-      });
-    }
-  };
+  // Opens the file, live while the job runs (#611)
+  const handleFileSelect = useJobFilePreview(job, project, isJobActive);
 
   return (
     <Box sx={{ display: "flex", height: "100%", width: "100%" }}>

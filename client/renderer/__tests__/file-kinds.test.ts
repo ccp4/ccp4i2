@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fileKind, formatModified, formatSize } from "../lib/file-kinds";
+import { fileKind, formatModified, formatSize, isLogFile, normalisePath } from "../lib/file-kinds";
 
 describe("fileKind", () => {
   it("opens PanDDA maps in Moorhen and offers no text preview of them", () => {
@@ -54,5 +54,32 @@ describe("formatting", () => {
     expect(formatModified(s - 300, now)).toBe("5 min ago");
     expect(formatModified(s - 7200, now)).toBe("2 h ago");
     expect(formatModified(undefined, now)).toBe("");
+  });
+});
+
+describe("isLogFile (#788: a click in a job's directory opens these at once)", () => {
+  it.each([
+    "log.txt", "stdout.txt", "stderr.txt", "refmac_log.txt", "aimless.log",
+    "program.out", "program.err", "LOG.TXT",
+  ])("takes %s for a log", (name) => {
+    expect(isLogFile(name)).toBe(true);
+  });
+
+  it.each([
+    "notes.txt", "catalog.txt", "params.xml", "XYZOUT.pdb", "hklout.mtz", "logo.png",
+  ])("leaves %s to its menu", (name) => {
+    expect(isLogFile(name)).toBe(false);
+  });
+});
+
+describe("normalisePath (#788: matching a listed file with its database record)", () => {
+  it("treats Windows and POSIX separators alike", () => {
+    expect(normalisePath(String.raw`C:\Users\me\proj\CCP4_JOBS\job_1\XYZOUT.pdb`)).toBe(
+      "C:/Users/me/proj/CCP4_JOBS/job_1/XYZOUT.pdb"
+    );
+  });
+
+  it("ignores a trailing separator", () => {
+    expect(normalisePath("/home/me/proj/")).toBe("/home/me/proj");
   });
 });

@@ -12,6 +12,7 @@ import {
 import {
   Download,
   Image as ImageIcon,
+  Info,
   OpenInNew,
   Preview,
   TableChart,
@@ -21,7 +22,8 @@ import useSWR from "swr";
 import { useCCP4i2Window } from "../app-context";
 import { doDownload, useApi } from "../api";
 import { apiBlob, apiJson, apiPost } from "../api-fetch";
-import { Project } from "../types/models";
+import { File as DjangoFile, Job, Project } from "../types/models";
+import { useProjectFiles } from "../utils";
 import { useFilePreviewContext } from "../providers/file-preview-context";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
 import { FileSystemItem } from "./directory-browser";
@@ -30,10 +32,17 @@ import {
   formatSize,
   formatTimestamp,
   MoorhenKind,
+  normalisePath,
 } from "../lib/file-kinds";
 
 interface FileSystemFileMenuProps {
   onClose?: () => void;
+  /**
+   * A running job whose directory this is: its text files preview live
+   * (#611). The view that passes it ends the live preview when the job stops
+   * (useJobFilePreview).
+   */
+  livePreviewJob?: Job;
 }
 
 /** What a folder holds that Moorhen can open, counted from its listing. */
@@ -51,6 +60,7 @@ const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
 export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
   onClose,
+  livePreviewJob,
 }) => {
   const { anchorEl, menuNode, closeMenu } = useFileSystemFileBrowser();
   const { projectId } = useCCP4i2Window();
@@ -58,6 +68,13 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
   const { data: project } = get<Project>(`projects/${projectId}`);
   const { setContentSpecification } = useFilePreviewContext();
   const [error, setError] = useState<string | null>(null);
+  // The database's record of this file, when a job registered it: what the
+  // job's file list knows about it, such as its digest (#788).
+  // Asked only while a file's menu is open (the list is shared with the job
+  // list's, so usually cached already).
+  const { files: projectFiles } = useProjectFiles(
+    anchorEl && menuNode?.type === "file" ? project?.id : undefined
+  );
 
   useEffect(() => setError(null), [menuNode]);
 
@@ -70,6 +87,12 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
     if (!menuNode || !project) return null;
     return menuNode.path.slice(project.directory.length + 1);
   }, [menuNode, project]);
+
+  const registeredFile: DjangoFile | undefined = useMemo(() => {
+    if (!menuNode || menuNode.type === "directory" || !projectFiles) return undefined;
+    const target = normalisePath(menuNode.path);
+    return projectFiles.find((f) => f.path && normalisePath(f.path) === target);
+  }, [menuNode, projectFiles]);
 
   const fileUrl = relative !== null && project
     ? `/api/proxy/ccp4i2/projects/${project.id}/project_file?path=${encodeURIComponent(relative)}`
@@ -110,6 +133,17 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
       url: fileUrl,
       title: menuNode.name,
       language: kind.preview,
+      liveJobId: kind.preview === "text" ? livePreviewJob?.id : undefined,
+    });
+  });
+
+  const handleDigest = act(() => {
+    if (!registeredFile) return;
+    setContentSpecification({
+      url: `/api/proxy/ccp4i2/files/${registeredFile.id}/digest/`,
+      title: registeredFile.name,
+      // As in the job's file list: a model's digest is chain/ligand tables
+      language: registeredFile.type === "chemical/x-pdb" ? "coord-digest" : "json",
     });
   });
 
@@ -211,6 +245,15 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
     if (kind.coot) item("coot", <OpenInNew fontSize="small" />, "Coot", serverViewer("coot"));
     if (kind.ccp4mg) item("ccp4mg", <OpenInNew fontSize="small" />, "CCP4MG", serverViewer("ccp4mg"));
     if (kind.viewhkl) item("viewhkl", <OpenInNew fontSize="small" />, "ViewHKL", serverViewer("viewhkl"));
+    if (registeredFile) {
+      item(
+        "digest",
+        <Info fontSize="small" />,
+        "Digest",
+        handleDigest,
+        "What CCP4i2 reads from the file"
+      );
+    }
     item("download", <Download fontSize="small" />, "Download", handleDownload);
   }
 

@@ -102,6 +102,25 @@ export function fileKind(name: string): FileKind {
   return kind;
 }
 
+/**
+ * A program's log: what a click in a job's directory opens straight away,
+ * as the Logs tab does, rather than offering a menu (#788). ".log", ".out",
+ * ".err", and the ".txt" logs CCP4i2 and its programs write (log.txt,
+ * stdout.txt, stderr.txt, refmac_log.txt, ...).
+ */
+export function isLogFile(name: string): boolean {
+  const ext = extensionOf(name);
+  if (ext === "log" || ext === "out" || ext === "err") return true;
+  return ext === "txt" && /(^|[._-])(log|stdout|stderr)\.txt$/i.test(name);
+}
+
+/**
+ * A path compared without regard to which way its separators lean, so a
+ * listed file can be matched with the database's record of it (#788).
+ */
+export const normalisePath = (path: string): string =>
+  path.replace(/\\/g, "/").replace(/\/+$/, "");
+
 /** 1.2 KB, 3.4 MB, 1.1 GB. */
 export function formatSize(size?: number): string {
   if (size === undefined || size === null) return "";

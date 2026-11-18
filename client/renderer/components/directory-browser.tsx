@@ -52,6 +52,12 @@ export interface DirectoryBrowserProps {
    * click on a file did nothing.
    */
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
+  /**
+   * A default action for a click on a file, in place of the menu: return
+   * true if it was taken, false to open the menu as usual. Used to open a
+   * log at once (#788). Ignored when onItemClick is given.
+   */
+  onFileClick?: (item: FileSystemItem) => boolean;
 }
 
 interface SearchResult {
@@ -105,6 +111,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   revision,
   fileFilter,
   onItemClick,
+  onFileClick,
 }) => {
   const [open, setOpen] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState("");
@@ -230,7 +237,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
         event.stopPropagation();
         onActivate(event);
         if (onItemClick) onItemClick(item, event);
-        else if (item.type === "file")
+        else if (item.type === "file" && !onFileClick?.(item))
           handleMenuOpen(item, event.currentTarget as HTMLElement);
       }}
       onContextMenu={(event) => {
