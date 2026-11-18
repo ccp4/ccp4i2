@@ -36,8 +36,10 @@ export function useJobFilePreview(
     [project.id, project.directory, job.id, isJobActive, setContentSpecification]
   );
 
-  // The job has stopped: end the live preview. The new specification makes
-  // the dialog read the file once more, so it shows the finished log.
+  // The job has stopped: end the live preview at once. The dialog also
+  // checks the job's status on each read, which is what ends it when this
+  // view has gone (the job view moves to the report tab when a job finishes).
+  // The new specification makes the dialog read the file once more.
   useEffect(() => {
     if (!isJobActive && contentSpecification?.liveJobId === job.id) {
       setContentSpecification({ ...contentSpecification, liveJobId: undefined });

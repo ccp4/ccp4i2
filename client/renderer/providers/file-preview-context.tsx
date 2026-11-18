@@ -27,7 +27,8 @@ import {
 import { TextDecrease, TextIncrease } from "@mui/icons-material";
 import { DialogTitleWithClose } from "../components/dialog-title-with-close";
 import { readFontSize, stepFontSize, writeFontSize } from "../lib/preview-font-size";
-import { apiArrayBuffer, apiBlob, apiJson } from "../api-fetch";
+import { apiArrayBuffer, apiBlob, apiGet, apiJson } from "../api-fetch";
+import { isTerminalJobStatus } from "../types/models";
 import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
@@ -122,8 +123,8 @@ export interface EditorContentSpecification {
   language: string;
   /**
    * The running job this text file belongs to, when it should be shown live:
-   * read again every few seconds until whoever opened it clears this (#611).
-   * See useJobFilePreview.
+   * read again every few seconds until the job finishes (#611). The dialog
+   * checks the job's status itself; see useJobFilePreview.
    */
   liveJobId?: number;
 }
@@ -245,16 +246,29 @@ const FilePreviewDialog: React.FC = () => {
     }
   }, [contentSpecification]);
 
-  // Read a live file again every few seconds, one read at a time.
+  // Read a live file again every few seconds, one read at a time. The job's
+  // status is checked here too, rather than left to whoever opened the file:
+  // the job view leaves the Logs tab for the report when a job finishes,
+  // unmounting the opener, and the preview then never stopped.
   useEffect(() => {
     if (!isLive || !contentSpecification) return;
-    const url = contentSpecification.url;
+    const spec = contentSpecification;
+    const url = spec.url;
     let cancelled = false;
     let inFlight = false;
     const id = setInterval(async () => {
       if (inFlight) return;
       inFlight = true;
       try {
+        const job = await apiGet<any>(`jobs/${spec.liveJobId}/`).catch(() => null);
+        if (cancelled) return;
+        const status = job?.data?.status ?? job?.status;
+        if (typeof status === "number" && isTerminalJobStatus(status)) {
+          // Finished: no longer live. The new specification makes the dialog
+          // read the file a last time, keeping the reader's place.
+          setContentSpecification({ ...spec, liveJobId: undefined });
+          return;
+        }
         const text = new TextDecoder("utf-8").decode(await apiArrayBuffer(url));
         if (cancelled || text === latestTextRef.current) return;
         noteScroll(url);

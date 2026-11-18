@@ -39,8 +39,7 @@ interface FileSystemFileMenuProps {
   onClose?: () => void;
   /**
    * A running job whose directory this is: its text files preview live
-   * (#611). The view that passes it ends the live preview when the job stops
-   * (useJobFilePreview).
+   * (#611), until the job finishes.
    */
   livePreviewJob?: Job;
 }
