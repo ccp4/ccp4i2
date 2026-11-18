@@ -188,7 +188,7 @@ class Parser:
                 # These indicate it's an expression, not a simple residue name
                 return False
             elif token.type in (TokenType.IDENTIFIER, TokenType.NUMBER,
-                              TokenType.COMMA, TokenType.DASH, TokenType.WILDCARD):
+                              TokenType.COMMA, TokenType.DASH, TokenType.STAR):
                 # These are OK in a residue name list
                 pos += 1
             else:

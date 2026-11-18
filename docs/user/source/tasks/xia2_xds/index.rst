@@ -41,7 +41,7 @@ ways to say where they are:
 
 * Choose one image **(1)** from each data set; xia2 finds the rest of the
   set itself. The image range **(2)** limits the images used (for example 1
-  to 100); here 1 to 300. Use the **+** button to add another data set.
+  to 100); here 1 to 300. Use the **Add another** button to add another data set.
 * Or give a parent directory **(3)**, an absolute path on the machine
   running the job, and xia2 searches it for data sets.
 

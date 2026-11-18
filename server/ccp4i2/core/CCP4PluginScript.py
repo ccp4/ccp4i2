@@ -1446,8 +1446,46 @@ class CPluginScript(CData):
         """
         error = self.validity()
         self._checkSameCrystalAs(error)
+        self._checkAtomSelections(error)
         self._checkProgramAvailable(error)
         return error
+
+    def _checkAtomSelections(self, error: CErrorReport) -> None:
+        """Refuse an atom selection that matches no atoms.
+
+        Reads each coordinate input that has a selection set, where the task
+        offers one (ifAtomSelection). A selection that does not parse is
+        already reported by CPdbDataFile.validity(); a file that cannot be
+        read is left to whatever reads it, so neither is reported again here.
+        """
+        if not hasattr(self, 'container') or self.container is None:
+            return
+        input_data = getattr(self.container, 'inputData', None)
+        if input_data is None:
+            return
+        from ccp4i2.core.CCP4ModelData import CPdbDataFile
+        klass = getattr(self, 'TASKNAME', self.__class__.__name__)
+        for child_name, child in self._find_datafile_descendants(input_data):
+            if not isinstance(child, CPdbDataFile):
+                continue
+            try:
+                if not (child.isSet() and child.usesAtomSelection()
+                        and child.isSelectionSet()):
+                    continue
+                summary = child.selectionSummary()
+            except Exception:
+                logger.debug("atom selection check failed for %s",
+                             child_name, exc_info=True)
+                continue
+            if summary.get("status") == "ok" and summary.get("nAtoms") == 0:
+                text = str(child.selection.text.value).strip()
+                error.append(
+                    klass=klass, code=221,
+                    details=(f"The atom selection '{text}' on {child_name} "
+                             f"matches no atoms"),
+                    name=child.object_path(),
+                    severity=SEVERITY_ERROR,
+                )
 
     @classmethod
     def declaredPrograms(cls) -> list:

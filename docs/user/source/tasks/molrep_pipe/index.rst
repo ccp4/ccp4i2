@@ -33,8 +33,8 @@ Input
    Figure 1: Input data and protocol
 
 The essential inputs (Figure 1) are the reflection data **(1)**, the free R set
-**(2)** and the search model **(3)**. The arrow at the end of the model's
-row opens an atom selection, to use only part of it: only the protein, a
+**(2)** and the search model **(3)**. **Select atoms** under the
+model's row opens an atom selection, to use only part of it: only the protein, a
 single chain, or a span of residues. Here the free set is the one the
 model was refined against, not a new one: reflections the model has
 already been fitted to are not free.

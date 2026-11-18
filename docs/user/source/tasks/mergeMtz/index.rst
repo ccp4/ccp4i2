@@ -41,7 +41,7 @@ The **Columns** field **(3)** can hold a comma-separated list of names to
 use in place of the standard ones. It is only used if it has as many names
 as the file has columns.
 
-The list is extended with the **+** button at the top of the list; the
+The list is extended with the **Add another** button under it; the
 red bin beside a file removes it.
 
 Results

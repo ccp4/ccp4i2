@@ -72,7 +72,8 @@ export const CListElement: React.FC<CListElementProps> = ({
 
   // A list of one item does not look like a list, and the + in its corner
   // went unnoticed (#837). A button under the items, named for what it adds
-  // ("Add another map"), says so; the + stays for those used to it.
+  // ("Add another map"), says so. It is the only add control: the + it
+  // replaced did the same thing less legibly.
   const itemLabel = (
     item?._subItem?._qualifiers?.guiLabel ||
     item?._value?.[0]?._qualifiers?.guiLabel ||
@@ -87,21 +88,6 @@ export const CListElement: React.FC<CListElementProps> = ({
     <FieldShell
       title={guiLabel}
       borderColor={borderColor}
-      action={
-        <Tooltip title="Add item">
-          <span>
-            <IconButton
-              disabled={!isEditable}
-              onClick={() => addItem()}
-              size="small"
-              color="primary"
-              aria-label="Add new item to list"
-            >
-              <Add fontSize="small" />
-            </IconButton>
-          </span>
-        </Tooltip>
-      }
       errorTrigger={<ErrorTrigger item={item} job={job} />}
     >
       <Box>

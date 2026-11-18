@@ -18,9 +18,9 @@ Input
 
    Figure 1: Input
 
-In Figure 1, choose the coordinates **(1)**. The arrow at the end of the row
-opens the atom selection (it is open already once a selection is set): type it
-there, here ``(NUT)``, the ligand by its residue name. The selection language
+In Figure 1, choose the coordinates **(1)**. **Select atoms** under the row
+opens the atom selection (it is open already once a selection is set): tick
+chains and kinds of residue, or type a selection, here ``(NUT)``, the ligand by its residue name. The selection language
 is explained `here <../../general/atom_selection.html>`__. The menu beside the
 model gives views of its contents.
 
