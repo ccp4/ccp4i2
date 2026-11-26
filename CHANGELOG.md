@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.7.2] - 2026-11-26
+
+- Search Python 3.11 paths in Unix launchers for CCP4 10
+
 ## [2.7.1] - 2026-11-16
 
 - Updated Windows bat files with Python 3.11 paths

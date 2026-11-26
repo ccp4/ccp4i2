@@ -58,7 +58,7 @@ class arcimboldo(CPluginScript):
         f_bor.write('distribute_computing = %s\n' % (controlParameters.ARCIMBOLDO_RUN))
         if controlParameters.ARCIMBOLDO_RUN != 'multiprocessing':
             if controlParameters.RUN_MODE == 'SYSTEM':
-                f_bor.write('setup_bor_path =  %s/lib/python3.7/site-packages/arcimboldo/setup.bor\n' % (ccp4_home))
+                f_bor.write('setup_bor_path =  %s/lib/python%d.%d/site-packages/arcimboldo/setup.bor\n' % (ccp4_home, sys.version_info.major, sys.version_info.minor))
             else:
                 config_file = os.path.join(inputData.CONFIG_FILE.relPath.__str__(),inputData.CONFIG_FILE.baseName.__str__())
                 f_bor.write('setup_bor_path = %s\n' % (config_file))

@@ -492,14 +492,10 @@ export CCP4
 .  ${CCP4}/bin/ccp4.setup-sh
 if test -d $CCP4/share/ccp4i2; then
   CCP4I2=$CCP4/share/ccp4i2
-elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/site-packages/ccp4i2
-elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2
-elif test -d $CCP4/lib/python3.7/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/lib/python3.7/site-packages/ccp4i2
-elif test -d $CCP4/lib/python3.9/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/lib/python3.9/site-packages/ccp4i2
+elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.11/site-packages/ccp4i2; then
+  CCP4I2=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.11/site-packages/ccp4i2
+elif test -d $CCP4/lib/python3.11/site-packages/ccp4i2; then
+  CCP4I2=$CCP4/lib/python3.11/site-packages/ccp4i2
 elif test -d $CCP4/lib/site-packages/ccp4i2; then
   CCP4I2=$CCP4/lib/site-packages/ccp4i2
 else
