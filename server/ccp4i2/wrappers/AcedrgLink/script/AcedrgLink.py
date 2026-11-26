@@ -85,7 +85,7 @@ class AcedrgLink(CPluginScript):
         dimer_pdb, dimer_cif = _find_linked_dimer(self.workDirectory, str(inp.LINK_ID))
         if dimer_pdb is not None:
             out.UNL_PDB.fullPath = self._adopt(dimer_pdb)
-            out.UNL_PDB.annotation = f"Linked pair: {inp.ANNOTATION or inp.LINK_ID}"
+            out.UNL_PDB.annotation = f"Linked pair coordinates: {inp.ANNOTATION or inp.LINK_ID}"
         if dimer_cif is not None:
             out.UNL_CIF.fullPath = self._adopt(dimer_cif)
             out.UNL_CIF.annotation = f"Linked pair dictionary: {inp.ANNOTATION or inp.LINK_ID}"

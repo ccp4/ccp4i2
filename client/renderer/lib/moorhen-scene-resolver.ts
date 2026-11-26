@@ -25,7 +25,8 @@ import {
   setClipEnd,
   setFogStart,
   setFogEnd,
-  setResetClippingFogging,
+  setAutoClip,
+  setAutoFog,
   setBackgroundColor,
   setLightPosition,
   setAmbient,
@@ -930,8 +931,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 
     // Clip & fog. Coot derives both from zoom and a shared pair of field depths
     // (Å in front of / behind the centre, default 8/21) and recomputes them on
-    // zoom UNLESS resetClippingFogging is off. So a scene that sets clip/fog also
-    // pins that flag, and `clip` gives intent-level control over the depths.
+    // zoom UNLESS auto-clip / auto-fog are off (one flag, `resetClippingFogging`,
+    // until Moorhen 1.2 split it in two; a scene still treats them as one). So a
+    // scene that sets clip/fog also pins both flags, and `clip` gives
+    // intent-level control over the depths.
     // Clip/fog precedence (broad → fine, design doc §11): a `slab` (absolute
     // world-Å bounding-sphere bracket) or `clip: {front,back}` (zoom-scaled field
     // depths) sets the broad bracket; explicit clipStart/End/fogStart/End then
@@ -944,7 +947,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     if (planes.clipEnd !== undefined) dispatch(setClipEnd(planes.clipEnd));
     if (planes.fogStart !== undefined) dispatch(setFogStart(planes.fogStart));
     if (planes.fogEnd !== undefined) dispatch(setFogEnd(planes.fogEnd));
-    if (planes.reset !== undefined) dispatch(setResetClippingFogging(planes.reset));
+    if (planes.reset !== undefined) {
+      dispatch(setAutoClip(planes.reset));
+      dispatch(setAutoFog(planes.reset));
+    }
 
     if (scene.view.background) {
       const rgba = hexToRgba01(scene.view.background);
@@ -2200,7 +2206,7 @@ export interface ResolvedClipFog {
   clipEnd?: number;
   fogStart?: number;
   fogEnd?: number;
-  /** setResetClippingFogging value: `true` = let coot recompute from zoom (auto);
+  /** setAutoClip / setAutoFog value: `true` = let coot recompute from zoom (auto);
    *  `false` = freeze; `undefined` = leave Moorhen's current state untouched. */
   reset?: boolean;
 }

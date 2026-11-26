@@ -150,3 +150,35 @@ def test_a_refused_link_reports_acedrgs_reason():
         # Two deletions from one monomer, each with its own DELETE.
         instruction = (job / "link_instruction.txt").read_text()
         assert "DELETE ATOM OE2 2 DELETE ATOM OXT 2" in instruction
+
+
+def test_a_vinyl_made_single_by_the_link_gains_its_hydrogen():
+    """A cysteine added across an acrylamide (RBS, from the library). Its
+    vinyl C11=C51 is made single; AceDRG keeps the monomer's own description
+    and writes the single bond, and the hydrogen C11 gains, in the
+    modification block -- which is what refinement applies, and what the
+    report lays out."""
+    args = ["MakeLink"]
+    args += ["--RES_NAME_1_TLC", "CYS"]
+    args += ["--RES_NAME_2_TLC", "RBS"]
+    args += ["--ATOM_NAME_1_TLC", "SG"]
+    args += ["--ATOM_NAME_2_TLC", "C51"]
+    args += ["--ATOM_NAME_1", "SG"]
+    args += ["--ATOM_NAME_2", "C51"]
+    args += ["--BOND_ORDERS_2", "ATOM_1=C11", "ATOM_2=C51", "ORDER=SINGLE"]
+    args += ["--TOGGLE_LINK", "False"]
+    with i2run(args, allow_errors=True) as job:
+        assert "CHANGE BOND C11 C51 SINGLE 2" in (job / "link_instruction.txt").read_text()
+        doc = cif.read(str(job / "CYS-RBS_link.cif"))
+        mod = doc["mod_RBSm1"]
+        bonds = {(row[1], row[2]): (row[0], row[3])
+                 for row in mod.find("_chem_mod_bond.", ["function", "atom_id_1", "atom_id_2", "new_type"])}
+        assert bonds[("C11", "C51")] == ("change", "single")
+        added = [row for row in mod.find("_chem_mod_atom.", ["function", "new_atom_id", "new_type_symbol"])
+                 if row[0] == "add"]
+        assert [row[2] for row in added] == ["H"], "AceDRG adds the hydrogen C11 gains"
+        assert any(f == "add" and "C11" in pair and added[0][1] in pair
+                   for pair, (f, _type) in bonds.items())
+        # Named as coordinates, beside the two dictionaries.
+        params = (job / "params.xml").read_text()
+        assert "Linked pair coordinates: CYS(SG) - RBS(C51)" in params

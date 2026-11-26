@@ -106,6 +106,27 @@ describe("valence advisories", () => {
     expect(advisory.message).toBe("CD would have valence 5 with the link; C usually has 4");
   });
 
+  it("allow for the hydrogen AceDRG adds to a vinyl made single by the link", () => {
+    // N-methylacrylamide, C1 the linking atom (a Michael addition to a
+    // cysteine): C1=C2 made single leaves C2 with two heavy bonds and one
+    // hydrogen. AceDRG adds the second hydrogen itself (ccp4-20260702,
+    // "an H atom H32 is added into DRG"), so nothing is wrong.
+    const acrylamide = {
+      atoms: [atom("C1", "C", 0, 2), atom("C2", "C", 0, 1), atom("C3", "C"), atom("O1", "O"), atom("N1", "N", 0, 1)],
+      bonds: [bond("C1", "C2", "double"), bond("C2", "C3"), bond("C3", "O1", "double"), bond("C3", "N1")],
+    };
+    const edits = setBondOrder(NO_EDITS, "C1", "C2", "SINGLE", "DOUBLE");
+    expect(advise(acrylamide, edits, "C1")).toEqual([]);
+    // Without the link, the same edit is a monomer AceDRG is not asked to fix up.
+    expect(advise(acrylamide, edits).map((a) => a.atom).sort()).toEqual(["C1", "C2"]);
+    // Two hydrogens short is beyond the one AceDRG adds.
+    const alkyne = {
+      atoms: [atom("C1", "C", 0, 1), atom("C2", "C"), atom("C3", "C", 0, 3)],
+      bonds: [bond("C1", "C2", "triple"), bond("C2", "C3")],
+    };
+    expect(advise(alkyne, setBondOrder(NO_EDITS, "C1", "C2", "SINGLE", "TRIPLE"), "C1").map((a) => a.atom)).toEqual(["C2"]);
+  });
+
   it("follow a changed bond order", () => {
     const edits = setBondOrder(NO_EDITS, "CD", "OE1", "TRIPLE", "DOUBLE");
     expect(advise(GLU, edits).map((a) => a.atom).sort()).toEqual(["CD", "OE1"]);
