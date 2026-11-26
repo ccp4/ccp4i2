@@ -544,8 +544,12 @@ class MakeLink(CPluginScript):
            return CPluginScript.FAILED
 
          self.container.outputData.XYZOUT.setFullPath(modelOut)
+         # Named so that, listed beside the link and linked-pair dictionaries,
+         # it reads as the coordinates.
          self.container.outputData.XYZOUT.annotation.set(
-             'Model with %d link%s applied' % (links_made, '' if links_made == 1 else 's'))
+             'Model coordinates with %d link%s applied: %s' % (
+                 links_made, '' if links_made == 1 else 's',
+                 str(self.container.inputData.ANNOTATION)))
          print("Completed applying links to model: "+modelOut)
          return CPluginScript.SUCCEEDED
 

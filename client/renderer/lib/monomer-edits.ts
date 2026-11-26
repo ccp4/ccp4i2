@@ -127,10 +127,14 @@ export interface ValenceAdvisory {
  * Atoms whose valence would be unusual once the edits and the link are made.
  *
  * Only atoms an edit or the link touches are judged. Hydrogens are the
- * dictionary's; for the linking atom and any atom whose charge changes,
- * AceDRG may remove hydrogens itself, so there only too many bonds to heavy
- * atoms counts against it. An atom with a bond order this cannot count
- * (aromatic, delocalised, metal) is not judged at all.
+ * dictionary's, except where AceDRG re-hydrogenates (covLink.py,
+ * adjustAtomsAroundOneAtom): at the linking atom, and at the far end of any
+ * changed bond that touches it, it takes off surplus hydrogens, or adds one
+ * if the atom is one short -- a vinyl made single by a Michael addition
+ * gains its hydrogen. Those atoms are judged over that range. For an atom
+ * whose charge changes AceDRG may remove hydrogens, so there only too many
+ * bonds to heavy atoms counts against it. An atom with a bond order this
+ * cannot count (aromatic, delocalised, metal) is not judged at all.
  */
 export function valenceAdvisories(
   atomDetails: MonomerAtomDetail[],
@@ -151,6 +155,16 @@ export function valenceAdvisories(
     touched.add(b.atom2);
   }
   for (const c of edits.charges) touched.add(c.atom);
+
+  // Where AceDRG adds or removes hydrogens to make the valence right.
+  const rehydrogenated = new Set<string>();
+  if (linkAtom) {
+    rehydrogenated.add(linkAtom);
+    for (const b of edits.bondOrders) {
+      if (b.atom1 === linkAtom) rehydrogenated.add(b.atom2);
+      if (b.atom2 === linkAtom) rehydrogenated.add(b.atom1);
+    }
+  }
 
   const advisories: ValenceAdvisory[] = [];
   for (const atom of atomDetails) {
@@ -178,10 +192,12 @@ export function valenceAdvisories(
     if (isLink) heavy += ORDER_VALUE[linkOrder];
 
     const hydrogens = atom.hydrogens ?? 0;
-    const flexible = isLink || editedCharge(edits, atom.name) !== null;
+    const fixedUp = rehydrogenated.has(atom.name);
+    const flexible = fixedUp || editedCharge(edits, atom.name) !== null;
     const low = flexible ? heavy : heavy + hydrogens;
     const high = heavy + hydrogens;
-    if (allowed.some((v) => v >= low && v <= high)) continue;
+    // AceDRG adds at most one hydrogen, and only where it re-hydrogenates.
+    if (allowed.some((v) => v >= low && v <= high + (fixedUp ? 1 : 0))) continue;
 
     const valence = flexible && heavy > Math.max(...allowed) ? heavy : high;
     const usual = allowed.join(" or ");
